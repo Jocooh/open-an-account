@@ -11,8 +11,8 @@ function Header() {
     <Container>
       <Logo
         onClick={() => navigate('/')}
-        src={require('../../../assets/star.png')}
-        alt='메인'
+        src={require('../../../assets/Star.png')}
+        alt='css'
       />
       <NavBar>
         <Nav onClick={() => navigate('/boardpage')}>커뮤니티</Nav>

@@ -7,8 +7,8 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-export const Logo = styled.img`
-  width: 60px;
+export const Logo = styled.div`
+  width: 50px;
   justify-content: center;
   cursor: pointer;
 `;
