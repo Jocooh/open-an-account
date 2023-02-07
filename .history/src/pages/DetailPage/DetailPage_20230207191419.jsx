@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Body,
   Header,
@@ -17,12 +16,9 @@ import {
 
 function DetailPage() {
   const [currentUser, setCurrentUser] = useState(false);
-  const navigate = useNavigate();
   return (
     <Container>
-      <ReturnButton onClick={() => navigate('/boardpage')}>
-        목록으로
-      </ReturnButton>
+      <ReturnButton>목록으로</ReturnButton>
 
       <Header>
         {currentUser ? (
@@ -40,7 +36,6 @@ function DetailPage() {
       </Header>
       <Body>
         <Title>행복한 71억만...</Title>
-        {/* <Title>제목: {title}</Title> */}
 
         <Content>
           로또에 당첨되었으면 좋겠습니다. 로또에 당첨되었으면 좋겠습니다. 로또에
@@ -48,9 +43,6 @@ function DetailPage() {
           당첨되었으면 좋겠습니다. 로또에 당첨되었으면 좋겠습니다.로또에
           당첨되었으면 좋겠습니다. 로또에 당첨되었으면 좋겠습니다.
         </Content>
-        {/* <Content>
-          {content}
-        </Content> */}
       </Body>
     </Container>
   );

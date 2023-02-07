@@ -63,7 +63,6 @@ export const Title = styled.div`
 `;
 
 export const Content = styled.div`
-  height: 300px;
   padding: 30px;
   background-color: #ffefc8;
 `;
