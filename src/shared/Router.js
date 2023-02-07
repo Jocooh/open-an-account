@@ -5,7 +5,7 @@ import BoardPage from '../pages/BoardPage/BoardPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
 import Layout from '../components/GlobalComponents/Layout/Layout';
-
+import LandingPage from '../pages/LandingPage/LandingPage';
 const Router = () => {
   return (
     <BrowserRouter>
@@ -16,6 +16,7 @@ const Router = () => {
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/boardpage' element={<BoardPage />} />
           <Route path='/detail' element={<DetailPage />} />
+          <Route path='/LandingPage' element={<LandingPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>
