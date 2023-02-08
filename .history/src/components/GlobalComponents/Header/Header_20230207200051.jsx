@@ -11,7 +11,7 @@ function Header() {
     <Container>
       <Logo
         onClick={() => navigate('/')}
-        src={require('../../../assets/star.png')}
+        src={require('../../../assets/Star.png')}
         alt='메인'
       />
       <NavBar>

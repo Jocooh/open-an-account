@@ -7,14 +7,12 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-export const Logo = styled.img`
-  width: 60px;
+export const Logo = styled.div`
+  width: 120px;
   justify-content: center;
   cursor: pointer;
 `;
-export const NavBar = styled.div`
-  display: flex;
-`;
+export const NavBar = styled.div``;
 export const Nav = styled.div`
   font-weight: bold;
   padding-left: 30px;

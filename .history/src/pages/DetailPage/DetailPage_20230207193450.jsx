@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Body,
   Header,
@@ -13,9 +12,6 @@ import {
   Container,
   Content,
   Title,
-  CommentWrap,
-  CommentTitle,
-  Comment,
 } from './style';
 
 function DetailPage() {
@@ -55,10 +51,6 @@ function DetailPage() {
           {content}
         </Content> */}
       </Body>
-      <CommentWrap>
-        <CommentTitle>총 댓글</CommentTitle>
-        <Comment>저도 로또 당첨됐음 좋겠네여!!</Comment>
-      </CommentWrap>
     </Container>
   );
 }

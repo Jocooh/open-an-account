@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 export const Logo = styled.img`
-  width: 60px;
+  width: 50px;
   justify-content: center;
   cursor: pointer;
 `;

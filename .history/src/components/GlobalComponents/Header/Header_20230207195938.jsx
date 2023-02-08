@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Logo, NavBar, Nav, LoginToggle } from './style';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 function Header() {
   const navigate = useNavigate();
@@ -11,8 +10,8 @@ function Header() {
     <Container>
       <Logo
         onClick={() => navigate('/')}
-        src={require('../../../assets/star.png')}
-        alt='메인'
+        src={require('../../../assets/Star.png')}
+        alt='css'
       />
       <NavBar>
         <Nav onClick={() => navigate('/boardpage')}>커뮤니티</Nav>
