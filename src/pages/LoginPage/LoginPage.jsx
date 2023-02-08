@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
   AuthBackground,
   AuthButton,
@@ -18,15 +17,15 @@ import {
   SocialLoginButtonText,
   SocialLoginForm,
   SocialLoginTitle,
-} from './style';
+} from "./style";
 
 function LoginPage() {
   const socialBtn = [
-    { title: '카카오', img: require('../../assets/kakaotalk.png') },
-    { title: '네이버', img: require('../../assets/naver.png') },
-    { title: '구글', img: require('../../assets/google.png') },
-    { title: '페이스북', img: require('../../assets/facebook.png') },
-    { title: '애플', img: require('../../assets/apple.png') },
+    { title: "카카오", img: require("../../assets/kakaotalk.png") },
+    { title: "네이버", img: require("../../assets/naver.png") },
+    { title: "구글", img: require("../../assets/google.png") },
+    { title: "페이스북", img: require("../../assets/facebook.png") },
+    { title: "애플", img: require("../../assets/apple.png") },
   ];
 
   return (
@@ -34,19 +33,19 @@ function LoginPage() {
       <AuthWrapper>
         <AuthLogo>
           <Link to="/">
-            <AuthLogoImg src={require('../../assets/Logo.png')} />
+            <AuthLogoImg src={require("../../assets/star.png")} />
           </Link>
         </AuthLogo>
         <AuthTitle>예·적금이 필요한 순간, 목돈</AuthTitle>
         <AuthText>
-          아직 회원이 아니신가요? <Link to="/">회원가입하기</Link>
+          아직 회원이 아니신가요? <Link to="/signup">회원가입하기</Link>
         </AuthText>
         <AuthForm>
           <AuthInputWrapper>
             <AuthLabel>아이디</AuthLabel>
-            <AuthInput type="text" placeholder="example.gmail.com" />
+            <AuthInput type="id" placeholder="example.gmail.com" />
             <AuthLabel>비밀번호</AuthLabel>
-            <AuthInput type="text" placeholder="비밀번호 입력" />
+            <AuthInput type="password" placeholder="비밀번호 입력" />
           </AuthInputWrapper>
           <AuthButton>로그인</AuthButton>
         </AuthForm>
@@ -57,7 +56,7 @@ function LoginPage() {
             return (
               <SocialLoginButton
                 onClick={() => {
-                  alert('아직은 안돼요~');
+                  alert("아직은 안돼요~");
                 }}
               >
                 <SocialLoginButtonLogo>
@@ -69,7 +68,7 @@ function LoginPage() {
           })}
         </SocialLoginForm>
         <AuthText>
-          <Link to="/">비밀번호를 잊으셨나요?</Link>
+          <Link to="/signup">비밀번호를 잊으셨나요?</Link>
         </AuthText>
       </AuthWrapper>
     </AuthBackground>
