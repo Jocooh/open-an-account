@@ -75,7 +75,7 @@ export const AuthButton = styled.button`
   width: 300px;
   height: 2.5rem;
   color: white;
-  background-color: #1175c7;
+  background-color: #6a24ff;
   border: none;
   font-size: 1rem;
   font-weight: 600;
@@ -83,74 +83,4 @@ export const AuthButton = styled.button`
   cursor: pointer;
 
   margin: 0.7rem 0;
-`;
-
-// social login form
-export const SocialLoginTitle = styled.span`
-  font-size: 0.8rem;
-  font-weight: 600;
-
-  display: block;
-  text-align: center;
-  /* color: #656666; */
-  margin: 0.1rem 0 0.6rem;
-  position: relative;
-
-  &::before {
-    width: 130px;
-    height: 1px;
-    background-color: #ddd;
-    position: absolute;
-    left: 2rem;
-    top: 0.6rem;
-    content: "";
-  }
-
-  &::after {
-    width: 130px;
-    height: 1px;
-    background-color: #ddd;
-    position: absolute;
-    right: 2rem;
-    top: 0.6rem;
-    content: "";
-  }
-`;
-export const SocialLoginForm = styled.div`
-  width: 300px;
-
-  margin: 0.8rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
-export const SocialLoginButton = styled.div`
-  border: 1px solid #c7cace;
-  border-radius: 0.2rem;
-  width: 48%;
-  height: 2.5rem;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  /* justify-content: center; */
-  /* align-items: center; */
-  margin-bottom: 0.4rem;
-`;
-export const SocialLoginButtonLogo = styled.div`
-  width: 28px;
-
-  padding: 4px 0 0 10px;
-`;
-export const SocialLoginButtonLogoImg = styled.img`
-  width: 100%;
-`;
-export const SocialLoginButtonText = styled.div`
-  font-size: 0.9rem;
-  font-weight: 600;
-
-  margin: auto;
 `;
