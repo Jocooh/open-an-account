@@ -16,7 +16,7 @@ export const ReturnButton = styled.div`
 // 수정,삭제, 좋아요, 스크랩
 export const Header = styled.div`
   display: flex;
-  padding: 1rem 2rem;
+  padding: 1rem;
   gap: 20px;
   justify-content: flex-end;
 `;
@@ -66,23 +66,4 @@ export const Content = styled.div`
   height: 300px;
   padding: 30px;
   background-color: #ffefc8;
-`;
-
-export const CommentWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 50px;
-  margin: 40px 80px;
-  background-color: #dbc9ff;
-`;
-
-export const CommentTitle = styled.div`
-  display: flex;
-`;
-export const Comment = styled.div`
-  padding: 30px;
-  background-color: #ffefc8;
-  margin-bottom: 20px;
 `;

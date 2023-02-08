@@ -30,15 +30,8 @@ import {
 function PostingModal({ setPostingModalOpen }) {
   const navigate = useNavigate();
 
-  const [currentInput, setCurrentInput] = useState('');
-
   const ClosePostingModal = () => {
     setPostingModalOpen(false);
-  };
-
-  const checkInput = (e) => {
-    const input = e.target.value;
-    setCurrentInput(input);
   };
 
   return (

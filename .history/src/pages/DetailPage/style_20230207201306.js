@@ -67,22 +67,3 @@ export const Content = styled.div`
   padding: 30px;
   background-color: #ffefc8;
 `;
-
-export const CommentWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 50px;
-  margin: 40px 80px;
-  background-color: #dbc9ff;
-`;
-
-export const CommentTitle = styled.div`
-  display: flex;
-`;
-export const Comment = styled.div`
-  padding: 30px;
-  background-color: #ffefc8;
-  margin-bottom: 20px;
-`;

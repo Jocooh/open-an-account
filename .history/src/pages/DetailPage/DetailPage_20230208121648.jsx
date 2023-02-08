@@ -13,9 +13,6 @@ import {
   Container,
   Content,
   Title,
-  CommentWrap,
-  CommentTitle,
-  Comment,
 } from './style';
 
 function DetailPage() {
