@@ -24,6 +24,7 @@ import {
   Sidebar,
   MainPageWraper,
 } from "./style";
+import Product from "../../components/Product/Product";
 
 const MainPage = () => {
   return (
@@ -90,42 +91,7 @@ const MainPage = () => {
               <button>결과보기</button>
             </ProducksCalculatorBox>
             <h1>결과 리스트에요~~</h1>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
+            <Product />
           </ProducksCalculator>
 
           <BankList>
