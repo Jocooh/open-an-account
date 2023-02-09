@@ -9,16 +9,13 @@ function BoardPage() {
   const OpenPostingModal = () => {
     setPostingModalOpen(true);
   };
-  const OpenComparingModal = () => {
-    setComparingModalOpen(true);
-  };
   return (
     <div>
       <button onClick={OpenPostingModal}>글쓰기</button>
       {postingModalOpen && (
         <PostingModal setPostingModalOpen={setPostingModalOpen} />
       )}
-      <button onClick={OpenComparingModal}>비교하기</button>
+      <button onClick={OpenPostingModal}>비교하기</button>
       {comparingModalOpen && (
         <ComparingModal setComparingModalOpen={setComparingModalOpen} />
       )}

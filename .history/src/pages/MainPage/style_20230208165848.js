@@ -142,6 +142,11 @@ export const InterestRateRangeSlider = styled.div`
   }
 `;
 
+//*  API 결과값
+export const Result = styled.div`
+  padding: 20px;
+`;
+
 //* 은행리스트
 export const BankList = styled.h1`
   width: 470px;

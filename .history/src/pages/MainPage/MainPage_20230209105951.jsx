@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   Wraper,
@@ -24,8 +24,19 @@ import {
   Sidebar,
   MainPageWraper,
 } from "./style";
+import Product from "../../components/Product/Product";
 
-const MainPage = () => {
+const MainPage = ({ data }) => {
+  const [input, setInput] = useState("");
+  const [month, setMonth] = useState(0);
+
+  const InputHanlder = (e) => {
+    setInput(e.target.value);
+  };
+  const InputMonthHanlder = (e) => {
+    setMonth(e.target.value);
+  };
+
   return (
     <MainPageWraper>
       <Wraper>
@@ -63,7 +74,11 @@ const MainPage = () => {
                 <ProducksCalculatorBoxContentTilte>
                   최종 목표 금액
                 </ProducksCalculatorBoxContentTilte>
-                <input placeholder="금액을 입력해주세요."></input>
+                <input
+                  placeholder="금액을 입력해주세요."
+                  value={input}
+                  onChange={InputHanlder}
+                />
               </ProducksCalculatorBoxContent>
               <MonthRangeSlider>
                 <MonthRangeSliderTitle>
@@ -83,49 +98,17 @@ const MainPage = () => {
                   type="range"
                   min="1"
                   max="24"
-                  value={12}
                   className="slider"
+                  value={month}
+                  onChange={InputMonthHanlder}
                 />
               </InterestRateRangeSlider>
               <button>결과보기</button>
             </ProducksCalculatorBox>
             <h1>결과 리스트에요~~</h1>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
+            {data?.map((item) => (
+              <Product key={item.result} product={item} />
+            ))}
           </ProducksCalculator>
 
           <BankList>
