@@ -16,11 +16,11 @@ export const Wraper = styled.div`
 `;
 
 //* 슬라이드 배너
-export const SilderBanner = styled.div`
-  width: 100%;
-  height: 200px;
-  background-color: skyblue;
-`;
+// export const SilderBanner = styled.div`
+//   width: 100%;
+//   height: 200px;
+//   background-color: skyblue;
+// `;
 
 //? 인삿말 박스
 export const GreetingBox = styled.div`
