@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 // auth background
 export const AuthBackground = styled.div`
-  height: 100vh;
+  width: 100vw;
+  height: calc(100vh - 180px);
+
+  /* padding: 200px 0; */
 
   display: flex;
   justify-content: center;
@@ -10,6 +13,7 @@ export const AuthBackground = styled.div`
   overflow-y: hidden;
 
   background-color: #e9e9e9;
+  /* e3e3e3 */
 `;
 
 // auth wrapper

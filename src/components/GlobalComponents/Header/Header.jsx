@@ -22,8 +22,8 @@ function Header() {
   // 로그아웃
   const onLogoutClick = () => {
     authService.signOut().then(() => {
+      sessionStorage.clear(); // ?
       alert("로그아웃 되었습니다.");
-      sessionStorage.clear();
       navigate("/", { replace: true });
     });
   };
