@@ -1,4 +1,11 @@
-import { Link } from "react-router-dom";
+import {
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { authService } from "../../common/firebase";
 import {
   AuthBackground,
   AuthButton,
@@ -19,7 +26,97 @@ import {
   SocialLoginTitle,
 } from "./style";
 
-function LoginPage() {
+const LoginPage = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  // 이메일 입력
+  const changeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  // 비밀번호 입력
+  const changePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
+  // 이메일, 비밀번호 유효성 검사
+  const checkValidation = () => {
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+    const checkEmailValidation = email.match(emailRegex);
+    const checkPasswordValidation = password.match(passwordRegex);
+
+    if (!email || !checkEmailValidation) {
+      if (!email) {
+        alert("이메일을 입력해주세요.");
+        emailRef?.current?.focus();
+        return false;
+      } else {
+        alert("이메일 형식을 올바르게 입력해주세요.");
+        emailRef?.current?.focus();
+        return false;
+      }
+    }
+
+    if (!password || !checkPasswordValidation) {
+      if (!password) {
+        alert("비밀번호를 입력해주세요.");
+        passwordRef?.current?.focus();
+        return false;
+      } else {
+        alert(
+          "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상이어야 합니다."
+        );
+        passwordRef?.current?.focus();
+        setPassword("");
+        return false;
+      }
+    }
+    return true;
+  };
+
+  // 로그인
+  const submitLogin = () => {
+    // 이메일, 비밀번호 유효성 검사 확인
+    if (!checkValidation()) return;
+
+    // setPersistence => 세션스토리지에 유저 정보 저장
+    setPersistence(authService, browserSessionPersistence)
+      .then(() => signInWithEmailAndPassword(authService, email, password))
+      .then(() => {
+        alert("환영합니다!");
+        setEmail("");
+        setPassword("");
+
+        if (state) {
+          navigate(state);
+        } else {
+          navigate("/", { replace: true });
+        }
+      })
+      .catch((err) => {
+        if (err.message.includes("user-not-found")) {
+          alert("가입 정보가 없습니다. 회원가입을 먼저 진행해 주세요.");
+          // navigate("/signup", { state });
+          emailRef?.current?.focus();
+          setEmail("");
+          setPassword("");
+        }
+
+        if (err.message.includes("wrong-password")) {
+          alert("잘못된 비밀번호 입니다.");
+          passwordRef?.current?.focus();
+          setPassword("");
+        }
+      });
+  };
   const socialBtn = [
     { title: "카카오", img: require("../../assets/kakaotalk.png") },
     { title: "네이버", img: require("../../assets/naver.png") },
@@ -43,11 +140,31 @@ function LoginPage() {
         <AuthForm>
           <AuthInputWrapper>
             <AuthLabel>아이디</AuthLabel>
-            <AuthInput type="id" placeholder="example.gmail.com" />
+            <AuthInput
+              type="email"
+              id="email"
+              placeholder="example.gmail.com"
+              value={email}
+              onChange={changeEmail}
+              ref={emailRef}
+            />
             <AuthLabel>비밀번호</AuthLabel>
-            <AuthInput type="password" placeholder="비밀번호 입력" />
+            <AuthInput
+              type="password"
+              id="password"
+              placeholder="비밀번호 입력"
+              value={password}
+              onChange={changePassword}
+              ref={passwordRef}
+            />
           </AuthInputWrapper>
-          <AuthButton>로그인</AuthButton>
+          <AuthButton
+            onClick={() => {
+              submitLogin();
+            }}
+          >
+            로그인
+          </AuthButton>
         </AuthForm>
 
         <SocialLoginTitle>또는</SocialLoginTitle>
@@ -73,6 +190,6 @@ function LoginPage() {
       </AuthWrapper>
     </AuthBackground>
   );
-}
+};
 
 export default LoginPage;

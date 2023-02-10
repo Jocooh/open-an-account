@@ -106,6 +106,7 @@ const SignUpPage = () => {
     // 비밀번호 일치여부 확인
     if (!checkValidationForSignUp()) return;
 
+    // setPersistence => 세션스토리지에 유저 정보 저장
     setPersistence(authService, browserSessionPersistence)
       .then(() => createUserWithEmailAndPassword(authService, email, password))
       .then(() => {
@@ -113,7 +114,7 @@ const SignUpPage = () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        navigate("/mypage");
+        navigate("/");
       })
       .catch((err) => {
         if (err.message.includes("already-in-use")) {
@@ -147,7 +148,7 @@ const SignUpPage = () => {
               placeholder="example.gmail.com"
               value={email}
               onChange={changeEmail}
-              valueRef={emailRef}
+              ref={emailRef}
             />
             <AuthLabel>비밀번호</AuthLabel>
             <AuthInput
@@ -156,7 +157,7 @@ const SignUpPage = () => {
               placeholder="비밀번호 입력"
               value={password}
               onChange={changePassword}
-              valueRef={passwordRef}
+              ref={passwordRef}
             />
             <AuthLabel>비밀번호 재입력</AuthLabel>
             <AuthInput
@@ -165,7 +166,7 @@ const SignUpPage = () => {
               placeholder="비밀번호 재입력"
               value={confirmPassword}
               onChange={changeConfirmPassword}
-              valueRef={confirmPasswordRef}
+              ref={confirmPasswordRef}
             />
           </AuthInputWrapper>
           <AuthButton
