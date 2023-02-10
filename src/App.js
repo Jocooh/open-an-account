@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import Router from './shared/Router';
+import { Fragment } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import Router from "./shared/Router";
 
 const App = () => {
   const queryClient = new QueryClient();

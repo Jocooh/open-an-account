@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../../components/Mypage/Card";
-// import { useNavigate } from "react-router-dom";
+
 import UserModal from "../../components/Mypage/UserModal";
 import { useState } from "react";
 import {
@@ -17,14 +17,13 @@ import {
 } from "./style";
 
 function MyPage() {
-  // const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
       <StyledMyContainer>
         <StyledMyUpperDiv>
-          <StyledImage src={require("../../asset/defaultImage.png")} />
+          <StyledImage src={require("../../assets/defaultImage.png")} />
           <UserInfoContainer>
             <UserInfor>Hello, 김땡땡님</UserInfor>
             <UserInfor>금융 노하우 쌓기 1일째</UserInfor>
@@ -61,3 +60,4 @@ function MyPage() {
 }
 
 export default MyPage;
+//"proxy": "https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=fc19330901f42be6260cd83173d5a5d6&topFinGrpNo=020000&pageNo=1"

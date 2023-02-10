@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import axios from "axios";
 import {
   Wraper,
   SilderBanner,
@@ -23,19 +24,27 @@ import {
   BottomWrap,
   Sidebar,
   MainPageWraper,
-} from './style';
+} from "./style";
 
 const MainPage = () => {
+  const bankListFetch2 = async () => {
+    const { data } = await axios.get(
+      "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
+    );
+    return console.log(data?.result.baseList);
+  };
+
   return (
     <MainPageWraper>
       <Wraper>
         <SilderBanner />
         <GreetingBox>
           <img
-            src={process.env.PUBLIC_URL + '/public/img/Star 1.png'}
-            alt='ProfileImg'
+            src={process.env.PUBLIC_URL + "/public/img/Star 1.png"}
+            alt="ProfileImg"
           />
           <GreetingTitle>
+            <button onClick={bankListFetch2}>여기다 여기</button>
             <Username>상우님</Username>
             <Greetingment>의 첫 금융 ~~을 환영합니다~</Greetingment>
           </GreetingTitle>
@@ -63,7 +72,7 @@ const MainPage = () => {
                 <ProducksCalculatorBoxContentTilte>
                   최종 목표 금액
                 </ProducksCalculatorBoxContentTilte>
-                <input placeholder='금액을 입력해주세요.'></input>
+                <input placeholder="금액을 입력해주세요."></input>
               </ProducksCalculatorBoxContent>
               <MonthRangeSlider>
                 <MonthRangeSliderTitle>
@@ -71,7 +80,7 @@ const MainPage = () => {
                   <span>12개월</span>
                   <span>24개월</span>
                 </MonthRangeSliderTitle>
-                <input type='range' min='1' max='24' className='slider' />
+                <input type="range" min="1" max="24" className="slider" />
               </MonthRangeSlider>
               <InterestRateRangeSlider>
                 <InterestRateRangeSliderTitle>
@@ -80,11 +89,11 @@ const MainPage = () => {
                   <span>5%</span>
                 </InterestRateRangeSliderTitle>
                 <input
-                  type='range'
-                  min='1'
-                  max='24'
+                  type="range"
+                  min="1"
+                  max="24"
                   value={12}
-                  className='slider'
+                  className="slider"
                 />
               </InterestRateRangeSlider>
               <button>결과보기</button>
@@ -92,39 +101,39 @@ const MainPage = () => {
             <h1>결과 리스트에요~~</h1>
             <div
               style={{
-                backgroundColor: '#e3e3e3',
-                width: '300px',
-                height: '50px',
+                backgroundColor: "#e3e3e3",
+                width: "300px",
+                height: "50px",
               }}
             >
-              <span style={{ color: 'blue', fontWeight: 'bold' }}>100원</span>
-              <span style={{ fontWeight: 'bold' }}> 씩</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}> 12개월</span>
-              <span style={{ fontWeight: 'bold' }}> 동안 저축하면 돼요</span>
+              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
+              <span style={{ fontWeight: "bold" }}> 씩</span>
+              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
+              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
             </div>
             <div
               style={{
-                backgroundColor: '#e3e3e3',
-                width: '300px',
-                height: '50px',
+                backgroundColor: "#e3e3e3",
+                width: "300px",
+                height: "50px",
               }}
             >
-              <span style={{ color: 'blue', fontWeight: 'bold' }}>100원</span>
-              <span style={{ fontWeight: 'bold' }}> 씩</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}> 12개월</span>
-              <span style={{ fontWeight: 'bold' }}> 동안 저축하면 돼요</span>
+              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
+              <span style={{ fontWeight: "bold" }}> 씩</span>
+              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
+              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
             </div>
             <div
               style={{
-                backgroundColor: '#e3e3e3',
-                width: '300px',
-                height: '50px',
+                backgroundColor: "#e3e3e3",
+                width: "300px",
+                height: "50px",
               }}
             >
-              <span style={{ color: 'blue', fontWeight: 'bold' }}>100원</span>
-              <span style={{ fontWeight: 'bold' }}> 씩</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}> 12개월</span>
-              <span style={{ fontWeight: 'bold' }}> 동안 저축하면 돼요</span>
+              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
+              <span style={{ fontWeight: "bold" }}> 씩</span>
+              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
+              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
             </div>
           </ProducksCalculator>
 
