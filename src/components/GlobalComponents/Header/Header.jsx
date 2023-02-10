@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Logo, NavBar, Nav, LoginToggle } from "./style";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { authService } from "../../../common/firebase";
+import { authService } from "../../../config/firebase";
 
 function Header() {
   const navigate = useNavigate();
@@ -16,7 +16,6 @@ function Header() {
   // const onLogoutClick = () => {
   //   authService.signOut();
   //   navigate("/", { replace: true });
-
   //   alert("로그아웃 되었습니다.");
   // };
 
