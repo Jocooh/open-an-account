@@ -8,6 +8,7 @@ import logoLists from "../assets/logo/logo";
 function BankLists() {
   const [lists, setLists] = useState(null);
   const [save, setSave] = useState(null);
+  // const [bestDepositList, setBestDepositList] = useState(null);
   //   const { isLoading, isError, error, data } = useQuery("reviews", FetchLists);
   //   if (isLoading) <div>...Loading</div>;
   //   if (isError) <p>{error}</p>;
