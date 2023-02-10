@@ -51,7 +51,7 @@ export const AuthText = styled.span`
 `;
 
 // auth form
-export const AuthForm = styled.form``;
+export const AuthForm = styled.div``;
 export const AuthInputWrapper = styled.div`
   width: 300px;
 
