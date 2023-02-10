@@ -115,13 +115,14 @@ export const ProducksCalculatorTitle = styled.h1`
 
 //* 금융상품계산기 박스
 export const ProducksCalculatorBox = styled.div`
-  height: 483px;
+  /* height: 483px; */
   background-color: white;
   border-radius: 25px;
   /* position: relative; */
   span {
     margin-left: 40px;
   }
+  position: relative;
 `;
 
 //* 금융상품계산기 박스 내부 버튼
@@ -214,18 +215,18 @@ export const FinanciialProductsWrap = styled.div`
 `;
 
 export const FinanciialProducts = styled.div`
-  width: 80%;
+  /* width: 80%;
   min-width: 800px;
   height: 120px;
   border-bottom: solid 0.5px #000;
   text-align: center;
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; */
 `;
 
 export const ProducksRank = styled.div`
   display: flex;
-  button {
+  /* button {
     font-size: 20px;
     width: 50px;
     height: 50px;
@@ -234,7 +235,7 @@ export const ProducksRank = styled.div`
     margin-right: 250px;
     margin-top: 30px;
     position: absolute;
-  }
+  } */
 `;
 
 export const Producks = styled.div``;
