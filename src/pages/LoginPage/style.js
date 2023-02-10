@@ -16,7 +16,7 @@ export const AuthBackground = styled.div`
 export const AuthWrapper = styled.div`
   width: 420px;
   /* min-width: 400px; */
-  background-color: white;
+  background-color: #fff;
   box-sizing: border-box;
 
   display: flex;
@@ -28,7 +28,7 @@ export const AuthWrapper = styled.div`
 
 // auth logo, title
 export const AuthLogo = styled.div`
-  width: 150px;
+  width: 120px;
   margin: 1.5rem 0;
 `;
 export const AuthLogoImg = styled.img`
@@ -51,7 +51,7 @@ export const AuthText = styled.span`
 `;
 
 // auth form
-export const AuthForm = styled.form``;
+export const AuthForm = styled.div``;
 export const AuthInputWrapper = styled.div`
   width: 300px;
 
@@ -65,17 +65,20 @@ export const AuthLabel = styled.label`
 export const AuthInput = styled.input`
   height: 1.6rem;
   font-size: 0.9rem;
-  border: 1px solid #c7cace;
+  border: 2px solid #6a24ff;
   border-radius: 0.2rem;
 
   margin: 0.3rem 0 0.8rem;
   padding: 0.3rem;
+  &:focus {
+    outline: 2px solid #6a24ff;
+  }
 `;
 export const AuthButton = styled.button`
   width: 300px;
   height: 2.5rem;
   color: white;
-  background-color: #1175c7;
+  background-color: #6a24ff;
   border: none;
   font-size: 1rem;
   font-weight: 600;
