@@ -24,7 +24,7 @@ function MyPage() {
     <>
       <StyledMyContainer>
         <StyledMyUpperDiv>
-          <StyledImage src={require("../../asset/defaultImage.png")} />
+          <StyledImage src={require("../../assets/defaultImage.png")} />
           <UserInfoContainer>
             <UserInfor>Hello, 김땡땡님</UserInfor>
             <UserInfor>금융 노하우 쌓기 1일째</UserInfor>
