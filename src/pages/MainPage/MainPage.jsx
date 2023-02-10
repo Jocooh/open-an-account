@@ -1,8 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css";
 import {
   Wraper,
-  SilderBanner,
   GreetingBox,
   GreetingTitle,
   Username,
@@ -23,17 +28,53 @@ import {
   BottomWrap,
   Sidebar,
   MainPageWraper,
-} from './style';
+} from "./style";
 
 const MainPage = () => {
   return (
     <MainPageWraper>
       <Wraper>
-        <SilderBanner />
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          pagination={{ clickable: true }}
+          navigation
+          spaceBetween={50}
+          slidesPerView={1}
+          autoplay={{ delay: 2000 }}
+          loop={true}
+          observer={true}
+          observeParents={true}
+        >
+          <SilderBanner>
+            {/* <Link to="https://www.wooribank.com/">
+              <img src="banner_01.PNG" />
+            </Link> */}
+            예금 맛집
+          </SilderBanner>
+          <SilderBanner>
+            {/* <Link to="https://www.wooribank.com/">
+              <img src="banner_01.PNG" />
+            </Link> */}
+            적금 맛집
+          </SilderBanner>
+          <SilderBanner>
+            {/* <Link to="https://www.wooribank.com/">
+              <img src="banner_01.PNG" />
+            </Link> */}
+            여기로 와~
+          </SilderBanner>
+          <SilderBanner>
+            {/* <Link to="https://www.wooribank.com/">
+              <img src="banner_01.PNG" />
+            </Link> */}
+            컴온!
+          </SilderBanner>
+        </Swiper>
+
         <GreetingBox>
           <img
-            src={process.env.PUBLIC_URL + '/public/img/Star 1.png'}
-            alt='ProfileImg'
+            src={process.env.PUBLIC_URL + "/public/img/Star 1.png"}
+            alt="ProfileImg"
           />
           <GreetingTitle>
             <Username>상우님</Username>
@@ -63,7 +104,7 @@ const MainPage = () => {
                 <ProducksCalculatorBoxContentTilte>
                   최종 목표 금액
                 </ProducksCalculatorBoxContentTilte>
-                <input placeholder='금액을 입력해주세요.'></input>
+                <input placeholder="금액을 입력해주세요."></input>
               </ProducksCalculatorBoxContent>
               <MonthRangeSlider>
                 <MonthRangeSliderTitle>
@@ -71,7 +112,7 @@ const MainPage = () => {
                   <span>12개월</span>
                   <span>24개월</span>
                 </MonthRangeSliderTitle>
-                <input type='range' min='1' max='24' className='slider' />
+                <input type="range" min="1" max="24" className="slider" />
               </MonthRangeSlider>
               <InterestRateRangeSlider>
                 <InterestRateRangeSliderTitle>
@@ -80,11 +121,11 @@ const MainPage = () => {
                   <span>5%</span>
                 </InterestRateRangeSliderTitle>
                 <input
-                  type='range'
-                  min='1'
-                  max='24'
+                  type="range"
+                  min="1"
+                  max="24"
                   value={12}
-                  className='slider'
+                  className="slider"
                 />
               </InterestRateRangeSlider>
               <button>결과보기</button>
@@ -92,44 +133,62 @@ const MainPage = () => {
             <h1>결과 리스트에요~~</h1>
             <div
               style={{
-                backgroundColor: '#e3e3e3',
-                width: '300px',
-                height: '50px',
+                backgroundColor: "#e3e3e3",
+                width: "300px",
+                height: "50px",
               }}
             >
-              <span style={{ color: 'blue', fontWeight: 'bold' }}>100원</span>
-              <span style={{ fontWeight: 'bold' }}> 씩</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}> 12개월</span>
-              <span style={{ fontWeight: 'bold' }}> 동안 저축하면 돼요</span>
+              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
+              <span style={{ fontWeight: "bold" }}> 씩</span>
+              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
+              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
             </div>
             <div
               style={{
-                backgroundColor: '#e3e3e3',
-                width: '300px',
-                height: '50px',
+                backgroundColor: "#e3e3e3",
+                width: "300px",
+                height: "50px",
               }}
             >
-              <span style={{ color: 'blue', fontWeight: 'bold' }}>100원</span>
-              <span style={{ fontWeight: 'bold' }}> 씩</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}> 12개월</span>
-              <span style={{ fontWeight: 'bold' }}> 동안 저축하면 돼요</span>
+              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
+              <span style={{ fontWeight: "bold" }}> 씩</span>
+              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
+              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
             </div>
             <div
               style={{
-                backgroundColor: '#e3e3e3',
-                width: '300px',
-                height: '50px',
+                backgroundColor: "#e3e3e3",
+                width: "300px",
+                height: "50px",
               }}
             >
-              <span style={{ color: 'blue', fontWeight: 'bold' }}>100원</span>
-              <span style={{ fontWeight: 'bold' }}> 씩</span>
-              <span style={{ color: 'red', fontWeight: 'bold' }}> 12개월</span>
-              <span style={{ fontWeight: 'bold' }}> 동안 저축하면 돼요</span>
+              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
+              <span style={{ fontWeight: "bold" }}> 씩</span>
+              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
+              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
             </div>
           </ProducksCalculator>
 
           <BankList>
             <BankListTilte>은행사이트 바로가기</BankListTilte>
+            <BankBannerWrap>
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                pagination={{ clickable: true }}
+                navigation
+                spaceBetween={50}
+                slidesPerView={3}
+                autoplay={{ delay: 2000 }}
+                loop={true}
+                observer={true}
+                observeParents={true}
+              >
+                <BankBanner>우리은행 농협은행</BankBanner>
+                <BankBanner>하나은행 IBK기업은행</BankBanner>
+                <BankBanner>신한은행 국민은행</BankBanner>
+                <BankBanner>신협 수협은행</BankBanner>
+              </Swiper>
+            </BankBannerWrap>
           </BankList>
         </BottomWrap>
 
@@ -146,3 +205,29 @@ const MainPage = () => {
 };
 
 export default MainPage;
+
+//* 슬라이드 배너
+const SilderBanner = styled(SwiperSlide)`
+  width: 100%;
+  height: 150px;
+  padding-top: 130px;
+  text-align: center;
+  /* img {
+    width: 100%;
+  } */
+`;
+
+const BankBannerWrap = styled.div`
+  width: 350px;
+  height: 250px;
+  border: solid 1px #dedede;
+  margin: 40px 0 0 0px;
+  padding: 50px 0px 0px 50px;
+`;
+
+const BankBanner = styled(SwiperSlide)`
+  width: 100%;
+  height: 200px;
+  padding-top: 10px;
+  text-align: center;
+`;
