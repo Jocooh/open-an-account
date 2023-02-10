@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { authService } from "../../common/firebase";
+import { authService } from "../../config/firebase";
 import {
   AuthBackground,
   AuthButton,
