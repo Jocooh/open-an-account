@@ -55,31 +55,15 @@ function BankLists() {
             </StyleList>
           ))}
       </ul> */}
-      {/* {lists?.map((i) => (
-        <StyleList key={i.fin_prdt_cd}>
-          {i.fin_prdt_nm}
-          {i.kor_co_nm}
-          {save?.map((v) =>
-            i.fin_prdt_cd === v.fin_prdt_cd
-              ? v?.filter((a) =>
-                  a.save_trm === 12 ? <p>{a.intr_rate2}</p> : null
-                )
-              : null
-          )}
-        </StyleList>
-      ))} */}
       {lists?.map((i) => (
         <StyleList key={i.fin_prdt_cd}>
-          {/* 상품명 */}
           {i.fin_prdt_nm}
-          {/* 은행명 */}
           {i.kor_co_nm}
-          {/* 여기는 기간이 12개월인 상품의 최대금리만 가져왔습니다. */}
           {save?.map((v) =>
             i.fin_prdt_cd === v.fin_prdt_cd
-              ? v.save_trm === "12"
-                ? v.intr_rate2
-                : null
+              ? v?.map((a) =>
+                  a?.save_trm === 12 ? <p>{a?.intr_rate2}</p> : null
+                )
               : null
           )}
         </StyleList>
@@ -98,3 +82,9 @@ const StyledImg = styled.img`
   height: 100px;
   object-fit: contain;
 `;
+
+{
+  /* {100000 +
+                  (v.intr_rate * 0.012) -
+                  (v.intr_rate * 0.012 * 0.154 * 12)} */
+}

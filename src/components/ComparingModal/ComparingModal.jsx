@@ -15,18 +15,23 @@ import {
   Message,
 } from "./style";
 
-function ComparingModal({ setPostingModalOpen }) {
+function ComparingModal({ setComparingModalOpen }) {
   const navigate = useNavigate();
-  const [comparingModalOpen, setComparingModalOpen] = useState(false);
 
-  const CloseComparingModal = () => {
-    setComparingModalOpen(false);
-  };
+  // const CloseComparingModal = () => {
+  //   setComparingModalOpen(false);
+  // };
 
   return (
     <ModalBackground>
       <ModalContainer>
-        <CloseButton onClick={CloseComparingModal}>닫기</CloseButton>
+        <CloseButton
+          onClick={() => {
+            setComparingModalOpen(false);
+          }}
+        >
+          닫기
+        </CloseButton>
         <Title>각 상품을 비교했어요!</Title>
         <Wrapper>
           <Product>
@@ -43,7 +48,7 @@ function ComparingModal({ setPostingModalOpen }) {
             <Button>자세히 확인하기</Button>
           </Product>
           <Product>
-            <Prdt_nm>A적금</Prdt_nm>
+            <Prdt_nm>B적금</Prdt_nm>
             <Scrap>스크랩아이콘</Scrap>
             <BaseList>
               <div>우리은행</div>
@@ -56,7 +61,7 @@ function ComparingModal({ setPostingModalOpen }) {
             <Button>자세히 확인하기</Button>
           </Product>
           <Product>
-            <Prdt_nm>A적금</Prdt_nm>
+            <Prdt_nm>C적금</Prdt_nm>
             <Scrap>스크랩아이콘</Scrap>
             <BaseList>
               <div>우리은행</div>
