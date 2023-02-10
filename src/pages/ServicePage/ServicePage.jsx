@@ -26,8 +26,9 @@ import {
   Producks,
   ProducksDiscription,
   ProducksTitle,
-} from "./ServicePageCss";
+} from "./style";
 import React, { useState } from "react";
+import ComparingModal from "../../components/ComparingModal/ComparingModal";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -42,6 +43,12 @@ const ServicePage = () => {
   const handleClickResults = (results) => {
     setShowResults(!showResults);
   };
+
+  // 비교하기 버튼 모달창
+  const [comparingModalOpen, setComparingModalOpen] = useState(false);
+  const OpenComparingModal = () => {
+    setComparingModalOpen(true);
+  };
   return (
     <Wraper>
       <Cantinar>
@@ -54,7 +61,10 @@ const ServicePage = () => {
               <div className="producks">+</div>
               <div className="producks">+</div>
             </SelectedProducts>
-            <ToCompare>비교하기</ToCompare>
+            <ToCompare onClick={OpenComparingModal}>비교하기</ToCompare>
+            {comparingModalOpen && (
+              <ComparingModal setComparingModalOpen={setComparingModalOpen} />
+            )}
           </TopSection>
         </TopSectionWraper>
 

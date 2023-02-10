@@ -14,7 +14,7 @@ export const ModalContainer = styled.div`
   width: 1331px;
   height: 781px;
   /* 최상단 위치 */
-  z-index: 999;
+  z-index: 999999;
 
   /* 모달 배치 */
   /* translate는 본인의 크기 기준으로 작동한다. */
@@ -24,10 +24,14 @@ export const ModalContainer = styled.div`
   transform: translate(-50%, -50%);
 
   /* 모달창 디자인 */
-  background-color: #fff;
-  border-radius: 7px;
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 20px;
   padding: 15px 35px 10px 35px;
   box-sizing: border-box;
+
+  /* left: calc(50% - 1331px/2 + 0.5px);
+top: 146px; */
 `;
 
 export const CloseButton = styled.button`
@@ -51,18 +55,25 @@ export const Wrapper = styled.div`
 `;
 
 export const Product = styled.div`
-  display: flex;
+  box-sizing: border-box;
   width: 399px;
   height: 640px;
-  border: solid 1px #6a24ff;
-  border-radius: 5px;
-  flex-direction: column;
+  left: 909px;
+  top: 113px;
+
+  border: 1px solid #e7e7e7;
+  border-radius: 17px;
 `;
 
 export const Title = styled.div`
   text-align: center;
 `;
 export const Scrap = styled.button`
+  position: absolute;
+  width: 47px;
+  height: 58px;
+  left: 1244px;
+  top: 139px;
   cursor: pointer;
 
   :hover {
@@ -79,7 +90,17 @@ export const Message = styled.div`
   color: #3075ff;
 `;
 export const Button = styled.button`
-  margin: 10px;
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 342px;
+  height: 62px;
+  left: 949px;
+  top: 664px;
+
+  background: #d9d9d9;
+  border: 1px solid #dedede;
+  border-radius: 10px;
   cursor: pointer;
 
   :hover {
