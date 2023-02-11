@@ -62,7 +62,7 @@ const AuthForm = ({
               id="email"
               type="email"
               placeholder="example.gmail.com"
-              defaultValue={email}
+              value={email}
               onChange={changeEmail}
               ref={emailRef}
             />
@@ -71,7 +71,7 @@ const AuthForm = ({
               id="password"
               type="password"
               placeholder="비밀번호 입력"
-              defaultValue={password}
+              value={password}
               onChange={changePassword}
               ref={passwordRef}
             />
@@ -82,7 +82,7 @@ const AuthForm = ({
                   id="confirm-password"
                   type="password"
                   placeholder="비밀번호 재입력"
-                  defaultValue={confirmPassword}
+                  value={confirmPassword}
                   onChange={changeConfirmPassword}
                   ref={confirmPasswordRef}
                 />
@@ -91,8 +91,12 @@ const AuthForm = ({
               ""
             )}
           </AuthInputWrapper>
-          {signUp && <AuthButton onClick={submitSignUp}>회원가입</AuthButton>}
-          {!signUp && <AuthButton onClick={submitLogin}>로그인</AuthButton>}
+
+          {signUp ? (
+            <AuthButton onClick={submitSignUp}>회원가입</AuthButton>
+          ) : (
+            <AuthButton onClick={submitLogin}>로그인</AuthButton>
+          )}
         </DefaultLoginForm>
         {!signUp && (
           <>

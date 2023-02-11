@@ -173,7 +173,7 @@ const SignUpPage = () => {
       linkText="로그인하기"
       email={email}
       changeEmail={changeEmail}
-      emailref={emailRef}
+      emailRef={emailRef}
       password={password}
       changePassword={changePassword}
       passwordRef={passwordRef}
