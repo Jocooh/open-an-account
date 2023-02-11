@@ -99,13 +99,13 @@ const LoginPage = () => {
         }
       });
   };
-  const socialBtn = [
-    { title: "카카오", img: require("../../assets/kakaotalk.png") },
-    { title: "네이버", img: require("../../assets/naver.png") },
-    { title: "구글", img: require("../../assets/google.png") },
-    { title: "페이스북", img: require("../../assets/facebook.png") },
-    { title: "애플", img: require("../../assets/apple.png") },
-  ];
+  // const socialBtn = [
+  //   { title: "카카오", img: require("../../assets/kakaotalk.png") },
+  //   { title: "네이버", img: require("../../assets/naver.png") },
+  //   { title: "구글", img: require("../../assets/google.png") },
+  //   { title: "페이스북", img: require("../../assets/facebook.png") },
+  //   { title: "애플", img: require("../../assets/apple.png") },
+  // ];
 
   return (
     <AuthForm
@@ -118,7 +118,7 @@ const LoginPage = () => {
       password={password}
       changePassword={changePassword}
       passwordRef={passwordRef}
-      socialBtn={socialBtn}
+      // socialBtn={socialBtn}
       submitLogin={submitLogin}
     />
   );

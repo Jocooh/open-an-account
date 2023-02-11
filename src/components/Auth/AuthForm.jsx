@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { SocialLogin } from "./SocialLogin";
 import {
   AuthBackground,
   AuthButton,
@@ -100,8 +101,9 @@ const AuthForm = ({
         </DefaultLoginForm>
         {!signUp && (
           <>
-            <SocialLoginTitle>또는</SocialLoginTitle>
-            <SocialLoginForm>
+            <SocialLogin />
+
+            {/* <SocialLoginForm>
               {socialBtn.map((item) => {
                 return (
                   <SocialLoginButton
@@ -116,8 +118,8 @@ const AuthForm = ({
                   </SocialLoginButton>
                 );
               })}
-            </SocialLoginForm>
-            <LinkText>
+            </SocialLoginForm> */}
+            {/* <LinkText>
               <Link
                 onClick={() => {
                   alert("아직은 안돼요~");
@@ -125,7 +127,7 @@ const AuthForm = ({
               >
                 비밀번호를 잊으셨나요?
               </Link>
-            </LinkText>
+            </LinkText> */}
           </>
         )}
       </AuthWrapper>

@@ -41,13 +41,13 @@ function Header() {
         <LoginToggle>
           {!isLoggedIn && (
             <>
-              <Nav
+              {/* <Nav
                 onClick={() => {
                   navigate("/signup");
                 }}
               >
                 회원가입
-              </Nav>
+              </Nav> */}
               <Nav
                 onClick={() => {
                   navigate("/login");
