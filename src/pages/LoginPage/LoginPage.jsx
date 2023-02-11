@@ -4,27 +4,9 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
-import {
-  AuthBackground,
-  AuthButton,
-  AuthForm,
-  AuthInput,
-  AuthInputWrapper,
-  AuthLabel,
-  AuthLogo,
-  AuthLogoImg,
-  AuthText,
-  AuthTitle,
-  AuthWrapper,
-  SocialLoginButton,
-  SocialLoginButtonLogo,
-  SocialLoginButtonLogoImg,
-  SocialLoginButtonText,
-  SocialLoginForm,
-  SocialLoginTitle,
-} from "./style";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -126,69 +108,88 @@ const LoginPage = () => {
   ];
 
   return (
-    <AuthBackground>
-      <AuthWrapper>
-        <AuthLogo>
-          <Link to="/">
-            <AuthLogoImg src={require("../../assets/star.png")} />
-          </Link>
-        </AuthLogo>
-        <AuthTitle>예·적금이 필요한 순간, 목돈</AuthTitle>
-        <AuthText>
-          아직 회원이 아니신가요? <Link to="/signup">회원가입하기</Link>
-        </AuthText>
-        <AuthForm>
-          <AuthInputWrapper>
-            <AuthLabel>아이디</AuthLabel>
-            <AuthInput
-              type="email"
-              id="email"
-              placeholder="example.gmail.com"
-              value={email}
-              onChange={changeEmail}
-              ref={emailRef}
-            />
-            <AuthLabel>비밀번호</AuthLabel>
-            <AuthInput
-              type="password"
-              id="password"
-              placeholder="비밀번호 입력"
-              value={password}
-              onChange={changePassword}
-              ref={passwordRef}
-            />
-          </AuthInputWrapper>
-          <AuthButton
-            onClick={() => {
-              submitLogin();
-            }}
-          >
-            로그인
-          </AuthButton>
-        </AuthForm>
+    // <AuthBackground>
+    //   <AuthWrapper>
+    //     <AuthLogo>
+    //       <Link to="/">
+    //         <AuthLogoImg src={require("../../assets/star.png")} />
+    //       </Link>
+    //     </AuthLogo>
+    //     <AuthTitle>예·적금이 필요한 순간, 목돈</AuthTitle>
+    //     <AuthText>
+    //       아직 회원이 아니신가요? <Link to="/signup">회원가입하기</Link>
+    //     </AuthText>
+    //     <DefaultLoginForm>
+    //       <AuthInputWrapper>
+    //         <AuthLabel>아이디</AuthLabel>
+    //         <AuthInput
+    //           type="email"
+    //           id="email"
+    //           placeholder="example.gmail.com"
+    //           value={email}
+    //           onChange={changeEmail}
+    //           ref={emailRef}
+    //         />
+    //         <AuthLabel>비밀번호</AuthLabel>
+    //         <AuthInput
+    //           type="password"
+    //           id="password"
+    //           placeholder="비밀번호 입력"
+    //           value={password}
+    //           onChange={changePassword}
+    //           ref={passwordRef}
+    //         />
+    //       </AuthInputWrapper>
+    //       <AuthButton
+    //         onClick={() => {
+    //           submitLogin();
+    //         }}
+    //       >
+    //         로그인
+    //       </AuthButton>
+    //     </DefaultLoginForm>
 
-        <SocialLoginTitle>또는</SocialLoginTitle>
-        <SocialLoginForm>
-          {socialBtn.map((item) => {
-            return (
-              <SocialLoginButton
-                onClick={() => {
-                  alert("아직은 안돼요~");
-                }}
-              >
-                <SocialLoginButtonLogo>
-                  <SocialLoginButtonLogoImg src={item.img} />
-                </SocialLoginButtonLogo>
-                <SocialLoginButtonText>{item.title}</SocialLoginButtonText>
-              </SocialLoginButton>
-            );
-          })}
-        </SocialLoginForm>
-        <AuthText>
-          <Link to="/signup">비밀번호를 잊으셨나요?</Link>
-        </AuthText>
-      </AuthWrapper>
-    </AuthBackground>
+    //     <SocialLoginTitle>또는</SocialLoginTitle>
+    //     <SocialLoginForm>
+    //       {socialBtn.map((item) => {
+    //         return (
+    //           <SocialLoginButton
+    //             onClick={() => {
+    //               alert("아직은 안돼요~");
+    //             }}
+    //           >
+    //             <SocialLoginButtonLogo>
+    //               <SocialLoginButtonLogoImg src={item.img} />
+    //             </SocialLoginButtonLogo>
+    //             <SocialLoginButtonText>{item.title}</SocialLoginButtonText>
+    //           </SocialLoginButton>
+    //         );
+    //       })}
+    //     </SocialLoginForm>
+    //     <AuthText>
+    //       <Link
+    //         onClick={() => {
+    //           alert("아직은 안돼요~");
+    //         }}
+    //       >
+    //         비밀번호를 잊으셨나요?
+    //       </Link>
+    //     </AuthText>
+    //   </AuthWrapper>
+    // </AuthBackground>
+    <AuthForm
+      title="예·적금이 필요한 순간, 목돈"
+      text="아직 회원이 아니신가요?"
+      linkText="회원가입하기"
+      email={email}
+      changeEmail={changeEmail}
+      emailref={emailRef}
+      password={password}
+      changePassword={changePassword}
+      passwordRef={passwordRef}
+      socialBtn={socialBtn}
+      submitLogin={submitLogin}
+    />
   );
 };
 

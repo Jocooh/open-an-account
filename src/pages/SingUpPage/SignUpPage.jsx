@@ -4,21 +4,9 @@ import {
   setPersistence,
 } from "firebase/auth";
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
-import {
-  AuthBackground,
-  AuthButton,
-  AuthForm,
-  AuthInput,
-  AuthInputWrapper,
-  AuthLabel,
-  AuthLogo,
-  AuthLogoImg,
-  AuthText,
-  AuthTitle,
-  AuthWrapper,
-} from "./style";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -128,57 +116,72 @@ const SignUpPage = () => {
   };
 
   return (
-    <AuthBackground>
-      <AuthWrapper>
-        <AuthLogo>
-          <Link to="/">
-            <AuthLogoImg src={require("../../assets/star.png")} />
-          </Link>
-        </AuthLogo>
-        <AuthTitle>회원 가입 정보 입력</AuthTitle>
-        <AuthText>
-          회원이신가요? <Link to="/login">로그인하기</Link>
-        </AuthText>
-        <AuthForm>
-          <AuthInputWrapper>
-            <AuthLabel>아이디</AuthLabel>
-            <AuthInput
-              type="email"
-              id="email"
-              placeholder="example.gmail.com"
-              value={email}
-              onChange={changeEmail}
-              ref={emailRef}
-            />
-            <AuthLabel>비밀번호</AuthLabel>
-            <AuthInput
-              type="password"
-              id="password"
-              placeholder="비밀번호 입력"
-              value={password}
-              onChange={changePassword}
-              ref={passwordRef}
-            />
-            <AuthLabel>비밀번호 재입력</AuthLabel>
-            <AuthInput
-              type="password"
-              id="confirm-password"
-              placeholder="비밀번호 재입력"
-              value={confirmPassword}
-              onChange={changeConfirmPassword}
-              ref={confirmPasswordRef}
-            />
-          </AuthInputWrapper>
-          <AuthButton
-            onClick={() => {
-              submitSignUp();
-            }}
-          >
-            회원가입
-          </AuthButton>
-        </AuthForm>
-      </AuthWrapper>
-    </AuthBackground>
+    // <AuthBackground>
+    //   <AuthWrapper>
+    //     <AuthLogo>
+    //       <Link to="/">
+    //         <AuthLogoImg src={require("../../assets/star.png")} />
+    //       </Link>
+    //     </AuthLogo>
+    //     <AuthTitle>회원 가입 정보 입력</AuthTitle>
+    //     <AuthText>
+    //       회원이신가요? <Link to="/login">로그인하기</Link>
+    //     </AuthText>
+    //     <DefaultLoginForm>
+    //       <AuthInputWrapper>
+    //         <AuthLabel>이메일</AuthLabel>
+    //         <AuthInput
+    //           type="email"
+    //           id="email"
+    //           placeholder="example.gmail.com"
+    //           value={email}
+    //           onChange={changeEmail}
+    //           ref={emailRef}
+    //         />
+    //         <AuthLabel>비밀번호</AuthLabel>
+    //         <AuthInput
+    //           type="password"
+    //           id="password"
+    //           placeholder="비밀번호 입력"
+    //           value={password}
+    //           onChange={changePassword}
+    //           ref={passwordRef}
+    //         />
+    //         <AuthLabel>비밀번호 재입력</AuthLabel>
+    //         <AuthInput
+    //           type="password"
+    //           id="confirm-password"
+    //           placeholder="비밀번호 재입력"
+    //           value={confirmPassword}
+    //           onChange={changeConfirmPassword}
+    //           ref={confirmPasswordRef}
+    //         />
+    //       </AuthInputWrapper>
+    //       <AuthButton
+    //         onClick={() => {
+    //           submitSignUp();
+    //         }}
+    //       >
+    //         회원가입
+    //       </AuthButton>
+    //     </DefaultLoginForm>
+    //   </AuthWrapper>
+    // </AuthBackground>
+    <AuthForm
+      title="회원 가입 정보 입력"
+      text="회원이신가요?"
+      linkText="로그인하기"
+      email={email}
+      changeEmail={changeEmail}
+      emailref={emailRef}
+      password={password}
+      changePassword={changePassword}
+      passwordRef={passwordRef}
+      confirmPassword={confirmPassword}
+      changeConfirmPassword={changeConfirmPassword}
+      confirmPasswordRef={confirmPasswordRef}
+      submitSignUp={submitSignUp}
+    />
   );
 };
 

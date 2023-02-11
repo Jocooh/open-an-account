@@ -1,93 +1,95 @@
-import styled from "styled-components";
+// 김원준 임시 주석 처리 -- 지우지 말아주세요.
 
-// auth background
-export const AuthBackground = styled.div`
-  width: 100vw;
-  height: calc(100vh - 180px);
+// import styled from "styled-components";
 
-  /* padding: 200px 0; */
+// // auth background
+// export const AuthBackground = styled.div`
+//   width: 100vw;
+//   height: calc(100vh - 180px);
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: hidden;
+//   /* padding: 200px 0; */
 
-  background-color: #e9e9e9;
-  /* e3e3e3 */
-`;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   overflow-y: hidden;
 
-// auth wrapper
-export const AuthWrapper = styled.div`
-  width: 420px;
-  /* min-width: 400px; */
-  background-color: white;
-  box-sizing: border-box;
+//   background-color: #e9e9e9;
+//   /* e3e3e3 */
+// `;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-`;
+// // auth wrapper
+// export const AuthWrapper = styled.div`
+//   width: 420px;
+//   /* min-width: 400px; */
+//   background-color: white;
+//   box-sizing: border-box;
 
-// auth logo, title
-export const AuthLogo = styled.div`
-  width: 120px;
-  margin: 1.5rem 0;
-`;
-export const AuthLogoImg = styled.img`
-  width: 100%;
-`;
-export const AuthTitle = styled.div`
-  width: 300px;
-  font-size: 1.4rem;
-  font-weight: 600;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 1.5rem;
+// `;
 
-  margin-top: 1rem;
-  text-align: center;
-`;
-export const AuthText = styled.span`
-  color: #656666;
-  font-size: 0.7rem;
-  font-weight: 600;
+// // auth logo, title
+// export const AuthLogo = styled.div`
+//   width: 120px;
+//   margin: 1.5rem 0;
+// `;
+// export const AuthLogoImg = styled.img`
+//   width: 100%;
+// `;
+// export const AuthTitle = styled.div`
+//   width: 300px;
+//   font-size: 1.4rem;
+//   font-weight: 600;
 
-  margin: 0.5rem 0 2.2rem;
-`;
+//   margin-top: 1rem;
+//   text-align: center;
+// `;
+// export const AuthText = styled.span`
+//   color: #656666;
+//   font-size: 0.7rem;
+//   font-weight: 600;
 
-// auth form
-export const AuthForm = styled.div``;
-export const AuthInputWrapper = styled.div`
-  width: 300px;
+//   margin: 0.5rem 0 2.2rem;
+// `;
 
-  display: flex;
-  flex-direction: column;
-`;
-export const AuthLabel = styled.label`
-  font-size: 0.8rem;
-  font-weight: 600;
-`;
-export const AuthInput = styled.input`
-  height: 1.6rem;
-  font-size: 0.9rem;
-  border: 2px solid #6a24ff;
-  border-radius: 0.2rem;
+// // auth form
+// export const DefaultLoginForm = styled.div``;
+// export const AuthInputWrapper = styled.div`
+//   width: 300px;
 
-  margin: 0.3rem 0 0.8rem;
-  padding: 0.3rem;
-  &:focus {
-    outline: 2px solid #6a24ff;
-  }
-`;
-export const AuthButton = styled.button`
-  width: 300px;
-  height: 2.5rem;
-  color: white;
-  background-color: #6a24ff;
-  border: none;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 0.2rem;
-  cursor: pointer;
+//   display: flex;
+//   flex-direction: column;
+// `;
+// export const AuthLabel = styled.label`
+//   font-size: 0.8rem;
+//   font-weight: 600;
+// `;
+// export const AuthInput = styled.input`
+//   height: 1.6rem;
+//   font-size: 0.9rem;
+//   border: 2px solid #6a24ff;
+//   border-radius: 0.2rem;
 
-  margin: 0.7rem 0;
-`;
+//   margin: 0.3rem 0 0.8rem;
+//   padding: 0.3rem;
+//   &:focus {
+//     outline: 2px solid #6a24ff;
+//   }
+// `;
+// export const AuthButton = styled.button`
+//   width: 300px;
+//   height: 2.5rem;
+//   color: white;
+//   background-color: #6a24ff;
+//   border: none;
+//   font-size: 1rem;
+//   font-weight: 600;
+//   border-radius: 0.2rem;
+//   cursor: pointer;
+
+//   margin: 0.7rem 0;
+// `;

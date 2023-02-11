@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  // 글로벌 스타일 적용 및 로그인&회원가입 페이지 반응형 웹 높이 설정으로 지정되어 있지 않던 heigth 값 추가 (기존 121px -> 120px 로 큰 변화는 없음.)
+  // 글로벌 스타일 적용 및 로그인&회원가입 페이지 반응형 웹 높이 설정으로 지정되어 있지 않던 heigth 값 추가 (기존 121px -> 120px 로 큰 변화는 없음.) - 원준
   width: 100vw;
   height: 120px;
   box-sizing: border-box;
