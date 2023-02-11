@@ -79,7 +79,7 @@ const SignUpPage = () => {
     if (password !== confirmPassword) {
       alert("비밀번호가 일치하지 않습니다.");
       confirmPasswordRef?.current?.focus();
-      setPassword("");
+      // setPassword("");
       setConfirmPassword("");
       return false;
     }
@@ -116,57 +116,6 @@ const SignUpPage = () => {
   };
 
   return (
-    // <AuthBackground>
-    //   <AuthWrapper>
-    //     <AuthLogo>
-    //       <Link to="/">
-    //         <AuthLogoImg src={require("../../assets/star.png")} />
-    //       </Link>
-    //     </AuthLogo>
-    //     <AuthTitle>회원 가입 정보 입력</AuthTitle>
-    //     <AuthText>
-    //       회원이신가요? <Link to="/login">로그인하기</Link>
-    //     </AuthText>
-    //     <DefaultLoginForm>
-    //       <AuthInputWrapper>
-    //         <AuthLabel>이메일</AuthLabel>
-    //         <AuthInput
-    //           type="email"
-    //           id="email"
-    //           placeholder="example.gmail.com"
-    //           value={email}
-    //           onChange={changeEmail}
-    //           ref={emailRef}
-    //         />
-    //         <AuthLabel>비밀번호</AuthLabel>
-    //         <AuthInput
-    //           type="password"
-    //           id="password"
-    //           placeholder="비밀번호 입력"
-    //           value={password}
-    //           onChange={changePassword}
-    //           ref={passwordRef}
-    //         />
-    //         <AuthLabel>비밀번호 재입력</AuthLabel>
-    //         <AuthInput
-    //           type="password"
-    //           id="confirm-password"
-    //           placeholder="비밀번호 재입력"
-    //           value={confirmPassword}
-    //           onChange={changeConfirmPassword}
-    //           ref={confirmPasswordRef}
-    //         />
-    //       </AuthInputWrapper>
-    //       <AuthButton
-    //         onClick={() => {
-    //           submitSignUp();
-    //         }}
-    //       >
-    //         회원가입
-    //       </AuthButton>
-    //     </DefaultLoginForm>
-    //   </AuthWrapper>
-    // </AuthBackground>
     <AuthForm
       title="회원 가입 정보 입력"
       text="회원이신가요?"

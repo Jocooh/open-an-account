@@ -147,8 +147,6 @@ export const SocialLoginButton = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* justify-content: center; */
-  /* align-items: center; */
   margin-bottom: 0.4rem;
 `;
 export const SocialLoginButtonLogo = styled.div`
