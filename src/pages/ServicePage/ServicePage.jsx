@@ -29,11 +29,13 @@ import {
 } from "./style";
 import React, { useState } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
+import AllBankList from "../../components/AllBankList/AllBankList";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [showResults, setShowResults] = useState(false);
   const [showSearch, setShowSearch] = useState(true);
+
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
@@ -153,7 +155,13 @@ const ServicePage = () => {
                     <ProducksCalculatorBox>
                       <ProducksCalculatorTitle>
                         전체 목록
+                        <input
+                          type="text"
+                          placeholder="은행명을 입력해주세요"
+                          style={{ marginLeft: "20px" }}
+                        ></input>
                       </ProducksCalculatorTitle>
+
                       <FinanciialProductsWrap>
                         <FinanciialProductsFullList>
                           <FinanciialProducts
@@ -162,13 +170,13 @@ const ServicePage = () => {
                             <ProducksRank>
                               <Producks>
                                 <ProducksTitle>
-                                  은행의 이름이 들어갈 공간입니다.
+                                  {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
+                                  <AllBankList />
                                 </ProducksTitle>
-                                <ProducksDiscription>
+                                {/* <ProducksDiscription>
                                   상품에 대한 설명이 들어갈 공간입니다.
-                                </ProducksDiscription>
+                                </ProducksDiscription> */}
                               </Producks>
-                              <button>+</button>
                             </ProducksRank>
                           </FinanciialProducts>
                         </FinanciialProductsFullList>
