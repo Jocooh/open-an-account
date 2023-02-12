@@ -122,6 +122,7 @@ export const ProducksCalculatorBox = styled.div`
   span {
     margin-left: 40px;
   }
+  position: relative;
 `;
 
 //* 금융상품계산기 박스 내부 버튼

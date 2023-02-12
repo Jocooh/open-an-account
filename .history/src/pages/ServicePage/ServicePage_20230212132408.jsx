@@ -28,7 +28,7 @@ import {
   ProducksTitle,
 } from "./style";
 import React, { useState } from "react";
-import ComparingModal from "../../components/servicepage/ComparingModal";
+import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
 
 const ServicePage = () => {
