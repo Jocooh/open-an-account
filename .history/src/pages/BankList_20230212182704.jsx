@@ -16,7 +16,7 @@ function BankLists() {
       "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
     );
     setBaseLists(data?.result.baseList);
-    setOptionLists(data?.result.optionList);
+    setOptionLists(data?.result.baseList.optionList);
   };
 
   // 적금 데이터불러오는 함수.
@@ -27,12 +27,17 @@ function BankLists() {
   //   if (isLoading) <div>...isloading</div>;
   //   if (isError) <p>{error}</p>;
   //   console.log(data?.result);
-  const rate = optionLists?.map((v) =>
-    v.save_trm === "12" ? v.intr_rate2 : null
-  );
 
-  console.log("baseLists.length :>> ", baseLists.length);
-  console.log("optionLists.length :>> ", optionLists.length);
+  // 금리 가져오기 함수
+  const prdt_cd = baseLists?.map((i) => i.fin_prdt_cd);
+
+  const rate = optionLists?.map((v) =>
+    prdt_cd === v.fin_prdt_cd
+      ? v.save_trm === "12"
+        ? v.intr_rate2
+        : null
+      : null
+  );
   console.log("rate :>> ", rate);
 
   useEffect(() => {
@@ -79,6 +84,7 @@ function BankLists() {
           )}
           <br />
           예금 1년 50만원 단리계산식:
+          {rate}
           {500000 * (1 + { rate } * 1) - { rate } * 0.154}
           <br />
         </StyleList>

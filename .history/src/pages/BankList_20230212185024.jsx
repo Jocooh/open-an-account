@@ -31,6 +31,7 @@ function BankLists() {
     v.save_trm === "12" ? v.intr_rate2 : null
   );
 
+  console.log("data.length :>> ", data.length);
   console.log("baseLists.length :>> ", baseLists.length);
   console.log("optionLists.length :>> ", optionLists.length);
   console.log("rate :>> ", rate);

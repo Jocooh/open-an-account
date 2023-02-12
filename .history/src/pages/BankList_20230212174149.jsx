@@ -27,13 +27,6 @@ function BankLists() {
   //   if (isLoading) <div>...isloading</div>;
   //   if (isError) <p>{error}</p>;
   //   console.log(data?.result);
-  const rate = optionLists?.map((v) =>
-    v.save_trm === "12" ? v.intr_rate2 : null
-  );
-
-  console.log("baseLists.length :>> ", baseLists.length);
-  console.log("optionLists.length :>> ", optionLists.length);
-  console.log("rate :>> ", rate);
 
   useEffect(() => {
     bankListFetch();
@@ -77,10 +70,6 @@ function BankLists() {
                 : null
               : null
           )}
-          <br />
-          예금 1년 50만원 단리계산식:
-          {500000 * (1 + { rate } * 1) - { rate } * 0.154}
-          <br />
         </StyleList>
       ))}
     </div>

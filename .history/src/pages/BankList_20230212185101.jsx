@@ -15,6 +15,7 @@ function BankLists() {
     const { data } = await axios.get(
       "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
     );
+    console.log("data.length :>> ", data.length);
     setBaseLists(data?.result.baseList);
     setOptionLists(data?.result.optionList);
   };

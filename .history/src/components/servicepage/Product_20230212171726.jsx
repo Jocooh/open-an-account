@@ -30,6 +30,11 @@ export const Wrapper = styled.div`
 `;
 
 export const TotalCost = styled.div`
+  /* width: 172px;
+  height: 32px; */
+  /* left: 444px;
+  top: 417px; */
+
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
@@ -44,6 +49,10 @@ export const TotalCost = styled.div`
 `;
 export const ProductBox = styled.div`
   box-sizing: border-box;
+  /* width: 399px;
+  height: 640px;
+  left: 909px;
+  top: 113px; */
 
   border: 1px solid #e7e7e7;
   border-radius: 17px;

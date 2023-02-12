@@ -6,8 +6,8 @@ import styled from "styled-components";
 import logoLists from "../assets/logo/logo";
 
 function BankLists() {
-  const [baseLists, setBaseLists] = useState([]);
-  const [optionLists, setOptionLists] = useState([]);
+  const [lists, setLists] = useState([]);
+  const [save, setSave] = useState([]);
   //   const { isLoading, isError, error, data } = useQuery("reviews", FetchLists);
   //   if (isLoading) <div>...Loading</div>;
   //   if (isError) <p>{error}</p>;
@@ -15,8 +15,8 @@ function BankLists() {
     const { data } = await axios.get(
       "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
     );
-    setBaseLists(data?.result.baseList);
-    setOptionLists(data?.result.optionList);
+    setLists(data?.result.baseList);
+    setSave(data?.result.optionList);
   };
 
   // 적금 데이터불러오는 함수.
@@ -27,13 +27,6 @@ function BankLists() {
   //   if (isLoading) <div>...isloading</div>;
   //   if (isError) <p>{error}</p>;
   //   console.log(data?.result);
-  const rate = optionLists?.map((v) =>
-    v.save_trm === "12" ? v.intr_rate2 : null
-  );
-
-  console.log("baseLists.length :>> ", baseLists.length);
-  console.log("optionLists.length :>> ", optionLists.length);
-  console.log("rate :>> ", rate);
 
   useEffect(() => {
     bankListFetch();
@@ -62,25 +55,33 @@ function BankLists() {
             </StyleList>
           ))}
       </ul> */}
-
-      {baseLists?.map((i) => (
+      {/* {lists?.map((i) => (
+        <StyleList key={i.fin_prdt_cd}>
+          {i.fin_prdt_nm}
+          {i.kor_co_nm}
+          {save?.map((v) =>
+            i.fin_prdt_cd === v.fin_prdt_cd
+              ? v?.filter((a) =>
+                  a.save_trm === 12 ? <p>{a.intr_rate2}</p> : null
+                )
+              : null
+          )}
+        </StyleList>
+      ))} */}
+      {lists?.map((i) => (
         <StyleList key={i.fin_prdt_cd}>
           {/* 상품명 */}
           {i.fin_prdt_nm}
           {/* 은행명 */}
           {i.kor_co_nm}
           {/* 여기는 기간이 12개월인 상품의 최대금리만 가져왔습니다. */}
-          {optionLists?.map((v) =>
+          {save?.map((v) =>
             i.fin_prdt_cd === v.fin_prdt_cd
               ? v.save_trm === "12"
                 ? v.intr_rate2
                 : null
               : null
           )}
-          <br />
-          예금 1년 50만원 단리계산식:
-          {500000 * (1 + { rate } * 1) - { rate } * 0.154}
-          <br />
         </StyleList>
       ))}
     </div>

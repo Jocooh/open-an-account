@@ -27,12 +27,10 @@ function BankLists() {
   //   if (isLoading) <div>...isloading</div>;
   //   if (isError) <p>{error}</p>;
   //   console.log(data?.result);
-  const rate = optionLists?.map((v) =>
+  const rate = optionLists?.filter((v) =>
     v.save_trm === "12" ? v.intr_rate2 : null
   );
 
-  console.log("baseLists.length :>> ", baseLists.length);
-  console.log("optionLists.length :>> ", optionLists.length);
   console.log("rate :>> ", rate);
 
   useEffect(() => {

@@ -27,21 +27,27 @@ function BankLists() {
   //   if (isLoading) <div>...isloading</div>;
   //   if (isError) <p>{error}</p>;
   //   console.log(data?.result);
-  const rate = optionLists?.map((v) =>
-    v.save_trm === "12" ? v.intr_rate2 : null
-  );
 
-  console.log("baseLists.length :>> ", baseLists.length);
-  console.log("optionLists.length :>> ", optionLists.length);
-  console.log("rate :>> ", rate);
+  // 금리 가져오기 함수
+  const getRate = () => {
+    baseLists?.map((i) =>
+      optionLists?.map((v) =>
+        i.fin_prdt_cd === v.fin_prdt_cd
+          ? v.save_trm === "12"
+            ? v.intr_rate2
+            : null
+          : null
+      )
+    );
+    const rate = getRate();
 
-  useEffect(() => {
-    bankListFetch();
-  }, []);
+    useEffect(() => {
+      bankListFetch();
+    }, []);
 
-  return (
-    <div>
-      {/* <ul>
+    return (
+      <div>
+        {/* <ul>
         {lists &&
           lists?.map((i) => (
             <StyleList key={i.fin_prdt_cd}>
@@ -63,30 +69,30 @@ function BankLists() {
           ))}
       </ul> */}
 
-      {baseLists?.map((i) => (
-        <StyleList key={i.fin_prdt_cd}>
-          {/* 상품명 */}
-          {i.fin_prdt_nm}
-          {/* 은행명 */}
-          {i.kor_co_nm}
-          {/* 여기는 기간이 12개월인 상품의 최대금리만 가져왔습니다. */}
-          {optionLists?.map((v) =>
-            i.fin_prdt_cd === v.fin_prdt_cd
-              ? v.save_trm === "12"
-                ? v.intr_rate2
+        {baseLists?.map((i) => (
+          <StyleList key={i.fin_prdt_cd}>
+            {/* 상품명 */}
+            {i.fin_prdt_nm}
+            {/* 은행명 */}
+            {i.kor_co_nm}
+            {/* 여기는 기간이 12개월인 상품의 최대금리만 가져왔습니다. */}
+            {optionLists?.map((v) =>
+              i.fin_prdt_cd === v.fin_prdt_cd
+                ? v.save_trm === "12"
+                  ? v.intr_rate2
+                  : null
                 : null
-              : null
-          )}
-          <br />
-          예금 1년 50만원 단리계산식:
-          {500000 * (1 + { rate } * 1) - { rate } * 0.154}
-          <br />
-        </StyleList>
-      ))}
-    </div>
-  );
+            )}
+            <br />
+            예금 1년 50만원 단리계산식:
+            {500000(1 + { rate }) - { rate } * 0.154}
+            <br />
+          </StyleList>
+        ))}
+      </div>
+    );
+  };
 }
-
 export default BankLists;
 
 const StyleList = styled.li`
