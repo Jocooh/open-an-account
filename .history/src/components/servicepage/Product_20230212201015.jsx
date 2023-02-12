@@ -12,15 +12,6 @@ function Product() {
     setOptionLists(data?.result.optionList);
   };
 
-  console.log("--------------------------");
-  console.log("상품명", baseLists[0]?.fin_prdt_nm);
-  console.log("은행명", baseLists[0]?.kor_co_nm);
-  console.log(
-    "12개월의 이자율",
-    optionLists[0]?.save_trm === "12" ? optionLists[0]?.intr_rate : null
-  );
-  console.log("최고금리", optionLists[0]?.intr_rate2);
-  console.log("기타 정보", baseLists[0]?.etc_note);
   return (
     <Wrapper>
       <TotalCost>3,030,250원</TotalCost>
@@ -28,16 +19,16 @@ function Product() {
         <Prdt_nm>{baseLists[0]?.fin_prdt_nm}</Prdt_nm>
         <Scrap>스크랩아이콘</Scrap>
         <Info>
-          <div>{baseLists[0]?.kor_co_nm}</div>
+          <div>{baseLists[0].kor_co_nm}</div>
           <div>
             이자율
-            {optionLists[0]?.save_trm === "12" && optionLists[0]?.intr_rate}
+            {optionLists[0].save_trm === "12" && optionLists[0].intr_rate}
           </div>
-          <div>최고 금리 {optionLists[0]?.intr_rate2}</div>
-          <div>{optionLists[0]?.intr_rate_type_nm}</div>
+          <div>최고 금리 {optionLists[0].intr_rate2}</div>
+          <div>{optionLists[0].intr_rate_type_nm}</div>
           <div>자율적립식</div>
         </Info>
-        <Message>{baseLists[0]?.etc_note}</Message>
+        <Message>{baseLists[0].etc_note}</Message>
         <Button>자세히 확인하기</Button>
       </ProductBox>
     </Wrapper>

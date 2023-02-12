@@ -12,12 +12,11 @@ function Product() {
     setOptionLists(data?.result.optionList);
   };
 
-  console.log("--------------------------");
   console.log("상품명", baseLists[0]?.fin_prdt_nm);
   console.log("은행명", baseLists[0]?.kor_co_nm);
   console.log(
     "12개월의 이자율",
-    optionLists[0]?.save_trm === "12" ? optionLists[0]?.intr_rate : null
+    optionLists[0]?.save_trm === "12" && optionLists[0]?.intr_rate
   );
   console.log("최고금리", optionLists[0]?.intr_rate2);
   console.log("기타 정보", baseLists[0]?.etc_note);
