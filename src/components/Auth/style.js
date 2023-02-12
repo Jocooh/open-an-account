@@ -188,7 +188,7 @@ export const SocialLoginTitle = styled.span`
     background-color: #ddd;
     position: absolute;
     left: 0;
-    top: 0.6rem;
+    top: 0.4rem;
     content: "";
   }
 
@@ -198,7 +198,7 @@ export const SocialLoginTitle = styled.span`
     background-color: #ddd;
     position: absolute;
     right: 0rem;
-    top: 0.6rem;
+    top: 0.4rem;
     content: "";
   }
 `;
