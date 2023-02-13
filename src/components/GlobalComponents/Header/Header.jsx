@@ -12,7 +12,7 @@ function Header() {
   // 로그인 확인을 위한 세션스토리지 키 확인. 키 존재? => 로그인 되어있음 / 없음 => 로그인 안 되어있음
   const isLoggedIn = sessionStorage.key(0);
 
-  // // 로그아웃 => 왜 한 번에 안되는지 연구해야함.
+  // // 공부용 주석 로그아웃 => 왜 한 번에 안되는지 보자
   // const onLogoutClick = () => {
   //   authService.signOut();
   //   navigate("/", { replace: true });
@@ -41,13 +41,13 @@ function Header() {
         <LoginToggle>
           {!isLoggedIn && (
             <>
-              <Nav
+              {/* <Nav
                 onClick={() => {
                   navigate("/signup");
                 }}
               >
                 회원가입
-              </Nav>
+              </Nav> */}
               <Nav
                 onClick={() => {
                   navigate("/login");
@@ -66,13 +66,7 @@ function Header() {
               >
                 마이페이지
               </Nav>
-              <Nav
-                onClick={() => {
-                  onLogoutClick();
-                }}
-              >
-                로그아웃
-              </Nav>
+              <Nav onClick={onLogoutClick}>로그아웃</Nav>
             </>
           )}
           {/* 마리나님 코드 임시 주석 */}
