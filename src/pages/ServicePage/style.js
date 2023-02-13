@@ -241,3 +241,10 @@ export const ProducksRank = styled.div`
 export const Producks = styled.div``;
 export const ProducksTitle = styled.span``;
 export const ProducksDiscription = styled.span``;
+//성아-banklist style
+export const StyledBankList = styled.div`
+  width: 990px;
+  height: 745px;
+  overflow: auto;
+  background-color: #f9f7fb;
+`;

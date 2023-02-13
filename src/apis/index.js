@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//http만들었음
+//여기 키 환경변수로 작업예정
 // const MY_ADDRESS = "6f3a6ea55869e0bdccf38e3e5dcc145e";
 
 export const fetchUrl = async () => {

@@ -24,17 +24,32 @@ import {
   FinanciialProductsWrap,
   ProducksRank,
   Producks,
-  ProducksDiscription,
   ProducksTitle,
+  StyledBankList,
 } from "./style";
-import React, { useState } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
+import SearchBankList from "../../components/SearchBankList/SearchBankList";
+import SearchInput from "../../components/SearchBankList/SearchInput";
+import axios from "axios";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [showResults, setShowResults] = useState(false);
   const [showSearch, setShowSearch] = useState(true);
+  //상품검색state
+  const [searchBank, setSearchBank] = useState("");
+  //예금적금 선택
+  const [selectedCategory, setSelectedCategory] = useState(true);
+  //예금상품 baseList , optionList
+  const [depositbaseList, setdepositbaseList] = useState(null);
+  const [depositOptionalList, setdepositOptionalList] = useState(null);
+  //적금상품 baseList ,optionList
+  const [savingbaseList, setSavingbaseList] = useState(null);
+  const [savingoptionalList, setSavingoptionalList] = useState(null);
+
+  const inputRef = useRef(null);
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -46,11 +61,45 @@ const ServicePage = () => {
     setShowResults(!showResults);
   };
 
+  const DepositBankListFetch = async () => {
+    console.log("fetch실행");
+    const { data } = await axios.get(
+      "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
+    );
+    setdepositbaseList(data?.result.baseList);
+    setdepositOptionalList(data?.result.optionList);
+  };
+
+  // const SavingBankListFetch = async () => {
+  //   console.log("saving Fetch");
+  //   const { data } = await axios.get(
+  //     `https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
+  //   );
+  //   setSavingbaseList(data?.result.baseList);
+  //   setSavingoptionalList(data?.result.optionList);
+  // };
+
+  useMemo(() => {
+    // SavingBankListFetch();
+    DepositBankListFetch();
+  }, []);
+
+  //최고금리 순으로 가져오는 함수(정기예금)
+  const depositDB = depositOptionalList?.sort(function (a, b) {
+    return b.intr_rate2 - a.intr_rate2;
+  });
+
+  //여기 적금 최고금리순으로 가져오는 함수 필요
+  const savingDB = depositOptionalList?.sort(function (a, b) {
+    return b.intr_rate2 - a.intr_rate2;
+  });
+
   // 비교하기 버튼 모달창
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
   };
+
   return (
     <Wraper>
       <Cantinar>
@@ -153,15 +202,6 @@ const ServicePage = () => {
                 <ProducksCalculator>
                   <ProducksCalculator>
                     <ProducksCalculatorBox>
-                      <ProducksCalculatorTitle>
-                        전체 목록
-                        <input
-                          type="text"
-                          placeholder="은행명을 입력해주세요"
-                          style={{ marginLeft: "20px" }}
-                        ></input>
-                      </ProducksCalculatorTitle>
-
                       <FinanciialProductsWrap>
                         <FinanciialProductsFullList>
                           <FinanciialProducts
@@ -169,9 +209,44 @@ const ServicePage = () => {
                           >
                             <ProducksRank>
                               <Producks>
+                                {/* 검색창_component */}
+                                <SearchInput
+                                  setSearchBank={setSearchBank}
+                                  ref={inputRef}
+                                />
+                                <button
+                                  style={{ marginRight: "10px" }}
+                                  onClick={() => {
+                                    setSelectedCategory(true);
+                                  }}
+                                >
+                                  정기예금
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    setSelectedCategory(false);
+                                  }}
+                                >
+                                  정기적금
+                                </button>
                                 <ProducksTitle>
                                   {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
-                                  <AllBankList />
+                                  <StyledBankList>
+                                    {searchBank.length > 0 ? (
+                                      <SearchBankList
+                                        searchBank={searchBank}
+                                        depositbaseList={depositbaseList}
+                                        depositOptionalList={
+                                          depositOptionalList
+                                        }
+                                      />
+                                    ) : (
+                                      <AllBankList
+                                        depositDB={depositDB}
+                                        depositbaseList={depositbaseList}
+                                      />
+                                    )}
+                                  </StyledBankList>
                                 </ProducksTitle>
                                 {/* <ProducksDiscription>
                                   상품에 대한 설명이 들어갈 공간입니다.

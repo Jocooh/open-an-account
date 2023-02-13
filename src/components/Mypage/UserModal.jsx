@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import UserInput from "../UserInput";
+import UserInput from "./UserInput";
 
 function UserModal({ setModalOpen, id, title, content }) {
   return (
