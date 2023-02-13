@@ -20,13 +20,9 @@ import {
 import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
-  const [input, setInput] = useState("");
-
-  //*입력한 숫자 콤마 찍어주기
   const inputMoneyRgx = (e) => {
-    const input = Number(e.target.value);
-    const result = input.toLocaleString("ko-KR");
-    setInput(result);
+    const input = e.target.value;
+    return input.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -43,7 +39,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
           <TitleWrapper>
             <Title>상품 비교 결과</Title>
             <SubTitle>
-              만기 수령액은 비교 상품들 모두 가입이 가능한 기간으로
+              만기 수령액은 비교 상품들 모두 가입 가능한 기간으로
               산정되었습니다.
             </SubTitle>
           </TitleWrapper>
@@ -53,13 +49,8 @@ const ComparingModal = ({ setComparingModalOpen }) => {
                 <Highlight>12개월 동안</Highlight>
               </div>
               <div>
-                <InputMoney
-                  maxLength={13}
-                  type="number"
-                  value={input}
-                  onChange={inputMoneyRgx}
-                />
-                씩 저축한다면,
+                <InputMoney maxLength={9} onChange={inputMoneyRgx} />씩
+                저축한다면,
               </div>
               <FirstGuide>
                 *금액은 최대 10억원까지 입력할 수 있습니다.

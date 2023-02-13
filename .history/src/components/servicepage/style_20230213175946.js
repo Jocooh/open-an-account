@@ -130,7 +130,6 @@ export const Highlight = styled.div`
 //* 세 상품 전부 (만기시 금액도 포함)
 export const Products = styled.div`
   display: flex;
-  flex-wrap: wrap;
   /* flex-direction: column; */
   justify-content: space-between;
   /* align-items: center; */

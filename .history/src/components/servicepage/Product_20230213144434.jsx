@@ -23,6 +23,7 @@ function Product() {
   console.log("기타 정보", baseLists[0]?.etc_note);
   return (
     <Wrapper>
+      <div>만기 수령액</div>
       <TotalCost>3,030,250원</TotalCost>
       <ProductBox>
         <Prdt_nm>{baseLists[0]?.fin_prdt_nm}</Prdt_nm>
@@ -64,12 +65,14 @@ export const TotalCost = styled.div`
 
   color: #6a24ff;
 `;
+
 export const ProductBox = styled.div`
   box-sizing: border-box;
 
   border: 1px solid #e7e7e7;
   border-radius: 17px;
 `;
+
 export const Prdt_nm = styled.div`
   text-align: center;
 `;
@@ -85,9 +88,11 @@ export const Scrap = styled.button`
     background-color: #ea770e;
   }
 `;
+
 export const Info = styled.div`
   align-items: center;
 `;
+
 export const Message = styled.div`
   font-family: "Montserrat";
   font-style: normal;
@@ -99,6 +104,7 @@ export const Message = styled.div`
   /* black-30 */
   color: #a3a3a3;
 `;
+
 export const Button = styled.button`
   box-sizing: border-box;
   width: 342px;
@@ -114,4 +120,12 @@ export const Button = styled.button`
   :hover {
     background-color: rgba(188, 188, 188, 0.4);
   }
+`;
+
+export const Guide = styled.div`
+  color: #969696;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
 `;

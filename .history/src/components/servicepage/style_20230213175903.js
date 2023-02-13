@@ -113,7 +113,7 @@ export const InputMoney = styled.input`
   flex: 80%;
 
   width: 150px;
-  margin-top: 10px;
+  /* margin: 10px 10px 10px 0; */
 
   padding-left: 30px;
   font-family: "Noto Sans";
@@ -130,7 +130,6 @@ export const Highlight = styled.div`
 //* 세 상품 전부 (만기시 금액도 포함)
 export const Products = styled.div`
   display: flex;
-  flex-wrap: wrap;
   /* flex-direction: column; */
   justify-content: space-between;
   /* align-items: center; */

@@ -55,7 +55,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
               <div>
                 <InputMoney
                   maxLength={13}
-                  type="number"
+                  type={number}
                   value={input}
                   onChange={inputMoneyRgx}
                 />

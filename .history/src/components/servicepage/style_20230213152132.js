@@ -54,19 +54,15 @@ export const ModalContents = styled.div`
   box-sizing: border-box;
 `;
 
-//* 제목부분 Title, SubTitle
-export const TitleWrapper = styled.div`
-  padding: 30px 0px;
-`;
-
+//* 제목부분
+export const TitleWrapper = styled.div``;
 //* "상품 비교 결과"
 export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
-
   font-family: "Noto Sans";
+
   font-style: normal;
   font-weight: 600;
   font-size: 48px;
@@ -85,11 +81,9 @@ export const SubTitle = styled.div`
 `;
 
 //* 사용자 인풋창 부분
-export const MessageWrapper = styled.div`
-  padding: 15px 0px;
-`;
-//* "금액은 최대 10억원까지 입력할 수 있습니다. "
-export const FirstGuide = styled.div`
+export const MessageWrapper = styled.div``;
+//* 회색 안내 메시지
+export const Guide = styled.div`
   color: #969696;
   font-family: "Noto Sans";
   font-style: normal;
@@ -106,22 +100,6 @@ export const Message = styled.div`
   line-height: 34px;
   /* or 155% */
 `;
-export const InputMoney = styled.input`
-  border: none;
-  border-bottom: 0.6px solid #c6c6c6;
-  outline: none;
-  flex: 80%;
-
-  width: 150px;
-  margin-top: 10px;
-
-  padding-left: 30px;
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 34px;
-`;
 //* 보라색 글씨 강조
 export const Highlight = styled.div`
   color: #6a24ff;
@@ -130,19 +108,9 @@ export const Highlight = styled.div`
 //* 세 상품 전부 (만기시 금액도 포함)
 export const Products = styled.div`
   display: flex;
-  flex-wrap: wrap;
   /* flex-direction: column; */
-  justify-content: space-between;
+  /* justify-content: space-between; */
   /* align-items: center; */
-`;
-
-export const SecondGuide = styled.div`
-  color: #969696;
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-
-  text-align: center;
-  margin-top: 20px;
+  /* border: 1px solid #e7e7e7;
+  border-radius: 17px; */
 `;

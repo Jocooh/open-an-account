@@ -28,9 +28,9 @@ export const TopSection = styled.div`
   border-radius: 25px;
   margin-top: 50px;
   div {
-    /* font-weight: bold;
+    font-weight: bold;
     font-size: 30px;
-    padding: 20px 0 0 20px; */
+    /* padding: 20px 0 0 20px; */
   }
 `;
 

@@ -20,7 +20,7 @@ import {
 import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(0);
 
   //*입력한 숫자 콤마 찍어주기
   const inputMoneyRgx = (e) => {
@@ -55,7 +55,6 @@ const ComparingModal = ({ setComparingModalOpen }) => {
               <div>
                 <InputMoney
                   maxLength={13}
-                  type="number"
                   value={input}
                   onChange={inputMoneyRgx}
                 />

@@ -28,6 +28,7 @@ export const CloseButton = styled.button`
   background-color: rgba(233, 236, 242, 0.8);
   border: none;
   box-sizing: border-box;
+  /* padding: 8px 15px; */
   border-radius: 10px;
   width: 119px;
   height: 73px;
@@ -49,29 +50,20 @@ export const ModalContents = styled.div`
   /* 모달창 디자인 */
   background: #ffffff;
   border: 1px solid #dedede;
-  border-radius: 10px;
-  padding: 20px 35px 10px 35px;
+  border-radius: 20px;
+  padding: 15px 35px 10px 35px;
   box-sizing: border-box;
-`;
-
-//* 제목부분 Title, SubTitle
-export const TitleWrapper = styled.div`
-  padding: 30px 0px;
 `;
 
 //* "상품 비교 결과"
 export const Title = styled.div`
+  /* text-align: center; */
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  margin-bottom: 10px;
-
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 65px;
-  text-align: center;
+  align-items: center;
+  padding: 50px 10px 10px;
+  gap: 10px;
 `;
 
 //* "만기수령액은 비교상품 간 공통 가입 가능 기간으로 산정되었습니다."
@@ -84,12 +76,8 @@ export const SubTitle = styled.div`
   font-size: 18px;
 `;
 
-//* 사용자 인풋창 부분
-export const MessageWrapper = styled.div`
-  padding: 15px 0px;
-`;
-//* "금액은 최대 10억원까지 입력할 수 있습니다. "
-export const FirstGuide = styled.div`
+//* 회색 안내 메시지
+export const Guide = styled.div`
   color: #969696;
   font-family: "Noto Sans";
   font-style: normal;
@@ -106,22 +94,6 @@ export const Message = styled.div`
   line-height: 34px;
   /* or 155% */
 `;
-export const InputMoney = styled.input`
-  border: none;
-  border-bottom: 0.6px solid #c6c6c6;
-  outline: none;
-  flex: 80%;
-
-  width: 150px;
-  margin-top: 10px;
-
-  padding-left: 30px;
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 34px;
-`;
 //* 보라색 글씨 강조
 export const Highlight = styled.div`
   color: #6a24ff;
@@ -130,19 +102,9 @@ export const Highlight = styled.div`
 //* 세 상품 전부 (만기시 금액도 포함)
 export const Products = styled.div`
   display: flex;
-  flex-wrap: wrap;
   /* flex-direction: column; */
-  justify-content: space-between;
+  /* justify-content: space-between; */
   /* align-items: center; */
-`;
-
-export const SecondGuide = styled.div`
-  color: #969696;
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-
-  text-align: center;
-  margin-top: 20px;
+  /* border: 1px solid #e7e7e7;
+  border-radius: 17px; */
 `;
