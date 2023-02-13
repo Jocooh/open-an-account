@@ -6,7 +6,7 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import Layout from "../components/GlobalComponents/Layout/Layout";
 import LandingPage from "../pages/LandingPage/LandingPage";
-import SignUpPage from "../pages/SingUpPage/SignUpPage";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ServicePage from "../pages/ServicePage/ServicePage";
 import BankLists from "../pages/BankList";
 

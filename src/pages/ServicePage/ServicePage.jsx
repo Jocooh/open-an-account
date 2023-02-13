@@ -5,9 +5,9 @@ import {
   SelectedProducts,
   BottomSection,
   TopSectionWraper,
-  ProducksCalculatorTitle,
-  ProducksCalculator,
-  ProducksCalculatorBox,
+  TapTitleName,
+  TapContainer,
+  TapContainerBox,
   ProducksCalculatorBoxTitle,
   ProducksCalculatorBoxContent,
   ProducksCalculatorBoxContentTilte,
@@ -25,7 +25,21 @@ import {
   ProducksRank,
   Producks,
   ProducksTitle,
+
   StyledBankList,
+
+  Tapwraper,
+  TopSectionTitle,
+  TopSectionSubTitle,
+  TapButtonWraper,
+  ProductWraper,
+  MonthRangeSliderWraper,
+  FilterSubmitWarper,
+  Products,
+  TapButton,
+  ProductsWraper,
+  SelectedProductsContainer,
+
 } from "./style";
 import React, { useState, useMemo, useRef } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
@@ -36,6 +50,7 @@ import axios from "axios";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const [productType, setProductType] = useState(1);
   const [showResults, setShowResults] = useState(false);
   const [showSearch, setShowSearch] = useState(true);
   //상품검색state
@@ -51,12 +66,18 @@ const ServicePage = () => {
 
   const inputRef = useRef(null);
 
+  const handleProductTypeClick = (buttonType) => {
+    setProductType(buttonType);
+  };
+
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
+
   const handleClickSearch = (search) => {
     setShowSearch(!showSearch);
   };
+
   const handleClickResults = (results) => {
     setShowResults(!showResults);
   };
@@ -105,75 +126,179 @@ const ServicePage = () => {
       <Cantinar>
         <TopSectionWraper>
           <TopSection>
-            <RefreshBtn>초기화 버튼</RefreshBtn>
-            <div>비교해볼까요?🧐</div>
-            <SelectedProducts>
-              <div className="producks">+</div>
-              <div className="producks">+</div>
-              <div className="producks">+</div>
-            </SelectedProducts>
-            <ToCompare onClick={OpenComparingModal}>비교하기</ToCompare>
-            {comparingModalOpen && (
-              <ComparingModal setComparingModalOpen={setComparingModalOpen} />
-            )}
+            <TopSectionTitle>금융상품 비교하기</TopSectionTitle>
+            <TopSectionSubTitle>
+              예금/적금은 동일한 종류만 비교할 수 있습니다.
+            </TopSectionSubTitle>
+            <ProductsWraper>
+              <SelectedProductsContainer>
+                <SelectedProducts>
+                  비교할 상품을 선택해주세요.
+                  <div>
+                    <img
+                      style={{ alignItems: "center", marginTop: "50px" }}
+                      src="url"
+                      alt="이미지"
+                    />
+                  </div>
+                </SelectedProducts>
+              </SelectedProductsContainer>
+              <SelectedProductsContainer>
+                <SelectedProducts>
+                  비교할 상품을 선택해주세요.
+                  <div>
+                    <img
+                      style={{ alignItems: "center", marginTop: "50px" }}
+                      src="url"
+                      alt="이미지"
+                    />
+                  </div>
+                </SelectedProducts>
+              </SelectedProductsContainer>
+              <SelectedProductsContainer>
+                <SelectedProducts>
+                  비교할 상품을 선택해주세요.
+                  <div>
+                    <img
+                      style={{ alignItems: "center", marginTop: "50px" }}
+                      src="url"
+                      alt="이미지"
+                    />
+                  </div>
+                </SelectedProducts>
+              </SelectedProductsContainer>
+            </ProductsWraper>
+            <div
+              style={{
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <ToCompare onClick={OpenComparingModal}>비교하기</ToCompare>
+              {comparingModalOpen && (
+                <ComparingModal setComparingModalOpen={setComparingModalOpen} />
+              )}
+            </div>
           </TopSection>
         </TopSectionWraper>
 
         <BottomSectionWraper>
           <BottomSection>
-            <button
-              className={`tab ${activeTab === 1 ? "active" : ""}`}
-              onClick={() => handleTabClick(1)}
-            >
-              금융상품 계산기
-            </button>
-            <button
-              className={`tab ${activeTab === 2 ? "active" : ""}`}
-              onClick={() => handleTabClick(2)}
-            >
-              전체목록
-            </button>
-            <button
-              className={`tab ${activeTab === 3 ? "active" : ""}`}
-              onClick={() => handleTabClick(3)}
-            >
-              찜 목록
-            </button>
+            <TapButtonWraper>
+              <TapButton
+                onClick={() => handleTabClick(1)}
+                style={
+                  activeTab === 1
+                    ? {
+                        fontWeight: "bold",
+                        color: "#6A24FF",
+                        borderBottom: "3px solid #6A24FF",
+                      }
+                    : {}
+                }
+              >
+                조건 계산
+              </TapButton>
+              <TapButton
+                onClick={() => handleTabClick(2)}
+                style={
+                  activeTab === 2
+                    ? {
+                        fontWeight: "bold",
+                        color: "#6A24FF",
+                        borderBottom: "3px solid #6A24FF",
+                      }
+                    : {}
+                }
+              >
+                상품명 검색
+              </TapButton>
+              <TapButton
+                onClick={() => handleTabClick(3)}
+                style={
+                  activeTab === 3
+                    ? {
+                        fontWeight: "bold",
+                        color: "#6A24FF",
+                        borderBottom: "3px solid #6A24FF",
+                      }
+                    : {}
+                }
+              >
+                찜 목록
+              </TapButton>
+            </TapButtonWraper>
             <div className="tab-content">
               {activeTab === 1 && (
-                <div>
-                  <ProducksCalculator>
-                    <ProducksCalculatorBox>
-                      <ProducksCalculatorTitle>
-                        목표로 상품찾기
-                      </ProducksCalculatorTitle>
-                      <ProducksCalculatorBoxTitle>
-                        종류를 선택해주세요.
-                      </ProducksCalculatorBoxTitle>
-                      <ProductType>예금</ProductType>
-                      <ProductType>적금</ProductType>
-                      <ProductType>모두</ProductType>
+                <Tapwraper>
+                  <TapContainer>
+                    <TapContainerBox>
+                      <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
+                      <ProductWraper>
+                        <ProductType
+                          onClick={() => {
+                            handleProductTypeClick(1);
+                          }}
+                          style={
+                            productType === 1
+                              ? {
+                                  color: "#6A24FF",
+                                  border: "1px solid #6A24FF",
+                                }
+                              : {}
+                          }
+                        >
+                          정기예금
+                        </ProductType>
+                        <ProductType
+                          onClick={() => {
+                            handleProductTypeClick(2);
+                          }}
+                          style={
+                            productType === 2
+                              ? {
+                                  color: "#6A24FF",
+                                  border: "1px solid #6A24FF",
+                                }
+                              : {}
+                          }
+                        >
+                          정기적금
+                        </ProductType>
+                      </ProductWraper>
                       <ProducksCalculatorBoxContent>
                         <ProducksCalculatorBoxContentTilte>
-                          최종 목표 금액
+                          <span style={{ fontWeight: "bold" }}>
+                            만기 목표금액
+                          </span>
+                          을 입력해주세요
                         </ProducksCalculatorBoxContentTilte>
-                        <input placeholder="금액을 입력해주세요."></input>
+                        <div>
+                          <input
+                            type="number"
+                            placeholder="금액을 입력해주세요."
+                          ></input>
+                        </div>
                       </ProducksCalculatorBoxContent>
-                      <MonthRangeSlider>
+                      <MonthRangeSliderWraper>
                         <MonthRangeSliderTitle>
-                          <span>기간 설정</span>
-                          <span>6개월</span>
-                          <span>12개월</span>
-                          <span>24개월</span>
+                          몇개월 모으실건가요?
                         </MonthRangeSliderTitle>
                         <input
                           type="range"
-                          min="1"
-                          max="24"
+                          min="0"
+                          max="4"
                           className="slider"
                         />
-                      </MonthRangeSlider>
-                      <>
+                        <MonthRangeSlider>
+                          <span>선택안함</span>
+                          <span>6개월</span>
+                          <span>12개월</span>
+                          <span>24개월</span>
+                          <span>36개월</span>
+                        </MonthRangeSlider>
+                      </MonthRangeSliderWraper>
+                      <FilterSubmitWarper>
                         {showSearch ? (
                           <FilterSubmit
                             onClick={() => {
@@ -181,7 +306,7 @@ const ServicePage = () => {
                               handleClickSearch();
                             }}
                           >
-                            검색하기
+                            찾기
                           </FilterSubmit>
                         ) : (
                           <FilterSubmit
@@ -190,26 +315,25 @@ const ServicePage = () => {
                               handleClickSearch();
                             }}
                           >
-                            검색 창 닫기
+                            닫기
                           </FilterSubmit>
                         )}
-                      </>
-                    </ProducksCalculatorBox>
-                  </ProducksCalculator>
-                </div>
+                      </FilterSubmitWarper>
+                    </TapContainerBox>
+                  </TapContainer>
+                </Tapwraper>
               )}
               {activeTab === 2 && (
-                <ProducksCalculator>
-                  <ProducksCalculator>
-                    <ProducksCalculatorBox>
-                      <FinanciialProductsWrap>
-                        <FinanciialProductsFullList>
-                          <FinanciialProducts
-                            style={{ boxShadow: " 0px 8px 6px -8px #3e3e3e" }}
-                          >
-                            <ProducksRank>
-                              <Producks>
-                                {/* 검색창_component */}
+
+                <TapContainer>
+                  <TapContainerBox>
+                    <TapTitleName>전체 목록</TapTitleName>
+                    <FinanciialProductsWrap>
+                      <FinanciialProductsFullList>
+                        <FinanciialProducts>
+                          <ProducksRank>
+                            <Producks>
+                                         {/* 검색창_component */}
                                 <SearchInput
                                   setSearchBank={setSearchBank}
                                   ref={inputRef}
@@ -229,8 +353,8 @@ const ServicePage = () => {
                                 >
                                   정기적금
                                 </button>
-                                <ProducksTitle>
-                                  {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
+                              <ProducksTitle>
+                               {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
                                   <StyledBankList>
                                     {searchBank.length > 0 ? (
                                       <SearchBankList
@@ -247,27 +371,24 @@ const ServicePage = () => {
                                       />
                                     )}
                                   </StyledBankList>
-                                </ProducksTitle>
-                                {/* <ProducksDiscription>
-                                  상품에 대한 설명이 들어갈 공간입니다.
-                                </ProducksDiscription> */}
-                              </Producks>
-                            </ProducksRank>
-                          </FinanciialProducts>
-                        </FinanciialProductsFullList>
-                      </FinanciialProductsWrap>
-                    </ProducksCalculatorBox>
-                  </ProducksCalculator>
-                </ProducksCalculator>
+                              </ProducksTitle>
+                           
+                                
+                              
+                            </Producks>
+                          </ProducksRank>
+                        </FinanciialProducts>
+                      </FinanciialProductsFullList>
+                    </FinanciialProductsWrap>
+                  </TapContainerBox>
+                </TapContainer>
               )}
               {activeTab === 3 && (
-                <ProducksCalculator>
-                  <ProducksCalculator>
-                    <ProducksCalculatorBox>
-                      <ProducksCalculatorTitle>찜 목록</ProducksCalculatorTitle>
-                    </ProducksCalculatorBox>
-                  </ProducksCalculator>
-                </ProducksCalculator>
+                <TapContainer>
+                  <TapContainerBox>
+                    <TapTitleName>찜 목록</TapTitleName>
+                  </TapContainerBox>
+                </TapContainer>
               )}
             </div>
             {/*.결과 영역 */}
