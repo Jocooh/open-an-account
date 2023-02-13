@@ -1,42 +1,50 @@
 //전체목록이 들어가는 은행들의 리스트를 여기서 맵돌릴꺼다.
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyledListContainer, StyledImg } from "./style";
-import axios from "axios";
+// import axios from "axios";
 import logoLists from "../../assets/logo/logo";
+// import InfiniteScroll from "react-infinite-scroll-component";
 
-function AllBankList() {
-  const [depositbaseList, setdepositbaseList] = useState(null);
-  const [depositOptionalList, setdepositOptionalList] = useState(null);
+function AllBankList({ depositDB, depositbaseList }) {
+  //BD:optionList를 최고금리 순으로 가져온 데이터
+  //depositbaseList : 예금상품 baseList
+  // console.log(BD);
 
-  const bankListFetch = async () => {
-    const { data } = await axios.get(
-      "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
-    );
-    setdepositbaseList(data?.result.baseList);
-    setdepositOptionalList(data?.result.optionList);
-  };
+  // const [dataSource, setDataSource] = useState(Array.from(BD));
+  // console.log(dataSource);
+  // const [hasMore, setHasMore] = useState(true);
 
-  //최고금리 순으로 가져오는 함수
-  const BD = depositOptionalList?.sort(function (a, b) {
-    return b.intr_rate2 - a.intr_rate2;
-  });
-
-  useEffect(() => {
-    bankListFetch();
-  }, []);
+  // const fetchMoreData = () => {
+  //   if (dataSource.length < 10) {
+  //     setTimeout(() => {
+  //       setDataSource(dataSource.concat(Array.from(BD, { length: 10 })));
+  //     }, 500);
+  //   } else {
+  //     setHasMore(false);
+  //   }
+  // };
 
   return (
     <StyledListContainer>
-      {BD &&
-        BD?.map((i) =>
+      {/* <InfiniteScroll
+        dataLength={dataSource?.length}
+        next={fetchMoreData}
+        hasMore={hasMore}
+        loader={<p>...데이터를 불러오는 중입니다.</p>}
+        endMessage={<p>모든 데이터를 불러왔습니다.</p>}
+        scrollableTarget="parentScroller"
+      > */}
+
+      {depositDB &&
+        depositDB?.map((i) =>
           depositbaseList?.map((v) =>
             i.fin_prdt_cd === v.fin_prdt_cd ? (
               <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  padding: "5px",
-                  boxSizing: "border-box",
+                  width: "920px",
+                  // height: "129px",
                 }}
               >
                 {i.save_trm === "12" ? (
@@ -58,7 +66,6 @@ function AllBankList() {
                       <h2
                         style={{
                           fontSize: "20px",
-                          boxSizing: "border-box",
                         }}
                       >
                         {v.fin_prdt_nm}
@@ -83,6 +90,7 @@ function AllBankList() {
             ) : null
           )
         )}
+      {/* </InfiniteScroll> */}
     </StyledListContainer>
   );
 }

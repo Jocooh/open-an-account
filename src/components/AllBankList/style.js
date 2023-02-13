@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const StyledListContainer = styled.div`
-  width: 900px;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 990px;
 `;
 export const StyledImg = styled.img`
   width: 50px;
