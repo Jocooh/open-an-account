@@ -6,6 +6,7 @@ import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";
+
 import {
   Wraper,
   GreetingBox,
@@ -13,20 +14,17 @@ import {
   Username,
   Greetingment,
   Greetingcontent,
-  ProducksCalculatorTitle,
-  ProducksCalculator,
-  ProducksCalculatorBox,
-  ProducksCalculatorBoxTitle,
-  ProducksCalculatorBoxContent,
-  ProducksCalculatorBoxContentTilte,
+  ProductFdButton,
+  BoardBestCommentWrap,
+  BoardBestComment,
   BankList,
   BankListTilte,
-  MonthRangeSlider,
-  InterestRateRangeSlider,
-  MonthRangeSliderTitle,
-  InterestRateRangeSliderTitle,
   BottomWrap,
   Sidebar,
+  BankAndQna,
+  QuestionWrap,
+  QuestionTitle,
+  FinanceHoneyTip,
   MainPageWraper,
 } from "./style";
 
@@ -73,64 +71,38 @@ const MainPage = () => {
 
         <GreetingBox>
           <img
-            src={process.env.PUBLIC_URL + "/public/img/Star 1.png"}
-            alt="ProfileImg"
+            src={require("../../assets/star.png")}
+            // src={process.env.PUBLIC_URL + "/public/img/Star 1.png"}
+            alt="로고"
           />
           <GreetingTitle>
             <Username>상우님</Username>
             <Greetingment>의 첫 금융 ~~을 환영합니다~</Greetingment>
           </GreetingTitle>
           <Greetingcontent>
+            <div />
             모금과 함께하는 저축의 시작!
-            <br /> 주거래 은행, 선호 이율, 기간, 원하는 조건에 맞춰 상품을
+            <p /> 주거래 은행, 선호 이율, 기간, 원하는 조건에 맞춰 상품을
             찾아드릴게요.
-            <br /> 선택은 여러분의 자유예요.
+            <p /> 선택은 여러분의 자유예요.
           </Greetingcontent>
+          <ProductFdButton>상품 찾아보기</ProductFdButton>
         </GreetingBox>
         <BottomWrap>
-          <ProducksCalculator>
-            <ProducksCalculatorTitle>
+          <BoardBestCommentWrap>
+            {/* <ProducksCalculatorTitle>
               목표금액으로 상품 찾기
-            </ProducksCalculatorTitle>
+            </ProducksCalculatorTitle> */}
 
-            <ProducksCalculatorBox>
-              <ProducksCalculatorBoxTitle>
-                종류를 선택해주세요.
-              </ProducksCalculatorBoxTitle>
-              <button>예금</button>
-              <button>적금</button>
-              <button>모두</button>
-              <ProducksCalculatorBoxContent>
-                <ProducksCalculatorBoxContentTilte>
-                  최종 목표 금액
-                </ProducksCalculatorBoxContentTilte>
-                <input placeholder="금액을 입력해주세요."></input>
-              </ProducksCalculatorBoxContent>
-              <MonthRangeSlider>
-                <MonthRangeSliderTitle>
-                  기간 설정 <span>6개월</span>
-                  <span>12개월</span>
-                  <span>24개월</span>
-                </MonthRangeSliderTitle>
-                <input type="range" min="1" max="24" className="slider" />
-              </MonthRangeSlider>
-              <InterestRateRangeSlider>
-                <InterestRateRangeSliderTitle>
-                  선호 이율 <span>3%</span>
-                  <span>4%</span>
-                  <span>5%</span>
-                </InterestRateRangeSliderTitle>
-                <input
-                  type="range"
-                  min="1"
-                  max="24"
-                  value={12}
-                  className="slider"
-                />
-              </InterestRateRangeSlider>
-              <button>결과보기</button>
-            </ProducksCalculatorBox>
-            <h1>결과 리스트에요~~</h1>
+            <BoardBestComment>
+              <div>게시판 인기글</div>
+              <div
+                style={{
+                  border: "1px, black, solid",
+                }}
+              ></div>
+            </BoardBestComment>
+            {/* <h1>결과 리스트에요~~</h1>
             <div
               style={{
                 backgroundColor: "#e3e3e3",
@@ -166,38 +138,45 @@ const MainPage = () => {
               <span style={{ fontWeight: "bold" }}> 씩</span>
               <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
               <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
-          </ProducksCalculator>
-
-          <BankList>
-            <BankListTilte>은행사이트 바로가기</BankListTilte>
-            <BankBannerWrap>
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                pagination={{ clickable: true }}
-                navigation
-                spaceBetween={50}
-                slidesPerView={3}
-                autoplay={{ delay: 2000 }}
-                loop={true}
-                observer={true}
-                observeParents={true}
-              >
-                <BankBanner>우리은행 농협은행</BankBanner>
-                <BankBanner>하나은행 IBK기업은행</BankBanner>
-                <BankBanner>신한은행 국민은행</BankBanner>
-                <BankBanner>신협 수협은행</BankBanner>
-              </Swiper>
-            </BankBannerWrap>
-          </BankList>
+            </div> */}
+          </BoardBestCommentWrap>
+          <BankAndQna>
+            <BankList>
+              <BankListTilte>은행사이트 바로가기</BankListTilte>
+              <BankBannerWrap>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  pagination={{ clickable: true }}
+                  navigation
+                  spaceBetween={50}
+                  slidesPerView={1}
+                  autoplay={{ delay: 2000 }}
+                  loop={true}
+                  observer={true}
+                  observeParents={true}
+                >
+                  <BankBanner>우리은행</BankBanner>
+                  <BankBanner>하나은행</BankBanner>
+                  <BankBanner>IBK기업은행</BankBanner>
+                  <BankBanner>신한은행</BankBanner>
+                  <BankBanner>국민은행</BankBanner>
+                  <BankBanner>신협</BankBanner>
+                  <BankBanner>수협은행</BankBanner>
+                  <BankBanner>농협은행</BankBanner>
+                </Swiper>
+              </BankBannerWrap>
+            </BankList>
+            <QuestionWrap>
+              <QuestionTitle>QnA 자주묻는 질문</QuestionTitle>
+            </QuestionWrap>
+          </BankAndQna>
         </BottomWrap>
+        <FinanceHoneyTip>
+          <div>금융 꿀팁</div>
+        </FinanceHoneyTip>
 
         <Sidebar>
           <button>1:1 전문상담</button>
-          <button>QnA 자주하는 질문</button>
-          <button>금융 용어사전</button>
-          <button>나의 주거래은행</button>
-          {/* //? 얘 뭐지 */}
         </Sidebar>
       </Wraper>
     </MainPageWraper>
@@ -206,28 +185,36 @@ const MainPage = () => {
 
 export default MainPage;
 
-//* 슬라이드 배너
+//* 탑슬라이드 배너
 const SilderBanner = styled(SwiperSlide)`
   width: 100%;
-  height: 150px;
-  padding-top: 130px;
+  height: 180px;
+  padding-top: 80px;
   text-align: center;
+
+  background-color: aliceblue;
+  .swiper-slide {
+    border-radius: 20px;
+  }
   /* img {
     width: 100%;
   } */
 `;
 
+// 은행 배너랩
 const BankBannerWrap = styled.div`
-  width: 350px;
+  width: 400px;
   height: 250px;
   border: solid 1px #dedede;
-  margin: 40px 0 0 0px;
-  padding: 50px 0px 0px 50px;
+  margin: 40px 0 0 25px;
+  padding-top: 40px;
 `;
 
+// 은행 배너
 const BankBanner = styled(SwiperSlide)`
   width: 100%;
-  height: 200px;
-  padding-top: 10px;
+  height: 170px;
+  font-size: 40px;
+  padding-top: 50px;
   text-align: center;
 `;
