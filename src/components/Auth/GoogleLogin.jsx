@@ -7,17 +7,9 @@ import {
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authService } from "../../config/firebase";
-import { NaverLogin } from "./NaverLogin";
-import {
-  SocialLoginForm,
-  SocialLoginItem,
-  SocialLoginList,
-  SocialLoginLogo,
-  SocialLoginLogoImg,
-  SocialLoginTitle,
-} from "./style";
+import { SocialLoginItem, SocialLoginLogo, SocialLoginLogoImg } from "./style";
 
-export const SocialLogin = () => {
+export const GoogleLogin = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -40,10 +32,18 @@ export const SocialLogin = () => {
   };
 
   return (
-    <SocialLoginForm>
-      <SocialLoginTitle>또는</SocialLoginTitle>
-      <SocialLoginList>
-        <SocialLoginItem
+    <SocialLoginItem onClick={handleGoogleLogin}>
+      <SocialLoginLogo>
+        <SocialLoginLogoImg
+          src={require("../../assets/social-login-google.png")}
+        />
+      </SocialLoginLogo>
+    </SocialLoginItem>
+  );
+};
+
+{
+  /* <SocialLoginItem
           onClick={() => {
             alert("아직은 안돼요~");
           }}
@@ -64,16 +64,6 @@ export const SocialLogin = () => {
               src={require("../../assets/social-login-naver.png")}
             />
           </SocialLoginLogo>
-        </SocialLoginItem>
-        <SocialLoginItem onClick={handleGoogleLogin}>
-          <SocialLoginLogo>
-            <SocialLoginLogoImg
-              src={require("../../assets/social-login-google.png")}
-            />
-          </SocialLoginLogo>
-        </SocialLoginItem>
-      </SocialLoginList>
-      {/* <NaverLogin /> */}
-    </SocialLoginForm>
-  );
-};
+        </SocialLoginItem> */
+}
+//  <NaverLogin />;

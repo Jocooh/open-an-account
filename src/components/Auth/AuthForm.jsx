@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { SocialLogin } from "./SocialLogin";
+import { GoogleLogin } from "./GoogleLogin";
+import { KakaoLogin } from "./KakaoLogin";
+import { NaverLogin } from "./NaverLogin";
 import {
   AuthBackground,
   AuthButton,
@@ -14,12 +16,9 @@ import {
   AuthTitle,
   AuthWrapper,
   DefaultLoginForm,
-  SocialLoginButton,
-  SocialLoginButtonLogo,
-  SocialLoginButtonLogoImg,
-  SocialLoginButtonText,
   SocialLoginForm,
   SocialLoginTitle,
+  SocialLoginList,
 } from "./style";
 
 const AuthForm = ({
@@ -37,7 +36,6 @@ const AuthForm = ({
   confirmPasswordRef,
   submitSignUp,
   submitLogin,
-  socialBtn,
 }) => {
   const signUp = title === "회원 가입 정보 입력";
 
@@ -100,35 +98,14 @@ const AuthForm = ({
           )}
         </DefaultLoginForm>
         {!signUp && (
-          <>
-            <SocialLogin />
-
-            {/* <SocialLoginForm>
-              {socialBtn.map((item) => {
-                return (
-                  <SocialLoginButton
-                    onClick={() => {
-                      alert("아직은 안돼요~");
-                    }}
-                  >
-                    <SocialLoginButtonLogo>
-                      <SocialLoginButtonLogoImg src={item.img} />
-                    </SocialLoginButtonLogo>
-                    <SocialLoginButtonText>{item.title}</SocialLoginButtonText>
-                  </SocialLoginButton>
-                );
-              })}
-            </SocialLoginForm> */}
-            {/* <LinkText>
-              <Link
-                onClick={() => {
-                  alert("아직은 안돼요~");
-                }}
-              >
-                비밀번호를 잊으셨나요?
-              </Link>
-            </LinkText> */}
-          </>
+          <SocialLoginForm>
+            <SocialLoginTitle>또는</SocialLoginTitle>
+            <SocialLoginList>
+              <KakaoLogin />
+              <NaverLogin />
+              <GoogleLogin />
+            </SocialLoginList>
+          </SocialLoginForm>
         )}
       </AuthWrapper>
     </AuthBackground>
