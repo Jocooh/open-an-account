@@ -4,16 +4,16 @@ import styled from "styled-components";
 export const Wraper = styled.body`
   width: 100%;
   height: 1500px;
-  background-color: #e3e3e3;
   display: flex;
   justify-content: center;
 `;
 
-//* 바디 하위 컨테이너
+//* 바디의 하위 컨테이너
 export const Cantinar = styled.div`
-  min-width: 80%;
+  /* min-width: 80%; */
 `;
 
+//? ----여기서 부터 상단부분입니다.----
 //* 상단 SectionContainer
 export const TopSectionWraper = styled.div`
   display: flex;
@@ -23,137 +23,141 @@ export const TopSectionWraper = styled.div`
 //* 상단 Section
 export const TopSection = styled.div`
   width: 100%;
-  height: 300px;
-  background-color: white;
-  border-radius: 25px;
   margin-top: 50px;
-  div {
-    font-weight: bold;
-    font-size: 30px;
-    padding: 20px 0 0 20px;
-  }
+`;
+
+//* 상단 SectionTitle
+export const TopSectionTitle = styled.div`
+  height: 50px;
+  font-size: 48px;
+  text-align: center;
+`;
+
+//* 상단 SectionSubTitle
+export const TopSectionSubTitle = styled.div`
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 50px;
 `;
 
 //* 새로고침 버튼
-export const RefreshBtn = styled.button`
-  width: 100px;
-  height: 30px;
-  float: right;
-  margin: 10px 20px;
+// export const RefreshBtn = styled.button`
+//   width: 100px;
+//   height: 30px;
+//   float: right;
+//   margin: 10px 20px;
+// `;
+
+//* 선택된 상품 Wraper
+export const ProductsWraper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 `;
+
+//* 선택된 상품 Container
+export const SelectedProductsContainer = styled.div`
+  border-radius: 5px;
+  border: 1px solid #dedede;
+  text-align: center;
+  width: 320px;
+  height: 167px;
+  background-color: #fff;
+  color: #a3a3a3;
+  padding-top: 20px;
+`;
+
+//* 선택된 상품 (상품이 선택되면 보여지는 부분)
+export const SelectedProducts = styled.span``;
 
 //* 비교하기 버튼
 export const ToCompare = styled.button`
-  width: 150px;
-  height: 50px;
+  width: 990px;
+  height: 45px;
   float: right;
   bottom: 0;
   margin: 10px 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
-  background-color: #fff;
-  color: #6a24ff;
+  color: #fff;
+  background-color: #6a24ff;
   font-weight: bold;
-  border: solid 1px #6a24ff;
-  :hover {
-    color: #fff;
-    background-color: #6a24ff;
-  }
 `;
 
-//* 선택된 상품
-export const SelectedProducts = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 100px;
-  justify-content: center;
-  .producks {
-    border-radius: 25px;
-    text-align: center;
-    font-size: larger;
-    width: 100px;
-    height: 120px;
-    background-color: #e3e3e3;
-  }
-`;
-
+//? ----여기서 부터 하단부분입니다.----
 //* 하단 SectionContainer
 export const BottomSectionWraper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
 `;
 
 //* 하단 Section
 export const BottomSection = styled.div`
   width: 100%;
   height: 600px;
-
-  //* 탭 버튼
-  .tab {
-    width: 150px;
-    height: 50px;
-    border-radius: 25px;
-    border: solid 1px #dedede;
-    cursor: pointer;
-    margin-right: 20px;
-    font-size: large;
-    font-weight: bold;
-  }
 `;
 
-//? 여기서 부터 계산기 부분
-
-//* 금융상품계산기
-export const ProducksCalculator = styled.div``;
-
-//* 금융상품계산기 제목
-export const ProducksCalculatorTitle = styled.h1`
-  font-size: 42px;
-  margin-left: 50px;
+//* 탭 버튼 Wraper
+export const TapButtonWraper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 100px;
+  text-align: center;
 `;
 
-//* 금융상품계산기 박스
-export const ProducksCalculatorBox = styled.div`
-  /* height: 483px; */
-  background-color: white;
-  border-radius: 25px;
+//* 탭 버튼
+export const TapButton = styled.button`
+  border-bottom: 3px solid #fff;
+  margin-bottom: 20px;
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 22px;
+`;
+
+//? ----여기서 부터 계산기 부분----
+//* 하단 탭 공통 부분 최상위 컨테이너
+export const TapContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 50px;
+  /* padding-left: 100px; */
+  border: 1px solid #dedede;
+  border-radius: 10px;
+`;
+
+//* 하단 탭 공통 부분 중간 컨테이너
+export const TapContainerBox = styled.div`
+  width: 812px;
+  height: 680px;
+`;
+
+//* 하단 탭 공통 부분.
+export const TapTitleName = styled.div`
+  font-size: 24px;
+  margin-bottom: 20px;
   /* position: relative; */
-  span {
-    margin-left: 40px;
-  }
-  position: relative;
+`;
+
+//* 예금,적금(Btn) ProductWraper
+export const ProductWraper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
 `;
 
 //* 금융상품계산기 박스 내부 버튼
 export const ProductType = styled.button`
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 154px;
-  height: 46px;
-  font-size: 22px;
-  font-weight: bold;
-`;
-
-//* 검색하기 버튼
-export const FilterSubmit = styled.button`
-  width: 100%;
-  height: 46px;
-  font-size: 22px;
-  font-weight: bold;
-  border-radius: 20px;
-  margin-top: 5px;
-  border: none;
-  /* position: absolute; */
-  bottom: 0;
-  cursor: pointer;
-  background-color: #fff;
-  color: #6a24ff;
-  border: solid 1px #6a24ff;
-  :hover {
-    color: #fff;
-    background-color: #6a24ff;
-  }
+  width: 151px;
+  height: 64px;
+  font-size: 20px;
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  color: #dedede;
 `;
 
 //* 금융상품계산기 박스제목
@@ -163,39 +167,66 @@ export const ProducksCalculatorBoxTitle = styled.div`
 
 //* 금융상품계산기 박스 내용
 export const ProducksCalculatorBoxContent = styled.div`
-  display: flex;
-  margin-top: 20px;
-  align-items: center;
+  margin-top: 50px;
   input {
-    width: 337px;
-    height: 68px;
-    margin-left: 10px;
-    border-radius: 100px;
+    padding: 0 0 0 24px;
+    margin: 20px 0 50px 0;
+    width: 786px;
+    height: 64px;
+    border-radius: 10px;
     font-size: large;
-    text-align: center;
-    border: none;
-    background-color: #e3e3e3;
+    border: 1px solid #dedede;
   }
 `;
 
 //* 최종목표금액 inputTitle
 export const ProducksCalculatorBoxContentTilte = styled.div`
-  font-size: 30px;
+  width: 100%;
+  font-size: 24px;
+  display: flex;
 `;
 
-//* 금융상품 기간 슬라이더 제목
-export const MonthRangeSliderTitle = styled.div``;
-
-//* 금융상품 기간 슬라이더
-export const MonthRangeSlider = styled.div`
+//* 상품기간 슬라이더 Wraper
+export const MonthRangeSliderWraper = styled.div`
   input {
-    width: 473px;
+    width: 810px;
     height: 50px;
   }
 `;
 
-//* 이자율 슬라이더 제목
-export const InterestRateRangeSliderTitle = styled.div``;
+//* 금융상품 기간 슬라이더 제목
+export const MonthRangeSliderTitle = styled.div`
+  font-size: 24px;
+  width: 215px;
+  height: 33px;
+`;
+
+//* 금융상품 기간 슬라이더
+export const MonthRangeSlider = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 145px;
+  margin-bottom: 100px;
+`;
+
+//* 찾기 Btn Warper
+export const FilterSubmitWarper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+//* 찾기 버튼
+export const FilterSubmit = styled.button`
+  width: 178px;
+  height: 64px;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #6a24ff;
+`;
 
 //* 계산결과 Section
 export const ResultsSection = styled.div`
@@ -241,3 +272,4 @@ export const ProducksRank = styled.div`
 export const Producks = styled.div``;
 export const ProducksTitle = styled.span``;
 export const ProducksDiscription = styled.span``;
+export const Tapwraper = styled.div``;
