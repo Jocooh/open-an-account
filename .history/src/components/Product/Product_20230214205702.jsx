@@ -78,10 +78,9 @@ function Product({ inputValue }) {
       setChangeColor("#D9D9D9");
     }
   };
-  console.log("적금세전이자율 :>> ", inputNum * 0.0376 * (78 / 12));
   console.log(
-    "적금이자과세 :>> ",
-    Math.round(inputNum * 0.0376 * (78 / 12) * 0.154)
+    "inputNum*(1+0.01*3.76)-(0.01*3.76)*0.154 :>> ",
+    inputNum * (1 + 0.01 * 3.76) - 0.01 * 3.76 * 0.154
   );
 
   useEffect(() => {

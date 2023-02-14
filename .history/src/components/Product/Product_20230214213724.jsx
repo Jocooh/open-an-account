@@ -79,10 +79,7 @@ function Product({ inputValue }) {
     }
   };
   console.log("적금세전이자율 :>> ", inputNum * 0.0376 * (78 / 12));
-  console.log(
-    "적금이자과세 :>> ",
-    Math.round(inputNum * 0.0376 * (78 / 12) * 0.154)
-  );
+  console.log("적금이자과세 :>> ", inputNum * 0.0376 * (78 / 12) * 0.154);
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기
