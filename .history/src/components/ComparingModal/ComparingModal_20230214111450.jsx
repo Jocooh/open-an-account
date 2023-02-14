@@ -20,29 +20,15 @@ import {
 import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [inputColor, setInputColor] = useState("#dedede");
+  const [input, setInput] = useState("");
 
   //*입력한 숫자 콤마 찍어주기
-  // const inputValueRgx = (e) => {
-  //   const result = input.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-  //   setInput(input);
-  // };
-
-  //* 입력한 숫자 유효성 검사
-  const changeInputColor = (e) => {
-    let input = e.target.value;
-    input = input.replace(/[^0-9]/g, "");
-    input = input.replace(/(^0+)/, "");
-    setInputValue(input);
-    const inputValueRgx = input
-      .replace(/[^0-9]/g, "")
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    if (inputValueRgx === null) {
-      setInputColor("#dedede");
-    }
-    inputValueRgx < 10000 ? setInputColor("#FF0000") : setInputColor("#6A24FF");
+  const inputMoneyRgx = (e) => {
+    const input = Number(e.target.value);
+    const result = input.toLocaleString("ko-KR");
+    setInput(result);
   };
+
   return (
     <ModalBackground>
       <ModalContainer>
@@ -66,9 +52,11 @@ const ComparingModal = ({ setComparingModalOpen }) => {
               12개월 동안
               <InputMoney
                 maxLength={13}
-                onChange={changeInputColor}
+                type="number"
+                value={input}
+                onChange={inputMoneyRgx}
                 placeholder="금액을 입력해주세요"
-                inputValue={inputValue}
+                input={input}
               />
               원 씩 적립하면
               <FirstGuide>

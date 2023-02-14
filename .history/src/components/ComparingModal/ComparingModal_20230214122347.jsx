@@ -31,9 +31,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
 
   //* 입력한 숫자 유효성 검사
   const changeInputColor = (e) => {
-    let input = e.target.value;
-    input = input.replace(/[^0-9]/g, "");
-    input = input.replace(/(^0+)/, "");
+    const input = e.target.value;
     setInputValue(input);
     const inputValueRgx = input
       .replace(/[^0-9]/g, "")
@@ -66,9 +64,10 @@ const ComparingModal = ({ setComparingModalOpen }) => {
               12개월 동안
               <InputMoney
                 maxLength={13}
+                value={input}
                 onChange={changeInputColor}
                 placeholder="금액을 입력해주세요"
-                inputValue={inputValue}
+                input={input}
               />
               원 씩 적립하면
               <FirstGuide>

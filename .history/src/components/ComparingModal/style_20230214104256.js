@@ -25,8 +25,14 @@ export const ModalContainer = styled.div`
 top: 146px; */
 `;
 
-export const CloseButton = styled.img`
-  width: 39px;
+export const CloseButton = styled.button`
+  background-color: rgba(233, 236, 242, 0.8);
+  border: none;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 119px;
+  height: 73px;
+  font-weight: 600;
   margin-bottom: 20px;
   cursor: pointer;
 
@@ -75,10 +81,8 @@ export const SubTitle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #505050;
+  font-weight: 600;
+  font-size: 18px;
 `;
 
 //* 사용자 인풋창 부분
@@ -98,9 +102,9 @@ export const FirstGuide = styled.div`
 export const Message = styled.div`
   font-family: "Noto Sans";
   font-style: normal;
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 38px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 34px;
   /* or 155% */
 `;
 export const InputMoney = styled.input`
@@ -111,7 +115,8 @@ export const InputMoney = styled.input`
   flex: 80%;
 
   width: 274px;
-  margin: 10px;
+  height: 57px;
+  margin-top: 10px;
   padding: 8px 24px;
   /* padding-left: 10px; */
   font-family: "Noto Sans";

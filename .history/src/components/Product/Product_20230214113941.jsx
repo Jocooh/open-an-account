@@ -21,7 +21,7 @@ import {
   Wrapper,
 } from "./style";
 
-function Product({ inputValue }) {
+function Product({ input }) {
   const [baseLists, setBaseLists] = useState([]);
   const [optionLists, setOptionLists] = useState([]);
   const bankListFetch = async () => {
@@ -78,8 +78,7 @@ function Product({ inputValue }) {
     <Wrapper>
       <Guide>만기 수령액</Guide>
       <TotalCost>
-        {inputValue >= 10000 &&
-          Number({ inputValue }) * (1 + 3 / 100) - (3 / 100) * 0.154}
+        {Number({ input }) * (1 + 3 / 100) - (3 / 100) * 0.154}
       </TotalCost>
       <ProductBox>
         <Prdt_nm>우리적금</Prdt_nm>

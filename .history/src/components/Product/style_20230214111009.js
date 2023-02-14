@@ -91,10 +91,10 @@ export const Message = styled.div`
 //* 상품 보러가기
 export const Button = styled.button`
   box-sizing: border-box;
-  width: 273px;
-  height: 38px;
+  width: 295px;
+  height: 33px;
   margin-top: 30px;
-  padding: 8px;
+  padding-top: 2px;
   background: #d9d9d9;
   border: 1px solid #dedede;
   border-radius: 10px;
@@ -109,9 +109,4 @@ export const Button = styled.button`
   font-weight: 600;
   font-size: 18px;
   line-height: 25px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 `;

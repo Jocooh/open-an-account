@@ -21,7 +21,7 @@ import {
   Wrapper,
 } from "./style";
 
-function Product({ inputValue }) {
+function Product() {
   const [baseLists, setBaseLists] = useState([]);
   const [optionLists, setOptionLists] = useState([]);
   const bankListFetch = async () => {
@@ -37,7 +37,7 @@ function Product({ inputValue }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
 
-  //* 상품 찜 가져오기
+  // 상품 찜 가져오기
   const getScrap = async () => {
     const newId = currentUserUid;
     const docRef = doc(db, "scrap", newId);
@@ -48,7 +48,7 @@ function Product({ inputValue }) {
     }
   };
 
-  //* 상품 찜하기
+  // 상품 찜하기
   const updateScrap = async () => {
     const newId = currentUserUid + baseLists.prdt_cd;
     if (Scrap === false) {
@@ -62,7 +62,7 @@ function Product({ inputValue }) {
       setScrap(true);
       setChangeColor("#0EEA66");
     } else {
-      //* 찜이 되어있는 경우 DB에서 삭제
+      // 찜이 되어있는 경우 DB에서 삭제
       const scrapDoc = doc(db, "scrap", newId);
       deleteDoc(scrapDoc);
       setScrap(false);
@@ -71,16 +71,13 @@ function Product({ inputValue }) {
   };
 
   useEffect(() => {
-    //* 상품 찜 정보 가져오기
+    // 상품 찜 정보 가져오기
     getScrap();
   }, [currentUserName, currentUserUid]);
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>
-      <TotalCost>
-        {inputValue >= 10000 &&
-          Number({ inputValue }) * (1 + 3 / 100) - (3 / 100) * 0.154}
-      </TotalCost>
+      <TotalCost>3,030,250원</TotalCost>
       <ProductBox>
         <Prdt_nm>우리적금</Prdt_nm>
         <Scrap

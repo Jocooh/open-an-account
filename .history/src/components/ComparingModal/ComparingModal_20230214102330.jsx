@@ -20,42 +20,28 @@ import {
 import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [inputColor, setInputColor] = useState("#dedede");
+  const [input, setInput] = useState("");
 
   //*입력한 숫자 콤마 찍어주기
-  // const inputValueRgx = (e) => {
-  //   const result = input.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-  //   setInput(input);
-  // };
-
-  //* 입력한 숫자 유효성 검사
-  const changeInputColor = (e) => {
-    let input = e.target.value;
-    input = input.replace(/[^0-9]/g, "");
-    input = input.replace(/(^0+)/, "");
-    setInputValue(input);
-    const inputValueRgx = input
-      .replace(/[^0-9]/g, "")
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    if (inputValueRgx === null) {
-      setInputColor("#dedede");
-    }
-    inputValueRgx < 10000 ? setInputColor("#FF0000") : setInputColor("#6A24FF");
+  const inputMoneyRgx = (e) => {
+    const input = Number(e.target.value);
+    const result = input.toLocaleString("ko-KR");
+    setInput(result);
   };
+
   return (
     <ModalBackground>
       <ModalContainer>
         <CloseButton
-          src={require("../../assets/close.png")}
-          alt="닫기"
           onClick={() => {
             setComparingModalOpen(false);
           }}
-        />
+        >
+          닫기
+        </CloseButton>
         <ModalContents>
           <TitleWrapper>
-            <Title>상품 비교</Title>
+            <Title>상품 비교 결과</Title>
             <SubTitle>
               만기 수령액은 비교 상품들 모두 가입이 가능한 기간으로
               산정되었습니다.
@@ -66,11 +52,11 @@ const ComparingModal = ({ setComparingModalOpen }) => {
               12개월 동안
               <InputMoney
                 maxLength={13}
-                onChange={changeInputColor}
-                placeholder="금액을 입력해주세요"
-                inputValue={inputValue}
+                type="number"
+                value={input}
+                onChange={inputMoneyRgx}
               />
-              원 씩 적립하면
+              씩 적립하면
               <FirstGuide>
                 *금액은 최대 10억원까지 입력할 수 있습니다.
               </FirstGuide>

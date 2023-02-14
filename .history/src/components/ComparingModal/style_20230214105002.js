@@ -25,8 +25,14 @@ export const ModalContainer = styled.div`
 top: 146px; */
 `;
 
-export const CloseButton = styled.img`
-  width: 39px;
+export const CloseButton = styled.button`
+  background-color: rgba(233, 236, 242, 0.8);
+  border: none;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 119px;
+  height: 73px;
+  font-weight: 600;
   margin-bottom: 20px;
   cursor: pointer;
 
@@ -75,10 +81,8 @@ export const SubTitle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #505050;
+  font-weight: 600;
+  font-size: 18px;
 `;
 
 //* 사용자 인풋창 부분

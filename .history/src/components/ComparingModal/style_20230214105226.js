@@ -75,10 +75,8 @@ export const SubTitle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #505050;
+  font-weight: 600;
+  font-size: 18px;
 `;
 
 //* 사용자 인풋창 부분
