@@ -1,7 +1,8 @@
 import axios from "axios";
 
 //여기 키 환경변수로 작업예정
-// const MY_ADDRESS = "6f3a6ea55869e0bdccf38e3e5dcc145e";
+// const MY_ADDRESS = "6f3a6ea55869e0bdccf38e3e5dcc145e" - 성아님 금감원 API KEY
+// cc8ea7a35d5a580209ff422991e8be95 - 원준 금감원 API KEY
 
 export const fetchUrl = async () => {
   const { data } = await axios.get(
