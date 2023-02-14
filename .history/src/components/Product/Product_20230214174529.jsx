@@ -38,8 +38,6 @@ function Product({ inputValue }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
 
-  console.log("inputValue :>> ", inputValue);
-
   //* 상품 찜 가져오기
   const getScrap = async () => {
     const newId = currentUserUid;
@@ -89,7 +87,9 @@ function Product({ inputValue }) {
         <Name>
           <Prdt_nm>우리적금</Prdt_nm>
           <BsFillBookmarkFill
-            onClick={updateScrap}
+            onClick={() => {
+              setScrap(true);
+            }}
             style={scrap ? { color: "#CDE974" } : { color: "#D9D9D9" }}
           />
         </Name>

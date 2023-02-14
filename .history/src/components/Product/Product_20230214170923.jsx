@@ -18,6 +18,7 @@ import {
   Name,
   Prdt_nm,
   ProductBox,
+  Scrap,
   TotalCost,
   Wrapper,
 } from "./style";
@@ -38,8 +39,6 @@ function Product({ inputValue }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
 
-  console.log("inputValue :>> ", inputValue);
-
   //* 상품 찜 가져오기
   const getScrap = async () => {
     const newId = currentUserUid;
@@ -54,7 +53,7 @@ function Product({ inputValue }) {
   //* 상품 찜하기
   const updateScrap = async () => {
     const newId = currentUserUid + baseLists.prdt_cd;
-    if (scrap === false) {
+    if (Scrap === false) {
       // 찜이 되어있지 않을 경우 DB에 추가
       await setDoc(doc(db, "scrap", newId), {
         userId: authService.currentUser?.uid,
@@ -63,7 +62,6 @@ function Product({ inputValue }) {
       });
 
       setScrap(true);
-      console.log("scrap :>> ", scrap);
       setChangeColor("#CDE974");
     } else {
       //* 찜이 되어있는 경우 DB에서 삭제
@@ -88,10 +86,7 @@ function Product({ inputValue }) {
       <ProductBox>
         <Name>
           <Prdt_nm>우리적금</Prdt_nm>
-          <BsFillBookmarkFill
-            onClick={updateScrap}
-            style={scrap ? { color: "#CDE974" } : { color: "#D9D9D9" }}
-          />
+          <BsFillBookmarkFill onClick={updateScrap} style={"D9D9D9"} />
         </Name>
 
         <Info>

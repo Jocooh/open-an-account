@@ -42,7 +42,6 @@ export const ProductBox = styled.div`
   padding: 20px 20px 15px 20px;
 `;
 
-//* 상품 이름, 스크랩 아이콘
 export const Name = styled.div`
   display: flex;
   justify-content: space-between;
@@ -52,11 +51,21 @@ export const Prdt_nm = styled.div`
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
-  line-height: 27px;
+  font-size: 18px;
+  line-height: 25px;
   color: #000000;
 `;
+//* 스크랩 아이콘
+export const Scrap = styled.img`
+  width: 41px;
+  height: 32px;
+  background: #d9d9d9;
+  cursor: pointer;
 
+  :hover {
+    background-color: #cde974;
+  }
+`;
 //* 상품설명
 export const Info = styled.div`
   margin-top: 20px;

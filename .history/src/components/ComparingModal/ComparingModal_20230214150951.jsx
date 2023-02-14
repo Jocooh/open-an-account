@@ -23,14 +23,28 @@ const ComparingModal = ({ setComparingModalOpen }) => {
   const [inputValue, setInputValue] = useState("");
   const [inputColor, setInputColor] = useState("#dedede");
 
-  //* 입력한 숫자 콤마찍기, 입력칸 색 바꿔주기
-  const changeInputRgx = (e) => {
+  //*입력한 숫자 콤마 찍어주기
+  // const inputValueRgx = (e) => {
+  //   const result = input.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  //   setInput(input);
+  // };
+
+  //* 입력한 숫자 유효성 검사
+  const changeInputColor = (e) => {
     const input = e.target.value
       .replace(/[^0-9]/g, "")
       .replace(/(^0+)/, "")
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    setInputValue(input);
+
     console.log("typeof input :>> ", typeof input);
+    console.log("input :>> ", input);
+
+    setInputValue(input);
+
+    if (input === null) {
+      setInputColor("#dedede");
+    }
+    input < 10000 ? setInputColor("#FF0000") : setInputColor("#6A24FF");
   };
   return (
     <ModalBackground>
@@ -54,18 +68,11 @@ const ComparingModal = ({ setComparingModalOpen }) => {
             <Message>
               12개월 동안
               <InputMoney
-                maxLength={12}
+                maxLength={11}
                 value={inputValue}
-                onChange={changeInputRgx}
+                onChange={changeInputColor}
                 placeholder="금액을 입력해주세요"
                 inputValue={inputValue}
-                style={
-                  inputValue.length > 0
-                    ? inputValue.length > 5
-                      ? { border: "1px solid #6A24FF" }
-                      : { border: "1px solid #FF0000" }
-                    : { border: "1px solid #dedede" }
-                }
               />
               원 씩 적립하면
               <FirstGuide>

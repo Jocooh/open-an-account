@@ -31,7 +31,7 @@ export const CloseButton = styled.img`
   cursor: pointer;
 
   :hover {
-    background-color: #f0f0f0;
+    background-color: rgba(188, 188, 188, 0.4);
   }
 `;
 

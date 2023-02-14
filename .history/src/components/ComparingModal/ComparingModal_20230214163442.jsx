@@ -21,7 +21,7 @@ import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
   const [inputValue, setInputValue] = useState("");
-  const [inputColor, setInputColor] = useState("#dedede");
+  const [inputColor, setInputColor] = useState("black");
 
   //* 입력한 숫자 콤마찍기, 입력칸 색 바꿔주기
   const changeInputRgx = (e) => {
@@ -30,7 +30,9 @@ const ComparingModal = ({ setComparingModalOpen }) => {
       .replace(/(^0+)/, "")
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     setInputValue(input);
-    console.log("typeof input :>> ", typeof input);
+    console.log("inputValue :>> ", inputValue);
+
+    const inputNum = parseInt(input.replace(/,/g, ""));
   };
   return (
     <ModalBackground>
@@ -60,11 +62,9 @@ const ComparingModal = ({ setComparingModalOpen }) => {
                 placeholder="금액을 입력해주세요"
                 inputValue={inputValue}
                 style={
-                  inputValue.length > 0
-                    ? inputValue.length > 5
-                      ? { border: "1px solid #6A24FF" }
-                      : { border: "1px solid #FF0000" }
-                    : { border: "1px solid #dedede" }
+                  inputValue < 10000
+                    ? { border: "1px solid #FF0000" }
+                    : { border: "1px solid #6A24FF" }
                 }
               />
               원 씩 적립하면

@@ -30,7 +30,9 @@ const ComparingModal = ({ setComparingModalOpen }) => {
       .replace(/(^0+)/, "")
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     setInputValue(input);
-    console.log("typeof input :>> ", typeof input);
+    console.log("inputValue :>> ", inputValue);
+
+    const inputNum = parseInt(input.replace(/,/g, ""));
   };
   return (
     <ModalBackground>
@@ -59,6 +61,11 @@ const ComparingModal = ({ setComparingModalOpen }) => {
                 onChange={changeInputRgx}
                 placeholder="금액을 입력해주세요"
                 inputValue={inputValue}
+                // style={
+                //   inputValue < 10000
+                //     ? { border: "1px solid #FF0000" }
+                //     : { border: "1px solid #6A24FF" }
+                // }
                 style={
                   inputValue.length > 0
                     ? inputValue.length > 5

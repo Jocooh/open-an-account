@@ -31,6 +31,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     setInputValue(input);
     console.log("typeof input :>> ", typeof input);
+    const inputNum = parseInt(input.replace(/,/g, ""));
   };
   return (
     <ModalBackground>

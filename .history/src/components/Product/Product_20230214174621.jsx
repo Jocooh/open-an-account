@@ -38,8 +38,6 @@ function Product({ inputValue }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
 
-  console.log("inputValue :>> ", inputValue);
-
   //* 상품 찜 가져오기
   const getScrap = async () => {
     const newId = currentUserUid;

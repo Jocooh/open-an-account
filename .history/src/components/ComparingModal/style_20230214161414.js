@@ -31,7 +31,7 @@ export const CloseButton = styled.img`
   cursor: pointer;
 
   :hover {
-    background-color: #f0f0f0;
+    background-color: rgba(188, 188, 188, 0.4);
   }
 `;
 
@@ -104,7 +104,7 @@ export const Message = styled.div`
   /* or 155% */
 `;
 export const InputMoney = styled.input`
-  border: 0.6px solid;
+  border: 0.6px solid black;
   border-radius: 10px;
   /* border-bottom: 0.6px solid #c6c6c6; */
   outline: none;
