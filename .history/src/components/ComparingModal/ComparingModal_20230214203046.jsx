@@ -30,8 +30,6 @@ const ComparingModal = ({ setComparingModalOpen }) => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     setInputValue(input);
   };
-
-  console.log("~~~~~");
   return (
     <ModalBackground>
       <ModalContainer>

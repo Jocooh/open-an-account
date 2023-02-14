@@ -21,6 +21,7 @@ import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
   const [inputValue, setInputValue] = useState("");
+  const [inputColor, setInputColor] = useState("#dedede");
 
   //* 입력한 숫자 콤마찍기
   const changeInputRgx = (e) => {
@@ -29,9 +30,8 @@ const ComparingModal = ({ setComparingModalOpen }) => {
       .replace(/(^0+)/, "")
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     setInputValue(input);
+    console.log("typeof input :>> ", typeof input);
   };
-
-  console.log("~~~~~");
   return (
     <ModalBackground>
       <ModalContainer>
@@ -58,6 +58,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
                 value={inputValue}
                 onChange={changeInputRgx}
                 placeholder="금액을 입력해주세요"
+                input={input}
                 style={
                   inputValue.length > 0
                     ? inputValue.length > 5
@@ -73,9 +74,9 @@ const ComparingModal = ({ setComparingModalOpen }) => {
             </Message>
           </MessageWrapper>
           <Products>
-            <Product inputValue={inputValue} />
-            <Product inputValue={inputValue} />
-            <Product inputValue={inputValue} />
+            <Product />
+            <Product />
+            <Product />
           </Products>
           <SecondGuide>
             *최소, 최대 금액은 선택하신 상품에 따라 달라질 수 있습니다.

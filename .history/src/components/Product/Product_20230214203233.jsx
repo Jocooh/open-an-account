@@ -86,9 +86,7 @@ function Product({ inputValue }) {
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>
-      <TotalCost>
-        {{ inputNum } * (1 + 0.01 * 3) - ((0.01 * 3) / 100) * 0.154}
-      </TotalCost>
+      <TotalCost>{{ inputNum } * (1 + 3 / 100) - (3 / 100) * 0.154}</TotalCost>
       <ProductBox>
         <Name>
           <Prdt_nm>우리적금</Prdt_nm>

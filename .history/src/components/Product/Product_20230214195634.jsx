@@ -22,7 +22,7 @@ import {
   Wrapper,
 } from "./style";
 
-function Product({ inputValue }) {
+function Product({ input }) {
   const [baseLists, setBaseLists] = useState([]);
   const [optionLists, setOptionLists] = useState([]);
   const bankListFetch = async () => {
@@ -38,12 +38,7 @@ function Product({ inputValue }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
 
-  //* props로 받아온 문자열 input값 숫자형으로 바꾸기
-  const inputNum = parseInt(inputValue.replace(",", ""));
-  // const inputNum = Number(input.replace(",", ""));
-  console.log("inputValue :>> ", inputValue);
-  console.log("input숫자형 변환 :>> ", typeof inputNum);
-  console.log("inputValue :>> ", inputNum);
+  console.log("input숫자형 변환 :>> ", parseInt(input.replace(/,/g, "")));
 
   //* 상품 찜 가져오기
   const getScrap = async () => {
@@ -87,7 +82,7 @@ function Product({ inputValue }) {
     <Wrapper>
       <Guide>만기 수령액</Guide>
       <TotalCost>
-        {{ inputNum } * (1 + 0.01 * 3) - ((0.01 * 3) / 100) * 0.154}
+        {Number({ input }) * (1 + 3 / 100) - (3 / 100) * 0.154}
       </TotalCost>
       <ProductBox>
         <Name>

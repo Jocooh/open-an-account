@@ -30,8 +30,6 @@ const ComparingModal = ({ setComparingModalOpen }) => {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     setInputValue(input);
   };
-
-  console.log("~~~~~");
   return (
     <ModalBackground>
       <ModalContainer>
@@ -73,9 +71,9 @@ const ComparingModal = ({ setComparingModalOpen }) => {
             </Message>
           </MessageWrapper>
           <Products>
-            <Product inputValue={inputValue} />
-            <Product inputValue={inputValue} />
-            <Product inputValue={inputValue} />
+            <Product input="input" />
+            <Product />
+            <Product />
           </Products>
           <SecondGuide>
             *최소, 최대 금액은 선택하신 상품에 따라 달라질 수 있습니다.
