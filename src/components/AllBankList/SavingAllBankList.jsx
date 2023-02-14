@@ -7,6 +7,7 @@ import {
   StyledRateP,
   StyledBankNameP,
 } from "./style";
+
 import {
   StyledBankLists,
   StyledBankListWrapper,
@@ -16,21 +17,21 @@ import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
 // import InfiniteScroll from "react-infinite-scroll-component";
 
-function AllBankList({ depositDB, depositbaseList }) {
+function AllBankList({ savingDB, savingbaseList }) {
   //BD:optionList를 최고금리 순으로 가져온 데이터
   //depositbaseList : 예금상품 baseList
 
   return (
     <StyledBankListWrapper>
-      {depositDB &&
-        depositDB?.map((i) =>
-          depositbaseList?.map((v) =>
+      {savingDB &&
+        savingDB?.map((i) =>
+          savingbaseList?.map((v) =>
             i.fin_prdt_cd === v.fin_prdt_cd ? (
               <>
                 {i.save_trm === "12" ? (
                   <StyledBankLists>
-                    {/* 로고 */}
-                    <div>
+                    {/* 은행 로고  */}
+                    <div className="로고">
                       {logoLists.logos.map((t) =>
                         Object.keys(t)[0] === v.fin_co_no ? (
                           <StyledImg
@@ -50,7 +51,7 @@ function AllBankList({ depositDB, depositbaseList }) {
                     >
                       <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
                         <StyledProductTitleDiv>
-                          {/* product name */}
+                          {/* ProductName */}
                           <h2
                             style={{
                               fontSize: "20px",
@@ -58,16 +59,10 @@ function AllBankList({ depositDB, depositbaseList }) {
                           >
                             {v.fin_prdt_nm}
                           </h2>
-                          {/* bank Name */}
                           <StyledBankNameP>{v.kor_co_nm}</StyledBankNameP>
                         </StyledProductTitleDiv>
                         <StyledSaveTrmDiv>
-                          {/* 최대금리 */}
-                          <StyledRateP>
-                            최대금리
-                            {i.intr_rate2}
-                          </StyledRateP>
-                          {/* 이자율 -> 일반금리 */}
+                          <StyledRateP>최대금리{i.intr_rate2}</StyledRateP>
                           <StyledRateP>일반금리 {i.intr_rate}</StyledRateP>
                         </StyledSaveTrmDiv>
                       </div>

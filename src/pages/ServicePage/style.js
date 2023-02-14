@@ -3,7 +3,8 @@ import styled from "styled-components";
 //* 바디
 export const Wraper = styled.body`
   width: 100%;
-  height: 1500px;
+  //성아-수정 1500px => 1600px
+  height: 1600px;
   display: flex;
   justify-content: center;
 `;
@@ -125,6 +126,8 @@ export const TapContainer = styled.div`
   justify-content: center;
   width: 100%;
   padding-top: 50px;
+  /* 성아-수정 */
+  padding-bottom: 30px;
   /* padding-left: 100px; */
   border: 1px solid #dedede;
   border-radius: 10px;
@@ -133,7 +136,8 @@ export const TapContainer = styled.div`
 //* 하단 탭 공통 부분 중간 컨테이너
 export const TapContainerBox = styled.div`
   width: 812px;
-  height: 680px;
+  //성아-수정
+  /* height: 680px; */
 `;
 
 //* 하단 탭 공통 부분.
@@ -223,6 +227,8 @@ export const FilterSubmit = styled.button`
   font-weight: bold;
   border-radius: 10px;
   margin-top: 5px;
+  //성아-수정
+  margin-bottom: 50px;
   cursor: pointer;
   color: #fff;
   background-color: #6a24ff;
@@ -245,41 +251,41 @@ export const FinanciialProductsWrap = styled.div`
   justify-content: center;
 `;
 
-export const FinanciialProducts = styled.div`
-  /* width: 80%;
-  min-width: 800px;
-  height: 120px;
-  border-bottom: solid 0.5px #000;
-  text-align: center;
-  font-size: 20px;
-  margin-bottom: 10px; */
-`;
-
-export const ProducksRank = styled.div`
-  display: flex;
-  /* button {
-    font-size: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    right: 0;
-    margin-right: 250px;
-    margin-top: 30px;
-    position: absolute;
-  } */
-`;
-
-export const Producks = styled.div``;
-export const ProducksTitle = styled.span``;
-export const ProducksDiscription = styled.span``;
-
 //성아-banklist style
-export const StyledBankList = styled.div`
+export const StyledBankListContainer = styled.div`
   width: 990px;
-  height: 745px;
-  overflow: auto;
   background-color: #f9f7fb;
+  margin-top: 30px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 15px;
+`;
+export const StyledBankList = styled.div`
+  height: 550px;
+  overflow: auto;
 `;
 
 export const Tapwraper = styled.div``;
 
+export const StyledBankListWrapper = styled.div`
+  width: 920px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+
+  /* background-color: lightblue; */
+`;
+export const StyledBankLists = styled.div`
+  height: 129px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background-color: white;
+  margin-bottom: 15px;
+`;
+
+export const StyledBookMark = {
+  fontSize: "20px",
+};
