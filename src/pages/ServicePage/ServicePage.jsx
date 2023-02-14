@@ -8,26 +8,18 @@ import {
   TapTitleName,
   TapContainer,
   TapContainerBox,
-  ProducksCalculatorBoxTitle,
   ProducksCalculatorBoxContent,
   ProducksCalculatorBoxContentTilte,
   MonthRangeSlider,
   MonthRangeSliderTitle,
   BottomSectionWraper,
-  RefreshBtn,
   ToCompare,
   ResultsSection,
   ProductType,
   FilterSubmit,
   FinanciialProductsFullList,
-  FinanciialProducts,
   FinanciialProductsWrap,
-  ProducksRank,
-  Producks,
-  ProducksTitle,
-
-  StyledBankList,
-
+  StyledBankListContainer,
   Tapwraper,
   TopSectionTitle,
   TopSectionSubTitle,
@@ -35,15 +27,16 @@ import {
   ProductWraper,
   MonthRangeSliderWraper,
   FilterSubmitWarper,
-  Products,
   TapButton,
   ProductsWraper,
   SelectedProductsContainer,
-
+  StyledBankList,
+  StyledBankListWrapper,
 } from "./style";
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
+import SavingAllBankList from "../../components/AllBankList/SavingAllBankList";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
 import axios from "axios";
@@ -55,16 +48,14 @@ const ServicePage = () => {
   const [showSearch, setShowSearch] = useState(true);
   //상품검색state
   const [searchBank, setSearchBank] = useState("");
-  //예금적금 선택
-  const [selectedCategory, setSelectedCategory] = useState(true);
   //예금상품 baseList , optionList
   const [depositbaseList, setdepositbaseList] = useState(null);
   const [depositOptionalList, setdepositOptionalList] = useState(null);
   //적금상품 baseList ,optionList
   const [savingbaseList, setSavingbaseList] = useState(null);
-  const [savingoptionalList, setSavingoptionalList] = useState(null);
-
-  const inputRef = useRef(null);
+  const [savingOptionalList, setSavingOptionalList] = useState(null);
+  //성아- 북마크 기능: 계산탭, 은행검색탭, 찜목록탭 , 비교모달, 마이페이지에서 사용할꺼같아서 여기다가 먼저 만들어 놓습니다. (추후에 리덕스로 바꿔놓으면 좋을듯싶습니다.)
+  const [bookMark, setBookMark] = useState(false);
 
   const handleProductTypeClick = (buttonType) => {
     setProductType(buttonType);
@@ -97,7 +88,7 @@ const ServicePage = () => {
   //     `https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
   //   );
   //   setSavingbaseList(data?.result.baseList);
-  //   setSavingoptionalList(data?.result.optionList);
+  //   setSavingOptionalList(data?.result.optionList);
   // };
 
   useMemo(() => {
@@ -111,7 +102,7 @@ const ServicePage = () => {
   });
 
   //여기 적금 최고금리순으로 가져오는 함수 필요
-  const savingDB = depositOptionalList?.sort(function (a, b) {
+  const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
   });
 
@@ -323,61 +314,76 @@ const ServicePage = () => {
                   </TapContainer>
                 </Tapwraper>
               )}
+              {/* ##################################################################### */}
               {activeTab === 2 && (
-
                 <TapContainer>
                   <TapContainerBox>
                     <TapTitleName>전체 목록</TapTitleName>
                     <FinanciialProductsWrap>
                       <FinanciialProductsFullList>
-                        <FinanciialProducts>
-                          <ProducksRank>
-                            <Producks>
-                                         {/* 검색창_component */}
-                                <SearchInput
-                                  setSearchBank={setSearchBank}
-                                  ref={inputRef}
-                                />
-                                <button
-                                  style={{ marginRight: "10px" }}
-                                  onClick={() => {
-                                    setSelectedCategory(true);
-                                  }}
-                                >
-                                  정기예금
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    setSelectedCategory(false);
-                                  }}
-                                >
-                                  정기적금
-                                </button>
-                              <ProducksTitle>
-                               {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
-                                  <StyledBankList>
-                                    {searchBank.length > 0 ? (
-                                      <SearchBankList
-                                        searchBank={searchBank}
-                                        depositbaseList={depositbaseList}
-                                        depositOptionalList={
-                                          depositOptionalList
-                                        }
-                                      />
-                                    ) : (
-                                      <AllBankList
-                                        depositDB={depositDB}
-                                        depositbaseList={depositbaseList}
-                                      />
-                                    )}
-                                  </StyledBankList>
-                              </ProducksTitle>
-                           
-                                
-                              
-                            </Producks>
-                          </ProducksRank>
-                        </FinanciialProducts>
+                        {/* 검색창_component */}
+                        <SearchInput setSearchBank={setSearchBank} />
+                        <ProductWraper className="버튼감싸는 wrapper">
+                          <ProductType
+                            onClick={() => {
+                              handleProductTypeClick(1);
+                            }}
+                            style={
+                              productType === 1
+                                ? {
+                                    color: "#6A24FF",
+                                    border: "1px solid #6A24FF",
+                                  }
+                                : {}
+                            }
+                          >
+                            정기예금
+                          </ProductType>
+                          <ProductType
+                            onClick={() => {
+                              handleProductTypeClick(2);
+                            }}
+                            style={
+                              productType === 2
+                                ? {
+                                    color: "#6A24FF",
+                                    border: "1px solid #6A24FF",
+                                  }
+                                : {}
+                            }
+                          >
+                            정기적금
+                          </ProductType>
+                        </ProductWraper>
+                        <p style={{ color: "#aaa", marginTop: "5px" }}>
+                          **기본정렬은 12개월 기준입니다.
+                        </p>
+                        {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
+                        <StyledBankListContainer>
+                          <StyledBankList>
+                            {searchBank.length > 0 ? (
+                              <SearchBankList
+                                searchBank={searchBank}
+                                productType={productType}
+                                depositbaseList={depositbaseList}
+                                depositOptionalList={depositOptionalList}
+                                savingbaseList={savingbaseList}
+                                savingOptionalList={savingOptionalList}
+                              />
+                            ) : productType === 1 ? (
+                              <AllBankList
+                                depositDB={depositDB}
+                                depositbaseList={depositbaseList}
+                              />
+                            ) : (
+                              <SavingAllBankList
+                                savingDB={savingDB}
+                                savingbaseList={savingbaseList}
+                                savingOptionalList={savingOptionalList}
+                              />
+                            )}
+                          </StyledBankList>
+                        </StyledBankListContainer>
                       </FinanciialProductsFullList>
                     </FinanciialProductsWrap>
                   </TapContainerBox>

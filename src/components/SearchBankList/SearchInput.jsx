@@ -40,7 +40,7 @@ const StyledInputContainer = styled.div`
   padding: 45px;
   border: 1px solid #dedede;
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 10px auto 30px auto;
 `;
 
 const StyledLabelText = styled.h2`
