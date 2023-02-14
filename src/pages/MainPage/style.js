@@ -15,6 +15,15 @@ export const Wraper = styled.div`
   height: 1500px;
 `;
 
+// 배너 이미지
+export const BannerImage = styled.div`
+  max-width: 100%;
+`;
+
+export const Bannerimage = styled.img`
+  max-width: 100%;
+`;
+
 //? 인삿말 박스
 export const GreetingBox = styled.div`
   border-radius: 20px;
