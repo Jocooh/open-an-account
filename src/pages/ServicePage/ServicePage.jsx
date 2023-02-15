@@ -31,9 +31,10 @@ import {
   ProductsWraper,
   SelectedProductsContainer,
   StyledBankList,
-  StyledBankListWrapper,
+  StyledBtnDiv,
+  StyledBtn,
 } from "./style";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
 import SavingAllBankList from "../../components/AllBankList/SavingAllBankList";
@@ -55,7 +56,7 @@ const ServicePage = () => {
   const [savingbaseList, setSavingbaseList] = useState(null);
   const [savingOptionalList, setSavingOptionalList] = useState(null);
   //성아- 북마크 기능: 계산탭, 은행검색탭, 찜목록탭 , 비교모달, 마이페이지에서 사용할꺼같아서 여기다가 먼저 만들어 놓습니다. (추후에 리덕스로 바꿔놓으면 좋을듯싶습니다.)
-  const [bookMark, setBookMark] = useState(false);
+  // const [bookMark, setBookMark] = useState(false);
 
   const handleProductTypeClick = (buttonType) => {
     setProductType(buttonType);
@@ -90,21 +91,16 @@ const ServicePage = () => {
   //   setSavingbaseList(data?.result.baseList);
   //   setSavingOptionalList(data?.result.optionList);
   // };
+  const topLocation = useRef(null);
+
+  const onTop = () => {
+    topLocation.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   useMemo(() => {
     // SavingBankListFetch();
     DepositBankListFetch();
   }, []);
-
-  //최고금리 순으로 가져오는 함수(정기예금)
-  const depositDB = depositOptionalList?.sort(function (a, b) {
-    return b.intr_rate2 - a.intr_rate2;
-  });
-
-  //여기 적금 최고금리순으로 가져오는 함수 필요
-  const savingDB = savingOptionalList?.sort(function (a, b) {
-    return b.intr_rate2 - a.intr_rate2;
-  });
 
   // 비교하기 버튼 모달창
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
@@ -358,31 +354,41 @@ const ServicePage = () => {
                         <p style={{ color: "#aaa", marginTop: "5px" }}>
                           **기본정렬은 12개월 기준입니다.
                         </p>
-                        {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
+
                         <StyledBankListContainer>
-                          <StyledBankList>
-                            {searchBank.length > 0 ? (
-                              <SearchBankList
-                                searchBank={searchBank}
-                                productType={productType}
-                                depositbaseList={depositbaseList}
-                                depositOptionalList={depositOptionalList}
-                                savingbaseList={savingbaseList}
-                                savingOptionalList={savingOptionalList}
+                          <div>
+                            <StyledBankList>
+                              <div
+                                ref={topLocation}
+                                className="top으로 가는 위치 지정"
                               />
-                            ) : productType === 1 ? (
-                              <AllBankList
-                                depositDB={depositDB}
-                                depositbaseList={depositbaseList}
-                              />
-                            ) : (
-                              <SavingAllBankList
-                                savingDB={savingDB}
-                                savingbaseList={savingbaseList}
-                                savingOptionalList={savingOptionalList}
-                              />
-                            )}
-                          </StyledBankList>
+                              {searchBank.length > 0 ? (
+                                <SearchBankList
+                                  searchBank={searchBank}
+                                  productType={productType}
+                                  depositbaseList={depositbaseList}
+                                  depositOptionalList={depositOptionalList}
+                                  savingbaseList={savingbaseList}
+                                  savingOptionalList={savingOptionalList}
+                                />
+                              ) : productType === 1 ? (
+                                <AllBankList
+                                  depositOptionalList={depositOptionalList}
+                                  depositbaseList={depositbaseList}
+                                />
+                              ) : (
+                                <SavingAllBankList
+                                  savingbaseList={savingbaseList}
+                                  savingOptionalList={savingOptionalList}
+                                />
+                              )}
+                            </StyledBankList>
+                            <StyledBtnDiv className="스크롤탑버튼">
+                              <StyledBtn onClick={onTop}>
+                                맨 위로 가기
+                              </StyledBtn>
+                            </StyledBtnDiv>
+                          </div>
                         </StyledBankListContainer>
                       </FinanciialProductsFullList>
                     </FinanciialProductsWrap>

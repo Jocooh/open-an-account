@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Wraper = styled.body`
   width: 100%;
   //성아-수정 1500px => 1600px
-  height: 1600px;
+  /* height: 1600px; */
   display: flex;
   justify-content: center;
 `;
@@ -254,14 +254,18 @@ export const FinanciialProductsWrap = styled.div`
 //성아-banklist style
 export const StyledBankListContainer = styled.div`
   width: 990px;
-  background-color: #f9f7fb;
+  /* height: 1128px; */
+  background-color: #f0f0f0;
   margin-top: 30px;
-  padding: 15px;
+  padding: 15px 0;
   box-sizing: border-box;
   border-radius: 15px;
 `;
 export const StyledBankList = styled.div`
-  height: 550px;
+  margin: auto;
+  width: 950px;
+  //height:1007px;
+  height: 850px;
   overflow: auto;
 `;
 
@@ -274,10 +278,10 @@ export const StyledBankListWrapper = styled.div`
   margin: auto;
   justify-content: center;
 
-  /* background-color: lightblue; */
+  padding: 10px;
 `;
 export const StyledBankLists = styled.div`
-  height: 129px;
+  height: 144px;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -286,6 +290,20 @@ export const StyledBankLists = styled.div`
   margin-bottom: 15px;
 `;
 
+export const StyledListDiv = styled.div`
+  width: 1200px;
+  height: 141px;
+`;
+
 export const StyledBookMark = {
   fontSize: "20px",
 };
+
+export const StyledBtnDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+export const StyledBtn = styled.button`
+  width: 200px;
+  height: 50px;
+`;
