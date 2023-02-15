@@ -5,7 +5,6 @@ import {
   FirstGuide,
   Guide,
   Highlight,
-  Input,
   InputMoney,
   Message,
   MessageWrapper,
@@ -21,21 +20,28 @@ import {
 import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [input, setInput] = useState("");
+
+  //*입력한 숫자 콤마 찍어주기
+  const inputMoneyRgx = (e) => {
+    const input = Number(e.target.value);
+    const result = input.toLocaleString("ko-KR");
+    setInput(result);
+  };
 
   return (
     <ModalBackground>
       <ModalContainer>
         <CloseButton
-          src={require("../../assets/close.png")}
-          alt="닫기"
           onClick={() => {
             setComparingModalOpen(false);
           }}
-        />
+        >
+          닫기
+        </CloseButton>
         <ModalContents>
           <TitleWrapper>
-            <Title>상품 비교</Title>
+            <Title>상품 비교 결과</Title>
             <SubTitle>
               만기 수령액은 비교 상품들 모두 가입이 가능한 기간으로
               산정되었습니다.
@@ -43,29 +49,30 @@ const ComparingModal = ({ setComparingModalOpen }) => {
           </TitleWrapper>
           <MessageWrapper>
             <Message>
-              12개월 동안
-              <Input
-                maxLength={12}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                thousandSeparator=","
-                placeholder="금액을 입력해주세요"
-                inputLength={inputValue.length}
-              />
-              원 씩 적립하면
+              <div>
+                <Highlight>12개월 동안</Highlight>
+              </div>
+              <div>
+                <InputMoney
+                  maxLength={13}
+                  type="number"
+                  value={input}
+                  onChange={inputMoneyRgx}
+                />
+                씩 저축한다면,
+              </div>
               <FirstGuide>
                 *금액은 최대 10억원까지 입력할 수 있습니다.
               </FirstGuide>
             </Message>
           </MessageWrapper>
           <Products>
-            <Product inputValue={inputValue} />
-            <Product inputValue={inputValue} />
-            <Product inputValue={inputValue} />
+            <Product />
+            <Product />
+            <Product />
           </Products>
           <SecondGuide>
-            *만기 수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의 15.4%)
-            금액입니다.
+            *최소, 최대 금액은 선택하신 상품에 따라 달라질 수 있습니다.
           </SecondGuide>
         </ModalContents>
       </ModalContainer>

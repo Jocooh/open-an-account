@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { NumericFormat } from "react-number-format";
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -26,13 +25,19 @@ export const ModalContainer = styled.div`
 top: 146px; */
 `;
 
-export const CloseButton = styled.img`
-  width: 39px;
+export const CloseButton = styled.button`
+  background-color: rgba(233, 236, 242, 0.8);
+  border: none;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 119px;
+  height: 73px;
+  font-weight: 600;
   margin-bottom: 20px;
   cursor: pointer;
 
   :hover {
-    background-color: #f0f0f0;
+    background-color: rgba(188, 188, 188, 0.4);
   }
 `;
 
@@ -76,10 +81,8 @@ export const SubTitle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #505050;
+  font-weight: 600;
+  font-size: 18px;
 `;
 
 //* 사용자 인풋창 부분
@@ -99,37 +102,26 @@ export const FirstGuide = styled.div`
 export const Message = styled.div`
   font-family: "Noto Sans";
   font-style: normal;
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 38px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 34px;
   /* or 155% */
 `;
-export const Input = styled(NumericFormat).attrs((props) => ({
-  inputLength: props.inputLength,
-}))`
-  border-radius: 10px;
-  /* border-bottom: 0.6px solid #c6c6c6; */
+export const InputMoney = styled.input`
+  border: none;
+  border-bottom: 0.6px solid #c6c6c6;
   outline: none;
   flex: 80%;
 
-  border: 1px solid pink;
-  border: ${(props) =>
-    props.inputLength > 0
-      ? props.inputLength > 5
-        ? "1px solid #6A24FF"
-        : "1px solid #FF0000"
-      : "1px solid #dedede"};
+  width: 150px;
+  margin-top: 10px;
 
-  width: 274px;
-  margin: 10px;
-  padding: 8px 24px;
-  /* padding-left: 10px; */
+  padding-left: 30px;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;
-  font-size: 26px;
-  line-height: 35px;
-  color: #a3a3a3;
+  font-size: 22px;
+  line-height: 34px;
 `;
 //* 보라색 글씨 강조
 export const Highlight = styled.div`
