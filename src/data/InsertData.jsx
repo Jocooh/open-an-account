@@ -3,8 +3,10 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 const InsertData = () => {
-  const [lists, setLists] = useState([]);
-  const [save, setSave] = useState([]);
+  const [savingBaseList, setSavingBaseList] = useState([]);
+  const [savingOptionList, setSavingOptionList] = useState([]);
+  const [depositBaseList, setDepositBaseList] = useState([]);
+  const [depositOptionList, setDepositOptionList] = useState([]);
 
   // saving = 적금
   // deposit = 예금
@@ -17,10 +19,10 @@ const InsertData = () => {
   //   const { data } = await axios.get(
   //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
   //   );
-  //   setLists(data?.result.baseList); // base list = 기본 정보
-  //   console.log("lists", lists);
+  //   setSavingBaseList(data?.result.baseList); // base list = 기본 정보
+  //   console.log("savingBaseList", savingBaseList);
   //   {
-  //     lists.map((item) => {
+  //     savingBaseList.map((item) => {
   //       addDoc(collection(db, "SAVING_BASE_LIST"), {
   //         category: "적금 기본 정보",
   //         dcls_month: item?.dcls_month,
@@ -46,10 +48,10 @@ const InsertData = () => {
   //   const { data } = await axios.get(
   //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
   //   );
-  //   setSave(data?.result.optionList); // option list = 옵션 목록
-  //   console.log("save", save);
+  //   setSavingOptionList(data?.result.optionList); // option list = 옵션 목록
+  //   console.log("savingOptionList", savingOptionList);
   //   {
-  //     save.map((item) => {
+  //     savingOptionList.map((item) => {
   //       addDoc(collection(db, "SAVING_OPTION_LIST"), {
   //         category: "적금 옵션 목록",
   //         dcls_month: item?.dcls_month,
@@ -73,10 +75,10 @@ const InsertData = () => {
   //   const { data } = await axios.get(
   //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
   //   );
-  //   setLists(data?.result.baseList); // base list = 기본 정보
-  //   console.log("lists", lists);
+  //   setDepositBaseList(data?.result.baseList); // base list = 기본 정보
+  //   console.log("depositBaseList", depositBaseList);
   //   {
-  //     lists.map((item) => {
+  //     depositBaseList.map((item) => {
   //       addDoc(collection(db, "DEPOSIT_BASE_LIST"), {
   //         category: "예금 기본 정보",
   //         dcls_month: item?.dcls_month,
@@ -102,10 +104,10 @@ const InsertData = () => {
   //   const { data } = await axios.get(
   //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
   //   );
-  //   setSave(data?.result.optionList); // option list = 옵션 목록
-  //   console.log("save", save);
+  //   setDepositOptionList(data?.result.optionList); // option list = 옵션 목록
+  //   console.log("depositOptionList", depositOptionList);
   //   {
-  //     save.map((item) => {
+  //     depositOptionList.map((item) => {
   //       addDoc(collection(db, "DEPOSIT_OPTION_LIST"), {
   //         category: "예금 옵션 목록",
   //         dcls_month: item?.dcls_month,

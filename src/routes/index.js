@@ -25,7 +25,8 @@ const Router = () => {
           <Route path="/LandingPage" element={<LandingPage />} />
           <Route path="/ServicePage" element={<ServicePage />} />
           <Route path="/bankListPage" element={<BankLists />} />
-          <Route path="/testapi" element={<InsertData />} />
+          {/* data 페이지를 위한 임시 path name */}
+          <Route path="/4jojoa" element={<InsertData />} />
         </Routes>
       </Layout>
     </BrowserRouter>
