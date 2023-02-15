@@ -17,9 +17,12 @@ import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
 // import InfiniteScroll from "react-infinite-scroll-component";
 
-function AllBankList({ savingDB, savingbaseList }) {
+function AllBankList({ savingbaseList, savingOptionalList }) {
   //BD:optionList를 최고금리 순으로 가져온 데이터
   //depositbaseList : 예금상품 baseList
+  const savingDB = savingOptionalList?.sort(function (a, b) {
+    return b.intr_rate2 - a.intr_rate2;
+  });
 
   return (
     <StyledBankListWrapper>

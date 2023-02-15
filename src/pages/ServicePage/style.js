@@ -282,10 +282,19 @@ export const StyledBankLists = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
-  background-color: white;
+  background-color: lightyellow;
   margin-bottom: 15px;
 `;
 
 export const StyledBookMark = {
   fontSize: "20px",
 };
+
+export const StyledBtnDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+export const StyledBtn = styled.button`
+  width: 200px;
+  height: 50px;
+`;

@@ -4,6 +4,7 @@ export const StyledContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
+  background-color: lightblue;
 `;
 
 export const StyledSearchSaveTrmDiv = styled.div`
@@ -12,6 +13,7 @@ export const StyledSearchSaveTrmDiv = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  background-color: lightcyan;
 `;
 export const StyledSavingRateP = styled.p`
   border: 1px solid #aaa;

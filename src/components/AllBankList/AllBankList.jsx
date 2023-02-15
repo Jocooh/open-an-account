@@ -1,5 +1,6 @@
 //전체목록이 들어가는 은행들의 리스트를 여기서 맵돌릴꺼다.
-import React from "react";
+import React, { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import {
   StyledImg,
   StyledSaveTrmDiv,
@@ -16,12 +17,36 @@ import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
 // import InfiniteScroll from "react-infinite-scroll-component";
 
-function AllBankList({ depositDB, depositbaseList }) {
-  //BD:optionList를 최고금리 순으로 가져온 데이터
-  //depositbaseList : 예금상품 baseList
+function AllBankList({ depositbaseList, depositOptionalList }) {
+  // const [hasMore, setHasMore] = useState(true);
+
+  //최고금리순으로 가져오는 함수
+  const depositDB = depositOptionalList?.sort(function (a, b) {
+    return b.intr_rate2 - a.intr_rate2;
+  });
+  // const sliceDB = depositDB?.slice(0, 7);
+  // console.log(sliceDB);
+  // const [dataSource, setDataSource] = useState(sliceDB);
+
+  // const fetchMoreData = () => {
+  //   if (dataSource.length < 40) {
+  //     setTimeout(() => {
+  //       setDataSource(dataSource?.concat(depositDB?.slice(0, 7)));
+  //     }, 500);
+  //   } else {
+  //     setHasMore(false);
+  //   }
+  // };
 
   return (
     <StyledBankListWrapper>
+      {/* <InfiniteScroll
+        dataLength={dataSource?.length}
+        next={fetchMoreData}
+        hasMore={hasMore}
+        loader={<p>...loading</p>}
+        endMessage={<p>you are all set!</p>}
+      > */}
       {depositDB &&
         depositDB?.map((i) =>
           depositbaseList?.map((v) =>
@@ -30,6 +55,7 @@ function AllBankList({ depositDB, depositbaseList }) {
                 {i.save_trm === "12" ? (
                   <StyledBankLists>
                     {/* 로고 */}
+
                     <div>
                       {logoLists.logos.map((t) =>
                         Object.keys(t)[0] === v.fin_co_no ? (
@@ -79,6 +105,7 @@ function AllBankList({ depositDB, depositbaseList }) {
             ) : null
           )
         )}
+      {/* </InfiniteScroll> */}
     </StyledBankListWrapper>
   );
 }
