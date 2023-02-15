@@ -9,7 +9,7 @@ export const StyledImg = styled.img`
   width: 60px;
   height: 60px;
   object-fit: contain;
-  margin-left: 20px;
+  margin: 10px 5px 20px 0;
 `;
 
 export const StyledProductTitleDiv = styled.div`
@@ -17,13 +17,11 @@ export const StyledProductTitleDiv = styled.div`
 `;
 
 export const StyledBankNameP = styled.p`
-  color: #aaa;
   margin-top: 5px;
 `;
 
 export const StyledSaveTrmDiv = styled.div`
   display: flex;
-  /* width: 300px; */
   height: 30px;
   align-items: center;
   gap: 10px;

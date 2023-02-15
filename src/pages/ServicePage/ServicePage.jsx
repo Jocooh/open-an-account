@@ -354,7 +354,7 @@ const ServicePage = () => {
                         <p style={{ color: "#aaa", marginTop: "5px" }}>
                           **기본정렬은 12개월 기준입니다.
                         </p>
-                        {/* 은행전체리스트 컴포넌트로 뺐습니다. */}
+
                         <StyledBankListContainer>
                           <div>
                             <StyledBankList>

@@ -7,7 +7,7 @@ function Layout({ children }) {
     <div>
       <Header />
       <div>{children}</div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

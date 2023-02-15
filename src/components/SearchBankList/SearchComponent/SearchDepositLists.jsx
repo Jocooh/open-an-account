@@ -11,11 +11,13 @@ import {
   StyledBankNameP,
 } from "../../AllBankList/style";
 import {
+  StyledListDiv,
+  StyledDiv,
   StyledContentDiv,
   StyledSearchSaveTrmDiv,
   StyledSavingRateP,
+  StyledMoreListDiv,
 } from "../style";
-
 function SearchDepositLists({
   depositbaseList,
   searchBank,
@@ -36,60 +38,73 @@ function SearchDepositLists({
           })
           .map((v) => {
             return (
-              //상품리스트 각 하나하나 스타일
               <StyledBankLists>
-                <div key={v.fin_prdt_nm}>
-                  {logoLists.logos.map((logo) =>
-                    Object.keys(logo)[0] === v.fin_co_no ? (
-                      <StyledImg
-                        src={Object.values(logo)[0]}
-                        alt="로고"
-                        key={v.fin_co_subm_day}
-                      />
-                    ) : null
-                  )}
-                </div>
-                {/* 찜 아이콘 이동때문에 만든 스타일  */}
-                <div
-                  style={{
-                    width: "775px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  {/* 은행상품 이름 최고금리 다 가지고 있는 스타일 태그 */}
-                  <StyledContentDiv>
-                    {/* 상품네임 은행네임 스타일 태그 */}
-                    <StyledProductTitleDiv>
-                      {/* product name */}
-                      <h2
-                        style={{
-                          fontSize: "20px",
-                        }}
-                      >
-                        {v.fin_prdt_nm}
-                      </h2>
-                      {/* bank Name */}
-                      <StyledBankNameP>{v.kor_co_nm}</StyledBankNameP>
-                    </StyledProductTitleDiv>
-                    {/*  금리표시 _ 디자인 수정부분*/}
-                    {/* 금리높이 지정 스타일 태그 */}
-                    <StyledSearchSaveTrmDiv>
-                      {depositOptionalList?.map((i) =>
-                        i.fin_prdt_cd === v.fin_prdt_cd ? (
-                          <>
-                            {/* 금리 하나하나의 스타일태그 */}
-                            <StyledSavingRateP>
-                              <p style={{ color: "#aaa" }}>{i.save_trm}개월</p>
-                              최고금리{i.intr_rate2}
-                            </StyledSavingRateP>
-                          </>
+                <StyledListDiv>
+                  <StyledDiv>
+                    <div key={v.fin_prdt_nm}>
+                      {logoLists.logos.map((logo) =>
+                        Object.keys(logo)[0] === v.fin_co_no ? (
+                          <StyledImg
+                            src={Object.values(logo)[0]}
+                            alt="로고"
+                            key={v.fin_co_subm_day}
+                          />
                         ) : null
                       )}
-                    </StyledSearchSaveTrmDiv>
-                  </StyledContentDiv>
-                  <BsFillBookmarkFill style={StyledBookMark} />
-                </div>
+                    </div>
+                    <div>
+                      <StyledContentDiv>
+                        <StyledProductTitleDiv>
+                          <h2
+                            style={{
+                              fontSize: "20px",
+                            }}
+                          >
+                            {v.fin_prdt_nm}
+                          </h2>
+
+                          <StyledBankNameP>{v.kor_co_nm}</StyledBankNameP>
+                        </StyledProductTitleDiv>
+
+                        <StyledSearchSaveTrmDiv>
+                          <h4 style={{ fontWeight: "bold", color: "#aaa" }}>
+                            최고금리
+                          </h4>
+                          {depositOptionalList?.map((i) =>
+                            i.fin_prdt_cd === v.fin_prdt_cd ? (
+                              <>
+                                <StyledSavingRateP>
+                                  <p style={{ color: "#aaa" }}>
+                                    {i.save_trm}개월
+                                  </p>
+                                  <h4
+                                    style={{
+                                      fontWeight: "bold",
+                                      fontSize: "18px",
+                                    }}
+                                  >
+                                    {i.intr_rate2}%
+                                  </h4>
+                                </StyledSavingRateP>
+                              </>
+                            ) : null
+                          )}
+                        </StyledSearchSaveTrmDiv>
+                      </StyledContentDiv>
+                    </div>
+                  </StyledDiv>
+                  <StyledMoreListDiv>
+                    <BsFillBookmarkFill style={StyledBookMark} />
+                    <button
+                      style={{
+                        width: "50px",
+                        height: "30px",
+                      }}
+                    >
+                      더 보기
+                    </button>
+                  </StyledMoreListDiv>
+                </StyledListDiv>
               </StyledBankLists>
             );
           })}
