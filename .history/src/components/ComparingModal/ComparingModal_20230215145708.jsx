@@ -5,7 +5,6 @@ import {
   FirstGuide,
   Guide,
   Highlight,
-  Input,
   InputMoney,
   Message,
   MessageWrapper,
@@ -54,13 +53,18 @@ const ComparingModal = ({ setComparingModalOpen }) => {
           <MessageWrapper>
             <Message>
               12개월 동안
-              <Input
+              <NumberFormat
                 maxLength={12}
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                thousandSeparator=","
+                onChange={changeInputRgx}
                 placeholder="금액을 입력해주세요"
-                inputLength={inputValue.length}
+                style={
+                  inputValue.length > 0
+                    ? inputValue.length > 5
+                      ? { border: "1px solid #6A24FF" }
+                      : { border: "1px solid #FF0000" }
+                    : { border: "1px solid #dedede" }
+                }
               />
               원 씩 적립하면
               <FirstGuide>
@@ -74,8 +78,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
             <Product inputValue={inputValue} />
           </Products>
           <SecondGuide>
-            *만기 수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의 15.4%)
-            금액입니다.
+            *만기 수령액은 이자과세(15.4%)를 제한 금액입니다.
           </SecondGuide>
         </ModalContents>
       </ModalContainer>

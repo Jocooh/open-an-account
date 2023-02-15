@@ -39,7 +39,7 @@ function Product({ inputValue }) {
   const [currentUserUid, setCurrentUserUid] = useState("");
 
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
-  const inputNum = parseInt(inputValue.replaceAll(",", ""));
+  const inputNum = parseInt(inputValue.replace(",", ""));
   console.log("~~~~~~");
   console.log("inputValue", inputValue);
   console.log("typeof inputValue", typeof inputValue);
@@ -137,7 +137,7 @@ function Product({ inputValue }) {
           <li>중도 해지가 불가능해요</li>
           <li>최소 10 최대 30</li>
         </Message>
-        <Button>은행 사이트 바로가기</Button>
+        <Button>상품 보러가기</Button>
       </ProductBox>
     </Wrapper>
   );

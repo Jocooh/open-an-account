@@ -104,21 +104,19 @@ export const Message = styled.div`
   line-height: 38px;
   /* or 155% */
 `;
-export const Input = styled(NumericFormat).attrs((props) => ({
-  inputLength: props.inputLength,
-}))`
+export const Input = styled(NumericFormat)`
+
   border-radius: 10px;
   /* border-bottom: 0.6px solid #c6c6c6; */
   outline: none;
   flex: 80%;
 
-  border: 1px solid pink;
   border: ${(props) =>
     props.inputLength > 0
       ? props.inputLength > 5
         ? "1px solid #6A24FF"
         : "1px solid #FF0000"
-      : "1px solid #dedede"};
+      : "1px solid #dedede"}
 
   width: 274px;
   margin: 10px;

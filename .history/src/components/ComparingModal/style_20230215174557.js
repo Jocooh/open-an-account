@@ -112,13 +112,9 @@ export const Input = styled(NumericFormat).attrs((props) => ({
   outline: none;
   flex: 80%;
 
-  border: 1px solid pink;
   border: ${(props) =>
-    props.inputLength > 0
-      ? props.inputLength > 5
-        ? "1px solid #6A24FF"
-        : "1px solid #FF0000"
-      : "1px solid #dedede"};
+    props.inputLength > 0 ? "1px solid #6A24FF" : "1px solid #FF0000"};
+  border: 1px solid pink;
 
   width: 274px;
   margin: 10px;
@@ -127,7 +123,7 @@ export const Input = styled(NumericFormat).attrs((props) => ({
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;
-  font-size: 26px;
+  font-size: 40px;
   line-height: 35px;
   color: #a3a3a3;
 `;

@@ -19,6 +19,8 @@ import {
   TitleWrapper,
 } from "./style";
 import Product from "../Product/Product";
+import { NumericFormat } from "react-number-format";
+import styled from "styled-components";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
   const [inputValue, setInputValue] = useState("");

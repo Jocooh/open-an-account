@@ -5,7 +5,6 @@ import {
   FirstGuide,
   Guide,
   Highlight,
-  Input,
   InputMoney,
   Message,
   MessageWrapper,
@@ -19,6 +18,7 @@ import {
   TitleWrapper,
 } from "./style";
 import Product from "../Product/Product";
+import { NumericFormat } from "react-number-format";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
   const [inputValue, setInputValue] = useState("");
@@ -54,13 +54,35 @@ const ComparingModal = ({ setComparingModalOpen }) => {
           <MessageWrapper>
             <Message>
               12개월 동안
-              <Input
+              <NumericFormat
                 maxLength={12}
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                thousandsGroupStyle="lakh"
                 thousandSeparator=","
                 placeholder="금액을 입력해주세요"
-                inputLength={inputValue.length}
+                style={{
+                  border: "0.6px solid",
+                  borderRadius: "10px",
+                  /* border-bottom: 0.6px solid #c6c6c6; */
+                  outline: "none",
+
+                  width: "274px",
+                  margin: "10px",
+                  padding: "8px 24px",
+                  /* padding-left: 10px; */
+                  fontFamily: "Noto Sans",
+                  fontStyle: "normal",
+                  fontWeight: 500,
+                  fontSize: "26px",
+                  lineHeight: "35px",
+                  color: "#a3a3a3",
+
+                  // inputValue.length > 0
+                  //   ? inputValue.length > 5
+                  //     ? { border: "1px solid #6A24FF" }
+                  //     : { border: "1px solid #FF0000" }
+                  //   : { border: "1px solid #dedede" }
+                }}
               />
               원 씩 적립하면
               <FirstGuide>
@@ -74,8 +96,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
             <Product inputValue={inputValue} />
           </Products>
           <SecondGuide>
-            *만기 수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의 15.4%)
-            금액입니다.
+            *만기 수령액은 이자과세(15.4%)를 제한 금액입니다.
           </SecondGuide>
         </ModalContents>
       </ModalContainer>

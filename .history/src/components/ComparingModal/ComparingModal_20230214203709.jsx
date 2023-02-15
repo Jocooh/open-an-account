@@ -5,7 +5,6 @@ import {
   FirstGuide,
   Guide,
   Highlight,
-  Input,
   InputMoney,
   Message,
   MessageWrapper,
@@ -24,13 +23,13 @@ const ComparingModal = ({ setComparingModalOpen }) => {
   const [inputValue, setInputValue] = useState("");
 
   //* 입력한 숫자 콤마찍기
-  // const changeInputRgx = (e) => {
-  //   const input = e.target.value
-  //     .replace(/[^0-9]/g, "")
-  //     .replace(/(^0+)/, "")
-  //     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  //   setInputValue(input);
-  // };
+  const changeInputRgx = (e) => {
+    const input = e.target.value
+      .replace(/[^0-9]/g, "")
+      .replace(/(^0+)/, "")
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    setInputValue(input);
+  };
 
   console.log("~~~~~");
   return (
@@ -54,13 +53,18 @@ const ComparingModal = ({ setComparingModalOpen }) => {
           <MessageWrapper>
             <Message>
               12개월 동안
-              <Input
+              <InputMoney
                 maxLength={12}
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                thousandSeparator=","
+                onChange={changeInputRgx}
                 placeholder="금액을 입력해주세요"
-                inputLength={inputValue.length}
+                style={
+                  inputValue.length > 0
+                    ? inputValue.length > 5
+                      ? { border: "1px solid #6A24FF" }
+                      : { border: "1px solid #FF0000" }
+                    : { border: "1px solid #dedede" }
+                }
               />
               원 씩 적립하면
               <FirstGuide>
@@ -74,8 +78,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
             <Product inputValue={inputValue} />
           </Products>
           <SecondGuide>
-            *만기 수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의 15.4%)
-            금액입니다.
+            *최소, 최대 금액은 선택하신 상품에 따라 달라질 수 있습니다.
           </SecondGuide>
         </ModalContents>
       </ModalContainer>

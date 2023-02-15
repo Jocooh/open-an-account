@@ -5,7 +5,6 @@ import {
   FirstGuide,
   Guide,
   Highlight,
-  Input,
   InputMoney,
   Message,
   MessageWrapper,
@@ -19,6 +18,7 @@ import {
   TitleWrapper,
 } from "./style";
 import Product from "../Product/Product";
+import { NumericFormat } from "react-number-format";
 
 const ComparingModal = ({ setComparingModalOpen }) => {
   const [inputValue, setInputValue] = useState("");
@@ -60,7 +60,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
                 onChange={(e) => setInputValue(e.target.value)}
                 thousandSeparator=","
                 placeholder="금액을 입력해주세요"
-                inputLength={inputValue.length}
+                length={inputValue.length}
               />
               원 씩 적립하면
               <FirstGuide>
@@ -84,3 +84,28 @@ const ComparingModal = ({ setComparingModalOpen }) => {
 };
 
 export default ComparingModal;
+
+const Input = styled(NumericFormat)`
+  /* border: 0.6px solid; */
+
+  border-radius: 10px;
+  /* border-bottom: 0.6px solid #c6c6c6; */
+  outline: none;
+  flex: 80%;
+
+  width: 274px;
+  margin: 10px;
+  padding: 8px 24px;
+  /* padding-left: 10px; */
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 35px;
+  color: #a3a3a3;
+`;
+// inputValue.length > 0
+//   ? inputValue.length > 5
+//     ? { border: "1px solid #6A24FF" }
+//     : { border: "1px solid #FF0000" }
+//   : { border: "1px solid #dedede" }

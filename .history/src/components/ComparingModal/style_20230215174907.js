@@ -102,7 +102,11 @@ export const Message = styled.div`
   font-weight: 600;
   font-size: 28px;
   line-height: 38px;
-  /* or 155% */
+  /* or 155% */ // inputValue.length > 0
+  //   ? inputValue.length > 5
+  //     ? { border: "1px solid #6A24FF" }
+  //     : { border: "1px solid #FF0000" }
+  //   : { border: "1px solid #dedede" }
 `;
 export const Input = styled(NumericFormat).attrs((props) => ({
   inputLength: props.inputLength,
@@ -114,11 +118,7 @@ export const Input = styled(NumericFormat).attrs((props) => ({
 
   border: 1px solid pink;
   border: ${(props) =>
-    props.inputLength > 0
-      ? props.inputLength > 5
-        ? "1px solid #6A24FF"
-        : "1px solid #FF0000"
-      : "1px solid #dedede"};
+    props.inputLength > 0 ? "1px solid #6A24FF" : "1px solid #FF0000"};
 
   width: 274px;
   margin: 10px;

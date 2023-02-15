@@ -106,6 +106,8 @@ export const Message = styled.div`
 `;
 export const Input = styled(NumericFormat).attrs((props) => ({
   inputLength: props.inputLength,
+})).attrs((props) => ({
+  thousandSeparator: true,
 }))`
   border-radius: 10px;
   /* border-bottom: 0.6px solid #c6c6c6; */
@@ -114,11 +116,7 @@ export const Input = styled(NumericFormat).attrs((props) => ({
 
   border: 1px solid pink;
   border: ${(props) =>
-    props.inputLength > 0
-      ? props.inputLength > 5
-        ? "1px solid #6A24FF"
-        : "1px solid #FF0000"
-      : "1px solid #dedede"};
+    props.inputLength > 0 ? "1px solid #6A24FF" : "1px solid #FF0000"};
 
   width: 274px;
   margin: 10px;
