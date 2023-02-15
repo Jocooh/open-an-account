@@ -40,6 +40,11 @@ function Product({ inputValue }) {
 
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
+  console.log("~~~~~~");
+  console.log("inputValue", inputValue);
+  console.log("typeof inputValue", typeof inputValue);
+  console.log("input숫자형 변환", typeof inputNum);
+  console.log("inputNum ", inputNum);
 
   //* 상품 찜 가져오기
   const getScrap = async () => {
@@ -77,41 +82,13 @@ function Product({ inputValue }) {
   console.log(
     "적금 단리 만기 수령액",
     Math.round(
-      inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
+      inputNum * (1 + 3.76 * 0.01 * (78 / 12) - 3.76 * 0.01 * (78 / 12) * 0.154)
     )
   );
 
   console.log(
     "예금 단리 만기 수령액 :>> ",
     Math.round(inputNum * (1 + 0.01 * 4.21 - 0.01 * 4.21 * 0.154))
-  );
-
-  console.log(
-    "예금 복리 이자 :>> ",
-    Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum)
-  );
-  console.log(
-    "예금 복리 이자과세 :>> ",
-    Math.round(
-      Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) *
-        0.154
-    )
-  );
-  console.log(
-    "예금 복리 만기 수령액 ",
-    inputNum +
-      Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) -
-      Math.round(
-        Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) *
-          0.154
-      )
-  );
-
-  console.log(
-    "적금 복리 만기 수령액 ",
-    inputNum *
-      ((((1 + (4.5 * 0.01) / 12) * (1 + (4.5 * 0.01) / 12 - 1) * 12) / 4.5) *
-        0.01)
   );
 
   useEffect(() => {
@@ -124,7 +101,8 @@ function Product({ inputValue }) {
       {inputNum > 9999 ? (
         <TotalCost>
           {Math.round(
-            inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
+            inputNum *
+              (1 + 3.76 * 0.01 * (78 / 12) - 3.76 * 0.01 * (78 / 12) * 0.154)
           )}
           원
         </TotalCost>

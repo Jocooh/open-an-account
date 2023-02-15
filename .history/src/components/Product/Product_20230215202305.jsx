@@ -109,9 +109,13 @@ function Product({ inputValue }) {
 
   console.log(
     "적금 복리 만기 수령액 ",
-    inputNum *
-      ((((1 + (4.5 * 0.01) / 12) * (1 + (4.5 * 0.01) / 12 - 1) * 12) / 4.5) *
-        0.01)
+    Math.round(
+      (((inputNum *
+        (1 + (4.5 * 0.01) / 12)(Math.pow(1 + (4.5 * 0.01) / 12, 12) - 1)) /
+        4.5) *
+        0.01) /
+        12
+    )
   );
 
   useEffect(() => {

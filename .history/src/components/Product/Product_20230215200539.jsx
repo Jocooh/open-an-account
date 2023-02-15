@@ -77,7 +77,7 @@ function Product({ inputValue }) {
   console.log(
     "적금 단리 만기 수령액",
     Math.round(
-      inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
+      inputNum * (1 + 4.5 * 0.01 * (78 / 12) - 4.5 * 0.01 * (78 / 12) * 0.154)
     )
   );
 
@@ -109,9 +109,7 @@ function Product({ inputValue }) {
 
   console.log(
     "적금 복리 만기 수령액 ",
-    inputNum *
-      ((((1 + (4.5 * 0.01) / 12) * (1 + (4.5 * 0.01) / 12 - 1) * 12) / 4.5) *
-        0.01)
+    inputNum * (((1 + 4.5 / 12) * (1 + 4.5 / 12 - 1) * 12) / 4.5)
   );
 
   useEffect(() => {
@@ -124,7 +122,8 @@ function Product({ inputValue }) {
       {inputNum > 9999 ? (
         <TotalCost>
           {Math.round(
-            inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
+            inputNum *
+              (1 + 3.76 * 0.01 * (78 / 12) - 3.76 * 0.01 * (78 / 12) * 0.154)
           )}
           원
         </TotalCost>
