@@ -93,7 +93,7 @@ function Product({ inputValue }) {
 
   const returnSum = () => {
     let sum;
-    for (let i = 0; i < 13; i++) {
+    for (i = 0; i < 13; i++) {
       sum += Math.round((inputNum * (0.01 * 4.5)) ^ [i]);
     }
     console.log("sum :>> ", sum);

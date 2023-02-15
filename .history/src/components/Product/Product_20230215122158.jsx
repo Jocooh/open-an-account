@@ -91,14 +91,11 @@ function Product({ inputValue }) {
     Math.round(inputNum * (1 + 0.01 * 4.21 - 0.01 * 4.21 * 0.154))
   );
 
-  const returnSum = () => {
-    let sum;
-    for (let i = 0; i < 13; i++) {
-      sum += Math.round((inputNum * (0.01 * 4.5)) ^ [i]);
-    }
-    console.log("sum :>> ", sum);
-    return sum;
-  };
+  console.log(
+    "예금 복리 세전 이자",
+    Math.round((inputNum * (0.01 * 4.5) * (78 / 12)) ^ 2)
+  );
+
   useEffect(() => {
     //* 상품 찜 정보 가져오기
     getScrap();

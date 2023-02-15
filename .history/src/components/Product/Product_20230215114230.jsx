@@ -40,11 +40,10 @@ function Product({ inputValue }) {
 
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   const inputNum = parseInt(inputValue.replace(",", ""));
-  console.log("~~~~~~");
-  console.log("inputValue", inputValue);
-  console.log("typeof inputValue", typeof inputValue);
-  console.log("input숫자형 변환", typeof inputNum);
-  console.log("inputNum ", inputNum);
+  // const inputNum = Number(input.replace(",", ""));
+  console.log("inputValue :>> ", inputValue);
+  console.log("input숫자형 변환 :>> ", typeof inputNum);
+  console.log("inputValue :>> ", inputNum);
 
   //* 상품 찜 가져오기
   const getScrap = async () => {
@@ -91,14 +90,11 @@ function Product({ inputValue }) {
     Math.round(inputNum * (1 + 0.01 * 4.21 - 0.01 * 4.21 * 0.154))
   );
 
-  const returnSum = () => {
-    let sum;
-    for (let i = 0; i < 13; i++) {
-      sum += Math.round((inputNum * (0.01 * 4.5)) ^ [i]);
-    }
-    console.log("sum :>> ", sum);
-    return sum;
-  };
+  console.log(
+    "예금 복리 세전 이자",
+    Math.round(inputNum * (0.01 * 4.5 * (78 / 12)))
+  );
+
   useEffect(() => {
     //* 상품 찜 정보 가져오기
     getScrap();

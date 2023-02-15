@@ -39,7 +39,7 @@ function Product({ inputValue }) {
   const [currentUserUid, setCurrentUserUid] = useState("");
 
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
-  const inputNum = parseInt(inputValue.replace(",", ""));
+  const inputNum = parseInt(inputValue);
   console.log("~~~~~~");
   console.log("inputValue", inputValue);
   console.log("typeof inputValue", typeof inputValue);
