@@ -1,5 +1,4 @@
 import React, { useState, axios, useEffect } from "react";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import {
   collection,
   getDoc,
@@ -15,14 +14,14 @@ import {
   Guide,
   Info,
   Message,
-  Name,
   Prdt_nm,
   ProductBox,
+  Scrap,
   TotalCost,
   Wrapper,
 } from "./style";
 
-function Product({ inputValue }) {
+function Product() {
   const [baseLists, setBaseLists] = useState([]);
   const [optionLists, setOptionLists] = useState([]);
   const bankListFetch = async () => {
@@ -38,24 +37,21 @@ function Product({ inputValue }) {
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
 
-  //* props로 받아온 문자열 input값 숫자형으로 바꾸기
-  const inputNum = parseInt(inputValue.replaceAll(",", ""));
-
-  //* 상품 찜 가져오기
+  // 북마크 가져오기
   const getScrap = async () => {
     const newId = currentUserUid;
     const docRef = doc(db, "scrap", newId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setScrap(true);
-      setChangeColor("#CDE974");
+      setChangeColor("#0EEA66");
     }
   };
 
-  //* 상품 찜하기
+  // 상품 찜하기
   const updateScrap = async () => {
     const newId = currentUserUid + baseLists.prdt_cd;
-    if (scrap === false) {
+    if (Scrap === false) {
       // 찜이 되어있지 않을 경우 DB에 추가
       await setDoc(doc(db, "scrap", newId), {
         userId: authService.currentUser?.uid,
@@ -64,83 +60,32 @@ function Product({ inputValue }) {
       });
 
       setScrap(true);
-      console.log("scrap :>> ", scrap);
-      setChangeColor("#CDE974");
+      setChangeColor("#0EEA66");
     } else {
-      //* 찜이 되어있는 경우 DB에서 삭제
+      // 찜이 되어있는 경우 DB에서 삭제
       const scrapDoc = doc(db, "scrap", newId);
       deleteDoc(scrapDoc);
       setScrap(false);
       setChangeColor("#D9D9D9");
     }
   };
-  console.log(
-    "적금 단리 만기 수령액",
-    Math.round(
-      inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
-    )
-  );
-
-  console.log(
-    "예금 단리 만기 수령액 :>> ",
-    Math.round(inputNum * (1 + 0.01 * 4.21 - 0.01 * 4.21 * 0.154))
-  );
-
-  console.log(
-    "예금 복리 이자 :>> ",
-    Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum)
-  );
-  console.log(
-    "예금 복리 이자과세 :>> ",
-    Math.round(
-      Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) *
-        0.154
-    )
-  );
-  console.log(
-    "예금 복리 만기 수령액 ",
-    inputNum +
-      Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) -
-      Math.round(
-        Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) *
-          0.154
-      )
-  );
-
-  console.log(
-    "적금 복리 만기 수령액 ",
-    inputNum *
-      ((((1 + (4.5 * 0.01) / 12) * (1 + (4.5 * 0.01) / 12 - 1) * 12) / 4.5) *
-        0.01)
-  );
 
   useEffect(() => {
-    //* 상품 찜 정보 가져오기
+    // 북마크 정보 가져오기
     getScrap();
   }, [currentUserName, currentUserUid]);
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>
-      {inputNum > 9999 ? (
-        <TotalCost>
-          {Math.round(
-            inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
-          )}
-          원
-        </TotalCost>
-      ) : (
-        <TotalCost>0원</TotalCost>
-      )}
-
+      <TotalCost>3,030,250원</TotalCost>
       <ProductBox>
-        <Name>
-          <Prdt_nm>우리적금</Prdt_nm>
-          <BsFillBookmarkFill
-            onClick={updateScrap}
-            style={scrap ? { color: "#CDE974" } : { color: "#D9D9D9" }}
-          />
-        </Name>
-
+        <Prdt_nm>우리적금</Prdt_nm>
+        <Scrap
+          onClick={updateScrap}
+          style={{ color: changeColor }}
+          src={require("../../assets/scrap.png")}
+          alt="상품 찜하기"
+        />
         <Info>
           <div>우리은행</div>
           <div>이자율3%</div>
@@ -151,7 +96,7 @@ function Product({ inputValue }) {
           <li>중도 해지가 불가능해요</li>
           <li>최소 10 최대 30</li>
         </Message>
-        <Button>사이트로 이동</Button>
+        <Button>상품 보러가기</Button>
       </ProductBox>
     </Wrapper>
   );
