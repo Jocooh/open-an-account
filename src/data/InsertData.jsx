@@ -1,6 +1,7 @@
 import axios from "axios";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import Bookmarks from "../components/Bookmarks";
 import { db } from "../config/firebase";
 const InsertData = () => {
   const [savingBaseList, setSavingBaseList] = useState([]);
@@ -130,6 +131,27 @@ const InsertData = () => {
     // getDepositOptionListHandler();
   }, []);
 
+  const [products, setProducts] = useState([]);
+  const getProduct = async () => {
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
+    const product = [];
+
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+
+      product.push(newProduct);
+    });
+
+    setProducts(product);
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
   return (
     <div>
       <h1>버튼 누르면 안돼요</h1>
@@ -153,6 +175,18 @@ const InsertData = () => {
       <br />
       <h3>예금 옵션 목록</h3>
       {/* <button onClick={getDepositOptionListHandler}>누르지마세요</button> */}
+
+      {/* 찜기능 테스트용 */}
+      <div
+        style={{ border: "1px solid black", width: "100px", height: "100px" }}
+      >
+        <h1>상품</h1>
+        {products
+          .filter((item) => item.fin_prdt_nm.length < 5)
+          .map((item) => (
+            <Bookmarks item={item} />
+          ))}
+      </div>
     </div>
   );
 };
