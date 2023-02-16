@@ -309,6 +309,9 @@ export const StyledListDiv = styled.div`
   height: 141px;
 `;
 
+
+export const Tapwraper = styled.div``;
+
 export const StyledBookMark = {
   fontSize: "20px",
 };
@@ -321,3 +324,4 @@ export const StyledBtn = styled.button`
   width: 200px;
   height: 50px;
 `;
+
