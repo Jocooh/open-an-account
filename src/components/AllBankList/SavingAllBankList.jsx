@@ -35,7 +35,7 @@ function AllBankList({ savingbaseList, savingOptionalList }) {
               i.fin_prdt_cd === v.fin_prdt_cd ? (
                 <>
                   {i.save_trm === "12" ? (
-                    <StyledBankLists className="lightcoral">
+                    <StyledBankLists>
                       {/* 로고 */}
                       <StyledListDiv>
                         <StyledDiv>

@@ -281,13 +281,13 @@ export const StyledBankListWrapper = styled.div`
   padding: 10px;
 `;
 export const StyledBankLists = styled.div`
-  height: 144px;
+  /* height: 351px; */
   border-radius: 15px;
   display: flex;
   align-items: center;
   gap: 30px;
-  background-color: white;
   margin-bottom: 15px;
+  flex-direction: column;
 `;
 
 export const StyledListDiv = styled.div`

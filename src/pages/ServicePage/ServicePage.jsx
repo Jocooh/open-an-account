@@ -55,8 +55,8 @@ const ServicePage = () => {
   //적금상품 baseList ,optionList
   const [savingbaseList, setSavingbaseList] = useState(null);
   const [savingOptionalList, setSavingOptionalList] = useState(null);
-  //성아- 북마크 기능: 계산탭, 은행검색탭, 찜목록탭 , 비교모달, 마이페이지에서 사용할꺼같아서 여기다가 먼저 만들어 놓습니다. (추후에 리덕스로 바꿔놓으면 좋을듯싶습니다.)
-  // const [bookMark, setBookMark] = useState(false);
+  //자세히 버튼 누르면 나올 상세페이지 토글
+  const [toggleDetail, setToggleDetail] = useState(false);
 
   const handleProductTypeClick = (buttonType) => {
     setProductType(buttonType);
@@ -375,6 +375,8 @@ const ServicePage = () => {
                                 <AllBankList
                                   depositOptionalList={depositOptionalList}
                                   depositbaseList={depositbaseList}
+                                  setToggleDetail={setToggleDetail}
+                                  toggleDetail={toggleDetail}
                                 />
                               ) : (
                                 <SavingAllBankList
