@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import { React, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { authService, db } from "../../config/firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { useEffect } from "react";
+import { boardTime } from "../../utils/utils";
 import {
   Body,
   CloseButton,
@@ -27,19 +31,57 @@ import {
 // setSelectedDropValue(PRODUCT_DATA.filter(el => el.value === value)[0].id);
 // }
 
-function PostingModal({ setPostingModalOpen }) {
-  const navigate = useNavigate();
+function PostingModal({ setPostingModalOpen, setBoards }) {
+  //const navigate = useNavigate();
+  //const [currentInput, setCurrentInput] = useState("");
+  const titleRef = useRef(null);
+  const contentRef = useRef(null);
+  const [title, setTitle] = useState("");
+  const [contents, setContents] = useState("");
+  const CurrentUser = authService.currentUser;
+  const { dateString } = boardTime();
 
-  const [currentInput, setCurrentInput] = useState("");
+  const newBoard = {
+    // userId: CurrentUser?.email,
+    // nickname: CurrentUser?.displayName,
+    title,
+    contents,
+    userId: CurrentUser?.email,
+    data: dateString,
+  };
+
+  // 게시판 본문 추가하기
+  const AddBoard = async () => {
+    await addDoc(collection(db, "boards"), newBoard);
+    setTitle("");
+    setContents("");
+    setBoards((prev) => {
+      return [...prev, newBoard];
+    });
+    setPostingModalOpen(false);
+  };
+
+  const CheckBoards = () => {
+    if (!title) {
+      alert("제목을 입력하세요.");
+      return;
+    }
+    if (!contents) {
+      alert("내용을 입력하세요.");
+      return;
+    }
+    AddBoard();
+    console.log(title, contents);
+  };
 
   const ClosePostingModal = () => {
     setPostingModalOpen(false);
   };
 
-  const checkInput = (e) => {
-    const input = e.target.value;
-    setCurrentInput(input);
-  };
+  // const checkInput = (e) => {
+  //   const input = e.target.value;
+  //   setCurrentInput(input);
+  // };
 
   return (
     <ModalBackground>
@@ -49,7 +91,8 @@ function PostingModal({ setPostingModalOpen }) {
           <div>글쓰기</div>
           <SaveButton
             alert="등록되었습니다."
-            onClick={() => navigate("/detail")}
+            // onClick={() => navigate("/detail")}
+            onClick={CheckBoards}
           >
             등록하기
           </SaveButton>
@@ -57,14 +100,20 @@ function PostingModal({ setPostingModalOpen }) {
 
         <Body>
           <TitleInput
-            onChange={checkInput}
-            value={currentInput}
+            ref={titleRef}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            value={title}
             placeholder="제목을 입력해주세요"
           />
           <ContentInput
-            onChange={checkInput}
-            value={currentInput}
-            placeholder="(본문 관련 주의사항)"
+            ref={contentRef}
+            onChange={(e) => {
+              setContents(e.target.value);
+            }}
+            value={contents}
+            placeholder="내용을 입력해주세요"
           />
           <ErrorMessage>카테고리를 선택해주세요</ErrorMessage>
         </Body>
