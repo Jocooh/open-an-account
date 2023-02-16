@@ -7,19 +7,23 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { authService, db } from "../config/firebase";
+import { useEffect, useState } from "react";
+import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { authService, db } from "../../config/firebase";
 
-const Bookmarks = ({ item }) => {
+const Bookmarks = ({ productName }) => {
   const [bookmark, setBookmark] = useState(false);
   // useeffect 에 bookmarkdetail 을 전역에서 사용하기 위한 usestate
   const [checkedItem, setCheckedItem] = useState([]);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  // const {
+  //   pathname,
+  //   state: { item },
+  // } = useLocation();
+  // const { prdtName } = item.prdtName;
 
-  // 북마크 -> addDoc 에 currentUser 에 isBookmark 추가
+  // 1.  북마크 -> addDoc 에 currentUser 에 isBookmark 추가
   const addBookmark = async () => {
     // 로그인 체크
     if (!authService.currentUser) {
@@ -29,16 +33,17 @@ const Bookmarks = ({ item }) => {
 
     await addDoc(collection(db, "bookmarks"), {
       userId: authService.currentUser?.uid,
+      productName,
       isBookmark: true,
     });
     setBookmark(true);
   };
 
-  // 클릭한 item 의 fin_prdt_nm 과 dbservice 에 bookmarks 문서에 있는 fin_prdt_nm 가 같은지 필터
+  // 여기서 문제인가 .....???????.........????????????????????????
   const changeBookmarkDetail = (checkedItem) =>
-    checkedItem.filter((item) => item.fin_prdt_nm === item.fin_prdt_nm);
-
-  // 북마크한 내역 가져오기
+    checkedItem.filter((item) => item.fin_prdt_nm === productName);
+  console.log(productName);
+  // 2. 북마크한 내역 가져오기
   const getBookmark = () => {
     if (!authService.currentUser) {
       setBookmark(false);
@@ -70,7 +75,7 @@ const Bookmarks = ({ item }) => {
     BookmarkClick();
   };
 
-  // 채워진 bookmark 클릭시 deleteDoc
+  // 3. 채워진 bookmark 클릭시 deleteDoc
   const isBookmarkChangeHandler = async () => {
     if (bookmark) {
       await deleteDoc(doc(db, "bookmarks", checkedItem[0].id));
@@ -80,46 +85,46 @@ const Bookmarks = ({ item }) => {
 
   useEffect(() => {
     getBookmark();
-  }, [bookmark, pathname]);
+  }, [bookmark]);
 
   return (
-    <Bookmark>
-      <BookmarkWrapper
-        onClick={() => (bookmark ? isBookmarkChangeHandler() : addBookmark())}
-      >
-        {/* 찜 유무 */}
-        {bookmark ? <BookmarkBtnFill /> : <BookmarkBtnLine />}
-      </BookmarkWrapper>
-    </Bookmark>
+    <div
+      onClick={() => {
+        bookmark ? isBookmarkChangeHandler() : addBookmark();
+      }}
+    >
+      {/* 찜 유무 */}
+      {bookmark ? <BsFillBookmarkFill /> : <BsBookmark />}
+    </div>
   );
 };
 export default Bookmarks;
 
-const Bookmark = styled.div`
-  align-items: center;
-  display: flex;
-  flex: 1 0 auto;
-  justify-content: flex-end;
-`;
-const BookmarkWrapper = styled.div`
-  margin-top: 1rem;
-  margin-right: 1.2rem;
-`;
-const BookmarkBtnFill = styled.div`
-  border: 3px solid;
-  width: 50px;
-  height: 50px;
-  font-size: 26px;
-  background-color: black;
-  cursor: pointer;
+// const Bookmark = styled.div`
+//   align-items: center;
+//   display: flex;
+//   flex: 1 0 auto;
+//   justify-content: flex-end;
+// `;
+// const BookmarkWrapper = styled.div`
+//   margin-top: 1rem;
+//   margin-right: 1.2rem;
+// `;
+// const BookmarkBtnFill = styled.div`
+//   border: 3px solid;
+//   width: 50px;
+//   height: 50px;
+//   font-size: 26px;
+//   background-color: black;
+//   cursor: pointer;
 
-  border-radius: 1px solid black;
-`;
-const BookmarkBtnLine = styled.div`
-  width: 50px;
-  height: 50px;
-  font-size: 26px;
-  cursor: pointer;
+//   border-radius: 1px solid black;
+// `;
+// const BookmarkBtnLine = styled.div`
+//   width: 50px;
+//   height: 50px;
+//   font-size: 26px;
+//   cursor: pointer;
 
-  border-radius: 1px solid black;
-`;
+//   border-radius: 1px solid black;
+// `;

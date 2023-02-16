@@ -20,6 +20,7 @@ import {
 } from "../SearchBankList/style";
 import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import Bookmarks from "./Bookmarks";
 
 function AllBankList({ savingbaseList, savingOptionalList }) {
   const savingDB = savingOptionalList?.sort(function (a, b) {
@@ -80,7 +81,7 @@ function AllBankList({ savingbaseList, savingOptionalList }) {
                           </div>
                         </StyledDiv>
                         <StyledMoreListDiv>
-                          <BsFillBookmarkFill style={StyledBookMark} />
+                          <Bookmarks productName={v.fin_prdt_nm} />
                           <button
                             style={{
                               width: "50px",

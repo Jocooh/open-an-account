@@ -20,6 +20,7 @@ import {
   StyledMoreListDiv,
   StyledListDiv,
 } from "../SearchBankList/style";
+import Bookmarks from "./Bookmarks";
 
 function AllBankList({ depositbaseList, depositOptionalList }) {
   //최고금리순으로 가져오는 함수
@@ -78,7 +79,7 @@ function AllBankList({ depositbaseList, depositOptionalList }) {
                           </div>
                         </StyledDiv>
                         <StyledMoreListDiv>
-                          <BsFillBookmarkFill style={StyledBookMark} />
+                          <Bookmarks productName={v.fin_prdt_nm} />
                           <button
                             style={{
                               width: "50px",

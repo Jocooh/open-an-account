@@ -18,6 +18,7 @@ import {
   StyledSavingRateP,
   StyledMoreListDiv,
 } from "../style";
+import Bookmarks from "../../AllBankList/Bookmarks";
 
 function SearchSavingLists({ savingbaseList, searchBank, savingOptionalList }) {
   return (
@@ -86,7 +87,7 @@ function SearchSavingLists({ savingbaseList, searchBank, savingOptionalList }) {
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <BsFillBookmarkFill style={StyledBookMark} />
+                    <Bookmarks productName={v.fin_prdt_nm} />
                     <button style={{ width: "50px", height: "30px" }}>
                       더 보기
                     </button>

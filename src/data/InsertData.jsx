@@ -1,7 +1,7 @@
 import axios from "axios";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import Bookmarks from "../components/Bookmarks";
+import BookmarksTest from "../components/BookmarksTest";
 import { db } from "../config/firebase";
 const InsertData = () => {
   const [savingBaseList, setSavingBaseList] = useState([]);
@@ -184,7 +184,7 @@ const InsertData = () => {
         {products
           .filter((item) => item.fin_prdt_nm.length < 5)
           .map((item) => (
-            <Bookmarks item={item} />
+            <BookmarksTest item={item} />
           ))}
       </div>
     </div>
