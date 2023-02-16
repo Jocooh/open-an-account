@@ -19,14 +19,11 @@ import {
   FilterSubmit,
   FinanciialProductsFullList,
   FinanciialProductsWrap,
-
   ProducksRank,
   Producks,
   ProducksTitle,
   StyledBankList,
-
   StyledBankListContainer,
-
   Tapwraper,
   TopSectionTitle,
   TopSectionSubTitle,
@@ -37,11 +34,8 @@ import {
   TapButton,
   ProductsWraper,
   SelectedProductsContainer,
-
-  StyledBankList,
   StyledBtnDiv,
   StyledBtn,
-
 } from "./style";
 
 import React, { useState, useMemo, useRef, useEffect } from "react";
@@ -103,8 +97,8 @@ const ServicePage = () => {
   useEffect(() => {
     handleButtonClick();
   }, []);
-  //* 선택된 상품 id 저장
 
+  //* 선택된 상품 id 저장
   const handleSelectProduct = async (productId) => {
     try {
       const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
@@ -193,17 +187,14 @@ const ServicePage = () => {
     }
   }, [amount]);
 
-  //* 슬라이더 함수
+  //* input 상태 값 저장슬리이더 함수
   const handleChange = (event) => {
     const newValue = parseInt(event.target.value, 10);
     setValue(newValue);
     console.log([0, 6, 12, 24, 36][newValue]);
   };
 
-  //* input 상태 값 저장슬리이더 함수
-
   const [savingOptionalList, setSavingOptionalList] = useState(null);
- 
 
   const handleProductTypeClick = (buttonType) => {
     setProductType(buttonType);
@@ -230,8 +221,6 @@ const ServicePage = () => {
     setdepositOptionalList(data?.result.optionList);
   };
 
-
-
   // const SavingBankListFetch = async () => {
   //   console.log("saving Fetch");
   //   const { data } = await axios.get(
@@ -246,12 +235,10 @@ const ServicePage = () => {
     topLocation.current.scrollIntoView({ behavior: "smooth" });
   };
 
-
   useMemo(() => {
     // SavingBankListFetch();
     DepositBankListFetch();
   }, []);
-
 
   //최고금리 순으로 가져오는 함수(정기예금)
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -560,7 +547,6 @@ const ServicePage = () => {
                     <TapTitleName>전체 목록</TapTitleName>
                     <FinanciialProductsWrap>
                       <FinanciialProductsFullList>
-
                         {/* 검색창_component */}
                         <SearchInput setSearchBank={setSearchBank} />
                         <ProductWraper className="버튼감싸는 wrapper">
@@ -634,7 +620,6 @@ const ServicePage = () => {
                             </StyledBtnDiv>
                           </div>
                         </StyledBankListContainer>
-
                       </FinanciialProductsFullList>
                     </FinanciialProductsWrap>
                   </TapContainerBox>
