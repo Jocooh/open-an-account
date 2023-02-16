@@ -20,7 +20,7 @@ const BookmarkPrdtList = ({ currentUser }) => {
       dataArray.push(doc.data());
     });
     setItems(dataArray);
-    // console.log(items);
+    console.log(items);
   };
 
   useEffect(() => {

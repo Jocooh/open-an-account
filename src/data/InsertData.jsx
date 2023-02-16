@@ -15,141 +15,141 @@ const InsertData = () => {
   // saving products data
   // saving products data
 
-  // const getSavingBaseListHandler = async () => {
-  //   const { data } = await axios.get(
-  //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
-  //   );
-  //   setSavingBaseList(data?.result.baseList); // base list = 기본 정보
-  //   console.log("savingBaseList", savingBaseList);
-  //   {
-  //     savingBaseList.map((item) => {
-  //       addDoc(collection(db, "SAVING_BASE_LIST"), {
-  //         category: "적금 기본 정보",
-  //         dcls_month: item?.dcls_month,
-  //         fin_co_no: item?.fin_co_no,
-  //         fin_prdt_cd: item?.fin_prdt_cd,
-  //         kor_co_nm: item?.kor_co_nm,
-  //         fin_prdt_nm: item?.fin_prdt_nm,
-  //         join_way: item?.join_way,
-  //         mtrt_int: item?.mtrt_int,
-  //         spcl_cnd: item?.spcl_cnd,
-  //         join_deny: item?.join_deny,
-  //         join_member: item?.join_member,
-  //         etc_note: item?.etc_note,
-  //         max_limit: item?.max_limit,
-  //         dcls_strt_day: item?.dcls_strt_day,
-  //         dcls_end_day: item?.dcls_end_day,
-  //         fin_co_subm_day: item?.fin_co_subm_day,
-  //       });
-  //     });
-  //   }
-  // };
-  // const getSavingOptionListHandler = async () => {
-  //   const { data } = await axios.get(
-  //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
-  //   );
-  //   setSavingOptionList(data?.result.optionList); // option list = 옵션 목록
-  //   console.log("savingOptionList", savingOptionList);
-  //   {
-  //     savingOptionList.map((item) => {
-  //       addDoc(collection(db, "SAVING_OPTION_LIST"), {
-  //         category: "적금 옵션 목록",
-  //         dcls_month: item?.dcls_month,
-  //         fin_co_no: item?.fin_co_no,
-  //         fin_prdt_cd: item?.fin_prdt_cd,
-  //         intr_rate_type: item?.intr_rate_type,
-  //         intr_rate_type_nm: item?.intr_rate_type_nm,
-  //         save_trm: item?.save_trm,
-  //         intr_rate: item?.intr_rate,
-  //         intr_rate2: item?.intr_rate2,
-  //       });
-  //     });
-  //   }
-  // };
+  const getSavingBaseListHandler = async () => {
+    const { data } = await axios.get(
+      ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
+    );
+    setSavingBaseList(data?.result.baseList); // base list = 기본 정보
+    console.log("savingBaseList", savingBaseList);
+    {
+      savingBaseList.map((item) => {
+        addDoc(collection(db, "SAVING_BASE_LIST"), {
+          category: "적금 기본 정보",
+          dcls_month: item?.dcls_month,
+          fin_co_no: item?.fin_co_no,
+          fin_prdt_cd: item?.fin_prdt_cd,
+          kor_co_nm: item?.kor_co_nm,
+          fin_prdt_nm: item?.fin_prdt_nm,
+          join_way: item?.join_way,
+          mtrt_int: item?.mtrt_int,
+          spcl_cnd: item?.spcl_cnd,
+          join_deny: item?.join_deny,
+          join_member: item?.join_member,
+          etc_note: item?.etc_note,
+          max_limit: item?.max_limit,
+          dcls_strt_day: item?.dcls_strt_day,
+          dcls_end_day: item?.dcls_end_day,
+          fin_co_subm_day: item?.fin_co_subm_day,
+        });
+      });
+    }
+  };
+  const getSavingOptionListHandler = async () => {
+    const { data } = await axios.get(
+      ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
+    );
+    setSavingOptionList(data?.result.optionList); // option list = 옵션 목록
+    console.log("savingOptionList", savingOptionList);
+    {
+      savingOptionList.map((item) => {
+        addDoc(collection(db, "SAVING_OPTION_LIST"), {
+          category: "적금 옵션 목록",
+          dcls_month: item?.dcls_month,
+          fin_co_no: item?.fin_co_no,
+          fin_prdt_cd: item?.fin_prdt_cd,
+          intr_rate_type: item?.intr_rate_type,
+          intr_rate_type_nm: item?.intr_rate_type_nm,
+          save_trm: item?.save_trm,
+          intr_rate: item?.intr_rate,
+          intr_rate2: item?.intr_rate2,
+        });
+      });
+    }
+  };
 
   // deposit products data
   // deposit products data
   // deposit products data
 
-  // const getDepositBaseListHandler = async () => {
-  //   const { data } = await axios.get(
-  //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
-  //   );
-  //   setDepositBaseList(data?.result.baseList); // base list = 기본 정보
-  //   console.log("depositBaseList", depositBaseList);
-  //   {
-  //     depositBaseList.map((item) => {
-  //       addDoc(collection(db, "DEPOSIT_BASE_LIST"), {
-  //         category: "예금 기본 정보",
-  //         dcls_month: item?.dcls_month,
-  //         fin_co_no: item?.fin_co_no,
-  //         fin_prdt_cd: item?.fin_prdt_cd,
-  //         kor_co_nm: item?.kor_co_nm,
-  //         fin_prdt_nm: item?.fin_prdt_nm,
-  //         join_way: item?.join_way,
-  //         mtrt_int: item?.mtrt_int,
-  //         spcl_cnd: item?.spcl_cnd,
-  //         join_deny: item?.join_deny,
-  //         join_member: item?.join_member,
-  //         etc_note: item?.etc_note,
-  //         max_limit: item?.max_limit,
-  //         dcls_strt_day: item?.dcls_strt_day,
-  //         dcls_end_day: item?.dcls_end_day,
-  //         fin_co_subm_day: item?.fin_co_subm_day,
-  //       });
-  //     });
-  //   }
-  // };
-  // const getDepositOptionListHandler = async () => {
-  //   const { data } = await axios.get(
-  //     ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
-  //   );
-  //   setDepositOptionList(data?.result.optionList); // option list = 옵션 목록
-  //   console.log("depositOptionList", depositOptionList);
-  //   {
-  //     depositOptionList.map((item) => {
-  //       addDoc(collection(db, "DEPOSIT_OPTION_LIST"), {
-  //         category: "예금 옵션 목록",
-  //         dcls_month: item?.dcls_month,
-  //         fin_co_no: item?.fin_co_no,
-  //         fin_prdt_cd: item?.fin_prdt_cd,
-  //         intr_rate_type: item?.intr_rate_type,
-  //         intr_rate_type_nm: item?.intr_rate_type_nm,
-  //         save_trm: item?.save_trm,
-  //         intr_rate: item?.intr_rate,
-  //         intr_rate2: item?.intr_rate2,
-  //       });
-  //     });
-  //   }
-  // };
+  const getDepositBaseListHandler = async () => {
+    const { data } = await axios.get(
+      ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
+    );
+    setDepositBaseList(data?.result.baseList); // base list = 기본 정보
+    console.log("depositBaseList", depositBaseList);
+    {
+      depositBaseList.map((item) => {
+        addDoc(collection(db, "DEPOSIT_BASE_LIST"), {
+          category: "예금 기본 정보",
+          dcls_month: item?.dcls_month,
+          fin_co_no: item?.fin_co_no,
+          fin_prdt_cd: item?.fin_prdt_cd,
+          kor_co_nm: item?.kor_co_nm,
+          fin_prdt_nm: item?.fin_prdt_nm,
+          join_way: item?.join_way,
+          mtrt_int: item?.mtrt_int,
+          spcl_cnd: item?.spcl_cnd,
+          join_deny: item?.join_deny,
+          join_member: item?.join_member,
+          etc_note: item?.etc_note,
+          max_limit: item?.max_limit,
+          dcls_strt_day: item?.dcls_strt_day,
+          dcls_end_day: item?.dcls_end_day,
+          fin_co_subm_day: item?.fin_co_subm_day,
+        });
+      });
+    }
+  };
+  const getDepositOptionListHandler = async () => {
+    const { data } = await axios.get(
+      ` https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
+    );
+    setDepositOptionList(data?.result.optionList); // option list = 옵션 목록
+    console.log("depositOptionList", depositOptionList);
+    {
+      depositOptionList.map((item) => {
+        addDoc(collection(db, "DEPOSIT_OPTION_LIST"), {
+          category: "예금 옵션 목록",
+          dcls_month: item?.dcls_month,
+          fin_co_no: item?.fin_co_no,
+          fin_prdt_cd: item?.fin_prdt_cd,
+          intr_rate_type: item?.intr_rate_type,
+          intr_rate_type_nm: item?.intr_rate_type_nm,
+          save_trm: item?.save_trm,
+          intr_rate: item?.intr_rate,
+          intr_rate2: item?.intr_rate2,
+        });
+      });
+    }
+  };
 
   useEffect(() => {
-    // getSavingBaseListHandler();
-    // getSavingOptionListHandler();
-    // getDepositBaseListHandler();
-    // getDepositOptionListHandler();
+    getSavingBaseListHandler();
+    getSavingOptionListHandler();
+    getDepositBaseListHandler();
+    getDepositOptionListHandler();
   }, []);
 
-  // const [products, setProducts] = useState([]);
-  // const getProduct = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-  //   const product = [];
+  const [products, setProducts] = useState([]);
+  const getProduct = async () => {
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
+    const product = [];
 
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
 
-  //     product.push(newProduct);
-  //   });
+      product.push(newProduct);
+    });
 
-  //   setProducts(product);
-  // };
+    setProducts(product);
+  };
 
-  // useEffect(() => {
-  //   getProduct();
-  // }, []);
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   return (
     <div>
@@ -158,22 +158,22 @@ const InsertData = () => {
       <br />
       <br />
       <h3>적금 기본 정보</h3>
-      {/* <button onClick={getSavingBaseListHandler}>누르지 마세요.</button> */}
+      <button onClick={getSavingBaseListHandler}>누르지 마세요.</button>
       <br />
       <br />
       <br />
       <h3>적금 옵션 목록</h3>
-      {/* <button onClick={getSavingOptionListHandler}>누르지마세요</button> */}
+      <button onClick={getSavingOptionListHandler}>누르지마세요</button>
       <br />
       <br />
       <br />
       <h3>예금 기본 정보</h3>
-      {/* <button onClick={getDepositBaseListHandler}>누르지마세요</button> */}
+      <button onClick={getDepositBaseListHandler}>누르지마세요</button>
       <br />
       <br />
       <br />
       <h3>예금 옵션 목록</h3>
-      {/* <button onClick={getDepositOptionListHandler}>누르지마세요</button> */}
+      <button onClick={getDepositOptionListHandler}>누르지마세요</button>
 
       {/* 찜기능 테스트용 */}
       {/* <div

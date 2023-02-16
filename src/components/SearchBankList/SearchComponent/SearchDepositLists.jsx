@@ -21,6 +21,7 @@ function SearchDepositLists({
   depositbaseList,
   searchBank,
   depositOptionalList,
+  bookmarkProducts,
 }) {
   return (
     <div>
@@ -93,7 +94,7 @@ function SearchDepositLists({
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <Bookmarks productName={v.fin_prdt_nm} />
+                    <Bookmarks bookmarkProducts={bookmarkProducts} />
 
                     <button
                       style={{

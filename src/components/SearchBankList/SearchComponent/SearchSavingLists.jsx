@@ -20,7 +20,12 @@ import {
 } from "../style";
 import Bookmarks from "../../AllBankList/Bookmarks";
 
-function SearchSavingLists({ savingbaseList, searchBank, savingOptionalList }) {
+function SearchSavingLists({
+  savingbaseList,
+  searchBank,
+  savingOptionalList,
+  bookmarkProducts,
+}) {
   return (
     <div>
       {savingbaseList &&
@@ -87,7 +92,7 @@ function SearchSavingLists({ savingbaseList, searchBank, savingOptionalList }) {
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <Bookmarks productName={v.fin_prdt_nm} />
+                    <Bookmarks bookmarkProducts={bookmarkProducts} />
                     <button style={{ width: "50px", height: "30px" }}>
                       더 보기
                     </button>

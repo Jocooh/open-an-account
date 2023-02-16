@@ -12,7 +12,7 @@ import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { authService, db } from "../../config/firebase";
 
-const Bookmarks = ({ productName }) => {
+const Bookmarks = ({ bookmarkProducts }) => {
   const [bookmark, setBookmark] = useState(false);
   const [checkedItem, setCheckedItem] = useState([]);
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Bookmarks = ({ productName }) => {
 
     await addDoc(collection(db, "bookmarks"), {
       userId: authService.currentUser?.uid,
-      productName,
+      bookmarkProducts,
       isBookmark: true,
     });
     setBookmark(true);
@@ -35,8 +35,8 @@ const Bookmarks = ({ productName }) => {
 
   // 여기서 문제인가 .....???????.........???????????????????????
   const changeBookmarkDetail = (checkedItem) =>
-    checkedItem.filter((item) => item.fin_prdt_nm === productName);
-  console.log(productName);
+    checkedItem.filter((item) => item.fin_prdt_nm === bookmarkProducts);
+  // console.log(productName);
   // 2. 북마크한 내역 가져오기
   const getBookmark = () => {
     if (!authService.currentUser) {

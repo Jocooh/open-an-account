@@ -22,7 +22,11 @@ import {
 } from "../SearchBankList/style";
 import Bookmarks from "./Bookmarks";
 
-function AllBankList({ depositbaseList, depositOptionalList }) {
+function AllBankList({
+  depositbaseList,
+  depositOptionalList,
+  bookmarkProducts,
+}) {
   //최고금리순으로 가져오는 함수
   const depositDB = depositOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
@@ -79,7 +83,7 @@ function AllBankList({ depositbaseList, depositOptionalList }) {
                           </div>
                         </StyledDiv>
                         <StyledMoreListDiv>
-                          <Bookmarks productName={v.fin_prdt_nm} />
+                          <Bookmarks bookmarkProducts={bookmarkProducts} />
                           <button
                             style={{
                               width: "50px",
