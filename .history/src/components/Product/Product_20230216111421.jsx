@@ -24,6 +24,14 @@ import {
 
 function Product({ inputValue }) {
   const [baseLists, setBaseLists] = useState([]);
+  const [optionLists, setOptionLists] = useState([]);
+  const bankListFetch = async () => {
+    const { data } = await axios.get(
+      "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
+    );
+    setBaseLists(data?.result.baseList);
+    setOptionLists(data?.result.optionList);
+  };
 
   const [scrap, setScrap] = useState(false);
   const [changeColor, setChangeColor] = useState("#D9D9D9");
@@ -68,37 +76,36 @@ function Product({ inputValue }) {
   };
   console.log(
     "예금 단리 만기 clear",
-    Math.round(inputNum * (1 + 0.01 * 4.5 - 0.01 * 4.5 * 0.154))
+    Math.round(inputNum * (1 + 0.01 * 4 - 0.01 * 4 * 0.154))
   );
 
   console.log(
     "적금 단리 만기 clear",
 
     inputNum * 12 +
-      Math.round((inputNum * 4.5 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) -
+      Math.round((inputNum * 13.7 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) -
       Math.round(
-        ((inputNum * 4.5 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) * 0.154
-      )
-  );
-
-  console.log(
-    "예금 복리 만기 clear",
-    inputNum +
-      Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) -
-      Math.round(
-        Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) *
-          0.154
+        ((inputNum * 13.7 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) * 0.154
       )
   );
 
   console.log("~~~~~~~~~~");
+
   console.log(
-    "적금 복리 어떻게 구하냐....적금 단리랑 식 똑같네",
-    inputNum * 12 +
-      Math.round(inputNum * ((((12 * 13) / 2) * (4.5 * 0.01)) / 12)) -
-      Math.round(inputNum * ((((12 * 13) / 2) * (4.5 * 0.01)) / 12) * 0.154)
+    "예금 복리 만기 clear",
+    inputNum +
+      Math.round(inputNum * Math.pow(1 + (4.65 * 0.01) / 12, 12) - inputNum) -
+      Math.round(
+        Math.round(inputNum * Math.pow(1 + (4.65 * 0.01) / 12, 12) - inputNum) *
+          0.154
+      )
   );
-  console.log("적금복리 이자 ");
+
+  console.log(
+    "적금 복리 이자",
+    inputNum *
+      Math.round(((1 + (0.01 * 4.5) / 12) ^ (12 * 1 - 1)) / ((0.01 * 4.5) / 12))
+  );
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기

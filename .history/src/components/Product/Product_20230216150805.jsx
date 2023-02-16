@@ -93,12 +93,15 @@ function Product({ inputValue }) {
 
   console.log("~~~~~~~~~~");
   console.log(
-    "적금 복리 어떻게 구하냐....적금 단리랑 식 똑같네",
+    "적금 복리 어떻게 구하냐....",
     inputNum * 12 +
       Math.round(inputNum * ((((12 * 13) / 2) * (4.5 * 0.01)) / 12)) -
       Math.round(inputNum * ((((12 * 13) / 2) * (4.5 * 0.01)) / 12) * 0.154)
   );
-  console.log("적금복리 이자 ");
+  console.log(
+    "적금복리 이자 ",
+    Math.round(inputNum * ((((12 * 13) / 2) * (4.5 * 0.01)) / 12))
+  );
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기
