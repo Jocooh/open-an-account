@@ -66,7 +66,7 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
     });
   };
   console.log(selectedProductId);
-  console.log("예금 옵션 리스트", depositProductDetail);
+  console.log(depositProductDetail);
   console.log(depositProductDetail?.map((item) => item.intr_rate2));
 
   useEffect(() => {

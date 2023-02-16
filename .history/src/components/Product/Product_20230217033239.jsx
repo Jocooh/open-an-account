@@ -174,13 +174,13 @@ function Product({
           </div>
 
           {
-            depositProductDetail.filter((item) =>
-              selectedProductId.map((i) =>
+            depositProductDetail.filter((item) => {
+              return selectedProductId.map((i) =>
                 i?.fin_co_no === item?.fin_co_no
                   ? console.log("i :>> ", i)
                   : console.log("i!!!!!! :>> ", i)
-              )
-            )
+              );
+            })
 
             // <div key={i.id}>
             //   <div>

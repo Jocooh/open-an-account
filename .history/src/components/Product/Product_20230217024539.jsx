@@ -39,7 +39,7 @@ function Product({
 
   //* selectedProductId 정보 저장
   const [selectedProductDetail, setSelectedProductDetail] = useState([]);
-  console.log("selectedProductDetail :>> ", selectedProductDetail);
+
   //* 스크랩 기능
   const [scrap, setScrap] = useState(false);
   const [changeColor, setChangeColor] = useState("#D9D9D9");
@@ -93,7 +93,7 @@ function Product({
     bankSites.logos.map((logo, index) => {
       if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         console.log("Object.keys(logo)[1] :>> ", Object.keys(logo)[1]);
-        setSite(Object.keys(logo)[1]); //undefined
+        setSite(Object.keys(logo)[1]);
       }
     });
   };
@@ -155,7 +155,7 @@ function Product({
         <Name>
           <Prdt_nm>
             {selectedProductDetail
-              .filter((item) => item.id === selectedProductId)
+              .filter((item) => item.id == selectedProductId)
               .map((item) => item.fin_prdt_nm)}
           </Prdt_nm>
           <BsFillBookmarkFill
@@ -169,27 +169,21 @@ function Product({
         <Info>
           <div>
             {selectedProductDetail
-              .filter((item) => item.id === selectedProductId)
+              .filter((item) => item.id == selectedProductId)
               .map((item) => item.kor_co_nm)}
           </div>
 
-          {
-            depositProductDetail.filter((item) =>
-              selectedProductId.map((i) =>
-                i?.fin_co_no === item?.fin_co_no
-                  ? console.log("i :>> ", i)
-                  : console.log("i!!!!!! :>> ", i)
-              )
-            )
-
-            // <div key={i.id}>
-            //   <div>
-            //     이자율 {i.intr_rate}% | 최고금리
-            //     {i.inter_rate2}%
-            //   </div>
-            //   <div>저축 기간 {i.save_trm}</div>
-            // </div>
-          }
+          {depositProductDetail
+            .filter((item) => item.id == selectedProductId)
+            .map((item) => (
+              <div key={item.id}>
+                <div>
+                  이자율 {depositProductDetail.intr_rate}% | 최고금리
+                  {depositProductDetail.inter_rate2}%
+                </div>
+                <div>저축 기간 {depositProductDetail.save_trm}</div>
+              </div>
+            ))}
 
           {/* <div>
             {selectedProductDetail

@@ -173,23 +173,13 @@ function Product({
               .map((item) => item.kor_co_nm)}
           </div>
 
-          {
-            depositProductDetail.filter((item) =>
-              selectedProductId.map((i) =>
-                i?.fin_co_no === item?.fin_co_no
-                  ? console.log("i :>> ", i)
-                  : console.log("i!!!!!! :>> ", i)
-              )
-            )
-
-            // <div key={i.id}>
-            //   <div>
-            //     이자율 {i.intr_rate}% | 최고금리
-            //     {i.inter_rate2}%
-            //   </div>
-            //   <div>저축 기간 {i.save_trm}</div>
-            // </div>
-          }
+          {depositProductDetail.filter(
+            (item) =>
+              item.id ===
+              selectedProductId.map((item) => (
+                <div>{item.intr_rate_type_nm}</div>
+              ))
+          )}
 
           {/* <div>
             {selectedProductDetail

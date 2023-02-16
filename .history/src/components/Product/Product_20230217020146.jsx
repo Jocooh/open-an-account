@@ -39,7 +39,7 @@ function Product({
 
   //* selectedProductId 정보 저장
   const [selectedProductDetail, setSelectedProductDetail] = useState([]);
-  console.log("selectedProductDetail :>> ", selectedProductDetail);
+
   //* 스크랩 기능
   const [scrap, setScrap] = useState(false);
   const [changeColor, setChangeColor] = useState("#D9D9D9");
@@ -59,14 +59,11 @@ function Product({
       selectedProductArray.push(newProduct);
     });
     setSelectedProductDetail(selectedProductArray);
-    getBankSite();
-    goBankSite();
   };
 
   const [buttonContents, setButtonContents] = useState("");
 
   const getBankSite = () => {
-    console.log("selectedProductDetail :>> ", selectedProductDetail);
     bankSites.logos.map((logo, index) => {
       if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         setButtonContents("사이트로 이동");
@@ -83,17 +80,6 @@ function Product({
         //   return <Button>지원하지 않는 사이트입니다.</Button>;
       } else {
         setButtonContents("지원하지 않는 사이트입니다.");
-      }
-    });
-  };
-
-  const [site, setSite] = useState("");
-
-  const goBankSite = () => {
-    bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
-        console.log("Object.keys(logo)[1] :>> ", Object.keys(logo)[1]);
-        setSite(Object.keys(logo)[1]); //undefined
       }
     });
   };
@@ -134,6 +120,7 @@ function Product({
 
   useEffect(() => {
     getSelectedProductDetail();
+    getBankSite();
   }, []);
   console.log("selectedProductDetail :>> ", selectedProductDetail);
 
@@ -155,7 +142,7 @@ function Product({
         <Name>
           <Prdt_nm>
             {selectedProductDetail
-              .filter((item) => item.id === selectedProductId)
+              .filter((item) => item.id == selectedProductId)
               .map((item) => item.fin_prdt_nm)}
           </Prdt_nm>
           <BsFillBookmarkFill
@@ -169,37 +156,26 @@ function Product({
         <Info>
           <div>
             {selectedProductDetail
-              .filter((item) => item.id === selectedProductId)
+              .filter((item) => item.id == selectedProductId)
               .map((item) => item.kor_co_nm)}
           </div>
 
-          {
-            depositProductDetail.filter((item) =>
-              selectedProductId.map((i) =>
-                i?.fin_co_no === item?.fin_co_no
-                  ? console.log("i :>> ", i)
-                  : console.log("i!!!!!! :>> ", i)
-              )
-            )
+          {depositProductDetail
+            .filter((item) => item.id == selectedProductId)
+            .map((item) => (
+              <div key={item.id}>
+                <div>
+                  이자율 {depositProductDetail.intr_rate}% | 최고금리
+                  {depositProductDetail.inter_rate2}%
+                </div>
+                <div>저축 기간 {depositProductDetail.save_trm}</div>
+              </div>
+            ))}
 
-            // <div key={i.id}>
-            //   <div>
-            //     이자율 {i.intr_rate}% | 최고금리
-            //     {i.inter_rate2}%
-            //   </div>
-            //   <div>저축 기간 {i.save_trm}</div>
-            // </div>
-          }
-
-          {/* <div>
-            {selectedProductDetail
-              .filter((item) => item.id == selectedProductId)
-              .map((item) => item.mtrt_int)}
-          </div> */}
           <div>
             {selectedProductDetail
               .filter((item) => item.id == selectedProductId)
-              .map((item) => item.etc_note)}
+              .map((item) => item.mtrt_int)}
           </div>
         </Info>
         <Message>
@@ -215,18 +191,12 @@ function Product({
               .filter((item) => item.id == selectedProductId)
               .map((item) => item.join_way)}
           </li>
-          <li>
-            (유의사항)
-            {selectedProductDetail
-              .filter((item) => item.id == selectedProductId)
-              .map((item) => item.etc_note)}
-          </li>
         </Message>
 
         <Button
-          navigate={site}
+          navigate={Object.values(logo)[1]}
           alt="은행사이트 바로가기"
-          // key={Object.keys(logo)[0]}
+          key={Object.keys(logo)[0]}
         >
           {buttonContents}
         </Button>
