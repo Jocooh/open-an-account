@@ -20,7 +20,6 @@ import {
   TotalCost,
   Wrapper,
 } from "./style";
-
 import { useNavigate } from "react-router-dom";
 import bankSites from "../../assets/bankSite/bankSite";
 
@@ -57,10 +56,9 @@ function Product({
       };
 
       selectedProductId.push(newProduct);
-      setSelectedProductDetail(selectedProductId);
+      setSelectedProductDetail(productDetail);
     });
   };
-  console.log("selectedProductDetail :>> ", selectedProductDetail);
 
   // //* 상품 찜 가져오기
   // const getScrap = async () => {
@@ -116,7 +114,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
+          <Prdt_nm>{selectedProductId.fin_prdt_nm}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);

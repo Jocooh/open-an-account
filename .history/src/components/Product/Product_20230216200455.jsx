@@ -20,47 +20,22 @@ import {
   TotalCost,
   Wrapper,
 } from "./style";
-
 import { useNavigate } from "react-router-dom";
 import bankSites from "../../assets/bankSite/bankSite";
 
-function Product({
-  inputValue,
-  selectedProductId,
-  depositProductDetail,
-  savingProudctDetail,
-}) {
+function Product({ inputValue, selectedProductId }) {
   //* 은행사이트 연결
   const navigate = useNavigate();
 
-  //* props로 받아온 문자열 input값 숫자형으로 바꾸기
-  const inputNum = parseInt(inputValue.replaceAll(",", ""));
-
-  //* selectedProductId 정보 저장
-  const [selectedProductDetail, setSelectedProductDetail] = useState([]);
+  //* 상품 상세정보 저장
+  const [depositProductDetail, setDepositProductDetail] = useState([]);
+  const [savingProductDetail, setSavingProductDetail] = useState([]);
 
   //* 스크랩 기능
   const [scrap, setScrap] = useState(false);
   const [changeColor, setChangeColor] = useState("#D9D9D9");
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
-
-  //* selectedProduct정보 파베에서 불러오기
-  const getSelectedProductDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-    const selectedProductId = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      selectedProductId.push(newProduct);
-      setSelectedProductDetail(selectedProductId);
-    });
-  };
-  console.log("selectedProductDetail :>> ", selectedProductDetail);
 
   // //* 상품 찜 가져오기
   // const getScrap = async () => {
@@ -96,9 +71,49 @@ function Product({
   //   }
   // };
 
+  //* 예금 상품 정보 불러오기
+  const getDepositProductDetail = async () => {
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
+    const productDetail = [];
+
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+
+      productDetail.push(newProduct);
+    });
+
+    setDepositProductDetail(productDetail);
+    console.log("depositProductDetail :>> ", depositProductDetail);
+  };
+  //* 적금 상품 정보 불러오기
+  const getSavingProductDetail = async () => {
+    const querySnapshot = await getDocs(collection(db, "SAVING_BASE_LIST"));
+    const productDetail = [];
+
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+
+      productDetail.push(newProduct);
+    });
+
+    setSavingProductDetail(productDetail);
+    console.log("savingProductDetail :>> ", savingProductDetail);
+  };
+
+  //* props로 받아온 문자열 input값 숫자형으로 바꾸기
+  const inputNum = parseInt(inputValue.replaceAll(",", ""));
+
   useEffect(() => {
-    getSelectedProductDetail();
-  }, []);
+    //* 상품 찜 정보 가져오기
+    getDepositProductDetail();
+    getSavingProductDetail();
+  }, [depositProductDetail, savingProductDetail]);
 
   return (
     <Wrapper>
@@ -116,64 +131,32 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
+          <Prdt_nm>우리적금</Prdt_nm>
           <BsFillBookmarkFill
-            onClick={() => {
-              setScrap(true);
-            }}
+            onClick={setScrap(true)}
             style={scrap ? { color: "#CDE974" } : { color: "#D9D9D9" }}
           />
         </Name>
 
-        {selectedProductId?.category === "예금 기본 정보" ? (
-          <>
-            <Info>
-              <div>{selectedProductId?.fin_prdt_nm}</div>
-
-              {depositProductDetail.map(
-                (item) =>
-                  item.fin_prdt_cd === selectedProductId.fin_prdt_cd && (
-                    <div key={item.id}>
-                      <div>
-                        이자율 {depositProductDetail.intr_rate}% | 최고금리
-                        {depositProductDetail.inter_rate2}%
-                      </div>
-                      <div>저축 기간 {depositProductDetail.save_trm}</div>
-                    </div>
-                  )
-              )}
-
-              <div>{selectedProductId.mtrt_int}</div>
-            </Info>
-            <Message>
-              <li>{selectedProductId.spcl_cnd}</li>
-              <li>가입 방법: {selectedProductId.join_way}</li>
-            </Message>
-          </>
-        ) : (
-          <>
-            <Info>
-              <div>{selectedProductId.fin_prdt_nm}</div>
-              <div>
-                이자율 {depositProductDetail.intr_rate}% | 최고 금리
-                {depositProductDetail.inter_rate2}%
-              </div>
-              <div>저축 기간 {depositProductDetail.save_trm}</div>
-              <div>{selectedProductId.mtrt_int}</div>
-            </Info>
-            <Message>
-              <li>{selectedProductId.spcl_cnd}</li>
-              <li>가입 방법: {selectedProductId.join_way}</li>
-            </Message>
-          </>
-        )}
-
+        <Info>
+          <div>{depositProductDetail.fin_prdt_nm}</div>
+          <div>
+            이자율 {depositProductDetail.intr_rate}% | 최고 금리
+            {depositProductDetail.inter_rate2}%
+          </div>
+          <div>저축 기간 {depositProductDetail.save_trm}</div>
+          <div>{depositProductDetail.mtrt_int}</div>
+        </Info>
+        <Message>
+          <li>{depositProductDetail.spcl_cnd}</li>
+          <li>가입 방법: {depositProductDetail.join_way}</li>
+        </Message>
         {bankSites.logos.map((logo) =>
-          Object.keys(logo)[0] === selectedProductId.fin_co_no ? (
+          Object.keys(logo)[0] === depositProductDetail.fin_co_no ? (
             <Button
               navigate={Object.values(logo)[1]}
               alt="은행사이트 바로가기"
-              key={Object.keys(logo)[0]}
+              key={depositProductDetail.fin_co_subm_day}
             >
               사이트로 이동
             </Button>

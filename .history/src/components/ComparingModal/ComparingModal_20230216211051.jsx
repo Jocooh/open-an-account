@@ -65,8 +65,8 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
       setSavingProductDetail(productDetail);
     });
   };
-  console.log(selectedProductId);
-  console.log(depositProductDetail?.map((item) => item.intr_rate2));
+  console.log(selectedProductId.fin_prdt_nm);
+  console.log(depositProductDetail.inter_rate2);
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기

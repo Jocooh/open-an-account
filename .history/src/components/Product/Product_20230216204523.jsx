@@ -1,14 +1,6 @@
 import React, { useState, axios, useEffect } from "react";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import {
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  deleteDoc,
-  setDoc,
-} from "firebase/firestore";
-import { authService, db } from "../../config/firebase";
+
 import {
   Button,
   Guide,
@@ -20,7 +12,6 @@ import {
   TotalCost,
   Wrapper,
 } from "./style";
-
 import { useNavigate } from "react-router-dom";
 import bankSites from "../../assets/bankSite/bankSite";
 
@@ -36,31 +27,11 @@ function Product({
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
 
-  //* selectedProductId 정보 저장
-  const [selectedProductDetail, setSelectedProductDetail] = useState([]);
-
   //* 스크랩 기능
   const [scrap, setScrap] = useState(false);
   const [changeColor, setChangeColor] = useState("#D9D9D9");
   const [currentUserName, setCurrentUserName] = useState("");
   const [currentUserUid, setCurrentUserUid] = useState("");
-
-  //* selectedProduct정보 파베에서 불러오기
-  const getSelectedProductDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-    const selectedProductId = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      selectedProductId.push(newProduct);
-      setSelectedProductDetail(selectedProductId);
-    });
-  };
-  console.log("selectedProductDetail :>> ", selectedProductDetail);
 
   // //* 상품 찜 가져오기
   // const getScrap = async () => {
@@ -96,10 +67,6 @@ function Product({
   //   }
   // };
 
-  useEffect(() => {
-    getSelectedProductDetail();
-  }, []);
-
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>
@@ -116,7 +83,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
+          <Prdt_nm>{selectedProductId.fin_prdt_nm}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);
@@ -125,10 +92,10 @@ function Product({
           />
         </Name>
 
-        {selectedProductId?.category === "예금 기본 정보" ? (
+        {selectedProductId.category === "예금 기본 정보" ? (
           <>
             <Info>
-              <div>{selectedProductId?.fin_prdt_nm}</div>
+              <div>{selectedProductId.fin_prdt_nm}</div>
 
               {depositProductDetail.map(
                 (item) =>
@@ -169,11 +136,11 @@ function Product({
         )}
 
         {bankSites.logos.map((logo) =>
-          Object.keys(logo)[0] === selectedProductId.fin_co_no ? (
+          Object.keys(logo)[0] === depositProductDetail.fin_co_no ? (
             <Button
               navigate={Object.values(logo)[1]}
               alt="은행사이트 바로가기"
-              key={Object.keys(logo)[0]}
+              key={logo[0]}
             >
               사이트로 이동
             </Button>

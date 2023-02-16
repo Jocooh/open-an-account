@@ -20,7 +20,15 @@ import {
   TotalCost,
   Wrapper,
 } from "./style";
-
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  deleteDoc,
+  setDoc,
+} from "firebase/firestore";
+import { authService, db } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
 import bankSites from "../../assets/bankSite/bankSite";
 
@@ -116,7 +124,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
+          <Prdt_nm>{selectedProductId.fin_prdt_nm}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);

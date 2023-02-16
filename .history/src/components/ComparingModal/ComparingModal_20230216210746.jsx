@@ -50,6 +50,7 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
       setDepositProductDetail(productDetail);
     });
   };
+  console.log("depositProductDetail :>> ", depositProductDetail);
   //* 적금 상품 정보 불러오기
   const getSavingProductDetail = async () => {
     const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
@@ -65,8 +66,7 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
       setSavingProductDetail(productDetail);
     });
   };
-  console.log(selectedProductId);
-  console.log(depositProductDetail?.map((item) => item.intr_rate2));
+  console.log("savingProductDetail :>> ", savingProductDetail);
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기

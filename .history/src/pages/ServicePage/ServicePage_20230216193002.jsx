@@ -92,11 +92,11 @@ const ServicePage = () => {
     });
     setProducts(product);
   };
+  // console.log(products);
 
   useEffect(() => {
     handleButtonClick();
   }, []);
-
   //* 선택된 상품 id 저장
 
   const handleSelectProduct = async (productId) => {
@@ -105,7 +105,6 @@ const ServicePage = () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setSelectedProductId(docSnap.id);
-        console.log("selectedProductId :>> ", selectedProductId);
         console.log(docSnap.id);
       } else {
         console.log("문서의 아이디를 을 찾을 수 없어요!");
@@ -215,14 +214,14 @@ const ServicePage = () => {
     setShowResults(!showResults);
   };
 
-  // const DepositBankListFetch = async () => {
-  //   console.log("fetch실행");
-  //   const { data } = await axios.get(
-  //     "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
-  //   );
-  //   setdepositbaseList(data?.result.baseList);
-  //   setdepositOptionalList(data?.result.optionList);
-  // };
+  const DepositBankListFetch = async () => {
+    console.log("fetch실행");
+    const { data } = await axios.get(
+      "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
+    );
+    setdepositbaseList(data?.result.baseList);
+    setdepositOptionalList(data?.result.optionList);
+  };
 
   // const SavingBankListFetch = async () => {
   //   console.log("saving Fetch");
@@ -238,10 +237,10 @@ const ServicePage = () => {
     topLocation.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  // useMemo(() => {
-  //   // SavingBankListFetch();
-  //   DepositBankListFetch();
-  // }, []);
+  useMemo(() => {
+    // SavingBankListFetch();
+    DepositBankListFetch();
+  }, []);
 
   //최고금리 순으로 가져오는 함수(정기예금)
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -317,7 +316,7 @@ const ServicePage = () => {
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-                  selectedProductId={selectedProductId}
+                  id={docSnap.id}
                 />
               )}
             </div>

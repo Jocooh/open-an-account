@@ -116,7 +116,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
+          <Prdt_nm>{selectedProductId.fin_prdt_nm}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);

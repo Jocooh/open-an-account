@@ -1,14 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  deleteDoc,
-  setDoc,
-} from "firebase/firestore";
-import { authService, db } from "../../config/firebase";
 import {
   CloseButton,
   FirstGuide,
@@ -31,48 +22,6 @@ import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
   const [inputValue, setInputValue] = useState("");
-  //* 상품 상세정보 저장
-  const [depositProductDetail, setDepositProductDetail] = useState([]);
-  const [savingProductDetail, setSavingProductDetail] = useState([]);
-
-  //* 예금 상품 정보 불러오기
-  const getDepositProductDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
-    const productDetail = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      productDetail.push(newProduct);
-      setDepositProductDetail(productDetail);
-    });
-  };
-  //* 적금 상품 정보 불러오기
-  const getSavingProductDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
-    const productDetail = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      productDetail.push(newProduct);
-      setSavingProductDetail(productDetail);
-    });
-  };
-  console.log(selectedProductId);
-  console.log(depositProductDetail?.map((item) => item.intr_rate2));
-
-  useEffect(() => {
-    //* 상품 찜 정보 가져오기
-    getDepositProductDetail();
-    getSavingProductDetail();
-  }, []);
 
   return (
     <ModalBackground>
@@ -113,20 +62,14 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
             <Product
               inputValue={inputValue}
               selectedProductId={selectedProductId}
-              depositProductDetail={depositProductDetail}
-              savingProductDetail={savingProductDetail}
             />
             <Product
               inputValue={inputValue}
               selectedProductId={selectedProductId}
-              depositProductDetail={depositProductDetail}
-              savingProductDetail={savingProductDetail}
             />
             <Product
               inputValue={inputValue}
               selectedProductId={selectedProductId}
-              depositProductDetail={depositProductDetail}
-              savingProductDetail={savingProductDetail}
             />
           </Products>
           <SecondGuide>

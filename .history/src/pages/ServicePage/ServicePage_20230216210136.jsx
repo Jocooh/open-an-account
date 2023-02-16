@@ -105,7 +105,6 @@ const ServicePage = () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setSelectedProductId(docSnap.id);
-        console.log("selectedProductId :>> ", selectedProductId);
         console.log(docSnap.id);
       } else {
         console.log("문서의 아이디를 을 찾을 수 없어요!");
