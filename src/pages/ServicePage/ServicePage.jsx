@@ -260,12 +260,11 @@ const ServicePage = () => {
     DepositBankListFetch();
   }, []);
 
-
   // 비교하기 버튼 모달창
-  const [comparingModalOpen, setComparingModalOpen] = useState(false);
-  const OpenComparingModal = () => {
-    setComparingModalOpen(true);
-  };
+  // const [comparingModalOpen, setComparingModalOpen] = useState(false);
+  // const OpenComparingModal = () => {
+  //   setComparingModalOpen(true);
+  // };
 
   // 찜한 상품 불러오기 --- 김원준 작업 중.
   // 유즈이펙트 안에 콘솔 찍으면 빈배열 .....................................
@@ -648,7 +647,6 @@ const ServicePage = () => {
                                   // 원준 북마크
                                   setToggleDetail={setToggleDetail}
                                   toggleDetail={toggleDetail}
-
                                 />
                               ) : (
                                 <SavingAllBankList
