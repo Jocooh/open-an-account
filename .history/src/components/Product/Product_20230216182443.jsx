@@ -21,7 +21,7 @@ import {
   Wrapper,
 } from "./style";
 import { useNavigate } from "react-router-dom";
-import bankSites from "../../assets/bankSite/bankSite";
+import logoLists from "";
 
 function Product({ inputValue }) {
   const navigate = useNavigate();
@@ -150,7 +150,7 @@ function Product({ inputValue }) {
           <li>{depositProduct.spcl_cnd}</li>
           <li>가입 방법: {depositProduct.join_way}</li>
         </Message>
-        {bankSites.logos.map((logo) =>
+        {logoLists.logos.map((logo) =>
           Object.keys(logo)[0] === depositProduct.fin_co_no ? (
             <Button
               navigate={Object.values(logo)[1]}
