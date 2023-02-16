@@ -21,8 +21,16 @@ import {
 import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import Bookmarks from "./Bookmarks";
+import SavingDetail from "../DetailProduct/SavingDetail";
 
-function AllBankList({ savingbaseList, savingOptionalList, bookmarkProducts }) {
+function SavingAllBankList({
+  savingbaseList,
+  savingOptionalList,
+  toggleDetail,
+  setToggleDetail,
+  bookmarkProducts,
+}) {
+
   const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
   });
@@ -36,7 +44,7 @@ function AllBankList({ savingbaseList, savingOptionalList, bookmarkProducts }) {
               i.fin_prdt_cd === v.fin_prdt_cd ? (
                 <>
                   {i.save_trm === "12" ? (
-                    <StyledBankLists className="lightcoral">
+                    <StyledBankLists>
                       {/* 로고 */}
                       <StyledListDiv>
                         <StyledDiv>
@@ -84,14 +92,26 @@ function AllBankList({ savingbaseList, savingOptionalList, bookmarkProducts }) {
                           <Bookmarks bookmarkProducts={bookmarkProducts} />
                           <button
                             style={{
-                              width: "50px",
+                              width: "60px",
                               height: "30px",
                             }}
+                            onClick={() => {
+                              setToggleDetail((toggleDetail) => !toggleDetail);
+                            }}
                           >
-                            더 보기
+                            {toggleDetail === true ? "자세히∧" : "자세히∨"}
                           </button>
                         </StyledMoreListDiv>
                       </StyledListDiv>
+                      <div>
+                        {toggleDetail === true ? (
+                          <SavingDetail
+                            depositDB={i}
+                            depositbaseList={v}
+                            depositOptionalList={savingOptionalList}
+                          ></SavingDetail>
+                        ) : null}
+                      </div>
                     </StyledBankLists>
                   ) : null}
                 </>
@@ -103,4 +123,4 @@ function AllBankList({ savingbaseList, savingOptionalList, bookmarkProducts }) {
   );
 }
 
-export default AllBankList;
+export default SavingAllBankList;

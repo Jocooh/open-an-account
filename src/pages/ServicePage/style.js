@@ -10,9 +10,7 @@ export const Wraper = styled.body`
 `;
 
 //* 바디의 하위 컨테이너
-export const Cantinar = styled.div`
-  /* min-width: 80%; */
-`;
+export const Cantinar = styled.div``;
 
 //? ----여기서 부터 상단부분입니다.----
 //* 상단 SectionContainer
@@ -174,7 +172,7 @@ export const ProducksCalculatorBoxContent = styled.div`
   margin-top: 50px;
   input {
     padding: 0 0 0 24px;
-    margin: 20px 0 50px 0;
+    margin: 20px 0 10px 0;
     width: 786px;
     height: 64px;
     border-radius: 10px;
@@ -190,6 +188,19 @@ export const ProducksCalculatorBoxContentTilte = styled.div`
   display: flex;
 `;
 
+//* 최종목표금액 inputTitle
+export const formattedAmount = styled.div`
+  .div {
+    font-size: 12px;
+  }
+`;
+
+//* 최종목표금액 input
+export const FormattingAmount = styled.input`
+  height: 30px;
+  width: 100%;
+`;
+
 //* 상품기간 슬라이더 Wraper
 export const MonthRangeSliderWraper = styled.div`
   input {
@@ -201,15 +212,14 @@ export const MonthRangeSliderWraper = styled.div`
 //* 금융상품 기간 슬라이더 제목
 export const MonthRangeSliderTitle = styled.div`
   font-size: 24px;
-  width: 215px;
-  height: 33px;
+  width: 100%;
 `;
 
 //* 금융상품 기간 슬라이더
 export const MonthRangeSlider = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 145px;
+  gap: 144px;
   margin-bottom: 100px;
 `;
 
@@ -232,6 +242,10 @@ export const FilterSubmit = styled.button`
   cursor: pointer;
   color: #fff;
   background-color: #6a24ff;
+  :disabled {
+    background-color: #dadada;
+    color: #fff;
+  }
 `;
 
 //* 계산결과 Section
@@ -269,8 +283,6 @@ export const StyledBankList = styled.div`
   overflow: auto;
 `;
 
-export const Tapwraper = styled.div``;
-
 export const StyledBankListWrapper = styled.div`
   width: 920px;
   display: flex;
@@ -281,19 +293,22 @@ export const StyledBankListWrapper = styled.div`
   padding: 10px;
 `;
 export const StyledBankLists = styled.div`
-  height: 144px;
+  /* height: 351px; */
   border-radius: 15px;
   display: flex;
   align-items: center;
   gap: 30px;
-  background-color: white;
   margin-bottom: 15px;
+  flex-direction: column;
+  background-color: white;
 `;
 
 export const StyledListDiv = styled.div`
   width: 1200px;
   height: 141px;
 `;
+
+export const Tapwraper = styled.div``;
 
 export const StyledBookMark = {
   fontSize: "20px",

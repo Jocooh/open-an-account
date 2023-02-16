@@ -1,5 +1,6 @@
 //전체목록이 들어가는 은행들의 리스트를 여기서 맵돌릴꺼다.
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   StyledImg,
   StyledSaveTrmDiv,
@@ -25,7 +26,12 @@ import Bookmarks from "./Bookmarks";
 function AllBankList({
   depositbaseList,
   depositOptionalList,
+
   bookmarkProducts,
+
+  setToggleDetail,
+  toggleDetail,
+
 }) {
   //최고금리순으로 가져오는 함수
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -41,7 +47,7 @@ function AllBankList({
               i.fin_prdt_cd === v.fin_prdt_cd ? (
                 <>
                   {i.save_trm === "12" ? (
-                    <StyledBankLists className="lightcoral">
+                    <StyledBankLists className="lightyellow">
                       <StyledListDiv>
                         <StyledDiv>
                           <div key={v.fin_prdt_nm}>
@@ -86,14 +92,26 @@ function AllBankList({
                           <Bookmarks bookmarkProducts={bookmarkProducts} />
                           <button
                             style={{
-                              width: "50px",
+                              width: "60px",
                               height: "30px",
                             }}
+                            onClick={() => {
+                              setToggleDetail((toggleDetail) => !toggleDetail);
+                            }}
                           >
-                            더 보기
+                            {toggleDetail === true ? "자세히∧" : "자세히∨"}
                           </button>
                         </StyledMoreListDiv>
                       </StyledListDiv>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100px",
+                        }}
+                      >
+                        {toggleDetail === true ? <p>상세보기</p> : null}
+                      </div>
                     </StyledBankLists>
                   ) : null}
                 </>
