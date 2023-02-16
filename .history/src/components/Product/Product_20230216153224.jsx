@@ -70,6 +70,17 @@ function Product({ inputValue }) {
     "예금 단리 만기 clear",
     Math.round(inputNum * (1 + 0.01 * 4.5 - 0.01 * 4.5 * 0.154))
   );
+
+  console.log(
+    "적금 단리 만기 clear",
+
+    inputNum * 12 +
+      Math.round((inputNum * 4.5 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) -
+      Math.round(
+        ((inputNum * 4.5 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) * 0.154
+      )
+  );
+
   console.log(
     "예금 복리 만기 clear",
     inputNum +
@@ -80,18 +91,16 @@ function Product({ inputValue }) {
       )
   );
 
+  console.log("~~~~~~~~~~");
   console.log(
-    "적금 단리 만기 clear",
+    "적금 복리 어떻게 구하냐....적금 단리랑 식 똑같네",
     inputNum * 12 +
-      Math.round(inputNum * ((((12 * 13) / 2) * (13.7 * 0.01)) / 12)) -
-      Math.round(inputNum * ((((12 * 13) / 2) * (13.7 * 0.01)) / 12) * 0.154)
+      Math.round(inputNum * ((((12 * 13) / 2) * (4.5 * 0.01)) / 12)) -
+      Math.round(inputNum * ((((12 * 13) / 2) * (4.5 * 0.01)) / 12) * 0.154)
   );
   console.log(
-    "적금 복리 만기 clear ",
-    Math.round(
-      (inputNum * (Math.pow(1 + (0.01 * 13.7) / 12, 12) - 1)) /
-        ((0.01 * 13.7) / 12)
-    )
+    "적금복리 n차 시도 ",
+    (inputNum * (Math.pow(1 + (0.01 * 4.5) / 12, 12) - 1)) / ((0.01 * 4.5) / 12)
   );
 
   useEffect(() => {

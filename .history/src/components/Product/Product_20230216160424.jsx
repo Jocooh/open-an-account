@@ -82,12 +82,21 @@ function Product({ inputValue }) {
 
   console.log(
     "적금 단리 만기 clear",
+
+    inputNum * 12 +
+      Math.round((inputNum * 4.5 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) -
+      Math.round(
+        ((inputNum * 4.5 * 0.01 * (1 * 12 + 1) * 1 * 12) / 2 / 12) * 0.154
+      )
+  );
+  console.log(
+    "적금 단리 식2 clear",
     inputNum * 12 +
       Math.round(inputNum * ((((12 * 13) / 2) * (13.7 * 0.01)) / 12)) -
       Math.round(inputNum * ((((12 * 13) / 2) * (13.7 * 0.01)) / 12) * 0.154)
   );
   console.log(
-    "적금 복리 만기 clear ",
+    "적금복리 clear ",
     Math.round(
       (inputNum * (Math.pow(1 + (0.01 * 13.7) / 12, 12) - 1)) /
         ((0.01 * 13.7) / 12)
