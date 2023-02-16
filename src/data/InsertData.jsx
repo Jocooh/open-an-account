@@ -1,7 +1,6 @@
 import axios from "axios";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import BookmarksTest from "../components/BookmarksTest";
 import { db } from "../config/firebase";
 const InsertData = () => {
   const [savingBaseList, setSavingBaseList] = useState([]);
@@ -131,26 +130,26 @@ const InsertData = () => {
     // getDepositOptionListHandler();
   }, []);
 
-  const [products, setProducts] = useState([]);
-  const getProduct = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-    const product = [];
+  // const [products, setProducts] = useState([]);
+  // const getProduct = async () => {
+  //   const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
+  //   const product = [];
 
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
+  //   querySnapshot.forEach((doc) => {
+  //     const newProduct = {
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     };
 
-      product.push(newProduct);
-    });
+  //     product.push(newProduct);
+  //   });
 
-    setProducts(product);
-  };
+  //   setProducts(product);
+  // };
 
-  useEffect(() => {
-    getProduct();
-  }, []);
+  // useEffect(() => {
+  //   getProduct();
+  // }, []);
 
   return (
     <div>
@@ -177,7 +176,7 @@ const InsertData = () => {
       {/* <button onClick={getDepositOptionListHandler}>누르지마세요</button> */}
 
       {/* 찜기능 테스트용 */}
-      <div
+      {/* <div
         style={{ border: "1px solid black", width: "100px", height: "100px" }}
       >
         <h1>상품</h1>
@@ -186,7 +185,7 @@ const InsertData = () => {
           .map((item) => (
             <BookmarksTest item={item} />
           ))}
-      </div>
+      </div> */}
     </div>
   );
 };

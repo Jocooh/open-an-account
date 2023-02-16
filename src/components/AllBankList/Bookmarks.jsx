@@ -14,14 +14,8 @@ import { authService, db } from "../../config/firebase";
 
 const Bookmarks = ({ productName }) => {
   const [bookmark, setBookmark] = useState(false);
-  // useeffect 에 bookmarkdetail 을 전역에서 사용하기 위한 usestate
   const [checkedItem, setCheckedItem] = useState([]);
   const navigate = useNavigate();
-  // const {
-  //   pathname,
-  //   state: { item },
-  // } = useLocation();
-  // const { prdtName } = item.prdtName;
 
   // 1.  북마크 -> addDoc 에 currentUser 에 isBookmark 추가
   const addBookmark = async () => {
@@ -39,7 +33,7 @@ const Bookmarks = ({ productName }) => {
     setBookmark(true);
   };
 
-  // 여기서 문제인가 .....???????.........????????????????????????
+  // 여기서 문제인가 .....???????.........???????????????????????
   const changeBookmarkDetail = (checkedItem) =>
     checkedItem.filter((item) => item.fin_prdt_nm === productName);
   console.log(productName);
