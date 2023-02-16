@@ -112,6 +112,7 @@ function Product({ inputValue }) {
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기
+    getProductDetail();
     getScrap();
   }, [currentUserName, currentUserUid]);
 

@@ -22,7 +22,6 @@ import {
   Wrapper,
 } from "./style";
 import { useNavigate } from "react-router-dom";
-import logoLists from "";
 
 function Product({ inputValue }) {
   const navigate = useNavigate();
@@ -112,6 +111,7 @@ function Product({ inputValue }) {
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기
+    getProductDetail();
     getScrap();
   }, [currentUserName, currentUserUid]);
 
@@ -140,10 +140,8 @@ function Product({ inputValue }) {
 
         <Info>
           <div>{depositProduct.fin_prdt_nm}</div>
-          <div>
-            이자율 {depositProduct.intr_rate}% | 최고 금리
-            {depositProduct.inter_rate2}%
-          </div>
+          <div>{depositProduct.intr_rate}</div>
+          <div>{depositProduct.inter_rate2}</div>
           <div>저축 기간 {depositProduct.save_trm}</div>
           <div>{depositProduct.mtrt_int}</div>
         </Info>
@@ -152,11 +150,11 @@ function Product({ inputValue }) {
           <li>가입 방법: {depositProduct.join_way}</li>
         </Message>
         {logoLists.logos.map((logo) =>
-          Object.keys(logo)[0] === depositProduct.fin_co_no ? (
+          Object.keys(logo)[0] === v.fin_co_no ? (
             <Button
               navigate={Object.values(logo)[1]}
               alt="은행사이트 바로가기"
-              key={depositProduct.fin_co_subm_day}
+              key={v.fin_co_subm_day}
             >
               사이트로 이동
             </Button>

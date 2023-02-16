@@ -22,7 +22,6 @@ import {
   Wrapper,
 } from "./style";
 import { useNavigate } from "react-router-dom";
-import logoLists from "";
 
 function Product({ inputValue }) {
   const navigate = useNavigate();
@@ -112,6 +111,7 @@ function Product({ inputValue }) {
 
   useEffect(() => {
     //* 상품 찜 정보 가져오기
+    getProductDetail();
     getScrap();
   }, [currentUserName, currentUserUid]);
 
@@ -140,10 +140,8 @@ function Product({ inputValue }) {
 
         <Info>
           <div>{depositProduct.fin_prdt_nm}</div>
-          <div>
-            이자율 {depositProduct.intr_rate}% | 최고 금리
-            {depositProduct.inter_rate2}%
-          </div>
+          <div>{depositProduct.intr_rate}</div>
+          <div>{depositProduct.inter_rate2}</div>
           <div>저축 기간 {depositProduct.save_trm}</div>
           <div>{depositProduct.mtrt_int}</div>
         </Info>
