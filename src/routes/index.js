@@ -9,6 +9,7 @@ import LandingPage from "../pages/LandingPage/LandingPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ServicePage from "../pages/ServicePage/ServicePage";
 import BankLists from "../pages/BankList";
+import InsertData from "../data/InsertData";
 
 const Router = () => {
   return (
@@ -24,6 +25,8 @@ const Router = () => {
           <Route path="/LandingPage" element={<LandingPage />} />
           <Route path="/ServicePage" element={<ServicePage />} />
           <Route path="/bankListPage" element={<BankLists />} />
+          {/* data 페이지를 위한 임시 path name */}
+          <Route path="/4jojoa" element={<InsertData />} />
         </Routes>
       </Layout>
     </BrowserRouter>

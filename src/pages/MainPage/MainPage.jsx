@@ -9,6 +9,7 @@ import "swiper/css";
 
 import {
   Wraper,
+  BannerImage,
   GreetingBox,
   GreetingTitle,
   Username,
@@ -26,6 +27,7 @@ import {
   QuestionTitle,
   FinanceHoneyTip,
   MainPageWraper,
+  Bannerimage,
 } from "./style";
 
 const MainPage = () => {
@@ -42,30 +44,35 @@ const MainPage = () => {
           loop={true}
           observer={true}
           observeParents={true}
+          style={{ borderRadius: "10px" }}
         >
           <SilderBanner>
-            {/* <Link to="https://www.wooribank.com/">
-              <img src="banner_01.PNG" />
-            </Link> */}
-            예금 맛집
+            <a href="https://spib.wooribank.com/pib/Dream?withyou=PSTRS0147">
+              <BannerImage>
+                <img src={require("../../assets/banner/image/banner_01.PNG")} />
+              </BannerImage>
+            </a>
           </SilderBanner>
           <SilderBanner>
-            {/* <Link to="https://www.wooribank.com/">
-              <img src="banner_01.PNG" />
-            </Link> */}
-            적금 맛집
+            <a href="https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp?lncd=01&grcd=21&tmcd=121&pdcd=0123&wvcd=***********&banner=ibk_main_mddl_01211210123">
+              <BannerImage>
+                <img src={require("../../assets/banner/image/banner_02.PNG")} />
+              </BannerImage>
+            </a>
           </SilderBanner>
           <SilderBanner>
-            {/* <Link to="https://www.wooribank.com/">
-              <img src="banner_01.PNG" />
-            </Link> */}
-            여기로 와~
+            <a href="https://spib.wooribank.com/pib/Dream?withyou=PSTRS0147">
+              <BannerImage>
+                <img src={require("../../assets/banner/image/banner_01.PNG")} />
+              </BannerImage>
+            </a>
           </SilderBanner>
           <SilderBanner>
-            {/* <Link to="https://www.wooribank.com/">
-              <img src="banner_01.PNG" />
-            </Link> */}
-            컴온!
+            <a href="https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp?lncd=01&grcd=21&tmcd=121&pdcd=0123&wvcd=***********&banner=ibk_main_mddl_01211210123">
+              <Bannerimage
+                src={require("../../assets/banner/image/banner_02.PNG")}
+              />
+            </a>
           </SilderBanner>
         </Swiper>
 
@@ -90,55 +97,9 @@ const MainPage = () => {
         </GreetingBox>
         <BottomWrap>
           <BoardBestCommentWrap>
-            {/* <ProducksCalculatorTitle>
-              목표금액으로 상품 찾기
-            </ProducksCalculatorTitle> */}
-
             <BoardBestComment>
               <div>게시판 인기글</div>
-              <div
-                style={{
-                  border: "1px, black, solid",
-                }}
-              ></div>
             </BoardBestComment>
-            {/* <h1>결과 리스트에요~~</h1>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div>
-            <div
-              style={{
-                backgroundColor: "#e3e3e3",
-                width: "300px",
-                height: "50px",
-              }}
-            >
-              <span style={{ color: "blue", fontWeight: "bold" }}>100원</span>
-              <span style={{ fontWeight: "bold" }}> 씩</span>
-              <span style={{ color: "red", fontWeight: "bold" }}> 12개월</span>
-              <span style={{ fontWeight: "bold" }}> 동안 저축하면 돼요</span>
-            </div> */}
           </BoardBestCommentWrap>
           <BankAndQna>
             <BankList>
@@ -155,14 +116,32 @@ const MainPage = () => {
                   observer={true}
                   observeParents={true}
                 >
-                  <BankBanner>우리은행</BankBanner>
-                  <BankBanner>하나은행</BankBanner>
-                  <BankBanner>IBK기업은행</BankBanner>
-                  <BankBanner>신한은행</BankBanner>
-                  <BankBanner>국민은행</BankBanner>
-                  <BankBanner>신협</BankBanner>
-                  <BankBanner>수협은행</BankBanner>
-                  <BankBanner>농협은행</BankBanner>
+                  <BankBanner>
+                    <a href="https://www.wooribank.com/">우리은행</a>
+                  </BankBanner>
+                  <BankBanner>
+                    <a href="https://www.kebhana.com/">하나은행</a>
+                  </BankBanner>
+                  <BankBanner>
+                    <a href="https://www.ibk.co.kr/">IBK기업은행</a>
+                  </BankBanner>
+                  <BankBanner>
+                    <a href="https://www.shinhan.com/index.jsp">신한은행</a>
+                  </BankBanner>
+                  <BankBanner>
+                    <a href="https://www.kbstar.com/">국민은행</a>
+                  </BankBanner>
+                  <BankBanner>
+                    <a href="https://www.kdb.co.kr/index.jsp">산업은행</a>
+                  </BankBanner>
+                  <BankBanner>
+                    <a href="https://www.suhyup-bank.com/">수협은행</a>
+                  </BankBanner>
+                  <BankBanner>
+                    <a href="https://banking.nonghyup.com/nhbank.html">
+                      농협은행
+                    </a>
+                  </BankBanner>
                 </Swiper>
               </BankBannerWrap>
             </BankList>
@@ -188,11 +167,13 @@ export default MainPage;
 //* 탑슬라이드 배너
 const SilderBanner = styled(SwiperSlide)`
   width: 100%;
-  height: 180px;
-  padding-top: 80px;
-  text-align: center;
+  height: 220px;
+  //text-align: center;
+  img {
+    background-size: cover;
+  }
 
-  background-color: aliceblue;
+  //background-color: aliceblue;
   .swiper-slide {
     border-radius: 20px;
   }
@@ -215,6 +196,7 @@ const BankBanner = styled(SwiperSlide)`
   width: 100%;
   height: 170px;
   font-size: 40px;
+  color: #6a24ff;
   padding-top: 50px;
   text-align: center;
 `;

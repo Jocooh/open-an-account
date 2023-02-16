@@ -36,11 +36,10 @@ export default SearchInput;
 const StyledInputContainer = styled.div`
   width: 990px;
   height: 200px;
-  /* background-color: #aaa; */
   padding: 45px;
   border: 1px solid #dedede;
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 10px auto 30px auto;
 `;
 
 const StyledLabelText = styled.h2`
