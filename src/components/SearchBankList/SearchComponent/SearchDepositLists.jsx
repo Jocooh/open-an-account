@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logoLists from "../../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import {
-  StyledBankLists,
-  StyledBookMark,
-} from "../../../pages/ServicePage/style";
+import { StyledBankLists } from "../../../pages/ServicePage/style";
 import {
   StyledImg,
   StyledProductTitleDiv,
@@ -18,10 +15,13 @@ import {
   StyledSavingRateP,
   StyledMoreListDiv,
 } from "../style";
+import { useLocation } from "react-router-dom";
+import Bookmarks from "../../AllBankList/Bookmarks";
 function SearchDepositLists({
   depositbaseList,
   searchBank,
   depositOptionalList,
+  bookmarkProducts,
 }) {
   return (
     <div>
@@ -94,7 +94,8 @@ function SearchDepositLists({
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <BsFillBookmarkFill style={StyledBookMark} />
+                    <Bookmarks bookmarkProducts={bookmarkProducts} />
+
                     <button
                       style={{
                         width: "50px",

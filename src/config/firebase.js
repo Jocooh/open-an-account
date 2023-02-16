@@ -16,3 +16,22 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const authService = getAuth(app);
 export const db = getFirestore(app);
+
+// // 김원준 파이어베이스 sdk
+// import { initializeApp } from "firebase/app";
+// import { getAuth } from "firebase/auth";
+// import { getFirestore } from "firebase/firestore";
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
+//   authDomain: "test-open-an-account.firebaseapp.com",
+//   projectId: "test-open-an-account",
+//   storageBucket: "test-open-an-account.appspot.com",
+//   messagingSenderId: "1068156105304",
+//   appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
+// };
+
+// // Initialize Firebase
+// export const app = initializeApp(firebaseConfig);
+// export const authService = getAuth(app);
+// export const db = getFirestore(app);
