@@ -8,13 +8,11 @@ import {
   TapTitleName,
   TapContainer,
   TapContainerBox,
-  ProducksCalculatorBoxTitle,
   ProducksCalculatorBoxContent,
   ProducksCalculatorBoxContentTilte,
   MonthRangeSlider,
   MonthRangeSliderTitle,
   BottomSectionWraper,
-  RefreshBtn,
   ToCompare,
   ResultsSection,
   ProductType,
@@ -33,19 +31,19 @@ import {
   ProductWraper,
   MonthRangeSliderWraper,
   FilterSubmitWarper,
-  Products,
   TapButton,
   ProductsWraper,
   SelectedProductsContainer,
 } from "./style";
-import firebase from "firebase/app";
-import "firebase/firestore";
+
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
 import axios from "axios";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -64,41 +62,104 @@ const ServicePage = () => {
   const [savingoptionalList, setSavingoptionalList] = useState(null);
 
   const inputRef = useRef(null);
-  const [value, setValue] = useState([0]);
+  const [products, setProducts] = useState([]); //* 금융상품 list 상태 값 저장
+  const [value, setValue] = useState(0); //* input Range 상태 값 저장
+  const [amount, setAmount] = useState(""); //* input 상태 값 저장
+  const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
+  const [selectedProduct, setSelectedProduct] = useState(""); //* 모달창 상태 값 저장
+  //* 찾기 버튼 활성화
+  useEffect(() => {
+    if (amount && value) {
+      setNotAllow(false);
+    } else {
+      setNotAllow(true);
+    }
+  }, [amount, value]);
 
-  //* input 상태 값 저장슬리이더 함수
-  const handleSliderChange = (newValue) => {
-    setValue(newValue);
-    saveValue(newValue);
-  };
-  const saveValue = (newValue) => {
-    // save value to database or do something with value
-    switch (newValue) {
-      case 0:
-        console.log("0");
-        setValue(0);
-        break;
-      case 6:
-        console.log("6");
-        setValue(6);
-        break;
-      case 12:
-        console.log("12");
-        setValue(12);
-        break;
-      case 24:
-        console.log("24");
-        setValue(24);
-        break;
-      case 36:
-        console.log("36");
-        setValue(36);
-        break;
-      default:
-        console.log("invalid value");
-        break;
+  //* input 상태 값 저장
+  const handleBlur = () => {
+    if (amount) {
+      // amount가 존재하면 저장
+      console.log("saved amount:", amount);
     }
   };
+  const handleInputChange = (event) => {
+    // 정규식으로 입력값에서 숫자만 추출
+    const value = event.target.value.replace(/[^0-9]/g, "");
+
+    if (value.length <= 10) {
+      // 10자리 이하인 경우만 amount 업데이트
+      setAmount(value.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    } else {
+      setAmount("1,000,000,000");
+    }
+    if (value.length === 10) {
+      setAmount("1,000,000,000");
+    }
+  };
+
+  //* ","로 포맷팅된 금액을 ","를 제거한 숫자로 변환하고, 억, 만, 원으로 포맷팅.
+  const formattedAmount = useMemo(() => {
+    const amountWithoutCommas = amount.replace(/,/g, "");
+
+    if (amountWithoutCommas >= 100000000) {
+      //* 1억 이상
+      let number = Math.floor(amountWithoutCommas / 100000000);
+      if (amountWithoutCommas % 100000000 === 0) {
+        number = `${Math.floor(amountWithoutCommas / 100000000)}억원`;
+      } else if (amountWithoutCommas % 10000 === 0) {
+        number = `${Math.floor(amountWithoutCommas / 100000000)}억 ${Math.floor(
+          (amountWithoutCommas % 100000000) / 10000
+        )}만원`; //* 1억원 이상이고 1만원 이상인 친구들 처리
+      } else if (amountWithoutCommas % 100000000 < 10000) {
+        number = `${Math.floor(amountWithoutCommas / 100000000)}억 ${Math.floor(
+          amountWithoutCommas % 10000
+        )}원`; //* 1억 이상이고 1만원 미만인 친구들 처리
+      } else {
+        number = `${Math.floor(amountWithoutCommas / 100000000)}억 ${Math.floor(
+          (amountWithoutCommas % 100000000) / 10000
+        )}만 ${new Intl.NumberFormat("ko-KR").format(
+          amountWithoutCommas % 10000
+        )}원`;
+      }
+      return number;
+    } else if (amountWithoutCommas >= 10000) {
+      //* 1만 이상
+      return amountWithoutCommas % 10000 === 0
+        ? `${Math.floor(amountWithoutCommas / 10000)}만원`
+        : `${Math.floor(amountWithoutCommas / 10000)}만 ${new Intl.NumberFormat(
+            "ko-KR"
+          ).format(amountWithoutCommas % 10000)}원`;
+    } else {
+      return `${new Intl.NumberFormat("ko-KR").format(amountWithoutCommas)}원`;
+    }
+  }, [amount]);
+
+  //* 슬라이더 함수
+  const handleChange = (event) => {
+    const newValue = parseInt(event.target.value, 10);
+    setValue(newValue);
+    console.log([0, 6, 12, 24, 36][newValue]);
+  };
+
+  const handleButtonClick = async () => {
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
+    const product = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      product.push(newProduct);
+    });
+    setProducts(product);
+  };
+
+  useEffect(() => {
+    handleButtonClick();
+  }, []);
+
+  //* input 상태 값 저장슬리이더 함수
 
   const handleProductTypeClick = (buttonType) => {
     setProductType(buttonType);
@@ -140,7 +201,7 @@ const ServicePage = () => {
     return b.intr_rate2 - a.intr_rate2;
   });
 
-  // 비교하기 버튼 모달창
+  //* 비교하기 버튼 모달창
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
@@ -260,7 +321,7 @@ const ServicePage = () => {
                     <TapContainerBox>
                       <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
                       <ProductWraper>
-                        <ProductType
+                        <ProductType //* 상품 종류 선택 버튼
                           onClick={() => {
                             handleProductTypeClick(1);
                           }}
@@ -293,48 +354,104 @@ const ServicePage = () => {
                       </ProductWraper>
                       <ProducksCalculatorBoxContent>
                         <ProducksCalculatorBoxContentTilte>
-                          <span style={{ fontWeight: "bold" }}>
-                            만기 목표금액
-                          </span>
-                          을 입력해주세요
+                          <div>
+                            {productType === 1 ? (
+                              <>
+                                <span style={{ fontWeight: "bold" }}>
+                                  최초 예치 할 금액
+                                </span>
+                                <span>을 입력해주세요.</span>
+                                <div>
+                                  <input
+                                    type="text"
+                                    value={amount}
+                                    onBlur={handleBlur}
+                                    onChange={handleInputChange}
+                                    placeholder="금액을 입력해주세요"
+                                  />
+                                  <div
+                                    style={{
+                                      fontSize: "15px",
+                                      fontWeight: "bold",
+                                      margin: "0px 0px 30px 30px",
+                                    }}
+                                  >
+                                    {formattedAmount}
+                                  </div>
+                                </div>
+                                <MonthRangeSliderTitle>
+                                  <span>몇개월</span>
+                                  <span style={{ fontWeight: "bold" }}>
+                                    {" "}
+                                    예치
+                                  </span>
+                                  <span> 하실건가요?</span>
+                                </MonthRangeSliderTitle>
+                              </>
+                            ) : productType === 2 ? (
+                              <>
+                                <span style={{ fontWeight: "bold" }}>
+                                  만기 목표금액
+                                </span>
+                                <span>을 입력해주세요.</span>
+                                <formattedAmount>
+                                  <input
+                                    type="text"
+                                    value={amount}
+                                    onBlur={handleBlur}
+                                    onChange={handleInputChange}
+                                    placeholder="금액을 입력해주세요"
+                                  />
+                                  <div
+                                    style={{
+                                      fontSize: "15px",
+                                      fontWeight: "bold",
+                                      margin: "0px 0px 30px 30px",
+                                    }}
+                                  >
+                                    {formattedAmount}
+                                  </div>
+                                </formattedAmount>
+                                <MonthRangeSliderTitle>
+                                  <span>몇개월</span>
+                                  <span style={{ fontWeight: "bold" }}>
+                                    {" "}
+                                    모으실건가요?
+                                  </span>
+                                </MonthRangeSliderTitle>
+                              </>
+                            ) : (
+                              <div>잘못된 입력입니다.</div>
+                            )}
+                          </div>
                         </ProducksCalculatorBoxContentTilte>
-                        <div>
-                          <input
-                            type="number"
-                            placeholder="금액을 입력해주세요."
-                          ></input>
-                        </div>
                       </ProducksCalculatorBoxContent>
                       <MonthRangeSliderWraper>
-                        <MonthRangeSliderTitle>
-                          몇개월 모으실건가요?
-                        </MonthRangeSliderTitle>
-
-                        <input
-                          type="range"
-                          min="0"
-                          max="36"
-                          step="6"
-                          value={value}
-                          onChange={(e) =>
-                            handleSliderChange(Number(e.target.value))
-                          }
-                        />
-
+                        <div>
+                          <input
+                            type="range"
+                            min="0"
+                            max="4"
+                            value={value}
+                            onChange={handleChange}
+                          />
+                        </div>
                         <MonthRangeSlider>
-                          <span>선택안함</span>
-                          <span>6개월</span>
-                          <span>12개월</span>
-                          <span>24개월</span>
-                          <span>36개월</span>
+                          <span>기간 선택</span>
+                          <span style={{ marginLeft: "-15px" }}>6개월</span>
+                          <span style={{ marginLeft: "11px" }}>12개월</span>
+                          <span style={{ marginLeft: "10px" }}>24개월</span>
+                          <span style={{ marginLeft: "-6px" }}>36개월</span>
                         </MonthRangeSlider>
                       </MonthRangeSliderWraper>
                       <FilterSubmitWarper>
                         {showSearch ? (
                           <FilterSubmit
+                            disabled={notAllow}
                             onClick={() => {
                               handleClickResults();
                               handleClickSearch();
+                              handleButtonClick();
                             }}
                           >
                             찾기
@@ -353,6 +470,17 @@ const ServicePage = () => {
                     </TapContainerBox>
                   </TapContainer>
                 </Tapwraper>
+              )}
+              {showResults && (
+                <ResultsSection className="section">
+                  <div>
+                    <ul>
+                      {products.map((item) => (
+                        <button key={item.id}>{item.fin_prdt_nm}</button>
+                      ))}
+                    </ul>
+                  </div>
+                </ResultsSection>
               )}
               {activeTab === 2 && (
                 <TapContainer>
@@ -414,14 +542,6 @@ const ServicePage = () => {
                     <TapTitleName>찜 목록</TapTitleName>
                   </TapContainerBox>
                 </TapContainer>
-              )}
-            </div>
-            {/*.결과 영역 */}
-            <div>
-              {showResults && (
-                <ResultsSection className="section">
-                  계산결과가 나타날 공간.
-                </ResultsSection>
               )}
             </div>
           </BottomSection>
