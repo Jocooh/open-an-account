@@ -73,24 +73,28 @@ function Product({
     //* 선택된 상품 id 저장
     // const getSelectedProductDetail = async () => {
     try {
-      const docRef = doc(db, "DEPOSIT_BASE_LIST");
+      const docRef = doc(db, "DEPOSIT_BASE_LIST", _);
       const docSnap = await getDoc(docRef);
       const selectedProductArray = [];
 
       if (docSnap.exists()) {
-        const selectedProductBaseList = docSnap.data();
-        selectedProductArray.push(selectedProductBaseList);
+        querySnapshot.forEach((doc) => {
+          const newProduct = {
+            id: doc.id,
+            ...doc.data(),
+          };
+          selectedProductArray.push(newProduct);
+        });
         // const newProductIds = [...selectedProductIds];
-        // newProductIds[newProductIds.indexOf("")] = docSnap.id;
-        setSelectedProductDetail(selectedProductArray);
-        console.log(selectedProductDetail);
+        newProductIds[newProductIds.indexOf("")] = docSnap.id;
+        setSelectedProductDetail(newProductIds);
+        console.log(newProductIds);
       } else {
         console.log("문서의 아이디를 찾을 수 없어요!");
       }
     } catch (error) {
-      console.log("error :>> ", error);
+      console.log(error);
     }
-
     // setSelectedProductDetail(selectedProductBaseList);
     getBankSite();
     goBankSite();
@@ -101,10 +105,8 @@ function Product({
   const getBankSite = () => {
     console.log("selectedProductDetail :>> ", selectedProductDetail);
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         setButtonContents("사이트로 이동");
-        // if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
-        //   setButtonContents("사이트로 이동");
         //   return (
         //     <Button
         //       navigate={Object.values(logo)[1]}
@@ -126,7 +128,7 @@ function Product({
 
   const goBankSite = () => {
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         console.log("Object.keys(logo)[1] :>> ", Object.keys(logo)[1]);
         setSite(Object.keys(logo)[1]); //undefined
       }

@@ -101,10 +101,8 @@ function Product({
   const getBankSite = () => {
     console.log("selectedProductDetail :>> ", selectedProductDetail);
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         setButtonContents("사이트로 이동");
-        // if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
-        //   setButtonContents("사이트로 이동");
         //   return (
         //     <Button
         //       navigate={Object.values(logo)[1]}
@@ -126,7 +124,7 @@ function Product({
 
   const goBankSite = () => {
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         console.log("Object.keys(logo)[1] :>> ", Object.keys(logo)[1]);
         setSite(Object.keys(logo)[1]); //undefined
       }

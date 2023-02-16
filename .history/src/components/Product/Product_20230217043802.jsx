@@ -60,38 +60,19 @@ function Product({
     //   selectedProductArray.push(newProduct);
     // });
 
-    // //* 파베 문서 참고
-    // const ref = doc(db, "DEPOSIT_BASE_LIST");
-    // const docSnap = await getDoc(ref);
-    // if (docSnap.exists()) {
-    //   const selectedProductBaseList = docSnap.data();
-    //   console.log(selectedProductBaseList);
-    // } else {
-    //   console.log("No such document!");
-    // }
-
-    //* 선택된 상품 id 저장
-    // const getSelectedProductDetail = async () => {
-    try {
-      const docRef = doc(db, "DEPOSIT_BASE_LIST");
-      const docSnap = await getDoc(docRef);
-      const selectedProductArray = [];
-
-      if (docSnap.exists()) {
-        const selectedProductBaseList = docSnap.data();
-        selectedProductArray.push(selectedProductBaseList);
-        // const newProductIds = [...selectedProductIds];
-        // newProductIds[newProductIds.indexOf("")] = docSnap.id;
-        setSelectedProductDetail(selectedProductArray);
-        console.log(selectedProductDetail);
-      } else {
-        console.log("문서의 아이디를 찾을 수 없어요!");
-      }
-    } catch (error) {
-      console.log("error :>> ", error);
+    //* 파베 문서 참고
+    const ref = doc(db, "DEPOSIT_BASE_LIST");
+    const docSnap = await getDoc(ref);
+    if (docSnap.exists()) {
+      // Convert to City object
+      const selectedProductBaseList = docSnap.data();
+      // Use a City instance method
+      setSelectedProductDetail(selectedProductBaseList);
+      console.log(selectedProductBaseList.toString());
+    } else {
+      console.log("No such document!");
     }
 
-    // setSelectedProductDetail(selectedProductBaseList);
     getBankSite();
     goBankSite();
   };
@@ -101,10 +82,8 @@ function Product({
   const getBankSite = () => {
     console.log("selectedProductDetail :>> ", selectedProductDetail);
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         setButtonContents("사이트로 이동");
-        // if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
-        //   setButtonContents("사이트로 이동");
         //   return (
         //     <Button
         //       navigate={Object.values(logo)[1]}
@@ -126,7 +105,7 @@ function Product({
 
   const goBankSite = () => {
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         console.log("Object.keys(logo)[1] :>> ", Object.keys(logo)[1]);
         setSite(Object.keys(logo)[1]); //undefined
       }

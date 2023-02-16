@@ -101,7 +101,7 @@ function Product({
   const getBankSite = () => {
     console.log("selectedProductDetail :>> ", selectedProductDetail);
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail?.fin_co_no) {
         setButtonContents("사이트로 이동");
         // if (Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no) {
         //   setButtonContents("사이트로 이동");
