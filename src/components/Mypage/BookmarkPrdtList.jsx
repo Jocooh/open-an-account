@@ -3,15 +3,16 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import { CardContainer, StyledCard } from "../../pages/MyPage/style";
+import BookmarkPrdtItem from "./BookmarkPrdtItem";
 
-const BookmarkPrdtList = () => {
+const BookmarkPrdtList = ({ currentUser }) => {
   const [items, setItems] = useState([]);
 
-  // 유저가 좋아요한 영상 가져오기
+  // 유저가 북마크한 item 가져오기
   const getData = async () => {
     const q = query(
       collection(db, "bookmarks"),
-      where("userId", "==", updateCurrentUser?.uid)
+      where("userId", "==", currentUser?.uid)
     );
     const querySnapshot = await getDocs(q);
     let dataArray = [];
@@ -19,6 +20,7 @@ const BookmarkPrdtList = () => {
       dataArray.push(doc.data());
     });
     setItems(dataArray);
+    // console.log(items);
   };
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const BookmarkPrdtList = () => {
   return (
     <CardContainer>
       {items.map((item) => (
-        <StyledCard item={item} key={item.id} />
+        <BookmarkPrdtItem item={item} />
       ))}
     </CardContainer>
   );

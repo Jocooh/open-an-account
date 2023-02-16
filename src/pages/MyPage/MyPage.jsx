@@ -28,6 +28,7 @@ function MyPage() {
     "firebase:authUser:AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0:[DEFAULT]"
   );
   const currentUser = JSON.parse(userSession ?? "");
+  // console.log(currentUser);
   return (
     <>
       <StyledMyContainer>
