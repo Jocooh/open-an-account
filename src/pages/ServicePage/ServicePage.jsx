@@ -229,16 +229,6 @@ const ServicePage = () => {
   //   setSavingbaseList(data?.result.baseList);
   //   setSavingOptionalList(data?.result.optionList);
   // };
-  const topLocation = useRef(null);
-
-  const onTop = () => {
-    topLocation.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useMemo(() => {
-    // SavingBankListFetch();
-    DepositBankListFetch();
-  }, []);
 
   //최고금리 순으로 가져오는 함수(정기예금)
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -256,6 +246,18 @@ const ServicePage = () => {
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
   };
+  //스크롤 탑 함수
+  const topLocation = useRef(null);
+  const onTop = () => {
+    topLocation.current.scrollIntoView({ behavior: "smooth" });
+  };
+  //자세히 버튼 누르면 나올 상세페이지 토글
+  const [toggleDetail, setToggleDetail] = useState(false);
+
+  useMemo(() => {
+    // SavingBankListFetch();
+    DepositBankListFetch();
+  }, []);
 
   return (
     <Wraper>
@@ -605,11 +607,15 @@ const ServicePage = () => {
                                 <AllBankList
                                   depositOptionalList={depositOptionalList}
                                   depositbaseList={depositbaseList}
+                                  setToggleDetail={setToggleDetail}
+                                  toggleDetail={toggleDetail}
                                 />
                               ) : (
                                 <SavingAllBankList
                                   savingbaseList={savingbaseList}
                                   savingOptionalList={savingOptionalList}
+                                  setToggleDetail={setToggleDetail}
+                                  toggleDetail={toggleDetail}
                                 />
                               )}
                             </StyledBankList>
