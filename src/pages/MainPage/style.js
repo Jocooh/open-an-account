@@ -175,6 +175,7 @@ export const Sidebar = styled.div`
   position: fixed;
   right: 20px;
   top: 100px;
+  z-index: 2;
   button {
     cursor: pointer;
     border: none;
