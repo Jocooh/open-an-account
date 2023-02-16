@@ -117,6 +117,7 @@ const ServicePage = () => {
       console.log(error);
     }
   };
+
   const handleClickProduct = (productId) => {
     handleSelectProduct(productId);
   };
@@ -271,29 +272,52 @@ const ServicePage = () => {
             </TopSectionSubTitle>
             <ProductsWraper>
               <SelectedProductsContainer>
-                {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                <>
-                  <p>
-                    {
-                      products.find(
-                        (product) => product.id === selectedProductIds[0]
-                      ).fin_prdt_nm
-                    }
-                  </p>
-                  <p>
-                    {
-                      products.find(
-                        (product) => product.id === selectedProductIds[0]
-                      ).kor_co_nm
-                    }
-                  </p>
-                </>
+                <SelectedProducts>
+                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[0] === "" ? (
+                    <div>
+                      <p>비교할 상품을 선택해주세요.</p>
+                      <img
+                        style={{ alignItems: "center", marginTop: "50px" }}
+                        src="url"
+                        alt="이미지"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[0]
+                          ).fin_prdt_nm
+                        }
+                      </p>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[0]
+                          ).kor_co_nm
+                        }
+                      </p>
+                    </div>
+                  )}
+                </SelectedProducts>
               </SelectedProductsContainer>
+
               <SelectedProductsContainer>
-                {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                <div>
-                  {selectedProductIds[1] ? (
-                    <>
+                <SelectedProducts>
+                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[1] === "" ? (
+                    <div>
+                      <p>비교할 상품을 선택해주세요.</p>
+                      <img
+                        style={{ alignItems: "center", marginTop: "50px" }}
+                        src="url"
+                        alt="이미지"
+                      />
+                    </div>
+                  ) : (
+                    <div>
                       <p>
                         {
                           products.find(
@@ -308,39 +332,42 @@ const ServicePage = () => {
                           ).kor_co_nm
                         }
                       </p>
-                    </>
-                  ) : (
-                    <SelectedProducts>
-                      비교할 상품을 선택해주세요.
-                      <div>
-                        <img
-                          style={{ alignItems: "center", marginTop: "50px" }}
-                          src="url"
-                          alt="이미지"
-                        />
-                      </div>
-                    </SelectedProducts>
+                    </div>
                   )}
-                </div>
+                </SelectedProducts>
               </SelectedProductsContainer>
+
               <SelectedProductsContainer>
-                {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                <>
-                  <p>
-                    {
-                      products.find(
-                        (product) => product.id === selectedProductIds[2]
-                      ).fin_prdt_nm
-                    }
-                  </p>
-                  <p>
-                    {
-                      products.find(
-                        (product) => product.id === selectedProductIds[2]
-                      ).kor_co_nm
-                    }
-                  </p>
-                </>
+                <SelectedProducts>
+                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[2] === "" ? (
+                    <div>
+                      <p>비교할 상품을 선택해주세요.</p>
+                      <img
+                        style={{ alignItems: "center", marginTop: "50px" }}
+                        src="url"
+                        alt="이미지"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[2]
+                          ).fin_prdt_nm
+                        }
+                      </p>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[2]
+                          ).kor_co_nm
+                        }
+                      </p>
+                    </div>
+                  )}
+                </SelectedProducts>
               </SelectedProductsContainer>
             </ProductsWraper>
             <div
