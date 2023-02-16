@@ -63,6 +63,7 @@ function Product({
       setSelectedProductDetail(selectedProductArray);
     });
   };
+  console.log("selectedProductDetail", typeof selectedProductDetail);
 
   // //* 상품 찜 가져오기
   // const getScrap = async () => {
@@ -118,7 +119,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail?.fin_prdt_nm}</Prdt_nm>
+          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);

@@ -49,8 +49,8 @@ function Product({
   //* selectedProduct정보 파베에서 불러오기
   const getSelectedProductDetail = async () => {
     const querySnapshot = await getDocs(
-      collection(db, "DEPOSIT_BASE_LIST", doc.id),
-      where("selectedProductId", "==", doc.id)
+      collection(db, "DEPOSIT_BASE_LIST", id),
+      where("selectedProductId", "==", id)
     );
     const selectedProductArray = [];
 
@@ -63,6 +63,7 @@ function Product({
       setSelectedProductDetail(selectedProductArray);
     });
   };
+  console.log("selectedProductDetail", typeof selectedProductDetail);
 
   // //* 상품 찜 가져오기
   // const getScrap = async () => {
@@ -118,7 +119,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail?.fin_prdt_nm}</Prdt_nm>
+          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);

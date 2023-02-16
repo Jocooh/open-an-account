@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, axios, useEffect } from "react";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import {
   collection,
@@ -7,7 +7,6 @@ import {
   doc,
   deleteDoc,
   setDoc,
-  where,
 } from "firebase/firestore";
 import { authService, db } from "../../config/firebase";
 import {
@@ -48,21 +47,22 @@ function Product({
 
   //* selectedProduct정보 파베에서 불러오기
   const getSelectedProductDetail = async () => {
-    const querySnapshot = await getDocs(
-      collection(db, "DEPOSIT_BASE_LIST", doc.id),
-      where("selectedProductId", "==", doc.id)
-    );
-    const selectedProductArray = [];
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
+    const selectedProductId = [];
 
     querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      selectedProductArray.push(newProduct);
-      setSelectedProductDetail(selectedProductArray);
+      const newProduct = [
+        {
+          id: doc.id,
+          ...doc.data(),
+        },
+      ];
+
+      selectedProductId.push(newProduct);
+      setSelectedProductDetail(selectedProductId);
     });
   };
+  console.log("selectedProductDetail :>> ", selectedProductDetail);
 
   // //* 상품 찜 가져오기
   // const getScrap = async () => {
@@ -118,7 +118,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductDetail?.fin_prdt_nm}</Prdt_nm>
+          <Prdt_nm>{selectedProductDetail}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);
