@@ -20,8 +20,14 @@ import {
 } from "../SearchBankList/style";
 import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import SavingDetail from "../DetailProduct/SavingDetail";
 
-function AllBankList({ savingbaseList, savingOptionalList }) {
+function SavingAllBankList({
+  savingbaseList,
+  savingOptionalList,
+  toggleDetail,
+  setToggleDetail,
+}) {
   const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
   });
@@ -83,14 +89,26 @@ function AllBankList({ savingbaseList, savingOptionalList }) {
                           <BsFillBookmarkFill style={StyledBookMark} />
                           <button
                             style={{
-                              width: "50px",
+                              width: "60px",
                               height: "30px",
                             }}
+                            onClick={() => {
+                              setToggleDetail((toggleDetail) => !toggleDetail);
+                            }}
                           >
-                            더 보기
+                            {toggleDetail === true ? "자세히∧" : "자세히∨"}
                           </button>
                         </StyledMoreListDiv>
                       </StyledListDiv>
+                      <div>
+                        {toggleDetail === true ? (
+                          <SavingDetail
+                            depositDB={i}
+                            depositbaseList={v}
+                            depositOptionalList={savingOptionalList}
+                          ></SavingDetail>
+                        ) : null}
+                      </div>
                     </StyledBankLists>
                   ) : null}
                 </>
@@ -102,4 +120,4 @@ function AllBankList({ savingbaseList, savingOptionalList }) {
   );
 }
 
-export default AllBankList;
+export default SavingAllBankList;

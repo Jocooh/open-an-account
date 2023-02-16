@@ -55,8 +55,6 @@ const ServicePage = () => {
   //적금상품 baseList ,optionList
   const [savingbaseList, setSavingbaseList] = useState(null);
   const [savingOptionalList, setSavingOptionalList] = useState(null);
-  //자세히 버튼 누르면 나올 상세페이지 토글
-  const [toggleDetail, setToggleDetail] = useState(false);
 
   const handleProductTypeClick = (buttonType) => {
     setProductType(buttonType);
@@ -91,22 +89,24 @@ const ServicePage = () => {
   //   setSavingbaseList(data?.result.baseList);
   //   setSavingOptionalList(data?.result.optionList);
   // };
-  const topLocation = useRef(null);
-
-  const onTop = () => {
-    topLocation.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useMemo(() => {
-    // SavingBankListFetch();
-    DepositBankListFetch();
-  }, []);
 
   // 비교하기 버튼 모달창
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
   };
+  //스크롤 탑 함수
+  const topLocation = useRef(null);
+  const onTop = () => {
+    topLocation.current.scrollIntoView({ behavior: "smooth" });
+  };
+  //자세히 버튼 누르면 나올 상세페이지 토글
+  const [toggleDetail, setToggleDetail] = useState(false);
+
+  useMemo(() => {
+    // SavingBankListFetch();
+    DepositBankListFetch();
+  }, []);
 
   return (
     <Wraper>
@@ -382,6 +382,8 @@ const ServicePage = () => {
                                 <SavingAllBankList
                                   savingbaseList={savingbaseList}
                                   savingOptionalList={savingOptionalList}
+                                  setToggleDetail={setToggleDetail}
+                                  toggleDetail={toggleDetail}
                                 />
                               )}
                             </StyledBankList>

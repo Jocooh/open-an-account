@@ -288,6 +288,7 @@ export const StyledBankLists = styled.div`
   gap: 30px;
   margin-bottom: 15px;
   flex-direction: column;
+  background-color: white;
 `;
 
 export const StyledListDiv = styled.div`
