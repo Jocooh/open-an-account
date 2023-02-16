@@ -40,16 +40,3 @@ function BoardPage() {
 }
 
 export default BoardPage;
-
-// const initialBoard = [
-//   {
-//     title: "제목1",
-//     contents: "내용1",
-//     userId: "abc",
-//   },
-//   {
-//     title: "제목2",
-//     contents: "내용2",
-//     userId: "qwe",
-//   },
-// ];
