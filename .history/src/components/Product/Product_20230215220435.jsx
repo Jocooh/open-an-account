@@ -75,30 +75,30 @@ function Product({ inputValue }) {
     }
   };
   console.log(
-    "적금 단리 만기",
+    "적금 단리 만기 수령액",
     Math.round(
       inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
     )
   );
 
   console.log(
-    "예금 단리 만기",
+    "예금 단리 만기 수령액 :>> ",
     Math.round(inputNum * (1 + 0.01 * 4.21 - 0.01 * 4.21 * 0.154))
   );
-  console.log("~~~~~~~~~~");
+
   console.log(
-    "예금 복리 이자",
+    "예금 복리 이자 :>> ",
     Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum)
   );
   console.log(
-    "예금 복리 이자",
+    "예금 복리 이자과세 :>> ",
     Math.round(
       Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) *
         0.154
     )
   );
   console.log(
-    "예금 복리 만기",
+    "예금 복리 만기 수령액 ",
     inputNum +
       Math.round(inputNum * Math.pow(1 + (4.5 * 0.01) / 12, 12) - inputNum) -
       Math.round(
@@ -108,7 +108,7 @@ function Product({ inputValue }) {
   );
 
   console.log(
-    "적금 복리 만기",
+    "적금 복리 만기 수령액 ",
     inputNum *
       ((((1 + (4.5 * 0.01) / 12) * (1 + (4.5 * 0.01) / 12 - 1) * 12) / 4.5) *
         0.01)
