@@ -42,7 +42,16 @@ import AllBankList from "../../components/AllBankList/AllBankList";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
 import axios from "axios";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  dbService,
+  docRef,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../config/firebase";
 
 const ServicePage = () => {
@@ -66,7 +75,47 @@ const ServicePage = () => {
   const [value, setValue] = useState(0); //* input Range 상태 값 저장
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
-  const [selectedProduct, setSelectedProduct] = useState(""); //* 모달창 상태 값 저장
+  const [selectedProductId, setSelectedProductId] = useState(""); //* 모달창 상태 값 저장
+
+  //* 상품 리스트 함수
+  const handleButtonClick = async () => {
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
+    const product = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      product.push(newProduct);
+    });
+    setProducts(product);
+  };
+  // console.log(products);
+
+  useEffect(() => {
+    handleButtonClick();
+  }, []);
+  //* 선택된 상품 id 저장
+
+  const handleSelectProduct = async (productId) => {
+    try {
+      const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setSelectedProductId(docSnap.id);
+        console.log(docSnap.id);
+      } else {
+        console.log("문서의 아이디를 을 찾을 수 없어요!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleClickProduct = (productId) => {
+    handleSelectProduct(productId);
+  };
+
   //* 찾기 버튼 활성화
   useEffect(() => {
     if (amount && value) {
@@ -83,6 +132,7 @@ const ServicePage = () => {
       console.log("saved amount:", amount);
     }
   };
+
   const handleInputChange = (event) => {
     // 정규식으로 입력값에서 숫자만 추출
     const value = event.target.value.replace(/[^0-9]/g, "");
@@ -141,23 +191,6 @@ const ServicePage = () => {
     setValue(newValue);
     console.log([0, 6, 12, 24, 36][newValue]);
   };
-
-  const handleButtonClick = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-    const product = [];
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      product.push(newProduct);
-    });
-    setProducts(product);
-  };
-
-  useEffect(() => {
-    handleButtonClick();
-  }, []);
 
   //* input 상태 값 저장슬리이더 함수
 
@@ -476,7 +509,12 @@ const ServicePage = () => {
                   <div>
                     <ul>
                       {products.map((item) => (
-                        <button key={item.id}>{item.fin_prdt_nm}</button>
+                        <li
+                          onClick={() => handleClickProduct(item.id)}
+                          key={item.id}
+                        >
+                          {item.fin_prdt_nm}
+                        </li>
                       ))}
                     </ul>
                   </div>
