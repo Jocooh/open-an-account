@@ -33,7 +33,7 @@ export const TotalCost = styled.div`
 
 export const ProductBox = styled.div`
   box-sizing: border-box;
-  width: 336px;
+
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;

@@ -29,7 +29,7 @@ top: 146px; */
 export const CloseButton = styled.img`
   width: 39px;
   margin-bottom: 20px;
-  margin-right: auto;
+  justify-content: flex-end;
   cursor: pointer;
 
   :hover {
