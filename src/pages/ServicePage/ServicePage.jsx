@@ -19,9 +19,6 @@ import {
   FilterSubmit,
   FinanciialProductsFullList,
   FinanciialProductsWrap,
-  ProducksRank,
-  Producks,
-  ProducksTitle,
   StyledBankList,
   StyledBankListContainer,
   Tapwraper,
@@ -37,14 +34,13 @@ import {
   StyledBtnDiv,
   StyledBtn,
 } from "./style";
-
+import handleClickProduct from "../../components/ServicePage/GetDepositBaseAndOptions";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
 import SavingAllBankList from "../../components/AllBankList/SavingAllBankList";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
-import axios from "axios";
 import {
   collection,
   doc,
@@ -77,12 +73,12 @@ const ServicePage = () => {
   const [value, setValue] = useState(0); //* input Range 상태 값 저장
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
-  const [selectedProductId, setSelectedProductId] = useState(""); //* 모달창 상태 값 저장
   const [selectedProductIds, setSelectedProductIds] = useState(
-    new Array(3).fill("")
-  ); //* 선택된 상품 id 저장
-  //* 상품 리스트 함수
-  const handleButtonClick = async () => {
+    new Array(9).fill("")
+  ); //* 선택된 상품ID 저장
+
+  //* 상품 리스트(BASE) 함수
+  const handleBaseInpoClick = async () => {
     const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
     const product = [];
     querySnapshot.forEach((doc) => {
@@ -94,33 +90,11 @@ const ServicePage = () => {
     });
     setProducts(product);
   };
-  // console.log(products);
+  // console.log(products); //* 금융상품 list 콘솔에 출력
 
   useEffect(() => {
-    handleButtonClick();
+    handleBaseInpoClick();
   }, []);
-
-  //* 선택된 상품 id 저장
-  const handleSelectProduct = async (productId) => {
-    try {
-      const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const newProductIds = [...selectedProductIds];
-        newProductIds[newProductIds.indexOf("")] = docSnap.id;
-        setSelectedProductIds(newProductIds);
-        console.log(newProductIds);
-      } else {
-        console.log("문서의 아이디를 찾을 수 없어요!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleClickProduct = (productId) => {
-    handleSelectProduct(productId);
-  };
 
   //* 찾기 버튼 활성화
   useEffect(() => {
@@ -216,43 +190,11 @@ const ServicePage = () => {
     setShowResults(!showResults);
   };
 
-  const DepositBankListFetch = async () => {
-    console.log("fetch실행");
-    const { data } = await axios.get(
-      "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
-    );
-    setdepositbaseList(data?.result.baseList);
-    setdepositOptionalList(data?.result.optionList);
-  };
-
-  // const SavingBankListFetch = async () => {
-  //   console.log("saving Fetch");
-  //   const { data } = await axios.get(
-  //     `https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
-  //   );
-  //   setSavingbaseList(data?.result.baseList);
-  //   setSavingOptionalList(data?.result.optionList);
-  // };
   const topLocation = useRef(null);
 
   const onTop = () => {
     topLocation.current.scrollIntoView({ behavior: "smooth" });
   };
-
-  useMemo(() => {
-    // SavingBankListFetch();
-    DepositBankListFetch();
-  }, []);
-
-  //최고금리 순으로 가져오는 함수(정기예금)
-  const depositDB = depositOptionalList?.sort(function (a, b) {
-    return b.intr_rate2 - a.intr_rate2;
-  });
-
-  //여기 적금 최고금리순으로 가져오는 함수 필요
-  const savingDB = depositOptionalList?.sort(function (a, b) {
-    return b.intr_rate2 - a.intr_rate2;
-  });
 
   // 비교하기 버튼 모달창
 
@@ -306,8 +248,8 @@ const ServicePage = () => {
 
               <SelectedProductsContainer>
                 <SelectedProducts>
-                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[1] === "" ? (
+                  {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[3] === "" ? (
                     <div>
                       <p>비교할 상품을 선택해주세요.</p>
                       <img
@@ -321,14 +263,14 @@ const ServicePage = () => {
                       <p>
                         {
                           products.find(
-                            (product) => product.id === selectedProductIds[1]
+                            (product) => product.id === selectedProductIds[3]
                           ).fin_prdt_nm
                         }
                       </p>
                       <p>
                         {
                           products.find(
-                            (product) => product.id === selectedProductIds[1]
+                            (product) => product.id === selectedProductIds[3]
                           ).kor_co_nm
                         }
                       </p>
@@ -339,8 +281,8 @@ const ServicePage = () => {
 
               <SelectedProductsContainer>
                 <SelectedProducts>
-                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[2] === "" ? (
+                  {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[6] === "" ? (
                     <div>
                       <p>비교할 상품을 선택해주세요.</p>
                       <img
@@ -354,14 +296,14 @@ const ServicePage = () => {
                       <p>
                         {
                           products.find(
-                            (product) => product.id === selectedProductIds[2]
+                            (product) => product.id === selectedProductIds[6]
                           ).fin_prdt_nm
                         }
                       </p>
                       <p>
                         {
                           products.find(
-                            (product) => product.id === selectedProductIds[2]
+                            (product) => product.id === selectedProductIds[6]
                           ).kor_co_nm
                         }
                       </p>
@@ -567,7 +509,7 @@ const ServicePage = () => {
                             onClick={() => {
                               handleClickResults();
                               handleClickSearch();
-                              handleButtonClick();
+                              handleBaseInpoClick();
                             }}
                           >
                             찾기
