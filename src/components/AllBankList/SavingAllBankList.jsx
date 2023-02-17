@@ -26,9 +26,14 @@ import SavingDetail from "../DetailProduct/SavingDetail";
 function SavingAllBankList({
   savingbaseList,
   savingOptionalList,
+
+  activeItem,
+  setActiveItem,
+
   toggleDetail,
   setToggleDetail,
   bookmarkProducts,
+
 }) {
 
   const savingDB = savingOptionalList?.sort(function (a, b) {
@@ -36,59 +41,61 @@ function SavingAllBankList({
   });
 
   return (
-    <StyledBankListWrapper>
-      <div>
-        {savingDB &&
-          savingDB?.map((i) =>
-            savingbaseList?.map((v) =>
-              i.fin_prdt_cd === v.fin_prdt_cd ? (
-                <>
-                  {i.save_trm === "12" ? (
-                    <StyledBankLists>
-                      {/* 로고 */}
-                      <StyledListDiv>
-                        <StyledDiv>
-                          <div key={v.fin_prdt_nm}>
-                            {logoLists.logos.map((t) =>
-                              Object.keys(t)[0] === v.fin_co_no ? (
-                                <StyledImg
-                                  src={Object.values(t)[0]}
-                                  alt="로고"
-                                  key={v.fin_co_subm_day}
-                                />
-                              ) : null
-                            )}
-                          </div>
+    <div>
+      {savingDB &&
+        savingDB?.map((saving) =>
+          savingbaseList?.map((item) =>
+            saving.fin_prdt_cd === item.fin_prdt_cd ? (
+              <>
+                {saving.save_trm === "12" ? (
+                  <StyledBankLists>
+                    {/* 로고 */}
+                    <StyledListDiv>
+                      <StyledDiv>
+                        <div key={item.fin_prdt_nm}>
+                          {logoLists.logos.map((t) =>
+                            Object.keys(t)[0] === item.fin_co_no ? (
+                              <StyledImg
+                                src={Object.values(t)[0]}
+                                alt="로고"
+                                key={item.fin_co_subm_day}
+                              />
+                            ) : null
+                          )}
+                        </div>
 
-                          <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
-                            <StyledContentDiv>
-                              <StyledProductTitleDiv>
-                                {/* product name */}
-                                <h2
-                                  style={{
-                                    fontSize: "20px",
-                                  }}
-                                >
-                                  {v.fin_prdt_nm}
-                                </h2>
-                                {/* bank Name */}
-                                <StyledBankNameP>{v.kor_co_nm}</StyledBankNameP>
-                              </StyledProductTitleDiv>
-                              <StyledSaveTrmDiv>
-                                {/* 최대금리 */}
-                                <StyledRateP>
-                                  최대금리
-                                  {i.intr_rate2}
-                                </StyledRateP>
-                                {/* 이자율 -> 일반금리 */}
-                                <StyledRateP>
-                                  일반금리 {i.intr_rate}
-                                </StyledRateP>
-                              </StyledSaveTrmDiv>
-                            </StyledContentDiv>
-                          </div>
-                        </StyledDiv>
-                        <StyledMoreListDiv>
+
+                        <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
+                          <StyledContentDiv>
+                            <StyledProductTitleDiv>
+                              {/* product name */}
+                              <h2
+                                style={{
+                                  fontSize: "20px",
+                                }}
+                              >
+                                {item.fin_prdt_nm}
+                              </h2>
+                              {/* bank Name */}
+                              <StyledBankNameP>
+                                {item.kor_co_nm}
+                              </StyledBankNameP>
+                            </StyledProductTitleDiv>
+                            <StyledSaveTrmDiv>
+                              {/* 최대금리 */}
+                              <StyledRateP>
+                                최대금리
+                                {saving.intr_rate2}
+                              </StyledRateP>
+                              {/* 이자율 -> 일반금리 */}
+                              <StyledRateP>
+                                일반금리 {saving.intr_rate}
+                              </StyledRateP>
+                            </StyledSaveTrmDiv>
+                          </StyledContentDiv>
+                        </div>
+                      </StyledDiv>
+                          <StyledMoreListDiv>
                           <Bookmarks bookmarkProducts={bookmarkProducts} />
                           <button
                             style={{
@@ -102,24 +109,24 @@ function SavingAllBankList({
                             {toggleDetail === true ? "자세히∧" : "자세히∨"}
                           </button>
                         </StyledMoreListDiv>
-                      </StyledListDiv>
-                      <div>
-                        {toggleDetail === true ? (
-                          <SavingDetail
-                            depositDB={i}
-                            depositbaseList={v}
-                            depositOptionalList={savingOptionalList}
-                          ></SavingDetail>
-                        ) : null}
-                      </div>
-                    </StyledBankLists>
-                  ) : null}
-                </>
-              ) : null
-            )
-          )}
-      </div>
-    </StyledBankListWrapper>
+                    </StyledListDiv>
+                    <div>
+                      {activeItem === item.id ? (
+                        <SavingDetail
+                          savingDB={saving}
+                          savingbaseList={item}
+                          savingOptionalList={savingOptionalList}
+                        ></SavingDetail>
+                      ) : null}
+                    </div>
+                  </StyledBankLists>
+                ) : null}
+              </>
+            ) : null
+          )
+        )}
+    </div>
+
   );
 }
 

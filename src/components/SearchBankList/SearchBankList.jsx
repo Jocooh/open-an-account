@@ -10,7 +10,7 @@ function SearchBankList({
   searchBank,
   depositbaseList,
   depositOptionalList,
-  productType,
+  productTypes,
   savingbaseList,
   savingOptionalList,
   bookmarkProducts,
@@ -21,8 +21,8 @@ function SearchBankList({
   //savingbaseList: 적금상품 baseList
 
   return (
-    <StyledBankListWrapper>
-      {productType === 1 ? (
+    <>
+      {productTypes === 1 ? (
         <SearchDepositLists
           depositbaseList={depositbaseList}
           searchBank={searchBank}
@@ -37,7 +37,7 @@ function SearchBankList({
           bookmarkProducts={bookmarkProducts}
         />
       )}
-    </StyledBankListWrapper>
+    </>
   );
 }
 

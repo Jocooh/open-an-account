@@ -67,9 +67,9 @@ const InsertData = () => {
     }
   };
 
-  // deposit products data
-  // deposit products data
-  // deposit products data
+  // // deposit products data
+  // // deposit products data
+  // // deposit products data
 
   const getDepositBaseListHandler = async () => {
     const { data } = await axios.get(

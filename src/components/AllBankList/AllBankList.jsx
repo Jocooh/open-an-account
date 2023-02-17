@@ -1,6 +1,4 @@
-//전체목록이 들어가는 은행들의 리스트를 여기서 맵돌릴꺼다.
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import {
   StyledImg,
   StyledSaveTrmDiv,
@@ -8,78 +6,124 @@ import {
   StyledRateP,
   StyledBankNameP,
 } from "./style";
-import {
-  StyledBankLists,
-  StyledBankListWrapper,
-  StyledBookMark,
-} from "../../pages/ServicePage/style";
 import logoLists from "../../assets/logo/logo";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import {
   StyledDiv,
   StyledContentDiv,
   StyledMoreListDiv,
   StyledListDiv,
 } from "../SearchBankList/style";
+
+import { BsFillBookmarkFill } from "react-icons/bs";
+import DepositDetail from "../DetailProduct/DepositDetail";
+import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
+import { useRef } from "react";
+
 import Bookmarks from "./Bookmarks";
+
 
 function AllBankList({
   depositbaseList,
   depositOptionalList,
+
+  activeItem,
+  setActiveItem,
+
 
   bookmarkProducts,
 
   setToggleDetail,
   toggleDetail,
 
+
 }) {
   //최고금리순으로 가져오는 함수
   const depositDB = depositOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
   });
+  //상품 고유 아이디 가져오는state
 
   return (
-    <StyledBankListWrapper>
-      <div>
-        {depositDB &&
-          depositDB?.map((i) =>
-            depositbaseList?.map((v) =>
-              i.fin_prdt_cd === v.fin_prdt_cd ? (
-                <>
-                  {i.save_trm === "12" ? (
-                    <StyledBankLists className="lightyellow">
-                      <StyledListDiv>
-                        <StyledDiv>
-                          <div key={v.fin_prdt_nm}>
-                            {logoLists.logos.map((t) =>
-                              Object.keys(t)[0] === v.fin_co_no ? (
-                                <StyledImg
-                                  src={Object.values(t)[0]}
-                                  alt="로고"
-                                  key={v.fin_co_subm_day}
-                                />
-                              ) : null
-                            )}
-                          </div>
+    <div>
+      {depositDB &&
+        depositDB?.map((deposit) =>
+          depositbaseList?.map((item) =>
+            deposit.fin_prdt_cd === item.fin_prdt_cd ? (
+              <>
+                {deposit.save_trm === "12" ? (
+                  <StyledBankLists key={item.id}>
+                    <StyledListDiv>
+                      <StyledDiv>
+                        {logoLists.logos.map((t) =>
+                          Object.keys(t)[0] === item.fin_co_no ? (
+                            <StyledImg
+                              src={Object.values(t)[0]}
+                              alt="로고"
+                              key={item.id}
+                            />
+                          ) : null
+                        )}
+                        <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
+                          <StyledContentDiv>
+                            <StyledProductTitleDiv>
+                              <h2
+                                style={{
+                                  fontSize: "20px",
+                                }}
+                              >
+                                {item.fin_prdt_nm}
+                              </h2>
 
-                          <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
-                            <StyledContentDiv>
-                              <StyledProductTitleDiv>
-                                <h2
-                                  style={{
-                                    fontSize: "20px",
-                                  }}
-                                >
-                                  {v.fin_prdt_nm}
-                                </h2>
+                              <StyledBankNameP>
+                                {item.kor_co_nm}
+                              </StyledBankNameP>
+                            </StyledProductTitleDiv>
+                            <StyledSaveTrmDiv>
+                              <StyledRateP>
+                                최대금리
+                                {deposit.intr_rate2}
+                              </StyledRateP>
 
-                                <StyledBankNameP>{v.kor_co_nm}</StyledBankNameP>
-                              </StyledProductTitleDiv>
-                              <StyledSaveTrmDiv>
-                                <StyledRateP>
-                                  최대금리
-                                  {i.intr_rate2}
-                                </StyledRateP>
+
+                              <StyledRateP>
+                                일반금리 {deposit.intr_rate}
+                              </StyledRateP>
+                            </StyledSaveTrmDiv>
+                          </StyledContentDiv>
+                        </div>
+                      </StyledDiv>
+                    <StyledMoreListDiv>
+                          <Bookmarks bookmarkProducts={bookmarkProducts} />
+                          <button
+                            style={{
+                              width: "60px",
+                              height: "30px",
+                            }}
+                            onClick={() => {
+                              setToggleDetail((toggleDetail) => !toggleDetail);
+                            }}
+                          >
+                            {toggleDetail === true ? "자세히∧" : "자세히∨"}
+                          </button>
+                        </StyledMoreListDiv>
+                    </StyledListDiv>
+                    <div>
+                      {activeItem === item.id ? (
+                        <DepositDetail
+                          depositDB={deposit}
+                          depositbaseList={item}
+                          depositOptionalList={depositOptionalList}
+                          setActiveItem={setActiveItem}
+                        />
+                      ) : null}
+                    </div>
+                  </StyledBankLists>
+                ) : null}
+              </>
+            ) : null
+          )
+        )}
+    </div>
 
                                 <StyledRateP>
                                   일반금리 {i.intr_rate}
@@ -120,6 +164,7 @@ function AllBankList({
           )}
       </div>
     </StyledBankListWrapper>
+
   );
 }
 

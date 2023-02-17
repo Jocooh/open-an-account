@@ -289,7 +289,6 @@ export const StyledBankListWrapper = styled.div`
   flex-direction: column;
   margin: auto;
   justify-content: center;
-
   padding: 10px;
 `;
 export const StyledBankLists = styled.div`

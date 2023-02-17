@@ -6,14 +6,16 @@ export const StyledDetailContainer = styled.div`
 `;
 
 export const StyledDetailContent = styled.div`
-  /* height: 170px; */
-  width: 730px;
+  display: flex;
+  width: 840px;
   margin: auto;
-  padding: 10px;
+  padding: 30px;
   box-sizing: border-box;
+  justify-content: space-between;
 `;
 export const StyledDetailList = styled.ul`
   list-style: inside;
+  color: #888;
 `;
 export const StyledDetaiListText = styled.li`
   margin-bottom: 10px;
