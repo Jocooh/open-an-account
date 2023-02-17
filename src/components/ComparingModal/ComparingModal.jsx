@@ -27,7 +27,7 @@ const ComparingModal = ({ setComparingModalOpen }) => {
     <ModalBackground>
       <ModalContainer>
         <CloseButton
-          src={require("../../assets/close.png")}
+          //src={require("../../assets/close.png")}
           alt="닫기"
           onClick={() => {
             setComparingModalOpen(false);

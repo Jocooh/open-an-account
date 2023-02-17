@@ -283,8 +283,6 @@ export const StyledBankList = styled.div`
   overflow: auto;
 `;
 
-export const Tapwraper = styled.div``;
-
 export const StyledBankListWrapper = styled.div`
   width: 920px;
   display: flex;
@@ -309,7 +307,6 @@ export const StyledListDiv = styled.div`
   height: 141px;
 `;
 
-
 export const Tapwraper = styled.div``;
 
 export const StyledBookMark = {
@@ -324,4 +321,3 @@ export const StyledBtn = styled.button`
   width: 200px;
   height: 50px;
 `;
-

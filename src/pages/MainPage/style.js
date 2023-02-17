@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
-//* 전체 랩
-
+//* 페이지 전체 랩
 export const MainPageWraper = styled.div`
   width: 100%;
-  height: 1900px;
-  display: flex;
+  height: 2000px;
+  padding-left: 220px;
   justify-content: center;
   /* background-color: blue; */
   background-color: #f0e7fb;
 `;
-export const Wraper = styled.div`
+
+// 상단 전체 랩
+export const UpWraper = styled.div`
   width: 80%;
-  height: 1500px;
+  height: 1000px;
+  background-color: white;
 `;
 
 // 배너 이미지
@@ -29,8 +31,7 @@ export const GreetingBox = styled.div`
   border-radius: 20px;
   border: solid 1px #dedede;
   width: 100%;
-  height: 500px;
-  margin-top: 20px;
+  height: 460px;
   background-color: aliceblue;
   padding: 70px 0px 0px 50px;
 
@@ -52,6 +53,7 @@ export const GreetingTitle = styled.span`
 //* 사용자 이름
 export const Username = styled.span`
   color: #6a24ff;
+  margin-left: 10px;
 `;
 
 //* 멘트
@@ -61,7 +63,7 @@ export const Greetingment = styled.span``;
 export const Greetingcontent = styled.div`
   /* width: 50%; */
   font-size: 22px;
-  margin-top: 30px;
+  margin-top: 50px;
   p {
     margin-top: 20px;
   }
@@ -70,43 +72,110 @@ export const Greetingcontent = styled.div`
 // 상품 찾기 버튼
 export const ProductFdButton = styled.button`
   font-size: 20px;
-  font-weight: bold;
   border: 1px purple solid;
   border-radius: 20px;
   width: 200px;
   margin-top: 120px;
   padding: 25px;
+  background-color: #6a24ff;
+  color: white;
   cursor: pointer;
-
-  :hover {
-    background-color: #6a24ff;
-  }
 `;
 
 //? 하단영역
 export const BottomWrap = styled.div`
-  display: flex;
   margin-top: 20px;
   width: 100%;
 `;
 
-//* 게시판 인기글랩
-export const BoardBestCommentWrap = styled.div``;
+//* 하단 4가지탭
+export const FourTab = styled.div`
+  display: flex;
+`;
 
-//* 게시판 인기글창
-export const BoardBestComment = styled.div`
-  width: 685px;
-  height: 100%;
+//* 금융 용어사전
+export const Dictionary = styled.button`
+  width: 100%;
+  height: 220px;
   border: solid 1px #dedede;
   border-radius: 20px;
-  padding: 30px;
+  text-align: center;
   background-color: aliceblue;
-
+  transition: all 0.2s linear;
+  :hover {
+    transform: scale(1.2);
+  }
   div {
-    font-size: 30px;
-    margin: 40px 0 0 40px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
+  }
+`;
+
+//*  나의 스크랩
+export const MyScript = styled.button`
+  width: 100%;
+  height: 220px;
+  border: solid 1px #dedede;
+  border-radius: 20px;
+  text-align: center;
+  background-color: aliceblue;
+  margin: 0 20px 0 20px;
+  transition: all 0.2s linear;
+  :hover {
+    transform: scale(1.2);
+  }
+  img {
+    margin-top: 10px;
+  }
+  div {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+`;
+
+//*  인기 금융상품
+export const BestProduct = styled.button`
+  width: 100%;
+  height: 220px;
+  border: solid 1px #dedede;
+  border-radius: 20px;
+  text-align: center;
+  background-color: aliceblue;
+  margin-right: 20px;
+  transition: all 0.2s linear;
+  :hover {
+    transform: scale(1.2);
+  }
+  img {
+    margin-top: 10px;
+  }
+  div {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+`;
+
+//*  자주 묻는 질문
+export const Question = styled.button`
+  width: 100%;
+  height: 220px;
+  border: solid 1px #dedede;
+  border-radius: 20px;
+  text-align: center;
+  background-color: aliceblue;
+  transition: all 0.2s linear;
+  :hover {
+    transform: scale(1.2);
+  }
+  img {
+    margin-top: 10px;
+  }
+  div {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
   }
 `;
 
@@ -189,4 +258,67 @@ export const Sidebar = styled.div`
     margin-bottom: 10px;
     border-radius: 50%;
   }
+`;
+
+// 하단 전체 랩
+export const DownWraper = styled.div`
+  width: 80%;
+  height: 1000px;
+  background-color: whitesmoke;
+`;
+
+// 팁퍼 전체 랩
+export const AllTipWraper = styled.div`
+  padding: 80px 0 0 40px;
+`;
+
+// 하단 제목
+export const DownTitle = styled.span`
+  font-size: 30px;
+  font-weight: bold;
+`;
+
+// 옆으로 넘기는 버튼
+export const NextButton = styled.button`
+  float: right;
+`;
+
+// 팁퍼들
+export const Tips = styled.div`
+  display: flex;
+  width: 850px;
+  margin-top: 40px;
+`;
+
+// 팁퍼
+export const Tip = styled.div`
+  height: 650px;
+  width: 100%;
+  border: 1px #dedede solid;
+  border-radius: 10px;
+  margin-right: 10px;
+  background-color: white;
+`;
+
+// 팁퍼제목 랩
+export const TipTitleWrap = styled.div`
+  height: 120px;
+  padding-top: 50px;
+
+  img {
+    float: right;
+    padding-right: 15px;
+  }
+`;
+// 팁퍼제목
+export const TipTitle = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 20px;
+`;
+
+// 후기부분 랩
+export const BoardWrap = styled.div`
+  padding: 0 20px 30px 20px;
 `;
