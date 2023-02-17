@@ -19,9 +19,6 @@ import {
   FilterSubmit,
   FinanciialProductsFullList,
   FinanciialProductsWrap,
-  ProducksRank,
-  Producks,
-  ProducksTitle,
   StyledBankList,
   StyledBankListContainer,
   Tapwraper,
@@ -36,6 +33,7 @@ import {
   SelectedProductsContainer,
   StyledBtnDiv,
   StyledBtn,
+  StyledBankListWrapper,
 } from "./style";
 
 import React, { useState, useMemo, useRef, useEffect } from "react";
@@ -44,7 +42,6 @@ import AllBankList from "../../components/AllBankList/AllBankList";
 import SavingAllBankList from "../../components/AllBankList/SavingAllBankList";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
-import axios from "axios";
 import {
   collection,
   doc,
@@ -54,31 +51,34 @@ import {
   docRef,
   query,
   where,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import AllBank from "../../components/ServicePage/AllBank";
+// import FetchData from "../../data/FetchData";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1);
-  const [productType, setProductType] = useState(1);
+  const [productTypes, setProductTypes] = useState(1);
   const [showResults, setShowResults] = useState(false);
   const [showSearch, setShowSearch] = useState(true);
   //상품검색state
   const [searchBank, setSearchBank] = useState("");
   //예금상품 baseList , optionList
-  const [depositbaseList, setdepositbaseList] = useState(null);
-  const [depositOptionalList, setdepositOptionalList] = useState(null);
+  const [depositbaseList, setdepositbaseList] = useState([]);
+  const [depositOptionalList, setdepositOptionalList] = useState([]);
   //적금상품 baseList ,optionList
-  const [savingbaseList, setSavingbaseList] = useState(null);
+  const [savingbaseList, setSavingbaseList] = useState([]);
+  const [savingoptionalList, setSavingoptionalList] = useState([]);
 
-  const [savingoptionalList, setSavingoptionalList] = useState(null);
-
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
   const [products, setProducts] = useState([]); //* 금융상품 list 상태 값 저장
   const [value, setValue] = useState(0); //* input Range 상태 값 저장
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
   const [selectedProductId, setSelectedProductId] = useState(""); //* 모달창 상태 값 저장
-
+  const [activeItem, setActiveItem] = useState("");
   //* 상품 리스트 함수
   const handleButtonClick = async () => {
     const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
@@ -89,12 +89,70 @@ const ServicePage = () => {
         ...doc.data(),
       };
       product.push(newProduct);
+      setProducts(product);
     });
-    setProducts(product);
   };
-  // console.log(products);
+
+  // 예금baseList;
+  const FetchDepositBaseList = async () => {
+    const querySnapshot = await getDocs(query(db, "DEPOSIT_BASE_LIST"));
+    const depositBaseArray = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      depositBaseArray.push(newProduct);
+    });
+    setdepositbaseList(depositBaseArray);
+  };
+
+  // 예금 optionList
+  const FetchDepositOptionList = async () => {
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
+    const depositOptionArray = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      depositOptionArray.push(newProduct);
+    });
+    setdepositOptionalList(depositOptionArray);
+  };
+  //적금 baseList
+  const FetchSavingBaseList = async () => {
+    const querySnapshot = await getDocs(collection(db, "SAVING_BASE_LIST"));
+    const savingBaseListArray = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      savingBaseListArray.push(newProduct);
+    });
+    setSavingbaseList(savingBaseListArray);
+  };
+
+  //적금 OptionList
+  const FetchSavingOptionList = async () => {
+    const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
+    const savingOptionListArray = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      savingOptionListArray.push(newProduct);
+    });
+    setSavingoptionalList(savingOptionListArray);
+  };
 
   useEffect(() => {
+    FetchDepositBaseList();
+    FetchSavingBaseList();
+    FetchSavingOptionList();
+    FetchDepositOptionList();
     handleButtonClick();
   }, []);
 
@@ -194,10 +252,8 @@ const ServicePage = () => {
     console.log([0, 6, 12, 24, 36][newValue]);
   };
 
-  const [savingOptionalList, setSavingOptionalList] = useState(null);
-
   const handleProductTypeClick = (buttonType) => {
-    setProductType(buttonType);
+    setProductTypes(buttonType);
   };
 
   const handleTabClick = (tabIndex) => {
@@ -212,34 +268,6 @@ const ServicePage = () => {
     setShowResults(!showResults);
   };
 
-  const DepositBankListFetch = async () => {
-    console.log("fetch실행");
-    const { data } = await axios.get(
-      "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
-    );
-    setdepositbaseList(data?.result.baseList);
-    setdepositOptionalList(data?.result.optionList);
-  };
-
-  // const SavingBankListFetch = async () => {
-  //   console.log("saving Fetch");
-  //   const { data } = await axios.get(
-  //     `https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1`
-  //   );
-  //   setSavingbaseList(data?.result.baseList);
-  //   setSavingOptionalList(data?.result.optionList);
-  // };
-
-  //최고금리 순으로 가져오는 함수(정기예금)
-  const depositDB = depositOptionalList?.sort(function (a, b) {
-    return b.intr_rate2 - a.intr_rate2;
-  });
-
-  //여기 적금 최고금리순으로 가져오는 함수 필요
-  const savingDB = depositOptionalList?.sort(function (a, b) {
-    return b.intr_rate2 - a.intr_rate2;
-  });
-
   // 비교하기 버튼 모달창
 
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
@@ -249,16 +277,11 @@ const ServicePage = () => {
   //스크롤 탑 함수
   const topLocation = useRef(null);
   const onTop = () => {
-    topLocation.current.scrollIntoView({ behavior: "smooth" });
+    topLocation.current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
   };
-  //자세히 버튼 누르면 나올 상세페이지 토글
-  const [toggleDetail, setToggleDetail] = useState(false);
-
-  useMemo(() => {
-    // SavingBankListFetch();
-    DepositBankListFetch();
-  }, []);
-
   return (
     <Wraper>
       <Cantinar>
@@ -378,7 +401,7 @@ const ServicePage = () => {
                             handleProductTypeClick(1);
                           }}
                           style={
-                            productType === 1
+                            productTypes === 1
                               ? {
                                   color: "#6A24FF",
                                   border: "1px solid #6A24FF",
@@ -393,7 +416,7 @@ const ServicePage = () => {
                             handleProductTypeClick(2);
                           }}
                           style={
-                            productType === 2
+                            productTypes === 2
                               ? {
                                   color: "#6A24FF",
                                   border: "1px solid #6A24FF",
@@ -407,7 +430,7 @@ const ServicePage = () => {
                       <ProducksCalculatorBoxContent>
                         <ProducksCalculatorBoxContentTilte>
                           <div>
-                            {productType === 1 ? (
+                            {productTypes === 1 ? (
                               <>
                                 <span style={{ fontWeight: "bold" }}>
                                   최초 예치 할 금액
@@ -440,7 +463,7 @@ const ServicePage = () => {
                                   <span> 하실건가요?</span>
                                 </MonthRangeSliderTitle>
                               </>
-                            ) : productType === 2 ? (
+                            ) : productTypes === 2 ? (
                               <>
                                 <span style={{ fontWeight: "bold" }}>
                                   만기 목표금액
@@ -503,7 +526,7 @@ const ServicePage = () => {
                             onClick={() => {
                               handleClickResults();
                               handleClickSearch();
-                              handleButtonClick();
+                              // handleButtonClick();
                             }}
                           >
                             찾기
@@ -557,7 +580,7 @@ const ServicePage = () => {
                               handleProductTypeClick(1);
                             }}
                             style={
-                              productType === 1
+                              productTypes === 1
                                 ? {
                                     color: "#6A24FF",
                                     border: "1px solid #6A24FF",
@@ -572,7 +595,7 @@ const ServicePage = () => {
                               handleProductTypeClick(2);
                             }}
                             style={
-                              productType === 2
+                              productTypes === 2
                                 ? {
                                     color: "#6A24FF",
                                     border: "1px solid #6A24FF",
@@ -594,30 +617,30 @@ const ServicePage = () => {
                                 ref={topLocation}
                                 className="top으로 가는 위치 지정"
                               />
-                              {searchBank.length > 0 ? (
-                                <SearchBankList
-                                  searchBank={searchBank}
-                                  productType={productType}
-                                  depositbaseList={depositbaseList}
-                                  depositOptionalList={depositOptionalList}
-                                  savingbaseList={savingbaseList}
-                                  savingOptionalList={savingOptionalList}
-                                />
-                              ) : productType === 1 ? (
-                                <AllBankList
-                                  depositOptionalList={depositOptionalList}
-                                  depositbaseList={depositbaseList}
-                                  setToggleDetail={setToggleDetail}
-                                  toggleDetail={toggleDetail}
-                                />
-                              ) : (
-                                <SavingAllBankList
-                                  savingbaseList={savingbaseList}
-                                  savingOptionalList={savingOptionalList}
-                                  setToggleDetail={setToggleDetail}
-                                  toggleDetail={toggleDetail}
-                                />
-                              )}
+                              <StyledBankListWrapper>
+                                {searchBank.length > 0 ? (
+                                  <SearchBankList
+                                    searchBank={searchBank}
+                                    productTypes={productTypes}
+                                    depositbaseList={depositbaseList}
+                                    depositOptionalList={depositOptionalList}
+                                    savingbaseList={savingbaseList}
+                                    savingOptionalList={savingoptionalList}
+                                    activeItem={activeItem}
+                                    setActiveItem={setActiveItem}
+                                  />
+                                ) : (
+                                  <AllBank
+                                    productTypes={productTypes}
+                                    depositOptionalList={depositOptionalList}
+                                    depositbaseList={depositbaseList}
+                                    activeItem={activeItem}
+                                    setActiveItem={setActiveItem}
+                                    savingbaseList={savingbaseList}
+                                    savingoptionalList={savingoptionalList}
+                                  />
+                                )}
+                              </StyledBankListWrapper>
                             </StyledBankList>
                             <StyledBtnDiv className="스크롤탑버튼">
                               <StyledBtn onClick={onTop}>
