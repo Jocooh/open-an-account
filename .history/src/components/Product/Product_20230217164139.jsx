@@ -26,7 +26,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import bankSites from "../../assets/bankSite/bankSite";
 
-function Product({ inputValue, selectedProductDetail, productDetail }) {
+function Product({
+  inputValue,
+  selectedProductId,
+  selectedProductDetail,
+  depositProductDetail,
+  savingProudctDetail,
+  productDetail,
+}) {
   //* 스크랩 기능
   const [scrap, setScrap] = useState(false);
   //* 은행사이트 연결
@@ -60,45 +67,21 @@ function Product({ inputValue, selectedProductDetail, productDetail }) {
       }
     });
   };
+  console.log(
+    "productDetail.intr_rate_type :>> ",
+    productDetail.intr_rate_type
+  );
 
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>
       {inputNum > 9999 ? (
-        productDetail.intr_rate_type === "S" ? (
-          <TotalCost>
-            {Math.round(
-              inputNum *
-                (1 +
-                  0.01 * Number(productDetail.intr_rate2) -
-                  0.01 * Number(productDetail.intr_rate2) * 0.154)
-            )}
-            원
-          </TotalCost>
-        ) : (
-          <TotalCost>
-            {inputNum +
-              Math.round(
-                inputNum *
-                  Math.pow(
-                    1 + (Number(productDetail.intr_rate2) * 0.01) / 12,
-                    12
-                  ) -
-                  inputNum
-              ) -
-              Math.round(
-                Math.round(
-                  inputNum *
-                    Math.pow(
-                      1 + (Number(productDetail.intr_rate2) * 0.01) / 12,
-                      12
-                    ) -
-                    inputNum
-                ) * 0.154
-              )}
-            원
-          </TotalCost>
-        )
+        <TotalCost>
+          {Math.round(
+            inputNum * (1 + 5 * 0.01 * (78 / 12) - 5 * 0.01 * (78 / 12) * 0.154)
+          )}
+          원
+        </TotalCost>
       ) : (
         <TotalCost>0원</TotalCost>
       )}
@@ -118,7 +101,7 @@ function Product({ inputValue, selectedProductDetail, productDetail }) {
           <div>{selectedProductDetail.kor_co_nm}</div>
 
           <div>
-            일반 금리 {productDetail.intr_rate}% | 최고금리
+            일반 금리 {productDetail.intr_rate}% | 최고금리{" "}
             {productDetail.intr_rate2}
           </div>
 

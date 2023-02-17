@@ -71,7 +71,8 @@ function Product({ inputValue, selectedProductDetail, productDetail }) {
               inputNum *
                 (1 +
                   0.01 * Number(productDetail.intr_rate2) -
-                  0.01 * Number(productDetail.intr_rate2) * 0.154)
+                  0.01 * Number(productDetail.intr_rate2) *
+                0.154
             )}
             원
           </TotalCost>
@@ -80,19 +81,13 @@ function Product({ inputValue, selectedProductDetail, productDetail }) {
             {inputNum +
               Math.round(
                 inputNum *
-                  Math.pow(
-                    1 + (Number(productDetail.intr_rate2) * 0.01) / 12,
-                    12
-                  ) -
+                  Math.pow(1 + (Number(productDetail.intr_rate2) * 0.01) / 12, 12) -
                   inputNum
               ) -
               Math.round(
                 Math.round(
                   inputNum *
-                    Math.pow(
-                      1 + (Number(productDetail.intr_rate2) * 0.01) / 12,
-                      12
-                    ) -
+                    Math.pow(1 + (Number(productDetail.intr_rate2) * 0.01) / 12, 12) -
                     inputNum
                 ) * 0.154
               )}

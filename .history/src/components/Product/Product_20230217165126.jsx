@@ -67,36 +67,15 @@ function Product({ inputValue, selectedProductDetail, productDetail }) {
       {inputNum > 9999 ? (
         productDetail.intr_rate_type === "S" ? (
           <TotalCost>
-            {Math.round(
-              inputNum *
-                (1 +
-                  0.01 * Number(productDetail.intr_rate2) -
-                  0.01 * Number(productDetail.intr_rate2) * 0.154)
-            )}
-            원
+            {Math.round(inputNum * (1 + 0.01 * {productDetail.intr_rate2}
+            - 0.01 * {productDetail.intr_rate2})* 0.154)}원
           </TotalCost>
         ) : (
           <TotalCost>
-            {inputNum +
-              Math.round(
-                inputNum *
-                  Math.pow(
-                    1 + (Number(productDetail.intr_rate2) * 0.01) / 12,
-                    12
-                  ) -
-                  inputNum
-              ) -
-              Math.round(
-                Math.round(
-                  inputNum *
-                    Math.pow(
-                      1 + (Number(productDetail.intr_rate2) * 0.01) / 12,
-                      12
-                    ) -
-                    inputNum
-                ) * 0.154
-              )}
-            원
+            {inputNum + Math.round(inputNum * Math.pow(1 + ( 
+            {productDetail.intr_rate2}* 0.01) / 12, 12) - inputNum) -
+            Math.round( Math.round(inputNum * Math.pow(1 + ( 
+            {productDetail.intr_rate2}* 0.01) / 12, 12) - inputNum) * 0.154 )}원
           </TotalCost>
         )
       ) : (
