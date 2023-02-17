@@ -92,9 +92,9 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
       collection(db, "DEPOSIT_OPTION_LIST"),
       where("fin_prdt_cd", "==", selectedProductDetail.fin_prdt_cd)
     );
-    // console.log("q", q);
+    console.log("q", q);
     const querySnapshot = await getDocs(q);
-    // console.log("querySnapshot :>> ", querySnapshot);
+    console.log("querySnapshot :>> ", querySnapshot);
     querySnapshot.forEach((doc) => {
       setProductDetail(doc.data());
     });
@@ -102,13 +102,13 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
     // goBankSite();
   };
 
-  // console.log(
-  //   "예금옵션에서 필터링",
-  //   depositProductDetail.map((item) => item.fin_prdt_cd)
-  // );
-  // console.log("1", selectedProductDetail);
-  // console.log("2", selectedProductDetail.fin_prdt_cd);
-  // console.log("3", productDetail);
+  console.log(
+    "예금옵션에서 필터링",
+    depositProductDetail.map((item) => item.fin_prdt_cd)
+  );
+  console.log("1", selectedProductDetail);
+  console.log("2", selectedProductDetail.fin_prdt_cd);
+  console.log("3", productDetail);
 
   useEffect(() => {
     getSelectedProductDetail();

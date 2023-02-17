@@ -92,9 +92,9 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
       collection(db, "DEPOSIT_OPTION_LIST"),
       where("fin_prdt_cd", "==", selectedProductDetail.fin_prdt_cd)
     );
-    // console.log("q", q);
+    console.log("q", q);
     const querySnapshot = await getDocs(q);
-    // console.log("querySnapshot :>> ", querySnapshot);
+    console.log("querySnapshot :>> ", querySnapshot);
     querySnapshot.forEach((doc) => {
       setProductDetail(doc.data());
     });
