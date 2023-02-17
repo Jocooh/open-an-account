@@ -13,16 +13,29 @@ import {
   StyledMoreListDiv,
   StyledListDiv,
 } from "../SearchBankList/style";
+
 import { BsFillBookmarkFill } from "react-icons/bs";
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
 import { useRef } from "react";
 
+import Bookmarks from "./Bookmarks";
+
+
 function AllBankList({
   depositbaseList,
   depositOptionalList,
+
   activeItem,
   setActiveItem,
+
+
+  bookmarkProducts,
+
+  setToggleDetail,
+  toggleDetail,
+
+
 }) {
   //최고금리순으로 가져오는 함수
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -71,6 +84,7 @@ function AllBankList({
                                 {deposit.intr_rate2}
                               </StyledRateP>
 
+
                               <StyledRateP>
                                 일반금리 {deposit.intr_rate}
                               </StyledRateP>
@@ -78,20 +92,20 @@ function AllBankList({
                           </StyledContentDiv>
                         </div>
                       </StyledDiv>
-                      <StyledMoreListDiv>
-                        <BsFillBookmarkFill style={StyledBookMark} />
-                        <button
-                          style={{
-                            width: "60px",
-                            height: "30px",
-                          }}
-                          onClick={() => {
-                            setActiveItem(item.id);
-                          }}
-                        >
-                          자세히∨
-                        </button>
-                      </StyledMoreListDiv>
+                    <StyledMoreListDiv>
+                          <Bookmarks bookmarkProducts={bookmarkProducts} />
+                          <button
+                            style={{
+                              width: "60px",
+                              height: "30px",
+                            }}
+                            onClick={() => {
+                              setToggleDetail((toggleDetail) => !toggleDetail);
+                            }}
+                          >
+                            {toggleDetail === true ? "자세히∧" : "자세히∨"}
+                          </button>
+                        </StyledMoreListDiv>
                     </StyledListDiv>
                     <div>
                       {activeItem === item.id ? (
@@ -110,6 +124,47 @@ function AllBankList({
           )
         )}
     </div>
+
+                                <StyledRateP>
+                                  일반금리 {i.intr_rate}
+                                </StyledRateP>
+                              </StyledSaveTrmDiv>
+                            </StyledContentDiv>
+                          </div>
+                        </StyledDiv>
+                        <StyledMoreListDiv>
+                          <Bookmarks bookmarkProducts={bookmarkProducts} />
+                          <button
+                            style={{
+                              width: "60px",
+                              height: "30px",
+                            }}
+                            onClick={() => {
+                              setToggleDetail((toggleDetail) => !toggleDetail);
+                            }}
+                          >
+                            {toggleDetail === true ? "자세히∧" : "자세히∨"}
+                          </button>
+                        </StyledMoreListDiv>
+                      </StyledListDiv>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "100px",
+                        }}
+                      >
+                        {toggleDetail === true ? <p>상세보기</p> : null}
+                      </div>
+                    </StyledBankLists>
+                  ) : null}
+                </>
+              ) : null
+            )
+          )}
+      </div>
+    </StyledBankListWrapper>
+
   );
 }
 

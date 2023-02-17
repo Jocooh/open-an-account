@@ -35,13 +35,19 @@ import {
   StyledBtn,
   StyledBankListWrapper,
 } from "./style";
-
+import handleClickProduct from "../../components/ServicePage/GetDepositBaseAndOptions";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
 import SavingAllBankList from "../../components/AllBankList/SavingAllBankList";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
+
+
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { saveBookmarks } from "../../redux/modules/BookmarksSlice";
+
 import {
   collection,
   doc,
@@ -77,10 +83,19 @@ const ServicePage = () => {
   const [value, setValue] = useState(0); //* input Range 상태 값 저장
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
+
   const [selectedProductId, setSelectedProductId] = useState(""); //* 모달창 상태 값 저장
   const [activeItem, setActiveItem] = useState("");
   //* 상품 리스트 함수
   const handleButtonClick = async () => {
+
+  const [selectedProductIds, setSelectedProductIds] = useState(
+    new Array(9).fill("")
+  ); //* 선택된 상품ID 저장
+
+  //* 상품 리스트(BASE) 함수
+  const handleBaseInpoClick = async () => {
+
     const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
     const product = [];
     querySnapshot.forEach((doc) => {
@@ -148,6 +163,7 @@ const ServicePage = () => {
     setSavingoptionalList(savingOptionListArray);
   };
 
+
   useEffect(() => {
     FetchDepositBaseList();
     FetchSavingBaseList();
@@ -156,25 +172,14 @@ const ServicePage = () => {
     handleButtonClick();
   }, []);
 
-  //* 선택된 상품 id 저장
-  const handleSelectProduct = async (productId) => {
-    try {
-      const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setSelectedProductId(docSnap.id);
-        console.log(docSnap.id);
-      } else {
-        console.log("문서의 아이디를 을 찾을 수 없어요!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // console.log(products); //* 금융상품 list 콘솔에 출력
 
-  const handleClickProduct = (productId) => {
-    handleSelectProduct(productId);
-  };
+
+
+
+  useEffect(() => {
+    handleBaseInpoClick();
+  }, []);
 
   //* 찾기 버튼 활성화
   useEffect(() => {
@@ -268,7 +273,15 @@ const ServicePage = () => {
     setShowResults(!showResults);
   };
 
-  // 비교하기 버튼 모달창
+
+
+  const topLocation = useRef(null);
+
+  const onTop = () => {
+    topLocation.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+
 
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
   const OpenComparingModal = () => {
@@ -282,6 +295,50 @@ const ServicePage = () => {
       block: "nearest",
     });
   };
+
+
+  //자세히 버튼 누르면 나올 상세페이지 토글
+  const [toggleDetail, setToggleDetail] = useState(false);
+
+  useMemo(() => {
+    // SavingBankListFetch();
+    DepositBankListFetch();
+  }, []);
+
+  // 비교하기 버튼 모달창
+  // const [comparingModalOpen, setComparingModalOpen] = useState(false);
+  // const OpenComparingModal = () => {
+  //   setComparingModalOpen(true);
+  // };
+
+  // 찜한 상품 불러오기 --- 김원준 작업 중.
+  // 유즈이펙트 안에 콘솔 찍으면 빈배열 .....................................
+  // 전역에 찍자 ................................
+  const [bookmarkProducts, setBookmarkProducs] = useState([]);
+  // const dispatch = useDispatch();
+  const getBookmarkProduct = async () => {
+    const querySnapshot = await getDocs(collection(db, "bookmarks"));
+    const bookmarkproduct = [];
+
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+
+      bookmarkproduct.push(newProduct);
+    });
+
+    setBookmarkProducs(bookmarkproduct);
+    // dispatch(saveBookmarks(bookmarkproduct));
+  };
+  useEffect(() => {
+    getBookmarkProduct();
+  }, []);
+  console.log(bookmarkProducts);
+  // 찜한 상품 불러오기 --- 김원준 작업 중.
+
+
   return (
     <Wraper>
       <Cantinar>
@@ -294,38 +351,100 @@ const ServicePage = () => {
             <ProductsWraper>
               <SelectedProductsContainer>
                 <SelectedProducts>
-                  비교할 상품을 선택해주세요.
-                  <div>
-                    <img
-                      style={{ alignItems: "center", marginTop: "50px" }}
-                      src="url"
-                      alt="이미지"
-                    />
-                  </div>
+                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[0] === "" ? (
+                    <div>
+                      <p>비교할 상품을 선택해주세요.</p>
+                      <img
+                        style={{ alignItems: "center", marginTop: "50px" }}
+                        src="url"
+                        alt="이미지"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[0]
+                          ).fin_prdt_nm
+                        }
+                      </p>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[0]
+                          ).kor_co_nm
+                        }
+                      </p>
+                    </div>
+                  )}
                 </SelectedProducts>
               </SelectedProductsContainer>
+
               <SelectedProductsContainer>
                 <SelectedProducts>
-                  비교할 상품을 선택해주세요.
-                  <div>
-                    <img
-                      style={{ alignItems: "center", marginTop: "50px" }}
-                      src="url"
-                      alt="이미지"
-                    />
-                  </div>
+                  {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[3] === "" ? (
+                    <div>
+                      <p>비교할 상품을 선택해주세요.</p>
+                      <img
+                        style={{ alignItems: "center", marginTop: "50px" }}
+                        src="url"
+                        alt="이미지"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[3]
+                          ).fin_prdt_nm
+                        }
+                      </p>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[3]
+                          ).kor_co_nm
+                        }
+                      </p>
+                    </div>
+                  )}
                 </SelectedProducts>
               </SelectedProductsContainer>
+
               <SelectedProductsContainer>
                 <SelectedProducts>
-                  비교할 상품을 선택해주세요.
-                  <div>
-                    <img
-                      style={{ alignItems: "center", marginTop: "50px" }}
-                      src="url"
-                      alt="이미지"
-                    />
-                  </div>
+                  {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[6] === "" ? (
+                    <div>
+                      <p>비교할 상품을 선택해주세요.</p>
+                      <img
+                        style={{ alignItems: "center", marginTop: "50px" }}
+                        src="url"
+                        alt="이미지"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[6]
+                          ).fin_prdt_nm
+                        }
+                      </p>
+                      <p>
+                        {
+                          products.find(
+                            (product) => product.id === selectedProductIds[6]
+                          ).kor_co_nm
+                        }
+                      </p>
+                    </div>
+                  )}
                 </SelectedProducts>
               </SelectedProductsContainer>
             </ProductsWraper>
@@ -337,7 +456,10 @@ const ServicePage = () => {
             >
               <ToCompare onClick={OpenComparingModal}>비교하기</ToCompare>
               {comparingModalOpen && (
-                <ComparingModal setComparingModalOpen={setComparingModalOpen} />
+                <ComparingModal
+                  setComparingModalOpen={setComparingModalOpen}
+                  selectedProductId={selectedProductId}
+                />
               )}
             </div>
           </TopSection>
@@ -526,7 +648,11 @@ const ServicePage = () => {
                             onClick={() => {
                               handleClickResults();
                               handleClickSearch();
+
                               // handleButtonClick();
+
+                              handleBaseInpoClick();
+
                             }}
                           >
                             찾기
@@ -617,6 +743,7 @@ const ServicePage = () => {
                                 ref={topLocation}
                                 className="top으로 가는 위치 지정"
                               />
+
                               <StyledBankListWrapper>
                                 {searchBank.length > 0 ? (
                                   <SearchBankList
@@ -641,6 +768,9 @@ const ServicePage = () => {
                                   />
                                 )}
                               </StyledBankListWrapper>
+
+                          
+
                             </StyledBankList>
                             <StyledBtnDiv className="스크롤탑버튼">
                               <StyledBtn onClick={onTop}>

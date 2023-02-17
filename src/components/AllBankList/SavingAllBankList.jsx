@@ -20,14 +20,22 @@ import {
 } from "../SearchBankList/style";
 import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import Bookmarks from "./Bookmarks";
 import SavingDetail from "../DetailProduct/SavingDetail";
 
 function SavingAllBankList({
   savingbaseList,
   savingOptionalList,
+
   activeItem,
   setActiveItem,
+
+  toggleDetail,
+  setToggleDetail,
+  bookmarkProducts,
+
 }) {
+
   const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
   });
@@ -55,6 +63,7 @@ function SavingAllBankList({
                             ) : null
                           )}
                         </div>
+
 
                         <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
                           <StyledContentDiv>
@@ -86,20 +95,20 @@ function SavingAllBankList({
                           </StyledContentDiv>
                         </div>
                       </StyledDiv>
-                      <StyledMoreListDiv>
-                        <BsFillBookmarkFill style={StyledBookMark} />
-                        <button
-                          style={{
-                            width: "60px",
-                            height: "30px",
-                          }}
-                          onClick={() => {
-                            setActiveItem(item.id);
-                          }}
-                        >
-                          자세히∨
-                        </button>
-                      </StyledMoreListDiv>
+                          <StyledMoreListDiv>
+                          <Bookmarks bookmarkProducts={bookmarkProducts} />
+                          <button
+                            style={{
+                              width: "60px",
+                              height: "30px",
+                            }}
+                            onClick={() => {
+                              setToggleDetail((toggleDetail) => !toggleDetail);
+                            }}
+                          >
+                            {toggleDetail === true ? "자세히∧" : "자세히∨"}
+                          </button>
+                        </StyledMoreListDiv>
                     </StyledListDiv>
                     <div>
                       {activeItem === item.id ? (
@@ -117,6 +126,7 @@ function SavingAllBankList({
           )
         )}
     </div>
+
   );
 }
 
