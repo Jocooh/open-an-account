@@ -308,7 +308,9 @@ export const StyledListDiv = styled.div`
   height: 141px;
 `;
 
+
 export const Tapwraper = styled.div``;
+
 
 export const StyledBookMark = {
   fontSize: "20px",
