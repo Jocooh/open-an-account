@@ -283,8 +283,6 @@ export const StyledBankList = styled.div`
   overflow: auto;
 `;
 
-export const Tapwraper = styled.div``;
-
 export const StyledBankListWrapper = styled.div`
   width: 920px;
   display: flex;
@@ -295,19 +293,24 @@ export const StyledBankListWrapper = styled.div`
   padding: 10px;
 `;
 export const StyledBankLists = styled.div`
-  height: 144px;
+  /* height: 351px; */
   border-radius: 15px;
   display: flex;
   align-items: center;
   gap: 30px;
-  background-color: white;
   margin-bottom: 15px;
+  flex-direction: column;
+  background-color: white;
 `;
 
 export const StyledListDiv = styled.div`
   width: 1200px;
   height: 141px;
 `;
+
+
+export const Tapwraper = styled.div``;
+
 
 export const StyledBookMark = {
   fontSize: "20px",

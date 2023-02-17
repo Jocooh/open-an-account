@@ -37,7 +37,6 @@ import {
   StyledBtnDiv,
   StyledBtn,
 } from "./style";
-
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import AllBankList from "../../components/AllBankList/AllBankList";
@@ -45,6 +44,8 @@ import SavingAllBankList from "../../components/AllBankList/SavingAllBankList";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { saveBookmarks } from "../../redux/modules/BookmarksSlice";
 import {
   collection,
   doc,
@@ -97,8 +98,8 @@ const ServicePage = () => {
     handleButtonClick();
   }, []);
 
-  //* 선택된 상품 id 저장
 
+  //* 선택된 상품 id 저장
   const handleSelectProduct = async (productId) => {
     try {
       const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
@@ -188,14 +189,12 @@ const ServicePage = () => {
     }
   }, [amount]);
 
-  //* 슬라이더 함수
+  //* input 상태 값 저장슬리이더 함수
   const handleChange = (event) => {
     const newValue = parseInt(event.target.value, 10);
     setValue(newValue);
     console.log([0, 6, 12, 24, 36][newValue]);
   };
-
-  //* input 상태 값 저장슬리이더 함수
 
   const [savingOptionalList, setSavingOptionalList] = useState(null);
 
@@ -215,14 +214,6 @@ const ServicePage = () => {
     setShowResults(!showResults);
   };
 
-  // const DepositBankListFetch = async () => {
-  //   console.log("fetch실행");
-  //   const { data } = await axios.get(
-  //     "https://cors-anywhere.herokuapp.com/https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=6f3a6ea55869e0bdccf38e3e5dcc145e&topFinGrpNo=020000&pageNo=1"
-  //   );
-  //   setdepositbaseList(data?.result.baseList);
-  //   setdepositOptionalList(data?.result.optionList);
-  // };
 
   // const SavingBankListFetch = async () => {
   //   console.log("saving Fetch");
@@ -232,16 +223,13 @@ const ServicePage = () => {
   //   setSavingbaseList(data?.result.baseList);
   //   setSavingOptionalList(data?.result.optionList);
   // };
+
   const topLocation = useRef(null);
 
   const onTop = () => {
     topLocation.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  // useMemo(() => {
-  //   // SavingBankListFetch();
-  //   DepositBankListFetch();
-  // }, []);
 
   //최고금리 순으로 가져오는 함수(정기예금)
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -259,6 +247,51 @@ const ServicePage = () => {
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
   };
+  //스크롤 탑 함수
+  const topLocation = useRef(null);
+  const onTop = () => {
+    topLocation.current.scrollIntoView({ behavior: "smooth" });
+  };
+  //자세히 버튼 누르면 나올 상세페이지 토글
+  const [toggleDetail, setToggleDetail] = useState(false);
+
+  useMemo(() => {
+    // SavingBankListFetch();
+    DepositBankListFetch();
+  }, []);
+
+  // 비교하기 버튼 모달창
+  // const [comparingModalOpen, setComparingModalOpen] = useState(false);
+  // const OpenComparingModal = () => {
+  //   setComparingModalOpen(true);
+  // };
+
+  // 찜한 상품 불러오기 --- 김원준 작업 중.
+  // 유즈이펙트 안에 콘솔 찍으면 빈배열 .....................................
+  // 전역에 찍자 ................................
+  const [bookmarkProducts, setBookmarkProducs] = useState([]);
+  // const dispatch = useDispatch();
+  const getBookmarkProduct = async () => {
+    const querySnapshot = await getDocs(collection(db, "bookmarks"));
+    const bookmarkproduct = [];
+
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+
+      bookmarkproduct.push(newProduct);
+    });
+
+    setBookmarkProducs(bookmarkproduct);
+    // dispatch(saveBookmarks(bookmarkproduct));
+  };
+  useEffect(() => {
+    getBookmarkProduct();
+  }, []);
+  console.log(bookmarkProducts);
+  // 찜한 상품 불러오기 --- 김원준 작업 중.
 
   return (
     <Wraper>
@@ -606,16 +639,27 @@ const ServicePage = () => {
                                   depositOptionalList={depositOptionalList}
                                   savingbaseList={savingbaseList}
                                   savingOptionalList={savingOptionalList}
+                                  bookmarkProducts={bookmarkProducts}
                                 />
                               ) : productType === 1 ? (
                                 <AllBankList
                                   depositOptionalList={depositOptionalList}
                                   depositbaseList={depositbaseList}
+                                  // 원준 북마크
+                                  bookmarkProducts={bookmarkProducts}
+                                  // 원준 북마크
+                                  setToggleDetail={setToggleDetail}
+                                  toggleDetail={toggleDetail}
                                 />
                               ) : (
                                 <SavingAllBankList
                                   savingbaseList={savingbaseList}
                                   savingOptionalList={savingOptionalList}
+                                  // 원준 북마크
+                                  bookmarkProducts={bookmarkProducts}
+                                  // 원준 북마크
+                                  setToggleDetail={setToggleDetail}
+                                  toggleDetail={toggleDetail}
                                 />
                               )}
                             </StyledBankList>
