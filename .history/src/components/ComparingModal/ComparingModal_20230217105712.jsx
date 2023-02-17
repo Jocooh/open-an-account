@@ -7,9 +7,6 @@ import {
   doc,
   deleteDoc,
   setDoc,
-  query,
-  where,
-  onSnapshot,
 } from "firebase/firestore";
 import { authService, db } from "../../config/firebase";
 import {
@@ -37,21 +34,6 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
   //* 상품 상세정보 저장
   const [depositProductDetail, setDepositProductDetail] = useState([]);
   const [savingProductDetail, setSavingProductDetail] = useState([]);
-
-  //* selectedProductId 정보 저장
-  const [selectedProductDetail, setSelectedProductDetail] = useState([]);
-
-  //* selectedProduct정보 파베에서 불러오기
-  const getSelectedProductDetail = async () => {
-    const docRef = doc(db, "DEPOSIT_BASE_LIST", selectedProductId);
-
-    onSnapshot(docRef, (doc) => {
-      setSelectedProductDetail(doc.data());
-    });
-
-    // getBankSite();
-    // goBankSite();
-  };
 
   //* 예금 상품 정보 불러오기
   const getDepositProductDetail = async () => {
@@ -83,38 +65,14 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
       setSavingProductDetail(productDetail);
     });
   };
-
-  const [productDetail, setProductDetail] = useState([]);
-
-  //* selectedProductId의 fin_prdt_cd 맞는걸 찾아서 파베에서 doc 불러오기
-  const getProductDetail = async () => {
-    const q = query(
-      collection(db, "DEPOSIT_OPTION_LIST"),
-      where("fin_prdt_cd", "==", selectedProductDetail.fin_prdt_cd)
-    );
-    console.log("q", q);
-    const querySnapshot = await getDocs(q);
-    console.log("querySnapshot :>> ", querySnapshot);
-    querySnapshot.forEach((doc) => {
-      setProductDetail(doc.data());
-    });
-    // getBankSite();
-    // goBankSite();
-  };
-
-  console.log(
-    "예금옵션에서 필터링",
-    depositProductDetail.map((item) => item.fin_prdt_cd)
-  );
-  console.log("1", selectedProductDetail);
-  console.log("2", selectedProductDetail.fin_prdt_cd);
-  console.log("3", productDetail);
+  console.log(selectedProductId);
+  console.log("예금 옵션 리스트", depositProductDetail);
+  console.log(depositProductDetail?.map((item) => item.intr_rate2));
 
   useEffect(() => {
-    getSelectedProductDetail();
+    //* 상품 찜 정보 가져오기
     getDepositProductDetail();
     getSavingProductDetail();
-    getProductDetail();
   }, []);
 
   return (
@@ -156,8 +114,8 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
             <Product
               inputValue={inputValue}
               selectedProductId={selectedProductId}
-              selectedProductDetail={selectedProductDetail}
-              productDetail={productDetail}
+              depositProductDetail={depositProductDetail}
+              savingProductDetail={savingProductDetail}
             />
           </Products>
           <SecondGuide>

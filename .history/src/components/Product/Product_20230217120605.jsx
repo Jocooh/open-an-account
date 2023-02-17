@@ -32,7 +32,6 @@ function Product({
   selectedProductDetail,
   depositProductDetail,
   savingProudctDetail,
-  productDetail,
 }) {
   //* 스크랩 기능
   const [scrap, setScrap] = useState(false);
@@ -42,6 +41,24 @@ function Product({
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
+  console.log("inputNum :>> ", inputNum);
+  console.log("typeof inputNum :>> ", typeof inputNum);
+
+  // //* selectedProductId 정보 저장
+  // const [selectedProductDetail, setSelectedProductDetail] = useState([]);
+
+  // //* selectedProduct정보 파베에서 불러오기
+  // const getSelectedProductDetail = async () => {
+  //   const docRef = doc(db, "DEPOSIT_BASE_LIST", selectedProductId);
+
+  //   onSnapshot(docRef, (doc) => {
+  //     // console.log(doc.data(), doc.id);
+  //     setSelectedProductDetail(doc.data());
+  //   });
+
+  //   // getBankSite();
+  //   // goBankSite();
+  // };
 
   //* 은행사이트 바로가기 버튼 - 페이지 없으면 없음 표시 변경
   const [buttonContents, setButtonContents] = useState("");
@@ -67,6 +84,10 @@ function Product({
       }
     });
   };
+
+  // useEffect(() => {
+  //   getSelectedProductDetail();
+  // }, []);
 
   return (
     <Wrapper>
@@ -96,10 +117,23 @@ function Product({
         <Info>
           <div>{selectedProductDetail.kor_co_nm}</div>
 
-          <div>
-            일반 금리 {productDetail.intr_rate}% | 최고금리{" "}
-            {productDetail.intr_rate2}
-          </div>
+          {/* {
+            depositProductDetail.filter((item) =>
+              selectedProductId.map((i) =>
+                i?.fin_co_no === item?.fin_co_no
+                  ? console.log("i :>> ", i)
+                  : console.log("i!!!!!! :>> ", i)
+              )
+            )
+
+            // <div key={i.id}>
+            //   <div>
+            //     이자율 {i.intr_rate}% | 최고금리
+            //     {i.inter_rate2}%
+            //   </div>
+            //   <div>저축 기간 {i.save_trm}</div>
+            // </div>
+          } */}
 
           <div>{selectedProductDetail.etc_note}</div>
         </Info>
@@ -111,9 +145,30 @@ function Product({
           </li>
         </Message>
 
-        <Button navigate={site} alt="은행사이트 바로가기">
+        <Button
+          navigate={site}
+          alt="은행사이트 바로가기"
+          // key={Object.keys(logo)[0]}
+        >
           {buttonContents}
         </Button>
+
+        {/* {
+        bankSites.logos.filter((logo) => {
+          
+          Object.keys(logo)[0] === selectedProductDetail[index].fin_co_no 
+            
+            &&  <Button
+                navigate={Object.values(logo)[1]}
+                alt="은행사이트 바로가기"
+                key={Object.keys(logo)[0]}
+              >
+                사이트로 이동
+              </Button>
+            
+           
+        })
+        } */}
       </ProductBox>
     </Wrapper>
   );

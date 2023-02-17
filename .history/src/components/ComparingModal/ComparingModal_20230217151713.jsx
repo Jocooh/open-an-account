@@ -46,6 +46,7 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
     const docRef = doc(db, "DEPOSIT_BASE_LIST", selectedProductId);
 
     onSnapshot(docRef, (doc) => {
+      // console.log(doc.data(), doc.id);
       setSelectedProductDetail(doc.data());
     });
 
@@ -88,6 +89,32 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
 
   //* selectedProductId의 fin_prdt_cd 맞는걸 찾아서 파베에서 doc 불러오기
   const getProductDetail = async () => {
+    //   console.log("00000");
+    //   console.log("00000000", doc.id);
+    //   const docDepositRef = doc(db, "DEPOSIT_OPTION_LIST", doc.id);
+    //   const docSavingRef = doc(db, "SAVING_OPTION_LIST", doc.id);
+    //   //* doc가 정의되고 그 뒤에 id
+    //   if (
+    //     selectedProductDetail.fin_prdt_cd ===
+    //     depositProductDetail.map((item) => item.fin_prdt_cd)
+    //   ) {
+    //     console.log(111);
+    //     return onSnapshot(docDepositRef, (doc) => {
+    //       // console.log(doc.data(), doc.id);
+    //       setProductDetail(doc.data());
+    //     });
+    //   } else if (
+    //     selectedProductDetail.fin_prdt_cd ===
+    //     savingProductDetail.map((item) => item.fin_prdt_cd)
+    //   ) {
+    //     console.log(22222);
+    //     return onSnapshot(docSavingRef, (doc) => {
+    //       setProductDetail(docSavingRef.data());
+    //     });
+    //   } else {
+    //     console.log(3333);
+    //   }
+
     const q = query(
       collection(db, "DEPOSIT_OPTION_LIST"),
       where("fin_prdt_cd", "==", selectedProductDetail.fin_prdt_cd)
@@ -96,8 +123,10 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
     const querySnapshot = await getDocs(q);
     console.log("querySnapshot :>> ", querySnapshot);
     querySnapshot.forEach((doc) => {
-      setProductDetail(doc.data());
+      console.log(doc.id, " => ", doc.data());
+      return setProductDetail(doc.data());
     });
+    console.log("productDetail :>> ", productDetail);
     // getBankSite();
     // goBankSite();
   };
@@ -106,6 +135,7 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
     "예금옵션에서 필터링",
     depositProductDetail.map((item) => item.fin_prdt_cd)
   );
+  // console.log("적금 옵션 리스트", savingProductDetail);
   console.log("1", selectedProductDetail);
   console.log("2", selectedProductDetail.fin_prdt_cd);
   console.log("3", productDetail);
@@ -157,6 +187,8 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
               inputValue={inputValue}
               selectedProductId={selectedProductId}
               selectedProductDetail={selectedProductDetail}
+              // depositProductDetail={depositProductDetail}
+              // savingProductDetail={savingProductDetail}
               productDetail={productDetail}
             />
           </Products>

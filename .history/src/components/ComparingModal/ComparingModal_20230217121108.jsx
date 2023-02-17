@@ -7,8 +7,6 @@ import {
   doc,
   deleteDoc,
   setDoc,
-  query,
-  where,
   onSnapshot,
 } from "firebase/firestore";
 import { authService, db } from "../../config/firebase";
@@ -46,6 +44,7 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
     const docRef = doc(db, "DEPOSIT_BASE_LIST", selectedProductId);
 
     onSnapshot(docRef, (doc) => {
+      // console.log(doc.data(), doc.id);
       setSelectedProductDetail(doc.data());
     });
 
@@ -85,33 +84,37 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
   };
 
   const [productDetail, setProductDetail] = useState([]);
-
   //* selectedProductId의 fin_prdt_cd 맞는걸 찾아서 파베에서 doc 불러오기
   const getProductDetail = async () => {
-    const q = query(
-      collection(db, "DEPOSIT_OPTION_LIST"),
-      where("fin_prdt_cd", "==", selectedProductDetail.fin_prdt_cd)
-    );
-    console.log("q", q);
-    const querySnapshot = await getDocs(q);
-    console.log("querySnapshot :>> ", querySnapshot);
-    querySnapshot.forEach((doc) => {
-      setProductDetail(doc.data());
-    });
+    const docDepositRef = doc(db, "DEPOSIT_OPTION_LIST", doc.id);
+    const docSavingRef = doc(db, "SAVING_OPTION_LIST", doc.id);
+    if (
+      selectedProductDetail.fin_prdt_cd ===
+      depositProductDetail.map((item) => item.fin_prdt_cd)
+    ) {
+      return onSnapshot(docDepositRef, (doc) => {
+        // console.log(doc.data(), doc.id);
+        setProductDetail(doc.data());
+      });
+    } else if (
+      selectedProductDetail.fin_prdt_cd ===
+      savingProductDetail.map((item) => item.fin_prdt_cd)
+    ) {
+      return onSnapshot(docSavingRef, (doc) => {
+        // console.log(doc.data(), doc.id);
+        setProductDetail(docSavingRef.data());
+      });
+    }
+
     // getBankSite();
     // goBankSite();
   };
 
-  console.log(
-    "예금옵션에서 필터링",
-    depositProductDetail.map((item) => item.fin_prdt_cd)
-  );
-  console.log("1", selectedProductDetail);
-  console.log("2", selectedProductDetail.fin_prdt_cd);
-  console.log("3", productDetail);
+  console.log("예금 옵션 리스트", depositProductDetail);
+  console.log("적금 옵션 리스트", savingProductDetail);
+  console.log(depositProductDetail.intr_rate2);
 
   useEffect(() => {
-    getSelectedProductDetail();
     getDepositProductDetail();
     getSavingProductDetail();
     getProductDetail();
@@ -157,6 +160,8 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
               inputValue={inputValue}
               selectedProductId={selectedProductId}
               selectedProductDetail={selectedProductDetail}
+              // depositProductDetail={depositProductDetail}
+              // savingProductDetail={savingProductDetail}
               productDetail={productDetail}
             />
           </Products>
