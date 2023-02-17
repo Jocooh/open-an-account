@@ -124,10 +124,15 @@ const InsertData = () => {
   };
 
   useEffect(() => {
-    getSavingBaseListHandler();
-    getSavingOptionListHandler();
-    getDepositBaseListHandler();
-    getDepositOptionListHandler();
+
+    // getSavingBaseListHandler();
+    // getSavingOptionListHandler();
+
+    //getSavingBaseListHandler();
+    //getSavingOptionListHandler();
+
+    //getDepositBaseListHandler();
+    //getDepositOptionListHandler();
   }, []);
 
   const [products, setProducts] = useState([]);
