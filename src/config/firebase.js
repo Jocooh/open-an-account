@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  //메인 프로젝트
+  //*메인 프로젝트 1
   // apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
   // authDomain: "open-an-account-31857.firebaseapp.com",
   // projectId: "open-an-account-31857",
@@ -18,6 +18,24 @@ const firebaseConfig = {
   // storageBucket: "mytest-b5942.appspot.com",
   // messagingSenderId: "937704967647",
   // appId: "1:937704967647:web:343f5fabf02e582f82086a",
+
+
+  //*남마리나
+  // apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
+  // authDomain: "jojoa-c3a5b.firebaseapp.com",
+  // projectId: "jojoa-c3a5b",
+  // storageBucket: "jojoa-c3a5b.appspot.com",
+  // messagingSenderId: "848779014558",
+  // appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
+
+  //*남마리나2
+  apiKey: "AIzaSyBslbzRlInpFhHV2NnOwbjH2K6KOs8hHqU",
+  authDomain: "sajojoa-aea1c.firebaseapp.com",
+  projectId: "sajojoa-aea1c",
+  storageBucket: "sajojoa-aea1c.appspot.com",
+  messagingSenderId: "648301726670",
+  appId: "1:648301726670:web:20818e17661a9c050fb99f",
+
   //*조성아 전용 키
   // apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
   // authDomain: "open-an-account-db.firebaseapp.com",
@@ -25,6 +43,7 @@ const firebaseConfig = {
   // storageBucket: "open-an-account-db.appspot.com",
   // messagingSenderId: "334972707203",
   // appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
+
 };
 
 // Initialize Firebase

@@ -34,94 +34,15 @@ import Product from "../Product/Product";
 
 const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
   const [inputValue, setInputValue] = useState("");
-  //* 상품 상세정보 저장
-  const [depositProductDetail, setDepositProductDetail] = useState([]);
-  const [savingProductDetail, setSavingProductDetail] = useState([]);
 
-  //* selectedProductId 정보 저장
-  const [selectedProductDetail, setSelectedProductDetail] = useState([]);
-
-  //* selectedProduct정보 파베에서 불러오기
-  const getSelectedProductDetail = async () => {
-    const docRef = doc(db, "DEPOSIT_BASE_LIST", selectedProductId);
-
-    onSnapshot(docRef, (doc) => {
-      setSelectedProductDetail(doc.data());
-    });
-
-    // getBankSite();
-    // goBankSite();
-  };
-
-  //* 예금 상품 정보 불러오기
-  const getDepositProductDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
-    const productDetail = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      productDetail.push(newProduct);
-      setDepositProductDetail(productDetail);
-    });
-  };
-  //* 적금 상품 정보 불러오기
-  const getSavingProductDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
-    const productDetail = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      productDetail.push(newProduct);
-      setSavingProductDetail(productDetail);
-    });
-  };
-
-  const [productDetail, setProductDetail] = useState([]);
-
-  //* selectedProductId의 fin_prdt_cd 맞는걸 찾아서 파베에서 doc 불러오기
-  const getProductDetail = async () => {
-    const q = query(
-      collection(db, "DEPOSIT_OPTION_LIST"),
-      where("fin_prdt_cd", "==", selectedProductDetail.fin_prdt_cd)
-    );
-    // console.log("q", q);
-    const querySnapshot = await getDocs(q);
-    // console.log("querySnapshot :>> ", querySnapshot);
-    querySnapshot.forEach((doc) => {
-      setProductDetail(doc.data());
-    });
-    // getBankSite();
-    // goBankSite();
-  };
-
-  // console.log(
-  //   "예금옵션에서 필터링",
-  //   depositProductDetail.map((item) => item.fin_prdt_cd)
-  // );
-  // console.log("1", selectedProductDetail);
-  // console.log("2", selectedProductDetail.fin_prdt_cd);
-  // console.log("3", productDetail);
-
-  useEffect(() => {
-    getSelectedProductDetail();
-    getDepositProductDetail();
-    getSavingProductDetail();
-    getProductDetail();
-  }, [productDetail, getSelectedProductDetail]);
-
+  console.log("selectedProductId[0].id :>> ", selectedProductId[0].id);
+  console.log("selectedProductId[1].id :>> ", selectedProductId[1].id);
+  console.log("selectedProductId[2].id :>> ", selectedProductId[2].id);
   return (
     <ModalBackground>
       <ModalContainer>
         <CloseButton
-          // src={require("../../assets/close.png")}
+          src={require("../../assets/close.png")}
           alt="닫기"
           onClick={() => {
             setComparingModalOpen(false);
@@ -155,9 +76,21 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
           <Products>
             <Product
               inputValue={inputValue}
-              selectedProductId={selectedProductId}
-              selectedProductDetail={selectedProductDetail}
-              productDetail={productDetail}
+              selectedProductId={selectedProductId[0]}
+              // selectedProductDetail={selectedProductDetail}
+              // productDetail={productDetail}
+            />
+            <Product
+              inputValue={inputValue}
+              selectedProductId={selectedProductId[1]}
+              // selectedProductDetail={selectedProductDetail}
+              // productDetail={productDetail}
+            />
+            <Product
+              inputValue={inputValue}
+              selectedProductId={selectedProductId[2]}
+              // selectedProductDetail={selectedProductDetail}
+              // productDetail={productDetail}
             />
           </Products>
           <SecondGuide>
