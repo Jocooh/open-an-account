@@ -41,6 +41,11 @@ function Product({ inputValue, selectedProductId }) {
   const [scrap, setScrap] = useState(false);
 
   //********** 상품 정보 *************
+  // //* selectedProductId의 DEPOSIT_BASE_LIST 정보 저장
+  // const [depositBaseDetail, setDepositBaseDetail] = useState([]);
+  // //* selectedProductId의 SAVING_BASE_LIST 정보 저장
+  // const [savingBaseDetail, setSavingBaseDetail] = useState([]);
+
   //* 전체 상품의 DEPOSIT_OPTION_LIST 정보 저장
   const [totalDepositOptionDetail, setTotalDepositOptionDetail] = useState([]);
   //* 전체 상품의 SAVING_OPTION_LIST 정보 저장
@@ -50,6 +55,23 @@ function Product({ inputValue, selectedProductId }) {
   const [depositOptionDetail, setDepositOptionDetail] = useState([]);
   //* selectedProductId의 SAVING_BASE_LIST 정보 저장
   const [savingOptionDetail, setSavingOptionDetail] = useState([]);
+
+  // //* selectedProduct의 DEPOSIT_BASE_LIST 정보 파베에서 불러오기
+  // const getSelectedDepositProductDetail = async () => {
+  //   const docRef = doc(db, "DEPOSIT_BASE_LIST", selectedProductId);
+
+  //   onSnapshot(docRef, (doc) => {
+  //     setDepositBaseDetail(doc.data());
+  //   });
+  // };
+  // //* selectedProduct의 SAVING_BASE_LIST 정보 파베에서 불러오기
+  // const getSelectedSavingProductDetail = async () => {
+  //   const docRef = doc(db, "SAVING_BASE_LIST", selectedProductId);
+
+  //   onSnapshot(docRef, (doc) => {
+  //     setSavingBaseDetail(doc.data());
+  //   });
+  // };
 
   //* 전체 DEPOSIT_OPTION_LIST 정보 저장
   const getDepositOptionDetail = async () => {
@@ -106,11 +128,18 @@ function Product({ inputValue, selectedProductId }) {
   };
 
   useEffect(() => {
+    // getSelectedDepositProductDetail();
+    // getSelectedSavingProductDetail();
     getDepositOptionDetail();
     getSavingOptionDetail();
     getSelectedDepositProductOptionDetail();
     getSelectedSavingProductOptionDetail();
-  }, [depositOptionDetail, savingOptionDetail]);
+  }, [
+    // depositBaseDetail,
+    // savingBaseDetail,
+    depositOptionDetail,
+    savingOptionDetail,
+  ]);
 
   const getBankSite = () => {
     bankSites.logos.map((logo, index) => {

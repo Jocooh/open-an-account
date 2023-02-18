@@ -35,9 +35,6 @@ import Product from "../Product/Product";
 const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
   const [inputValue, setInputValue] = useState("");
 
-  console.log("selectedProductId[0].id :>> ", selectedProductId[0].id);
-  console.log("selectedProductId[1].id :>> ", selectedProductId[1].id);
-  console.log("selectedProductId[2].id :>> ", selectedProductId[2].id);
   return (
     <ModalBackground>
       <ModalContainer>
@@ -77,20 +74,20 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
             <Product
               inputValue={inputValue}
               selectedProductId={selectedProductId[0]}
-              // selectedProductDetail={selectedProductDetail}
-              // productDetail={productDetail}
+              selectedProductDetail={selectedProductDetail}
+              productDetail={productDetail}
             />
             <Product
               inputValue={inputValue}
               selectedProductId={selectedProductId[1]}
-              // selectedProductDetail={selectedProductDetail}
-              // productDetail={productDetail}
+              selectedProductDetail={selectedProductDetail}
+              productDetail={productDetail}
             />
             <Product
               inputValue={inputValue}
               selectedProductId={selectedProductId[2]}
-              // selectedProductDetail={selectedProductDetail}
-              // productDetail={productDetail}
+              selectedProductDetail={selectedProductDetail}
+              productDetail={productDetail}
             />
           </Products>
           <SecondGuide>

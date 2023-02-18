@@ -41,6 +41,11 @@ function Product({ inputValue, selectedProductId }) {
   const [scrap, setScrap] = useState(false);
 
   //********** 상품 정보 *************
+  //* selectedProductId의 DEPOSIT_BASE_LIST 정보 저장
+  const [depositBaseDetail, setDepositBaseDetail] = useState([]);
+  //* selectedProductId의 SAVING_BASE_LIST 정보 저장
+  const [savingBaseDetail, setSavingBaseDetail] = useState([]);
+
   //* 전체 상품의 DEPOSIT_OPTION_LIST 정보 저장
   const [totalDepositOptionDetail, setTotalDepositOptionDetail] = useState([]);
   //* 전체 상품의 SAVING_OPTION_LIST 정보 저장
@@ -50,6 +55,23 @@ function Product({ inputValue, selectedProductId }) {
   const [depositOptionDetail, setDepositOptionDetail] = useState([]);
   //* selectedProductId의 SAVING_BASE_LIST 정보 저장
   const [savingOptionDetail, setSavingOptionDetail] = useState([]);
+
+  //* selectedProduct의 DEPOSIT_BASE_LIST 정보 파베에서 불러오기
+  const getSelectedDepositProductDetail = async () => {
+    const docRef = doc(db, "DEPOSIT_BASE_LIST", selectedProductId);
+
+    onSnapshot(docRef, (doc) => {
+      setDepositBaseDetail(doc.data());
+    });
+  };
+  //* selectedProduct의 SAVING_BASE_LIST 정보 파베에서 불러오기
+  const getSelectedSavingProductDetail = async () => {
+    const docRef = doc(db, "SAVING_BASE_LIST", selectedProductId);
+
+    onSnapshot(docRef, (doc) => {
+      setSavingBaseDetail(doc.data());
+    });
+  };
 
   //* 전체 DEPOSIT_OPTION_LIST 정보 저장
   const getDepositOptionDetail = async () => {
@@ -86,7 +108,7 @@ function Product({ inputValue, selectedProductId }) {
   const getSelectedDepositProductOptionDetail = async () => {
     const q = query(
       collection(db, "DEPOSIT_OPTION_LIST"),
-      where("fin_prdt_cd", "==", selectedProductId.fin_prdt_cd)
+      where("fin_prdt_cd", "==", totalDepositOptionDetail.fin_prdt_cd)
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -97,7 +119,7 @@ function Product({ inputValue, selectedProductId }) {
   const getSelectedSavingProductOptionDetail = async () => {
     const q = query(
       collection(db, "SAVING_OPTION_LIST"),
-      where("fin_prdt_cd", "==", selectedProductId.fin_prdt_cd)
+      where("fin_prdt_cd", "==", totalSavingOptionDetail.fin_prdt_cd)
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -106,15 +128,23 @@ function Product({ inputValue, selectedProductId }) {
   };
 
   useEffect(() => {
+    getSelectedDepositProductDetail();
+    getSelectedSavingProductDetail();
     getDepositOptionDetail();
     getSavingOptionDetail();
     getSelectedDepositProductOptionDetail();
     getSelectedSavingProductOptionDetail();
-  }, [depositOptionDetail, savingOptionDetail]);
+  }, [
+    depositBaseDetail,
+    savingBaseDetail,
+    depositOptionDetail,
+    savingOptionDetail,
+  ]);
 
   const getBankSite = () => {
+    console.log("selectedProductDetail :>> ", selectedProductDetail);
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductId[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
         setButtonContents("사이트로 이동");
       } else {
         setButtonContents("지원하지 않는 사이트입니다.");
@@ -126,7 +156,7 @@ function Product({ inputValue, selectedProductId }) {
 
   const goBankSite = () => {
     bankSites.logos.map((logo, index) => {
-      if (Object.keys(logo)[0] === selectedProductId[index]?.fin_co_no) {
+      if (Object.keys(logo)[0] === selectedProductDetail[index]?.fin_co_no) {
         console.log("Object.keys(logo)[1] :>> ", Object.keys(logo)[1]);
         setSite(Object.keys(logo)[1]);
       }
@@ -177,7 +207,7 @@ function Product({ inputValue, selectedProductId }) {
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductId.fin_prdt_nm}</Prdt_nm>
+          <Prdt_nm>{depositBaseDetail.fin_prdt_nm}</Prdt_nm>
           <BsFillBookmarkFill
             onClick={() => {
               setScrap(true);
@@ -187,18 +217,20 @@ function Product({ inputValue, selectedProductId }) {
         </Name>
 
         <Info>
-          <div>{selectedProductId.kor_co_nm}</div>
+          <div>{depositBaseDetail.kor_co_nm}</div>
+
           <div>
             일반 금리 {depositOptionDetail.intr_rate}% | 최고금리
             {depositOptionDetail.intr_rate2}
           </div>
+
+          <div>{depositBaseDetail.etc_note}</div>
         </Info>
         <Message>
-          <li>가입 방법: {selectedProductId.join_way}</li>
-          <li>가입 대상: {selectedProductId.join_member}</li>
+          <li>가입 방법: {depositBaseDetail.join_way}</li>
           <li>
             (유의사항)
-            {selectedProductId.etc_note}
+            {depositBaseDetail.etc_note}
           </li>
         </Message>
 

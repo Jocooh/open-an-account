@@ -35,9 +35,6 @@ import Product from "../Product/Product";
 const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
   const [inputValue, setInputValue] = useState("");
 
-  console.log("selectedProductId[0].id :>> ", selectedProductId[0].id);
-  console.log("selectedProductId[1].id :>> ", selectedProductId[1].id);
-  console.log("selectedProductId[2].id :>> ", selectedProductId[2].id);
   return (
     <ModalBackground>
       <ModalContainer>

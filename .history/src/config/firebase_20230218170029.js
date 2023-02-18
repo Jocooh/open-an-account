@@ -21,20 +21,12 @@ const firebaseConfig = {
   // appId: "1:937704967647:web:343f5fabf02e582f82086a",
 
   //*남마리나
-  // apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
-  // authDomain: "jojoa-c3a5b.firebaseapp.com",
-  // projectId: "jojoa-c3a5b",
-  // storageBucket: "jojoa-c3a5b.appspot.com",
-  // messagingSenderId: "848779014558",
-  // appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
-
-  //*남마리나2
-  apiKey: "AIzaSyBslbzRlInpFhHV2NnOwbjH2K6KOs8hHqU",
-  authDomain: "sajojoa-aea1c.firebaseapp.com",
-  projectId: "sajojoa-aea1c",
-  storageBucket: "sajojoa-aea1c.appspot.com",
-  messagingSenderId: "648301726670",
-  appId: "1:648301726670:web:20818e17661a9c050fb99f",
+  apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
+  authDomain: "jojoa-c3a5b.firebaseapp.com",
+  projectId: "jojoa-c3a5b",
+  storageBucket: "jojoa-c3a5b.appspot.com",
+  messagingSenderId: "848779014558",
+  appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
 };
 
 // Initialize Firebase

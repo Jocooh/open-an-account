@@ -110,7 +110,7 @@ function Product({ inputValue, selectedProductId }) {
     getSavingOptionDetail();
     getSelectedDepositProductOptionDetail();
     getSelectedSavingProductOptionDetail();
-  }, [depositOptionDetail, savingOptionDetail]);
+  }, [depositOptionDetail, savingOptionDetail, selectedProductId]);
 
   const getBankSite = () => {
     bankSites.logos.map((logo, index) => {

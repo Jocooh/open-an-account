@@ -76,19 +76,19 @@ const ComparingModal = ({ setComparingModalOpen, selectedProductId }) => {
           <Products>
             <Product
               inputValue={inputValue}
-              selectedProductId={selectedProductId[0]}
+              selectedProductId={selectedProductId[0].id}
               // selectedProductDetail={selectedProductDetail}
               // productDetail={productDetail}
             />
             <Product
               inputValue={inputValue}
-              selectedProductId={selectedProductId[1]}
+              selectedProductId={selectedProductId[1].id}
               // selectedProductDetail={selectedProductDetail}
               // productDetail={productDetail}
             />
             <Product
               inputValue={inputValue}
-              selectedProductId={selectedProductId[2]}
+              selectedProductId={selectedProductId[2].id}
               // selectedProductDetail={selectedProductDetail}
               // productDetail={productDetail}
             />
