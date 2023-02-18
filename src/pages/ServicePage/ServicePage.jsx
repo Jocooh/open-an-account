@@ -108,52 +108,52 @@ const ServicePage = () => {
   // };
 
   // 예금 optionList
-  // const FetchDepositOptionList = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
-  //   const depositOptionArray = [];
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     depositOptionArray.push(newProduct);
-  //   });
-  //   setdepositOptionalList(depositOptionArray);
-  // };
-  // //적금 baseList
-  // const FetchSavingBaseList = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "SAVING_BASE_LIST"));
-  //   const savingBaseListArray = [];
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     savingBaseListArray.push(newProduct);
-  //   });
-  //   setSavingbaseList(savingBaseListArray);
-  // };
+  const FetchDepositOptionList = async () => {
+    const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
+    const depositOptionArray = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      depositOptionArray.push(newProduct);
+    });
+    setdepositOptionalList(depositOptionArray);
+  };
+  //적금 baseList
+  const FetchSavingBaseList = async () => {
+    const querySnapshot = await getDocs(collection(db, "SAVING_BASE_LIST"));
+    const savingBaseListArray = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      savingBaseListArray.push(newProduct);
+    });
+    setSavingbaseList(savingBaseListArray);
+  };
 
-  // //적금 OptionList
-  // const FetchSavingOptionList = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
-  //   const savingOptionListArray = [];
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     savingOptionListArray.push(newProduct);
-  //   });
-  //   setSavingoptionalList(savingOptionListArray);
-  // };
+  //적금 OptionList
+  const FetchSavingOptionList = async () => {
+    const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
+    const savingOptionListArray = [];
+    querySnapshot.forEach((doc) => {
+      const newProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      savingOptionListArray.push(newProduct);
+    });
+    setSavingoptionalList(savingOptionListArray);
+  };
   // console.log(products);
-  // useEffect(() => {
-  //   FetchDepositBaseList();
-  //   FetchDepositOptionList();
-  //   FetchSavingBaseList();
-  //   FetchSavingOptionList();
-  // }, []);
+  useEffect(() => {
+    // FetchDepositBaseList();
+    FetchDepositOptionList();
+    FetchSavingBaseList();
+    FetchSavingOptionList();
+  }, []);
 
   useEffect(() => {
     handleButtonClick();
@@ -168,6 +168,7 @@ const ServicePage = () => {
         newProductIds[newProductIds.indexOf("")] = docSnap.id;
         setSelectedProductIds(newProductIds);
         console.log(docSnap.data().fin_prdt_cd);
+        console.log(docSnap.data().kor_co_nm);
         const finPrdtCd = docSnap.data().fin_prdt_cd;
         console.log(newProductIds);
         const querySnapshot = await getDocs(
@@ -187,7 +188,6 @@ const ServicePage = () => {
             newProductIds[index + 1] = intrRate2;
             setSelectedProductIds(newProductIds);
             console.log(newProductIds);
-            // console.log(newProductIds[2], newProductIds[1]);
             setIntrRate(intrRate);
             setIntrRate2(intrRate2);
           }
@@ -308,9 +308,6 @@ const ServicePage = () => {
       block: "nearest",
     });
   };
-
-  //자세히 버튼 누르면 나올 상세페이지 토글
-  const [toggleDetail, setToggleDetail] = useState(false);
 
   // 비교하기 버튼 모달창
   // const [comparingModalOpen, setComparingModalOpen] = useState(false);
@@ -715,7 +712,7 @@ const ServicePage = () => {
                           setSearchBank={setSearchBank}
                           handleButtonClick={handleButtonClick}
                         />
-                        <ProductWraper className="버튼감싸는 wrapper">
+                        <ProductWraper>
                           <ProductType
                             onClick={() => {
                               handleProductTypeClick(1);
@@ -763,7 +760,7 @@ const ServicePage = () => {
                                   <SearchBankList
                                     searchBank={searchBank}
                                     productTypes={productTypes}
-                                    depositbaseList={depositbaseList}
+                                    depositbaseList={products}
                                     depositOptionalList={depositOptionalList}
                                     savingbaseList={savingbaseList}
                                     savingOptionalList={savingoptionalList}
@@ -774,11 +771,12 @@ const ServicePage = () => {
                                   <AllBank
                                     productTypes={productTypes}
                                     depositOptionalList={depositOptionalList}
-                                    depositbaseList={depositbaseList}
+                                    depositbaseList={products}
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
                                     savingbaseList={savingbaseList}
                                     savingoptionalList={savingoptionalList}
+                                    handleClickProduct={handleClickProduct}
                                   />
                                 )}
                               </StyledBankListWrapper>
