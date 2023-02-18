@@ -18,10 +18,12 @@ import {
   StyledSavingRateP,
   StyledMoreListDiv,
 } from "../style";
+import Bookmarks from "../../Bookmarks";
 function SearchDepositLists({
   depositbaseList,
   searchBank,
   depositOptionalList,
+  myBookmarkProducts,
 }) {
   return (
     <div>
@@ -94,7 +96,11 @@ function SearchDepositLists({
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <BsFillBookmarkFill style={StyledBookMark} />
+                    <Bookmarks
+                      myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                      productName={v.fin_prdt_nm}
+                      productCoName={v.kor_co_nm}
+                    />
                     <button
                       style={{
                         width: "50px",
