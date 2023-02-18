@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function SearchInput({ setSearchBank }) {
+function SearchInput({ setSearchBank, handleButtonClick }) {
   return (
     <>
       <StyledInputContainer>
@@ -23,7 +23,7 @@ function SearchInput({ setSearchBank }) {
                 setSearchBank(e.target.value);
               }}
             />
-            <SearchBtn>검색</SearchBtn>
+            <SearchBtn onClick={handleButtonClick}>검색</SearchBtn>
           </div>
         </div>
       </StyledInputContainer>
