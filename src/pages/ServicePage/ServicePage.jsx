@@ -51,7 +51,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 
 const ServicePage = () => {
@@ -309,38 +309,30 @@ const ServicePage = () => {
     });
   };
 
-  // 비교하기 버튼 모달창
-  // const [comparingModalOpen, setComparingModalOpen] = useState(false);
-  // const OpenComparingModal = () => {
-  //   setComparingModalOpen(true);
-  // };
+  // 찜하기 - 원준 작업 중 -
+  const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
 
-  // 찜한 상품 불러오기 --- 김원준 작업 중.
-  // 유즈이펙트 안에 콘솔 찍으면 빈배열 .....................................
-  // 전역에 찍자 ................................
-  const [bookmarkProducts, setBookmarkProducs] = useState([]);
-  // const dispatch = useDispatch();
-  const getBookmarkProduct = async () => {
-    const querySnapshot = await getDocs(collection(db, "bookmarks"));
-    const bookmarkproduct = [];
+  const getMyBookmarkProduct = async () => {
+    const querySnapshot = await getDocs(
+      collection(db, "bookmarks"),
+      where("userId", "==", authService.currentUser?.uid)
+    );
+    const myBookmarkProduct = [];
 
     querySnapshot.forEach((doc) => {
-      const newProduct = {
+      const newBookmarkProduct = {
         id: doc.id,
         ...doc.data(),
       };
 
-      bookmarkproduct.push(newProduct);
+      myBookmarkProduct.push(newBookmarkProduct);
+      setMyBookmarkProducs(myBookmarkProduct);
     });
-
-    setBookmarkProducs(bookmarkproduct);
-    // dispatch(saveBookmarks(bookmarkproduct));
   };
-  useEffect(() => {
-    getBookmarkProduct();
-  }, []);
-  // console.log(bookmarkProducts);
-  // 찜한 상품 불러오기 --- 김원준 작업 중.
+  // useEffect(() => {
+  //   getMyBookmarkProduct();
+  // }, []);
+  console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
 
   return (
     <Wraper>
@@ -766,6 +758,7 @@ const ServicePage = () => {
                                     savingOptionalList={savingoptionalList}
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
+                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                   />
                                 ) : (
                                   <AllBank
@@ -777,6 +770,7 @@ const ServicePage = () => {
                                     savingbaseList={savingbaseList}
                                     savingoptionalList={savingoptionalList}
                                     handleClickProduct={handleClickProduct}
+                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                   />
                                 )}
                               </StyledBankListWrapper>

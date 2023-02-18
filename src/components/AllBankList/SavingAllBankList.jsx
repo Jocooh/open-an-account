@@ -18,6 +18,7 @@ import {
 import logoLists from "../../assets/logo/logo";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import SavingDetail from "../DetailProduct/SavingDetail";
+import Bookmarks from "../Bookmarks";
 
 function SavingAllBankList({
   savingbaseList,
@@ -25,6 +26,7 @@ function SavingAllBankList({
   activeItem,
   setActiveItem,
   handleClickProduct,
+  myBookmarkProducts,
 }) {
   const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
@@ -90,7 +92,11 @@ function SavingAllBankList({
                           </div>
                         </StyledDiv>
                         <StyledMoreListDiv>
-                          <BsFillBookmarkFill style={StyledBookMark} />
+                          <Bookmarks
+                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            productName={item.fin_prdt_nm}
+                            productCoName={item.kor_co_nm}
+                          />
                           <button
                             style={{
                               width: "60px",

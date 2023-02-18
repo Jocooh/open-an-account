@@ -13,6 +13,7 @@ function SearchBankList({
   productType,
   savingbaseList,
   savingOptionalList,
+  myBookmarkProducts,
 }) {
   //productType:예금,적금
   //searchBank: 사용자가 입력하는 값
@@ -26,11 +27,13 @@ function SearchBankList({
           depositbaseList={depositbaseList}
           searchBank={searchBank}
           depositOptionalList={depositOptionalList}
+          myBookmarkProducts={myBookmarkProducts} // my bookmark products
         />
       ) : (
         <SearchSavingLists
           savingbaseList={savingbaseList}
           savingOptionalList={savingOptionalList}
+          myBookmarkProducts={myBookmarkProducts} // my bookmark products
           searchBank={searchBank}
         />
       )}

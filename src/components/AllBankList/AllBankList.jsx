@@ -17,6 +17,7 @@ import {
 import { BsFillBookmarkFill } from "react-icons/bs";
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
+import Bookmarks from "../Bookmarks";
 
 function AllBankList({
   depositbaseList,
@@ -24,6 +25,7 @@ function AllBankList({
   activeItem,
   setActiveItem,
   handleClickProduct,
+  myBookmarkProducts,
 }) {
   //최고금리순으로 가져오는 함수
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -85,7 +87,11 @@ function AllBankList({
                           </div>
                         </StyledDiv>
                         <StyledMoreListDiv>
-                          <BsFillBookmarkFill style={StyledBookMark} />
+                          <Bookmarks
+                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            productName={item.fin_prdt_nm}
+                            productCoName={item.kor_co_nm}
+                          />
                           <button
                             style={{
                               width: "60px",
