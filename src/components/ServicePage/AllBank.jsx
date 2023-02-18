@@ -12,6 +12,7 @@ function AllBank({
   setActiveItem,
   savingbaseList,
   savingoptionalList,
+  handleClickProduct,
 }) {
   return (
     <>
@@ -21,6 +22,7 @@ function AllBank({
           depositbaseList={depositbaseList}
           activeItem={activeItem}
           setActiveItem={setActiveItem}
+          handleClickProduct={handleClickProduct}
         />
       ) : (
         <SavingAllBankList
@@ -28,6 +30,7 @@ function AllBank({
           savingOptionalList={savingoptionalList}
           activeItem={activeItem}
           setActiveItem={setActiveItem}
+          handleClickProduct={handleClickProduct}
         />
       )}
     </>

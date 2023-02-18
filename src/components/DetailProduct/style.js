@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const StyledDetailContainer = styled.div`
   width: 870px;
   border-top: 1px solid #efefef;

@@ -23,6 +23,7 @@ function AllBankList({
   depositOptionalList,
   activeItem,
   setActiveItem,
+  handleClickProduct,
 }) {
   //최고금리순으로 가져오는 함수
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -39,60 +40,66 @@ function AllBankList({
               <>
                 {deposit.save_trm === "12" ? (
                   <StyledBankLists key={item.id}>
-                    <StyledListDiv>
-                      <StyledDiv>
-                        {logoLists.logos.map((t) =>
-                          Object.keys(t)[0] === item.fin_co_no ? (
-                            <StyledImg
-                              src={Object.values(t)[0]}
-                              alt="로고"
-                              key={item.id}
-                            />
-                          ) : null
-                        )}
-                        <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
-                          <StyledContentDiv>
-                            <StyledProductTitleDiv>
-                              <h2
-                                style={{
-                                  fontSize: "20px",
-                                }}
-                              >
-                                {item.fin_prdt_nm}
-                              </h2>
-
-                              <StyledBankNameP>
-                                {item.kor_co_nm}
-                              </StyledBankNameP>
-                            </StyledProductTitleDiv>
-                            <StyledSaveTrmDiv>
-                              <StyledRateP>
-                                최대금리
-                                {deposit.intr_rate2}
-                              </StyledRateP>
-
-                              <StyledRateP>
-                                일반금리 {deposit.intr_rate}
-                              </StyledRateP>
-                            </StyledSaveTrmDiv>
-                          </StyledContentDiv>
-                        </div>
-                      </StyledDiv>
-                      <StyledMoreListDiv>
-                        <BsFillBookmarkFill style={StyledBookMark} />
-                        <button
-                          style={{
-                            width: "60px",
-                            height: "30px",
-                          }}
+                    <div style={{ display: "flex" }}>
+                      <StyledListDiv>
+                        <StyledDiv
                           onClick={() => {
-                            setActiveItem(item.id);
+                            handleClickProduct(item.id);
                           }}
                         >
-                          자세히∨
-                        </button>
-                      </StyledMoreListDiv>
-                    </StyledListDiv>
+                          {logoLists.logos.map((t) =>
+                            Object.keys(t)[0] === item.fin_co_no ? (
+                              <StyledImg
+                                src={Object.values(t)[0]}
+                                alt="로고"
+                                key={item.id}
+                              />
+                            ) : null
+                          )}
+                          <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
+                            <StyledContentDiv>
+                              <StyledProductTitleDiv>
+                                <h2
+                                  style={{
+                                    fontSize: "20px",
+                                  }}
+                                >
+                                  {item.fin_prdt_nm}
+                                </h2>
+
+                                <StyledBankNameP>
+                                  {item.kor_co_nm}
+                                </StyledBankNameP>
+                              </StyledProductTitleDiv>
+                              <StyledSaveTrmDiv>
+                                <StyledRateP>
+                                  최대금리
+                                  {deposit.intr_rate2}
+                                </StyledRateP>
+
+                                <StyledRateP>
+                                  일반금리 {deposit.intr_rate}
+                                </StyledRateP>
+                              </StyledSaveTrmDiv>
+                            </StyledContentDiv>
+                          </div>
+                        </StyledDiv>
+                        <StyledMoreListDiv>
+                          <BsFillBookmarkFill style={StyledBookMark} />
+                          <button
+                            style={{
+                              width: "60px",
+                              height: "30px",
+                            }}
+                            onClick={() => {
+                              setActiveItem(item.id);
+                            }}
+                          >
+                            {activeItem === item.id ? <></> : "자세히∨"}
+                          </button>
+                        </StyledMoreListDiv>
+                      </StyledListDiv>
+                    </div>
                     <div>
                       {activeItem === item.id ? (
                         <DepositDetail

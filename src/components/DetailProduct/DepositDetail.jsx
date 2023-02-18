@@ -53,7 +53,7 @@ function DepositDetail({
                       setActiveItem(1);
                     }}
                   >
-                    X
+                    닫기
                   </button>
                 </div>
               </>

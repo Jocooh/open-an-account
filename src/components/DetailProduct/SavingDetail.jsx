@@ -9,9 +9,6 @@ import {
 } from "./style";
 
 function SavingDetail({ savingDB, savingbaseList, setActiveItem }) {
-  console.log("savingDB", savingDB);
-  console.log("savingbaseList", savingbaseList);
-
   return (
     <>
       <div>
@@ -50,7 +47,7 @@ function SavingDetail({ savingDB, savingbaseList, setActiveItem }) {
                       setActiveItem(1);
                     }}
                   >
-                    X
+                    닫기
                   </button>
                 </div>
               </>
