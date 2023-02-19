@@ -1,5 +1,5 @@
 //AllBankList.jsx
-import React, { useState, useRef } from "react";
+import React from "react";
 import {
   StyledImg,
   StyledSaveTrmDiv,
@@ -14,9 +14,8 @@ import {
   StyledMoreListDiv,
   StyledListDiv,
 } from "../SearchBankList/style";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import DepositDetail from "../DetailProduct/DepositDetail";
-import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
+import { StyledBankLists } from "../../pages/ServicePage/style";
 import Bookmarks from "../Bookmarks";
 
 function AllBankList({
@@ -25,7 +24,6 @@ function AllBankList({
   activeItem,
   setActiveItem,
   handleClickProduct,
-  myBookmarkProducts,
 }) {
   //최고금리순으로 가져오는 함수
   const depositDB = depositOptionalList?.sort(function (a, b) {
@@ -88,7 +86,6 @@ function AllBankList({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
                             productId={item.fin_prdt_cd}
                             productName={item.fin_prdt_nm}
                             productCoName={item.kor_co_nm}

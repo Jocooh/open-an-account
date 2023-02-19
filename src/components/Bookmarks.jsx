@@ -1,8 +1,8 @@
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   setDoc,
   where,
@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { authService, db } from "../config/firebase";
 
 const Bookmarks = ({
-  // myBookmarkProducts,
   //상품명
   productName,
   //상품코드
@@ -23,35 +22,24 @@ const Bookmarks = ({
   //상품필드아이디
   productDocId,
 }) => {
-  // console
-  //   .log(
-  //   "myBookmarkProducts",
-  //   myBookmarkProducts
-  //   "productName",
-  //   productName,
-  //   "productCoName",
-  //   productCoName
-  //   );
-  // console.log(myBookmarkProducts.myBookmarkDocumentId);
-  // const Id = myBookmarkProducts[0].myBookmarkDocumentId;
-  // console.log(Id);
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
 
-  //성아-수정
-  // 1. 북마크 -> addDoc 에 currentUser 에 isBookmark 추가
+  // 1. addBookmark(addDoc) -> currentUser 에 isBookmark 추가
+
   const addBookmark = async () => {
     // 로그인 체크
-    //newId: 해당하는 필드값을 내가 새로만들어줌(setDoc)
-    const newId = currentUserUid + productCoName;
+    // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
+    const newId = currentUserUid + productId;
     if (!authService.currentUser) {
       alert("로그인이 필요합니다.");
       navigate("/login");
     }
-    //북마크가 체크되어있지 않다면?
+
+    // 북마크가 체크되어있지 않다면?
     if (!bookmark) {
-      //여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 54~59줄이 들어갈 예정
+      // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 54~59줄이 들어갈 예정
       await setDoc(doc(db, "bookmarks", newId), {
         userId: currentUserUid,
         productName,
@@ -60,10 +48,11 @@ const Bookmarks = ({
         productDocId,
         // isbookmark: true,
       });
-      //이제 true가 되면서 북마크 더이상 못하게 막기
+
+      // true가 되면서 북마크 더이상 못하게 막기
       setBookmark(true);
-      //else부터는 북마크가 true일때 일어나므로 해당 newId가 있다면? 지워버려
     } else {
+      // bookmark 면? 해당 newId 가 있으니 delete 이 실행
       const haveBookMark = doc(db, "bookmarks", newId);
       deleteDoc(haveBookMark);
       //다시 북마크가 저장가능한 상태
@@ -71,7 +60,7 @@ const Bookmarks = ({
     }
   };
 
-  // 2. 내가 찜한 내역 불러오기 - 원준 작업 중 - (질문🔥 원준님 이거는 마이페이지에서 해당하는 것일까요?!:))
+  // 2. 내가 북마크한 내역 불러오기 - 원준 작업 중 - (질문🔥 원준님 이거는 마이페이지에서 해당하는 것일까요?!:))
   const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
 
   const getMyBookmarkProducts = async () => {
@@ -94,18 +83,28 @@ const Bookmarks = ({
 
   console.log("myBookmarkProducts", myBookmarkProducts);
 
-  const myBookmarkProductsContents = () => {
-    const a = myBookmarkProducts.map(
-      (i) => console.log("i", i)
-      // i.productId === productId ? bookmark(true) : bookmark(false)
-    );
+  // const myBookmarkProductsContents = () => {
+  //   const a = myBookmarkProducts.map((i) =>
+  //     i.productId === productId ? setBookmark(true) : console.log("들어왔니")
+  //   );
+  // };
+
+  // 내가 북마크한 내역 화면에 출력
+  const getBookmark = async () => {
+    const newId = currentUserUid + productId;
+    const docRef = doc(db, "bookmarks", newId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setBookmark(true);
+    }
   };
 
   //성아-유저의 id가 변경되거나 하면 getMybookmarkProducts()를 다시 실행,, 해당하는 user의 북마크를 가져올 예정
   useEffect(() => {
     getMyBookmarkProducts();
-    myBookmarkProductsContents();
+    getBookmark();
   }, []);
+
   // console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
 
   // // 3. 채워진 bookmark 클릭시 deleteDoc

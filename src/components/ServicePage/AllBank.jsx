@@ -13,7 +13,6 @@ function AllBank({
   savingbaseList,
   savingoptionalList,
   handleClickProduct,
-  myBookmarkProducts,
 }) {
   return (
     <>
@@ -24,7 +23,6 @@ function AllBank({
           activeItem={activeItem}
           setActiveItem={setActiveItem}
           handleClickProduct={handleClickProduct}
-          myBookmarkProducts={myBookmarkProducts} // my bookmark products
         />
       ) : (
         <SavingAllBankList
@@ -33,7 +31,6 @@ function AllBank({
           activeItem={activeItem}
           setActiveItem={setActiveItem}
           handleClickProduct={handleClickProduct}
-          myBookmarkProducts={myBookmarkProducts} // my bookmark products
         />
       )}
     </>

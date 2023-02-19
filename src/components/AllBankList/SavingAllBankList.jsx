@@ -8,7 +8,7 @@ import {
   StyledBankNameP,
 } from "./style";
 
-import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
+import { StyledBankLists } from "../../pages/ServicePage/style";
 import {
   StyledDiv,
   StyledContentDiv,
@@ -16,7 +16,6 @@ import {
   StyledListDiv,
 } from "../SearchBankList/style";
 import logoLists from "../../assets/logo/logo";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import SavingDetail from "../DetailProduct/SavingDetail";
 import Bookmarks from "../Bookmarks";
 
@@ -26,7 +25,6 @@ function SavingAllBankList({
   activeItem,
   setActiveItem,
   handleClickProduct,
-  myBookmarkProducts,
 }) {
   const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
@@ -93,7 +91,6 @@ function SavingAllBankList({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
                             productId={item.fin_prdt_cd}
                             productName={item.fin_prdt_nm}
                             productCoName={item.kor_co_nm}

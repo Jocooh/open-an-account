@@ -758,7 +758,6 @@ const ServicePage = () => {
                                     savingOptionalList={savingoptionalList}
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
-                                    // myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                   />
                                 ) : (
                                   <AllBank
@@ -770,7 +769,6 @@ const ServicePage = () => {
                                     savingbaseList={savingbaseList}
                                     savingoptionalList={savingoptionalList}
                                     handleClickProduct={handleClickProduct}
-                                    // myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                   />
                                 )}
                               </StyledBankListWrapper>
