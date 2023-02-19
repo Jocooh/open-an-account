@@ -32,7 +32,7 @@ function Product({
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>
-      {inputNum > 9999 ? (
+      {inputNum > 999 ? (
         // TODO: 단복리 검사해야함 !! 아래는 임시
         // selectedProductRate === "S" ? (
         selectedProductRate ? (

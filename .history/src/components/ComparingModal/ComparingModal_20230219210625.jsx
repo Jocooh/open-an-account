@@ -34,6 +34,7 @@ const ComparingModal = ({
           }}
           size="39px"
           color="#505050"
+          fill="#f0f0f0"
         />
         {/* <CloseButton
           src={require("../../assets/close.png")}

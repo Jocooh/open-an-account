@@ -29,19 +29,12 @@ const ComparingModal = ({
     <ModalBackground>
       <ModalContainer>
         <CloseButton
-          onClick={() => {
-            setComparingModalOpen(false);
-          }}
-          size="39px"
-          color="#505050"
-        />
-        {/* <CloseButton
           src={require("../../assets/close.png")}
           alt="닫기"
           onClick={() => {
             setComparingModalOpen(false);
           }}
-        /> */}
+        />
         <ModalContents>
           <TitleWrapper>
             <Title>상품 비교</Title>

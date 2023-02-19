@@ -16,6 +16,7 @@ import {
   TitleWrapper,
 } from "./style";
 import Product from "../Product/Product";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 const ComparingModal = ({
   setComparingModalOpen,
@@ -28,12 +29,17 @@ const ComparingModal = ({
   return (
     <ModalBackground>
       <ModalContainer>
-        <CloseButton
+        <FaRegWindowClose
           onClick={() => {
             setComparingModalOpen(false);
           }}
-          size="39px"
-          color="#505050"
+          style={{ hover: "#505050" }}
+        />
+        <BsFillBookmarkFill
+          onClick={() => {
+            setScrap(true);
+          }}
+          style={scrap ? { color: "#CDE974" } : { color: "#D9D9D9" }}
         />
         {/* <CloseButton
           src={require("../../assets/close.png")}

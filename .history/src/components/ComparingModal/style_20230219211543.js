@@ -34,13 +34,9 @@ export const CloseButton = styled(CgClose)`
   margin-right: auto;
   cursor: pointer;
 
-  background-color: "#f0f0f0";
-  border-radius: "10px";
-
   :hover {
     color: #f0f0f0;
-    background-color: "#f0f0f0";
-    border-radius: "10px";
+    background-color: #505050;
   }
 `;
 

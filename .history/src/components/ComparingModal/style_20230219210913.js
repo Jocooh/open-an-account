@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NumericFormat } from "react-number-format";
-import { CgClose } from "react-icons/cg";
+import { CgCloseR } from "react-icons/cg";
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -27,21 +27,18 @@ export const ModalContainer = styled.div`
 top: 146px; */
 `;
 
-export const CloseButton = styled(CgClose)`
+export const CloseButton = styled(CgCloseR)`
   display: flex;
   align-items: flex-end;
   margin-bottom: 20px;
   margin-right: auto;
   cursor: pointer;
 
-  background-color: "#f0f0f0";
-  border-radius: "10px";
-
+  /*
+  호버 하면 끔찍해집니다 빼달라고 강구 
   :hover {
-    color: #f0f0f0;
-    background-color: "#f0f0f0";
-    border-radius: "10px";
-  }
+    background-color: #505050;
+  } */
 `;
 
 //* 하얀색 배경 내용물

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NumericFormat } from "react-number-format";
-import { CgClose } from "react-icons/cg";
+import { CgCloseR } from "react-icons/cg";
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -23,24 +23,21 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   gap: 10px;
-  /* left: calc(50% - 1331px/2 + 0.5px);
-top: 146px; */
+  left: calc(50% - 1331px / 2 + 0.5px);
+  top: 146px;
 `;
 
-export const CloseButton = styled(CgClose)`
+export const CloseButton = styled(CgCloseR)`
   display: flex;
   align-items: flex-end;
+  /* width: 39px; */
   margin-bottom: 20px;
   margin-right: auto;
   cursor: pointer;
-
-  background-color: "#f0f0f0";
-  border-radius: "10px";
+  color: #f0f0f0;
 
   :hover {
-    color: #f0f0f0;
-    background-color: "#f0f0f0";
-    border-radius: "10px";
+    background-color: #505050;
   }
 `;
 
@@ -157,5 +154,7 @@ export const SecondGuide = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
+
+  text-align: center;
   margin-top: 20px;
 `;

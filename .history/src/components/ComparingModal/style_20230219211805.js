@@ -39,8 +39,7 @@ export const CloseButton = styled(CgClose)`
 
   :hover {
     color: #f0f0f0;
-    background-color: "#f0f0f0";
-    border-radius: "10px";
+    background-color: #505050;
   }
 `;
 

@@ -16,6 +16,7 @@ import {
   TitleWrapper,
 } from "./style";
 import Product from "../Product/Product";
+import { FaRegWindowClose } from "react-icons/fa";
 
 const ComparingModal = ({
   setComparingModalOpen,
@@ -28,12 +29,11 @@ const ComparingModal = ({
   return (
     <ModalBackground>
       <ModalContainer>
-        <CloseButton
+        <FaRegWindowClose
           onClick={() => {
             setComparingModalOpen(false);
           }}
-          size="39px"
-          color="#505050"
+          style={{style={color:"#FFFFFF"}, hover: "#505050", width:'39px' }}
         />
         {/* <CloseButton
           src={require("../../assets/close.png")}

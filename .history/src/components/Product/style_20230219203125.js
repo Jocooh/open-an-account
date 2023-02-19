@@ -34,12 +34,11 @@ export const TotalCost = styled.div`
 export const ProductBox = styled.div`
   box-sizing: border-box;
   width: 336px;
-  aspect-ratio: 3/2;
-  object-fit: contain;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;
-  flex-direction: column;
+  flex: 1 0 200px;
+  /* flex-direction: column; */
   justify-content: center;
   padding: 20px 20px 15px 20px;
 `;

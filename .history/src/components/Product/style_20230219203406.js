@@ -36,6 +36,7 @@ export const ProductBox = styled.div`
   width: 336px;
   aspect-ratio: 3/2;
   object-fit: contain;
+  mix-blend-mode: color;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;

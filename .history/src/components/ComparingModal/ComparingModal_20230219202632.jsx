@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  deleteDoc,
+  setDoc,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 import { authService, db } from "../../config/firebase";
 import {
   CloseButton,
   FirstGuide,
+  Guide,
+  Highlight,
   Input,
+  InputMoney,
   Message,
   MessageWrapper,
   ModalBackground,
@@ -29,19 +44,12 @@ const ComparingModal = ({
     <ModalBackground>
       <ModalContainer>
         <CloseButton
-          onClick={() => {
-            setComparingModalOpen(false);
-          }}
-          size="39px"
-          color="#505050"
-        />
-        {/* <CloseButton
           src={require("../../assets/close.png")}
           alt="닫기"
           onClick={() => {
             setComparingModalOpen(false);
           }}
-        /> */}
+        />
         <ModalContents>
           <TitleWrapper>
             <Title>상품 비교</Title>
@@ -61,6 +69,7 @@ const ComparingModal = ({
                   thousandSeparator=","
                   placeholder="금액을 입력해주세요"
                   inputLength={inputValue.length}
+                  min="1000000000"
                 />
                 원을 예치하면
                 <FirstGuide>
