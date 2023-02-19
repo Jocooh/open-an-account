@@ -60,7 +60,7 @@ const Bookmarks = ({
     }
   };
 
-  // 2. 내가 북마크한 내역 불러오기 - 원준 작업 중 - (질문🔥 원준님 이거는 마이페이지에서 해당하는 것일까요?!:))
+  // 2. 내가 북마크한 내역 불러오기 (질문🔥 원준님 이거는 마이페이지에서 해당하는 것일까요?!:) - 기존 servicePage 에서 찜한 상품 렌더링을 위해서 작성한 코드입니다.)
   const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
 
   const getMyBookmarkProducts = async () => {
@@ -155,38 +155,28 @@ export default Bookmarks;
 //   border-radius: 1px solid black;
 // `;
 
-// // 클릭한 item.fin_prdt_nm 과 컬렉션 bookmarks 문서에 있는 bookmarkProducts 와 같은 친구들만 걸러서 changelikedetail 할당
-// const changeBookmarkDetail = (checkedItem) =>
-//   checkedItem.filter((item) => item.bookmarkPrdt === bookmarkPrdt);
-// // console.log(bookmarkPrdt);
-// // 2. 북마크한 내역 가져오기
-// const getBookmark = () => {
-//   if (!authService.currentUser) {
-//     setBookmark(false);
-//     return;
-//   }
+// // 기존 servicePage 북마크 내역 불러오기 하려던 작업
+//   // 내가 찜한 내역 불러오기 - 원준 작업 중 -
+//   const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
 
-//   const BookmarkClick = async () => {
-//     let selectedArray = [];
-//     const q = query(
+//   const getMyBookmarkProducts = async () => {
+//     const querySnapshot = await getDocs(
 //       collection(db, "bookmarks"),
 //       where("userId", "==", authService.currentUser?.uid)
 //     );
-//     const querySnapshot = await getDocs(q);
+//     const myBookmarkProduct = [];
+
 //     querySnapshot.forEach((doc) => {
-//       const bookmarkObj = {
-//         id: doc.id,
+//       const newBookmarkProduct = {
+//         myBookmarkDocumentId: doc.id,
 //         ...doc.data(),
 //       };
-//       selectedArray.push(bookmarkObj);
+
+//       myBookmarkProduct.push(newBookmarkProduct);
 //     });
-//     // selectedArray 에는 내가 북마크한 모든 상품들의 정보가 있음.
-//     // changeBookmarkDetail 의 함수에 selectedArray 를 인자로 넘겨 filter 를 거쳐 내가 클릭한 상품의 상품명 만 filteredBookmark 에 할당.
-//     const filteredBookmark = changeBookmarkDetail(selectedArray);
-//     // filteredBookmark 를 전역에서 사용할 수 있게 setCheckedItem 에 넘겨준다.
-//     setCheckedItem(filteredBookmark);
-//     // filteredBookmark 의 길이가 0 보다 크면 true or false
-//     setBookmark(filteredBookmark.length > 0 ? true : false);
+//     setMyBookmarkProducs(myBookmarkProduct);
 //   };
-//   BookmarkClick();
-// };
+//   useEffect(() => {
+//     getMyBookmarkProducts();
+//   }, []);
+//   console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);

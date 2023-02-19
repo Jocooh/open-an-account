@@ -309,31 +309,6 @@ const ServicePage = () => {
     });
   };
 
-  // // 내가 찜한 내역 불러오기 - 원준 작업 중 -
-  // const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
-
-  // const getMyBookmarkProducts = async () => {
-  //   const querySnapshot = await getDocs(
-  //     collection(db, "bookmarks"),
-  //     where("userId", "==", authService.currentUser?.uid)
-  //   );
-  //   const myBookmarkProduct = [];
-
-  //   querySnapshot.forEach((doc) => {
-  //     const newBookmarkProduct = {
-  //       myBookmarkDocumentId: doc.id,
-  //       ...doc.data(),
-  //     };
-
-  //     myBookmarkProduct.push(newBookmarkProduct);
-  //   });
-  //   setMyBookmarkProducs(myBookmarkProduct);
-  // };
-  // useEffect(() => {
-  //   getMyBookmarkProducts();
-  // }, []);
-  // console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
-
   return (
     <Wraper>
       <Cantinar>
