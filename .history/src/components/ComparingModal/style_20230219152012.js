@@ -27,8 +27,6 @@ top: 146px; */
 `;
 
 export const CloseButton = styled.img`
-  display: flex;
-  align-items: flex-end;
   width: 39px;
   margin-bottom: 20px;
   margin-right: auto;

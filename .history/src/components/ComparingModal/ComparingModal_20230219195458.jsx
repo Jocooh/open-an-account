@@ -34,15 +34,13 @@ import Product from "../Product/Product";
 
 const ComparingModal = ({
   setComparingModalOpen,
-  selectedProduct,
+  selectedProductId,
   selectedProductRate,
   selectedProductRate2,
 }) => {
   const [inputValue, setInputValue] = useState("");
 
-  console.log("selectedProductId[0].category :>> ", selectedProduct.category);
-  console.log("selectedProductId[1].category :>> ", selectedProduct.category);
-  console.log("selectedProductId[2].category :>> ", selectedProduct.category);
+  console.log("selectedProductId.category :>> ", selectedProductId.category);
 
   return (
     <ModalBackground>
@@ -63,7 +61,7 @@ const ComparingModal = ({
             </SubTitle>
           </TitleWrapper>
           <MessageWrapper>
-            {selectedProduct[0].category === "예금 기본 정보" ? (
+            {selectedProductId[0].category === "예금 기본 정보" ? (
               <Message>
                 12개월 동안
                 <Input
@@ -100,20 +98,20 @@ const ComparingModal = ({
           <Products>
             <Product
               inputValue={inputValue}
-              selectedProduct={selectedProduct[0]}
+              selectedProductId={selectedProductId[0]}
               selectedProductRate={selectedProductRate}
               selectedProductRate2={selectedProductRate2}
             />
             <Product
               inputValue={inputValue}
-              selectedProduct={selectedProduct[1]}
+              selectedProductId={selectedProductId[1]}
               selectedProductRate={selectedProductRate}
               selectedProductRate2={selectedProductRate2}
             />
-            {selectedProduct[2] ? (
+            {selectedProductId[2] ? (
               <Product
                 inputValue={inputValue}
-                selectedProduct={selectedProduct[2]}
+                selectedProductId={selectedProductId[2]}
                 selectedProductRate={selectedProductRate}
                 selectedProductRate2={selectedProductRate2}
               />

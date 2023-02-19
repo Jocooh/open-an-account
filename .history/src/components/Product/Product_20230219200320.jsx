@@ -27,6 +27,17 @@ function Product({
   //* 상품 찜하기
   const [scrap, setScrap] = useState(false);
 
+  //********** 상품 정보 *************
+  //* 전체 상품의 DEPOSIT_OPTION_LIST 정보 저장
+  const [totalDepositOptionDetail, setTotalDepositOptionDetail] = useState([]);
+  //* 전체 상품의 SAVING_OPTION_LIST 정보 저장
+  const [totalSavingOptionDetail, setTotalSavingOptionDetail] = useState([]);
+
+  //* selectedProductId의 DEPOSIT_BASE_LIST 정보 저장
+  const [depositOptionDetail, setDepositOptionDetail] = useState([]);
+  //* selectedProductId의 SAVING_BASE_LIST 정보 저장
+  const [savingOptionDetail, setSavingOptionDetail] = useState([]);
+
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>

@@ -463,9 +463,9 @@ const ServicePage = () => {
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-                  selectedProduct={[products[0], products[3], products[6]]}
-                  selectedProductRate={intrRate}
-                  selectedProductRate2={intrRate2}
+                  selectedProductId={[products[0], products[3], products[6]]}
+                  selectedProductRate={[products[1], products[4], products[7]]}
+                  selectedProductRate2={[products[2], products[5], products[8]]}
                 />
               )}
             </div>

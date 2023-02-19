@@ -34,15 +34,11 @@ import Product from "../Product/Product";
 
 const ComparingModal = ({
   setComparingModalOpen,
-  selectedProduct,
+  selectedProductId,
   selectedProductRate,
   selectedProductRate2,
 }) => {
   const [inputValue, setInputValue] = useState("");
-
-  console.log("selectedProductId[0].category :>> ", selectedProduct.category);
-  console.log("selectedProductId[1].category :>> ", selectedProduct.category);
-  console.log("selectedProductId[2].category :>> ", selectedProduct.category);
 
   return (
     <ModalBackground>
@@ -63,7 +59,7 @@ const ComparingModal = ({
             </SubTitle>
           </TitleWrapper>
           <MessageWrapper>
-            {selectedProduct[0].category === "예금 기본 정보" ? (
+            {selectedProductId.category === "예금 기본 정보" ? (
               <Message>
                 12개월 동안
                 <Input
@@ -100,30 +96,26 @@ const ComparingModal = ({
           <Products>
             <Product
               inputValue={inputValue}
-              selectedProduct={selectedProduct[0]}
+              selectedProductId={selectedProductId[0]}
               selectedProductRate={selectedProductRate}
               selectedProductRate2={selectedProductRate2}
             />
             <Product
               inputValue={inputValue}
-              selectedProduct={selectedProduct[1]}
+              selectedProductId={selectedProductId[1]}
               selectedProductRate={selectedProductRate}
               selectedProductRate2={selectedProductRate2}
             />
-            {selectedProduct[2] ? (
-              <Product
-                inputValue={inputValue}
-                selectedProduct={selectedProduct[2]}
-                selectedProductRate={selectedProductRate}
-                selectedProductRate2={selectedProductRate2}
-              />
-            ) : (
-              <Product />
-            )}
+            <Product
+              inputValue={inputValue}
+              selectedProductId={selectedProductId[2]}
+              selectedProductRate={selectedProductRate}
+              selectedProductRate2={selectedProductRate2}
+            />
           </Products>
           <SecondGuide>
-            *만기수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의
-            15.4%)금액 입니다. 계산 결과는 최고금리가 적용되었습니다.
+            *만기 수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의 15.4%)
+            금액입니다.
           </SecondGuide>
         </ModalContents>
       </ModalContainer>
