@@ -98,8 +98,10 @@ function SearchDepositLists({
                   <StyledMoreListDiv>
                     <Bookmarks
                       myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                      productId={v.fin_prdt_cd}
                       productName={v.fin_prdt_nm}
                       productCoName={v.kor_co_nm}
+                      productDocId={v.id}
                     />
                     <button
                       style={{

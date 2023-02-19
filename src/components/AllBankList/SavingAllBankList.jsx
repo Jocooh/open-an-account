@@ -94,8 +94,10 @@ function SavingAllBankList({
                         <StyledMoreListDiv>
                           <Bookmarks
                             myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            productId={item.fin_prdt_cd}
                             productName={item.fin_prdt_nm}
                             productCoName={item.kor_co_nm}
+                            productDocId={item.id}
                           />
                           <button
                             style={{

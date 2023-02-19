@@ -3,7 +3,9 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
+  //
   // * 메인 프로젝트
+  //
   // apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
   // authDomain: "open-an-account-31857.firebaseapp.com",
   // projectId: "open-an-account-31857",
@@ -53,12 +55,12 @@ const firebaseConfig = {
   // appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
   //
   // * 김원준 전용 키 2
-  // apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
-  // authDomain: "test2-open-an-account.firebaseapp.com",
-  // projectId: "test2-open-an-account",
-  // storageBucket: "test2-open-an-account.appspot.com",
-  // messagingSenderId: "884430717357",
-  // appId: "1:884430717357:web:4b2788809e7d9a37faa124",
+  apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
+  authDomain: "test2-open-an-account.firebaseapp.com",
+  projectId: "test2-open-an-account",
+  storageBucket: "test2-open-an-account.appspot.com",
+  messagingSenderId: "884430717357",
+  appId: "1:884430717357:web:4b2788809e7d9a37faa124",
 };
 
 // Initialize Firebase
