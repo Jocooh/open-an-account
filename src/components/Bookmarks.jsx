@@ -81,7 +81,7 @@ const Bookmarks = ({
     setMyBookmarkProducs(myBookmarkProduct);
   };
 
-  console.log("myBookmarkProducts", myBookmarkProducts);
+  // console.log("myBookmarkProducts", myBookmarkProducts);
 
   // const myBookmarkProductsContents = () => {
   //   const a = myBookmarkProducts.map((i) =>
