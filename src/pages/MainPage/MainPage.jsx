@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css/pagination";
@@ -31,6 +31,7 @@ import {
 } from "./style";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   return (
     <MainPageWraper>
       <Wraper>
@@ -93,7 +94,13 @@ const MainPage = () => {
             찾아드릴게요.
             <p /> 선택은 여러분의 자유예요.
           </Greetingcontent>
-          <ProductFdButton>상품 찾아보기</ProductFdButton>
+          <ProductFdButton
+            onClick={() => {
+              navigate("/servicepage");
+            }}
+          >
+            상품 찾아보기
+          </ProductFdButton>
         </GreetingBox>
         <BottomWrap>
           <BoardBestCommentWrap>
