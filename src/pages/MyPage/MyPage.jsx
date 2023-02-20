@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import Card from "../../components/Mypage/Card";
 // import { useNavigate } from "react-router-dom";
-import UserModal from "../../components/Mypage/UserModal";
 import { useState } from "react";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import {
@@ -22,7 +20,7 @@ import {
   LogOutBtn,
   StyledIcons,
 } from "./style";
-import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
+// import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +43,6 @@ function MyPage() {
   //     return;
   //   }
   // }, []);
-
 
   return (
     <MyPageWrapper className="제일 큰 박스 width:1440px">
