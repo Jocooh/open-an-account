@@ -28,9 +28,11 @@ const AuthForm = ({
   email,
   changeEmail,
   emailRef,
+  emailValid, // 실시간 유효성 검사
   password,
   changePassword,
   passwordRef,
+  passwordValid, // 실시간 유효성 검사
   confirmPassword,
   changeConfirmPassword,
   confirmPasswordRef,
@@ -68,6 +70,10 @@ const AuthForm = ({
               onChange={changeEmail}
               ref={emailRef}
             />
+            {!emailValid && email.length > 0 && (
+              <p>올바른 이메일을 형식을 입력해주세요.</p>
+            )}
+
             <AuthLabel>비밀번호</AuthLabel>
             <AuthInput
               id="password"
@@ -77,6 +83,7 @@ const AuthForm = ({
               onChange={changePassword}
               ref={passwordRef}
             />
+
             {signUp ? (
               <>
                 <AuthLabel>비밀번호 재입력</AuthLabel>

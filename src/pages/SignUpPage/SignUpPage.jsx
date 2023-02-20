@@ -21,9 +21,19 @@ const SignUpPage = () => {
   const confirmPasswordRef = useRef(null);
   const nicknameRef = useRef(null);
 
+  // 이메일, 패스워드 유효성 값 초기화
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+  // 이메일, 패스워드
   // 이메일 입력
   const changeEmail = (event) => {
     setEmail(event.target.value);
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    if (emailRegex.test(event.target.value)) {
+      setEmailValid(true);
+    } else {
+      setEmailValid(false);
+    }
   };
 
   // 비밀번호 입력
@@ -46,10 +56,8 @@ const SignUpPage = () => {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    const nicknameRegax = nickname.length < 2 || nickname.length > 6;
     const checkEmailValidation = email.match(emailRegex);
     const checkPasswordValidation = password.match(passwordRegex);
-    const checkNicknameValidation = nickname.match(nicknameRegax);
 
     if (!email || !checkEmailValidation) {
       if (!email) {

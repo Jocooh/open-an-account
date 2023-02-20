@@ -17,14 +17,31 @@ const LoginPage = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  // 이메일, 패스워드 유효성 값 초기화
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+
   // 이메일 입력
   const changeEmail = (event) => {
     setEmail(event.target.value);
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    if (emailRegex.test(event.target.value)) {
+      setEmailValid(true);
+    } else {
+      setEmailValid(false);
+    }
   };
 
   // 비밀번호 입력
   const changePassword = (event) => {
     setPassword(event.target.value);
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+    if (passwordRegex.test(event.target.value)) {
+      setPasswordValid(true);
+    } else {
+      setPasswordValid(false);
+    }
   };
 
   // 이메일, 비밀번호 유효성 검사
@@ -115,9 +132,11 @@ const LoginPage = () => {
       email={email}
       changeEmail={changeEmail}
       emailRef={emailRef}
+      emailValid={emailValid} // 실시간 유효성 검사
       password={password}
       changePassword={changePassword}
       passwordRef={passwordRef}
+      passwordValid={passwordValid}
       // socialBtn={socialBtn}
       submitLogin={submitLogin}
     />
