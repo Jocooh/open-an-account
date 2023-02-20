@@ -3,7 +3,9 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
+  //
   // * 메인 프로젝트
+  //
   // apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
   // authDomain: "open-an-account-31857.firebaseapp.com",
   // projectId: "open-an-account-31857",

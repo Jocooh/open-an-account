@@ -1,10 +1,6 @@
 import React from "react";
 import logoLists from "../../../assets/logo/logo";
-import { BsFillBookmarkFill } from "react-icons/bs";
-import {
-  StyledBankLists,
-  StyledBookMark,
-} from "../../../pages/ServicePage/style";
+import { StyledBankLists } from "../../../pages/ServicePage/style";
 import {
   StyledImg,
   StyledProductTitleDiv,
@@ -20,12 +16,7 @@ import {
 } from "../style";
 import Bookmarks from "../../Bookmarks";
 
-function SearchSavingLists({
-  savingbaseList,
-  searchBank,
-  savingOptionalList,
-  myBookmarkProducts,
-}) {
+function SearchSavingLists({ savingbaseList, searchBank, savingOptionalList }) {
   return (
     <div>
       {savingbaseList &&
@@ -93,9 +84,10 @@ function SearchSavingLists({
                   </StyledDiv>
                   <StyledMoreListDiv>
                     <Bookmarks
-                      myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                      productId={v.fin_prdt_cd}
                       productName={v.fin_prdt_nm}
                       productCoName={v.kor_co_nm}
+                      productDocId={v.id}
                     />
                     <button style={{ width: "50px", height: "30px" }}>
                       더 보기

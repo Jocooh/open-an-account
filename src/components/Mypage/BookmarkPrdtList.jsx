@@ -30,7 +30,7 @@ const BookmarkPrdtList = ({ currentUser }) => {
   return (
     <CardContainer>
       {items.map((item) => (
-        <BookmarkPrdtItem item={item} />
+        <BookmarkPrdtItem item={item} key={item.productName} />
       ))}
     </CardContainer>
   );
