@@ -26,21 +26,20 @@ export const TotalCost = styled.div`
   display: flex;
   align-items: center;
 
-  /* main */
-
   color: #6a24ff;
 `;
 
 export const ProductBox = styled.div`
   box-sizing: border-box;
   width: 336px;
+  min-height: 450px;
   aspect-ratio: 3/2;
   object-fit: contain;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 20px 20px 15px 20px;
 `;
 
@@ -67,8 +66,7 @@ export const Info = styled.div`
   font-weight: 700;
   font-size: 18px;
   line-height: 30px;
-  /* or 167% */
-
+  word-break: keep-all;
   color: #000000;
 `;
 //* 추가 정보
@@ -81,4 +79,8 @@ export const Message = styled.div`
   line-height: 30px;
 
   color: #a3a3a3;
+`;
+
+export const Scrap = styled.div`
+  float: right;
 `;
