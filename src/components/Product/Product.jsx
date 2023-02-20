@@ -17,7 +17,9 @@ function Product({
   selectedProductId,
   selectedProductRate,
   selectedProductRate2,
+
   // seletedProductRateType,
+
 }) {
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
@@ -92,7 +94,9 @@ function Product({
         <Message>
           <li>가입 방법: {selectedProduct.join_way}</li>
           <li>가입 대상: {selectedProduct.join_member}</li>
+
           <li>유의사항 {selectedProduct.etc_note}</li>
+
         </Message>
       </ProductBox>
     </Wrapper>

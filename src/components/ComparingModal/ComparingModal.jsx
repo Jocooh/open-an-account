@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   CloseButton,
   FirstGuide,
@@ -23,7 +24,9 @@ const ComparingModal = ({
   selectedProduct,
   selectedProductRate,
   selectedProductRate2,
+
   // selectedProductRateType
+
 }) => {
   const [inputValue, setInputValue] = useState("");
 

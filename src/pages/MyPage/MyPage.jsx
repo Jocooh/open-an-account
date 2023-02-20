@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Card from "../../components/Mypage/Card";
+// import { useNavigate } from "react-router-dom";
+import UserModal from "../../components/Mypage/UserModal";
+import { useState } from "react";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import {
   MyPageWrapper,
@@ -18,18 +22,30 @@ import {
   LogOutBtn,
   StyledIcons,
 } from "./style";
-import { useState } from "react";
+import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
+import { authService } from "../../config/firebase";
+import { useNavigate } from "react-router-dom";
 
-// import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
+function MyPage() {
+  const navigate = useNavigate();
 
-
+  // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요. (북마크 기능으로 선작업.)
   // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
   const userSession = sessionStorage.getItem(
-    `firebase:authUser:AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA:[DEFAULT]` // 원준님 - 이거 본인 키로 바꿔서 주석 해제해주세요
+    `firebase:authUser:AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw:[DEFAULT]` // 개인 키 입력해주세요.
   );
-
-
   const currentUser = JSON.parse(userSession ?? "");
+
+  // 원준 작업.
+  // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가. -- 현재 위 코드로 먼저 걸러주기 때문에 실행되지 않음. 더 알아볼 것.
+  // useEffect(() => {
+  //   if (!authService.currentUser) {
+  //     alert("마이페이지는 로그인 후 접근이 가능합니다.");
+  //     navigate("/login");
+  //     return;
+  //   }
+  // }, []);
+
 
   return (
     <MyPageWrapper className="제일 큰 박스 width:1440px">
@@ -116,5 +132,5 @@ import { useState } from "react";
 
 export default MyPage;
 
-//잊지마라 조성아 여기 넣어야댄다.
+// 잊지마라 조성아 여기 넣어야댄다. 네..
 /* <BookmarkPrdtList currentUser={currentUser} /> */
