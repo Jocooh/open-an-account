@@ -21,18 +21,29 @@ const SignUpPage = () => {
   const confirmPasswordRef = useRef(null);
   const nicknameRef = useRef(null);
 
-  // 이메일, 패스워드 유효성 값 초기화
-  const [emailValid, setEmailValid] = useState(false);
-  const [passwordValid, setPasswordValid] = useState(false);
+  // 오류메세지 상태 저장
+  const [emailMessage, setEmailMessage] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
+  const [nameMessage, setNameMessage] = useState("");
+  // 유효성 검사
+  const [isEmail, setIsEmail] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+  const [isname, setIsName] = useState(false);
+
   // 이메일, 패스워드
+
   // 이메일 입력
   const changeEmail = (event) => {
     setEmail(event.target.value);
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     if (emailRegex.test(event.target.value)) {
-      setEmailValid(true);
+      setEmailMessage("올바른 이메일 형식이 아닙니다.");
+      setIsEmail(false);
     } else {
-      setEmailValid(false);
+      setEmailMessage("사용 가능한 이메일입니다.");
+      setIsEmail(true);
     }
   };
 
@@ -175,6 +186,8 @@ const SignUpPage = () => {
       email={email}
       changeEmail={changeEmail}
       emailRef={emailRef}
+      emailMessage={emailMessage} // sign up 실시간 유효성 검사
+      isEmail={isEmail} // sign up 실시간 유효성 검사
       password={password}
       changePassword={changePassword}
       passwordRef={passwordRef}

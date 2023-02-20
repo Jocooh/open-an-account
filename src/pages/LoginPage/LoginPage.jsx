@@ -32,7 +32,7 @@ const LoginPage = () => {
     }
   };
 
-  // 비밀번호 입력
+  // 비밀번호 입력 - 기존 유효성 검사로 사용 중
   const changePassword = (event) => {
     setPassword(event.target.value);
     const passwordRegex =
@@ -132,11 +132,11 @@ const LoginPage = () => {
       email={email}
       changeEmail={changeEmail}
       emailRef={emailRef}
-      emailValid={emailValid} // 실시간 유효성 검사
+      emailValid={emailValid} // login 실시간 유효성 검사
       password={password}
       changePassword={changePassword}
       passwordRef={passwordRef}
-      passwordValid={passwordValid}
+      passwordValid={passwordValid} // login 실시간 유효성 검사 - 기존 유효성 검사로 사용 중
       // socialBtn={socialBtn}
       submitLogin={submitLogin}
     />
