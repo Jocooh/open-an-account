@@ -3,21 +3,19 @@ import styled from "styled-components";
 // auth background
 export const AuthBackground = styled.div`
   width: 100vw;
-  height: calc(100vh - 11.6rem);
+  /* height: calc(100vh - 11.6rem); */
 
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-y: hidden;
-
-  background-color: #f7f9fa;
   /* e3e3e3 */
 `;
 
 // auth wrapper
 export const AuthWrapper = styled.div`
-  width: 28rem;
-  /* min-width: 400px; */
+  width: 560px;
+  height: 749px;
   background-color: #fff;
   box-sizing: border-box;
 
@@ -25,140 +23,181 @@ export const AuthWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+
+  border: 1px solid black;
 `;
 
-// auth logo, title
-export const AuthLogo = styled.div`
-  width: 8rem;
-  margin: 1.5rem 0;
+// auth logo
+export const AuthLogoWrapper = styled.div`
+  width: 560px;
+  height: 87px;
+
+  text-align: center;
+  justify-content: center;
 `;
-export const AuthLogoImg = styled.img`
-  width: 100%;
+export const AuthLogo = styled.div`
+  font-size: 66px;
+  font-weight: 600;
+  color: #6a24ff;
+`;
+
+// auth title
+export const AuthTitleTextWrapper = styled.div`
+  width: 560px;
+  height: 94px;
+
+  text-align: center;
+  justify-content: center;
+`;
+export const AuthTitleWrapper = styled.div`
+  width: 560px;
+  height: 61px;
 `;
 export const AuthTitle = styled.div`
-  width: 22rem;
-  font-size: 1.7rem;
+  font-size: 32px;
   font-weight: bold;
-
-  margin: 0.5rem;
-  text-align: center;
+  color: #000000;
+`;
+export const AuthTextWrapper = styled.div`
+  width: 560px;
+  height: 33px;
 `;
 export const AuthText = styled.span`
-  color: #656666;
-  font-size: 0.95rem;
-  font-weight: bold;
-
-  margin: 1rem 0.5rem 2rem;
+  font-size: 18px;
+  font-weight: medium;
+  color: #505050;
 `;
 export const LinkText = styled.span`
   color: #6a24ff;
-  font-size: 0.95rem;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: medium;
 
-  margin: 1rem 0.5rem 2rem;
+  /* margin: 1rem 0.5rem 2rem; */
 `;
 // auth form
-export const DefaultLoginForm = styled.div``;
+export const AuthLoginForm = styled.div`
+  width: 420px;
+  height: 338px;
+`;
+export const AuthSignUpForm = styled.div`
+  width: 420px;
+  height: 594px;
+`;
 export const AuthInputWrapper = styled.div`
-  width: 22rem;
+  width: 420px;
+  height: 119px;
 
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  /* box-sizing: border-box; */
 `;
 export const AuthLabel = styled.label`
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
 `;
 export const AuthInput = styled.input`
-  height: 1.8rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: 3px solid #6a24ff;
-  border-radius: 0.2rem;
+  width: 420px;
+  height: 54px;
+  font-size: 15px;
+  /* font-weight:  */
+  color: #a3a3a3;
+  border: 1px solid #a3a3a3;
+  border-radius: 10px;
 
-  margin: 0.4rem 0 0.8rem;
-  padding: 0.4rem;
+  /* &:focus {
+    outline: 1px solid #6a24ff;
+  } */
   &:focus {
-    outline: 2px solid #6a24ff;
+    outline: none;
   }
 `;
+export const AuthInputValidationText = styled.div`
+  width: 420px;
+  height: 35px;
+  font-size: 14px;
+  color: #ff0000;
+`;
 export const AuthButton = styled.button`
-  width: 22rem;
-  height: 3rem;
+  width: 420px;
+  height: 60px;
+  font-size: 18px;
+  font-weight: bold;
   color: white;
   background-color: #6a24ff;
   border: none;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 0.2rem;
+  border-radius: 10px;
+
   cursor: pointer;
-
-  margin: 0.7rem 0;
 `;
 
-// social login form
-export const SocialLoginForm = styled.div`
-  width: 22rem;
-
-  margin: 0.5rem 0 0.5rem;
+export const BoundaryLineWrapper = styled.div`
+  width: 414px;
+  height: 20px;
+  margin: 5px 0;
 `;
-
-export const SocialLoginTitle = styled.span`
-  font-size: 1.1rem;
+export const BoundaryLine = styled.span`
+  font-size: 15px;
   font-weight: bold;
+  color: #505050;
 
   display: block;
   text-align: center;
-  /* color: #656666; */
-  margin: 0.5rem 0;
   position: relative;
 
   &::before {
-    width: 9rem;
-    height: 0.2rem;
+    width: 179px;
+    height: 1px;
     background-color: #ddd;
     position: absolute;
     left: 0;
-    top: 0.4rem;
+    top: 8px;
     content: "";
   }
 
   &::after {
-    width: 9rem;
-    height: 0.2rem;
+    width: 179px;
+    height: 1px;
     background-color: #ddd;
     position: absolute;
-    right: 0rem;
-    top: 0.4rem;
+    right: 0;
+    top: 8px;
     content: "";
   }
 `;
-export const SocialLoginList = styled.ul`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-export const SocialLoginItem = styled.li`
-  width: 4.5rem;
-  height: 4.5rem;
-  /* border-radius: 50%; */
 
-  /* margin: 1rem 1.3rem; */
+// social login form
+export const SocialLoginForm = styled.div`
+  width: 420px;
+
+  /* margin: 20px 0; */
+`;
+
+export const SocialLoginTitleWrapper = styled.div`
+  width: 414px;
+  height: 20px;
+`;
+
+export const SocialLoginList = styled.div`
+  width: 419px;
+  height: 60px;
+`;
+export const SocialLoginItem = styled.div`
+  width: 419px;
+  height: 60px;
+
   overflow: hidden;
   cursor: pointer;
-
-  // 네이버 버튼 수정 불가로 임시 대체
-  border-radius: 10%;
-  margin: 1rem 2rem;
+  border-radius: 10px;
 `;
+
 export const NaverLoginItem = styled.li`
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
 
-  margin: 1rem 1.3rem;
+  /* margin: 1rem 1.3rem; */
   overflow: hidden;
   cursor: pointer;
 `;

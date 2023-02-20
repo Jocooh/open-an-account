@@ -19,6 +19,18 @@ import {
   SocialLoginForm,
   SocialLoginTitle,
   SocialLoginList,
+  AuthLogoText,
+  AuthLogoWrapper,
+  AuthTitleWrapper,
+  AuthTextWrapper,
+  AuthTitleTextWrapper,
+  AuthInputValidationText,
+  AuthSignUpForm,
+  AuthLoginForm,
+  SocialLoginTitleWrapper,
+  SocialLoginItem,
+  BoundaryLineWrapper,
+  BoundaryLine,
 } from "./style";
 
 const AuthForm = ({
@@ -55,22 +67,31 @@ const AuthForm = ({
   return (
     <AuthBackground>
       <AuthWrapper>
-        <AuthLogo>
+        <AuthLogoWrapper>
           <Link to="/">
-            <AuthLogoImg src={require("../../assets/star.png")} />
+            <AuthLogo>팁퍼</AuthLogo>
           </Link>
-        </AuthLogo>
-        <AuthTitle>{title}</AuthTitle>
-        <AuthText>
-          {text}
-          <Link to={`${signUp ? "/login" : "/signup"}`}>
-            <LinkText>{linkText}</LinkText>
-          </Link>
-        </AuthText>
-        <DefaultLoginForm>
-          <AuthInputWrapper>
-            {signUp ? (
-              <>
+        </AuthLogoWrapper>
+
+        <AuthTitleTextWrapper>
+          <AuthTitleWrapper>
+            <AuthTitle>{title}</AuthTitle>
+          </AuthTitleWrapper>
+
+          <AuthTextWrapper>
+            <AuthText>
+              {text}
+              <Link to={`${signUp ? "/login" : "/signup"}`}>
+                <LinkText>{linkText}</LinkText>
+              </Link>
+            </AuthText>
+          </AuthTextWrapper>
+        </AuthTitleTextWrapper>
+
+        <>
+          {signUp ? (
+            <AuthSignUpForm>
+              <AuthInputWrapper>
                 <AuthLabel>이메일</AuthLabel>
                 <AuthInput
                   id="email"
@@ -80,7 +101,14 @@ const AuthForm = ({
                   onChange={changeEmail}
                   ref={emailRef}
                 />
-                <div>{email.length > 0 && <span>{emailMessage}</span>}</div>
+                {email.length > 0 && (
+                  <AuthInputValidationText>
+                    {emailMessage}
+                  </AuthInputValidationText>
+                )}
+              </AuthInputWrapper>
+
+              <AuthInputWrapper>
                 <AuthLabel>비밀번호</AuthLabel>
                 <AuthInput
                   id="password"
@@ -90,9 +118,15 @@ const AuthForm = ({
                   onChange={changePassword}
                   ref={passwordRef}
                 />
-                <div>
-                  {password.length > 0 && <span>{passwordMessage}</span>}
-                </div>
+
+                {password.length > 0 && (
+                  <AuthInputValidationText>
+                    {passwordMessage}
+                  </AuthInputValidationText>
+                )}
+              </AuthInputWrapper>
+
+              <AuthInputWrapper>
                 <AuthLabel>비밀번호 재입력</AuthLabel>
                 <AuthInput
                   id="confirm-password"
@@ -102,26 +136,37 @@ const AuthForm = ({
                   onChange={changeConfirmPassword}
                   ref={confirmPasswordRef}
                 />
-                <div>
-                  {confirmPassword.length > 0 && (
-                    <span>{passwordConfirmMessage}</span>
-                  )}
-                </div>
+
+                {confirmPassword.length > 0 && (
+                  <AuthInputValidationText>
+                    {passwordConfirmMessage}
+                  </AuthInputValidationText>
+                )}
+              </AuthInputWrapper>
+
+              <AuthInputWrapper>
                 <AuthLabel>닉네임</AuthLabel>
                 <AuthInput
                   id="nickname"
                   type="text"
                   placeholder="사용하실 닉네임을 입력해주세요."
+                  maxLength={6}
                   value={nickname}
                   onChange={changeNickname}
                   ref={nicknameRef}
                 />
-                <div>
-                  {nickname.length > 0 && <spam>{nicknameMessage}</spam>}
-                </div>
-              </>
-            ) : (
-              <>
+
+                {nickname.length > 0 && (
+                  <AuthInputValidationText>
+                    {nicknameMessage}
+                  </AuthInputValidationText>
+                )}
+              </AuthInputWrapper>
+              <AuthButton onClick={submitSignUp}>회원가입</AuthButton>
+            </AuthSignUpForm>
+          ) : (
+            <AuthLoginForm>
+              <AuthInputWrapper>
                 <AuthLabel>이메일</AuthLabel>
                 <AuthInput
                   id="email"
@@ -131,12 +176,15 @@ const AuthForm = ({
                   onChange={changeEmail}
                   ref={emailRef}
                 />
-                <div>
-                  {!emailValid && email.length > 0 && (
-                    <p>올바른 이메일을 형식을 입력해주세요.</p>
-                  )}
-                </div>
 
+                {!emailValid && email.length > 0 && (
+                  <AuthInputValidationText>
+                    올바른 이메일을 형식을 입력해주세요.
+                  </AuthInputValidationText>
+                )}
+              </AuthInputWrapper>
+
+              <AuthInputWrapper>
                 <AuthLabel>비밀번호</AuthLabel>
                 <AuthInput
                   id="password"
@@ -146,25 +194,27 @@ const AuthForm = ({
                   onChange={changePassword}
                   ref={passwordRef}
                 />
-              </>
-            )}
-          </AuthInputWrapper>
-
-          {signUp ? (
-            <AuthButton onClick={submitSignUp}>회원가입</AuthButton>
-          ) : (
-            <AuthButton onClick={submitLogin}>로그인</AuthButton>
+              </AuthInputWrapper>
+              <AuthButton onClick={submitLogin}>로그인</AuthButton>
+            </AuthLoginForm>
           )}
-        </DefaultLoginForm>
+        </>
         {!signUp && (
-          <SocialLoginForm>
-            <SocialLoginTitle>또는</SocialLoginTitle>
-            <SocialLoginList>
+          <>
+            <BoundaryLineWrapper>
+              <BoundaryLine>또는</BoundaryLine>
+            </BoundaryLineWrapper>
+
+            <SocialLoginForm>
+              <SocialLoginTitleWrapper></SocialLoginTitleWrapper>
+              <SocialLoginItem>gqweqweqwdqwd</SocialLoginItem>
+              {/* <SocialLoginList>
               <KakaoLogin />
               <NaverLogin />
               <GoogleLogin />
-            </SocialLoginList>
-          </SocialLoginForm>
+            </SocialLoginList> */}
+            </SocialLoginForm>
+          </>
         )}
       </AuthWrapper>
     </AuthBackground>

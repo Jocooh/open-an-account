@@ -117,17 +117,10 @@ const LoginPage = () => {
         }
       });
   };
-  // const socialBtn = [
-  //   { title: "카카오", img: require("../../assets/kakaotalk.png") },
-  //   { title: "네이버", img: require("../../assets/naver.png") },
-  //   { title: "구글", img: require("../../assets/google.png") },
-  //   { title: "페이스북", img: require("../../assets/facebook.png") },
-  //   { title: "애플", img: require("../../assets/apple.png") },
-  // ];
 
   return (
     <AuthForm
-      title="예·적금이 필요한 순간, 목돈"
+      title="첫 금융 관리에 팁을 더해요."
       text="아직 회원이 아니신가요?"
       linkText="회원가입하기"
       email={email}
