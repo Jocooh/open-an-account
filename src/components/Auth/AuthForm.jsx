@@ -34,6 +34,9 @@ const AuthForm = ({
   confirmPassword,
   changeConfirmPassword,
   confirmPasswordRef,
+  nickname,
+  changeNickname,
+  nicknameRef,
   submitSignUp,
   submitLogin,
 }) => {
@@ -90,6 +93,9 @@ const AuthForm = ({
                   id="nickname"
                   type="text"
                   placeholder="사용하실 닉네임을 입력해주세요."
+                  value={nickname}
+                  onChange={changeNickname}
+                  ref={nicknameRef}
                 />
               </>
             ) : (
