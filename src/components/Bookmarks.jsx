@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { authService, db } from "../config/firebase";
 
 const Bookmarks = ({
@@ -76,8 +77,19 @@ const Bookmarks = ({
   return (
     <div onClick={addBookmark}>
       {/* 찜 유무 */}
-      {bookmark ? <BsFillBookmarkFill /> : <BsBookmark />}
+      {bookmark ? <StyledBookmarkFill /> : <StyledBookmark />}
     </div>
   );
 };
 export default Bookmarks;
+
+const StyledBookmarkFill = styled(BsFillBookmarkFill)`
+  width: 20px;
+  height: 27px;
+  color: #6a24ff;
+`;
+const StyledBookmark = styled(BsBookmark)`
+  width: 20px;
+  height: 27px;
+  color: #6a24ff;
+`;

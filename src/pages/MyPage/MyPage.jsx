@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 function MyPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
+
   // const currentUser = authService.currentUser;
 
   // 원준 작업.
