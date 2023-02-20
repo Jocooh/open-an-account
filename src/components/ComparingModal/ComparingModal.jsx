@@ -26,7 +26,6 @@ const ComparingModal = ({
   selectedProductRate2,
 
   // selectedProductRateType
-
 }) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -165,4 +164,4 @@ const ComparingModal = ({
   );
 };
 
-export default ComparingModal;
+export default React.memo(ComparingModal);
