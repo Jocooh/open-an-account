@@ -309,6 +309,31 @@ const ServicePage = () => {
     });
   };
 
+  // 찜하기 - 원준 작업 중 -
+  const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
+
+  const getMyBookmarkProduct = async () => {
+    const querySnapshot = await getDocs(
+      collection(db, "bookmarks"),
+      where("userId", "==", authService.currentUser?.uid)
+    );
+    const myBookmarkProduct = [];
+
+    querySnapshot.forEach((doc) => {
+      const newBookmarkProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+
+      myBookmarkProduct.push(newBookmarkProduct);
+      setMyBookmarkProducs(myBookmarkProduct);
+    });
+  };
+  // useEffect(() => {
+  //   getMyBookmarkProduct();
+  // }, []);
+  console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
+
   return (
     <Wraper>
       <Cantinar>
@@ -438,7 +463,9 @@ const ServicePage = () => {
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-                  selectedProductId={[products[0], products[3], products[6]]}
+                  selectedProduct={[products[0], products[3], products[6]]}
+                  selectedProductRate={intrRate}
+                  selectedProductRate2={intrRate2}
                 />
               )}
             </div>
@@ -733,6 +760,7 @@ const ServicePage = () => {
                                     savingOptionalList={savingoptionalList}
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
+                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                   />
                                 ) : (
                                   <AllBank
@@ -744,6 +772,7 @@ const ServicePage = () => {
                                     savingbaseList={savingbaseList}
                                     savingoptionalList={savingoptionalList}
                                     handleClickProduct={handleClickProduct}
+                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                   />
                                 )}
                               </StyledBankListWrapper>

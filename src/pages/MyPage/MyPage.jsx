@@ -22,23 +22,26 @@ import { useNavigate } from "react-router-dom";
 function MyPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
+  // const currentUser = authService.currentUser;
 
-  // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가.
-  useEffect(() => {
-    if (!authService.currentUser) {
-      alert("마이페이지는 로그인 후 접근이 가능합니다.");
-      navigate("/login");
-      return;
-    }
-  }, []);
-  // 김원준 작업중
-  // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요.
+  // 원준 작업.
+  // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요. (북마크 기능으로 선작업.)
   // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
   const userSession = sessionStorage.getItem(
-    "firebase:authUser:AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8:[DEFAULT]"
+    `firebase:authUser:AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw:[DEFAULT]`
   );
   const currentUser = JSON.parse(userSession ?? "");
   // console.log(currentUser);
+
+  // 원준 작업.
+  // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가. -- 현재 위 코드로 먼저 걸러주기 때문에 실행되지 않음. 더 알아볼 것.
+  // useEffect(() => {
+  //   if (!authService.currentUser) {
+  //     alert("마이페이지는 로그인 후 접근이 가능합니다.");
+  //     navigate("/login");
+  //     return;
+  //   }
+  // }, []);
 
   return (
     <>

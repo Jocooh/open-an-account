@@ -69,7 +69,7 @@ const AuthForm = ({
             <AuthInput
               id="password"
               type="password"
-              placeholder="비밀번호 입력"
+              placeholder="사용하실 비밀번호를 입력해주세요."
               value={password}
               onChange={changePassword}
               ref={passwordRef}
@@ -80,10 +80,16 @@ const AuthForm = ({
                 <AuthInput
                   id="confirm-password"
                   type="password"
-                  placeholder="비밀번호 재입력"
+                  placeholder="사용하실 비밀번호를 재입력해주세요."
                   value={confirmPassword}
                   onChange={changeConfirmPassword}
                   ref={confirmPasswordRef}
+                />
+                <AuthLabel>닉네임</AuthLabel>
+                <AuthInput
+                  id="nickname"
+                  type="text"
+                  placeholder="사용하실 닉네임을 입력해주세요."
                 />
               </>
             ) : (

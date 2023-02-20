@@ -14,6 +14,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [nickname, setNickname] = useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
@@ -33,11 +34,17 @@ const SignUpPage = () => {
     setConfirmPassword(event.target.value);
   };
 
-  // 이메일, 비밀번호 유효성 검사
+  // 닉네임 입력
+  const changeNickname = (event) => {
+    setNickname(event.target.value);
+  };
+
+  // 이메일, 비밀번호, 닉네임 유효성 검사
   const checkValidation = () => {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+    const nicknameRegex = "";
     const checkEmailValidation = email.match(emailRegex);
     const checkPasswordValidation = password.match(passwordRegex);
 
@@ -130,6 +137,7 @@ const SignUpPage = () => {
       changeConfirmPassword={changeConfirmPassword}
       confirmPasswordRef={confirmPasswordRef}
       submitSignUp={submitSignUp}
+      nickname={nickname}
     />
   );
 };

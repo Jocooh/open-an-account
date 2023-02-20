@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { authService, db } from "../../config/firebase";
+import Numeral from "numeral";
 import {
   Guide,
   Info,
@@ -12,8 +12,16 @@ import {
   TotalCost,
   Wrapper,
 } from "./style";
+import Bookmarks from "../Bookmarks";
 
-function Product({ inputValue, selectedProductId }) {
+function Product({
+  inputValue,
+  selectedProduct,
+  selectedProductId,
+  selectedProductRate,
+  selectedProductRate2,
+  seletedProductRateType,
+}) {
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
@@ -21,144 +29,80 @@ function Product({ inputValue, selectedProductId }) {
   //* 상품 찜하기
   const [scrap, setScrap] = useState(false);
 
-  //********** 상품 정보 *************
-  //* 전체 상품의 DEPOSIT_OPTION_LIST 정보 저장
-  const [totalDepositOptionDetail, setTotalDepositOptionDetail] = useState([]);
-  //* 전체 상품의 SAVING_OPTION_LIST 정보 저장
-  const [totalSavingOptionDetail, setTotalSavingOptionDetail] = useState([]);
-
-  //* selectedProductId의 DEPOSIT_BASE_LIST 정보 저장
-  const [depositOptionDetail, setDepositOptionDetail] = useState([]);
-  //* selectedProductId의 SAVING_BASE_LIST 정보 저장
-  const [savingOptionDetail, setSavingOptionDetail] = useState([]);
-
-  //* 전체 DEPOSIT_OPTION_LIST 정보 저장
-  const getDepositOptionDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
-    const productDetail = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      productDetail.push(newProduct);
-      setTotalDepositOptionDetail(productDetail);
-    });
-  };
-  //* 전체 SAVING_OPTION_LIST 정보 저장
-  const getSavingOptionDetail = async () => {
-    const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
-    const productDetail = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      productDetail.push(newProduct);
-      setTotalSavingOptionDetail(productDetail);
-    });
-  };
-
-  //* depositOptionDetail에서 selectedProductId의 fin_prdt_cd 맞는걸 찾아서 파베에서 doc 불러오기
-  const getSelectedDepositProductOptionDetail = async () => {
-    const q = query(
-      collection(db, "DEPOSIT_OPTION_LIST"),
-      where("fin_prdt_cd", "==", selectedProductId.fin_prdt_cd)
-    );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      setDepositOptionDetail(doc.data());
-    });
-  };
-  //* savingOptionDetail에서 selectedProductId의 fin_prdt_cd 맞는걸 찾아서 파베에서 doc 불러오기
-  const getSelectedSavingProductOptionDetail = async () => {
-    const q = query(
-      collection(db, "SAVING_OPTION_LIST"),
-      where("fin_prdt_cd", "==", selectedProductId.fin_prdt_cd)
-    );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      setSavingOptionDetail(doc.data());
-    });
-  };
-
-  useEffect(() => {
-    getDepositOptionDetail();
-    getSavingOptionDetail();
-    getSelectedDepositProductOptionDetail();
-    getSelectedSavingProductOptionDetail();
-  }, [depositOptionDetail, savingOptionDetail]);
+  console.log("selectedProduct", selectedProduct);
 
   return (
     <Wrapper>
       <Guide>만기 수령액</Guide>
       {inputNum > 9999 ? (
-        depositOptionDetail.intr_rate_type === "S" ? (
+        // TODO: 단복리 검사해야함 !! 아래는 임시
+        // selectedProductRateType === "S" ? (
+        selectedProductRate ? (
           <TotalCost>
-            {Math.round(
-              inputNum *
-                (1 +
-                  0.01 * Number(selectedProductId.intr_rate2) -
-                  0.01 * Number(selectedProductId.intr_rate2) * 0.154)
-            )}
+            {Numeral(
+              Math.round(
+                inputNum *
+                  (1 +
+                    0.01 * Number(selectedProductRate) -
+                    0.01 * Number(selectedProductRate) * 0.154)
+              )
+            ).format(0, 0)}
             원
           </TotalCost>
         ) : (
           <TotalCost>
-            {inputNum +
-              Math.round(
-                inputNum *
-                  Math.pow(
-                    1 + (Number(selectedProductId.intr_rate2) * 0.01) / 12,
-                    12
-                  ) -
-                  inputNum
-              ) -
-              Math.round(
+            {Numeral(
+              inputNum +
                 Math.round(
                   inputNum *
                     Math.pow(
-                      1 + (Number(selectedProductId.intr_rate2) * 0.01) / 12,
+                      1 + (Number(selectedProductRate2) * 0.01) / 12,
                       12
                     ) -
                     inputNum
-                ) * 0.154
-              )}
+                ) -
+                Math.round(
+                  Math.round(
+                    inputNum *
+                      Math.pow(
+                        1 + (Number(selectedProductRate2) * 0.01) / 12,
+                        12
+                      ) -
+                      inputNum
+                  ) * 0.154
+                )
+            ).format(0, 0)}
             원
           </TotalCost>
         )
       ) : (
-        <TotalCost>0원</TotalCost>
+        <TotalCost style={{ color: "#A3A3A3" }}>0원</TotalCost>
       )}
 
       <ProductBox>
         <Name>
-          <Prdt_nm>{selectedProductId.fin_prdt_nm}</Prdt_nm>
-          <BsFillBookmarkFill
-            onClick={() => {
-              setScrap(true);
-            }}
-            style={scrap ? { color: "#CDE974" } : { color: "#D9D9D9" }}
+          <Prdt_nm>{selectedProduct.fin_prdt_nm}</Prdt_nm>
+          <Bookmarks
+            productId={selectedProduct.fin_prdt_cd}
+            productName={selectedProduct.fin_prdt_nm}
+            productCoName={selectedProduct.kor_co_nm}
+            productDocId={selectedProductId}
           />
         </Name>
 
         <Info>
-          <div>{selectedProductId.kor_co_nm}</div>
+          <div>{selectedProduct.kor_co_nm}</div>
           <div>
-            일반 금리 {selectedProductId.intr_rate}% | 최고금리
-            {selectedProductId.intr_rate2}
+            일반 금리 {selectedProductRate}% | 최고금리
+            {selectedProductRate2}
           </div>
         </Info>
         <Message>
-          <li>가입 방법: {selectedProductId.join_way}</li>
-          <li>가입 대상: {selectedProductId.join_member}</li>
+          <li>가입 방법: {selectedProduct.join_way}</li>
+          <li>가입 대상: {selectedProduct.join_member}</li>
           <li>
             (유의사항)
-            {selectedProductId.etc_note}
+            {selectedProduct.etc_note}
           </li>
         </Message>
       </ProductBox>
