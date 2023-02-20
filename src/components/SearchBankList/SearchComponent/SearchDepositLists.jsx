@@ -102,10 +102,10 @@ function SearchDepositLists({
                   </StyledDiv>
                   <StyledMoreListDiv>
                     <Bookmarks
-                      productId={v.fin_prdt_cd}
-                      productName={v.fin_prdt_nm}
-                      productCoName={v.kor_co_nm}
-                      productDocId={v.id}
+                      productId={base.fin_prdt_cd}
+                      productName={base.fin_prdt_nm}
+                      productCoName={base.kor_co_nm}
+                      productDocId={base.id}
                     />
                     <button
                       style={{

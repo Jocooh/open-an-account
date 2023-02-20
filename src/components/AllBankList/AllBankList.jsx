@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { db } from "../../config/firebase";
 import {
@@ -61,13 +60,13 @@ function AllBankList({
                     onClick={() => {
                       setColor(item.id);
                     }}
-                    style={
-                      selectedProductIds[0] === item.id ||
-                      selectedProductIds[3] === item.id ||
-                      selectedProductIds[6] === item.id
-                        ? { border: "1px solid #6A24FF" }
-                        : null
-                    }
+                    // style={
+                    //   selectedProductIds[0] === item.id ||
+                    //   selectedProductIds[3] === item.id ||
+                    //   selectedProductIds[6] === item.id
+                    //     ? { border: "1px solid #6A24FF" }
+                    //     : null
+                    // }
                   >
                     <div style={{ display: "flex" }}>
                       <StyledListDiv>

@@ -12,7 +12,7 @@ import BankLists from "../pages/BankList";
 import InsertData from "../data/InsertData";
 import Footer from "../../src/components/GlobalComponents/Footer/Footer.jsx";
 import Header from "../../src/components/GlobalComponents/Header/Header.jsx";
-import Practice from "../pages/Practice";
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -29,7 +29,6 @@ const Router = () => {
         <Route path="/bankListPage" element={<BankLists />} />
         {/* data 페이지를 위한 임시 path name */}
         <Route path="/4jojoa" element={<InsertData />} />
-        <Route path="/practice" element={<Practice />} />
       </Routes>
       <Footer />
     </BrowserRouter>
