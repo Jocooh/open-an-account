@@ -29,19 +29,11 @@ top: 146px; */
 
 export const CloseButton = styled(CgClose)`
   display: flex;
+  justify-content: end;
   align-items: flex-end;
   margin-bottom: 20px;
   margin-right: auto;
   cursor: pointer;
-
-  background-color: "#f0f0f0";
-  border-radius: "10px";
-
-  :hover {
-    color: #f0f0f0;
-    background-color: "#f0f0f0";
-    border-radius: "10px";
-  }
 `;
 
 //* 하얀색 배경 내용물

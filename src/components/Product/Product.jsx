@@ -92,10 +92,7 @@ function Product({
         <Message>
           <li>가입 방법: {selectedProduct.join_way}</li>
           <li>가입 대상: {selectedProduct.join_member}</li>
-          <li>
-            (유의사항)
-            {selectedProduct.etc_note}
-          </li>
+          <li>유의사항 {selectedProduct.etc_note}</li>
         </Message>
       </ProductBox>
     </Wrapper>
