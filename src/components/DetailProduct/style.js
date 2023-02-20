@@ -19,3 +19,9 @@ export const StyledDetailList = styled.ul`
 export const StyledDetaiListText = styled.li`
   margin-bottom: 10px;
 `;
+
+export const DetailContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;

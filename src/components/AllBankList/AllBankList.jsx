@@ -1,5 +1,13 @@
-//AllBankList.jsx
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { db } from "../../config/firebase";
+import {
+  doc,
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+} from "firebase/firestore";
 import {
   StyledImg,
   StyledSaveTrmDiv,
@@ -19,17 +27,24 @@ import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
 
 function AllBankList({
-  depositbaseList,
-  depositOptionalList,
   activeItem,
   setActiveItem,
+  depositbaseList,
+  selectedProductIds,
   handleClickProduct,
+  depositOptionalList,
 }) {
   //최고금리순으로 가져오는 함수
+  const [color, setColor] = useState([]);
+
   const depositDB = depositOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
   });
-  //상품 고유 아이디 가져오는state
+
+  //최저개월 수 대로 가져오는 함수
+  const sortMonths = depositOptionalList?.sort(function (a, b) {
+    return a.save_trm - b.save_trm;
+  });
 
   return (
     <div>
@@ -37,9 +52,21 @@ function AllBankList({
         depositDB?.map((deposit) =>
           depositbaseList?.map((item) =>
             deposit.fin_prdt_cd === item.fin_prdt_cd ? (
-              <>
+              <div key={item.id}>
                 {deposit.save_trm === "12" ? (
-                  <StyledBankLists key={item.id}>
+                  <StyledBankLists
+                    key={item.id}
+                    onClick={() => {
+                      setColor(item.id);
+                    }}
+                    style={
+                      selectedProductIds[0] === item.id ||
+                      selectedProductIds[3] === item.id ||
+                      selectedProductIds[6] === item.id
+                        ? { border: "1px solid #6A24FF" }
+                        : null
+                    }
+                  >
                     <div style={{ display: "flex" }}>
                       <StyledListDiv>
                         <StyledDiv
@@ -56,7 +83,7 @@ function AllBankList({
                               />
                             ) : null
                           )}
-                          <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
+                          <div>
                             <StyledContentDiv>
                               <StyledProductTitleDiv>
                                 <h2
@@ -105,14 +132,14 @@ function AllBankList({
                         <DepositDetail
                           depositDB={deposit}
                           depositbaseList={item}
-                          depositOptionalList={depositOptionalList}
+                          sortMonths={sortMonths}
                           setActiveItem={setActiveItem}
                         />
                       ) : null}
                     </div>
                   </StyledBankLists>
                 ) : null}
-              </>
+              </div>
             ) : null
           )
         )}

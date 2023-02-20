@@ -60,6 +60,7 @@ const ServicePage = () => {
   const [showResults, setShowResults] = useState(false);
   const [showSearch, setShowSearch] = useState(true);
   const [activeItem, setActiveItem] = useState("");
+
   //상품검색state
   const [searchBank, setSearchBank] = useState("");
   //예금상품 baseList , optionList
@@ -92,20 +93,6 @@ const ServicePage = () => {
       setProducts(product);
     });
   };
-
-  // 예금baseList;
-  // const FetchDepositBaseList = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-  //   const depositBaseArray = [];
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     depositBaseArray.push(newProduct);
-  //   });
-  //   setdepositbaseList(depositBaseArray);
-  // };
 
   // 예금 optionList
   const FetchDepositOptionList = async () => {
@@ -149,17 +136,14 @@ const ServicePage = () => {
   };
   // console.log(products);
   useEffect(() => {
-    // FetchDepositBaseList();
+    handleButtonClick();
     FetchDepositOptionList();
     FetchSavingBaseList();
     FetchSavingOptionList();
   }, []);
 
-  useEffect(() => {
-    handleButtonClick();
-  }, []);
-
   const handleSelectProducts = async (productId) => {
+    console.log(productTypes);
     try {
       const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
       const docSnap = await getDoc(docRef);
@@ -365,19 +349,20 @@ const ServicePage = () => {
                   </div>
                 ) : (
                   <>
+                    {/* 성아-옵셔널체이닝[?]제가 넣었어요 지우지 말아주세요!ㅎ */}
                     <div>
                       <p>
                         {
                           products.find(
                             (product) => product.id === selectedProductIds[0]
-                          ).fin_prdt_nm
+                          )?.fin_prdt_nm
                         }
                       </p>
                       <p>
                         {
                           products.find(
                             (product) => product.id === selectedProductIds[0]
-                          ).kor_co_nm
+                          )?.kor_co_nm
                         }
                       </p>
                     </div>
@@ -406,14 +391,14 @@ const ServicePage = () => {
                           {
                             products.find(
                               (product) => product.id === selectedProductIds[3]
-                            ).fin_prdt_nm
+                            )?.fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
                               (product) => product.id === selectedProductIds[3]
-                            ).kor_co_nm
+                            )?.kor_co_nm
                           }
                         </p>
                       </div>
@@ -443,14 +428,14 @@ const ServicePage = () => {
                           {
                             products.find(
                               (product) => product.id === selectedProductIds[6]
-                            ).fin_prdt_nm
+                            )?.fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
                               (product) => product.id === selectedProductIds[6]
-                            ).kor_co_nm
+                            )?.kor_co_nm
                           }
                         </p>
                       </div>
@@ -708,10 +693,7 @@ const ServicePage = () => {
                     <FinanciialProductsWrap>
                       <FinanciialProductsFullList>
                         {/* 검색창_component */}
-                        <SearchInput
-                          setSearchBank={setSearchBank}
-                          handleButtonClick={handleButtonClick}
-                        />
+                        <SearchInput setSearchBank={setSearchBank} />
                         <ProductWraper>
                           <ProductType
                             onClick={() => {
@@ -758,24 +740,26 @@ const ServicePage = () => {
                               <StyledBankListWrapper>
                                 {searchBank.length > 0 ? (
                                   <SearchBankList
+                                    activeItem={activeItem}
+                                    setActiveItem={setActiveItem}
                                     searchBank={searchBank}
                                     productTypes={productTypes}
                                     depositbaseList={products}
                                     depositOptionalList={depositOptionalList}
                                     savingbaseList={savingbaseList}
                                     savingOptionalList={savingoptionalList}
-                                    activeItem={activeItem}
-                                    setActiveItem={setActiveItem}
+                                    handleClickProduct={handleClickProduct}
                                   />
                                 ) : (
                                   <AllBank
-                                    productTypes={productTypes}
-                                    depositOptionalList={depositOptionalList}
-                                    depositbaseList={products}
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
+                                    productTypes={productTypes}
+                                    depositbaseList={products}
+                                    depositOptionalList={depositOptionalList}
                                     savingbaseList={savingbaseList}
                                     savingoptionalList={savingoptionalList}
+                                    selectedProductIds={selectedProductIds}
                                     handleClickProduct={handleClickProduct}
                                   />
                                 )}
