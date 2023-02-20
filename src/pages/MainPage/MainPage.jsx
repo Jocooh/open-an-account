@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css/pagination";
@@ -8,7 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css";
 
 import {
-  Wraper,
+  UpWraper,
   BannerImage,
   GreetingBox,
   GreetingTitle,
@@ -16,11 +17,14 @@ import {
   Greetingment,
   Greetingcontent,
   ProductFdButton,
-  BoardBestCommentWrap,
-  BoardBestComment,
+  BottomWrap,
+  FourTab,
+  Dictionary,
+  BestProduct,
+  Question,
+  Counsel,
   BankList,
   BankListTilte,
-  BottomWrap,
   Sidebar,
   BankAndQna,
   QuestionWrap,
@@ -28,13 +32,42 @@ import {
   FinanceHoneyTip,
   MainPageWraper,
   Bannerimage,
+  DownWraper,
+  AllTipWraper,
+  DownTitle,
+  NextButton,
+  Tips,
+  Tip,
+  TipTitleWrap,
+  TipTitle,
+  BoardWrap,
 } from "./style";
 
 const MainPage = () => {
   const navigate = useNavigate();
   return (
     <MainPageWraper>
-      <Wraper>
+      <UpWraper>
+        <GreetingBox>
+          {/* <img
+            src={require("../../assets/star.png")}
+            // src={process.env.PUBLIC_URL + "/public/img/Star 1.png"}
+            alt="로고"
+          /> */}
+          <GreetingTitle>
+            <Greetingment>목돈에서 시작하는</Greetingment>
+            <Username>상우님</Username>
+            <Greetingment>의 금융관리</Greetingment>
+          </GreetingTitle>
+          <Greetingcontent>
+            <div />
+            1금융권의 상품만 다루는 안전한 목돈 만들기.
+            <p /> 원하는 조건에 맞춰 상품을 찾아드릴게요.
+          </Greetingcontent>
+          <ProductFdButton onClick={() => navigate("/ServicePage")}>
+            상품 찾기
+          </ProductFdButton>
+        </GreetingBox>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           pagination={{ clickable: true }}
@@ -70,45 +103,34 @@ const MainPage = () => {
           </SilderBanner>
           <SilderBanner>
             <a href="https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp?lncd=01&grcd=21&tmcd=121&pdcd=0123&wvcd=***********&banner=ibk_main_mddl_01211210123">
-              <Bannerimage
-                src={require("../../assets/banner/image/banner_02.PNG")}
-              />
+              <BannerImage>
+                <img src={require("../../assets/banner/image/banner_02.PNG")} />
+              </BannerImage>
             </a>
           </SilderBanner>
         </Swiper>
 
-        <GreetingBox>
-          <img
-            src={require("../../assets/star.png")}
-            // src={process.env.PUBLIC_URL + "/public/img/Star 1.png"}
-            alt="로고"
-          />
-          <GreetingTitle>
-            <Username>상우님</Username>
-            <Greetingment>의 첫 금융 ~~을 환영합니다~</Greetingment>
-          </GreetingTitle>
-          <Greetingcontent>
-            <div />
-            모금과 함께하는 저축의 시작!
-            <p /> 주거래 은행, 선호 이율, 기간, 원하는 조건에 맞춰 상품을
-            찾아드릴게요.
-            <p /> 선택은 여러분의 자유예요.
-          </Greetingcontent>
-          <ProductFdButton
-            onClick={() => {
-              navigate("/servicepage");
-            }}
-          >
-            상품 찾아보기
-          </ProductFdButton>
-        </GreetingBox>
         <BottomWrap>
-          <BoardBestCommentWrap>
-            <BoardBestComment>
-              <div>게시판 인기글</div>
-            </BoardBestComment>
-          </BoardBestCommentWrap>
-          <BankAndQna>
+          <FourTab>
+            <Dictionary>
+              <img src={require("../../assets/mainpage/dictionary.png")} />
+              <div>금융 용어사전</div>
+            </Dictionary>
+            <BestProduct>
+              <img src={require("../../assets/mainpage/bestproduct.png")} />
+              <div>인기 금융상품</div>
+            </BestProduct>
+            <Question>
+              <img src={require("../../assets/mainpage/qna.png")} />
+              <div>자주 묻는 질문</div>
+            </Question>
+            <Counsel>
+              <img src={require("../../assets/mainpage/counsel.png")} />
+              <div>전문상담</div>
+            </Counsel>
+          </FourTab>
+
+          {/* <BankAndQna>
             <BankList>
               <BankListTilte>은행사이트 바로가기</BankListTilte>
               <BankBannerWrap>
@@ -155,16 +177,243 @@ const MainPage = () => {
             <QuestionWrap>
               <QuestionTitle>QnA 자주묻는 질문</QuestionTitle>
             </QuestionWrap>
-          </BankAndQna>
+          </BankAndQna> */}
         </BottomWrap>
-        <FinanceHoneyTip>
+        {/* <FinanceHoneyTip>
           <div>금융 꿀팁</div>
-        </FinanceHoneyTip>
+        </FinanceHoneyTip> */}
 
-        <Sidebar>
+        {/* <Sidebar>
           <button>1:1 전문상담</button>
-        </Sidebar>
-      </Wraper>
+        </Sidebar> */}
+      </UpWraper>
+      <DownWraper>
+        <AllTipWraper>
+          <DownTitle>금주의 팁퍼</DownTitle>
+          <NextButton>
+            <img src={require("../../assets/arrow_right.png")} />
+          </NextButton>
+          <div>
+            <Tips>
+              <Tip onClick={() => navigate("/detail")}>
+                <TipTitleWrap>
+                  <img src={require("../../assets/mainpage/script.png")} />
+                  <TipTitle>내집마련</TipTitle>
+                </TipTitleWrap>
+                <div
+                  style={{
+                    border: "1px solid #dedede",
+                    height: "200px",
+                    backgroundColor: "whitesmoke",
+                  }}
+                >
+                  이미지 들어갈 부분
+                </div>
+                <BoardWrap>
+                  <div
+                    style={{
+                      height: "70px",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      padding: "30px 0 10px 0",
+                    }}
+                  >
+                    주택청약 당첨 후기
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      opacity: "0.4",
+                      height: "50px",
+                    }}
+                  >
+                    두려움에 떠는 코코0707
+                  </div>
+                  <div>
+                    주택청약 당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다
+                  </div>
+                </BoardWrap>
+              </Tip>
+              <Tip onClick={() => navigate("/detail")}>
+                <TipTitleWrap>
+                  <img src={require("../../assets/mainpage/script.png")} />
+                  <TipTitle>내집마련</TipTitle>
+                </TipTitleWrap>
+                <div
+                  style={{
+                    border: "1px solid #dedede",
+                    height: "200px",
+                    backgroundColor: "whitesmoke",
+                  }}
+                >
+                  이미지 들어갈 부분
+                </div>
+                <BoardWrap>
+                  <div
+                    style={{
+                      height: "70px",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      padding: "30px 0 10px 0",
+                    }}
+                  >
+                    주택청약 당첨 후기
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      opacity: "0.4",
+                      height: "50px",
+                    }}
+                  >
+                    두려움에 떠는 코코0707
+                  </div>
+                  <div>
+                    주택청약 당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다
+                  </div>
+                </BoardWrap>
+              </Tip>
+              <Tip onClick={() => navigate("/detail")}>
+                <TipTitleWrap>
+                  <img src={require("../../assets/mainpage/script.png")} />
+                  <TipTitle>내집마련</TipTitle>
+                </TipTitleWrap>
+                <div
+                  style={{
+                    border: "1px solid #dedede",
+                    height: "200px",
+                    backgroundColor: "whitesmoke",
+                  }}
+                >
+                  이미지 들어갈 부분
+                </div>
+                <BoardWrap>
+                  <div
+                    style={{
+                      height: "70px",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      padding: "30px 0 10px 0",
+                    }}
+                  >
+                    주택청약 당첨 후기
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      opacity: "0.4",
+                      height: "50px",
+                    }}
+                  >
+                    두려움에 떠는 코코0707
+                  </div>
+                  <div>
+                    주택청약 당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다
+                  </div>
+                </BoardWrap>
+              </Tip>
+              <Tip onClick={() => navigate("/detail")}>
+                <TipTitleWrap>
+                  <img src={require("../../assets/mainpage/script.png")} />
+                  <TipTitle>내집마련</TipTitle>
+                </TipTitleWrap>
+                <div
+                  style={{
+                    border: "1px solid #dedede",
+                    height: "200px",
+                    backgroundColor: "whitesmoke",
+                  }}
+                >
+                  이미지 들어갈 부분
+                </div>
+                <BoardWrap>
+                  <div
+                    style={{
+                      height: "70px",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      padding: "30px 0 10px 0",
+                    }}
+                  >
+                    주택청약 당첨 후기
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      opacity: "0.4",
+                      height: "50px",
+                    }}
+                  >
+                    두려움에 떠는 코코0707
+                  </div>
+                  <div>
+                    주택청약 당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다
+                  </div>
+                </BoardWrap>
+              </Tip>
+              <Tip onClick={() => navigate("/detail")}>
+                <TipTitleWrap>
+                  <img src={require("../../assets/mainpage/script.png")} />
+                  <TipTitle>내집마련</TipTitle>
+                </TipTitleWrap>
+                <div
+                  style={{
+                    border: "1px solid #dedede",
+                    height: "200px",
+                    backgroundColor: "whitesmoke",
+                  }}
+                >
+                  이미지 들어갈 부분
+                </div>
+                <BoardWrap>
+                  <div
+                    style={{
+                      height: "70px",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      padding: "30px 0 10px 0",
+                    }}
+                  >
+                    주택청약 당첨 후기
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      opacity: "0.4",
+                      height: "50px",
+                    }}
+                  >
+                    두려움에 떠는 코코0707
+                  </div>
+                  <div>
+                    주택청약 당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다주택청약
+                    당청됐습니다주택청약 당청됐습니다
+                  </div>
+                </BoardWrap>
+              </Tip>
+            </Tips>
+          </div>
+        </AllTipWraper>
+      </DownWraper>
     </MainPageWraper>
   );
 };
