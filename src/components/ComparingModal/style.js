@@ -60,7 +60,6 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
 
   font-family: "Noto Sans";
   font-style: normal;
@@ -68,18 +67,6 @@ export const Title = styled.div`
   font-size: 48px;
   line-height: 65px;
   text-align: center;
-`;
-
-//* "만기수령액은 비교상품 간 공통 가입 가능 기간으로 산정되었습니다."
-export const SubTitle = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  color: #505050;
 `;
 
 //* 사용자 인풋창 부분
@@ -93,10 +80,14 @@ export const FirstGuide = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
+  margin-left: 150px;
 `;
 
 //* "12개월동안 ~씩 저축한다면,"
 export const Message = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
@@ -108,9 +99,8 @@ export const Input = styled(NumericFormat).attrs((props) => ({
   inputLength: props.inputLength,
 }))`
   border-radius: 10px;
-  /* border-bottom: 0.6px solid #c6c6c6; */
   outline: none;
-  flex: 80%;
+  /* flex: 80%; */
 
   border: 1px solid pink;
   border: ${(props) =>
@@ -143,11 +133,11 @@ export const Products = styled.div`
   justify-content: space-between;
 `;
 
-export const SecondGuide = styled.div`
+export const SecondGuide = styled.li`
   color: #969696;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
-  margin-top: 20px;
+  margin: 20px;
 `;
