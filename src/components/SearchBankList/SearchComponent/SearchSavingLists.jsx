@@ -1,10 +1,6 @@
 import React from "react";
 import logoLists from "../../../assets/logo/logo";
-import { BsFillBookmarkFill } from "react-icons/bs";
-import {
-  StyledBankLists,
-  StyledBookMark,
-} from "../../../pages/ServicePage/style";
+import { StyledBankLists } from "../../../pages/ServicePage/style";
 import {
   StyledImg,
   StyledProductTitleDiv,
@@ -18,7 +14,11 @@ import {
   StyledSavingRateP,
   StyledMoreListDiv,
 } from "../style";
+
 import SearchDepositDetail from "../Detail/SearchSavingDetail";
+
+import Bookmarks from "../../Bookmarks";
+
 
 function SearchSavingLists({
   activeItem,
@@ -106,7 +106,12 @@ function SearchSavingLists({
                       </div>
                     </StyledDiv>
                     <StyledMoreListDiv>
-                      <BsFillBookmarkFill style={StyledBookMark} />
+                       <Bookmarks
+                      productId={base.fin_prdt_cd}
+                      productName={base.fin_prdt_nm}
+                      productCoName={base.kor_co_nm}
+                      productDocId={base.id}
+                    />
                       <button
                         style={{
                           width: "60px",
@@ -128,6 +133,7 @@ function SearchSavingLists({
                     savingOptionalList={savingOptionalList}
                   />
                 ) : null}
+
               </StyledBankLists>
             );
           })}

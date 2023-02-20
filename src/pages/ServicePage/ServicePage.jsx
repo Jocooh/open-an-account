@@ -51,7 +51,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 
 const ServicePage = () => {
@@ -293,39 +293,6 @@ const ServicePage = () => {
     });
   };
 
-  // 비교하기 버튼 모달창
-  // const [comparingModalOpen, setComparingModalOpen] = useState(false);
-  // const OpenComparingModal = () => {
-  //   setComparingModalOpen(true);
-  // };
-
-  // 찜한 상품 불러오기 --- 김원준 작업 중.
-  // 유즈이펙트 안에 콘솔 찍으면 빈배열 .....................................
-  // 전역에 찍자 ................................
-  const [bookmarkProducts, setBookmarkProducs] = useState([]);
-  // const dispatch = useDispatch();
-  const getBookmarkProduct = async () => {
-    const querySnapshot = await getDocs(collection(db, "bookmarks"));
-    const bookmarkproduct = [];
-
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-
-      bookmarkproduct.push(newProduct);
-    });
-
-    setBookmarkProducs(bookmarkproduct);
-    // dispatch(saveBookmarks(bookmarkproduct));
-  };
-  useEffect(() => {
-    getBookmarkProduct();
-  }, []);
-  // console.log(bookmarkProducts);
-  // 찜한 상품 불러오기 --- 김원준 작업 중.
-
   return (
     <Wraper>
       <Cantinar>
@@ -456,7 +423,10 @@ const ServicePage = () => {
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-                  selectedProductId={[products[0], products[3], products[6]]}
+                  selectedProduct={[products[0], products[3], products[6]]}
+                  selectedProductRate={intrRate}
+                  selectedProductRate2={intrRate2}
+                  // selectedProudctRateType={intrRateType}
                 />
               )}
             </div>

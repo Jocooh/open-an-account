@@ -18,7 +18,11 @@ import {
   StyledSavingRateP,
   StyledMoreListDiv,
 } from "../style";
+
 import SearchDepositDetail from "../Detail/SearchDepositDetail";
+
+import Bookmarks from "../../Bookmarks";
+
 function SearchDepositLists({
   //이거를 검색버튼 클릭 후에 들어갈 state로 돌리자.
   activeItem,
@@ -97,7 +101,12 @@ function SearchDepositLists({
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <BsFillBookmarkFill style={StyledBookMark} />
+                    <Bookmarks
+                      productId={v.fin_prdt_cd}
+                      productName={v.fin_prdt_nm}
+                      productCoName={v.kor_co_nm}
+                      productDocId={v.id}
+                    />
                     <button
                       style={{
                         width: "60px",

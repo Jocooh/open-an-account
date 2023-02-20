@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { db } from "../../config/firebase";
 import {
@@ -8,6 +9,7 @@ import {
   limit,
   getDocs,
 } from "firebase/firestore";
+
 import {
   StyledImg,
   StyledSaveTrmDiv,
@@ -22,9 +24,9 @@ import {
   StyledMoreListDiv,
   StyledListDiv,
 } from "../SearchBankList/style";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import DepositDetail from "../DetailProduct/DepositDetail";
-import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
+import { StyledBankLists } from "../../pages/ServicePage/style";
+import Bookmarks from "../Bookmarks";
 
 function AllBankList({
   activeItem,
@@ -112,7 +114,12 @@ function AllBankList({
                           </div>
                         </StyledDiv>
                         <StyledMoreListDiv>
-                          <BsFillBookmarkFill style={StyledBookMark} />
+                          <Bookmarks
+                            productId={item.fin_prdt_cd}
+                            productName={item.fin_prdt_nm}
+                            productCoName={item.kor_co_nm}
+                            productDocId={item.id}
+                          />
                           <button
                             style={{
                               width: "60px",

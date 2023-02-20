@@ -8,7 +8,7 @@ import {
   StyledBankNameP,
 } from "./style";
 
-import { StyledBankLists, StyledBookMark } from "../../pages/ServicePage/style";
+import { StyledBankLists } from "../../pages/ServicePage/style";
 import {
   StyledDiv,
   StyledContentDiv,
@@ -16,8 +16,8 @@ import {
   StyledListDiv,
 } from "../SearchBankList/style";
 import logoLists from "../../assets/logo/logo";
-import { BsFillBookmarkFill } from "react-icons/bs";
 import SavingDetail from "../DetailProduct/SavingDetail";
+import Bookmarks from "../Bookmarks";
 
 function SavingAllBankList({
   savingbaseList,
@@ -92,7 +92,12 @@ function SavingAllBankList({
                           </div>
                         </StyledDiv>
                         <StyledMoreListDiv>
-                          <BsFillBookmarkFill style={StyledBookMark} />
+                          <Bookmarks
+                            productId={item.fin_prdt_cd}
+                            productName={item.fin_prdt_nm}
+                            productCoName={item.kor_co_nm}
+                            productDocId={item.id}
+                          />
                           <button
                             style={{
                               width: "60px",

@@ -15,11 +15,21 @@ import {
   CategoryList,
   CardContainer,
 } from "./style";
+import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 
 function MyPage() {
-  // const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
 
+  // 김원준 작업중
+  // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기
+
+  // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
+  // const userSession = sessionStorage.getItem(
+  //   "firebase:authUser:AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8:[DEFAULT]"
+  // );
+
+  const currentUser = JSON.parse(userSession ?? "");
+  // console.log(currentUser);
   return (
     <>
       <StyledMyContainer>
@@ -54,6 +64,7 @@ function MyPage() {
             <Card></Card>
             <Card></Card>
           </CardContainer>
+          <BookmarkPrdtList currentUser={currentUser} />
         </StyledMypageLowerDiv>
       </StyledMyContainer>
     </>

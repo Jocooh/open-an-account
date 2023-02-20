@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NumericFormat } from "react-number-format";
+import { CgClose } from "react-icons/cg";
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -26,15 +27,13 @@ export const ModalContainer = styled.div`
 top: 146px; */
 `;
 
-export const CloseButton = styled.img`
-  width: 39px;
+export const CloseButton = styled(CgClose)`
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
   margin-bottom: 20px;
   margin-right: auto;
   cursor: pointer;
-
-  :hover {
-    background-color: #f0f0f0;
-  }
 `;
 
 //* 하얀색 배경 내용물
@@ -141,9 +140,7 @@ export const Highlight = styled.div`
 export const Products = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: column; */
   justify-content: space-between;
-  /* align-items: center; */
 `;
 
 export const SecondGuide = styled.div`
@@ -152,7 +149,5 @@ export const SecondGuide = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
-
-  text-align: center;
   margin-top: 20px;
 `;
