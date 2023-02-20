@@ -86,7 +86,7 @@ const LoginPage = () => {
       .catch((err) => {
         if (err.message.includes("user-not-found")) {
           alert("가입 정보가 없습니다. 회원가입을 먼저 진행해 주세요.");
-          // navigate("/signup", { state });
+          navigate("/signup", { state });
           emailRef?.current?.focus();
           setEmail("");
           setPassword("");
