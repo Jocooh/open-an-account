@@ -47,7 +47,7 @@ const ComparingModal = ({
           <TitleWrapper>
             <Title>상품 비교</Title>
             <SubTitle>
-              만기 수령액은 비교 상품들 모두 가입이 가능한 12개월로
+              만기 수령액은 비교 상품들 모두 가입이 가능한 기간으로
               산정되었습니다.
             </SubTitle>
           </TitleWrapper>
