@@ -25,7 +25,7 @@ function MyPage() {
   // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기
   const userSession = sessionStorage.getItem;
   // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
-  "firebase:authUser:AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA:[DEFAULT]"();
+  // "firebase:authUser:AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA:[DEFAULT]"();
   const currentUser = JSON.parse(userSession ?? "");
   // console.log(currentUser);
   return (
