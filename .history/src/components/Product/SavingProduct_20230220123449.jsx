@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { authService, db } from "../../config/firebase";
 import Numeral from "numeral";
 import {
   Guide,
@@ -17,11 +20,16 @@ function Product({
   selectedProductId,
   selectedProductRate,
   selectedProductRate2,
-  // seletedProductRateType,
+  seletedProductRateType,
 }) {
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
+
+  //* 상품 찜하기
+  const [scrap, setScrap] = useState(false);
+
+  console.log("selectedProduct", selectedProduct);
 
   return (
     <Wrapper>
@@ -32,37 +40,44 @@ function Product({
         selectedProductRate ? (
           <TotalCost>
             {Numeral(
-              Math.round(
-                inputNum *
-                  (1 +
-                    0.01 * Number(selectedProductRate) -
-                    0.01 * Number(selectedProductRate) * 0.154)
-              )
+              inputNum * 12 +
+                Math.round(
+                  inputNum *
+                    ((((12 * 13) / 2) * (Number(selectedProductRate) * 0.01)) /
+                      12)
+                ) -
+                Math.round(
+                  inputNum *
+                    ((((12 * 13) / 2) * (Number(selectedProductRate) * 0.01)) /
+                      12) *
+                    0.154
+                )
             ).format(0, 0)}
             원
           </TotalCost>
         ) : (
           <TotalCost>
             {Numeral(
-              inputNum +
-                Math.round(
-                  inputNum *
-                    Math.pow(
-                      1 + (Number(selectedProductRate2) * 0.01) / 12,
-                      12
-                    ) -
-                    inputNum
-                ) -
-                Math.round(
-                  Math.round(
-                    inputNum *
-                      Math.pow(
-                        1 + (Number(selectedProductRate2) * 0.01) / 12,
-                        12
-                      ) -
-                      inputNum
-                  ) * 0.154
-                )
+              Math.round(
+                (inputNum *
+                  (Math.pow(
+                    1 +
+                      (0.01 *
+                        Math.round(
+                          (inputNum *
+                            (Math.pow(
+                              1 + (0.01 * Number(selectedProductRate2)) / 12,
+                              12
+                            ) -
+                              1)) /
+                            ((0.01 * Number(selectedProductRate2)) / 12)
+                        )) /
+                        12,
+                    12
+                  ) -
+                    1)) /
+                  ((0.01 * Number(selectedProductRate2)) / 12)
+              )
             ).format(0, 0)}
             원
           </TotalCost>

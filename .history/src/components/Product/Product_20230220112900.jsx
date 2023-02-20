@@ -1,3 +1,7 @@
+import React, { useState, useEffect } from "react";
+import { BsFillBookmarkFill } from "react-icons/bs";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { authService, db } from "../../config/firebase";
 import Numeral from "numeral";
 import {
   Guide,
@@ -9,19 +13,22 @@ import {
   TotalCost,
   Wrapper,
 } from "./style";
-import Bookmarks from "../Bookmarks";
 
 function Product({
   inputValue,
   selectedProduct,
-  selectedProductId,
   selectedProductRate,
   selectedProductRate2,
-  // seletedProductRateType,
+  seletedProductRateType,
 }) {
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
+
+  //* 상품 찜하기
+  const [scrap, setScrap] = useState(false);
+
+  console.log("selectedProduct", selectedProduct);
 
   return (
     <Wrapper>
@@ -74,11 +81,11 @@ function Product({
       <ProductBox>
         <Name>
           <Prdt_nm>{selectedProduct.fin_prdt_nm}</Prdt_nm>
-          <Bookmarks
-            productId={selectedProduct.fin_prdt_cd}
-            productName={selectedProduct.fin_prdt_nm}
-            productCoName={selectedProduct.kor_co_nm}
-            productDocId={selectedProductId}
+          <BsFillBookmarkFill
+            onClick={() => {
+              setScrap(true);
+            }}
+            style={scrap ? { color: "#CDE974" } : { color: "#D9D9D9" }}
           />
         </Name>
 

@@ -466,7 +466,6 @@ const ServicePage = () => {
                   selectedProduct={[products[0], products[3], products[6]]}
                   selectedProductRate={intrRate}
                   selectedProductRate2={intrRate2}
-                  // selectedProudctRateType={intrRateType}
                 />
               )}
             </div>

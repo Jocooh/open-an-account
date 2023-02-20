@@ -17,11 +17,16 @@ function Product({
   selectedProductId,
   selectedProductRate,
   selectedProductRate2,
-  // seletedProductRateType,
+  seletedProductRateType,
 }) {
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
+
+  // //* 상품 찜하기
+  // const [scrap, setScrap] = useState(false);
+
+  // console.log("selectedProduct", selectedProduct);
 
   return (
     <Wrapper>

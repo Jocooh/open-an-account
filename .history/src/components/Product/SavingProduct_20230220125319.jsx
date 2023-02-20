@@ -11,7 +11,7 @@ import {
 } from "./style";
 import Bookmarks from "../Bookmarks";
 
-function Product({
+function SavingProduct({
   inputValue,
   selectedProduct,
   selectedProductId,
@@ -32,37 +32,44 @@ function Product({
         selectedProductRate ? (
           <TotalCost>
             {Numeral(
-              Math.round(
-                inputNum *
-                  (1 +
-                    0.01 * Number(selectedProductRate) -
-                    0.01 * Number(selectedProductRate) * 0.154)
-              )
+              inputNum * 12 +
+                Math.round(
+                  inputNum *
+                    ((((12 * 13) / 2) * (Number(selectedProductRate) * 0.01)) /
+                      12)
+                ) -
+                Math.round(
+                  inputNum *
+                    ((((12 * 13) / 2) * (Number(selectedProductRate) * 0.01)) /
+                      12) *
+                    0.154
+                )
             ).format(0, 0)}
             원
           </TotalCost>
         ) : (
           <TotalCost>
             {Numeral(
-              inputNum +
-                Math.round(
-                  inputNum *
-                    Math.pow(
-                      1 + (Number(selectedProductRate2) * 0.01) / 12,
-                      12
-                    ) -
-                    inputNum
-                ) -
-                Math.round(
-                  Math.round(
-                    inputNum *
-                      Math.pow(
-                        1 + (Number(selectedProductRate2) * 0.01) / 12,
-                        12
-                      ) -
-                      inputNum
-                  ) * 0.154
-                )
+              Math.round(
+                (inputNum *
+                  (Math.pow(
+                    1 +
+                      (0.01 *
+                        Math.round(
+                          (inputNum *
+                            (Math.pow(
+                              1 + (0.01 * Number(selectedProductRate2)) / 12,
+                              12
+                            ) -
+                              1)) /
+                            ((0.01 * Number(selectedProductRate2)) / 12)
+                        )) /
+                        12,
+                    12
+                  ) -
+                    1)) /
+                  ((0.01 * Number(selectedProductRate2)) / 12)
+              )
             ).format(0, 0)}
             원
           </TotalCost>
@@ -102,4 +109,4 @@ function Product({
   );
 }
 
-export default Product;
+export default SavingProduct;
