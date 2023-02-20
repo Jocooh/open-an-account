@@ -25,9 +25,13 @@ function SavingAllBankList({
   activeItem,
   setActiveItem,
   handleClickProduct,
+  selectedProductId,
 }) {
   const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
+  });
+  const sortMonths = savingOptionalList?.sort(function (a, b) {
+    return a.save_trm - b.save_trm;
   });
 
   return (
@@ -36,30 +40,28 @@ function SavingAllBankList({
         savingDB?.map((saving) =>
           savingbaseList?.map((item) =>
             saving.fin_prdt_cd === item.fin_prdt_cd ? (
-              <>
+              <div key={item.id}>
                 {saving.save_trm === "12" ? (
-                  <StyledBankLists
-                    onClick={() => {
-                      handleClickProduct(item.id);
-                    }}
-                  >
+                  <StyledBankLists key={item.id}>
                     {/* 로고 */}
                     <div style={{ display: "flex" }}>
                       <StyledListDiv>
-                        <StyledDiv>
-                          <div key={item.fin_prdt_nm}>
-                            {logoLists.logos.map((t) =>
-                              Object.keys(t)[0] === item.fin_co_no ? (
-                                <StyledImg
-                                  src={Object.values(t)[0]}
-                                  alt="로고"
-                                  key={item.fin_co_subm_day}
-                                />
-                              ) : null
-                            )}
-                          </div>
+                        <StyledDiv
+                          onClick={() => {
+                            handleClickProduct(item.id);
+                          }}
+                        >
+                          {logoLists.logos.map((t) =>
+                            Object.keys(t)[0] === item.fin_co_no ? (
+                              <StyledImg
+                                src={Object.values(t)[0]}
+                                alt="로고"
+                                key={item.id}
+                              />
+                            ) : null
+                          )}
 
-                          <div className="상품명 은행이름 이자율 한꺼번에 묶은 태그">
+                          <div>
                             <StyledContentDiv>
                               <StyledProductTitleDiv>
                                 {/* product name */}
@@ -115,14 +117,14 @@ function SavingAllBankList({
                         <SavingDetail
                           savingDB={saving}
                           savingbaseList={item}
-                          savingOptionalList={savingOptionalList}
+                          sortMonths={sortMonths}
                           setActiveItem={setActiveItem}
                         ></SavingDetail>
                       ) : null}
                     </div>
                   </StyledBankLists>
                 ) : null}
-              </>
+              </div>
             ) : null
           )
         )}

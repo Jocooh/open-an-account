@@ -1,14 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-function SearchInput({ setSearchBank, handleButtonClick }) {
+function SearchInput({ setSearchBank }) {
+  const SearchBankhandle = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <StyledInputContainer>
-        <div style={{ margin: "auto", width: "800px" }}>
-          <StyledLabelText>
-            친구가 추천한 그 상품, 잊기전에 찾아봐요!
-          </StyledLabelText>
+        <form
+          style={{ margin: "auto", width: "800px" }}
+          onSubmit={(e) => {
+            SearchBankhandle(e);
+          }}
+        >
+          <StyledLabelText>은행명 또는 상품명을 입력해주세요.</StyledLabelText>
           <div
             style={{
               width: "786px",
@@ -18,14 +24,14 @@ function SearchInput({ setSearchBank, handleButtonClick }) {
           >
             <StyledSearchInput
               type="text"
-              placeholder="키워드를 입력해주세요"
+              placeholder="최소 2글자 이상 작성해주세요"
               onChange={(e) => {
                 setSearchBank(e.target.value);
               }}
             />
-            <SearchBtn onClick={handleButtonClick}>검색</SearchBtn>
+            <SearchBtn>검색</SearchBtn>
           </div>
-        </div>
+        </form>
       </StyledInputContainer>
     </>
   );

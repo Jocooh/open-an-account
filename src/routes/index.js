@@ -12,6 +12,7 @@ import BankLists from "../pages/BankList";
 import InsertData from "../data/InsertData";
 import Footer from "../../src/components/GlobalComponents/Footer/Footer.jsx";
 import Header from "../../src/components/GlobalComponents/Header/Header.jsx";
+
 const Router = () => {
   return (
     <BrowserRouter>
