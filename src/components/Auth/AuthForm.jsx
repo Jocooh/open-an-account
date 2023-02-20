@@ -35,12 +35,18 @@ const AuthForm = ({
   changePassword,
   passwordRef,
   passwordValid, // login 실시간 유효성 검사 - 기존 유효성 검사로 사용 중
+  passwordMessage, // sign up 실시간 유효성 검사
+  isPassword, // sign up 실시간 유효성 검사
   confirmPassword,
   changeConfirmPassword,
   confirmPasswordRef,
+  passwordConfirmMessage, // sign up 실시간 유효성 검사
+  isPasswordConfirm, // sign up 실시간 유효성 검사
   nickname,
   changeNickname,
   nicknameRef,
+  nicknameMessage, // sign up 실시간 유효성 검사
+  isNickname, // sign up 실시간 유효성 검사
   submitSignUp,
   submitLogin,
 }) => {
@@ -74,6 +80,7 @@ const AuthForm = ({
                   onChange={changeEmail}
                   ref={emailRef}
                 />
+                <div>{email.length > 0 && <span>{emailMessage}</span>}</div>
                 <AuthLabel>비밀번호</AuthLabel>
                 <AuthInput
                   id="password"
@@ -83,6 +90,9 @@ const AuthForm = ({
                   onChange={changePassword}
                   ref={passwordRef}
                 />
+                <div>
+                  {password.length > 0 && <span>{passwordMessage}</span>}
+                </div>
                 <AuthLabel>비밀번호 재입력</AuthLabel>
                 <AuthInput
                   id="confirm-password"
@@ -92,6 +102,11 @@ const AuthForm = ({
                   onChange={changeConfirmPassword}
                   ref={confirmPasswordRef}
                 />
+                <div>
+                  {confirmPassword.length > 0 && (
+                    <span>{passwordConfirmMessage}</span>
+                  )}
+                </div>
                 <AuthLabel>닉네임</AuthLabel>
                 <AuthInput
                   id="nickname"
@@ -101,6 +116,9 @@ const AuthForm = ({
                   onChange={changeNickname}
                   ref={nicknameRef}
                 />
+                <div>
+                  {nickname.length > 0 && <spam>{nicknameMessage}</spam>}
+                </div>
               </>
             ) : (
               <>
@@ -113,15 +131,17 @@ const AuthForm = ({
                   onChange={changeEmail}
                   ref={emailRef}
                 />
-                {!emailValid && email.length > 0 && (
-                  <p>올바른 이메일을 형식을 입력해주세요.</p>
-                )}
+                <div>
+                  {!emailValid && email.length > 0 && (
+                    <p>올바른 이메일을 형식을 입력해주세요.</p>
+                  )}
+                </div>
 
                 <AuthLabel>비밀번호</AuthLabel>
                 <AuthInput
                   id="password"
                   type="password"
-                  placeholder="사용하실 비밀번호를 입력해주세요."
+                  placeholder="비밀번호를 입력해주세요."
                   value={password}
                   onChange={changePassword}
                   ref={passwordRef}

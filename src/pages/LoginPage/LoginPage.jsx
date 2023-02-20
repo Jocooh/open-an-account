@@ -17,11 +17,12 @@ const LoginPage = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  // 실시간 유효성 검사
   // 이메일, 패스워드 유효성 값 초기화
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
 
-  // 이메일 입력
+  // 이메일 입력 - 실시간 유효성 검사로 변환
   const changeEmail = (event) => {
     setEmail(event.target.value);
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -32,7 +33,7 @@ const LoginPage = () => {
     }
   };
 
-  // 비밀번호 입력 - 기존 유효성 검사로 사용 중
+  // 비밀번호 입력 - 실시간 유효성 검사로 변환했으나 기존 유효성 검사로 사용 중
   const changePassword = (event) => {
     setPassword(event.target.value);
     const passwordRegex =
