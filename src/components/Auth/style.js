@@ -40,6 +40,9 @@ export const AuthLogo = styled.div`
   font-weight: 600;
   color: #6a24ff;
 `;
+// export const AuthLogoImg = styled.img`
+// width: ;
+// `
 
 // auth title
 export const AuthTitleTextWrapper = styled.div`

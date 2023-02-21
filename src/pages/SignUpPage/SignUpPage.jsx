@@ -34,16 +34,16 @@ const SignUpPage = () => {
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
   const [isNickname, setIsNickame] = useState(false);
   // *** 회원가입 버튼 활성화 ***
-  const [signUpEnabled, setSignUpEnabled] = useState(true);
+  // const [signUpEnabled, setSignUpEnabled] = useState(true);
   // 이메일 입력 - 실시간 유효성 검사로 변환
   const changeEmail = (event) => {
     setEmail(event.target.value);
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     if (!emailRegex.test(event.target.value)) {
-      setEmailMessage("올바른 이메일 형식이 아닙니다.");
+      setEmailMessage("이메일 형식을 확인해주세요");
       setIsEmail(false);
     } else {
-      setEmailMessage("사용 가능한 이메일 헝식입니다.");
+      setEmailMessage("사용 가능한 이메일 형식입니다.");
       setIsEmail(true);
     }
   };
@@ -54,11 +54,11 @@ const SignUpPage = () => {
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
     if (!passwordRegex.test(event.target.value)) {
       setPasswordMessage(
-        "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상이어야 합니다."
+        "대소문자, 특수문자를 포함하여 8자리 이상 입력해주세요."
       );
       setIsPassword(false);
     } else {
-      setPasswordMessage("사용 가능한 비밀번호 헝식입니다.");
+      setPasswordMessage("사용 가능한 비밀번호 형식입니다.");
       setIsPassword(true);
     }
   };
@@ -70,9 +70,7 @@ const SignUpPage = () => {
       setPasswordConfirmMessage("비밀번호가 일치합니다.");
       setIsPasswordConfirm(true);
     } else {
-      setPasswordConfirmMessage(
-        "비밀번호가 일치하지 않습니다. 다시 입력해주세요."
-      );
+      setPasswordConfirmMessage("비밀번호가 일치하지 않습니다.");
       setIsPasswordConfirm(false);
     }
   };
@@ -116,7 +114,7 @@ const SignUpPage = () => {
         return false;
       } else {
         alert(
-          "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상이어야 합니다."
+          "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상 입력해주세요."
         );
         passwordRef?.current?.focus();
         setPassword("");
@@ -124,7 +122,7 @@ const SignUpPage = () => {
       }
     }
     if (!confirmPassword) {
-      alert("비밀번호를 다시 한번 더 입력해주세요.");
+      alert("비밀번호를 한번 더 입력해주세요.");
       confirmPasswordRef?.current?.focus();
       return false;
     }

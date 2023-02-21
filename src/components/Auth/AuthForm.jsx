@@ -220,7 +220,7 @@ const AuthForm = ({
                 <AuthInputValidationWrapper>
                   {!emailValid && email.length > 0 && (
                     <AuthInputValidationText>
-                      올바른 이메일을 형식을 입력해주세요.
+                      이메일을 확인해주세요.
                     </AuthInputValidationText>
                   )}
                 </AuthInputValidationWrapper>
@@ -236,6 +236,13 @@ const AuthForm = ({
                   onChange={changePassword}
                   ref={passwordRef}
                 />
+                <AuthInputValidationWrapper>
+                  {!passwordValid && password.length > 0 && (
+                    <AuthInputValidationText>
+                      비밀번호를 확인해주세요.
+                    </AuthInputValidationText>
+                  )}
+                </AuthInputValidationWrapper>
               </AuthInputWrapper>
               <AuthButton onClick={submitLogin}>로그인</AuthButton>
             </AuthLoginForm>

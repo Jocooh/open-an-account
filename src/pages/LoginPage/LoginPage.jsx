@@ -72,7 +72,7 @@ const LoginPage = () => {
         return false;
       } else {
         alert(
-          "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상이어야 합니다."
+          "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상 입력해주세요."
         );
         passwordRef?.current?.focus();
         setPassword("");
