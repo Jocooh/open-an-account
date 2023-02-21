@@ -5,13 +5,13 @@ import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   //
   // * 메인 프로젝트
-  // apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
-  // authDomain: "open-an-account-31857.firebaseapp.com",
-  // projectId: "open-an-account-31857",
-  // storageBucket: "open-an-account-31857.appspot.com",
-  // messagingSenderId: "62978638072",
-  // appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
-  // measurementId: "G-ENB9S2CV1E",
+  apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
+  authDomain: "open-an-account-31857.firebaseapp.com",
+  projectId: "open-an-account-31857",
+  storageBucket: "open-an-account-31857.appspot.com",
+  messagingSenderId: "62978638072",
+  appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
+  measurementId: "G-ENB9S2CV1E",
   //
   // * 박상우 전용 키
   // apiKey: "AIzaSyCL_AQsnjPdjq-vp8BvukPqza4XYNwMoZw",
@@ -28,13 +28,13 @@ const firebaseConfig = {
   // messagingSenderId: "504930775227",
   // appId: "1:504930775227:web:a0770f744b7874618e799e",
   // * 박상우 전용 키 3
-  apiKey: "AIzaSyByb_xfgvoG-rwW_Be4toDkw621sbIzdPk",
-  authDomain: "mytest3-fa0fa.firebaseapp.com",
-  projectId: "mytest3-fa0fa",
-  storageBucket: "mytest3-fa0fa.appspot.com",
-  messagingSenderId: "185433561488",
-  appId: "1:185433561488:web:6c96ed39e2589180017b15",
-  measurementId: "G-FVGRSGV6BX",
+  // apiKey: "AIzaSyByb_xfgvoG-rwW_Be4toDkw621sbIzdPk",
+  // authDomain: "mytest3-fa0fa.firebaseapp.com",
+  // projectId: "mytest3-fa0fa",
+  // storageBucket: "mytest3-fa0fa.appspot.com",
+  // messagingSenderId: "185433561488",
+  // appId: "1:185433561488:web:6c96ed39e2589180017b15",
+  // measurementId: "G-FVGRSGV6BX",
   // * 남마리나 전용 키 1
   // apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
   // authDomain: "jojoa-c3a5b.firebaseapp.com",
@@ -60,12 +60,12 @@ const firebaseConfig = {
   // appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
   //
   // * 김원준 전용 키 1
-  apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
-  authDomain: "test-open-an-account.firebaseapp.com",
-  projectId: "test-open-an-account",
-  storageBucket: "test-open-an-account.appspot.com",
-  messagingSenderId: "1068156105304",
-  appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
+  // apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
+  // authDomain: "test-open-an-account.firebaseapp.com",
+  // projectId: "test-open-an-account",
+  // storageBucket: "test-open-an-account.appspot.com",
+  // messagingSenderId: "1068156105304",
+  // appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
   //
   // * 김원준 전용 키 2
   // apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",

@@ -96,7 +96,6 @@ const ServicePage = () => {
     });
   };
 
-
   //* 금융상품 타입에 따른 선택된 상품의 고유 값 저장함수.
   const handleSelectProducts = async (productId) => {
     if (productTypes !== 2) {
@@ -139,7 +138,6 @@ const ServicePage = () => {
                 );
               }
             }
-
           }
         } else {
           console.log(
@@ -328,12 +326,9 @@ const ServicePage = () => {
   };
 
   const handleClickResults = (results) => {
-    if (activeTab === 1) {
-      setShowResults(showResults);
-    } else {
-      setActiveTab(1);
-      setTimeout(() => setShowResults(!showResults), 0);
-    }
+    // if (activeTab === 1) {
+    setShowResults(!showResults);
+    // }
   };
 
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
@@ -372,7 +367,7 @@ const ServicePage = () => {
   // useEffect(() => {
   //   getMyBookmarkProduct();
   // }, []);
-  console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
+  // console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
 
   return (
     <Wraper>
@@ -442,15 +437,14 @@ const ServicePage = () => {
                           {
                             products.find(
                               (product) => product.id === selectedProductIds[4]
-                            ).fin_prdt_nm
+                            )?.fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
-
-                              (product) => product.id === selectedProductIds[3]
-                            ).kor_co_nm
+                              (product) => product.id === selectedProductIds[4]
+                            )?.kor_co_nm
                           }
                         </p>
                       </div>
@@ -484,17 +478,15 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
-
                               (product) => product.id === selectedProductIds[8]
-                            ).fin_prdt_nm
+                            )?.fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
-
                               (product) => product.id === selectedProductIds[8]
-                            ).kor_co_nm
+                            )?.kor_co_nm
                           }
                         </p>
                       </div>
@@ -523,13 +515,11 @@ const ServicePage = () => {
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-
                   selectedProductId={[
                     selectedProductIds[0],
                     selectedProductIds[4],
                     selectedProductIds[8],
                   ]}
-
                 />
               )}
             </div>
@@ -821,13 +811,10 @@ const ServicePage = () => {
                                     depositOptionalList={depositOptionalList}
                                     savingbaseList={savingbaseList}
                                     savingOptionalList={savingoptionalList}
-
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
                                     myBookmarkProducts={myBookmarkProducts} // my bookmark products
-
                                     handleClickProduct={handleClickProduct}
-
                                   />
                                 ) : (
                                   <AllBank
