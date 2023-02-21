@@ -25,10 +25,14 @@ const ComparingModal = ({
   selectedProduct,
   selectedProductRate,
   selectedProductRate2,
-
-  // selectedProductRateType
+  selectedProductRateType,
 }) => {
   const [inputValue, setInputValue] = useState("");
+
+  console.log("selectedProduct :>> ", selectedProduct);
+  console.log("selectedProductRate :>> ", selectedProductRate);
+  console.log("selectedProductRate2 :>> ", selectedProductRate2);
+  console.log("selectedProductRateType :>> ", selectedProductRateType);
 
   return (
     <ModalBackground>
@@ -75,26 +79,26 @@ const ComparingModal = ({
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProduct[0].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductRate={selectedProductRate[0]}
+                    selectedProductRate2={selectedProductRate2[0]}
+                    selectedProductRateType={selectedProductRateType[0]}
                   />
                   <Product
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProduct[1].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductRate={selectedProductRate[1]}
+                    selectedProductRate2={selectedProductRate2[1]}
+                    selectedProductRateType={selectedProductRateType[1]}
                   />
                   {selectedProduct[2] ? (
                     <Product
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProduct[2].id}
-                      selectedProductRate={selectedProductRate}
-                      selectedProductRate2={selectedProductRate2}
-                      // selectedProductRateType={selectedProductRateType}
+                      selectedProductRate={selectedProductRate[2]}
+                      selectedProductRate2={selectedProductRate2[2]}
+                      selectedProductRateType={selectedProductRateType[2]}
                     />
                   ) : (
                     <img
@@ -129,26 +133,26 @@ const ComparingModal = ({
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProduct[0].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductRate={selectedProductRate[0]}
+                    selectedProductRate2={selectedProductRate2[0]}
+                    selectedProductRateType={selectedProductRateType[0]}
                   />
                   <SavingProduct
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProduct[1].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductRate={selectedProductRate[1]}
+                    selectedProductRate2={selectedProductRate2[1]}
+                    selectedProductRateType={selectedProductRateType[1]}
                   />
                   {selectedProduct[2] ? (
                     <SavingProduct
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProduct[2].id}
-                      selectedProductRate={selectedProductRate}
-                      selectedProductRate2={selectedProductRate2}
-                      // selectedProductRateType={selectedProductRateType}
+                      selectedProductRate={selectedProductRate[2]}
+                      selectedProductRate2={selectedProductRate2[2]}
+                      selectedProductRateType={selectedProductRateType[2]}
                     />
                   ) : (
                     <img

@@ -121,7 +121,7 @@ const ServicePage = () => {
               );
 
               if (targetDoc) {
-                selectedProductIdsCopy[i] = productId;
+                selectedProductIdsCopy[i] = docSnap.data();
                 selectedProductIdsCopy[i + 1] = targetDoc.intr_rate;
                 selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
                 selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
@@ -170,7 +170,7 @@ const ServicePage = () => {
               );
 
               if (targetDoc) {
-                selectedProductIdsCopy[i] = productId;
+                selectedProductIdsCopy[i] = docSnap.data();
                 selectedProductIdsCopy[i + 1] = targetDoc.intr_rate;
                 selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
                 selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
@@ -369,6 +369,7 @@ const ServicePage = () => {
   // }, []);
   // console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
 
+  console.log("selectedProductIds>> ", selectedProductIds);
   return (
     <Wraper>
       <Cantinar>
@@ -515,10 +516,25 @@ const ServicePage = () => {
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-                  selectedProductId={[
+                  selectedProduct={[
                     selectedProductIds[0],
                     selectedProductIds[4],
                     selectedProductIds[8],
+                  ]}
+                  selectedProductRate={[
+                    selectedProductIds[1],
+                    selectedProductIds[5],
+                    selectedProductIds[9],
+                  ]}
+                  selectedProductRate2={[
+                    selectedProductIds[2],
+                    selectedProductIds[6],
+                    selectedProductIds[10],
+                  ]}
+                  selectedProductRateType={[
+                    selectedProductIds[3],
+                    selectedProductIds[7],
+                    selectedProductIds[11],
                   ]}
                 />
               )}
