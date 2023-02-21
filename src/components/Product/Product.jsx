@@ -9,8 +9,10 @@ import {
   TotalCost,
   Wrapper,
   Scrap,
+  Logo,
 } from "./style";
 import Bookmarks from "../Bookmarks";
+import logoLists from "../../assets/logo/logo";
 
 function Product({
   inputValue,
@@ -75,6 +77,15 @@ function Product({
 
       <ProductBox>
         <Name>
+          {logoLists.logos.map((t) =>
+            Object.keys(t)[0] === selectedProduct.fin_co_no ? (
+              <Logo
+                src={Object.values(t)[0]}
+                alt="로고"
+                key={selectedProduct.id}
+              />
+            ) : null
+          )}
           <Prdt_nm>{selectedProduct.fin_prdt_nm}</Prdt_nm>
         </Name>
 

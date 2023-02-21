@@ -41,12 +41,14 @@ export const ProductBox = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   padding: 20px 20px 15px 20px;
+  margin-bottom: 10px;
 `;
 
-//* 상품 이름, 스크랩 아이콘
+//* 상품 이름
 export const Name = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 `;
 //* 상품 이름
 export const Prdt_nm = styled.div`
@@ -56,6 +58,12 @@ export const Prdt_nm = styled.div`
   font-size: 28px;
   line-height: 27px;
   color: #000000;
+`;
+export const Logo = styled.img`
+  aspect-ratio: 4/3;
+  width: 40px;
+  padding-right: 8px;
+  object-fit: contain;
 `;
 
 //* 상품설명
@@ -82,5 +90,7 @@ export const Message = styled.div`
 `;
 
 export const Scrap = styled.div`
-  float: right;
+  display: flex;
+  justify-content: end;
+  margin: auto 0 0 0;
 `;
