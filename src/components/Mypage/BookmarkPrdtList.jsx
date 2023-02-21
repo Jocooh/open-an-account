@@ -2,7 +2,7 @@ import { updateCurrentUser } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
-import { CardContainer, StyledCard } from "../../pages/MyPage/style";
+import { StyledCard } from "../../pages/MyPage/style";
 import BookmarkPrdtItem from "./BookmarkPrdtItem";
 
 const BookmarkPrdtList = ({ currentUser }) => {
@@ -28,11 +28,12 @@ const BookmarkPrdtList = ({ currentUser }) => {
   }, []);
 
   return (
-    <CardContainer>
+    <>
+      {" "}
       {items.map((item) => (
         <BookmarkPrdtItem item={item} key={item.productName} />
       ))}
-    </CardContainer>
+    </>
   );
 };
 

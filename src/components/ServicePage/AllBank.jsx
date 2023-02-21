@@ -1,36 +1,42 @@
-//AllBank.jsx
-
 import React from "react";
 import AllBankList from "../AllBankList/AllBankList";
 import SavingAllBankList from "../AllBankList/SavingAllBankList";
 
 function AllBank({
-  productTypes,
-  depositOptionalList,
-  depositbaseList,
   activeItem,
+  productTypes,
   setActiveItem,
+  selectedColor,
   savingbaseList,
-  savingoptionalList,
+  depositbaseList,
+  setSelectedColor,
   handleClickProduct,
+  savingoptionalList,
+  depositOptionalList,
+  selectedProductIds,
 }) {
   return (
     <>
       {productTypes === 1 ? (
         <AllBankList
-          depositOptionalList={depositOptionalList}
-          depositbaseList={depositbaseList}
           activeItem={activeItem}
+          selectedColor={selectedColor}
           setActiveItem={setActiveItem}
+          depositbaseList={depositbaseList}
+          setSelectedColor={setSelectedColor}
           handleClickProduct={handleClickProduct}
+          depositOptionalList={depositOptionalList}
+          selectedProductIds={selectedProductIds}
         />
       ) : (
         <SavingAllBankList
-          savingbaseList={savingbaseList}
-          savingOptionalList={savingoptionalList}
           activeItem={activeItem}
           setActiveItem={setActiveItem}
+          savingbaseList={savingbaseList}
+          setSelectedColor={setSelectedColor}
           handleClickProduct={handleClickProduct}
+          savingOptionalList={savingoptionalList}
+          selectedProductIds={selectedProductIds}
         />
       )}
     </>

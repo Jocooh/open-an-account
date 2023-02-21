@@ -82,6 +82,11 @@ export const ToCompare = styled.button`
   color: #fff;
   background-color: #6a24ff;
   font-weight: bold;
+  :disabled {
+    background-color: #dadada;
+    color: #fff;
+    cursor: not-allowed;
+  }
 `;
 
 //? ----여기서 부터 하단부분입니다.----
@@ -245,6 +250,7 @@ export const FilterSubmit = styled.button`
   :disabled {
     background-color: #dadada;
     color: #fff;
+    cursor: not-allowed;
   }
 `;
 
