@@ -33,7 +33,7 @@ const LoginPage = () => {
     }
   };
 
-  // 비밀번호 입력 - 실시간 유효성 검사로 변환했으나 기존 유효성 검사로 사용 중
+  // 비밀번호 입력 - 실시간 유효성 검사로 변환
   const changePassword = (event) => {
     setPassword(event.target.value);
     const passwordRegex =

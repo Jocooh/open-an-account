@@ -4,7 +4,7 @@ import {
   setPersistence,
   updateProfile,
 } from "firebase/auth";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
@@ -12,6 +12,7 @@ import { authService } from "../../config/firebase";
 const SignUpPage = () => {
   const navigate = useNavigate();
 
+  // 기존 sign up
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,17 +22,18 @@ const SignUpPage = () => {
   const confirmPasswordRef = useRef(null);
   const nicknameRef = useRef(null);
 
-  // 실시간 유효성 검사
-  // 오류메세지 상태 저장
+  // *** 실시간 유효성 검사 ***
+  // *** 오류메세지 상태 저장 ***
   const [emailMessage, setEmailMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
   const [nicknameMessage, setNickameMessage] = useState("");
-  // 유효성 검사
+  // *** 유효성 검사 ***
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
   const [isNickname, setIsNickame] = useState(false);
+
   // 이메일 입력 - 실시간 유효성 검사로 변환
   const changeEmail = (event) => {
     setEmail(event.target.value);

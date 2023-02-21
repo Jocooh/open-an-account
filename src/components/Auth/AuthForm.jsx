@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GoogleLogin } from "./GoogleLogin";
 import { KakaoLogin } from "./KakaoLogin";
@@ -64,6 +64,15 @@ const AuthForm = ({
   submitLogin,
 }) => {
   const signUp = title === "회원 가입 정보 입력";
+  // *** 회원가입 버튼 활성화 ***
+  const [signUpEnabled, setSignUpEnabled] = useState(true);
+  useEffect(() => {
+    if (isNickname && isPassword && isPasswordConfirm && isEmail) {
+      setSignUpEnabled(false);
+      return;
+    }
+    setSignUpEnabled(true);
+  }, [isNickname, isPassword, isPasswordConfirm, isEmail]);
 
   return (
     <AuthBackground>
@@ -163,7 +172,9 @@ const AuthForm = ({
                   </AuthInputValidationText>
                 )}
               </AuthInputWrapper>
-              <AuthButton onClick={submitSignUp}>회원가입</AuthButton>
+              <AuthButton disabled={signUpEnabled} onClick={submitSignUp}>
+                회원가입
+              </AuthButton>
             </AuthSignUpForm>
           ) : (
             <AuthLoginForm>

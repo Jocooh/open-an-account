@@ -130,6 +130,11 @@ export const AuthButton = styled.button`
   border-radius: 10px;
 
   cursor: pointer;
+
+  :disabled {
+    background-color: #dadada;
+    color: #fff;
+  }
 `;
 
 export const BoundaryLineWrapper = styled.div`
