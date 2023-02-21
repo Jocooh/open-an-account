@@ -793,6 +793,41 @@ const ServicePage = () => {
                       </StyledBankListContainer>
                     </TapContainerBox>
                   </TapContainer>
+                  <StyledBankListContainer>
+                    <div>
+                      <StyledBankList>
+                        <StyledBankListWrapper>
+                          {searchBank.length > 0 ? (
+                            <SearchBankList
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              searchBank={searchBank}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingOptionalList={savingoptionalList}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                              handleClickProduct={handleClickProduct}
+                            />
+                          ) : (
+                            <AllBank
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingoptionalList={savingoptionalList}
+                              selectedProductIds={selectedProductIds}
+                              handleClickProduct={handleClickProduct}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            />
+                          )}
+                        </StyledBankListWrapper>
+                      </StyledBankList>
+                    </div>
+                  </StyledBankListContainer>
                 </Tapwraper>
               )}
               {showResults && (
@@ -815,97 +850,98 @@ const ServicePage = () => {
               {/* ##################################################################### */}
 
               {activeTab === 2 && (
-                <TapContainer>
-                  <TapContainerBox>
-                    <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
-                    <ProductWraper>
-                      <ProductType
-                        onClick={() => {
-                          handleProductTypeClick(1);
-                        }}
-                        style={
-                          productTypes === 1
-                            ? {
-                                color: "#6A24FF",
-                                border: "1px solid #6A24FF",
-                              }
-                            : {}
-                        }
-                      >
-                        정기예금
-                      </ProductType>
-                      <ProductType
-                        onClick={() => {
-                          handleProductTypeClick(2);
-                        }}
-                        style={
-                          productTypes === 2
-                            ? {
-                                color: "#6A24FF",
-                                border: "1px solid #6A24FF",
-                              }
-                            : {}
-                        }
-                      >
-                        정기적금
-                      </ProductType>
-                    </ProductWraper>
-                    <FinanciialProductsWrap>
-                      <FinanciialProductsFullList>
-                        {/* 검색창_component */}
-                        <SearchInput setSearchBank={setSearchBank} />
-                        <p style={{ color: "#aaa", marginTop: "5px" }}>
-                          **기본정렬은 12개월 기준입니다.
-                        </p>
 
-                        <StyledBankListContainer>
-                          <div>
-                            <StyledBankList>
-                              <div
-                                ref={topLocation}
-                                className="top으로 가는 위치 지정"
-                              />
-                              <StyledBankListWrapper>
-                                {searchBank.length > 0 ? (
-                                  <SearchBankList
-                                    activeItem={activeItem}
-                                    setActiveItem={setActiveItem}
-                                    searchBank={searchBank}
-                                    productTypes={productTypes}
-                                    depositbaseList={products}
-                                    depositOptionalList={depositOptionalList}
-                                    savingbaseList={savingbaseList}
-                                    savingOptionalList={savingoptionalList}
-                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                                    handleClickProduct={handleClickProduct}
-                                  />
-                                ) : (
-                                  <AllBank
-                                    activeItem={activeItem}
-                                    setActiveItem={setActiveItem}
-                                    productTypes={productTypes}
-                                    depositbaseList={products}
-                                    depositOptionalList={depositOptionalList}
-                                    savingbaseList={savingbaseList}
-                                    savingoptionalList={savingoptionalList}
-                                    selectedProductIds={selectedProductIds}
-                                    handleClickProduct={handleClickProduct}
-                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                                  />
-                                )}
-                              </StyledBankListWrapper>
-                            </StyledBankList>
-                            <StyledBtnDiv className="스크롤탑버튼">
-                              <StyledBtn onClick={onTop}>
-                                맨 위로 가기
-                              </StyledBtn>
-                            </StyledBtnDiv>
-                          </div>
-                        </StyledBankListContainer>
-                      </FinanciialProductsFullList>
-                    </FinanciialProductsWrap>
-                  </TapContainerBox>
-                </TapContainer>
+                <div>
+                  <TapContainer>
+                    <TapContainerBox>
+                      <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
+                      <ProductWraper>
+                        <ProductType
+                          onClick={() => {
+                            handleProductTypeClick(1);
+                          }}
+                          style={
+                            productTypes === 1
+                              ? {
+                                  color: "#6A24FF",
+                                  border: "1px solid #6A24FF",
+                                }
+                              : {}
+                          }
+                        >
+                          정기예금
+                        </ProductType>
+                        <ProductType
+                          onClick={() => {
+                            handleProductTypeClick(2);
+                          }}
+                          style={
+                            productTypes === 2
+                              ? {
+                                  color: "#6A24FF",
+                                  border: "1px solid #6A24FF",
+                                }
+                              : {}
+                          }
+                        >
+                          정기적금
+                        </ProductType>
+                      </ProductWraper>
+                      <FinanciialProductsWrap>
+                        <FinanciialProductsFullList>
+                          {/* 검색창_component */}
+                          <SearchInput setSearchBank={setSearchBank} />
+                          <p style={{ color: "#aaa", marginTop: "5px" }}>
+                            **기본정렬은 12개월 기준입니다.
+                          </p>
+                        </FinanciialProductsFullList>
+                      </FinanciialProductsWrap>
+                    </TapContainerBox>
+                  </TapContainer>
+                  <StyledBankListContainer>
+                    <div>
+                      <StyledBankList>
+                        <div
+                          ref={topLocation}
+                          className="top으로 가는 위치 지정"
+                        />
+                        <StyledBankListWrapper>
+                          {searchBank.length > 0 ? (
+                            <SearchBankList
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              searchBank={searchBank}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingOptionalList={savingoptionalList}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                              handleClickProduct={handleClickProduct}
+                            />
+                          ) : (
+                            <AllBank
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingoptionalList={savingoptionalList}
+                              selectedProductIds={selectedProductIds}
+                              handleClickProduct={handleClickProduct}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            />
+                          )}
+                        </StyledBankListWrapper>
+                      </StyledBankList>
+                      <StyledBtnDiv className="스크롤탑버튼">
+                        <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
+                      </StyledBtnDiv>
+                    </div>
+                  </StyledBankListContainer>
+                </div>            
+
               )}
               {activeTab === 3 && (
                 <TapContainer>

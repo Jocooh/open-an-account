@@ -139,6 +139,7 @@ export const TapContainer = styled.div`
 //* 하단 탭 공통 부분 중간 컨테이너
 export const TapContainerBox = styled.div`
   width: 812px;
+  /* background-color: aqua; */
   //성아-수정
   /* height: 680px; */
 `;
@@ -165,11 +166,6 @@ export const ProductType = styled.button`
   border: 1px solid #dedede;
   border-radius: 10px;
   color: #dedede;
-`;
-
-//* 금융상품계산기 박스제목
-export const ProducksCalculatorBoxTitle = styled.div`
-  font-size: 22px;
 `;
 
 //* 금융상품계산기 박스 내용
@@ -266,15 +262,13 @@ export const ResultsSection = styled.div`
 
 //* 금융상품 전체리스트
 export const FinanciialProductsFullList = styled.div``;
-export const FinanciialProductsWrap = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+export const FinanciialProductsWrap = styled.div``;
 
 //성아-banklist style
 export const StyledBankListContainer = styled.div`
-  width: 990px;
+  /* width: 990px; */
   /* height: 1128px; */
+  width: 100%;
   background-color: #f0f0f0;
   margin-top: 30px;
   padding: 15px 0;
@@ -288,7 +282,7 @@ export const StyledBankList = styled.div`
   height: 850px;
   overflow: auto;
 `;
-
+export const SearchInput = styled.div``;
 export const Tapwraper = styled.div``;
 
 export const StyledBankListWrapper = styled.div`

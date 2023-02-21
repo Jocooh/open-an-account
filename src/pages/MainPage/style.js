@@ -86,6 +86,14 @@ export const ProductFdButton = styled.button`
   cursor: pointer;
 `;
 
+// 은행 사이트 배너
+export const BankListBanner = styled.div`
+  width: 100%;
+  height: 220px;
+
+  background-color: aliceblue;
+`;
+
 //? 하단영역
 export const BottomWrap = styled.div`
   margin-top: 20px;
@@ -210,10 +218,10 @@ export const Tip = styled.div`
   border-radius: 20px;
   img {
     float: right;
-    margin-top: 60px;
+    margin-top: 50px;
   }
   :hover {
-    filter: brightness(90%);
+    filter: brightness(70%);
     color: white;
     div {
       opacity: 1;
@@ -225,10 +233,16 @@ export const Tip = styled.div`
 export const TipTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 30px;
 `;
 
 // 금융 팁 설명
-export const TipComment = styled.div`
+export const TipComments = styled.div`
+  font-weight: bold;
   opacity: 0;
-  /* position: absolute; */
+  position: absolute;
+`;
+
+export const TipComment = styled.div`
+  margin-top: 10px;
 `;
