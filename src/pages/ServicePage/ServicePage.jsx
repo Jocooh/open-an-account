@@ -59,7 +59,7 @@ const ServicePage = () => {
   const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
   const [showResults, setShowResults] = useState(false); //* 결과 보기 버튼 활성화 상태 값 저장
   const [notAllow2, setNotAllow2] = useState(true); //* 비교하기 버튼 활성화 상태 값 저장
-  const [showSearch, setShowSearch] = useState(true);
+  const [showSearch, setShowSearch] = useState(true); //* 검색창 활성화 상태 값 저장
   const [activeItem, setActiveItem] = useState("");
 
   //상품검색state
@@ -77,7 +77,7 @@ const ServicePage = () => {
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
   const [selectedProductIds, setSelectedProductIds] = useState(
-    new Array(12).fill("")
+    new Array(15).fill("")
   );
   const [intrRate, setIntrRate] = useState(""); //* 선택된 상품의 intr_rate(이자율) 저장
   const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품의 intr_rate(최대금리) 저장
@@ -104,7 +104,11 @@ const ServicePage = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          const { fin_prdt_cd } = docSnap.data();
+          const baseListData = {
+            id: docSnap.id,
+            ...docSnap.data(),
+          };
+          const { fin_prdt_cd } = baseListData;
 
           const querySnapshot = await getDocs(
             collection(db, "DEPOSIT_OPTION_LIST"),
@@ -114,18 +118,18 @@ const ServicePage = () => {
           const options = querySnapshot.docs.map((doc) => doc.data());
           const selectedProductIdsCopy = [...selectedProductIds];
 
-          for (let i = 0; i < selectedProductIdsCopy.length; i += 4) {
+          for (let i = 0; i < selectedProductIdsCopy.length; i += 5) {
             if (selectedProductIdsCopy[i] === "") {
               const targetDoc = options.find(
                 (option) => option.fin_prdt_cd === fin_prdt_cd
               );
 
               if (targetDoc) {
-                selectedProductIdsCopy[i] = productId;
+                selectedProductIdsCopy[i] = docSnap.id;
                 selectedProductIdsCopy[i + 1] = targetDoc.intr_rate;
                 selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
                 selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
-
+                selectedProductIdsCopy[i + 4] = docSnap.data();
                 setSelectedProductIds(selectedProductIdsCopy);
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
@@ -162,12 +166,12 @@ const ServicePage = () => {
 
           const options = querySnapshot.docs.map((doc) => doc.data());
           const selectedProductIdsCopy = [...selectedProductIds];
-
           for (let i = 0; i < selectedProductIdsCopy.length; i += 4) {
             if (selectedProductIdsCopy[i] === "") {
               const targetDoc = options.find(
                 (option) => option.fin_prdt_cd === fin_prdt_cd
               );
+              console.log(selectedProductIdsCopy[0]);
 
               if (targetDoc) {
                 selectedProductIdsCopy[i] = productId;
@@ -326,9 +330,12 @@ const ServicePage = () => {
   };
 
   const handleClickResults = (results) => {
-    // if (activeTab === 1) {
-    setShowResults(!showResults);
-    // }
+    if (activeTab === 1) {
+      setShowResults(!showResults);
+    } else {
+      setActiveTab(1);
+      setTimeout(() => setShowResults(!showResults), 0);
+    }
   };
 
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
@@ -421,7 +428,7 @@ const ServicePage = () => {
               <SelectedProductsContainer>
                 <SelectedProducts>
                   {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[4] === "" ? (
+                  {selectedProductIds[5] === "" ? (
                     <div>
                       <p>비교할 상품을 선택해주세요.</p>
                       <img
@@ -436,14 +443,14 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[4]
+                              (product) => product.id === selectedProductIds[5]
                             )?.fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[4]
+                              (product) => product.id === selectedProductIds[5]
                             )?.kor_co_nm
                           }
                         </p>
@@ -451,8 +458,8 @@ const ServicePage = () => {
                       {/* //* intr_rate, intr_rate2 값 출력 */}
                       <div>
                         <div>
-                          <div>최고금리: {selectedProductIds[6]}</div>
-                          <div>이자율: {selectedProductIds[5]}</div>
+                          <div>최고금리: {selectedProductIds[7]}</div>
+                          <div>이자율: {selectedProductIds[6]}</div>
                         </div>
                       </div>
                     </>
@@ -463,7 +470,7 @@ const ServicePage = () => {
               <SelectedProductsContainer>
                 <SelectedProducts>
                   {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[8] === "" ? (
+                  {selectedProductIds[10] === "" ? (
                     <div>
                       <p>비교할 상품을 선택해주세요.</p>
                       <img
@@ -478,22 +485,22 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[8]
+                              (product) => product.id === selectedProductIds[10]
                             )?.fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[8]
+                              (product) => product.id === selectedProductIds[10]
                             )?.kor_co_nm
                           }
                         </p>
                       </div>
                       {/* //* intr_rate, intr_rate2 값 출력 */}
                       <div>
-                        <div>최고금리: {selectedProductIds[10]}</div>
-                        <div>이자율: {selectedProductIds[9]}</div>
+                        <div>최고금리: {selectedProductIds[12]}</div>
+                        <div>이자율: {selectedProductIds[11]}</div>
                       </div>
                     </>
                   )}
@@ -727,9 +734,43 @@ const ServicePage = () => {
                       </FilterSubmitWarper>
                     </TapContainerBox>
                   </TapContainer>
+                  <StyledBankListContainer>
+                    <div>
+                      <StyledBankList>
+                        <StyledBankListWrapper>
+                          {searchBank.length > 0 ? (
+                            <SearchBankList
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              searchBank={searchBank}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingOptionalList={savingoptionalList}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                              handleClickProduct={handleClickProduct}
+                            />
+                          ) : (
+                            <AllBank
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingoptionalList={savingoptionalList}
+                              selectedProductIds={selectedProductIds}
+                              handleClickProduct={handleClickProduct}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            />
+                          )}
+                        </StyledBankListWrapper>
+                      </StyledBankList>
+                    </div>
+                  </StyledBankListContainer>
                 </Tapwraper>
               )}
-
               {showResults && (
                 <ResultsSection className="section">
                   <div>
@@ -750,97 +791,96 @@ const ServicePage = () => {
               {/* ##################################################################### */}
 
               {activeTab === 2 && (
-                <TapContainer>
-                  <TapContainerBox>
-                    <TapTitleName>전체 목록</TapTitleName>
-                    <FinanciialProductsWrap>
-                      <FinanciialProductsFullList>
-                        {/* 검색창_component */}
-                        <SearchInput setSearchBank={setSearchBank} />
-                        <ProductWraper>
-                          <ProductType
-                            onClick={() => {
-                              handleProductTypeClick(1);
-                            }}
-                            style={
-                              productTypes === 1
-                                ? {
-                                    color: "#6A24FF",
-                                    border: "1px solid #6A24FF",
-                                  }
-                                : {}
-                            }
-                          >
-                            정기예금
-                          </ProductType>
-                          <ProductType
-                            onClick={() => {
-                              handleProductTypeClick(2);
-                            }}
-                            style={
-                              productTypes === 2
-                                ? {
-                                    color: "#6A24FF",
-                                    border: "1px solid #6A24FF",
-                                  }
-                                : {}
-                            }
-                          >
-                            정기적금
-                          </ProductType>
-                        </ProductWraper>
-                        <p style={{ color: "#aaa", marginTop: "5px" }}>
-                          **기본정렬은 12개월 기준입니다.
-                        </p>
-
-                        <StyledBankListContainer>
-                          <div>
-                            <StyledBankList>
-                              <div
-                                ref={topLocation}
-                                className="top으로 가는 위치 지정"
-                              />
-                              <StyledBankListWrapper>
-                                {searchBank.length > 0 ? (
-                                  <SearchBankList
-                                    activeItem={activeItem}
-                                    setActiveItem={setActiveItem}
-                                    searchBank={searchBank}
-                                    productTypes={productTypes}
-                                    depositbaseList={products}
-                                    depositOptionalList={depositOptionalList}
-                                    savingbaseList={savingbaseList}
-                                    savingOptionalList={savingoptionalList}
-                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                                    handleClickProduct={handleClickProduct}
-                                  />
-                                ) : (
-                                  <AllBank
-                                    activeItem={activeItem}
-                                    setActiveItem={setActiveItem}
-                                    productTypes={productTypes}
-                                    depositbaseList={products}
-                                    depositOptionalList={depositOptionalList}
-                                    savingbaseList={savingbaseList}
-                                    savingoptionalList={savingoptionalList}
-                                    selectedProductIds={selectedProductIds}
-                                    handleClickProduct={handleClickProduct}
-                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                                  />
-                                )}
-                              </StyledBankListWrapper>
-                            </StyledBankList>
-                            <StyledBtnDiv className="스크롤탑버튼">
-                              <StyledBtn onClick={onTop}>
-                                맨 위로 가기
-                              </StyledBtn>
-                            </StyledBtnDiv>
-                          </div>
-                        </StyledBankListContainer>
-                      </FinanciialProductsFullList>
-                    </FinanciialProductsWrap>
-                  </TapContainerBox>
-                </TapContainer>
+                <div>
+                  <TapContainer>
+                    <TapContainerBox>
+                      <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
+                      <ProductWraper>
+                        <ProductType
+                          onClick={() => {
+                            handleProductTypeClick(1);
+                          }}
+                          style={
+                            productTypes === 1
+                              ? {
+                                  color: "#6A24FF",
+                                  border: "1px solid #6A24FF",
+                                }
+                              : {}
+                          }
+                        >
+                          정기예금
+                        </ProductType>
+                        <ProductType
+                          onClick={() => {
+                            handleProductTypeClick(2);
+                          }}
+                          style={
+                            productTypes === 2
+                              ? {
+                                  color: "#6A24FF",
+                                  border: "1px solid #6A24FF",
+                                }
+                              : {}
+                          }
+                        >
+                          정기적금
+                        </ProductType>
+                      </ProductWraper>
+                      <FinanciialProductsWrap>
+                        <FinanciialProductsFullList>
+                          {/* 검색창_component */}
+                          <SearchInput setSearchBank={setSearchBank} />
+                          <p style={{ color: "#aaa", marginTop: "5px" }}>
+                            **기본정렬은 12개월 기준입니다.
+                          </p>
+                        </FinanciialProductsFullList>
+                      </FinanciialProductsWrap>
+                    </TapContainerBox>
+                  </TapContainer>
+                  <StyledBankListContainer>
+                    <div>
+                      <StyledBankList>
+                        <div
+                          ref={topLocation}
+                          className="top으로 가는 위치 지정"
+                        />
+                        <StyledBankListWrapper>
+                          {searchBank.length > 0 ? (
+                            <SearchBankList
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              searchBank={searchBank}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingOptionalList={savingoptionalList}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                              handleClickProduct={handleClickProduct}
+                            />
+                          ) : (
+                            <AllBank
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              productTypes={productTypes}
+                              depositbaseList={products}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingoptionalList={savingoptionalList}
+                              selectedProductIds={selectedProductIds}
+                              handleClickProduct={handleClickProduct}
+                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            />
+                          )}
+                        </StyledBankListWrapper>
+                      </StyledBankList>
+                      <StyledBtnDiv className="스크롤탑버튼">
+                        <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
+                      </StyledBtnDiv>
+                    </div>
+                  </StyledBankListContainer>
+                </div>            
               )}
               {activeTab === 3 && (
                 <TapContainer>

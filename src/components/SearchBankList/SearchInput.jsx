@@ -6,64 +6,61 @@ function SearchInput({ setSearchBank }) {
     e.preventDefault();
   };
   return (
-    <>
-      <StyledInputContainer>
-        <form
-          style={{ margin: "auto", width: "800px" }}
-          onSubmit={(e) => {
-            SearchBankhandle(e);
+    <StyledInputContainer>
+      <form
+        onSubmit={(e) => {
+          SearchBankhandle(e);
+        }}
+      >
+        <StyledLabelText>
+          <span style={{ fontWeight: "bold" }}>은행명</span>
+          <span> 또는 </span>
+          <span style={{ fontWeight: "bold" }}>상품명</span>
+          <span>을 입력해주세요.</span>
+        </StyledLabelText>
+
+        <StyledSearchInput
+          type="text"
+          placeholder="최소 2글자 이상 작성해주세요"
+          onChange={(e) => {
+            setSearchBank(e.target.value);
           }}
-        >
-          <StyledLabelText>은행명 또는 상품명을 입력해주세요.</StyledLabelText>
-          <div
-            style={{
-              width: "786px",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <StyledSearchInput
-              type="text"
-              placeholder="최소 2글자 이상 작성해주세요"
-              onChange={(e) => {
-                setSearchBank(e.target.value);
-              }}
-            />
-            <SearchBtn>검색</SearchBtn>
-          </div>
-        </form>
-      </StyledInputContainer>
-    </>
+        />
+        {/* <SearchBtn>검색</SearchBtn> */}
+      </form>
+    </StyledInputContainer>
   );
 }
 
 export default SearchInput;
 
 const StyledInputContainer = styled.div`
-  width: 990px;
+  /* width: 990px; */
+  width: 100%;
   height: 200px;
-  padding: 45px;
-  border: 1px solid #dedede;
   border-radius: 10px;
-  margin: 10px auto 30px auto;
+
+  /* background-color: violet; */
 `;
 
-const StyledLabelText = styled.h2`
-  margin-bottom: 20px;
+const StyledLabelText = styled.div`
+  font-size: 24px;
+  margin-top: 50px;
 `;
 
 const StyledSearchInput = styled.input`
-  width: 700px;
+  width: 100%;
   height: 64px;
+  margin-top: 20px;
   border: 1px solid #dedede;
   border-radius: 10px;
-  padding: 10px;
   box-sizing: border-box;
+  padding-left: 24px;
 `;
-
-const SearchBtn = styled.button`
-  height: 64px;
-  width: 80px;
-  border: 1px solid #dedede;
-  border-radius: 10px;
-`;
+//* 검색 버튼
+// const SearchBtn = styled.button`
+//   height: 170px;
+//   border-radius: 10px;
+//   position: absolute;
+//   right: 280px;
+// `;
