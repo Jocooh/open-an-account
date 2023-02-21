@@ -205,9 +205,9 @@ const SignUpPage = () => {
 
   return (
     <AuthForm
-      title="회원 가입 정보 입력"
-      text="회원이신가요?"
-      linkText="로그인하기"
+      title="회원가입"
+      text="이미 회원이신가요?"
+      linkText=" 로그인하기"
       email={email}
       changeEmail={changeEmail}
       emailRef={emailRef}

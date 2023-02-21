@@ -24,7 +24,7 @@ export const AuthWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 // auth logo
@@ -32,31 +32,32 @@ export const AuthLogoWrapper = styled.div`
   width: 560px;
   height: 87px;
 
-  text-align: center;
+  display: flex;
   justify-content: center;
 `;
 export const AuthLogo = styled.div`
-  font-size: 66px;
-  font-weight: 600;
+  width: 215px;
+  height: 67px;
   color: #6a24ff;
 `;
-// export const AuthLogoImg = styled.img`
-// width: ;
-// `
+export const AuthLogoImg = styled.img`
+  width: 100%;
+`;
 
-// auth title
-export const AuthTitleTextWrapper = styled.div`
+// auth title - log in
+export const LoginTitleTextWrapper = styled.div`
   width: 560px;
   height: 94px;
 
+  margin: 30px 0;
   text-align: center;
   justify-content: center;
 `;
-export const AuthTitleWrapper = styled.div`
+export const LoginTitleWrapper = styled.div`
   width: 560px;
   height: 61px;
 `;
-export const AuthTitle = styled.div`
+export const LoginTitle = styled.div`
   font-size: 32px;
   font-weight: bold;
   color: #000000;
@@ -77,6 +78,28 @@ export const LinkText = styled.span`
 
   /* margin: 1rem 0.5rem 2rem; */
 `;
+// auth title - sign up
+export const SignnUpTitleTextWrapper = styled.div`
+  width: 560px;
+  height: 119px;
+
+  margin: 30px 0;
+  text-align: center;
+  justify-content: center;
+`;
+export const SignnUpTitleWrapper = styled.div`
+  width: 560px;
+  height: 86px;
+
+  text-align: center;
+  justify-content: center;
+`;
+export const SignUpTitle = styled.div`
+  font-size: 48px;
+  font-weight: bold;
+  color: #000000;
+`;
+
 // auth form
 export const AuthLoginForm = styled.div`
   width: 420px;
@@ -99,6 +122,8 @@ export const AuthLabel = styled.label`
   font-size: 16px;
   font-weight: 600;
   color: #000000;
+
+  margin-bottom: 5px;
 `;
 export const AuthInput = styled.input`
   width: 420px;
@@ -116,22 +141,6 @@ export const AuthInput = styled.input`
     outline: none;
   }
 `;
-export const AuthInputValidationWrapper = styled.div`
-  width: 420px;
-  height: 35px;
-  font-size: 14px;
-  color: #ff0000;
-`;
-export const AuthInputValidationText = styled.div`
-  .message {
-    &.success {
-      color: green;
-    }
-    &.error {
-      color: #ff2727;
-    }
-  }
-`;
 export const AuthButton = styled.button`
   width: 420px;
   height: 60px;
@@ -147,6 +156,22 @@ export const AuthButton = styled.button`
   :disabled {
     background-color: #dadada;
     color: #fff;
+  }
+`;
+export const AuthInputValidationWrapper = styled.div`
+  width: 420px;
+  height: 35px;
+  font-size: 14px;
+  color: #ff0000;
+`;
+export const AuthInputValidationText = styled.div`
+  .message {
+    &.success {
+      color: green;
+    }
+    &.error {
+      color: #ff0000;
+    }
   }
 `;
 

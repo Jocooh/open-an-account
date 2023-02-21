@@ -34,6 +34,13 @@ import {
   SocialLoginItem,
   AuthInputValidationTextWrapper,
   AuthInputValidationWrapper,
+  LoginTitleTextWrapper,
+  LoginTextWrapper,
+  LoginTitleWrapper,
+  LoginTitle,
+  SignnUpTitleTextWrapper,
+  SignnUpTitleWrapper,
+  SignUpTitle,
 } from "./style";
 
 const AuthForm = ({
@@ -65,7 +72,7 @@ const AuthForm = ({
   submitSignUp,
   submitLogin,
 }) => {
-  const signUp = title === "회원 가입 정보 입력";
+  const signUp = title === "회원가입";
   // *** 회원가입 버튼 활성화 ***
   const [signUpEnabled, setSignUpEnabled] = useState(true);
   useEffect(() => {
@@ -79,175 +86,196 @@ const AuthForm = ({
   return (
     <AuthBackground>
       <AuthWrapper>
-        <AuthLogoWrapper>
-          <Link to="/">
-            <AuthLogo>팁퍼</AuthLogo>
-          </Link>
-        </AuthLogoWrapper>
+        {signUp ? (
+          <>
+            {" "}
+            <SignnUpTitleTextWrapper>
+              <SignnUpTitleWrapper>
+                <SignUpTitle>{title}</SignUpTitle>
+              </SignnUpTitleWrapper>
 
-        <AuthTitleTextWrapper>
-          <AuthTitleWrapper>
-            <AuthTitle>{title}</AuthTitle>
-          </AuthTitleWrapper>
+              <AuthTextWrapper>
+                <AuthText>
+                  {text}
+                  {/* <Link to={`${signUp ? "/login" : "/signup"}`}> */}
+                  <Link to="/login">
+                    <LinkText>{linkText}</LinkText>
+                  </Link>
+                </AuthText>
+              </AuthTextWrapper>
+            </SignnUpTitleTextWrapper>
+          </>
+        ) : (
+          <>
+            <AuthLogoWrapper>
+              <AuthLogo>
+                <Link to="/">
+                  <AuthLogoImg src={require("../../assets/tiper-logo.png")} />
+                </Link>
+              </AuthLogo>
+            </AuthLogoWrapper>
 
-          <AuthTextWrapper>
-            <AuthText>
-              {text}
-              <Link to={`${signUp ? "/login" : "/signup"}`}>
-                <LinkText>{linkText}</LinkText>
-              </Link>
-            </AuthText>
-          </AuthTextWrapper>
-        </AuthTitleTextWrapper>
+            <LoginTitleTextWrapper>
+              <LoginTitleWrapper>
+                <LoginTitle>{title}</LoginTitle>
+              </LoginTitleWrapper>
 
-        <>
-          {signUp ? (
-            <AuthSignUpForm>
-              <AuthInputWrapper>
-                <AuthLabel>이메일</AuthLabel>
-                <AuthInput
-                  id="email"
-                  type="email"
-                  placeholder="example.gmail.com"
-                  value={email}
-                  onChange={changeEmail}
-                  ref={emailRef}
-                />
-                <AuthInputValidationWrapper>
-                  <AuthInputValidationText>
-                    {email.length > 0 && (
-                      <span
-                        className={`message ${isEmail ? "success" : "error"}`}
-                      >
-                        {emailMessage}
-                      </span>
-                    )}
-                  </AuthInputValidationText>
-                </AuthInputValidationWrapper>
-              </AuthInputWrapper>
+              <AuthTextWrapper>
+                <AuthText>
+                  {text}
+                  {/* <Link to={`${signUp ? "/login" : "/signup"}`}> */}
+                  <Link to="/signup">
+                    <LinkText>{linkText}</LinkText>
+                  </Link>
+                </AuthText>
+              </AuthTextWrapper>
+            </LoginTitleTextWrapper>
+          </>
+        )}
 
-              <AuthInputWrapper>
-                <AuthLabel>비밀번호</AuthLabel>
-                <AuthInput
-                  id="password"
-                  type="password"
-                  placeholder="사용하실 비밀번호를 입력해주세요."
-                  value={password}
-                  onChange={changePassword}
-                  ref={passwordRef}
-                />
-                <AuthInputValidationWrapper>
-                  <AuthInputValidationText>
-                    {password.length > 0 && (
-                      <span
-                        className={`message ${
-                          isPassword ? "success" : "error"
-                        }`}
-                      >
-                        {passwordMessage}
-                      </span>
-                    )}
-                  </AuthInputValidationText>
-                </AuthInputValidationWrapper>
-              </AuthInputWrapper>
-
-              <AuthInputWrapper>
-                <AuthLabel>비밀번호 재입력</AuthLabel>
-                <AuthInput
-                  id="confirm-password"
-                  type="password"
-                  placeholder="사용하실 비밀번호를 재입력해주세요."
-                  value={confirmPassword}
-                  onChange={changeConfirmPassword}
-                  ref={confirmPasswordRef}
-                />
-                <AuthInputValidationWrapper>
-                  <AuthInputValidationText>
-                    {confirmPassword.length > 0 && (
-                      <span
-                        className={`message ${
-                          isPasswordConfirm ? "success" : "error"
-                        }`}
-                      >
-                        {passwordConfirmMessage}
-                      </span>
-                    )}
-                  </AuthInputValidationText>
-                </AuthInputValidationWrapper>
-              </AuthInputWrapper>
-
-              <AuthInputWrapper>
-                <AuthLabel>닉네임</AuthLabel>
-                <AuthInput
-                  id="nickname"
-                  type="text"
-                  placeholder="사용하실 닉네임을 입력해주세요."
-                  maxLength={6}
-                  value={nickname}
-                  onChange={changeNickname}
-                  ref={nicknameRef}
-                />
-                <AuthInputValidationWrapper>
-                  <AuthInputValidationText>
-                    {nickname.length > 0 && (
-                      <span
-                        className={`message ${
-                          isNickname ? "success" : "error"
-                        }`}
-                      >
-                        {nicknameMessage}
-                      </span>
-                    )}
-                  </AuthInputValidationText>
-                </AuthInputValidationWrapper>
-              </AuthInputWrapper>
-              <AuthButton disabled={signUpEnabled} onClick={submitSignUp}>
-                회원가입
-              </AuthButton>
-            </AuthSignUpForm>
-          ) : (
-            <AuthLoginForm>
-              <AuthInputWrapper>
-                <AuthLabel>이메일</AuthLabel>
-                <AuthInput
-                  id="email"
-                  type="email"
-                  placeholder="example.gmail.com"
-                  value={email}
-                  onChange={changeEmail}
-                  ref={emailRef}
-                />
-                <AuthInputValidationWrapper>
-                  {!emailValid && email.length > 0 && (
-                    <AuthInputValidationText>
-                      이메일을 확인해주세요.
-                    </AuthInputValidationText>
+        {signUp ? (
+          <AuthSignUpForm>
+            <AuthInputWrapper>
+              <AuthLabel>이메일</AuthLabel>
+              <AuthInput
+                id="email"
+                type="email"
+                placeholder="example.gmail.com"
+                value={email}
+                onChange={changeEmail}
+                ref={emailRef}
+              />
+              <AuthInputValidationWrapper>
+                <AuthInputValidationText>
+                  {email.length > 0 && (
+                    <span
+                      className={`message ${isEmail ? "success" : "error"}`}
+                    >
+                      {emailMessage}
+                    </span>
                   )}
-                </AuthInputValidationWrapper>
-              </AuthInputWrapper>
+                </AuthInputValidationText>
+              </AuthInputValidationWrapper>
+            </AuthInputWrapper>
 
-              <AuthInputWrapper>
-                <AuthLabel>비밀번호</AuthLabel>
-                <AuthInput
-                  id="password"
-                  type="password"
-                  placeholder="비밀번호를 입력해주세요."
-                  value={password}
-                  onChange={changePassword}
-                  ref={passwordRef}
-                />
-                <AuthInputValidationWrapper>
-                  {!passwordValid && password.length > 0 && (
-                    <AuthInputValidationText>
-                      비밀번호를 확인해주세요.
-                    </AuthInputValidationText>
+            <AuthInputWrapper>
+              <AuthLabel>비밀번호</AuthLabel>
+              <AuthInput
+                id="password"
+                type="password"
+                placeholder="사용하실 비밀번호를 입력해주세요."
+                value={password}
+                onChange={changePassword}
+                ref={passwordRef}
+              />
+              <AuthInputValidationWrapper>
+                <AuthInputValidationText>
+                  {password.length > 0 && (
+                    <span
+                      className={`message ${isPassword ? "success" : "error"}`}
+                    >
+                      {passwordMessage}
+                    </span>
                   )}
-                </AuthInputValidationWrapper>
-              </AuthInputWrapper>
-              <AuthButton onClick={submitLogin}>로그인</AuthButton>
-            </AuthLoginForm>
-          )}
-        </>
+                </AuthInputValidationText>
+              </AuthInputValidationWrapper>
+            </AuthInputWrapper>
+
+            <AuthInputWrapper>
+              <AuthLabel>비밀번호 재입력</AuthLabel>
+              <AuthInput
+                id="confirm-password"
+                type="password"
+                placeholder="사용하실 비밀번호를 재입력해주세요."
+                value={confirmPassword}
+                onChange={changeConfirmPassword}
+                ref={confirmPasswordRef}
+              />
+              <AuthInputValidationWrapper>
+                <AuthInputValidationText>
+                  {confirmPassword.length > 0 && (
+                    <span
+                      className={`message ${
+                        isPasswordConfirm ? "success" : "error"
+                      }`}
+                    >
+                      {passwordConfirmMessage}
+                    </span>
+                  )}
+                </AuthInputValidationText>
+              </AuthInputValidationWrapper>
+            </AuthInputWrapper>
+
+            <AuthInputWrapper>
+              <AuthLabel>닉네임</AuthLabel>
+              <AuthInput
+                id="nickname"
+                type="text"
+                placeholder="사용하실 닉네임을 입력해주세요."
+                maxLength={6}
+                value={nickname}
+                onChange={changeNickname}
+                ref={nicknameRef}
+              />
+              <AuthInputValidationWrapper>
+                <AuthInputValidationText>
+                  {nickname.length > 0 && (
+                    <span
+                      className={`message ${isNickname ? "success" : "error"}`}
+                    >
+                      {nicknameMessage}
+                    </span>
+                  )}
+                </AuthInputValidationText>
+              </AuthInputValidationWrapper>
+            </AuthInputWrapper>
+            <AuthButton disabled={signUpEnabled} onClick={submitSignUp}>
+              회원가입
+            </AuthButton>
+          </AuthSignUpForm>
+        ) : (
+          <AuthLoginForm>
+            <AuthInputWrapper>
+              <AuthLabel>이메일</AuthLabel>
+              <AuthInput
+                id="email"
+                type="email"
+                placeholder="example.gmail.com"
+                value={email}
+                onChange={changeEmail}
+                ref={emailRef}
+              />
+              <AuthInputValidationWrapper>
+                {!emailValid && email.length > 0 && (
+                  <AuthInputValidationText>
+                    이메일을 확인해주세요.
+                  </AuthInputValidationText>
+                )}
+              </AuthInputValidationWrapper>
+            </AuthInputWrapper>
+
+            <AuthInputWrapper>
+              <AuthLabel>비밀번호</AuthLabel>
+              <AuthInput
+                id="password"
+                type="password"
+                placeholder="비밀번호를 입력해주세요."
+                value={password}
+                onChange={changePassword}
+                ref={passwordRef}
+              />
+              <AuthInputValidationWrapper>
+                {!passwordValid && password.length > 0 && (
+                  <AuthInputValidationText>
+                    비밀번호를 확인해주세요.
+                  </AuthInputValidationText>
+                )}
+              </AuthInputValidationWrapper>
+            </AuthInputWrapper>
+            <AuthButton onClick={submitLogin}>로그인</AuthButton>
+          </AuthLoginForm>
+        )}
+
         {!signUp && (
           <>
             <BoundaryLineWrapper>
