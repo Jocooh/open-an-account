@@ -32,6 +32,8 @@ import {
   BoundaryLineWrapper,
   BoundaryLine,
   SocialLoginItem,
+  AuthInputValidationTextWrapper,
+  AuthInputValidationWrapper,
 } from "./style";
 
 const AuthForm = ({
@@ -111,11 +113,17 @@ const AuthForm = ({
                   onChange={changeEmail}
                   ref={emailRef}
                 />
-                {email.length > 0 && (
+                <AuthInputValidationWrapper>
                   <AuthInputValidationText>
-                    {emailMessage}
+                    {email.length > 0 && (
+                      <span
+                        className={`message ${isEmail ? "success" : "error"}`}
+                      >
+                        {emailMessage}
+                      </span>
+                    )}
                   </AuthInputValidationText>
-                )}
+                </AuthInputValidationWrapper>
               </AuthInputWrapper>
 
               <AuthInputWrapper>
@@ -128,12 +136,19 @@ const AuthForm = ({
                   onChange={changePassword}
                   ref={passwordRef}
                 />
-
-                {password.length > 0 && (
+                <AuthInputValidationWrapper>
                   <AuthInputValidationText>
-                    {passwordMessage}
+                    {password.length > 0 && (
+                      <span
+                        className={`message ${
+                          isPassword ? "success" : "error"
+                        }`}
+                      >
+                        {passwordMessage}
+                      </span>
+                    )}
                   </AuthInputValidationText>
-                )}
+                </AuthInputValidationWrapper>
               </AuthInputWrapper>
 
               <AuthInputWrapper>
@@ -146,12 +161,19 @@ const AuthForm = ({
                   onChange={changeConfirmPassword}
                   ref={confirmPasswordRef}
                 />
-
-                {confirmPassword.length > 0 && (
+                <AuthInputValidationWrapper>
                   <AuthInputValidationText>
-                    {passwordConfirmMessage}
+                    {confirmPassword.length > 0 && (
+                      <span
+                        className={`message ${
+                          isPasswordConfirm ? "success" : "error"
+                        }`}
+                      >
+                        {passwordConfirmMessage}
+                      </span>
+                    )}
                   </AuthInputValidationText>
-                )}
+                </AuthInputValidationWrapper>
               </AuthInputWrapper>
 
               <AuthInputWrapper>
@@ -165,12 +187,19 @@ const AuthForm = ({
                   onChange={changeNickname}
                   ref={nicknameRef}
                 />
-
-                {nickname.length > 0 && (
+                <AuthInputValidationWrapper>
                   <AuthInputValidationText>
-                    {nicknameMessage}
+                    {nickname.length > 0 && (
+                      <span
+                        className={`message ${
+                          isNickname ? "success" : "error"
+                        }`}
+                      >
+                        {nicknameMessage}
+                      </span>
+                    )}
                   </AuthInputValidationText>
-                )}
+                </AuthInputValidationWrapper>
               </AuthInputWrapper>
               <AuthButton disabled={signUpEnabled} onClick={submitSignUp}>
                 회원가입
@@ -188,12 +217,13 @@ const AuthForm = ({
                   onChange={changeEmail}
                   ref={emailRef}
                 />
-
-                {!emailValid && email.length > 0 && (
-                  <AuthInputValidationText>
-                    올바른 이메일을 형식을 입력해주세요.
-                  </AuthInputValidationText>
-                )}
+                <AuthInputValidationWrapper>
+                  {!emailValid && email.length > 0 && (
+                    <AuthInputValidationText>
+                      올바른 이메일을 형식을 입력해주세요.
+                    </AuthInputValidationText>
+                  )}
+                </AuthInputValidationWrapper>
               </AuthInputWrapper>
 
               <AuthInputWrapper>
@@ -212,13 +242,15 @@ const AuthForm = ({
           )}
         </>
         {!signUp && (
-          <BoundaryLineWrapper>
-            <BoundaryLine>또는</BoundaryLine>
-          </BoundaryLineWrapper>
+          <>
+            <BoundaryLineWrapper>
+              <BoundaryLine>또는</BoundaryLine>
+            </BoundaryLineWrapper>
+            <SocialLoginForm>
+              <GoogleLogin />
+            </SocialLoginForm>
+          </>
         )}
-        <SocialLoginForm>
-          <GoogleLogin />
-        </SocialLoginForm>
       </AuthWrapper>
     </AuthBackground>
   );

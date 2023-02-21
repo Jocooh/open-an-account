@@ -113,11 +113,21 @@ export const AuthInput = styled.input`
     outline: none;
   }
 `;
-export const AuthInputValidationText = styled.div`
+export const AuthInputValidationWrapper = styled.div`
   width: 420px;
   height: 35px;
   font-size: 14px;
   color: #ff0000;
+`;
+export const AuthInputValidationText = styled.div`
+  .message {
+    &.success {
+      color: green;
+    }
+    &.error {
+      color: #ff2727;
+    }
+  }
 `;
 export const AuthButton = styled.button`
   width: 420px;

@@ -33,7 +33,8 @@ const SignUpPage = () => {
   const [isPassword, setIsPassword] = useState(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
   const [isNickname, setIsNickame] = useState(false);
-
+  // *** 회원가입 버튼 활성화 ***
+  const [signUpEnabled, setSignUpEnabled] = useState(true);
   // 이메일 입력 - 실시간 유효성 검사로 변환
   const changeEmail = (event) => {
     setEmail(event.target.value);
