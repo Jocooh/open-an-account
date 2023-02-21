@@ -36,6 +36,7 @@ function MyPage() {
 
   const currentUser = JSON.parse(userSession ?? "");
 
+
   // 원준 작업.
   // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가. -- 현재 위 코드로 먼저 걸러주기 때문에 실행되지 않음. 더 알아볼 것.
   // useEffect(() => {

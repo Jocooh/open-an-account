@@ -12,7 +12,7 @@ const firebaseConfig = {
   // messagingSenderId: "62978638072",
   // appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
   // measurementId: "G-ENB9S2CV1E",
-  //
+
   // * 박상우 전용 키
   // apiKey: "AIzaSyCL_AQsnjPdjq-vp8BvukPqza4XYNwMoZw",
   // authDomain: "mytest-b5942.firebaseapp.com",

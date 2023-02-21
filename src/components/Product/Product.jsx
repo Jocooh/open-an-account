@@ -17,11 +17,10 @@ import logoLists from "../../assets/logo/logo";
 function Product({
   inputValue,
   selectedProduct,
-  selectedProductId,
+  // selectedProductId,
   selectedProductRate,
   selectedProductRate2,
-
-  // seletedProductRateType,
+  selectedProductRateType,
 }) {
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
@@ -32,15 +31,15 @@ function Product({
       <Guide>만기 수령액</Guide>
       {inputNum > 9999 ? (
         // TODO: 단복리 검사해야함 !! 아래는 임시
-        // selectedProductRateType === "S" ? (
-        selectedProductRate ? (
+        selectedProductRateType === "S" ? (
+          // selectedProductRate ? (
           <TotalCost>
             {Numeral(
               Math.round(
                 inputNum *
                   (1 +
-                    0.01 * Number(selectedProductRate) -
-                    0.01 * Number(selectedProductRate) * 0.154)
+                    0.01 * Number(selectedProductRate2) -
+                    0.01 * Number(selectedProductRate2) * 0.154)
               )
             ).format(0, 0)}
             원
@@ -115,7 +114,7 @@ function Product({
             productId={selectedProduct.fin_prdt_cd}
             productName={selectedProduct.fin_prdt_nm}
             productCoName={selectedProduct.kor_co_nm}
-            productDocId={selectedProductId}
+            // productDocId={selectedProductId}
           />
         </Scrap>
       </ProductBox>
