@@ -14,9 +14,20 @@ import {
   StyledSavingRateP,
   StyledMoreListDiv,
 } from "../style";
+
+import SearchDepositDetail from "../Detail/SearchSavingDetail";
+
 import Bookmarks from "../../Bookmarks";
 
-function SearchSavingLists({ savingbaseList, searchBank, savingOptionalList }) {
+
+function SearchSavingLists({
+  activeItem,
+  searchBank,
+  setActiveItem,
+  savingbaseList,
+  savingOptionalList,
+  handleClickProduct,
+}) {
   return (
     <div>
       {savingbaseList &&
@@ -30,70 +41,99 @@ function SearchSavingLists({ savingbaseList, searchBank, savingOptionalList }) {
               return val;
             }
           })
-          .map((v) => {
+          .map((base) => {
             return (
-              <StyledBankLists>
-                <StyledListDiv>
-                  <StyledDiv>
-                    <div key={v.fin_prdt_nm}>
-                      {logoLists.logos.map((logo) =>
-                        Object.keys(logo)[0] === v.fin_co_no ? (
-                          <StyledImg
-                            src={Object.values(logo)[0]}
-                            alt="로고"
-                            key={v.fin_co_subm_day}
-                          />
-                        ) : null
-                      )}
-                    </div>
-                    <div>
-                      <StyledContentDiv>
-                        <StyledProductTitleDiv>
-                          <h2
-                            style={{
-                              fontSize: "20px",
-                            }}
-                          >
-                            {v.fin_prdt_nm}
-                          </h2>
+              <StyledBankLists key={base.id}>
+                <div style={{ display: "flex" }}>
+                  <StyledListDiv>
+                    <StyledDiv
+                      onClick={() => {
+                        handleClickProduct(base.id);
+                      }}
+                    >
+                      <div key={base.fin_prdt_nm}>
+                        {logoLists.logos.map((logo) =>
+                          Object.keys(logo)[0] === base.fin_co_no ? (
+                            <StyledImg
+                              src={Object.values(logo)[0]}
+                              alt="로고"
+                            />
+                          ) : null
+                        )}
+                      </div>
+                      <div>
+                        <StyledContentDiv>
+                          <StyledProductTitleDiv>
+                            <h2
+                              style={{
+                                fontSize: "20px",
+                              }}
+                            >
+                              {base.fin_prdt_nm}
+                            </h2>
 
-                          <StyledBankNameP>{v.kor_co_nm}</StyledBankNameP>
-                        </StyledProductTitleDiv>
+                            <StyledBankNameP>{base.kor_co_nm}</StyledBankNameP>
+                          </StyledProductTitleDiv>
 
-                        <StyledSearchSaveTrmDiv>
-                          <h4 style={{ fontWeight: "bold", color: "#aaa" }}>
-                            최고금리
-                          </h4>
-                          {savingOptionalList?.map((i) =>
-                            i.fin_prdt_cd === v.fin_prdt_cd ? (
-                              <>
-                                <StyledSavingRateP>
+                          <StyledSearchSaveTrmDiv>
+                            <h4 style={{ fontWeight: "bold", color: "#aaa" }}>
+                              최고금리
+                            </h4>
+                            {savingOptionalList?.map((option) =>
+                              option.fin_prdt_cd === base.fin_prdt_cd ? (
+                                <StyledSavingRateP key={option.id}>
                                   <p style={{ color: "#aaa" }}>
-                                    {i.save_trm}개월
+                                    {option.save_trm}개월
                                   </p>
-                                  <p style={{ fontWeight: "bold" }}>
-                                    {i.intr_rate2}%
-                                  </p>
+                                  <h4
+                                    style={{
+                                      fontWeight: "bold",
+                                      fontSize: "18px",
+                                    }}
+                                  >
+                                    {option.intr_rate2 !== null ? (
+                                      <>{option.intr_rate2}</>
+                                    ) : (
+                                      "0"
+                                    )}
+                                    %
+                                  </h4>
                                 </StyledSavingRateP>
-                              </>
-                            ) : null
-                          )}
-                        </StyledSearchSaveTrmDiv>
-                      </StyledContentDiv>
-                    </div>
-                  </StyledDiv>
-                  <StyledMoreListDiv>
-                    <Bookmarks
-                      productId={v.fin_prdt_cd}
-                      productName={v.fin_prdt_nm}
-                      productCoName={v.kor_co_nm}
-                      productDocId={v.id}
+                              ) : null
+                            )}
+                          </StyledSearchSaveTrmDiv>
+                        </StyledContentDiv>
+                      </div>
+                    </StyledDiv>
+                    <StyledMoreListDiv>
+                       <Bookmarks
+                      productId={base.fin_prdt_cd}
+                      productName={base.fin_prdt_nm}
+                      productCoName={base.kor_co_nm}
+                      productDocId={base.id}
                     />
-                    <button style={{ width: "50px", height: "30px" }}>
-                      더 보기
-                    </button>
-                  </StyledMoreListDiv>
-                </StyledListDiv>
+                      <button
+                        style={{
+                          width: "60px",
+                          height: "30px",
+                        }}
+                        onClick={() => {
+                          setActiveItem(base.id);
+                        }}
+                      >
+                        {activeItem === base.id ? <></> : "자세히∨"}
+                      </button>
+                    </StyledMoreListDiv>
+                  </StyledListDiv>
+                </div>
+                {activeItem === base.id ? (
+                  <SearchDepositDetail
+                    base={base}
+                    setActiveItem={setActiveItem}
+                    savingOptionalList={savingOptionalList}
+                  />
+                ) : null}
+
               </StyledBankLists>
             );
           })}

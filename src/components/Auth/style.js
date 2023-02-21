@@ -80,7 +80,7 @@ export const AuthInput = styled.input`
   margin: 0.4rem 0 0.8rem;
   padding: 0.4rem;
   &:focus {
-    outline: 3px solid #6a24ff;
+    outline: 2px solid #6a24ff;
   }
 `;
 export const AuthButton = styled.button`

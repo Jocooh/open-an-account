@@ -61,6 +61,7 @@ const ServicePage = () => {
   const [notAllow2, setNotAllow2] = useState(true); //* 비교하기 버튼 활성화 상태 값 저장
   const [showSearch, setShowSearch] = useState(true);
   const [activeItem, setActiveItem] = useState("");
+
   //상품검색state
   const [searchBank, setSearchBank] = useState("");
   //예금상품 baseList , optionList
@@ -94,6 +95,7 @@ const ServicePage = () => {
       setProducts(product);
     });
   };
+
 
   //* 금융상품 타입에 따른 선택된 상품의 고유 값 저장함수.
   const handleSelectProducts = async (productId) => {
@@ -137,6 +139,7 @@ const ServicePage = () => {
                 );
               }
             }
+
           }
         } else {
           console.log(
@@ -346,6 +349,31 @@ const ServicePage = () => {
     });
   };
 
+  // 찜하기 - 원준 작업 중 -
+  const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
+
+  const getMyBookmarkProduct = async () => {
+    const querySnapshot = await getDocs(
+      collection(db, "bookmarks"),
+      where("userId", "==", authService.currentUser?.uid)
+    );
+    const myBookmarkProduct = [];
+
+    querySnapshot.forEach((doc) => {
+      const newBookmarkProduct = {
+        id: doc.id,
+        ...doc.data(),
+      };
+
+      myBookmarkProduct.push(newBookmarkProduct);
+      setMyBookmarkProducs(myBookmarkProduct);
+    });
+  };
+  // useEffect(() => {
+  //   getMyBookmarkProduct();
+  // }, []);
+  console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
+
   return (
     <Wraper>
       <Cantinar>
@@ -369,19 +397,20 @@ const ServicePage = () => {
                   </div>
                 ) : (
                   <>
+                    {/* 성아-옵셔널체이닝[?]제가 넣었어요 지우지 말아주세요!ㅎ */}
                     <div>
                       <p>
                         {
                           products.find(
                             (product) => product.id === selectedProductIds[0]
-                          ).fin_prdt_nm
+                          )?.fin_prdt_nm
                         }
                       </p>
                       <p>
                         {
                           products.find(
                             (product) => product.id === selectedProductIds[0]
-                          ).kor_co_nm
+                          )?.kor_co_nm
                         }
                       </p>
                     </div>
@@ -419,7 +448,8 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[4]
+
+                              (product) => product.id === selectedProductIds[3]
                             ).kor_co_nm
                           }
                         </p>
@@ -454,6 +484,7 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
+
                               (product) => product.id === selectedProductIds[8]
                             ).fin_prdt_nm
                           }
@@ -461,6 +492,7 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
+
                               (product) => product.id === selectedProductIds[8]
                             ).kor_co_nm
                           }
@@ -491,11 +523,13 @@ const ServicePage = () => {
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
+
                   selectedProductId={[
                     selectedProductIds[0],
                     selectedProductIds[4],
                     selectedProductIds[8],
                   ]}
+
                 />
               )}
             </div>
@@ -732,10 +766,7 @@ const ServicePage = () => {
                     <FinanciialProductsWrap>
                       <FinanciialProductsFullList>
                         {/* 검색창_component */}
-                        <SearchInput
-                          setSearchBank={setSearchBank}
-                          handleButtonClick={handleButtonClick}
-                        />
+                        <SearchInput setSearchBank={setSearchBank} />
                         <ProductWraper>
                           <ProductType
                             onClick={() => {
@@ -782,25 +813,34 @@ const ServicePage = () => {
                               <StyledBankListWrapper>
                                 {searchBank.length > 0 ? (
                                   <SearchBankList
+                                    activeItem={activeItem}
+                                    setActiveItem={setActiveItem}
                                     searchBank={searchBank}
                                     productTypes={productTypes}
                                     depositbaseList={products}
                                     depositOptionalList={depositOptionalList}
                                     savingbaseList={savingbaseList}
                                     savingOptionalList={savingoptionalList}
+
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
+                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
+
+                                    handleClickProduct={handleClickProduct}
+
                                   />
                                 ) : (
                                   <AllBank
-                                    productTypes={productTypes}
-                                    depositOptionalList={depositOptionalList}
-                                    depositbaseList={products}
                                     activeItem={activeItem}
                                     setActiveItem={setActiveItem}
+                                    productTypes={productTypes}
+                                    depositbaseList={products}
+                                    depositOptionalList={depositOptionalList}
                                     savingbaseList={savingbaseList}
                                     savingoptionalList={savingoptionalList}
+                                    selectedProductIds={selectedProductIds}
                                     handleClickProduct={handleClickProduct}
+                                    myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                   />
                                 )}
                               </StyledBankListWrapper>

@@ -2,6 +2,7 @@ import {
   browserSessionPersistence,
   createUserWithEmailAndPassword,
   setPersistence,
+  updateProfile,
 } from "firebase/auth";
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,13 +15,36 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [nickname, setNickname] = useState("");
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
+  const nicknameRef = useRef(null);
+
+  // 오류메세지 상태 저장
+  const [emailMessage, setEmailMessage] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [passwordConfirmMessage, setPasswordConfirmMessage] = useState("");
+  const [nameMessage, setNameMessage] = useState("");
+  // 유효성 검사
+  const [isEmail, setIsEmail] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+  const [isname, setIsName] = useState(false);
+
+  // 이메일, 패스워드
 
   // 이메일 입력
   const changeEmail = (event) => {
     setEmail(event.target.value);
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    if (emailRegex.test(event.target.value)) {
+      setEmailMessage("올바른 이메일 형식이 아닙니다.");
+      setIsEmail(false);
+    } else {
+      setEmailMessage("사용 가능한 이메일입니다.");
+      setIsEmail(true);
+    }
   };
 
   // 비밀번호 입력
@@ -33,7 +57,12 @@ const SignUpPage = () => {
     setConfirmPassword(event.target.value);
   };
 
-  // 이메일, 비밀번호 유효성 검사
+  // 닉네임 입력
+  const changeNickname = (event) => {
+    setNickname(event.target.value);
+  };
+
+  // 이메일, 비밀번호, 닉네임 유효성 검사
   const checkValidation = () => {
     const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     const passwordRegex =
@@ -67,13 +96,9 @@ const SignUpPage = () => {
         return false;
       }
     }
-    return true;
-  };
-
-  // 비밀번호 일치 여부
-  const checkValidationForSignUp = () => {
     if (!confirmPassword) {
       alert("비밀번호를 다시 한번 더 입력해주세요.");
+      confirmPasswordRef?.current?.focus();
       return false;
     }
     if (password !== confirmPassword) {
@@ -83,25 +108,62 @@ const SignUpPage = () => {
       setConfirmPassword("");
       return false;
     }
+
+    if (!nickname || nickname.length < 2 || nickname.length > 6) {
+      if (!nickname) {
+        alert("닉네임을 입력해주세요.");
+        nicknameRef?.current?.focus();
+        return false;
+      } else {
+        alert("닉네임은 2글자 이상, 6글자 미만으로 입력해주세요.");
+        nicknameRef?.current?.focus();
+        return false;
+      }
+    }
+
     return true;
   };
 
+  // // 비밀번호 일치 여부
+  // const checkValidationForSignUp = () => {
+  //   if (!confirmPassword) {
+  //     alert("비밀번호를 다시 한번 더 입력해주세요.");
+  //     return false;
+  //   }
+  //   if (password !== confirmPassword) {
+  //     alert("비밀번호가 일치하지 않습니다.");
+  //     confirmPasswordRef?.current?.focus();
+  //     // setPassword("");
+  //     setConfirmPassword("");
+  //     return false;
+  //   }
+  //   return true;
+  // };
+
   // 회원가입
   const submitSignUp = () => {
-    // 이메일, 비밀번호 유효성 검사 확인
+    // 이메일, 비밀번호, 닉네임 유효성 검사 확인
     if (!checkValidation()) return;
 
-    // 비밀번호 일치여부 확인
-    if (!checkValidationForSignUp()) return;
+    // // 비밀번호 일치여부 확인 -> 닉네임 추가로 변수 없애고 상단으로 이동
+    // if (!checkValidationForSignUp()) return;
 
     // setPersistence => 세션스토리지에 유저 정보 저장
     setPersistence(authService, browserSessionPersistence)
       .then(() => createUserWithEmailAndPassword(authService, email, password))
       .then(() => {
+        if (authService.currentUser) {
+          updateProfile(authService?.currentUser, {
+            displayName: nickname,
+          });
+        }
+      })
+      .then(() => {
         alert("회원가입이 완료 되었습니다.");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        setNickname("");
         navigate("/");
       })
       .catch((err) => {
@@ -110,6 +172,7 @@ const SignUpPage = () => {
           setEmail("");
           setPassword("");
           setConfirmPassword("");
+          setNickname("");
           navigate("/login");
         }
       });
@@ -123,12 +186,17 @@ const SignUpPage = () => {
       email={email}
       changeEmail={changeEmail}
       emailRef={emailRef}
+      emailMessage={emailMessage} // sign up 실시간 유효성 검사
+      isEmail={isEmail} // sign up 실시간 유효성 검사
       password={password}
       changePassword={changePassword}
       passwordRef={passwordRef}
       confirmPassword={confirmPassword}
       changeConfirmPassword={changeConfirmPassword}
       confirmPasswordRef={confirmPasswordRef}
+      nickname={nickname}
+      changeNickname={changeNickname}
+      nicknameRef={nicknameRef}
       submitSignUp={submitSignUp}
     />
   );
