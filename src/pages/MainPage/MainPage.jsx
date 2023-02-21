@@ -162,16 +162,23 @@ const MainPage = () => {
           <Tip>
             <TipTitle>정기예금</TipTitle>
             <TipComment>
-              <div>정해진 기간 동안 일정액을 매월 적립하고</div>
-              <div>만기일에 약정금액을 지급받는 상품이에요.</div>
-              <div>매달 혹은 일정기간, 꾸준히 저축하고 싶은</div>
-              <div>친구들은 정기적금을 찾아보아요.</div>
+              <div>일정금액을 일정기간 동안 금융 기관에 맡기고</div>
+              <div>정한 기한 안에는 찾지 않겠다고 약속하는</div>
+              <div>예금이에요.</div>
+              <div>한동안 사용하지 않을 시드머니가 있는</div>
+              <div>친구들은 정기예금을 고려해봐도 좋아요.</div>
             </TipComment>
 
             <img src={require("../../assets/mainpage/정기예금.png")} />
           </Tip>
           <Tip>
             <TipTitle>정기적금</TipTitle>
+            <TipComment>
+              <div>정해진 기간 동안 일정액을 매월 적립하고</div>
+              <div>만기일에 약정금액을 지급받는 상품이에요.</div>
+              <div>매달 혹은 일정기간, 꾸준히 저축하고 싶은</div>
+              <div>친구들은 정기적금을 찾아보아요.</div>
+            </TipComment>
             <img src={require("../../assets/mainpage/정기적금.png")} />
           </Tip>
         </Tips>
@@ -189,6 +196,12 @@ const MainPage = () => {
               style={{ marginTop: "140px" }}
             />
             <TipTitle>단리</TipTitle>
+            <TipComment>
+              <div>단리는, 원금에 대해서만 이자가 발생하는</div>
+              <div>계산 방법이에요.</div>
+              <div>연 5.0%의 단리 상품이 있다고 하면,</div>
+              <div>매년 동일한 금액의 이자가 붙게 돼요.</div>
+            </TipComment>
           </Tip>
           <Tip>
             <TipTitle
@@ -199,6 +212,12 @@ const MainPage = () => {
               이자를 계산하는 법2
             </TipTitle>
             <TipTitle>복리</TipTitle>
+            <TipComment>
+              <div>복리는, 원금과 이자가 합쳐진 금액에서 다시</div>
+              <div>이자가 붙는 계산 방법이에요.</div>
+              <div>연 5.0%의 복리 상품이 있다고 하면,</div>
+              <div>해마다 누적되는 이자가 커지게 돼요.</div>
+            </TipComment>
             <div>
               {/* <img src={require("../../assets/mainpage/복리화살표.png")} /> */}
               <img

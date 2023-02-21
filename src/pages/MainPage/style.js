@@ -201,13 +201,12 @@ export const Tips = styled.div`
 `;
 
 // 금융 팁
-export const Tip = styled.button`
+export const Tip = styled.div`
   width: 408px;
   height: 408px;
   background-color: #b3c6fb;
-  text-align: left;
   margin: 0 25px 25px 0;
-  padding: 30px 40px 25px 25px;
+  padding: 50px 40px 25px 25px;
   border-radius: 20px;
   img {
     float: right;
@@ -216,9 +215,9 @@ export const Tip = styled.button`
   :hover {
     filter: brightness(90%);
     color: white;
-  }
-  :hover TipComment {
-    opacity: 1;
+    div {
+      opacity: 1;
+    }
   }
 `;
 
@@ -231,4 +230,5 @@ export const TipTitle = styled.div`
 // 금융 팁 설명
 export const TipComment = styled.div`
   opacity: 0;
+  /* position: absolute; */
 `;

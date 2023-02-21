@@ -6,13 +6,13 @@ const firebaseConfig = {
   //
   // * 메인 프로젝트
   //
-  apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
-  authDomain: "open-an-account-31857.firebaseapp.com",
-  projectId: "open-an-account-31857",
-  storageBucket: "open-an-account-31857.appspot.com",
-  messagingSenderId: "62978638072",
-  appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
-  measurementId: "G-ENB9S2CV1E",
+  // apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
+  // authDomain: "open-an-account-31857.firebaseapp.com",
+  // projectId: "open-an-account-31857",
+  // storageBucket: "open-an-account-31857.appspot.com",
+  // messagingSenderId: "62978638072",
+  // appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
+  // measurementId: "G-ENB9S2CV1E",
   //
   // * 박상우 전용 키
   // apiKey: "AIzaSyCL_AQsnjPdjq-vp8BvukPqza4XYNwMoZw",
