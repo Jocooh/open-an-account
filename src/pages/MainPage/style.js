@@ -86,6 +86,14 @@ export const ProductFdButton = styled.button`
   cursor: pointer;
 `;
 
+// 은행 사이트 배너
+export const BankListBanner = styled.div`
+  width: 100%;
+  height: 220px;
+
+  background-color: aliceblue;
+`;
+
 //? 하단영역
 export const BottomWrap = styled.div`
   margin-top: 20px;
