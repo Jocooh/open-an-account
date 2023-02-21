@@ -55,9 +55,10 @@ import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 
 const ServicePage = () => {
-  const [activeTab, setActiveTab] = useState(1);
-  const [productTypes, setProductTypes] = useState(1);
-  const [showResults, setShowResults] = useState(false);
+  const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
+  const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
+  const [showResults, setShowResults] = useState(false); //* 결과 보기 버튼 활성화 상태 값 저장
+  const [notAllow2, setNotAllow2] = useState(true); //* 비교하기 버튼 활성화 상태 값 저장
   const [showSearch, setShowSearch] = useState(true);
   const [activeItem, setActiveItem] = useState("");
 
@@ -72,14 +73,15 @@ const ServicePage = () => {
 
   // const inputRef = useRef(null);
   const [products, setProducts] = useState([]); //* 금융상품 list 상태 값 저장
-  const [value, setValue] = useState(0); //* input Range 상태 값 저장
+  const [value, setValue] = useState(0); //* input Range(기간) 상태 값 저장
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
   const [selectedProductIds, setSelectedProductIds] = useState(
-    new Array(9).fill("")
+    new Array(12).fill("")
   );
-  const [intrRate, setIntrRate] = useState("");
-  const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품 id 저장
+  const [intrRate, setIntrRate] = useState(""); //* 선택된 상품의 intr_rate(이자율) 저장
+  const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품의 intr_rate(최대금리) 저장
+  const [intrRateType, setIntrRateType] = useState(""); //* 선택된 상품의 intr_rate_type(이자율타입 :단리, 복리) 저장
   //* 상품 리스트 함수
   const handleButtonClick = async () => {
     const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
@@ -94,97 +96,136 @@ const ServicePage = () => {
     });
   };
 
-  // 예금 optionList
-  const FetchDepositOptionList = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
-    const depositOptionArray = [];
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      depositOptionArray.push(newProduct);
-    });
-    setdepositOptionalList(depositOptionArray);
-  };
-  //적금 baseList
-  const FetchSavingBaseList = async () => {
-    const querySnapshot = await getDocs(collection(db, "SAVING_BASE_LIST"));
-    const savingBaseListArray = [];
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      savingBaseListArray.push(newProduct);
-    });
-    setSavingbaseList(savingBaseListArray);
-  };
 
-  //적금 OptionList
-  const FetchSavingOptionList = async () => {
-    const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
-    const savingOptionListArray = [];
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      savingOptionListArray.push(newProduct);
-    });
-    setSavingoptionalList(savingOptionListArray);
-  };
-  // console.log(products);
-  useEffect(() => {
-    handleButtonClick();
-    FetchDepositOptionList();
-    FetchSavingBaseList();
-    FetchSavingOptionList();
-  }, []);
-
+  //* 금융상품 타입에 따른 선택된 상품의 고유 값 저장함수.
   const handleSelectProducts = async (productId) => {
-    console.log(productTypes);
-    try {
-      const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const newProductIds = [...selectedProductIds];
-        newProductIds[newProductIds.indexOf("")] = docSnap.id;
-        setSelectedProductIds(newProductIds);
-        console.log(docSnap.data().fin_prdt_cd);
-        console.log(docSnap.data().kor_co_nm);
-        const finPrdtCd = docSnap.data().fin_prdt_cd;
-        console.log(newProductIds);
-        const querySnapshot = await getDocs(
-          collection(db, "DEPOSIT_OPTION_LIST"),
-          where("fin_prdt_cd", "==", finPrdtCd)
-        );
-        const options = [];
-        querySnapshot.forEach((doc) => {
-          options.push(doc.data());
-        });
-        if (options.length > 0) {
-          const intrRate = options[0].intr_rate;
-          const intrRate2 = options[0].intr_rate2;
-          const index = newProductIds.indexOf("");
-          if (index !== -1) {
-            newProductIds[index + 0] = intrRate;
-            newProductIds[index + 1] = intrRate2;
-            setSelectedProductIds(newProductIds);
-            console.log(newProductIds);
-            setIntrRate(intrRate);
-            setIntrRate2(intrRate2);
+    if (productTypes !== 2) {
+      try {
+        const docRef = doc(db, "DEPOSIT_BASE_LIST", productId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const { fin_prdt_cd } = docSnap.data();
+
+          const querySnapshot = await getDocs(
+            collection(db, "DEPOSIT_OPTION_LIST"),
+            where("fin_prdt_cd", "==", fin_prdt_cd)
+          );
+
+          const options = querySnapshot.docs.map((doc) => doc.data());
+          const selectedProductIdsCopy = [...selectedProductIds];
+
+          for (let i = 0; i < selectedProductIdsCopy.length; i += 4) {
+            if (selectedProductIdsCopy[i] === "") {
+              const targetDoc = options.find(
+                (option) => option.fin_prdt_cd === fin_prdt_cd
+              );
+
+              if (targetDoc) {
+                selectedProductIdsCopy[i] = productId;
+                selectedProductIdsCopy[i + 1] = targetDoc.intr_rate;
+                selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
+                selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
+
+                setSelectedProductIds(selectedProductIdsCopy);
+                setIntrRate(targetDoc.intr_rate);
+                setIntrRate2(targetDoc.intr_rate2);
+                setIntrRateType(targetDoc.intr_rate_type);
+                console.log(selectedProductIdsCopy);
+                break;
+              } else {
+                console.log(
+                  "DEPOSIT_OPTION_LIST 컬렉션에서 해당 상품을 찾을 수 없습니다."
+                );
+              }
+            }
+
           }
+        } else {
+          console.log(
+            "DEPOSIT_BASE_LIST 컬렉션에서 해당 상품을 찾을 수 없습니다."
+          );
         }
-      } else {
-        console.log("문서의 아이디를 찾을 수 없어요!");
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      try {
+        const docRef = doc(db, "SAVING_BASE_LIST", productId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const { fin_prdt_cd } = docSnap.data();
+
+          const querySnapshot = await getDocs(
+            collection(db, "SAVEING_OPTION_LIST"),
+            where("fin_prdt_cd", "==", fin_prdt_cd)
+          );
+
+          const options = querySnapshot.docs.map((doc) => doc.data());
+          const selectedProductIdsCopy = [...selectedProductIds];
+
+          for (let i = 0; i < selectedProductIdsCopy.length; i += 4) {
+            if (selectedProductIdsCopy[i] === "") {
+              const targetDoc = options.find(
+                (option) => option.fin_prdt_cd === fin_prdt_cd
+              );
+
+              if (targetDoc) {
+                selectedProductIdsCopy[i] = productId;
+                selectedProductIdsCopy[i + 1] = targetDoc.intr_rate;
+                selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
+                selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
+
+                setSelectedProductIds(selectedProductIdsCopy);
+                setIntrRate(targetDoc.intr_rate);
+                setIntrRate2(targetDoc.intr_rate2);
+                setIntrRateType(targetDoc.intr_rate_type);
+                console.log(selectedProductIdsCopy);
+                break;
+              } else {
+                console.log(
+                  "DEPOSIT_OPTION_LIST 컬렉션에서 해당 상품을 찾을 수 없습니다."
+                );
+              }
+            }
+          }
+        } else {
+          console.log(
+            "DEPOSIT_BASE_LIST 컬렉션에서 해당 상품을 찾을 수 없습니다."
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
-  // //* 금융상품을 클릭 시 productId를 인자로 받아서 handleSelectProducts 함수 실행
+  //* 한번 더 누르면 선택 해제
+  // const handleClickProduct = (productId) => {
+  //   const index = selectedProductIds.indexOf(productId);
+  //   if (index !== -1) {
+  //     // 이미 선택된 상품인 경우
+  //     const newSelectedProductIds = [...selectedProductIds];
+  //     newSelectedProductIds[index] = "";
+  //     newSelectedProductIds[index + 1] = "";
+  //     newSelectedProductIds[index + 2] = "";
+  //     setSelectedProductIds(newSelectedProductIds);
+  //     alert("이미 선택된 상품입니다.");
+  //   } else {
+  //     // 선택되지 않은 상품인 경우
+  //     handleSelectProducts(productId);
+  //   }
+  // };
+
+  //* 동일된 상품 선택시 함수 종료.
   const handleClickProduct = (productId) => {
+    const index = selectedProductIds.indexOf(productId);
+    if (index !== -1) {
+      // 이미 선택된 상품인 경우
+      alert("이미 선택된 상품입니다. 다른상품을 선택해주세요.");
+      return;
+    }
+    // 선택되지 않은 상품인 경우
     handleSelectProducts(productId);
   };
 
@@ -196,6 +237,15 @@ const ServicePage = () => {
       setNotAllow(true);
     }
   }, [amount, value]);
+
+  //* setSelectedProductIds배열의 2번째 id값이 있으면 비교하기 버튼 활성화
+  useEffect(() => {
+    if (selectedProductIds[4].length > 1) {
+      setNotAllow2(false);
+    } else {
+      setNotAllow2(true);
+    }
+  }, [selectedProductIds]);
 
   //* input 상태 값 저장
   const handleBlur = () => {
@@ -268,8 +318,9 @@ const ServicePage = () => {
     setProductTypes(buttonType);
   };
 
-  const handleTabClick = (tabIndex) => {
+  const handleTabChange = (tabIndex) => {
     setActiveTab(tabIndex);
+    setShowSearch(false); // 검색 결과 리스트 닫기
   };
 
   const handleClickSearch = (search) => {
@@ -277,7 +328,12 @@ const ServicePage = () => {
   };
 
   const handleClickResults = (results) => {
-    setShowResults(!showResults);
+    if (activeTab === 1) {
+      setShowResults(showResults);
+    } else {
+      setActiveTab(1);
+      setTimeout(() => setShowResults(!showResults), 0);
+    }
   };
 
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
@@ -358,8 +414,11 @@ const ServicePage = () => {
                         }
                       </p>
                     </div>
-                    <p>{intrRate}</p>
-                    <p>{intrRate2}</p>
+                    {/* //* intr_rate, intr_rate2 값 출력 */}
+                    <div>
+                      <div>최고금리: {selectedProductIds[2]}</div>
+                      <div>이자율: {selectedProductIds[1]}</div>
+                    </div>
                   </>
                 )}
               </SelectedProductsContainer>
@@ -367,7 +426,7 @@ const ServicePage = () => {
               <SelectedProductsContainer>
                 <SelectedProducts>
                   {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[3] === "" ? (
+                  {selectedProductIds[4] === "" ? (
                     <div>
                       <p>비교할 상품을 선택해주세요.</p>
                       <img
@@ -382,20 +441,26 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[3]
-                            )?.fin_prdt_nm
+                              (product) => product.id === selectedProductIds[4]
+                            ).fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
+
                               (product) => product.id === selectedProductIds[3]
-                            )?.kor_co_nm
+                            ).kor_co_nm
                           }
                         </p>
                       </div>
-                      <p>{intrRate}</p>
-                      <p>{intrRate2}</p>
+                      {/* //* intr_rate, intr_rate2 값 출력 */}
+                      <div>
+                        <div>
+                          <div>최고금리: {selectedProductIds[6]}</div>
+                          <div>이자율: {selectedProductIds[5]}</div>
+                        </div>
+                      </div>
                     </>
                   )}
                 </SelectedProducts>
@@ -404,7 +469,7 @@ const ServicePage = () => {
               <SelectedProductsContainer>
                 <SelectedProducts>
                   {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[6] === "" ? (
+                  {selectedProductIds[8] === "" ? (
                     <div>
                       <p>비교할 상품을 선택해주세요.</p>
                       <img
@@ -419,20 +484,25 @@ const ServicePage = () => {
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[6]
-                            )?.fin_prdt_nm
+
+                              (product) => product.id === selectedProductIds[8]
+                            ).fin_prdt_nm
                           }
                         </p>
                         <p>
                           {
                             products.find(
-                              (product) => product.id === selectedProductIds[6]
-                            )?.kor_co_nm
+
+                              (product) => product.id === selectedProductIds[8]
+                            ).kor_co_nm
                           }
                         </p>
                       </div>
-                      <p>{intrRate}</p>
-                      <p>{intrRate2}</p>
+                      {/* //* intr_rate, intr_rate2 값 출력 */}
+                      <div>
+                        <div>최고금리: {selectedProductIds[10]}</div>
+                        <div>이자율: {selectedProductIds[9]}</div>
+                      </div>
                     </>
                   )}
                 </SelectedProducts>
@@ -444,14 +514,22 @@ const ServicePage = () => {
                 display: "flex",
               }}
             >
-              <ToCompare onClick={OpenComparingModal}>비교하기</ToCompare>
+              <ToCompare
+                onClick={() => OpenComparingModal()}
+                disabled={notAllow2}
+              >
+                비교하기
+              </ToCompare>
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-                  selectedProduct={[products[0], products[3], products[6]]}
-                  selectedProductRate={intrRate}
-                  selectedProductRate2={intrRate2}
-                  // selectedProudctRateType={intrRateType}
+
+                  selectedProductId={[
+                    selectedProductIds[0],
+                    selectedProductIds[4],
+                    selectedProductIds[8],
+                  ]}
+
                 />
               )}
             </div>
@@ -462,7 +540,7 @@ const ServicePage = () => {
           <BottomSection>
             <TapButtonWraper>
               <TapButton
-                onClick={() => handleTabClick(1)}
+                onClick={() => handleTabChange(1)}
                 style={
                   activeTab === 1
                     ? {
@@ -476,7 +554,7 @@ const ServicePage = () => {
                 조건 계산
               </TapButton>
               <TapButton
-                onClick={() => handleTabClick(2)}
+                onClick={() => handleTabChange(2)}
                 style={
                   activeTab === 2
                     ? {
@@ -490,7 +568,7 @@ const ServicePage = () => {
                 상품명 검색
               </TapButton>
               <TapButton
-                onClick={() => handleTabClick(3)}
+                onClick={() => handleTabChange(3)}
                 style={
                   activeTab === 3
                     ? {
