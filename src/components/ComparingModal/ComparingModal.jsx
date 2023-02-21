@@ -5,6 +5,7 @@ import {
   FirstGuide,
   Highlight,
   Input,
+  InputWrapper,
   Message,
   MessageWrapper,
   ModalBackground,
@@ -26,7 +27,6 @@ const ComparingModal = ({
   selectedProductRate2,
 
   // selectedProductRateType
-
 }) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -48,27 +48,28 @@ const ComparingModal = ({
           }}
         /> */}
         <ModalContents>
-          <TitleWrapper>
-            <Title>상품 비교</Title>
-          </TitleWrapper>
+          <Title>상품 비교</Title>
           <MessageWrapper>
             {selectedProduct[0].category === "예금 기본 정보" ? (
               <>
                 <Message>
-                  <Highlight>12개월 </Highlight>동안
-                  <Input
-                    maxLength={11}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    thousandSeparator=","
-                    placeholder="금액을 입력해주세요"
-                    inputLength={inputValue.length}
-                  />
+                  <Highlight>12개월</Highlight>동안
+                  <InputWrapper>
+                    <Input
+                      maxLength={11}
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      thousandSeparator=","
+                      placeholder="금액을 입력해주세요"
+                      inputLength={inputValue.length}
+                    />
+
+                    <FirstGuide>
+                      금액은 최대 10억 미만으로 입력할 수 있습니다.
+                    </FirstGuide>
+                  </InputWrapper>
                   원을 예치하면
                 </Message>
-                <FirstGuide>
-                  * 금액은 10억 미만으로 입력할 수 있습니다.
-                </FirstGuide>
                 <Products>
                   <Product
                     inputValue={inputValue}
@@ -96,26 +97,32 @@ const ComparingModal = ({
                       // selectedProductRateType={selectedProductRateType}
                     />
                   ) : (
-                    <Product />
+                    <img
+                      src={require("../../assets/thirdProduct.png")}
+                      alt="세번째 상품 미선택"
+                    />
                   )}
                 </Products>
               </>
             ) : (
               <>
                 <Message>
-                  12개월 동안
-                  <Input
-                    maxLength={11}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    thousandSeparator=","
-                    placeholder="금액을 입력해주세요"
-                    inputLength={inputValue.length}
-                  />
+                  <Highlight>12개월</Highlight> 동안
+                  <InputWrapper>
+                    <Input
+                      maxLength={11}
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      thousandSeparator=","
+                      placeholder="금액을 입력해주세요"
+                      inputLength={inputValue.length}
+                    />
+
+                    <FirstGuide>
+                      금액은 최대 10억 미만으로 입력할 수 있습니다.
+                    </FirstGuide>
+                  </InputWrapper>
                   원 씩 적립하면
-                  <FirstGuide>
-                    * 금액은 최대 10억 미만으로 입력할 수 있습니다.
-                  </FirstGuide>
                 </Message>
                 <Products>
                   <SavingProduct
@@ -144,7 +151,10 @@ const ComparingModal = ({
                       // selectedProductRateType={selectedProductRateType}
                     />
                   ) : (
-                    <Product />
+                    <img
+                      src={require("../../assets/thirdProduct.png")}
+                      alt="세번째 상품 미선택"
+                    />
                   )}
                 </Products>
               </>
@@ -165,4 +175,4 @@ const ComparingModal = ({
   );
 };
 
-export default ComparingModal;
+export default React.memo(ComparingModal);

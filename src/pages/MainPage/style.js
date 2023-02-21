@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
-//* 전체 랩
-
+//* 페이지 전체 랩
 export const MainPageWraper = styled.div`
   width: 100%;
-  height: 1900px;
-  display: flex;
+  height: 1800px;
+  padding-left: 220px;
   justify-content: center;
   /* background-color: blue; */
   background-color: #f0e7fb;
 `;
-export const Wraper = styled.div`
+
+// 상단 전체 랩
+export const UpWraper = styled.div`
   width: 80%;
-  height: 1500px;
+  height: 615px;
+  background-color: white;
 `;
 
 // 배너 이미지
@@ -29,23 +31,27 @@ export const GreetingBox = styled.div`
   border-radius: 20px;
   border: solid 1px #dedede;
   width: 100%;
-  height: 500px;
-  margin-top: 20px;
+  height: 395px;
   background-color: aliceblue;
-  padding: 70px 0px 0px 50px;
+  padding: 60px 0px 0px 71px;
 
   img {
     display: flex;
     float: right;
     right: 0;
-    margin-right: 100px;
+    margin: 40px 60px 0 0;
   }
 `;
 
 //* 제목 랩
-export const GreetingTitle = styled.span`
+export const GreetingTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 30px;
+`;
+
+//* 멘트
+export const GreetingMent = styled.div`
   margin-bottom: 30px;
 `;
 
@@ -54,14 +60,14 @@ export const Username = styled.span`
   color: #6a24ff;
 `;
 
-//* 멘트
+// 멘트2
 export const Greetingment = styled.span``;
 
 //* 인삿말 내용
 export const Greetingcontent = styled.div`
   /* width: 50%; */
-  font-size: 22px;
-  margin-top: 30px;
+  font-size: 18px;
+  margin-top: 50px;
   p {
     margin-top: 20px;
   }
@@ -70,42 +76,39 @@ export const Greetingcontent = styled.div`
 // 상품 찾기 버튼
 export const ProductFdButton = styled.button`
   font-size: 20px;
-  font-weight: bold;
   border: 1px purple solid;
-  border-radius: 20px;
-  width: 200px;
-  margin-top: 120px;
+  border-radius: 10px;
+  width: 310px;
+  margin-top: 40px;
   padding: 25px;
+  background-color: #6a24ff;
+  color: white;
   cursor: pointer;
-
-  :hover {
-    background-color: #6a24ff;
-  }
 `;
 
 //? 하단영역
 export const BottomWrap = styled.div`
-  display: flex;
   margin-top: 20px;
   width: 100%;
 `;
 
-//* 게시판 인기글랩
-export const BoardBestCommentWrap = styled.div``;
-
-//* 게시판 인기글창
-export const BoardBestComment = styled.div`
-  width: 685px;
-  height: 100%;
+//* 금융 용어사전
+export const Dictionary = styled.button`
+  width: 100%;
+  height: 220px;
   border: solid 1px #dedede;
   border-radius: 20px;
-  padding: 30px;
+  text-align: center;
   background-color: aliceblue;
-
+  transition: all 0.2s linear;
+  :hover {
+    transform: scale(1.2);
+  }
+  :active {
+    background-color: white;
+  }
   div {
-    font-size: 30px;
-    margin: 40px 0 0 40px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
   }
 `;
@@ -170,23 +173,62 @@ export const FinanceHoneyTip = styled.div`
   }
 `;
 
-//* 우측 사이드바
-export const Sidebar = styled.div`
-  position: fixed;
-  right: 20px;
-  top: 100px;
-  z-index: 2;
-  button {
-    cursor: pointer;
-    border: none;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    width: 150px;
-    height: 150px;
-    background-color: #e3e3e3;
-    margin-bottom: 10px;
-    border-radius: 50%;
+// 하단 전체 랩
+export const DownWraper = styled.div`
+  width: 80%;
+  height: 1050px;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 58px 46px 33px 71px;
+  background-color: whitesmoke;
+`;
+
+// 오늘의 금융 팁 제목
+export const TodayTipTitle = styled.span`
+  font-size: 30px;
+  font-weight: bold;
+`;
+
+// 오늘의 금융 팁 설명
+export const TodayTipComment = styled.div`
+  font-size: 18px;
+  margin: 25px 0 30px 0;
+`;
+
+// 금융 팁들
+export const Tips = styled.div`
+  display: flex;
+`;
+
+// 금융 팁
+export const Tip = styled.div`
+  width: 408px;
+  height: 408px;
+  background-color: #b3c6fb;
+  margin: 0 25px 25px 0;
+  padding: 50px 40px 25px 25px;
+  border-radius: 20px;
+  img {
+    float: right;
+    margin-top: 60px;
   }
+  :hover {
+    filter: brightness(90%);
+    color: white;
+    div {
+      opacity: 1;
+    }
+  }
+`;
+
+// 금융 팁 제목
+export const TipTitle = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+`;
+
+// 금융 팁 설명
+export const TipComment = styled.div`
+  opacity: 0;
+  /* position: absolute; */
 `;

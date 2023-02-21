@@ -880,7 +880,7 @@ const ServicePage = () => {
                       </StyledBtnDiv>
                     </div>
                   </StyledBankListContainer>
-                </div>
+                </div>            
               )}
               {activeTab === 3 && (
                 <TapContainer>

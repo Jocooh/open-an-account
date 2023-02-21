@@ -19,6 +19,7 @@ export const ModalContainer = styled.div`
   /* translate는 본인의 크기 기준으로 작동한다. */
   position: absolute;
   width: 100%;
+  min-height: 950px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -40,7 +41,7 @@ export const CloseButton = styled(CgClose)`
 export const ModalContents = styled.div`
   /* 모달창 크기 */
   width: 1194px;
-  height: 828px;
+  min-height: 900px;
 
   /* 모달창 디자인 */
   background: #ffffff;
@@ -50,38 +51,23 @@ export const ModalContents = styled.div`
   box-sizing: border-box;
 `;
 
-//* 제목부분 Title, SubTitle
-export const TitleWrapper = styled.div`
-  padding: 30px 0px;
-`;
-
-//* "상품 비교 결과"
+//* "상품 비교"
 export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  padding: 10px;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
-  font-size: 48px;
-  line-height: 65px;
-  text-align: center;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  color: #505050;
 `;
 
 //* 사용자 인풋창 부분
-export const MessageWrapper = styled.div`
-  padding: 15px 0px;
-`;
-//* "금액은 최대 10억원까지 입력할 수 있습니다. "
-export const FirstGuide = styled.div`
-  color: #969696;
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  margin-left: 150px;
-`;
+export const MessageWrapper = styled.div``;
 
 //* "12개월동안 ~씩 저축한다면,"
 export const Message = styled.div`
@@ -91,9 +77,17 @@ export const Message = styled.div`
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
-  line-height: 38px;
-  /* or 155% */
+  font-size: 40px;
+  line-height: 54px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+`;
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 export const Input = styled(NumericFormat).attrs((props) => ({
   inputLength: props.inputLength,
@@ -111,15 +105,23 @@ export const Input = styled(NumericFormat).attrs((props) => ({
       : "1px solid #dedede"};
 
   width: 274px;
-  margin: 10px;
-  padding: 8px 24px;
-  /* padding-left: 10px; */
+  margin: 45px 10px 0px 10px;
+  padding-left: 50px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 52px;
+
+  color: #505050;
+`;
+//* "금액은 최대 10억원까지 입력할 수 있습니다. "
+export const FirstGuide = styled.div`
+  color: #969696;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;
-  font-size: 26px;
-  line-height: 35px;
-  color: #a3a3a3;
+  font-size: 15px;
 `;
 //* 보라색 글씨 강조
 export const Highlight = styled.div`
@@ -131,6 +133,7 @@ export const Products = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 20px;
 `;
 
 export const SecondGuide = styled.li`
