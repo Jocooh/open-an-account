@@ -55,10 +55,10 @@ import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 
 const ServicePage = () => {
-  const [activeTab, setActiveTab] = useState(1);
-  const [productTypes, setProductTypes] = useState(1);
-  const [showResults, setShowResults] = useState(false);
-  const [notAllow2, setNotAllow2] = useState(true);
+  const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
+  const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
+  const [showResults, setShowResults] = useState(false); //* 결과 보기 버튼 활성화 상태 값 저장
+  const [notAllow2, setNotAllow2] = useState(true); //* 비교하기 버튼 활성화 상태 값 저장
   const [showSearch, setShowSearch] = useState(true);
   const [activeItem, setActiveItem] = useState("");
   //상품검색state
@@ -72,7 +72,7 @@ const ServicePage = () => {
 
   // const inputRef = useRef(null);
   const [products, setProducts] = useState([]); //* 금융상품 list 상태 값 저장
-  const [value, setValue] = useState(0); //* input Range 상태 값 저장
+  const [value, setValue] = useState(0); //* input Range(기간) 상태 값 저장
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
   const [selectedProductIds, setSelectedProductIds] = useState(
@@ -94,72 +94,6 @@ const ServicePage = () => {
       setProducts(product);
     });
   };
-
-  // 예금baseList;
-  // const FetchDepositBaseList = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-  //   const depositBaseArray = [];
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     depositBaseArray.push(newProduct);
-  //   });
-  //   setdepositbaseList(depositBaseArray);
-  // };
-
-  // 예금 optionList
-  const FetchDepositOptionList = async () => {
-    const querySnapshot = await getDocs(collection(db, "DEPOSIT_OPTION_LIST"));
-    const depositOptionArray = [];
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      depositOptionArray.push(newProduct);
-    });
-    setdepositOptionalList(depositOptionArray);
-  };
-  //적금 baseList
-  const FetchSavingBaseList = async () => {
-    const querySnapshot = await getDocs(collection(db, "SAVING_BASE_LIST"));
-    const savingBaseListArray = [];
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      savingBaseListArray.push(newProduct);
-    });
-    setSavingbaseList(savingBaseListArray);
-  };
-
-  //적금 OptionList
-  const FetchSavingOptionList = async () => {
-    const querySnapshot = await getDocs(collection(db, "SAVING_OPTION_LIST"));
-    const savingOptionListArray = [];
-    querySnapshot.forEach((doc) => {
-      const newProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      savingOptionListArray.push(newProduct);
-    });
-    setSavingoptionalList(savingOptionListArray);
-  };
-  // console.log(products);
-  useEffect(() => {
-    // FetchDepositBaseList();
-    FetchDepositOptionList();
-    FetchSavingBaseList();
-    FetchSavingOptionList();
-  }, []);
-
-  useEffect(() => {
-    handleButtonClick();
-  }, []);
 
   //* 금융상품 타입에 따른 선택된 상품의 고유 값 저장함수.
   const handleSelectProducts = async (productId) => {
@@ -381,8 +315,9 @@ const ServicePage = () => {
     setProductTypes(buttonType);
   };
 
-  const handleTabClick = (tabIndex) => {
+  const handleTabChange = (tabIndex) => {
     setActiveTab(tabIndex);
+    setShowSearch(false); // 검색 결과 리스트 닫기
   };
 
   const handleClickSearch = (search) => {
@@ -390,7 +325,12 @@ const ServicePage = () => {
   };
 
   const handleClickResults = (results) => {
-    setShowResults(!showResults);
+    if (activeTab === 1) {
+      setShowResults(showResults);
+    } else {
+      setActiveTab(1);
+      setTimeout(() => setShowResults(!showResults), 0);
+    }
   };
 
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
@@ -566,7 +506,7 @@ const ServicePage = () => {
           <BottomSection>
             <TapButtonWraper>
               <TapButton
-                onClick={() => handleTabClick(1)}
+                onClick={() => handleTabChange(1)}
                 style={
                   activeTab === 1
                     ? {
@@ -580,7 +520,7 @@ const ServicePage = () => {
                 조건 계산
               </TapButton>
               <TapButton
-                onClick={() => handleTabClick(2)}
+                onClick={() => handleTabChange(2)}
                 style={
                   activeTab === 2
                     ? {
@@ -594,7 +534,7 @@ const ServicePage = () => {
                 상품명 검색
               </TapButton>
               <TapButton
-                onClick={() => handleTabClick(3)}
+                onClick={() => handleTabChange(3)}
                 style={
                   activeTab === 3
                     ? {
