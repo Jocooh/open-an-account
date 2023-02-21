@@ -17,6 +17,7 @@ import {
   AuthWrapper,
   DefaultLoginForm,
   SocialLoginForm,
+  SoclaiLoginItem,
   SocialLoginTitle,
   SocialLoginList,
   AuthLogoText,
@@ -28,9 +29,9 @@ import {
   AuthSignUpForm,
   AuthLoginForm,
   SocialLoginTitleWrapper,
-  SocialLoginItem,
   BoundaryLineWrapper,
   BoundaryLine,
+  SocialLoginItem,
 } from "./style";
 
 const AuthForm = ({
@@ -200,22 +201,13 @@ const AuthForm = ({
           )}
         </>
         {!signUp && (
-          <>
-            <BoundaryLineWrapper>
-              <BoundaryLine>또는</BoundaryLine>
-            </BoundaryLineWrapper>
-
-            <SocialLoginForm>
-              <SocialLoginTitleWrapper></SocialLoginTitleWrapper>
-              <SocialLoginItem>gqweqweqwdqwd</SocialLoginItem>
-              {/* <SocialLoginList>
-              <KakaoLogin />
-              <NaverLogin />
-              <GoogleLogin />
-            </SocialLoginList> */}
-            </SocialLoginForm>
-          </>
+          <BoundaryLineWrapper>
+            <BoundaryLine>또는</BoundaryLine>
+          </BoundaryLineWrapper>
         )}
+        <SocialLoginForm>
+          <GoogleLogin />
+        </SocialLoginForm>
       </AuthWrapper>
     </AuthBackground>
   );

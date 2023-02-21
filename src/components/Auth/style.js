@@ -3,7 +3,7 @@ import styled from "styled-components";
 // auth background
 export const AuthBackground = styled.div`
   width: 100vw;
-  /* height: calc(100vh - 11.6rem); */
+  height: calc(100vh - 11.6rem);
 
   display: flex;
   justify-content: center;
@@ -135,7 +135,7 @@ export const AuthButton = styled.button`
 export const BoundaryLineWrapper = styled.div`
   width: 414px;
   height: 20px;
-  margin: 5px 0;
+  margin: 40px 0;
 `;
 export const BoundaryLine = styled.span`
   font-size: 15px;
@@ -173,16 +173,11 @@ export const SocialLoginForm = styled.div`
 
   /* margin: 20px 0; */
 `;
+// export const SocialLoginList = styled.div`
+//   width: 419px;
+//   /* height: 60px; */
+// `;
 
-export const SocialLoginTitleWrapper = styled.div`
-  width: 414px;
-  height: 20px;
-`;
-
-export const SocialLoginList = styled.div`
-  width: 419px;
-  height: 60px;
-`;
 export const SocialLoginItem = styled.div`
   width: 419px;
   height: 60px;
@@ -192,21 +187,30 @@ export const SocialLoginItem = styled.div`
   border-radius: 10px;
 `;
 
-export const NaverLoginItem = styled.li`
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 50%;
-
-  /* margin: 1rem 1.3rem; */
-  overflow: hidden;
-  cursor: pointer;
+export const GoogleImg = styled.img`
+  width: 100%;
 `;
 
-export const SocialLoginLogo = styled.div`
-  /* display: block; */
-`;
-export const SocialLoginLogoImg = styled.img`
-  /* background-size: cover; */
+// export const SocialLoginTitleWrapper = styled.div`
+//   width: 414px;
+//   height: 20px;
+// `;
 
-  max-width: 100%; // 이걸 하니까 맞춰지네???
-`;
+// export const NaverLoginItem = styled.li`
+//   width: 4.5rem;
+//   height: 4.5rem;
+//   border-radius: 50%;
+
+//   /* margin: 1rem 1.3rem; */
+//   overflow: hidden;
+//   cursor: pointer;
+// `;
+
+// export const SocialLoginLogo = styled.div`
+//   /* display: block; */
+// `;
+// export const SocialLoginLogoImg = styled.img`
+//   /* background-size: cover; */
+
+//   max-width: 100%; // 이걸 하니까 맞춰지네???
+// `;
