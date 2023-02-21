@@ -23,6 +23,7 @@ import SavingProduct from "../Product/SavingProduct";
 const ComparingModal = ({
   setComparingModalOpen,
   selectedProduct,
+  selectedProductId,
   selectedProductRate,
   selectedProductRate2,
   selectedProductRateType,
@@ -78,7 +79,7 @@ const ComparingModal = ({
                   <Product
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
-                    selectedProductId={selectedProduct[0].id}
+                    selectedProductId={selectedProductId[0]}
                     selectedProductRate={selectedProductRate[0]}
                     selectedProductRate2={selectedProductRate2[0]}
                     selectedProductRateType={selectedProductRateType[0]}
@@ -86,7 +87,7 @@ const ComparingModal = ({
                   <Product
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
-                    selectedProductId={selectedProduct[1].id}
+                    selectedProductId={selectedProductId[1]}
                     selectedProductRate={selectedProductRate[1]}
                     selectedProductRate2={selectedProductRate2[1]}
                     selectedProductRateType={selectedProductRateType[1]}
@@ -95,7 +96,7 @@ const ComparingModal = ({
                     <Product
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
-                      selectedProductId={selectedProduct[2].id}
+                      selectedProductId={selectedProductId[2]}
                       selectedProductRate={selectedProductRate[2]}
                       selectedProductRate2={selectedProductRate2[2]}
                       selectedProductRateType={selectedProductRateType[2]}
@@ -132,7 +133,7 @@ const ComparingModal = ({
                   <SavingProduct
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
-                    selectedProductId={selectedProduct[0].id}
+                    selectedProductId={selectedProductId[0]}
                     selectedProductRate={selectedProductRate[0]}
                     selectedProductRate2={selectedProductRate2[0]}
                     selectedProductRateType={selectedProductRateType[0]}
@@ -140,7 +141,7 @@ const ComparingModal = ({
                   <SavingProduct
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
-                    selectedProductId={selectedProduct[1].id}
+                    selectedProductId={selectedProductId[1]}
                     selectedProductRate={selectedProductRate[1]}
                     selectedProductRate2={selectedProductRate2[1]}
                     selectedProductRateType={selectedProductRateType[1]}
@@ -149,7 +150,7 @@ const ComparingModal = ({
                     <SavingProduct
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
-                      selectedProductId={selectedProduct[2].id}
+                      selectedProductId={selectedProductId[2]}
                       selectedProductRate={selectedProductRate[2]}
                       selectedProductRate2={selectedProductRate2[2]}
                       selectedProductRateType={selectedProductRateType[2]}

@@ -114,18 +114,18 @@ const ServicePage = () => {
           const options = querySnapshot.docs.map((doc) => doc.data());
           const selectedProductIdsCopy = [...selectedProductIds];
 
-          for (let i = 0; i < selectedProductIdsCopy.length; i += 4) {
+          for (let i = 0; i < selectedProductIdsCopy.length; i += 5) {
             if (selectedProductIdsCopy[i] === "") {
               const targetDoc = options.find(
                 (option) => option.fin_prdt_cd === fin_prdt_cd
               );
 
               if (targetDoc) {
-                selectedProductIdsCopy[i] = docSnap.data();
+                selectedProductIdsCopy[i] = docSnap.id;
                 selectedProductIdsCopy[i + 1] = targetDoc.intr_rate;
                 selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
                 selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
-
+                selectedProductIdsCopy[i + 4] = docSnap.data();
                 setSelectedProductIds(selectedProductIdsCopy);
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
@@ -163,18 +163,18 @@ const ServicePage = () => {
           const options = querySnapshot.docs.map((doc) => doc.data());
           const selectedProductIdsCopy = [...selectedProductIds];
 
-          for (let i = 0; i < selectedProductIdsCopy.length; i += 4) {
+          for (let i = 0; i < selectedProductIdsCopy.length; i += 5) {
             if (selectedProductIdsCopy[i] === "") {
               const targetDoc = options.find(
                 (option) => option.fin_prdt_cd === fin_prdt_cd
               );
 
               if (targetDoc) {
-                selectedProductIdsCopy[i] = docSnap.data();
+                selectedProductIdsCopy[i] = docSnap.id;
                 selectedProductIdsCopy[i + 1] = targetDoc.intr_rate;
                 selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
                 selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
-
+                selectedProductIdsCopy[i + 4] = docSnap.data();
                 setSelectedProductIds(selectedProductIdsCopy);
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
@@ -237,13 +237,13 @@ const ServicePage = () => {
   }, [amount, value]);
 
   //* setSelectedProductIds배열의 2번째 id값이 있으면 비교하기 버튼 활성화
-  useEffect(() => {
-    if (selectedProductIds[4].length > 1) {
-      setNotAllow2(false);
-    } else {
-      setNotAllow2(true);
-    }
-  }, [selectedProductIds]);
+  // useEffect(() => {
+  //   if (selectedProductIds[4].length > 1) {
+  //     setNotAllow2(false);
+  //   } else {
+  //     setNotAllow2(true);
+  //   }
+  // }, [selectedProductIds]);
 
   //* input 상태 값 저장
   const handleBlur = () => {
@@ -509,32 +509,37 @@ const ServicePage = () => {
             >
               <ToCompare
                 onClick={() => OpenComparingModal()}
-                disabled={notAllow2}
+                // disabled={notAllow2}
               >
                 비교하기
               </ToCompare>
               {comparingModalOpen && (
                 <ComparingModal
                   setComparingModalOpen={setComparingModalOpen}
-                  selectedProduct={[
+                  selectedProductId={[
                     selectedProductIds[0],
-                    selectedProductIds[4],
-                    selectedProductIds[8],
+                    selectedProductIds[5],
+                    selectedProductIds[10],
                   ]}
                   selectedProductRate={[
                     selectedProductIds[1],
-                    selectedProductIds[5],
-                    selectedProductIds[9],
+                    selectedProductIds[6],
+                    selectedProductIds[11],
                   ]}
                   selectedProductRate2={[
                     selectedProductIds[2],
-                    selectedProductIds[6],
-                    selectedProductIds[10],
+                    selectedProductIds[7],
+                    selectedProductIds[12],
                   ]}
                   selectedProductRateType={[
                     selectedProductIds[3],
-                    selectedProductIds[7],
-                    selectedProductIds[11],
+                    selectedProductIds[8],
+                    selectedProductIds[13],
+                  ]}
+                  selectedProduct={[
+                    selectedProductIds[4],
+                    selectedProductIds[9],
+                    selectedProductIds[14],
                   ]}
                 />
               )}
