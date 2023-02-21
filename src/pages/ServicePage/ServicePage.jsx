@@ -811,8 +811,6 @@ const ServicePage = () => {
                                     depositOptionalList={depositOptionalList}
                                     savingbaseList={savingbaseList}
                                     savingOptionalList={savingoptionalList}
-                                    activeItem={activeItem}
-                                    setActiveItem={setActiveItem}
                                     myBookmarkProducts={myBookmarkProducts} // my bookmark products
                                     handleClickProduct={handleClickProduct}
                                   />

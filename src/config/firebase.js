@@ -36,12 +36,12 @@ const firebaseConfig = {
   // appId: "1:185433561488:web:6c96ed39e2589180017b15",
   // measurementId: "G-FVGRSGV6BX",
   // * 남마리나 전용 키 1
-  // apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
-  // authDomain: "jojoa-c3a5b.firebaseapp.com",
-  // projectId: "jojoa-c3a5b",
-  // storageBucket: "jojoa-c3a5b.appspot.com",
-  // messagingSenderId: "848779014558",
-  // appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
+  apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
+  authDomain: "jojoa-c3a5b.firebaseapp.com",
+  projectId: "jojoa-c3a5b",
+  storageBucket: "jojoa-c3a5b.appspot.com",
+  messagingSenderId: "848779014558",
+  appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
   //
   // * 남마리나 전용 키 2
   // apiKey: "AIzaSyBslbzRlInpFhHV2NnOwbjH2K6KOs8hHqU",
