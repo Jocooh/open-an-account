@@ -53,12 +53,12 @@ const firebaseConfig = {
   // appId: "1:648301726670:web:20818e17661a9c050fb99f",
   //
   // * 조성아 전용 키
-  // apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
-  // authDomain: "open-an-account-db.firebaseapp.com",
-  // projectId: "open-an-account-db",
-  // storageBucket: "open-an-account-db.appspot.com",
-  // messagingSenderId: "334972707203",
-  // appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
+  apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
+  authDomain: "open-an-account-db.firebaseapp.com",
+  projectId: "open-an-account-db",
+  storageBucket: "open-an-account-db.appspot.com",
+  messagingSenderId: "334972707203",
+  appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
   //
   // * 김원준 전용 키 1
   // apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
