@@ -14,6 +14,7 @@ export const Guide = styled.div`
   line-height: 34px;
   display: flex;
   align-items: center;
+  margin-left: 0;
   color: #a3a3a3;
 `;
 //* 금액
@@ -25,6 +26,7 @@ export const TotalCost = styled.div`
   line-height: 41px;
   display: flex;
   align-items: center;
+  margin-left: 0;
 
   color: #6a24ff;
 `;
@@ -91,6 +93,7 @@ export const Message = styled.div`
 
 export const Scrap = styled.div`
   display: flex;
-  justify-content: end;
+  /* position: fixed; */
+  /* justify-content: end; */
   margin: auto 0 0 0;
 `;
