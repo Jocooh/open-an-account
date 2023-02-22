@@ -5,10 +5,11 @@ export const FooterWrapper = styled.footer`
   height: 4rem;
   border-top: 1px solid #ddd;
   background-color: #f7f9fa;
-  display: flex;
-  position: absolute;
+  position: relative;
+  transform: translateY(-100%);
   bottom: 0;
   /* z-index: -1; */
+  display: flex;
   justify-content: center;
   align-items: center;
 `;

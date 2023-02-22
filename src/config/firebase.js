@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -52,12 +53,12 @@ const firebaseConfig = {
   // appId: "1:648301726670:web:20818e17661a9c050fb99f",
   //
   // * 조성아 전용 키
-  // apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
-  // authDomain: "open-an-account-db.firebaseapp.com",
-  // projectId: "open-an-account-db",
-  // storageBucket: "open-an-account-db.appspot.com",
-  // messagingSenderId: "334972707203",
-  // appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
+  apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
+  authDomain: "open-an-account-db.firebaseapp.com",
+  projectId: "open-an-account-db",
+  storageBucket: "open-an-account-db.appspot.com",
+  messagingSenderId: "334972707203",
+  appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
   //
   // * 김원준 전용 키 1
   // apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
@@ -80,3 +81,16 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const authService = getAuth(app);
 export const db = getFirestore(app);
+
+export function useAuth() {
+  const [currentUser2, setCurrentUser2] = useState();
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(authService, (user) =>
+      setCurrentUser2(user)
+    );
+    return unsub;
+  }, []);
+
+  return currentUser2;
+}

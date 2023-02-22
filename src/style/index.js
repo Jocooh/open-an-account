@@ -4,11 +4,13 @@ const GlobalStyle = createGlobalStyle`
 * {
   margin: 0 auto;
   border: 0;
+  max-width: 1440px;
 }
 
 body {
-  max-width: 1440px;
+  height: 100%;
   margin: 0 auto;
+  position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

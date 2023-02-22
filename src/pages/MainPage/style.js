@@ -3,7 +3,9 @@ import styled from "styled-components";
 //* 페이지 전체 랩
 export const MainPageWraper = styled.div`
   width: 100%;
-  height: 1800px;
+
+  height: 100%;
+  /* padding-left: 220px; */
   justify-content: center;
   background-color: white;
 `;
@@ -135,9 +137,9 @@ export const Dictionary = styled.button`
   :hover {
     transform: scale(1.2);
   }
-  :active {
-    background-color: white;
-  }
+  /* :active {
+    color: #f0f0f0;
+  } */
   div {
     font-size: 20px;
     font-weight: bold;
