@@ -4,10 +4,8 @@ import styled from "styled-components";
 export const MainPageWraper = styled.div`
   width: 100%;
   height: 1800px;
-  padding-left: 220px;
   justify-content: center;
-  /* background-color: blue; */
-  background-color: #f0e7fb;
+  background-color: white;
 `;
 
 // 상단 전체 랩
@@ -100,6 +98,23 @@ export const BankListBannerTitle = styled.span`
   font-size: 35px;
   font-weight: bold;
   padding-left: 71px;
+`;
+
+// 은행 랩
+export const BankWrap = styled.div`
+  border: 1px black solid;
+  border-radius: 10px;
+  width: 161px;
+  height: 124px;
+  display: inline-block;
+  margin: 0 10px 0 10px;
+  padding: 20px 20px 10px 20px;
+  a {
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    margin-top: 15px;
+  }
 `;
 
 //? 하단영역
