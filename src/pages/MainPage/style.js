@@ -3,17 +3,17 @@ import styled from "styled-components";
 //* 페이지 전체 랩
 export const MainPageWraper = styled.div`
   width: 100%;
+
   height: 100%;
   /* padding-left: 220px; */
   justify-content: center;
-  /* background-color: blue; */
-  background-color: #f0e7fb;
+  background-color: white;
 `;
 
 // 상단 전체 랩
 export const UpWraper = styled.div`
   width: 80%;
-  height: 615px;
+  height: 740px;
   background-color: white;
 `;
 
@@ -86,12 +86,37 @@ export const ProductFdButton = styled.button`
   cursor: pointer;
 `;
 
-// 은행 사이트 배너
+// 은행 리스트 배너
 export const BankListBanner = styled.div`
   width: 100%;
-  height: 220px;
-
+  height: 325px;
+  margin-top: 20px;
+  padding-top: 60px;
   background-color: aliceblue;
+`;
+
+// 은행 리스트 제목
+export const BankListBannerTitle = styled.span`
+  font-size: 35px;
+  font-weight: bold;
+  padding-left: 71px;
+`;
+
+// 은행 랩
+export const BankWrap = styled.div`
+  border: 1px black solid;
+  border-radius: 10px;
+  width: 161px;
+  height: 124px;
+  display: inline-block;
+  margin: 0 10px 0 10px;
+  padding: 20px 20px 10px 20px;
+  a {
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    margin-top: 15px;
+  }
 `;
 
 //? 하단영역
