@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -12,7 +13,7 @@ const firebaseConfig = {
   // messagingSenderId: "62978638072",
   // appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
   // measurementId: "G-ENB9S2CV1E",
-  //
+
   // * 박상우 전용 키
   // apiKey: "AIzaSyCL_AQsnjPdjq-vp8BvukPqza4XYNwMoZw",
   // authDomain: "mytest-b5942.firebaseapp.com",
@@ -36,12 +37,12 @@ const firebaseConfig = {
   // appId: "1:185433561488:web:6c96ed39e2589180017b15",
   // measurementId: "G-FVGRSGV6BX",
   // * 남마리나 전용 키 1
-  //   apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
-  //   authDomain: "jojoa-c3a5b.firebaseapp.com",
-  //   projectId: "jojoa-c3a5b",
-  //   storageBucket: "jojoa-c3a5b.appspot.com",
-  //   messagingSenderId: "848779014558",
-  //   appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
+  apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
+  authDomain: "jojoa-c3a5b.firebaseapp.com",
+  projectId: "jojoa-c3a5b",
+  storageBucket: "jojoa-c3a5b.appspot.com",
+  messagingSenderId: "848779014558",
+  appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
   //
   // * 남마리나 전용 키 2
   // apiKey: "AIzaSyBslbzRlInpFhHV2NnOwbjH2K6KOs8hHqU",
@@ -80,3 +81,16 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const authService = getAuth(app);
 export const db = getFirestore(app);
+
+export function useAuth() {
+  const [currentUser2, setCurrentUser2] = useState();
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(authService, (user) =>
+      setCurrentUser2(user)
+    );
+    return unsub;
+  }, []);
+
+  return currentUser2;
+}

@@ -19,7 +19,8 @@ export const ModalContainer = styled.div`
   /* translate는 본인의 크기 기준으로 작동한다. */
   position: absolute;
   width: 100%;
-  min-height: 950px;
+  /* max-width: 1194px; */
+  min-height: 866px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -30,10 +31,7 @@ top: 146px; */
 
 export const CloseButton = styled(CgClose)`
   display: flex;
-  justify-content: end;
-  align-items: flex-end;
-  margin-bottom: 20px;
-  margin-right: auto;
+  margin: auto 0 10px auto;
   cursor: pointer;
 `;
 
@@ -41,7 +39,7 @@ export const CloseButton = styled(CgClose)`
 export const ModalContents = styled.div`
   /* 모달창 크기 */
   width: 1194px;
-  min-height: 900px;
+  min-height: 866px;
 
   /* 모달창 디자인 */
   background: #ffffff;
@@ -67,27 +65,28 @@ export const Title = styled.div`
 `;
 
 //* 사용자 인풋창 부분
-export const MessageWrapper = styled.div``;
+export const MessageWrapper = styled.div`
+  margin: 10px;
+`;
 
 //* "12개월동안 ~씩 저축한다면,"
 export const Message = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  margin: 50px 325px 20px 20px;
+  /* align-items: center; */
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 40px;
   line-height: 54px;
-  display: flex;
-  align-items: center;
   color: #000000;
 `;
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
 `;
 export const Input = styled(NumericFormat).attrs((props) => ({
   inputLength: props.inputLength,
@@ -105,7 +104,7 @@ export const Input = styled(NumericFormat).attrs((props) => ({
       : "1px solid #dedede"};
 
   width: 274px;
-  margin: 45px 10px 0px 10px;
+  /* margin: 45px 10px 0px 10px; */
   padding-left: 50px;
   font-family: "Noto Sans";
   font-style: normal;
@@ -125,6 +124,7 @@ export const FirstGuide = styled.div`
 `;
 //* 보라색 글씨 강조
 export const Highlight = styled.div`
+  margin: 0 10px 0 0;
   color: #6a24ff;
 `;
 

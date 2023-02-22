@@ -3,6 +3,8 @@ import styled from "styled-components";
 //* 바디
 export const Wraper = styled.body`
   width: 100%;
+  height: 100vh;
+  position: relative;
   //성아-수정 1500px => 1600px
   /* height: 1600px; */
   display: flex;
@@ -267,6 +269,7 @@ export const FinanciialProductsWrap = styled.div``;
 
 //성아-banklist style
 export const StyledBankListContainer = styled.div`
+  width: 100%;
   /* width: 990px; */
   /* height: 1128px; */
   width: 100%;

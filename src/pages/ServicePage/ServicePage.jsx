@@ -300,6 +300,7 @@ const ServicePage = () => {
   //     // 선택되지 않은 상품인 경우
   //     handleSelectProducts(productId);
   //   }
+
   // };
   //* 상품 유형 배열을 반환하는 함수
   const getProductTypes = (products) => {
@@ -340,6 +341,7 @@ const ServicePage = () => {
   };
 
   //* setSelectedProductIds배열의 2번째 id값이 있으면 비교하기 버튼 활성화
+
   useEffect(() => {
     if (selectedProductIds[5].length > 1) {
       setNotAllow2(false);
@@ -347,6 +349,7 @@ const ServicePage = () => {
       setNotAllow2(true);
     }
   }, [selectedProductIds]);
+
 
   //* input 상태 값 저장
   const handleBlur = () => {
@@ -471,7 +474,7 @@ const ServicePage = () => {
     });
   };
   // useEffect(() => {
-  //   getMyBookmarkProduct();
+  // getMyBookmarkProduct();
   // }, []);
   // console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
 
@@ -616,7 +619,7 @@ const ServicePage = () => {
             >
               <ToCompare
                 onClick={() => OpenComparingModal()}
-                disabled={notAllow2}
+                // disabled={notAllow2}
               >
                 비교하기
               </ToCompare>
@@ -627,6 +630,28 @@ const ServicePage = () => {
                     selectedProductIds[0],
                     selectedProductIds[5],
                     selectedProductIds[10],
+
+                  ]}
+                  selectedProductRate={[
+                    selectedProductIds[1],
+                    selectedProductIds[6],
+                    selectedProductIds[11],
+                  ]}
+                  selectedProductRate2={[
+                    selectedProductIds[2],
+                    selectedProductIds[7],
+                    selectedProductIds[12],
+                  ]}
+                  selectedProductRateType={[
+                    selectedProductIds[3],
+                    selectedProductIds[8],
+                    selectedProductIds[13],
+                  ]}
+                  selectedProduct={[
+                    selectedProductIds[4],
+                    selectedProductIds[9],
+                    selectedProductIds[14],
+
                   ]}
                 />
               )}
@@ -839,6 +864,45 @@ const ServicePage = () => {
                           </FilterSubmit>
                         )}
                       </FilterSubmitWarper>
+                      <StyledBankListContainer>
+                        <div>
+                          <StyledBankList>
+                            <div
+                              ref={topLocation}
+                              className="top으로 가는 위치 지정"
+                            />
+                            <StyledBankListWrapper>
+                              {searchBank.length > 0 ? (
+                                <SearchBankList
+                                  activeItem={activeItem}
+                                  setActiveItem={setActiveItem}
+                                  searchBank={searchBank}
+                                  productTypes={productTypes}
+                                  depositbaseList={products}
+                                  depositOptionalList={depositOptionalList}
+                                  savingbaseList={savingbaseList}
+                                  savingOptionalList={savingoptionalList}
+                                  myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                                  handleClickProduct={handleClickProduct}
+                                />
+                              ) : (
+                                <AllBank
+                                  activeItem={activeItem}
+                                  setActiveItem={setActiveItem}
+                                  productTypes={productTypes}
+                                  depositbaseList={products}
+                                  depositOptionalList={depositOptionalList}
+                                  savingbaseList={savingbaseList}
+                                  savingoptionalList={savingoptionalList}
+                                  selectedProductIds={selectedProductIds}
+                                  handleClickProduct={handleClickProduct}
+                                  myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                                />
+                              )}
+                            </StyledBankListWrapper>
+                          </StyledBankList>
+                        </div>
+                      </StyledBankListContainer>
                     </TapContainerBox>
                   </TapContainer>
                   {showResults && (
@@ -872,6 +936,8 @@ const ServicePage = () => {
               {/* ##################################################################### */}
 
               {activeTab === 2 && (
+
+
                 <div>
                   <TapContainer>
                     <TapContainerBox>

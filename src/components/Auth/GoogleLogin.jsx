@@ -7,7 +7,12 @@ import {
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authService } from "../../config/firebase";
-import { SocialLoginItem, SocialLoginLogo, SocialLoginLogoImg } from "./style";
+import {
+  GoogleImg,
+  SocialLoginItem,
+  SocialLoginLogo,
+  SocialLoginLogoImg,
+} from "./style";
 
 export const GoogleLogin = () => {
   const navigate = useNavigate();
@@ -33,11 +38,7 @@ export const GoogleLogin = () => {
 
   return (
     <SocialLoginItem onClick={handleGoogleLogin}>
-      <SocialLoginLogo>
-        <SocialLoginLogoImg
-          src={require("../../assets/social-login-google.png")}
-        />
-      </SocialLoginLogo>
+      <GoogleImg src={require("../../assets/google-login.png")} />
     </SocialLoginItem>
   );
 };
