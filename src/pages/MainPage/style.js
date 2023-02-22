@@ -3,8 +3,8 @@ import styled from "styled-components";
 //* 페이지 전체 랩
 export const MainPageWraper = styled.div`
   width: 100%;
-  height: 1800px;
-  padding-left: 220px;
+  height: 100%;
+  /* padding-left: 220px; */
   justify-content: center;
   /* background-color: blue; */
   background-color: #f0e7fb;
@@ -112,9 +112,9 @@ export const Dictionary = styled.button`
   :hover {
     transform: scale(1.2);
   }
-  :active {
-    background-color: white;
-  }
+  /* :active {
+    color: #f0f0f0;
+  } */
   div {
     font-size: 20px;
     font-weight: bold;
