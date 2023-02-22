@@ -48,16 +48,13 @@ import { useAuth } from "../../config/firebase";
 
 // import { useNavigate } from "react-router-dom";
 
-
 function MyPage() {
   const [tab, setTab] = useState(0);
   const userSession = sessionStorage.getItem(
-    `firebase:authUser:AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs:[DEFAULT]` // 개인 키 입력해주세요.
+    `firebase:authUser:AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA:[DEFAULT]` // 개인 키 입력해주세요.
 
-  // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요. (북마크 기능으로 선작업.)
-  // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
-
-
+    // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요. (북마크 기능으로 선작업.)
+    // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
   );
 
   const currentUser = JSON.parse(userSession ?? "");
@@ -67,7 +64,6 @@ function MyPage() {
   const user = authService.currentUser;
   const [userEmail, setUserEmail] = useState(currentUser.email);
   const [btn, setBtn] = useState(false);
-
 
   //유저의 현재 password   ->  ChangePassword.jsx
   const [userPassword, setUserPassword] = useState("");
@@ -144,7 +140,6 @@ function MyPage() {
   //     setPhoneNum(phoneList[0]?.phoneNumber);
   //   });
   // };
-
 
   return (
     <MyPageWrapper className="제일 큰 박스">

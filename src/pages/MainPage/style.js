@@ -3,18 +3,17 @@ import styled from "styled-components";
 //* 페이지 전체 랩
 export const MainPageWraper = styled.div`
   width: 100%;
-
   height: 100%;
   /* padding-left: 220px; */
   justify-content: center;
-  background-color: white;
+  background-color: #f5f5f5;
 `;
 
 // 상단 전체 랩
 export const UpWraper = styled.div`
   width: 80%;
   height: 740px;
-  background-color: white;
+  background-color: #f5f5f5;
 `;
 
 // 배너 이미지
@@ -32,7 +31,7 @@ export const GreetingBox = styled.div`
   border: solid 1px #dedede;
   width: 100%;
   height: 395px;
-  background-color: aliceblue;
+  background-color: white;
   padding: 60px 0px 0px 71px;
 
   img {
@@ -92,7 +91,9 @@ export const BankListBanner = styled.div`
   height: 325px;
   margin-top: 20px;
   padding-top: 60px;
-  background-color: aliceblue;
+  border: solid 1px #dedede;
+  border-radius: 20px;
+  background-color: white;
 `;
 
 // 은행 리스트 제목
@@ -213,7 +214,10 @@ export const DownWraper = styled.div`
   border-radius: 20px;
   margin-top: 20px;
   padding: 58px 46px 33px 71px;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
+  border: solid 1px #dedede;
+  border-radius: 20px;
+  background-color: white;
 `;
 
 // 오늘의 금융 팁 제목

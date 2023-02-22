@@ -18,11 +18,13 @@ export const Logo = styled.img`
   height: 36px;
   display: flex;
   justify-content: flex-start;
+  margin-left: 30px;
   cursor: pointer;
 `;
 export const NavBar = styled.div`
   display: flex;
   justify-content: end;
+  margin-right: 30px;
   gap: 40px;
 `;
 export const Nav = styled.div`

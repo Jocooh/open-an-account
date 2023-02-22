@@ -17,7 +17,7 @@ import logoLists from "../../assets/logo/logo";
 function Product({
   inputValue,
   selectedProduct,
-  // selectedProductId,
+  selectedProductId,
   selectedProductRate,
   selectedProductRate2,
   selectedProductRateType,
@@ -114,7 +114,7 @@ function Product({
             productId={selectedProduct.fin_prdt_cd}
             productName={selectedProduct.fin_prdt_nm}
             productCoName={selectedProduct.kor_co_nm}
-            // productDocId={selectedProductId}
+            productDocId={selectedProductId}
           />
         </Scrap>
       </ProductBox>
