@@ -30,6 +30,7 @@ export const TopSectionTitle = styled.div`
   height: 50px;
   font-size: 48px;
   text-align: center;
+  font-weight: bold;
 `;
 
 //* 상단 SectionSubTitle

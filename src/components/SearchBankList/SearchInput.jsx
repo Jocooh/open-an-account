@@ -35,12 +35,9 @@ function SearchInput({ setSearchBank }) {
 export default SearchInput;
 
 const StyledInputContainer = styled.div`
-  /* width: 990px; */
   width: 100%;
   height: 200px;
   border-radius: 10px;
-
-  /* background-color: violet; */
 `;
 
 const StyledLabelText = styled.div`
