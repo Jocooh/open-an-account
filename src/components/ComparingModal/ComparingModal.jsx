@@ -5,6 +5,7 @@ import {
   FirstGuide,
   Highlight,
   Input,
+  InputWrapper,
   Message,
   MessageWrapper,
   ModalBackground,
@@ -22,13 +23,17 @@ import SavingProduct from "../Product/SavingProduct";
 const ComparingModal = ({
   setComparingModalOpen,
   selectedProduct,
+  selectedProductId,
   selectedProductRate,
   selectedProductRate2,
-
-  // selectedProductRateType
-
+  selectedProductRateType,
 }) => {
   const [inputValue, setInputValue] = useState("");
+
+  console.log("selectedProduct :>> ", selectedProduct);
+  console.log("selectedProductRate :>> ", selectedProductRate);
+  console.log("selectedProductRate2 :>> ", selectedProductRate2);
+  console.log("selectedProductRateType :>> ", selectedProductRateType);
 
   return (
     <ModalBackground>
@@ -48,103 +53,113 @@ const ComparingModal = ({
           }}
         /> */}
         <ModalContents>
-          <TitleWrapper>
-            <Title>상품 비교</Title>
-          </TitleWrapper>
+          <Title>상품 비교</Title>
           <MessageWrapper>
             {selectedProduct[0].category === "예금 기본 정보" ? (
               <>
                 <Message>
-                  <Highlight>12개월 </Highlight>동안
-                  <Input
-                    maxLength={11}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    thousandSeparator=","
-                    placeholder="금액을 입력해주세요"
-                    inputLength={inputValue.length}
-                  />
+                  <Highlight>12개월</Highlight>동안
+                  <InputWrapper>
+                    <Input
+                      maxLength={11}
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      thousandSeparator=","
+                      placeholder="금액을 입력해주세요"
+                      inputLength={inputValue.length}
+                    />
+
+                    <FirstGuide>
+                      금액은 최대 10억 미만으로 입력할 수 있습니다.
+                    </FirstGuide>
+                  </InputWrapper>
                   원을 예치하면
                 </Message>
-                <FirstGuide>
-                  * 금액은 10억 미만으로 입력할 수 있습니다.
-                </FirstGuide>
                 <Products>
                   <Product
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
-                    selectedProductId={selectedProduct[0].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductId={selectedProductId[0]}
+                    selectedProductRate={selectedProductRate[0]}
+                    selectedProductRate2={selectedProductRate2[0]}
+                    selectedProductRateType={selectedProductRateType[0]}
                   />
                   <Product
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
-                    selectedProductId={selectedProduct[1].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductId={selectedProductId[1]}
+                    selectedProductRate={selectedProductRate[1]}
+                    selectedProductRate2={selectedProductRate2[1]}
+                    selectedProductRateType={selectedProductRateType[1]}
                   />
                   {selectedProduct[2] ? (
                     <Product
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
-                      selectedProductId={selectedProduct[2].id}
-                      selectedProductRate={selectedProductRate}
-                      selectedProductRate2={selectedProductRate2}
-                      // selectedProductRateType={selectedProductRateType}
+                      selectedProductId={selectedProductId[2]}
+                      selectedProductRate={selectedProductRate[2]}
+                      selectedProductRate2={selectedProductRate2[2]}
+                      selectedProductRateType={selectedProductRateType[2]}
                     />
                   ) : (
-                    <Product />
+                    <img
+                      src={require("../../assets/thirdProduct.png")}
+                      alt="세번째 상품 미선택"
+                    />
                   )}
                 </Products>
               </>
             ) : (
               <>
                 <Message>
-                  12개월 동안
-                  <Input
-                    maxLength={11}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    thousandSeparator=","
-                    placeholder="금액을 입력해주세요"
-                    inputLength={inputValue.length}
-                  />
+                  <Highlight>12개월</Highlight> 동안
+                  <InputWrapper>
+                    <Input
+                      maxLength={11}
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      thousandSeparator=","
+                      placeholder="금액을 입력해주세요"
+                      inputLength={inputValue.length}
+                    />
+
+                    <FirstGuide>
+                      금액은 최대 10억 미만으로 입력할 수 있습니다.
+                    </FirstGuide>
+                  </InputWrapper>
                   원 씩 적립하면
-                  <FirstGuide>
-                    * 금액은 최대 10억 미만으로 입력할 수 있습니다.
-                  </FirstGuide>
                 </Message>
                 <Products>
                   <SavingProduct
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
-                    selectedProductId={selectedProduct[0].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductId={selectedProductId[0]}
+                    selectedProductRate={selectedProductRate[0]}
+                    selectedProductRate2={selectedProductRate2[0]}
+                    selectedProductRateType={selectedProductRateType[0]}
                   />
                   <SavingProduct
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
-                    selectedProductId={selectedProduct[1].id}
-                    selectedProductRate={selectedProductRate}
-                    selectedProductRate2={selectedProductRate2}
-                    // selectedProductRateType={selectedProductRateType}
+                    selectedProductId={selectedProductId[1]}
+                    selectedProductRate={selectedProductRate[1]}
+                    selectedProductRate2={selectedProductRate2[1]}
+                    selectedProductRateType={selectedProductRateType[1]}
                   />
                   {selectedProduct[2] ? (
                     <SavingProduct
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
-                      selectedProductId={selectedProduct[2].id}
-                      selectedProductRate={selectedProductRate}
-                      selectedProductRate2={selectedProductRate2}
-                      // selectedProductRateType={selectedProductRateType}
+                      selectedProductId={selectedProductId[2]}
+                      selectedProductRate={selectedProductRate[2]}
+                      selectedProductRate2={selectedProductRate2[2]}
+                      selectedProductRateType={selectedProductRateType[2]}
                     />
                   ) : (
-                    <Product />
+                    <img
+                      src={require("../../assets/thirdProduct.png")}
+                      alt="세번째 상품 미선택"
+                    />
                   )}
                 </Products>
               </>
@@ -165,4 +180,4 @@ const ComparingModal = ({
   );
 };
 
-export default ComparingModal;
+export default React.memo(ComparingModal);
