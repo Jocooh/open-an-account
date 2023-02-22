@@ -41,6 +41,7 @@ import {
   SignnUpTitleTextWrapper,
   SignnUpTitleWrapper,
   SignUpTitle,
+  SignUpTitleTextWrapper,
 } from "./style";
 
 const AuthForm = ({
@@ -88,8 +89,7 @@ const AuthForm = ({
       <AuthWrapper>
         {signUp ? (
           <>
-            {" "}
-            <SignnUpTitleTextWrapper>
+            <SignUpTitleTextWrapper>
               <SignnUpTitleWrapper>
                 <SignUpTitle>{title}</SignUpTitle>
               </SignnUpTitleWrapper>
@@ -103,7 +103,7 @@ const AuthForm = ({
                   </Link>
                 </AuthText>
               </AuthTextWrapper>
-            </SignnUpTitleTextWrapper>
+            </SignUpTitleTextWrapper>
           </>
         ) : (
           <>
@@ -182,7 +182,7 @@ const AuthForm = ({
             </AuthInputWrapper>
 
             <AuthInputWrapper>
-              <AuthLabel>비밀번호 재입력</AuthLabel>
+              <AuthLabel>비밀번호 확인</AuthLabel>
               <AuthInput
                 id="confirm-password"
                 type="password"

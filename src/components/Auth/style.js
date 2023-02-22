@@ -56,8 +56,10 @@ export const LoginTitleTextWrapper = styled.div`
 export const LoginTitleWrapper = styled.div`
   width: 560px;
   height: 61px;
+
+  margin-bottom: -15px; // css 안먹어서 임시로.
 `;
-export const LoginTitle = styled.div`
+export const LoginTitle = styled.h1`
   font-size: 32px;
   font-weight: bold;
   color: #000000;
@@ -79,7 +81,7 @@ export const LinkText = styled.span`
   /* margin: 1rem 0.5rem 2rem; */
 `;
 // auth title - sign up
-export const SignnUpTitleTextWrapper = styled.div`
+export const SignUpTitleTextWrapper = styled.div`
   width: 560px;
   height: 119px;
 
@@ -93,6 +95,8 @@ export const SignnUpTitleWrapper = styled.div`
 
   text-align: center;
   justify-content: center;
+
+  margin-bottom: -30px; // css 안먹어서 임시로.
 `;
 export const SignUpTitle = styled.div`
   font-size: 48px;
@@ -115,7 +119,7 @@ export const AuthInputWrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; // css 안먹어서 임시로 - 이거 하니까 왜 옆으로 안넘어가지
   /* box-sizing: border-box; */
 `;
 export const AuthLabel = styled.label`
@@ -123,7 +127,7 @@ export const AuthLabel = styled.label`
   font-weight: 600;
   color: #000000;
 
-  margin-bottom: 5px;
+  margin-bottom: 10px; // css 안먹어서 임시로
 `;
 export const AuthInput = styled.input`
   width: 420px;
@@ -134,9 +138,8 @@ export const AuthInput = styled.input`
   border: 1px solid #a3a3a3;
   border-radius: 10px;
 
-  /* &:focus {
-    outline: 1px solid #6a24ff;
-  } */
+  text-indent: 25px;
+
   &:focus {
     outline: none;
   }
@@ -153,6 +156,8 @@ export const AuthButton = styled.button`
 
   cursor: pointer;
 
+  margin-top: 15px; // css 안먹어서 임시로
+
   :disabled {
     background-color: #dadada;
     color: #fff;
@@ -163,8 +168,10 @@ export const AuthInputValidationWrapper = styled.div`
   height: 35px;
   font-size: 14px;
   color: #ff0000;
+
+  margin-top: 5px; // 인풋창이 줄어들음.....................
 `;
-export const AuthInputValidationText = styled.div`
+export const AuthInputValidationText = styled.p`
   .message {
     &.success {
       color: green;
@@ -178,7 +185,7 @@ export const AuthInputValidationText = styled.div`
 export const BoundaryLineWrapper = styled.div`
   width: 414px;
   height: 20px;
-  margin: 40px 0;
+  margin: 10px 0 30px 0; // css 안먹어서 임시로
 `;
 export const BoundaryLine = styled.span`
   font-size: 15px;
