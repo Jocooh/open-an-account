@@ -2,13 +2,15 @@
 import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 * {
-  margin: 0;
+  margin: 0 auto;
   border: 0;
+  max-width: 1440px;
 }
 
 body {
-  max-width: 1440px;
-  margin: 0;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -48,7 +50,6 @@ td,
 textarea,
 th,
 ul {
-  margin: 0;
   padding: 0;
 }
 body,

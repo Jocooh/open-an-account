@@ -28,7 +28,7 @@ const Bookmarks = ({
   const navigate = useNavigate();
 
   // 북마크 추가 및 삭제
-  const addBookmark = async () => {
+  const handleBookmarkChange = async () => {
     // 로그인 체크
     // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
     const newId = currentUserUid + productId;
@@ -75,21 +75,36 @@ const Bookmarks = ({
   }, []);
 
   return (
-    <div onClick={addBookmark}>
+    <div onClick={handleBookmarkChange}>
       {/* 찜 유무 */}
-      {bookmark ? <StyledBookmarkFill /> : <StyledBookmark />}
+
+      <Bookmarked>
+        {bookmark ? (
+          <BookmarkedImg src={require(".././assets/bookmarked.png")} />
+        ) : (
+          <BookmarkedImg src={require(".././assets/bookmarked-empty.png")} />
+        )}
+      </Bookmarked>
     </div>
   );
 };
 export default Bookmarks;
 
-const StyledBookmarkFill = styled(BsFillBookmarkFill)`
+// const StyledBookmarkFill = styled(BsFillBookmarkFill)`
+//   width: 20px;
+//   height: 27px;
+//   color: #6a24ff;
+// `;
+// const StyledBookmark = styled(BsBookmark)`
+//   width: 20px;
+//   height: 27px;
+//   color: #6a24ff;
+// `;
+
+const Bookmarked = styled.div`
   width: 20px;
-  height: 27px;
-  color: #6a24ff;
+  height: 25px;
 `;
-const StyledBookmark = styled(BsBookmark)`
-  width: 20px;
-  height: 27px;
-  color: #6a24ff;
+const BookmarkedImg = styled.img`
+  width: 100%;
 `;

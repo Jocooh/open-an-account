@@ -29,7 +29,6 @@ const BookmarkPrdtList = ({ currentUser }) => {
 
   return (
     <>
-      {" "}
       {items.map((item) => (
         <BookmarkPrdtItem item={item} key={item.productName} />
       ))}

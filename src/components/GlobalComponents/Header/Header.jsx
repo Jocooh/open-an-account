@@ -32,12 +32,15 @@ function Header() {
     <Container>
       <Logo
         onClick={() => navigate("/")}
-        src={require("../../../assets/star.png")}
+        src={require("../../../assets/Tiper_logo.png")}
         alt="메인"
       />
       <NavBar>
-        <Nav onClick={() => navigate("/boardpage")}>커뮤니티</Nav>
-        <Nav onClick={() => navigate("/")}>문의하기</Nav>
+        <Nav onClick={() => navigate("/")}>대시보드</Nav>
+        <Nav onClick={() => navigate("/ServicePage")}>계산기</Nav>
+
+        {/* 24일이후 추가할 예정 */}
+        {/* <Nav onClick={() => navigate("/boardpage")}>커뮤니티</Nav> */}
         <LoginToggle>
           {!isLoggedIn && (
             <>

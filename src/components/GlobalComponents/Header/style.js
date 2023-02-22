@@ -5,32 +5,35 @@ export const Container = styled.div`
   width: 100vw;
   /* height: 120px; */
   height: 7.5rem;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 
-  padding: 2rem 3rem;
-  text-align: center;
+  /* padding: 2rem 3rem; */
+  /* text-align: center; */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 `;
 export const Logo = styled.img`
-  width: 60px;
-  justify-content: center;
+  width: 116px;
+  height: 36px;
+  display: flex;
+  justify-content: flex-start;
   cursor: pointer;
 `;
 export const NavBar = styled.div`
   display: flex;
+  justify-content: end;
+  gap: 40px;
 `;
 export const Nav = styled.div`
   font-weight: bold;
-  padding-left: 30px;
   box-sizing: border-box;
   cursor: pointer;
 
-  @media screen and (max-width: 600px) {
+  /* @media screen and (max-width: 600px) {
     font-size: 14px;
     padding-left: 15px;
-  }
+  } */
 `;
 export const LoginToggle = styled.div`
   display: flex;
