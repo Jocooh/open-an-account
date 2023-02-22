@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   max-width: 1440px;
+  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -47,8 +48,7 @@ td,
 textarea,
 th,
 ul {
-  margin: 0 auto;
-  padding: 0 auto;
+  padding: 0;
 }
 body,
 button,
