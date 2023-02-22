@@ -2,7 +2,7 @@
 import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 * {
-  margin: 0;
+  margin: 0 auto;
   border: 0;
 }
 
@@ -48,7 +48,6 @@ td,
 textarea,
 th,
 ul {
-  margin: 0;
   padding: 0;
 }
 body,
