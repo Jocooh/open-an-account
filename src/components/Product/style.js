@@ -95,5 +95,6 @@ export const Scrap = styled.div`
   display: flex;
   /* position: fixed; */
   /* justify-content: end; */
-  margin: auto 0 0 0;
+  margin: auto 0 0 auto;
+
 `;
