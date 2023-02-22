@@ -1,6 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ChangePassword from "../../components/Mypage/ChangePassword";
+import EnrollNumber from "../../components/Mypage/EnrollNumber";
+import ChangeNickname from "../../components/Mypage/ChangeNickname";
+import {
+  setDoc,
+  doc,
+  collection,
+  getDoc,
+  onSnapshot,
+  query,
+  getDocs,
+} from "firebase/firestore";
+import {
+  getAuth,
+  onAuthStateChanged,
+  updatePassword,
+  updateProfile,
+  setPersistence,
+  signInWithEmailAndPassword,
+  browserSessionPersistence,
+} from "firebase/auth";
+import { db } from "../../config/firebase";
 // import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
 import { RiLogoutBoxLine } from "react-icons/ri";
 import {
   MyPageWrapper,
@@ -8,62 +30,138 @@ import {
   StyledImage,
   RightBox,
   UserNicknameDiv,
+  UserText,
   UserContentDiv,
   ContentDiv,
   UserAccountDiv,
   UserHistoryDiv,
   RightWrapper,
-  ChangePasswordDiv,
-  UserInput,
-  EnrollNumberDiv,
-  ChangeNickNameDiv,
   LogOutBtn,
   StyledIcons,
+  HistoryCategory,
+  CategoryImg,
+  SaveBtn,
 } from "./style";
-// import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
+import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../config/firebase";
+
+// import { useNavigate } from "react-router-dom";
 
 function MyPage() {
-  const navigate = useNavigate();
-
-  // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요. (북마크 기능으로 선작업.)
-  // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
+  const [tab, setTab] = useState(0);
   const userSession = sessionStorage.getItem(
-    `firebase:authUser:AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw:[DEFAULT]` // 개인 키 입력해주세요.
+    `firebase:authUser:AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs:[DEFAULT]` // 개인 키 입력해주세요.
   );
   const currentUser = JSON.parse(userSession ?? "");
+  const currentUser3 = useAuth();
+  // console.log(currentUser3);
+  //마이페이지 기능구현 필요 state
+  const user = authService.currentUser;
+  const [userEmail, setUserEmail] = useState(currentUser.email);
+  const [btn, setBtn] = useState(false);
 
-  // 원준 작업.
-  // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가. -- 현재 위 코드로 먼저 걸러주기 때문에 실행되지 않음. 더 알아볼 것.
-  // useEffect(() => {
-  //   if (!authService.currentUser) {
-  //     alert("마이페이지는 로그인 후 접근이 가능합니다.");
-  //     navigate("/login");
-  //     return;
-  //   }
-  // }, []);
+  //유저의 현재 password   ->  ChangePassword.jsx
+  const [userPassword, setUserPassword] = useState("");
+  //editUserPassword: 고치고 싶은 비밀번호
+  const [editUserPassword, setEditUserPassword] = useState("");
+  const [inputValidation, setInputValidation] = useState(true);
+
+  //-> ChangeNickName.jsx
+  //newNickname: 유저의 바꿀 닉네임 ,  name: 왼쪽박스 유저 네임
+  const [newNickName, setNewNickName] = useState(currentUser?.displayName);
+  const [name, setName] = useState(newNickName);
+  //PhoneNum: 유저가 인풋에 본인의 휴대폰번호를 적을 경우 add될 state
+  const [phoneNum, setPhoneNum] = useState("");
+
+  //EnrollNum.jsx
+  //phoneList : 파이어베이스에 저장되어있는 키(?)값,,필드값?
+  const [phoneList, setPhoneList] = useState("");
+
+  //사용자 처음 신원조회
+  const getUserInfo = () => {
+    if (currentUser !== null) {
+      const displayName = currentUser.displayName;
+      const email = currentUser.email;
+      const uid = currentUser.uid;
+      const password = currentUser.password;
+    }
+  };
+
+  //닉네임 업데이트 함수
+  const clickUserUpdate = async (e) => {
+    e.preventDefault();
+    if (window.confirm("개인정보를 수정 하시겠습니까?")) {
+      await updateProfile(user, {
+        displayName: newNickName,
+      })
+        .then(alert("개인정보 수정 완료"), setName(newNickName), setBtn(true))
+        .catch((error) => {
+          console.log(error);
+        });
+      await PasswordUpdateHanlder().then(console.log("비밀번호 변경확인"));
+    } else {
+      alert("개인정보 수정 취소");
+    }
+  };
+  //비밀번호 바꾸기 함수
+  const PasswordUpdateHanlder = async () => {
+    await updatePassword(user, userPassword)
+      .then(() => {
+        console.log("password변경 성공");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setUserPassword("");
+  };
+  //핸드폰은 user라는 이름으로 컬렉션에 들어갑니다.  => 계속 진행 중이니까 주석처리중
+  // const addPhoneNumber = async () => {
+  //   const newNumber = currentUser.uid;
+  //   await setDoc(doc(db, "users", newNumber), {
+  //     userId: currentUser.uid,
+  //     phoneNumber: phoneNum,
+  //   });
+  // };
+
+  // const getPhoneNumber = async () => {
+  //   const querySnapshot = await getDocs(collection(db, "users"));
+  //   const phoneLists = [];
+  //   querySnapshot.forEach((doc) => {
+  //     const newProduct = {
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     };
+  //     phoneLists.push(newProduct);
+  //     setPhoneNum(phoneList[0]?.phoneNumber);
+  //   });
+  // };
 
   return (
-    <MyPageWrapper className="제일 큰 박스 width:1440px">
+    <MyPageWrapper className="제일 큰 박스">
       {/* ###########  Left    ################# */}
-      <LeftBox className="왼쪽 박스 width:437px">
+      <LeftBox className="왼쪽 박스">
         {/* 유저 닉네임 확인 */}
         <UserNicknameDiv>
           <StyledImage
             src={require("../../assets/apple.png")}
             alt="유저사진"
           ></StyledImage>
-          <h3 style={{ fontSize: "25px" }}>유저 닉네임</h3>
+          {/* {currentUser.displayName !== newNickName ? (
+            <h3 style={{ fontSize: "25px" }}>{name}</h3>
+          ) : (
+            <h3 style={{ fontSize: "25px" }}>{currentUser.displayName}</h3>
+          )} */}
+          <h3 style={{ fontSize: "25px" }}>{name}</h3>
         </UserNicknameDiv>
         {/* 유저 이름,id,연락처 부분 */}
         <UserContentDiv>
-          <h3 style={{ fontSize: "20px" }}>조성아</h3>
+          <UserText>조성아</UserText>
           {/* 로그인 ID */}
           <ContentDiv>
             <div>
               <p>로그인 ID</p>
-              <p style={{ color: "#aaa" }}>test1@test.com</p>
+              <p style={{ color: "#aaa" }}>{currentUser?.email}</p>
             </div>
             {/* 로그아웃 버튼 */}
             <LogOutBtn>
@@ -73,54 +171,125 @@ function MyPage() {
           </ContentDiv>
           <div>
             <p>연락처</p>
-            <p style={{ color: "#aaa" }}> 등록된 전화번호가 없습니다.</p>
+            <p style={{ color: "#aaa" }}>
+              {phoneNum !== "" ? <>{phoneNum}</> : "등록된 번호가 없어요"}
+            </p>
           </div>
         </UserContentDiv>
         {/* 유저 계정 변경 부분 (디폴트부분) */}
-        <UserAccountDiv>
-          <StyledIcons src={require("../../assets/lock.png")} alt="자물쇠" />
-          <p>계정 관리</p>
+        <UserAccountDiv
+          style={tab === 0 ? { backgroundColor: "#e6e8ea" } : null}
+        >
+          <CategoryImg>
+            <StyledIcons src={require("../../assets/lock.png")} alt="자물쇠" />
+            <button
+              onClick={() => {
+                setTab(0);
+              }}
+              style={{ fontSize: "20px" }}
+            >
+              계정 관리
+            </button>
+          </CategoryImg>
           <p>〉</p>
         </UserAccountDiv>
         {/* 히스토리 */}
         <UserHistoryDiv>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button>찜한 상품</button>
+          <UserText
+            style={{ borderBottom: "1px solid #ddd", paddingBottom: "10px" }}
+          >
+            히스토리
+          </UserText>
+          <HistoryCategory
+            style={tab === 1 ? { backgroundColor: "#e6e8ea" } : null}
+          >
+            <CategoryImg>
+              <StyledIcons src={require("../../assets/diamond.png")} />
+              <button
+                onClick={() => {
+                  setTab(1);
+                }}
+              >
+                찜한 상품
+              </button>
+            </CategoryImg>
             <p>〉</p>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button>내가 쓴 글</button>
+          </HistoryCategory>
+          <HistoryCategory
+            style={tab === 2 ? { backgroundColor: "#e6e8ea" } : null}
+          >
+            <CategoryImg>
+              <StyledIcons src={require("../../assets/paper.png")} />
+              <button
+                onClick={() => {
+                  setTab(2);
+                }}
+              >
+                내가 쓴 글
+              </button>
+            </CategoryImg>
             <p>〉</p>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button>스크랩한 글</button>
+          </HistoryCategory>
+          <HistoryCategory
+            style={tab === 3 ? { backgroundColor: "#e6e8ea" } : null}
+          >
+            <CategoryImg>
+              <StyledIcons src={require("../../assets/lists.png")} />
+              <button
+                onClick={() => {
+                  setTab(3);
+                }}
+              >
+                스크랩한 글
+              </button>
+            </CategoryImg>
             <p>〉</p>
-          </div>
+          </HistoryCategory>
         </UserHistoryDiv>
       </LeftBox>
-      {/* ######################  Right  ########## */}
-      <RightBox className="오른쪽 박스 width:582px">
-        <RightWrapper className="오른쪽 박스 안에 작은 박스 width:508px">
-          <ChangePasswordDiv className="비밀번호변경">
-            <h3 style={{ fontSize: "25px" }}>비밀번호 변경</h3>
-            <p>기존 비밀번호 </p>
-            <UserInput type="password"></UserInput>
-            <p>새 비밀번호</p>
-            <p style={{ color: "#aaa" }}>
-              8~16자 이내의 영문, 숫자, 기호를 포함한 문자열
-            </p>
-            <UserInput type="password"></UserInput>
-            <p>새 비밀번호 확인</p>
-            <UserInput type="password"></UserInput>
-          </ChangePasswordDiv>
-          <EnrollNumberDiv className="연락처등록">
-            <h3 style={{ fontSize: "25px" }}>연락처 등록</h3>
-            <UserInput type="number" placeholder="010-1234-5678"></UserInput>
-          </EnrollNumberDiv>
-          <ChangeNickNameDiv className="닉네임변경">
-            <h3 style={{ fontSize: "25px" }}>닉네임 변경</h3>
-            <UserInput type="text" placeholder="유저 닉네임"></UserInput>
-          </ChangeNickNameDiv>
+
+      <RightBox className="오른쪽 박스">
+        <RightWrapper className="오른쪽 박스 안에 작은 박스">
+          {tab === 0 && (
+            <form
+              onSubmit={(e) => {
+                clickUserUpdate(e);
+              }}
+            >
+              <ChangePassword
+                editUserPassword={editUserPassword}
+                setEditUserPassword={setEditUserPassword}
+                currentUser={currentUser}
+                userPassword={userPassword}
+                setUserPassword={setUserPassword}
+                setInputValidation={setInputValidation}
+                inputValidation={inputValidation}
+                currentUser3={currentUser3}
+              />
+              <EnrollNumber
+                setPhoneNum={setPhoneNum}
+                phoneNum={phoneNum}
+                currentUser={currentUser}
+                phoneList={phoneList}
+              />
+              <ChangeNickname
+                newNickName={newNickName}
+                setNewNickName={setNewNickName}
+              />
+
+              {newNickName !== currentUser.displayName ||
+              editUserPassword !== userPassword ? (
+                <SaveBtn>변경사항 저장</SaveBtn>
+              ) : (
+                <SaveBtn style={{ backgroundColor: "#aaa" }} disabled>
+                  변경사항 저장
+                </SaveBtn>
+              )}
+            </form>
+          )}
+          {tab === 1 && <BookmarkPrdtList currentUser={currentUser} />}
+          {tab === 2 && <div>추후에...</div>}
+          {tab === 3 && <div>이것도 추후에...</div>}
         </RightWrapper>
       </RightBox>
     </MyPageWrapper>
@@ -130,4 +299,13 @@ function MyPage() {
 export default MyPage;
 
 // 잊지마라 조성아 여기 넣어야댄다. 네..
-/* <BookmarkPrdtList currentUser={currentUser} /> */
+/*  // console.log(nickName);
+  // 원준 작업.
+  // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가. -- 현재 위 코드로 먼저 걸러주기 때문에 실행되지 않음. 더 알아볼 것.
+  // useEffect(() => {
+  //   if (!authService.currentUser) {
+  //     alert("마이페이지는 로그인 후 접근이 가능합니다.");
+  //     navigate("/login");
+  //     return;
+  //   }
+  // }, []); */
