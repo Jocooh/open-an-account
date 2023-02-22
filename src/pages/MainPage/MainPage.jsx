@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper";
+import { authService } from "../../config/firebase";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";
@@ -41,6 +42,10 @@ import {
 } from "./style";
 
 const MainPage = () => {
+  // 로그인 됐을 때 알기 위해
+  const isLoggedIn = sessionStorage.key(0);
+  // 유저 정보 가져오기
+  const user = authService.currentUser;
   const navigate = useNavigate();
   return (
     <MainPageWraper>
@@ -49,7 +54,10 @@ const MainPage = () => {
           <img src={require("../../assets/mainpage/상단 이미지.png")} />
           <GreetingTitle>
             <GreetingMent>팁퍼에서 시작하는</GreetingMent>
-            <Username>00님</Username>
+            <span>
+              {!isLoggedIn && <Username>고객님</Username>}
+              {isLoggedIn && <Username>{user.displayName}님</Username>}
+            </span>
             <Greetingment>의 금융관리</Greetingment>
           </GreetingTitle>
           <Greetingcontent>
@@ -226,7 +234,7 @@ const MainPage = () => {
 
             <img
               src={require("../../assets/mainpage/정기예금.png")}
-              style={{ marginTop: "120px" }}
+              style={{ marginTop: "200px" }}
             />
           </Tip>
           <Tip>
@@ -251,7 +259,7 @@ const MainPage = () => {
             </TipTitle>
             <img
               src={require("../../assets/mainpage/단리.png")}
-              style={{ marginTop: "170px" }}
+              style={{ margin: "250px 30px 0 0" }}
             />
             <TipTitle>단리</TipTitle>
             <TipComments>
@@ -288,13 +296,13 @@ const MainPage = () => {
                 src={require("../../assets/mainpage/복리화살표.png")}
                 style={{
                   position: "absolute",
-                  marginTop: "0px",
+                  margin: "60px 0 0 40px",
                   width: "130px",
                 }}
               />
               <img
                 src={require("../../assets/mainpage/복리.png")}
-                style={{ marginTop: "60px", position: "absolute" }}
+                style={{ margin: "130px 0 0 40px", position: "absolute" }}
               />
             </div>
           </Tip>

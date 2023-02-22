@@ -40,7 +40,5 @@ export const Nav = styled.div`
 export const LoginToggle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
+  gap: 40px;
 `;
