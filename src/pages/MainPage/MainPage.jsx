@@ -18,6 +18,7 @@ import {
   Greetingcontent,
   ProductFdButton,
   BankListBanner,
+  BankListBannerTitle,
   BottomWrap,
   BankList,
   BankListTilte,
@@ -61,6 +62,11 @@ const MainPage = () => {
           </ProductFdButton>
         </GreetingBox>
         <BankListBanner>
+          <BankListBannerTitle>은행 바로가기</BankListBannerTitle>
+          <img
+            src={require("../../assets/mainpage/은행 바로가기.png")}
+            style={{ marginLeft: "10px" }}
+          />
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             pagination={{ clickable: true }}
@@ -71,10 +77,15 @@ const MainPage = () => {
             loop={true}
             observer={true}
             observeParents={true}
-            style={{ borderRadius: "10px" }}
+            style={{ borderRadius: "20px" }}
           >
             <BankBanner>
-              <a href="https://www.wooribank.com/">우리은행</a>
+              <a
+                href="https://www.wooribank.com/"
+                style={{ border: "1px black solid" }}
+              >
+                우리은행
+              </a>
               <a href="https://www.kebhana.com/">하나은행</a>
               <a href="https://www.ibk.co.kr/">IBK기업은행</a>
               <a href="https://www.dgb.co.kr/dgb_ebz_main.jsp">대구은행</a>
