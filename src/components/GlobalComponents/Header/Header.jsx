@@ -32,7 +32,7 @@ function Header() {
     <Container>
       <Logo
         onClick={() => navigate("/")}
-        src={require("../../../assets/Tiper_logo.png")}
+        src={require("../../../assets/Tipper_logo.png")}
         alt="메인"
       />
       <NavBar>

@@ -9,8 +9,8 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   height: 100%;
-  margin: 0 auto;
-  position: relative;
+  /* margin: 0 auto; */
+  /* position: relative; */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -57,7 +57,7 @@ button,
 input,
 select,
 textarea {
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 18px;
   color: #333;
 
@@ -74,12 +74,12 @@ h6 {
   line-height: inherit;
 }
 textarea {
-  -webkit-backface-visibility: hidden;
+  /* -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background-color: transparent;
   border: 0;
   word-break: keep-all;
-  word-wrap: break-word;
+  word-wrap: break-word; */
 }
 button,
 input {
@@ -114,24 +114,24 @@ a:hover {
   text-decoration: underline;
 }
 iframe {
-  overflow: hidden;
+  /* overflow: hidden;
   margin: 0;
   border: 0;
   padding: 0;
-  vertical-align: top;
+  vertical-align: top; */
 }
 mark {
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 i {
-  font-style: normal;
+  /* font-style: normal; */
 }
 div {
   box-sizing: border-box;
 }
 
 main {
-  display: block;
+  /* display: block; */
 }
 
 a:hover {
