@@ -30,7 +30,7 @@ const Router = () => {
         {/* data 페이지를 위한 임시 path name */}
         <Route path="/4jojoa" element={<InsertData />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 };

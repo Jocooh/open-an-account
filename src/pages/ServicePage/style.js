@@ -268,6 +268,7 @@ export const FinanciialProductsWrap = styled.div``;
 
 //성아-banklist style
 export const StyledBankListContainer = styled.div`
+  width: 100%;
   /* width: 990px; */
   /* height: 1128px; */
   width: 100%;

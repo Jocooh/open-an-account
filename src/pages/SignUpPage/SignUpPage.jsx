@@ -8,6 +8,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
+import { collection } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
