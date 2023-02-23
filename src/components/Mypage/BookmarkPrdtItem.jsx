@@ -71,7 +71,7 @@ const BookmarkPrdtItem = ({ item }) => {
                       */}
                       <div>
                         {/* {logoLists.logos.map((logo) =>
-                              Object.keys(logo)[0] === base.fin_co_no ? (
+                              Object.keys(logo)[0] === item.fin_co_no ? (
                                 <StyledImg
                                   src={Object.values(logo)[0]}
                                   alt="로고"
