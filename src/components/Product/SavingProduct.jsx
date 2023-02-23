@@ -8,8 +8,11 @@ import {
   ProductBox,
   TotalCost,
   Wrapper,
+  Scrap,
+  Logo,
 } from "./style";
 import Bookmarks from "../Bookmarks";
+import logoLists from "../../assets/logo/logo";
 
 function SavingProduct({
   inputValue,
@@ -80,13 +83,16 @@ function SavingProduct({
 
       <ProductBox>
         <Name>
+          {logoLists.logos.map((t) =>
+            Object.keys(t)[0] === selectedProduct.fin_co_no ? (
+              <Logo
+                src={Object.values(t)[0]}
+                alt="로고"
+                key={selectedProduct.id}
+              />
+            ) : null
+          )}
           <Prdt_nm>{selectedProduct.fin_prdt_nm}</Prdt_nm>
-          <Bookmarks
-            productId={selectedProduct.fin_prdt_cd}
-            productName={selectedProduct.fin_prdt_nm}
-            productCoName={selectedProduct.kor_co_nm}
-            productDocId={selectedProductId}
-          />
         </Name>
 
         <Info>
@@ -95,12 +101,30 @@ function SavingProduct({
             일반 금리 {selectedProductRate}% | 최고금리
             {selectedProductRate2}
           </div>
+          <div>
+            {selectedProduct.etc_note.split("-").map((line) => {
+              return (
+                <>
+                  {line}
+                  <br />
+                </>
+              );
+            })}
+          </div>
         </Info>
         <Message>
           <li>가입 방법: {selectedProduct.join_way}</li>
           <li>가입 대상: {selectedProduct.join_member}</li>
-          <li>유의사항 {selectedProduct.etc_note}</li>
         </Message>
+        <Scrap>
+          <Bookmarks
+            productId={selectedProduct.fin_prdt_cd}
+            productName={selectedProduct.fin_prdt_nm}
+            productCoName={selectedProduct.kor_co_nm}
+            productDocId={selectedProductId}
+            productCoCode={selectedProductId.fin_co_no}
+          />
+        </Scrap>
       </ProductBox>
     </Wrapper>
   );
