@@ -193,7 +193,7 @@ export const ProducksCalculatorBoxContentTilte = styled.div`
 `;
 
 //* 최종목표금액 inputTitle
-export const formattedAmount = styled.div`
+export const FormattedAmount = styled.div`
   .div {
     font-size: 12px;
   }

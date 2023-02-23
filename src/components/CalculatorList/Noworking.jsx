@@ -53,10 +53,10 @@ return (
           <StyledMoreListDiv className="여기가 자세히 눌렀을때 상세정보 나오는 공간이예여">
             {/* 북마크에 필요한 props입니다. base -> 얘는 baseList에서 가져가고 있어요 */}
             <Bookmarks
-              productId={base.fin_prdt_cd}
-              productName={base.fin_prdt_nm}
-              productCoName={base.kor_co_nm}
-              productDocId={base.id}
+            // productId={base.fin_prdt_cd}
+            // productName={base.fin_prdt_nm}
+            // productCoName={base.kor_co_nm}
+            // productDocId={base.id}
             />
             <button
               title="자세히 버튼"
