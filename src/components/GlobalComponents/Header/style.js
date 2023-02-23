@@ -10,7 +10,7 @@ export const Container = styled.div`
   /* padding: 2rem 3rem; */
   /* text-align: center; */
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
 `;
 export const Logo = styled.img`

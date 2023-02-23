@@ -16,6 +16,7 @@ import {
   StyledRateP,
   StyledBankNameP,
 } from "./style";
+
 import logoLists from "../../assets/logo/logo";
 import {
   StyledDiv,
@@ -60,13 +61,13 @@ function AllBankList({
                     onClick={() => {
                       setColor(item.id);
                     }}
-                    // style={
-                    //   selectedProductIds[0] === item.id ||
-                    //   selectedProductIds[3] === item.id ||
-                    //   selectedProductIds[6] === item.id
-                    //     ? { border: "1px solid #6A24FF" }
-                    //     : null
-                    // }
+                    style={
+                      selectedProductIds[0] === item.id ||
+                      selectedProductIds[6] === item.id ||
+                      selectedProductIds[12] === item.id
+                        ? { border: "1px solid #6A24FF" }
+                        : null
+                    }
                   >
                     <div style={{ display: "flex" }}>
                       <StyledListDiv>

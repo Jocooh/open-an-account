@@ -303,7 +303,7 @@ export const StyledBankLists = styled.div`
   border-radius: 15px;
   display: flex;
   align-items: center;
-  gap: 30px;
+
   margin-bottom: 15px;
   flex-direction: column;
   background-color: white;
