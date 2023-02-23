@@ -1,142 +1,67 @@
 // @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
-* {
-  margin: 0 auto;
-  border: 0;
-  max-width: 1440px;
+*{
+    box-sizing: border-box;
+  }
+
+  body{
+    /* font-family: "Pretendard-Regular"; */
+    font-family: "noto-sans-kr", sans-serif;
+    html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
 
 body {
-  height: 100%;
-  /* margin: 0 auto; */
-  /* position: relative; */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-}
-body,
-button,
-dd,
-dl,
-dt,
-fieldset,
-form,
-h1,
-h2,
-h3,
-h4,
-input,
-legend,
-li,
-ol,
-p,
-select,
-table,
-td,
-textarea,
-th,
-ul {
+	line-height: 1;
+  margin: 0;
   padding: 0;
 }
-body,
-button,
-input,
-select,
-textarea {
-  /* font-size: 16px; */
-  line-height: 18px;
-  color: #333;
 
-  /* font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Malgun Gothic",
-    "맑은 고딕", helvetica, "Apple SD Gothic Neo", sans-serif; */
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  line-height: inherit;
-}
-textarea {
-  /* -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  background-color: transparent;
-  border: 0;
-  word-break: keep-all;
-  word-wrap: break-word; */
-}
-button,
-input {
-  -webkit-border-radius: 0;
-  border-radius: 0;
-  border: 0;
-}
-button {
+button{
+  border: none;
   background-color: transparent;
   cursor: pointer;
 }
-fieldset,
-img {
-  border: 0;
 }
-img {
-  vertical-align: top;
+ol, ul {
+	list-style: none;
 }
-ol,
-ul {
-  list-style: none;
+blockquote, q {
+	quotes: none;
 }
-address,
-em {
-  font-style: normal;
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
 }
-a {
-  color: inherit;
-  text-decoration: none;
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-a:hover {
-  text-decoration: underline;
-}
-iframe {
-  /* overflow: hidden;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  vertical-align: top; */
-}
-mark {
-  /* background-color: transparent; */
-}
-i {
-  /* font-style: normal; */
-}
-div {
-  box-sizing: border-box;
-}
-
-main {
-  /* display: block; */
-}
-
-a:hover {
-  text-decoration: none;
-}
+  
 `;
 
 export default GlobalStyle;

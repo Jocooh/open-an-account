@@ -6,9 +6,14 @@ export const MainPageWraper = styled.div`
   height: 100%;
   /* padding-left: 220px; */
   justify-content: center;
-  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #f5f5f5; */
 `;
-
+export const MainPageContainer = styled.div`
+  background-color: lavender;
+  width: 80%;
+`;
 // 상단 전체 랩
 export const UpWraper = styled.div`
   width: 80%;

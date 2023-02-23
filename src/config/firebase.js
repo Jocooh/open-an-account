@@ -13,7 +13,6 @@ const firebaseConfig = {
   // messagingSenderId: "62978638072",
   // appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
   // measurementId: "G-ENB9S2CV1E",
-
   // * 박상우 전용 키
   // apiKey: "AIzaSyCL_AQsnjPdjq-vp8BvukPqza4XYNwMoZw",
   // authDomain: "mytest-b5942.firebaseapp.com",
@@ -37,12 +36,12 @@ const firebaseConfig = {
   // appId: "1:185433561488:web:6c96ed39e2589180017b15",
   // measurementId: "G-FVGRSGV6BX",
   // * 남마리나 전용 키 1
-  apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
-  authDomain: "jojoa-c3a5b.firebaseapp.com",
-  projectId: "jojoa-c3a5b",
-  storageBucket: "jojoa-c3a5b.appspot.com",
-  messagingSenderId: "848779014558",
-  appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
+  // apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
+  // authDomain: "jojoa-c3a5b.firebaseapp.com",
+  // projectId: "jojoa-c3a5b",
+  // storageBucket: "jojoa-c3a5b.appspot.com",
+  // messagingSenderId: "848779014558",
+  // appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
   //
   // * 남마리나 전용 키 2
   // apiKey: "AIzaSyBslbzRlInpFhHV2NnOwbjH2K6KOs8hHqU",
@@ -53,20 +52,20 @@ const firebaseConfig = {
   // appId: "1:648301726670:web:20818e17661a9c050fb99f",
   //
   // * 조성아 전용 키
-  apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
-  authDomain: "open-an-account-db.firebaseapp.com",
-  projectId: "open-an-account-db",
-  storageBucket: "open-an-account-db.appspot.com",
-  messagingSenderId: "334972707203",
-  appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
+  // apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
+  // authDomain: "open-an-account-db.firebaseapp.com",
+  // projectId: "open-an-account-db",
+  // storageBucket: "open-an-account-db.appspot.com",
+  // messagingSenderId: "334972707203",
+  // appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
   //
   // * 김원준 전용 키 1
-  // apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
-  // authDomain: "test-open-an-account.firebaseapp.com",
-  // projectId: "test-open-an-account",
-  // storageBucket: "test-open-an-account.appspot.com",
-  // messagingSenderId: "1068156105304",
-  // appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
+  apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
+  authDomain: "test-open-an-account.firebaseapp.com",
+  projectId: "test-open-an-account",
+  storageBucket: "test-open-an-account.appspot.com",
+  messagingSenderId: "1068156105304",
+  appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
   //
   // * 김원준 전용 키 2
   // apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
