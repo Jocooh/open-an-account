@@ -153,18 +153,21 @@ const ServicePage = () => {
             id: docSnap.id,
             ...docSnap.data(),
           };
+          //baseListData에서 상품코드만 구조분해할당
           const { fin_prdt_cd } = baseListData;
 
           const querySnapshot = await getDocs(
             collection(db, "DEPOSIT_OPTION_LIST"),
             where("fin_prdt_cd", "==", fin_prdt_cd)
           );
-
+          //위에 상품코드가 똑같은거를 option에서 찾아서 map
           const options = querySnapshot.docs.map((doc) => doc.data());
+          //selectedProductIds : 선택한 상품 들어가는 배열
           const selectedProductIdsCopy = [...selectedProductIds];
 
           for (let i = 0; i < selectedProductIdsCopy.length; i += 6) {
             if (selectedProductIdsCopy[i] === "") {
+              //targetDoc: 선택한 상품코드가 일치한 option친구들의 속성을 가져온다.
               const targetDoc = options.find(
                 (option) => option.fin_prdt_cd === fin_prdt_cd
               );
@@ -366,12 +369,12 @@ const ServicePage = () => {
       return `${new Intl.NumberFormat("ko-KR").format(amountWithoutCommas)}원`;
     }
   }, [amount]);
-
+  const [months, setMonths] = useState(0);
   //* input 상태 값 저장슬리이더 함수
   const handleChange = (event) => {
     const newValue = parseInt(event.target.value, 10);
     setValue(newValue);
-    console.log([0, 6, 12, 24, 36][newValue]);
+    setMonths([0, 6, 12, 24, 36][newValue]);
   };
 
   const handleProductTypeClick = (buttonType) => {
@@ -804,10 +807,10 @@ const ServicePage = () => {
                             disabled={notAllow}
                             onClick={() => {
                               handleClickResults();
-                              handleClickSearch();
-                              // handleButtonClick();
+                              // handleClickSearch();
+                              handleButtonClick();
                               // findSorting();
-                              CalculatorList();
+                              // CalculatorList();
                             }}
                           >
                             찾기
@@ -826,7 +829,7 @@ const ServicePage = () => {
                       </FilterSubmitWarper>
                     </TapContainerBox>
                   </TapContainer>
-                  {showResults && (
+                  {showResults === true ? (
                     <StyledBankListContainer>
                       <StyledBankList>
                         <StyledBankListWrapper>
@@ -836,12 +839,14 @@ const ServicePage = () => {
                             selectedProductIds={selectedProductIds}
                             handleClickProduct={handleClickProduct}
                             depositOptionalList={depositOptionalList}
-                            depositbaseList={depositbaseList}
+                            depositbaseList={products}
+                            // value={value}
+                            months={months}
                           />
                         </StyledBankListWrapper>
                       </StyledBankList>
                     </StyledBankListContainer>
-                  )}
+                  ) : null}
                 </Tapwraper>
               )}
 
