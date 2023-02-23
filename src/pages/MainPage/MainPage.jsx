@@ -56,7 +56,11 @@ const MainPage = () => {
             <GreetingMent>팁퍼에서 시작하는</GreetingMent>
             <span>
               {!isLoggedIn && <Username>고객님</Username>}
-              {isLoggedIn && <Username>{user.displayName}님</Username>}
+              {isLoggedIn && (
+                <Username>
+                  {user.displayName ? user.displayName : "고객"}님
+                </Username>
+              )}
             </span>
             <Greetingment>의 금융관리</Greetingment>
           </GreetingTitle>

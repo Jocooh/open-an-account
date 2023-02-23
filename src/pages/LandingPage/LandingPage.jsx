@@ -220,7 +220,7 @@ const LandingPage = () => {
             </FourthSectonTitle>
             <FourthSectionButtonWrap>
               <FourthSectionButton onClick={() => navigate("/")}>
-                팀퍼 시작하기
+                팁퍼 시작하기
               </FourthSectionButton>
             </FourthSectionButtonWrap>
             <FourthSectionDecription>
