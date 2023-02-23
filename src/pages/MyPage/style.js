@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const MyPageWrapper = styled.div`
   /* background-color: #f4f5f6; */
-  width: 1440px;
+  width: 100%;
   height: 1000px;
   display: flex;
   gap: 200px;
   align-items: center;
+  justify-content: center;
 `;
 //여기는 왼쪽 박스 스타일구역
 export const LeftBox = styled.div`
@@ -87,7 +88,7 @@ export const HistoryCategory = styled.div`
 //여기서부터는 오른쪽 박스 스타일 구역
 export const RightBox = styled.div`
   width: 600px;
-  height: 808px;
+  height: 850px;
   background-color: #f4f5f6;
   padding: 20px;
   display: flex;
