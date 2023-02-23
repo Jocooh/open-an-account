@@ -119,6 +119,8 @@ function AllBankList({
                             productName={item.fin_prdt_nm}
                             productCoName={item.kor_co_nm}
                             productDocId={item.id}
+                            sortMonths={sortMonths}
+                            productCoCode={item.fin_co_no}
                           />
                           <button
                             style={{

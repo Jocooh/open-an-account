@@ -22,7 +22,16 @@ const Bookmarks = ({
   productId,
   //상품필드아이디
   productDocId,
+  productCoCode,
+  deposit,
 }) => {
+  // const bookMarkDetailInfo = deposit.map((i) => [
+  //   i.join_member,
+  //   i.join_way,
+  //   i.mtrt_int,
+  // ]);
+  // console.log(bookMarkDetailInfo);
+
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -46,7 +55,7 @@ const Bookmarks = ({
         productCoName,
         productId,
         productDocId,
-        // isbookmark: true,
+        productCoCode,
       });
 
       // true가 되면서 북마크 더이상 못하게 막기

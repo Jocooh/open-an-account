@@ -1,12 +1,33 @@
-import { updateCurrentUser } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
-import { StyledCard } from "../../pages/MyPage/style";
 import BookmarkPrdtItem from "./BookmarkPrdtItem";
 
-const BookmarkPrdtList = ({ currentUser }) => {
+const BookmarkPrdtList = ({ currentUser, sortMonths }) => {
   const [items, setItems] = useState([]);
+  const [allOptionList, setAllOptionList] = useState([]);
+
+  const handleButtonClick = async () => {
+    const optionListPromises = [
+      getDocs(collection(db, "DEPOSIT_OPTION_LIST")),
+      getDocs(collection(db, "SAVING_OPTION_LIST")),
+    ];
+
+    const [optionListSnapshots] = await Promise.all([
+      Promise.all(optionListPromises),
+    ]);
+    const allOptionList = [];
+    optionListSnapshots.forEach((snapshot, index) => {
+      snapshot.forEach((doc) => {
+        const newProduct = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        allOptionList.push(newProduct);
+      });
+    });
+    setAllOptionList(allOptionList);
+  };
 
   // 유저가 북마크한 item 가져오기
   const getData = async () => {
@@ -24,15 +45,16 @@ const BookmarkPrdtList = ({ currentUser }) => {
   };
 
   useEffect(() => {
+    handleButtonClick();
     getData();
   }, []);
 
   return (
-    <>
-      {items.map((item) => (
-        <BookmarkPrdtItem item={item} key={item.productName} />
-      ))}
-    </>
+    <BookmarkPrdtItem
+      items={items}
+      allOptionList={allOptionList}
+      sortMonths={sortMonths}
+    />
   );
 };
 

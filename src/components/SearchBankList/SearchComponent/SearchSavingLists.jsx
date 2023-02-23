@@ -19,7 +19,6 @@ import SearchDepositDetail from "../Detail/SearchSavingDetail";
 
 import Bookmarks from "../../Bookmarks";
 
-
 function SearchSavingLists({
   activeItem,
   searchBank,
@@ -106,12 +105,13 @@ function SearchSavingLists({
                       </div>
                     </StyledDiv>
                     <StyledMoreListDiv>
-                       <Bookmarks
-                      productId={base.fin_prdt_cd}
-                      productName={base.fin_prdt_nm}
-                      productCoName={base.kor_co_nm}
-                      productDocId={base.id}
-                    />
+                      <Bookmarks
+                        productId={base.fin_prdt_cd}
+                        productName={base.fin_prdt_nm}
+                        productCoName={base.kor_co_nm}
+                        productDocId={base.id}
+                        productCoCode={base.fin_co_no}
+                      />
                       <button
                         style={{
                           width: "60px",
@@ -133,7 +133,6 @@ function SearchSavingLists({
                     savingOptionalList={savingOptionalList}
                   />
                 ) : null}
-
               </StyledBankLists>
             );
           })}

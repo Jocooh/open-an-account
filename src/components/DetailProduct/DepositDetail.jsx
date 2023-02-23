@@ -15,7 +15,7 @@ function DepositDetail({
   sortMonths,
 }) {
   //최소개월 수 대로 정렬한 리스트 중에서 선택한 상품의 코드와 일치하면 filter로 새배열 생성 -> 새배열 생성후 제일 첫번째 해당하는 값의 개월 수를 들고온다.
-  const sortArr = sortMonths.filter(
+  const sortArr = sortMonths?.filter(
     (month) => month.fin_prdt_cd === depositDB.fin_prdt_cd
   );
 
