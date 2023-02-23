@@ -110,7 +110,7 @@ const AuthForm = ({
             <AuthLogoWrapper>
               <AuthLogo>
                 <Link to="/">
-                  <AuthLogoImg src={require("../../assets/tiper-logo.png")} />
+                  <AuthLogoImg src={require("../../assets/Tipper_logo.png")} />
                 </Link>
               </AuthLogo>
             </AuthLogoWrapper>

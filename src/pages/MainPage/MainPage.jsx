@@ -29,7 +29,7 @@ import {
   QuestionWrap,
   QuestionTitle,
   FinanceHoneyTip,
-  MainPageWraper,
+  MainPageWrapper,
   Bannerimage,
   DownWraper,
   TodayTipTitle,
@@ -40,7 +40,6 @@ import {
   TipComments,
   TipComment,
 } from "./style";
-
 const MainPage = () => {
   // 로그인 됐을 때 알기 위해
   const isLoggedIn = sessionStorage.key(0);
@@ -48,7 +47,7 @@ const MainPage = () => {
   const user = authService.currentUser;
   const navigate = useNavigate();
   return (
-    <MainPageWraper>
+    <MainPageWrapper>
       <UpWraper>
         <GreetingBox>
           <img src={require("../../assets/mainpage/상단 이미지.png")} />
@@ -56,11 +55,7 @@ const MainPage = () => {
             <GreetingMent>팁퍼에서 시작하는</GreetingMent>
             <span>
               {!isLoggedIn && <Username>고객님</Username>}
-              {isLoggedIn && (
-                <Username>
-                  {user.displayName ? user.displayName : "고객"}님
-                </Username>
-              )}
+              {isLoggedIn && <Username>{user.displayName}님</Username>}
             </span>
             <Greetingment>의 금융관리</Greetingment>
           </GreetingTitle>
@@ -109,7 +104,6 @@ const MainPage = () => {
                 <img src={require("../../assets/logo/tnguq_logo.png")} />
                 <a href="https://www.suhyup-bank.com/">수협은행</a>
               </BankWrap>
-
               <BankWrap>
                 <img src={require("../../assets/logo/sc_logo.png")} />
                 <a href="https://www.standardchartered.co.kr/np/kr/Intro.jsp">
@@ -148,7 +142,6 @@ const MainPage = () => {
                 <img src={require("../../assets/logo/oori_logo.png")} />
                 <a href="https://www.dgb.co.kr/dgb_ebz_main.jsp">대구은행</a>
               </BankWrap>
-
               <BankWrap>
                 <img src={require("../../assets/logo/nh_logo.png")} />
                 <a href="https://banking.nonghyup.com/nhbank.html">농협은행</a>
@@ -235,10 +228,9 @@ const MainPage = () => {
               <TipComment>한동안 사용하지 않을 시드머니가 있는</TipComment>
               <TipComment>친구들은 정기예금을 고려해봐도 좋아요.</TipComment>
             </TipComments>
-
             <img
               src={require("../../assets/mainpage/정기예금.png")}
-              style={{ marginTop: "200px" }}
+              style={{ marginTop: "180px" }}
             />
           </Tip>
           <Tip>
@@ -256,14 +248,14 @@ const MainPage = () => {
           <Tip>
             <TipTitle
               style={{
-                marginBottom: "25px",
+                marginBottom: "10px",
               }}
             >
               이자를 계산하는 법1
             </TipTitle>
             <img
               src={require("../../assets/mainpage/단리.png")}
-              style={{ margin: "250px 30px 0 0" }}
+              style={{ margin: "250px 20px 0 0" }}
             />
             <TipTitle>단리</TipTitle>
             <TipComments>
@@ -276,7 +268,7 @@ const MainPage = () => {
           <Tip>
             <TipTitle
               style={{
-                marginBottom: "25px",
+                marginBottom: "10px",
               }}
             >
               이자를 계산하는 법2
@@ -293,31 +285,29 @@ const MainPage = () => {
             <div
               style={{
                 position: "relative",
-                margin: "75px 0 0 220px",
+                margin: "75px 0 0 200px",
               }}
             >
               <img
                 src={require("../../assets/mainpage/복리화살표.png")}
                 style={{
                   position: "absolute",
-                  margin: "60px 0 0 40px",
+                  margin: "40px 0 0 0px",
                   width: "130px",
                 }}
               />
               <img
                 src={require("../../assets/mainpage/복리.png")}
-                style={{ margin: "130px 0 0 40px", position: "absolute" }}
+                style={{ margin: "110px 0 0 0", position: "absolute" }}
               />
             </div>
           </Tip>
         </Tips>
       </DownWraper>
-    </MainPageWraper>
+    </MainPageWrapper>
   );
 };
-
 export default MainPage;
-
 //* 탑슬라이드 배너
 const SilderBanner = styled(SwiperSlide)`
   width: 100%;
@@ -326,7 +316,6 @@ const SilderBanner = styled(SwiperSlide)`
     background-size: cover;
   }
 `;
-
 // 은행 배너랩
 const BankBannerWrap = styled.div`
   width: 400px;
@@ -335,7 +324,6 @@ const BankBannerWrap = styled.div`
   margin: 40px 0 0 25px;
   padding-top: 40px;
 `;
-
 // 은행 배너
 const BankBanner = styled(SwiperSlide)`
   width: 100%;
@@ -343,8 +331,4 @@ const BankBanner = styled(SwiperSlide)`
   font-size: 30px;
   padding-top: 50px;
   text-align: center;
-  a {
-    /* color: brown; */
-    /* margin: 0 0px 0 0px; */
-  }
 `;
