@@ -106,6 +106,7 @@ function SearchDepositLists({
                       productName={base.fin_prdt_nm}
                       productCoName={base.kor_co_nm}
                       productDocId={base.id}
+                      productCoCode={base.fin_co_no}
                     />
                     <button
                       style={{

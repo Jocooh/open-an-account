@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const MyPageWrapper = styled.div`
   /* background-color: #f4f5f6; */
-  width: 100%;
-  height: 1000px;
+  /* width: 100%;
+  height: 1000px; */
   display: flex;
   gap: 200px;
   align-items: center;
@@ -92,6 +92,10 @@ export const RightBox = styled.div`
   background-color: #f4f5f6;
   padding: 20px;
   display: flex;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const RightWrapper = styled.div`
   width: 508px;

@@ -7,7 +7,7 @@ import {
 } from "../../DetailProduct/style";
 import { DetailContentWrapper } from "../../DetailProduct/style";
 
-function SearchDepositDetail({ base, setActiveItem, depositOptionalList }) {
+function SearchDepositDetail({ base, setActiveItem }) {
   const maxLimit = base.max_limit;
   return (
     <>

@@ -25,3 +25,7 @@ export const DetailContentWrapper = styled.div`
   flex-direction: column;
   gap: 5px;
 `;
+
+export const BookMarkWrapper = styled.div`
+  width: 100%;
+`;
