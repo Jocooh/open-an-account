@@ -122,7 +122,7 @@ function SavingProduct({
             productName={selectedProduct.fin_prdt_nm}
             productCoName={selectedProduct.kor_co_nm}
             productDocId={selectedProductId}
-            productCoCode={selectedProductId.fin_co_no}
+            productCoCode={selectedProduct.fin_co_no}
           />
         </Scrap>
       </ProductBox>
