@@ -592,28 +592,28 @@ const ServicePage = () => {
                   setComparingModalOpen={setComparingModalOpen}
                   selectedProductId={[
                     selectedProductIds[0],
-                    selectedProductIds[5],
-                    selectedProductIds[10],
+                    selectedProductIds[6],
+                    selectedProductIds[12],
                   ]}
                   selectedProductRate={[
                     selectedProductIds[1],
-                    selectedProductIds[6],
-                    selectedProductIds[11],
+                    selectedProductIds[7],
+                    selectedProductIds[13],
                   ]}
                   selectedProductRate2={[
                     selectedProductIds[2],
-                    selectedProductIds[7],
-                    selectedProductIds[12],
+                    selectedProductIds[8],
+                    selectedProductIds[14],
                   ]}
                   selectedProductRateType={[
                     selectedProductIds[3],
-                    selectedProductIds[8],
-                    selectedProductIds[13],
+                    selectedProductIds[9],
+                    selectedProductIds[15],
                   ]}
                   selectedProduct={[
                     selectedProductIds[4],
-                    selectedProductIds[9],
-                    selectedProductIds[14],
+                    selectedProductIds[10],
+                    selectedProductIds[16],
                   ]}
                 />
               )}
@@ -748,7 +748,7 @@ const ServicePage = () => {
                             ) : productTypes === 2 ? (
                               <>
                                 <span style={{ fontWeight: "bold" }}>
-                                  만기 목표금액
+                                  한 달 적립금
                                 </span>
                                 <span>을 입력해주세요.</span>
                                 <FormattedAmount>

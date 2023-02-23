@@ -112,6 +112,7 @@ const CalculatorList = ({
                             productName={item.fin_prdt_nm}
                             productCoName={item.kor_co_nm}
                             productDocId={item.id}
+                            productCoCode={item.fin_co_no}
                           />
                           <button
                             style={{

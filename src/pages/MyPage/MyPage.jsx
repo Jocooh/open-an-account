@@ -45,13 +45,14 @@ import {
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
 import { useAuth } from "../../config/firebase";
+import { useNavigate } from "react-router-dom";
 
 // import { useNavigate } from "react-router-dom";
 
 function MyPage() {
   const [tab, setTab] = useState(0);
   const userSession = sessionStorage.getItem(
-    `firebase:authUser:AIzaSyCkAV2PF6hbvNtJPuj52QscQ-_Odkq_sHI:[DEFAULT]` // 개인 키 입력해주세요.
+    `firebase:authUser:AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8:[DEFAULT]` // 개인 키 입력해주세요.
 
     // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요. (북마크 기능으로 선작업.)
     // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.
@@ -140,7 +141,14 @@ function MyPage() {
   //     setPhoneNum(phoneList[0]?.phoneNumber);
   //   });
   // };
-
+  const navigate = useNavigate();
+  const onLogoutClick = () => {
+    authService.signOut().then(() => {
+      sessionStorage.clear(); // ?
+      alert("로그아웃 되었습니다.");
+      navigate("/", { replace: true });
+    });
+  };
   return (
     <MyPageWrapper className="제일 큰 박스">
       {/* ###########  Left    ################# */}
@@ -160,7 +168,7 @@ function MyPage() {
         </UserNicknameDiv>
         {/* 유저 이름,id,연락처 부분 */}
         <UserContentDiv>
-          <UserText>조성아</UserText>
+          {/* <UserText>조성아</UserText> */}
           {/* 로그인 ID */}
           <ContentDiv>
             <div>
@@ -168,7 +176,7 @@ function MyPage() {
               <p style={{ color: "#aaa" }}>{currentUser?.email}</p>
             </div>
             {/* 로그아웃 버튼 */}
-            <LogOutBtn>
+            <LogOutBtn onClick={onLogoutClick}>
               <RiLogoutBoxLine />
               로그아웃
             </LogOutBtn>
@@ -293,8 +301,8 @@ function MyPage() {
             </form>
           )}
           {tab === 1 && <BookmarkPrdtList currentUser={currentUser} />}
-          {tab === 2 && <div>추후에...</div>}
-          {tab === 3 && <div>이것도 추후에...</div>}
+          {tab === 2 && <div>comming soon ...</div>}
+          {tab === 3 && <div>comming soon ...</div>}
         </RightWrapper>
       </RightBox>
     </MyPageWrapper>

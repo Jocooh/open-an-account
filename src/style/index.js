@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 *{
     box-sizing: border-box;
+	
   }
 
   body{
@@ -21,6 +22,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
+	/* max-width: 1440px; */
 	margin: 0;
 	padding: 0;
 	border: 0;

@@ -104,8 +104,8 @@ export const Input = styled(NumericFormat).attrs((props) => ({
       : "1px solid #dedede"};
 
   width: 274px;
-  /* margin: 45px 10px 0px 10px; */
-  padding-left: 50px;
+  margin: 0 10px;
+  padding-left: 20px;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 700;

@@ -13,6 +13,16 @@ const firebaseConfig = {
   // messagingSenderId: "62978638072",
   // appId: "1:62978638072:web:e3c54540cd4c2b11447b0d",
   // measurementId: "G-ENB9S2CV1E",
+  // * 배포용 key
+  // apiKey: "AIzaSyCVALUBA5nY8XIJ1blgr4cLn5IDXBTeJeA",
+  // authDomain: "open-an-account-for-deployment.firebaseapp.com",
+  // projectId: "open-an-account-for-deployment",
+  // storageBucket: "open-an-account-for-deployment.appspot.com",
+  // messagingSenderId: "502229611994",
+  // appId: "1:502229611994:web:b1ef5f03c6a7cb8f7cbce3",
+  //
+  //
+  //
   // * 박상우 전용 키
   // apiKey: "AIzaSyCL_AQsnjPdjq-vp8BvukPqza4XYNwMoZw",
   // authDomain: "mytest-b5942.firebaseapp.com",
@@ -75,12 +85,12 @@ const firebaseConfig = {
   // appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
   //
   // * 김원준 전용 키 2
-  // apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
-  // authDomain: "test2-open-an-account.firebaseapp.com",
-  // projectId: "test2-open-an-account",
-  // storageBucket: "test2-open-an-account.appspot.com",
-  // messagingSenderId: "884430717357",
-  // appId: "1:884430717357:web:4b2788809e7d9a37faa124",
+  apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
+  authDomain: "test2-open-an-account.firebaseapp.com",
+  projectId: "test2-open-an-account",
+  storageBucket: "test2-open-an-account.appspot.com",
+  messagingSenderId: "884430717357",
+  appId: "1:884430717357:web:4b2788809e7d9a37faa124",
 };
 
 // Initialize Firebase
