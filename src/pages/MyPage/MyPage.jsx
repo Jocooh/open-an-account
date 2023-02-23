@@ -51,7 +51,9 @@ import { useAuth } from "../../config/firebase";
 function MyPage() {
   const [tab, setTab] = useState(0);
   const userSession = sessionStorage.getItem(
-    `firebase:authUser:AIzaSyCkAV2PF6hbvNtJPuj52QscQ-_Odkq_sHI:[DEFAULT]` // 개인 키 입력해주세요.
+
+    `firebase:authUser:AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw:[DEFAULT]` // 개인 키 입력해주세요.
+
 
     // 세션스토리지에서 로그인 했을 때 저장된 currentUser 가져오기 -> 마이페이지에서 필요. (북마크 기능으로 선작업.)
     // `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]` // <<-- 이건 환경변수 설정했을 경우 - 현재 개인 당 파이어베이스 sdk 가 다르니 차후에 설정해야함.

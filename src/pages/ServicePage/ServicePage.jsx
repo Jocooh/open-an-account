@@ -14,7 +14,6 @@ import {
   MonthRangeSliderTitle,
   BottomSectionWraper,
   ToCompare,
-  ResultsSection,
   ProductType,
   FilterSubmit,
   FinanciialProductsFullList,
@@ -35,7 +34,6 @@ import {
   StyledBtn,
   StyledBankListWrapper,
 } from "./style";
-// import handleClickProduct from "../../components/ServicePage/GetDepositBaseAndOptions";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
@@ -53,7 +51,7 @@ import {
 } from "firebase/firestore";
 import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
-
+import CalculatorList from "../../components/CalculatorList/CalculatorList";
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
   const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
@@ -82,44 +80,7 @@ const ServicePage = () => {
   const [intrRate, setIntrRate] = useState(""); //* 선택된 상품의 intr_rate(이자율) 저장
   const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품의 intr_rate(최대금리) 저장
   const [intrRateType, setIntrRateType] = useState(""); //* 선택된 상품의 intr_rate_type(이자율타입 :단리, 복리) 저장
-
-  //* 조건계산 sorting 함수
-  const findSorting = () => {
-    // userInputs에서 선택한 value 가져오기
-    const { value: depositType } = userInputs.find(
-      (input) => input.name === "depositType"
-    );
-    const { value: period } = userInputs.find(
-      (input) => input.name === "period"
-    );
-
-    // 입력한 금액 가져오기
-    const amount = Number(
-      userInputs.find((input) => input.name === "amount").value
-    );
-
-    // amount 이상인 상품 찾기
-    const filteredProducts = products.filter(
-      (product) =>
-        product.min_save_term === Number(period) &&
-        product.save_trm === depositType &&
-        product.save_trm_end >= amount
-    );
-
-    // 이율 내림차순으로 정렬
-    const sortedProducts = filteredProducts.sort(
-      (a, b) => b.intr_rate - a.intr_rate
-    );
-
-    // 상위 3개 상품 출력
-    for (let i = 0; i < Math.min(sortedProducts.length, 3); i++) {
-      console.log(
-        `${i + 1}순위 상품: ${sortedProducts[i].fin_prdt_nm}, ${
-          sortedProducts[i].intr_rate
-        }%`
-      );
-    }
-  };
+  const [productList, setProductList] = useState([]);
 
   //* 금융상품 리스트 가져오기
   const handleButtonClick = async () => {
@@ -251,7 +212,7 @@ const ServicePage = () => {
 
           const options = querySnapshot.docs.map((doc) => doc.data());
           const selectedProductIdsCopy = [...selectedProductIds];
-          for (let i = 0; i < selectedProductIdsCopy.length; i += 5) {
+          for (let i = 0; i < selectedProductIdsCopy.length; i += 6) {
             if (selectedProductIdsCopy[i] === "") {
               const targetDoc = options.find(
                 (option) => option.fin_prdt_cd === fin_prdt_cd
@@ -262,6 +223,7 @@ const ServicePage = () => {
                 selectedProductIdsCopy[i + 2] = targetDoc.intr_rate2;
                 selectedProductIdsCopy[i + 3] = targetDoc.intr_rate_type;
                 selectedProductIdsCopy[i + 4] = docSnap.data();
+                selectedProductIdsCopy[i + 5] = productTypes;
                 setSelectedProductIds(selectedProductIdsCopy);
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
@@ -303,53 +265,47 @@ const ServicePage = () => {
 
   // };
   //* 상품 유형 배열을 반환하는 함수
-  const getProductTypes = (products) => {
-    // 상품 유형 배열
-    const types = [];
+  // const getProductTypes = (products) => {
+  //   // 상품 유형 배열
+  //   const types = [];
 
-    // products 배열을 순회하면서 상품 유형 배열에 유니크한 상품 유형을 추가
-    for (let i = 0; i < products.length; i++) {
-      if (!types.includes(products[i].prdt_type_nm)) {
-        types.push(products[i].prdt_type_nm);
-      }
-    }
+  //   // products 배열을 순회하면서 상품 유형 배열에 유니크한 상품 유형을 추가
+  //   for (let i = 0; i < products.length; i++) {
+  //     if (!types.includes(products[i].prdt_type_nm)) {
+  //       types.push(products[i].prdt_type_nm);
+  //     }
+  //   }
 
-    return types;
-  };
+  //   return types;
+  // };
 
   //* 동일된 상품 선택시 함수 종료.
-  const handleClickProduct = (productId) => {
-    const index = selectedProductIds.findIndex(
-      (selectedProductId) => selectedProductId.id === productId
-    );
-
+  const handleClickProduct = async (productId) => {
+    const index = selectedProductIds.indexOf(productId);
     if (index !== -1) {
       alert("이미 선택된 상품입니다. 다른 상품을 선택해주세요.");
       return;
     }
-
     handleSelectProducts(productId);
-
-    if (selectedProductIds.length >= 4) {
-      const lastProduct = selectedProductIds[selectedProductIds.length - 4];
-      const currentProduct = selectedProductIds[selectedProductIds.length - 1];
-      if (lastProduct.ProductType !== currentProduct.ProductType) {
-        alert("동일한 상품의 종류만 비교할 수 있습니다.");
-        return;
-      }
-    }
   };
 
   //* setSelectedProductIds배열의 2번째 id값이 있으면 비교하기 버튼 활성화
-
   useEffect(() => {
-    if (selectedProductIds[5].length > 1) {
+    if (selectedProductIds[6].length > 1) {
       setNotAllow2(false);
     } else {
       setNotAllow2(true);
     }
   }, [selectedProductIds]);
 
+  //* 찾기 버튼 활성화
+  useEffect(() => {
+    if (amount && value) {
+      setNotAllow(false);
+    } else {
+      setNotAllow(true);
+    }
+  }, [amount, value]);
 
   //* input 상태 값 저장
   const handleBlur = () => {
@@ -543,28 +499,29 @@ const ServicePage = () => {
                     </div>
                   ) : (
                     <>
+                      {/* 성아-옵셔널체이닝[?]제가 넣었어요 지우지 말아주세요!ㅎ */}
                       <div>
                         <p>
-                          {
-                            products.find(
+                          {products.find(
+                            (product) => product.id === selectedProductIds[6]
+                          )?.fin_prdt_nm ||
+                            savingbaseList.find(
                               (product) => product.id === selectedProductIds[6]
-                            )?.fin_prdt_nm
-                          }
+                            )?.fin_prdt_nm}
                         </p>
                         <p>
-                          {
-                            products.find(
+                          {products.find(
+                            (product) => product.id === selectedProductIds[6]
+                          )?.kor_co_nm ||
+                            savingbaseList.find(
                               (product) => product.id === selectedProductIds[6]
-                            )?.kor_co_nm
-                          }
+                            )?.kor_co_nm}
                         </p>
                       </div>
                       {/* //* intr_rate, intr_rate2 값 출력 */}
                       <div>
-                        <div>
-                          <div>최고금리: {selectedProductIds[8]}</div>
-                          <div>이자율: {selectedProductIds[7]}</div>
-                        </div>
+                        <div>최고금리: {selectedProductIds[2]}</div>
+                        <div>이자율: {selectedProductIds[1]}</div>
                       </div>
                     </>
                   )}
@@ -585,26 +542,29 @@ const ServicePage = () => {
                     </div>
                   ) : (
                     <>
+                      {/* 성아-옵셔널체이닝[?]제가 넣었어요 지우지 말아주세요!ㅎ */}
                       <div>
                         <p>
-                          {
-                            products.find(
+                          {products.find(
+                            (product) => product.id === selectedProductIds[12]
+                          )?.fin_prdt_nm ||
+                            savingbaseList.find(
                               (product) => product.id === selectedProductIds[12]
-                            )?.fin_prdt_nm
-                          }
+                            )?.fin_prdt_nm}
                         </p>
                         <p>
-                          {
-                            products.find(
+                          {products.find(
+                            (product) => product.id === selectedProductIds[12]
+                          )?.kor_co_nm ||
+                            savingbaseList.find(
                               (product) => product.id === selectedProductIds[12]
-                            )?.kor_co_nm
-                          }
+                            )?.kor_co_nm}
                         </p>
                       </div>
                       {/* //* intr_rate, intr_rate2 값 출력 */}
                       <div>
-                        <div>최고금리: {selectedProductIds[14]}</div>
-                        <div>이자율: {selectedProductIds[13]}</div>
+                        <div>최고금리: {selectedProductIds[2]}</div>
+                        <div>이자율: {selectedProductIds[1]}</div>
                       </div>
                     </>
                   )}
@@ -619,7 +579,7 @@ const ServicePage = () => {
             >
               <ToCompare
                 onClick={() => OpenComparingModal()}
-                // disabled={notAllow2}
+                disabled={notAllow2}
               >
                 비교하기
               </ToCompare>
@@ -628,30 +588,28 @@ const ServicePage = () => {
                   setComparingModalOpen={setComparingModalOpen}
                   selectedProductId={[
                     selectedProductIds[0],
-                    selectedProductIds[5],
-                    selectedProductIds[10],
-
+                    selectedProductIds[6],
+                    selectedProductIds[12],
                   ]}
                   selectedProductRate={[
                     selectedProductIds[1],
-                    selectedProductIds[6],
-                    selectedProductIds[11],
-                  ]}
-                  selectedProductRate2={[
-                    selectedProductIds[2],
                     selectedProductIds[7],
-                    selectedProductIds[12],
-                  ]}
-                  selectedProductRateType={[
-                    selectedProductIds[3],
-                    selectedProductIds[8],
                     selectedProductIds[13],
                   ]}
-                  selectedProduct={[
+                  selectedProductRate2={[
+                    selectedProductIds[3],
+                    selectedProductIds[8],
+                    selectedProductIds[14],
+                  ]}
+                  selectedProductRateType={[
                     selectedProductIds[4],
                     selectedProductIds[9],
-                    selectedProductIds[14],
-
+                    selectedProductIds[15],
+                  ]}
+                  selectedProduct={[
+                    selectedProductIds[5],
+                    selectedProductIds[10],
+                    selectedProductIds[16],
                   ]}
                 />
               )}
@@ -847,8 +805,9 @@ const ServicePage = () => {
                             onClick={() => {
                               handleClickResults();
                               handleClickSearch();
-                              handleButtonClick();
+                              // handleButtonClick();
                               // findSorting();
+                              CalculatorList();
                             }}
                           >
                             찾기
@@ -858,60 +817,26 @@ const ServicePage = () => {
                             onClick={() => {
                               handleClickResults();
                               handleClickSearch();
+                              // CalculatorList();
                             }}
                           >
                             닫기
                           </FilterSubmit>
                         )}
                       </FilterSubmitWarper>
-                      <StyledBankListContainer>
-                        <div>
-                          <StyledBankList>
-                            <div
-                              ref={topLocation}
-                              className="top으로 가는 위치 지정"
-                            />
-                            <StyledBankListWrapper>
-                              {searchBank.length > 0 ? (
-                                <SearchBankList
-                                  activeItem={activeItem}
-                                  setActiveItem={setActiveItem}
-                                  searchBank={searchBank}
-                                  productTypes={productTypes}
-                                  depositbaseList={products}
-                                  depositOptionalList={depositOptionalList}
-                                  savingbaseList={savingbaseList}
-                                  savingOptionalList={savingoptionalList}
-                                  myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                                  handleClickProduct={handleClickProduct}
-                                />
-                              ) : (
-                                <AllBank
-                                  activeItem={activeItem}
-                                  setActiveItem={setActiveItem}
-                                  productTypes={productTypes}
-                                  depositbaseList={products}
-                                  depositOptionalList={depositOptionalList}
-                                  savingbaseList={savingbaseList}
-                                  savingoptionalList={savingoptionalList}
-                                  selectedProductIds={selectedProductIds}
-                                  handleClickProduct={handleClickProduct}
-                                  myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                                />
-                              )}
-                            </StyledBankListWrapper>
-                          </StyledBankList>
-                        </div>
-                      </StyledBankListContainer>
                     </TapContainerBox>
                   </TapContainer>
                   {showResults && (
                     <StyledBankListContainer>
                       <StyledBankList>
                         <StyledBankListWrapper>
-                          <SearchBankList
-                            products={products}
+                          <CalculatorList
+                            activeItem={activeItem}
+                            setActiveItem={setActiveItem}
+                            selectedProductIds={selectedProductIds}
                             handleClickProduct={handleClickProduct}
+                            depositOptionalList={depositOptionalList}
+                            depositbaseList={depositbaseList}
                           />
                         </StyledBankListWrapper>
                       </StyledBankList>
@@ -936,8 +861,6 @@ const ServicePage = () => {
               {/* ##################################################################### */}
 
               {activeTab === 2 && (
-
-
                 <div>
                   <TapContainer>
                     <TapContainerBox>

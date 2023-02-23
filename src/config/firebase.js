@@ -67,12 +67,12 @@ const firebaseConfig = {
   // messagingSenderId: "5126820306",
   // appId: "1:5126820306:web:6e0e7331ebd7ac03f4380b",
   // * 김원준 전용 키 1
-  // apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
-  // authDomain: "test-open-an-account.firebaseapp.com",
-  // projectId: "test-open-an-account",
-  // storageBucket: "test-open-an-account.appspot.com",
-  // messagingSenderId: "1068156105304",
-  // appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
+  apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
+  authDomain: "test-open-an-account.firebaseapp.com",
+  projectId: "test-open-an-account",
+  storageBucket: "test-open-an-account.appspot.com",
+  messagingSenderId: "1068156105304",
+  appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
   //
   // * 김원준 전용 키 2
   // apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
