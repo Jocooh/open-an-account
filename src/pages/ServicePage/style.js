@@ -295,7 +295,6 @@ export const StyledBankListWrapper = styled.div`
   flex-direction: column;
   margin: auto;
   justify-content: center;
-
   padding: 10px;
 `;
 export const StyledBankLists = styled.div`
@@ -303,7 +302,6 @@ export const StyledBankLists = styled.div`
   border-radius: 15px;
   display: flex;
   align-items: center;
-
   margin-bottom: 15px;
   flex-direction: column;
   background-color: white;
@@ -312,6 +310,7 @@ export const StyledBankLists = styled.div`
 export const StyledListDiv = styled.div`
   width: 1200px;
   height: 141px;
+  background-color: yellow;
 `;
 
 export const StyledBookMark = {

@@ -59,6 +59,13 @@ const firebaseConfig = {
   // messagingSenderId: "334972707203",
   // appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
   //
+  //* 조성아 전용 키 2...터지고 말았다...
+  // apiKey: "AIzaSyCkAV2PF6hbvNtJPuj52QscQ-_Odkq_sHI",
+  // authDomain: "reactproject-80e02.firebaseapp.com",
+  // projectId: "reactproject-80e02",
+  // storageBucket: "reactproject-80e02.appspot.com",
+  // messagingSenderId: "5126820306",
+  // appId: "1:5126820306:web:6e0e7331ebd7ac03f4380b",
   // * 김원준 전용 키 1
   apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
   authDomain: "test-open-an-account.firebaseapp.com",
