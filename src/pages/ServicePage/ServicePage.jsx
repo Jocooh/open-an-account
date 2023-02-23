@@ -591,28 +591,28 @@ const ServicePage = () => {
                   setComparingModalOpen={setComparingModalOpen}
                   selectedProductId={[
                     selectedProductIds[0],
-                    selectedProductIds[6],
-                    selectedProductIds[12],
+                    selectedProductIds[5],
+                    selectedProductIds[10],
                   ]}
                   selectedProductRate={[
                     selectedProductIds[1],
-                    selectedProductIds[7],
-                    selectedProductIds[13],
+                    selectedProductIds[6],
+                    selectedProductIds[11],
                   ]}
                   selectedProductRate2={[
-                    selectedProductIds[3],
-                    selectedProductIds[8],
-                    selectedProductIds[14],
+                    selectedProductIds[2],
+                    selectedProductIds[7],
+                    selectedProductIds[12],
                   ]}
                   selectedProductRateType={[
-                    selectedProductIds[4],
-                    selectedProductIds[9],
-                    selectedProductIds[15],
+                    selectedProductIds[3],
+                    selectedProductIds[8],
+                    selectedProductIds[13],
                   ]}
                   selectedProduct={[
-                    selectedProductIds[5],
-                    selectedProductIds[10],
-                    selectedProductIds[16],
+                    selectedProductIds[4],
+                    selectedProductIds[9],
+                    selectedProductIds[14],
                   ]}
                 />
               )}
