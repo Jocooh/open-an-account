@@ -31,7 +31,7 @@ function Header() {
   return (
     <Container>
       <Logo
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/LandingPage")}
         src={require("../../../assets/Tipper_logo.png")}
         alt="메인"
       />

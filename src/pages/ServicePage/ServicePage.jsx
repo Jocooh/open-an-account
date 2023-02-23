@@ -33,6 +33,7 @@ import {
   StyledBtnDiv,
   StyledBtn,
   StyledBankListWrapper,
+  FormattedAmount,
 } from "./style";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
@@ -750,7 +751,7 @@ const ServicePage = () => {
                                   만기 목표금액
                                 </span>
                                 <span>을 입력해주세요.</span>
-                                <formattedAmount>
+                                <FormattedAmount>
                                   <input
                                     type="text"
                                     value={amount}
@@ -767,7 +768,7 @@ const ServicePage = () => {
                                   >
                                     {formattedAmount}
                                   </div>
-                                </formattedAmount>
+                                </FormattedAmount>
                                 <MonthRangeSliderTitle>
                                   <span>몇개월</span>
                                   <span style={{ fontWeight: "bold" }}>

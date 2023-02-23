@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   /* padding: 2rem 3rem; */
   /* text-align: center; */
+  /* position: fixed; */
   display: flex;
   justify-content: space-between;
   align-items: center;
