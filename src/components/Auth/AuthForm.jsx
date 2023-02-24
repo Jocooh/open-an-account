@@ -140,7 +140,7 @@ const AuthForm = ({
               <AuthInput
                 id="email"
                 type="email"
-                placeholder="example.gmail.com"
+                placeholder="이메일을 입력해주세요."
                 value={email}
                 onChange={changeEmail}
                 ref={emailRef}
@@ -240,7 +240,7 @@ const AuthForm = ({
               <AuthInput
                 id="email"
                 type="email"
-                placeholder="example.gmail.com"
+                placeholder="이메일을 입력해주세요."
                 value={email}
                 onChange={changeEmail}
                 ref={emailRef}

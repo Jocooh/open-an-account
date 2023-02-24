@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 // auth background
 export const AuthBackground = styled.div`
-  width: 100vw;
+  /* width: 100vw; */
   height: calc(100vh - 11.6rem);
 
   display: flex;
@@ -34,6 +34,8 @@ export const AuthLogoWrapper = styled.div`
 
   display: flex;
   justify-content: center;
+
+  margin-bottom: -20px;
 `;
 export const AuthLogo = styled.div`
   width: 215px;
@@ -57,7 +59,7 @@ export const LoginTitleWrapper = styled.div`
   width: 560px;
   height: 61px;
 
-  margin-bottom: -15px; // css 안먹어서 임시로.
+  margin-bottom: -5px; // css 안먹어서 임시로.
 `;
 export const LoginTitle = styled.h1`
   font-size: 32px;
@@ -96,7 +98,7 @@ export const SignnUpTitleWrapper = styled.div`
   text-align: center;
   justify-content: center;
 
-  margin-bottom: -30px; // css 안먹어서 임시로.
+  margin-bottom: -10px; // css 안먹어서 임시로.
 `;
 export const SignUpTitle = styled.div`
   font-size: 48px;
