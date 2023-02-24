@@ -98,7 +98,7 @@ export const SignnUpTitleWrapper = styled.div`
   text-align: center;
   justify-content: center;
 
-  margin-bottom: -30px; // css 안먹어서 임시로.
+  margin-bottom: -10px; // css 안먹어서 임시로.
 `;
 export const SignUpTitle = styled.div`
   font-size: 48px;
