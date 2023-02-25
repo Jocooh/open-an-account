@@ -43,8 +43,11 @@ const Bookmarks = ({
     if (!authService.currentUser) {
       if (
         window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
-      )
-        navigate("/login");
+      ) {
+        return navigate("/login");
+      } else {
+        return;
+      }
     }
 
     // 북마크가 체크되어있지 않다면?
