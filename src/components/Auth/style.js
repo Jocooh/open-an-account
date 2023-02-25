@@ -3,7 +3,8 @@ import styled from "styled-components";
 // auth background
 export const AuthBackground = styled.div`
   /* width: 100vw; */
-  height: calc(100vh - 11.6rem);
+  /* height: calc(100vh - 145px); */ // 푸터까지
+  height: calc(100vh - 78px);
 
   display: flex;
   justify-content: center;
