@@ -22,7 +22,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	/* max-width: 1440px; */
+	max-width: 1920px;
 	margin: 0;
 	padding: 0;
 	border: 0;
