@@ -43,19 +43,25 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 const MainPage = () => {
   const navigate = useNavigate();
-  // 로그인 됐을 때 알기 위해
-  const isLoggedIn = sessionStorage.key(0);
+
   // 유저 정보 가져오기
-  // const user = authService.currentUser;
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    onAuthStateChanged(authService, (user) => setUser(user));
-  }, []);
-  // 현재 메인페이지 새로고침 시
-  // {isLoggedIn && <Username>{user.displayName}님</Username>} 이 부분
-  // 기존 user = authService.currentUser 불러오지 못해
+  const isLoggedIn = sessionStorage.key(0);
+  // 메인 페이지 새로고침 시 user 의 display name 불러오지 못하는 부분 해결
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 해결 방법 1
   // state 만들어 useEffect 안에 setstate 로 user 값 변경해주니 새로고침해도 불러와짐.
   // useEffect 가 return 후 실행되므로 깜빡이는 현상 발생. 개선 필요함.
+  // const [user, setUser] = useState({});
+  // useEffect(() => {
+  //   onAuthStateChanged(authService, (user) => setUser(user));
+  // }, []);
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 해결 방법 2
+  // 기존 const user = authService.currentUser 가 새로고침시 displayName 을 불러오지 못하니
+  // 세션스토리지에서 key 를 가져와 JSON.parse 안에 넣어줘서 해결. 유즈이펙트보다 쉽고 유즈이펙트 깜빡임도 사라짐.
+  const userSession = sessionStorage.getItem(isLoggedIn);
+  const user = JSON.parse(userSession ?? "");
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <MainPageWrapper>
@@ -66,7 +72,7 @@ const MainPage = () => {
             <GreetingMent>팁퍼에서 시작하는</GreetingMent>
             <span>
               {!isLoggedIn && <Username>고객님</Username>}
-              {isLoggedIn && <Username>{user.displayName}님</Username>}
+              {isLoggedIn && <Username>{user?.displayName}님</Username>}
             </span>
             <Greetingment>의 금융관리</Greetingment>
           </GreetingTitle>

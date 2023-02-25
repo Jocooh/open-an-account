@@ -19,6 +19,7 @@ import {
   setPersistence,
   signInWithEmailAndPassword,
   browserSessionPersistence,
+  signOut,
 } from "firebase/auth";
 import { db, firebaseConfig } from "../../config/firebase";
 // import { useNavigate } from "react-router-dom";
@@ -50,18 +51,28 @@ import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 function MyPage() {
+  const navigate = useNavigate();
   // 세션스토리지에서 로그인했을 때 저장된 current user 가져오기
   const userSession = sessionStorage.getItem(
     `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
   );
   const currentUser = JSON.parse(userSession ?? "");
 
+  const onLogoutClick = () => {
+    authService.signOut().then(() => {
+      sessionStorage.clear();
+      alert("로그아웃 되었습니다.");
+      navigate("/", { replace: true });
+    });
+  };
+
   const [tab, setTab] = useState(0);
 
-  const currentUser3 = useAuth();
+  // const currentUser3 = useAuth();
   // console.log(currentUser3);
   //마이페이지 기능구현 필요 state
   const user = authService.currentUser;
+  // console.log("currentUser", currentUser, "user", user);
   const [userEmail, setUserEmail] = useState(currentUser.email);
   const [btn, setBtn] = useState(false);
 
@@ -140,14 +151,7 @@ function MyPage() {
   //     setPhoneNum(phoneList[0]?.phoneNumber);
   //   });
   // };
-  const navigate = useNavigate();
-  const onLogoutClick = () => {
-    authService.signOut().then(() => {
-      sessionStorage.clear(); // ?
-      alert("로그아웃 되었습니다.");
-      navigate("/", { replace: true });
-    });
-  };
+
   return (
     <MyPageWrapper className="제일 큰 박스">
       {/* ###########  Left    ################# */}
@@ -276,7 +280,7 @@ function MyPage() {
                 setUserPassword={setUserPassword}
                 setInputValidation={setInputValidation}
                 inputValidation={inputValidation}
-                currentUser3={currentUser3}
+                // currentUser3={currentUser3}
               />
               <EnrollNumber
                 setPhoneNum={setPhoneNum}

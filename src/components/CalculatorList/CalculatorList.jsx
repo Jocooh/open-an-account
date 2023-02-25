@@ -11,7 +11,7 @@ import {
   StyledDiv,
   StyledMoreListDiv,
 } from "../SearchBankList/style";
-import Bookmarks from "../Bookmarks";
+import Bookmarks from "../ServicePage/Bookmarks";
 // import PracticeDetail from "./PracticeDetail";
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists } from "../../pages/ServicePage/style";

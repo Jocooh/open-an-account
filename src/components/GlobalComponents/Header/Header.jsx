@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Logo, NavBar, Nav, LoginToggle } from "./style";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +19,7 @@ function Header() {
   //   alert("로그아웃 되었습니다.");
   // };
 
-  // 로그아웃
+  // 로그아웃;
   const onLogoutClick = () => {
     authService.signOut().then(() => {
       sessionStorage.clear(); // ?

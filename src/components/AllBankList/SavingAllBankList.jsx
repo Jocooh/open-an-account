@@ -17,7 +17,7 @@ import {
 } from "../SearchBankList/style";
 import logoLists from "../../assets/logo/logo";
 import SavingDetail from "../DetailProduct/SavingDetail";
-import Bookmarks from "../Bookmarks";
+import Bookmarks from "../ServicePage/Bookmarks";
 
 function SavingAllBankList({
   savingbaseList,

@@ -8,10 +8,9 @@ import {
   where,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { authService, db } from "../config/firebase";
+import { authService, db } from "../../config/firebase";
 
 const Bookmarks = ({
   //상품명
@@ -42,13 +41,18 @@ const Bookmarks = ({
     // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
     const newId = currentUserUid + productId;
     if (!authService.currentUser) {
-      alert("로그인이 필요합니다.");
-      navigate("/login");
+      if (
+        window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
+      ) {
+        return navigate("/login");
+      } else {
+        return;
+      }
     }
 
     // 북마크가 체크되어있지 않다면?
     if (!bookmark) {
-      // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 54~59줄이 들어갈 예정
+      // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 userId ~~~ 등등 애들이 들어갈 예정.
       await setDoc(doc(db, "bookmarks", newId), {
         userId: currentUserUid,
         productName,
@@ -84,17 +88,13 @@ const Bookmarks = ({
   }, []);
 
   return (
-    <div onClick={handleBookmarkChange}>
-      {/* 찜 유무 */}
-
-      <Bookmarked>
-        {bookmark ? (
-          <BookmarkedImg src={require(".././assets/bookmarked.png")} />
-        ) : (
-          <BookmarkedImg src={require(".././assets/bookmarked-empty.png")} />
-        )}
-      </Bookmarked>
-    </div>
+    <Bookmarked onClick={handleBookmarkChange}>
+      {bookmark ? (
+        <BookmarkedImg src={require("../../assets/bookmarked.png")} />
+      ) : (
+        <BookmarkedImg src={require("../../assets/bookmarked-empty.png")} />
+      )}
+    </Bookmarked>
   );
 };
 export default Bookmarks;

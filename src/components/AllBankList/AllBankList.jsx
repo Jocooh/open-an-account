@@ -26,8 +26,7 @@ import {
 } from "../SearchBankList/style";
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists } from "../../pages/ServicePage/style";
-import Bookmarks from "../Bookmarks";
-
+import Bookmarks from "../ServicePage/Bookmarks";
 function AllBankList({
   activeItem,
   setActiveItem,
