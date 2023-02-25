@@ -796,10 +796,10 @@ const ServicePage = () => {
                         </div>
                         <MonthRangeSlider>
                           <span>기간 선택</span>
-                          <span style={{ marginLeft: "-15px" }}>6개월</span>
-                          <span style={{ marginLeft: "11px" }}>12개월</span>
-                          <span style={{ marginLeft: "10px" }}>24개월</span>
-                          <span style={{ marginLeft: "-6px" }}>36개월</span>
+                          <span style={{ marginLeft: "-23px" }}>6개월</span>
+                          <span style={{ marginLeft: "10px" }}>12개월</span>
+                          <span style={{ marginLeft: "5px" }}>24개월</span>
+                          <span style={{ marginLeft: "-20px" }}>36개월</span>
                         </MonthRangeSlider>
                       </MonthRangeSliderWraper>
                       <FilterSubmitWarper>
