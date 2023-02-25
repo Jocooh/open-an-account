@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Logo, NavBar, Nav, LoginToggle } from "./style";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -13,20 +13,20 @@ function Header() {
   const isLoggedIn = sessionStorage.key(0);
 
   // // 공부용 주석 로그아웃 => 왜 한 번에 안되는지 보자
-  // const onLogoutClick = () => {
-  //   authService.signOut();
-  //   navigate("/", { replace: true });
-  //   alert("로그아웃 되었습니다.");
-  // };
+  const onLogoutClick = () => {
+    authService.signOut();
+    navigate("/", { replace: true });
+    alert("로그아웃 되었습니다.");
+  };
 
   // 로그아웃
-  const onLogoutClick = () => {
-    authService.signOut().then(() => {
-      sessionStorage.clear(); // ?
-      alert("로그아웃 되었습니다.");
-      navigate("/", { replace: true });
-    });
-  };
+  // const onLogoutClick = () => {
+  //   authService.signOut().then(() => {
+  //     sessionStorage.clear(); // ?
+  //     alert("로그아웃 되었습니다.");
+  //     navigate("/", { replace: true });
+  //   });
+  // };
 
   return (
     <Container>

@@ -17,7 +17,7 @@ import {
 
 import SearchDepositDetail from "../Detail/SearchSavingDetail";
 
-import Bookmarks from "../../Bookmarks";
+import Bookmarks from "../../ServicePage/Bookmarks";
 
 function SearchSavingLists({
   activeItem,

@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { authService, db } from "../config/firebase";
+import { authService, db } from "../../config/firebase";
 
 const Bookmarks = ({
   //상품명
@@ -89,9 +89,9 @@ const Bookmarks = ({
 
       <Bookmarked>
         {bookmark ? (
-          <BookmarkedImg src={require(".././assets/bookmarked.png")} />
+          <BookmarkedImg src={require("../../assets/bookmarked.png")} />
         ) : (
-          <BookmarkedImg src={require(".././assets/bookmarked-empty.png")} />
+          <BookmarkedImg src={require("../../assets/bookmarked-empty.png")} />
         )}
       </Bookmarked>
     </div>
