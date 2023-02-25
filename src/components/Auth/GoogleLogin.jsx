@@ -31,7 +31,7 @@ export const GoogleLogin = () => {
         if (state) {
           navigate(state);
         } else {
-          navigate("/", { replace: true });
+          navigate("/main", { replace: true });
         }
       });
   };

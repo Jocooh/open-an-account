@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -40,12 +40,14 @@ import {
   TipComments,
   TipComment,
 } from "./style";
+import { onAuthStateChanged } from "firebase/auth";
 const MainPage = () => {
+  const navigate = useNavigate();
   // 로그인 됐을 때 알기 위해
   const isLoggedIn = sessionStorage.key(0);
   // 유저 정보 가져오기
   const user = authService.currentUser;
-  const navigate = useNavigate();
+
   return (
     <MainPageWrapper>
       <UpWraper>
@@ -65,7 +67,7 @@ const MainPage = () => {
             <p />
             상품을 찾아드릴게요. 한눈에 비교하고, 만기수령액을 확인해봐요.
           </Greetingcontent>
-          <ProductFdButton onClick={() => navigate("/ServicePage")}>
+          <ProductFdButton onClick={() => navigate("/service")}>
             상품 찾기
           </ProductFdButton>
         </GreetingBox>
