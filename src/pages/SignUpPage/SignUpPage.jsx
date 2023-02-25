@@ -191,7 +191,7 @@ const SignUpPage = () => {
         setPassword("");
         setConfirmPassword("");
         setNickname("");
-        navigate("/");
+        navigate("/main");
       })
       .catch((err) => {
         if (err.message.includes("already-in-use")) {

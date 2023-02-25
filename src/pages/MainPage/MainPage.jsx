@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -40,12 +40,23 @@ import {
   TipComments,
   TipComment,
 } from "./style";
+import { onAuthStateChanged } from "firebase/auth";
 const MainPage = () => {
+  const navigate = useNavigate();
   // 로그인 됐을 때 알기 위해
   const isLoggedIn = sessionStorage.key(0);
   // 유저 정보 가져오기
-  const user = authService.currentUser;
-  const navigate = useNavigate();
+  // const user = authService.currentUser;
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    onAuthStateChanged(authService, (user) => setUser(user));
+  }, []);
+  // 현재 메인페이지 새로고침 시
+  // {isLoggedIn && <Username>{user.displayName}님</Username>} 이 부분
+  // 기존 user = authService.currentUser 불러오지 못해
+  // state 만들어 useEffect 안에 setstate 로 user 값 변경해주니 새로고침해도 불러와짐.
+  // useEffect 가 return 후 실행되므로 깜빡이는 현상 발생. 개선 필요함.
+
   return (
     <MainPageWrapper>
       <UpWraper>
@@ -65,7 +76,7 @@ const MainPage = () => {
             <p />
             상품을 찾아드릴게요. 한눈에 비교하고, 만기수령액을 확인해봐요.
           </Greetingcontent>
-          <ProductFdButton onClick={() => navigate("/ServicePage")}>
+          <ProductFdButton onClick={() => navigate("/service")}>
             상품 찾기
           </ProductFdButton>
         </GreetingBox>

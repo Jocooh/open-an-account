@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const FooterWrapper = styled.footer`
-  width: 100vw;
-  height: 4rem;
+  height: 50px;
   border-top: 1px solid #ddd;
   background-color: #f7f9fa;
   position: relative;
-  transform: translateY(-100%);
+  /* transform: translateY(-100%); */
   bottom: 0;
   /* z-index: -1; */
   display: flex;
@@ -15,7 +14,7 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const FooterText = styled.p`
-  font-size: 1rem;
+  font-size: 16px;
   color: #777;
   text-align: center;
 `;
