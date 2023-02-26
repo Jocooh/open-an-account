@@ -121,8 +121,8 @@ const LoginPage = () => {
   return (
     <AuthForm
       title="초년생을 위한 예적금 비교, 팁퍼"
-      text="아직 회원이 아니신가요?"
-      linkText=" 회원가입하기"
+      text="아직 회원이 아니신가요? "
+      linkText="회원가입하기"
       email={email}
       changeEmail={changeEmail}
       emailRef={emailRef}
