@@ -10,8 +10,35 @@ import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
 import { collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { createBrowserHistory } from "history";
 
 const SignUpPage = () => {
+  // 회원가입 페이지 새로고침 제어
+  const preventClose = (e) => {
+    e.preventDefault();
+    e.returnValue = ""; //Chrome에서 동작하도록; deprecated
+  };
+  useEffect(() => {
+    window.addEventListener("beforeunload", preventClose);
+    return () => {
+      window.removeEventListener("beforeunload", preventClose);
+    };
+  }, []);
+
+  // const history = createBrowserHistory();
+  // const preventGoBack = () => {
+  //   history.pushState(null, "", location.href);
+  // };
+
+  // useEffect(() => {
+  //   history.pushState(null, "", location.href);
+  //   window.addEventListener("popstate", preventGoBack);
+
+  //   return () => {
+  //     window.removeEventListener("popstate", preventGoBack);
+  //     handleCloseDrawer();
+  //   };
+  // }, []);
   const navigate = useNavigate();
 
   // 기존 sign up
