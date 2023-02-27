@@ -5,41 +5,48 @@ import {
   updateProfile,
 } from "firebase/auth";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
 import { collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
-// import { createBrowserHistory } from "history";
+import { createBrowserHistory } from "history";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
+
   // 회원가입 페이지 새로고침 제어
   const preventClose = (e) => {
     e.preventDefault();
-    e.returnValue = ""; //Chrome에서 동작하도록; deprecated
+    e.returnValue = ""; // Chrome에서 동작하도록
   };
   useEffect(() => {
     window.addEventListener("beforeunload", preventClose);
     return () => {
       window.removeEventListener("beforeunload", preventClose);
     };
-  }, []);
+  }, []); // 의존성 배열 내에 어떤 state 를 넣어야 하는지?
 
-  // const history = createBrowserHistory();
-  // const preventGoBack = () => {
-  //   history.pushState(null, "", location.href);
-  // };
-
-  // useEffect(() => {
-  //   history.pushState(null, "", location.href);
-  //   window.addEventListener("popstate", preventGoBack);
-
-  //   return () => {
-  //     window.removeEventListener("popstate", preventGoBack);
-  //     handleCloseDrawer();
-  //   };
-  // }, []);
-  const navigate = useNavigate();
+  // 회원가입 페이지 뒤로가기 제어
+  const history = createBrowserHistory();
+  useEffect(() => {
+    const listenBackEvent = () => {
+      // 뒤로가기 할 때 수행할 동작.
+      if (
+        window.confirm("변경사항이 저장되지 않습니다. 뒤로 이동하시겠습니까?")
+      ) {
+        return history.push(); // 알아보기
+      } else {
+        return;
+      }
+    };
+    const unlistenHistoryEvent = history.listen(({ action }) => {
+      if (action === "POP") {
+        listenBackEvent();
+      }
+    });
+    return unlistenHistoryEvent;
+  }, []); // 의존성 배열 내에 어떤 state 를 넣어야 하는지?
 
   // 기존 sign up
   const [email, setEmail] = useState("");
