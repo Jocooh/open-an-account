@@ -18,16 +18,17 @@ const Router = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/service" element={<ServicePage />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/boardpage" element={<BoardPage />} />
+
+        <Route path="/board" element={<BoardPage />} />
         <Route path="/detail" element={<DetailPage />} />
-        <Route path="/LandingPage" element={<LandingPage />} />
-        <Route path="/ServicePage" element={<ServicePage />} />
-        <Route path="/bankListPage" element={<BankLists />} />
-        {/* data 페이지를 위한 임시 path name */}
+        <Route path="/bankList" element={<BankLists />} />
+        {/* admin */}
         <Route path="/4jojoa" element={<InsertData />} />
       </Routes>
       {/* <Footer /> */}

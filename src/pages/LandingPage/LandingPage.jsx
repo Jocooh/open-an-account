@@ -87,7 +87,7 @@ const LandingPage = () => {
                 사회 초년생을 위한 예적금 비교, 팁퍼
               </FirestSectionSubTitle>
               <FirestSectionButtonWrap>
-                <StartButton onClick={() => navigate("/ServicePage")}>
+                <StartButton onClick={() => navigate("/service")}>
                   상품 비교하기 >>
                 </StartButton>
               </FirestSectionButtonWrap>
@@ -219,7 +219,7 @@ const LandingPage = () => {
               <div>팁퍼에서 찜해둬요.</div>
             </FourthSectonTitle>
             <FourthSectionButtonWrap>
-              <FourthSectionButton onClick={() => navigate("/")}>
+              <FourthSectionButton onClick={() => navigate("/main")}>
                 팁퍼 시작하기
               </FourthSectionButton>
             </FourthSectionButtonWrap>

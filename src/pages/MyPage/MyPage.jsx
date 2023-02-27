@@ -19,6 +19,7 @@ import {
   setPersistence,
   signInWithEmailAndPassword,
   browserSessionPersistence,
+  signOut,
 } from "firebase/auth";
 import { db, firebaseConfig } from "../../config/firebase";
 // import { useNavigate } from "react-router-dom";
@@ -48,15 +49,29 @@ import { authService } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
 
 function MyPage() {
+  const navigate = useNavigate();
   // 세션스토리지에서 로그인했을 때 저장된 current user 가져오기
   const userSession = sessionStorage.getItem(
     `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
   );
   const currentUser = JSON.parse(userSession ?? "");
+
+
+  const onLogoutClick = () => {
+    authService.signOut().then(() => {
+      sessionStorage.clear();
+      alert("로그아웃 되었습니다.");
+      navigate("/", { replace: true });
+    });
+  };
+
   const [tab, setTab] = useState(0);
+
+
 
   //마이페이지 기능구현 필요 state
   const user = authService.currentUser;
+  // console.log("currentUser", currentUser, "user", user);
   const [userEmail, setUserEmail] = useState(currentUser.email);
   const [btn, setBtn] = useState(false);
   const [btnValidation, setBtnValidation] = useState(true);
@@ -127,14 +142,7 @@ function MyPage() {
   //     setPhoneNum(phoneList[0]?.phoneNumber);
   //   });
   // };
-  const navigate = useNavigate();
-  const onLogoutClick = () => {
-    authService.signOut().then(() => {
-      sessionStorage.clear(); // ?
-      alert("로그아웃 되었습니다.");
-      navigate("/", { replace: true });
-    });
-  };
+
   return (
     <>
       {/* <div style={{ backgroundColor: "#fff", height: "40px" }}></div> */}
@@ -250,6 +258,7 @@ function MyPage() {
 
         <RightBox className="오른쪽 박스">
           {tab === 0 && (
+
             <RightWrapper className="첫번째 탭 박스">
               <form
                 onSubmit={(e) => {
@@ -278,6 +287,7 @@ function MyPage() {
                   setBtnValidation={setBtnValidation}
                   name={name}
                 />
+
 
                 <SaveBtn
                   disabled={btnValidation}

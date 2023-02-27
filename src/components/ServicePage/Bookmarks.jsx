@@ -1,10 +1,22 @@
-import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
+
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  where,
+} from "firebase/firestore";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService, db } from "../../config/firebase";
 
+
 const Bookmarks = ({ baseList, optionList }) => {
+
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -14,6 +26,7 @@ const Bookmarks = ({ baseList, optionList }) => {
     // 로그인 체크
     // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
     const newId = currentUserUid + baseList.id;
+
     if (!authService.currentUser) {
       if (
         window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
@@ -42,6 +55,7 @@ const Bookmarks = ({ baseList, optionList }) => {
         fin_co_no: baseList.fin_co_no, // 상품 회사 코드
         // option list
         save_trm: optionList.save_trm, // 가입 기간
+
       });
 
       // true가 되면서 북마크 더이상 못하게 막기
@@ -57,7 +71,9 @@ const Bookmarks = ({ baseList, optionList }) => {
 
   // 내가 북마크한 내역 화면에 출력
   const getBookmark = async () => {
+
     const newId = currentUserUid + baseList.id;
+
     const docRef = doc(db, "bookmarks", newId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {

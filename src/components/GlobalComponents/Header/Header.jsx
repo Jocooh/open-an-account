@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Logo, NavBar, Nav, LoginToggle } from "./style";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +19,7 @@ function Header() {
   //   alert("로그아웃 되었습니다.");
   // };
 
-  // 로그아웃
+  // 로그아웃;
   const onLogoutClick = () => {
     authService.signOut().then(() => {
       sessionStorage.clear(); // ?
@@ -31,13 +31,13 @@ function Header() {
   return (
     <Container>
       <Logo
-        onClick={() => navigate("/LandingPage")}
+        onClick={() => navigate("/")}
         src={require("../../../assets/Tipper_logo.png")}
         alt="메인"
       />
       <NavBar>
-        <Nav onClick={() => navigate("/")}>대시보드</Nav>
-        <Nav onClick={() => navigate("/ServicePage")}>계산기</Nav>
+        <Nav onClick={() => navigate("/main")}>대시보드</Nav>
+        <Nav onClick={() => navigate("/service")}>계산기</Nav>
 
         {/* 24일이후 추가할 예정 */}
         {/* <Nav onClick={() => navigate("/boardpage")}>커뮤니티</Nav> */}

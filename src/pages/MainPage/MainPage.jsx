@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -40,12 +40,29 @@ import {
   TipComments,
   TipComment,
 } from "./style";
+import { onAuthStateChanged } from "firebase/auth";
 const MainPage = () => {
-  // 로그인 됐을 때 알기 위해
-  const isLoggedIn = sessionStorage.key(0);
-  // 유저 정보 가져오기
-  const user = authService.currentUser;
   const navigate = useNavigate();
+
+  // 유저 정보 가져오기
+  const isLoggedIn = sessionStorage.key(0);
+  // 메인 페이지 새로고침 시 user 의 display name 불러오지 못하는 부분 해결
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 해결 방법 1
+  // state 만들어 useEffect 안에 setstate 로 user 값 변경해주니 새로고침해도 불러와짐.
+  // useEffect 가 return 후 실행되므로 깜빡이는 현상 발생. 개선 필요함.
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    onAuthStateChanged(authService, (user) => setUser(user));
+  }, []);
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 해결 방법 2
+  // 기존 const user = authService.currentUser 가 새로고침시 displayName 을 불러오지 못하니
+  // 세션스토리지에서 key 를 가져와 JSON.parse 안에 넣어줘서 해결. 유즈이펙트보다 쉽고 유즈이펙트 깜빡임도 사라짐.
+  // const userSession = sessionStorage.getItem(isLoggedIn);
+  // const user = JSON.parse(userSession ?? "");
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
   return (
     <MainPageWrapper>
       <UpWraper>
@@ -54,8 +71,13 @@ const MainPage = () => {
           <GreetingTitle>
             <GreetingMent>팁퍼에서 시작하는</GreetingMent>
             <span>
-              {!isLoggedIn && <Username>고객님</Username>}
-              {isLoggedIn && <Username>{user.displayName}님</Username>}
+              {/* {!isLoggedIn && <Username>고객님</Username>}
+              {isLoggedIn && <Username>{user?.displayName}님</Username>} */}
+              {isLoggedIn ? (
+                <Username>{user?.displayName}님</Username>
+              ) : (
+                <Username>고객님</Username>
+              )}
             </span>
             <Greetingment>의 금융관리</Greetingment>
           </GreetingTitle>
@@ -65,7 +87,7 @@ const MainPage = () => {
             <p />
             상품을 찾아드릴게요. 한눈에 비교하고, 만기수령액을 확인해봐요.
           </Greetingcontent>
-          <ProductFdButton onClick={() => navigate("/ServicePage")}>
+          <ProductFdButton onClick={() => navigate("/service")}>
             상품 찾기
           </ProductFdButton>
         </GreetingBox>

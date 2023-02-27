@@ -18,6 +18,10 @@ import {
 
 import SearchDepositDetail from "../Detail/SearchDepositDetail";
 
+
+import Bookmarks from "../../ServicePage/Bookmarks";
+
+
 function SearchDepositLists({
   //이거를 검색버튼 클릭 후에 들어갈 state로 돌리자.
   setColor,
