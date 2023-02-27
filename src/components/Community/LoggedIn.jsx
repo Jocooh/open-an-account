@@ -1,0 +1,32 @@
+import React, { useState } from "react";
+import PostingModal from "../PostingModal/PostingModal";
+import { Wrapper, Content, Title, UserWrapper, Message, User } from "./style";
+
+function LoggedIn({ username }) {
+  const [postingModalOpen, setPostingModalOpen] = useState(false);
+  const OpenPostingModal = () => {
+    setPostingModalOpen(true);
+  };
+  return (
+    <Wrapper>
+      <Content>
+        <Title>관심있는 팁을 찾아보세요</Title>
+      </Content>
+
+      <UserWrapper>
+        <Message>
+          다른 유저들의 팁을 공유받고
+          <br />
+          여러분만의 노하우로 만들어보세요
+        </Message>
+        <User>{username}</User>
+        <button onClick={OpenPostingModal}>글쓰기</button>
+        {postingModalOpen && (
+          <PostingModal setPostingModalOpen={setPostingModalOpen} />
+        )}
+      </UserWrapper>
+    </Wrapper>
+  );
+}
+
+export default LoggedIn;

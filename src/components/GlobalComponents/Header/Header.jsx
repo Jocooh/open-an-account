@@ -38,6 +38,7 @@ function Header() {
       <NavBar>
         <Nav onClick={() => navigate("/main")}>대시보드</Nav>
         <Nav onClick={() => navigate("/service")}>계산기</Nav>
+        <Nav onClick={() => navigate("/community")}>커뮤니티</Nav>
 
         {/* 24일이후 추가할 예정 */}
         {/* <Nav onClick={() => navigate("/boardpage")}>커뮤니티</Nav> */}
@@ -72,18 +73,6 @@ function Header() {
               <Nav onClick={onLogoutClick}>로그아웃</Nav>
             </>
           )}
-          {/* 마리나님 코드 임시 주석 */}
-          {/* {currentUser ? (
-            <>
-              <Nav onClick={() => navigate("/my")}>마이페이지</Nav>
-              <Nav>로그아웃</Nav>
-            </>
-          ) : (
-            <>
-              <Nav onClick={() => navigate("/signUp")}>회원가입</Nav>
-              <Nav onClick={() => navigate("/login")}>로그인</Nav>
-            </>
-          )} */}
         </LoginToggle>
       </NavBar>
     </Container>
