@@ -2,22 +2,21 @@ import styled from "styled-components";
 
 export const MyPageWrapper = styled.div`
   /* background-color: #f4f5f6; */
-  /* width: 100%;
-  height: 1000px; */
+  width: 100%;
   display: flex;
-  gap: 200px;
-  align-items: center;
-  justify-content: center;
+  gap: 100px;
+  /* align-items: center; */
+  /* justify-content: center; */
 `;
 //여기는 왼쪽 박스 스타일구역
 export const LeftBox = styled.div`
-  width: 400px;
+  /* width: 400px; */
   display: flex;
   flex-direction: column;
   gap: 60px;
   padding: 20px;
   box-sizing: content-box;
-  background-color: white;
+  background-color: #fff;
 `;
 export const UserNicknameDiv = styled.div`
   width: 380px;
@@ -26,6 +25,7 @@ export const UserNicknameDiv = styled.div`
   align-items: center;
   border-bottom: 1px solid #ddd;
   margin: 0 auto;
+  gap: 20px;
 `;
 
 export const UserText = styled.h3`
@@ -87,7 +87,7 @@ export const HistoryCategory = styled.div`
 `;
 //여기서부터는 오른쪽 박스 스타일 구역
 export const RightBox = styled.div`
-  width: 600px;
+  width: 900px;
   height: 850px;
   background-color: #f4f5f6;
   padding: 20px;
@@ -98,10 +98,12 @@ export const RightBox = styled.div`
   }
 `;
 export const RightWrapper = styled.div`
-  width: 508px;
+  width: 530px;
   margin: auto;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
 `;
 
 export const ChangePasswordDiv = styled.div`

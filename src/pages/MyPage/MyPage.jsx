@@ -45,10 +45,8 @@ import {
 } from "./style";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
-import { useAuth } from "../../config/firebase";
-import { useNavigate } from "react-router-dom";
 
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MyPage() {
   const navigate = useNavigate();
@@ -57,6 +55,7 @@ function MyPage() {
     `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
   );
   const currentUser = JSON.parse(userSession ?? "");
+
 
   const onLogoutClick = () => {
     authService.signOut().then(() => {
@@ -68,40 +67,28 @@ function MyPage() {
 
   const [tab, setTab] = useState(0);
 
-  // const currentUser3 = useAuth();
-  // console.log(currentUser3);
+
+
   //마이페이지 기능구현 필요 state
   const user = authService.currentUser;
   // console.log("currentUser", currentUser, "user", user);
   const [userEmail, setUserEmail] = useState(currentUser.email);
   const [btn, setBtn] = useState(false);
-
-  //유저의 현재 password   ->  ChangePassword.jsx
-  const [userPassword, setUserPassword] = useState("");
-  //editUserPassword: 고치고 싶은 비밀번호
-  const [editUserPassword, setEditUserPassword] = useState("");
-  const [inputValidation, setInputValidation] = useState(true);
+  const [btnValidation, setBtnValidation] = useState(true);
+  //ChangePassword.jsx
+  const [userPassword, setUserPassword] = useState(""); //현재 유저 패스워드
+  const [editUserPassword, setEditUserPassword] = useState(""); //고치고 싶은 비밀번호
 
   //-> ChangeNickName.jsx
   //newNickname: 유저의 바꿀 닉네임 ,  name: 왼쪽박스 유저 네임
   const [newNickName, setNewNickName] = useState(currentUser?.displayName);
   const [name, setName] = useState(newNickName);
-  //PhoneNum: 유저가 인풋에 본인의 휴대폰번호를 적을 경우 add될 state
-  const [phoneNum, setPhoneNum] = useState("");
+  const [isNickName, setIsNickName] = useState(false);
 
   //EnrollNum.jsx
-  //phoneList : 파이어베이스에 저장되어있는 키(?)값,,필드값?
-  const [phoneList, setPhoneList] = useState("");
-
-  //사용자 처음 신원조회
-  // const getUserInfo = () => {
-  //   if (currentUser !== null) {
-  //     const displayName = currentUser.displayName;
-  //     const email = currentUser.email;
-  //     const uid = currentUser.uid;
-  //     const password = currentUser.password;
-  //   }
-  // };
+  //PhoneNum: 유저가 인풋에 본인의 휴대폰번호를 적을 경우 add될 state
+  const [phoneNum, setPhoneNum] = useState("");
+  const [phoneList, setPhoneList] = useState(""); //firebase에 저장되어있는 키값
 
   //닉네임 업데이트 함수
   const clickUserUpdate = async (e) => {
@@ -110,7 +97,11 @@ function MyPage() {
       await updateProfile(user, {
         displayName: newNickName,
       })
-        .then(alert("개인정보 수정 완료"), setName(newNickName), setBtn(true))
+        .then(
+          alert("개인정보 수정 완료"),
+          setName(newNickName),
+          setEditUserPassword("")
+        )
         .catch((error) => {
           console.log(error);
         });
@@ -153,162 +144,169 @@ function MyPage() {
   // };
 
   return (
-    <MyPageWrapper className="제일 큰 박스">
-      {/* ###########  Left    ################# */}
-      <LeftBox className="왼쪽 박스">
-        {/* 유저 닉네임 확인 */}
-        <UserNicknameDiv>
-          <StyledImage
-            src={require("../../assets/apple.png")}
-            alt="유저사진"
-          ></StyledImage>
-          {/* {currentUser.displayName !== newNickName ? (
+    <>
+      {/* <div style={{ backgroundColor: "#fff", height: "40px" }}></div> */}
+      <MyPageWrapper className="제일 큰 박스">
+        {/* ###########  Left    ################# */}
+        <LeftBox className="왼쪽 박스">
+          {/* 유저 닉네임 확인 */}
+          <UserNicknameDiv>
+            <StyledImage
+              src={require("../../assets/defaultImage.png")}
+              alt="유저사진"
+            ></StyledImage>
             <h3 style={{ fontSize: "25px" }}>{name}</h3>
-          ) : (
-            <h3 style={{ fontSize: "25px" }}>{currentUser.displayName}</h3>
-          )} */}
-          <h3 style={{ fontSize: "25px" }}>{name}</h3>
-        </UserNicknameDiv>
-        {/* 유저 이름,id,연락처 부분 */}
-        <UserContentDiv>
-          {/* <UserText>조성아</UserText> */}
-          {/* 로그인 ID */}
-          <ContentDiv>
+          </UserNicknameDiv>
+          {/* 유저 이름,id,연락처 부분 */}
+          <UserContentDiv>
+            {/* 로그인 ID */}
+            <ContentDiv>
+              <div>
+                <p>로그인 ID</p>
+                <p style={{ color: "#aaa" }}>{currentUser?.email}</p>
+              </div>
+              {/* 로그아웃 버튼 */}
+              <LogOutBtn onClick={onLogoutClick}>
+                <RiLogoutBoxLine />
+                로그아웃
+              </LogOutBtn>
+            </ContentDiv>
             <div>
-              <p>로그인 ID</p>
-              <p style={{ color: "#aaa" }}>{currentUser?.email}</p>
+              <p>연락처</p>
+              <p style={{ color: "#aaa" }}>
+                {phoneNum !== "" ? <>{phoneNum}</> : "등록된 번호가 없어요"}
+              </p>
             </div>
-            {/* 로그아웃 버튼 */}
-            <LogOutBtn onClick={onLogoutClick}>
-              <RiLogoutBoxLine />
-              로그아웃
-            </LogOutBtn>
-          </ContentDiv>
-          <div>
-            <p>연락처</p>
-            <p style={{ color: "#aaa" }}>
-              {phoneNum !== "" ? <>{phoneNum}</> : "등록된 번호가 없어요"}
-            </p>
-          </div>
-        </UserContentDiv>
-        {/* 유저 계정 변경 부분 (디폴트부분) */}
-        <UserAccountDiv
-          style={tab === 0 ? { backgroundColor: "#e6e8ea" } : null}
-        >
-          <CategoryImg>
-            <StyledIcons src={require("../../assets/lock.png")} alt="자물쇠" />
-            <button
-              onClick={() => {
-                setTab(0);
-              }}
-              style={{ fontSize: "20px" }}
+          </UserContentDiv>
+          {/* 유저 계정 변경 부분 (디폴트부분) */}
+          <UserAccountDiv
+            style={tab === 0 ? { backgroundColor: "#e6e8ea" } : null}
+          >
+            <CategoryImg>
+              <StyledIcons
+                src={require("../../assets/lock.png")}
+                alt="자물쇠"
+              />
+              <button
+                onClick={() => {
+                  setTab(0);
+                }}
+                style={{ fontSize: "20px" }}
+              >
+                계정 관리
+              </button>
+            </CategoryImg>
+            <p>〉</p>
+          </UserAccountDiv>
+          {/* 히스토리 */}
+          <UserHistoryDiv>
+            <UserText
+              style={{ borderBottom: "1px solid #ddd", paddingBottom: "10px" }}
             >
-              계정 관리
-            </button>
-          </CategoryImg>
-          <p>〉</p>
-        </UserAccountDiv>
-        {/* 히스토리 */}
-        <UserHistoryDiv>
-          <UserText
-            style={{ borderBottom: "1px solid #ddd", paddingBottom: "10px" }}
-          >
-            히스토리
-          </UserText>
-          <HistoryCategory
-            style={tab === 1 ? { backgroundColor: "#e6e8ea" } : null}
-          >
-            <CategoryImg>
-              <StyledIcons src={require("../../assets/diamond.png")} />
-              <button
-                onClick={() => {
-                  setTab(1);
-                }}
-              >
-                찜한 상품
-              </button>
-            </CategoryImg>
-            <p>〉</p>
-          </HistoryCategory>
-          <HistoryCategory
-            style={tab === 2 ? { backgroundColor: "#e6e8ea" } : null}
-          >
-            <CategoryImg>
-              <StyledIcons src={require("../../assets/paper.png")} />
-              <button
-                onClick={() => {
-                  setTab(2);
-                }}
-              >
-                내가 쓴 글
-              </button>
-            </CategoryImg>
-            <p>〉</p>
-          </HistoryCategory>
-          <HistoryCategory
-            style={tab === 3 ? { backgroundColor: "#e6e8ea" } : null}
-          >
-            <CategoryImg>
-              <StyledIcons src={require("../../assets/lists.png")} />
-              <button
-                onClick={() => {
-                  setTab(3);
-                }}
-                style={{ border: "none" }}
-              >
-                스크랩한 글
-              </button>
-            </CategoryImg>
-            <p>〉</p>
-          </HistoryCategory>
-        </UserHistoryDiv>
-      </LeftBox>
+              히스토리
+            </UserText>
+            <HistoryCategory
+              style={tab === 1 ? { backgroundColor: "#e6e8ea" } : null}
+            >
+              <CategoryImg>
+                <StyledIcons src={require("../../assets/diamond.png")} />
+                <button
+                  onClick={() => {
+                    setTab(1);
+                  }}
+                  style={{ fontSize: "18px" }}
+                >
+                  찜한 상품
+                </button>
+              </CategoryImg>
+              <p>〉</p>
+            </HistoryCategory>
+            <HistoryCategory
+              style={tab === 2 ? { backgroundColor: "#e6e8ea" } : null}
+            >
+              <CategoryImg>
+                <StyledIcons src={require("../../assets/paper.png")} />
+                <button
+                  onClick={() => {
+                    setTab(2);
+                  }}
+                  style={{ fontSize: "18px" }}
+                >
+                  내가 쓴 글
+                </button>
+              </CategoryImg>
+              <p>〉</p>
+            </HistoryCategory>
+            <HistoryCategory
+              style={tab === 3 ? { backgroundColor: "#e6e8ea" } : null}
+            >
+              <CategoryImg>
+                <StyledIcons src={require("../../assets/lists.png")} />
+                <button
+                  onClick={() => {
+                    setTab(3);
+                  }}
+                  style={{ fontSize: "18px" }}
+                >
+                  스크랩한 글
+                </button>
+              </CategoryImg>
+              <p>〉</p>
+            </HistoryCategory>
+          </UserHistoryDiv>
+        </LeftBox>
 
-      <RightBox className="오른쪽 박스">
-        <RightWrapper className="오른쪽 박스 안에 작은 박스">
+        <RightBox className="오른쪽 박스">
           {tab === 0 && (
-            <form
-              onSubmit={(e) => {
-                clickUserUpdate(e);
-              }}
-            >
-              <ChangePassword
-                editUserPassword={editUserPassword}
-                setEditUserPassword={setEditUserPassword}
-                currentUser={currentUser}
-                userPassword={userPassword}
-                setUserPassword={setUserPassword}
-                setInputValidation={setInputValidation}
-                inputValidation={inputValidation}
-                // currentUser3={currentUser3}
-              />
-              <EnrollNumber
-                setPhoneNum={setPhoneNum}
-                phoneNum={phoneNum}
-                currentUser={currentUser}
-                phoneList={phoneList}
-              />
-              <ChangeNickname
-                newNickName={newNickName}
-                setNewNickName={setNewNickName}
-              />
 
-              {newNickName !== currentUser.displayName ||
-              editUserPassword !== userPassword ? (
-                <SaveBtn>변경사항 저장</SaveBtn>
-              ) : (
-                <SaveBtn style={{ backgroundColor: "#aaa" }} disabled>
+            <RightWrapper className="첫번째 탭 박스">
+              <form
+                onSubmit={(e) => {
+                  clickUserUpdate(e);
+                }}
+              >
+                <ChangePassword
+                  editUserPassword={editUserPassword}
+                  setEditUserPassword={setEditUserPassword}
+                  currentUser={currentUser}
+                  userPassword={userPassword}
+                  setUserPassword={setUserPassword}
+                  setBtnValidation={setBtnValidation}
+                />
+                <EnrollNumber
+                  setPhoneNum={setPhoneNum}
+                  phoneNum={phoneNum}
+                  currentUser={currentUser}
+                  phoneList={phoneList}
+                />
+                <ChangeNickname
+                  newNickName={newNickName}
+                  setNewNickName={setNewNickName}
+                  setIsNickName={setIsNickName}
+                  isNickName={isNickName}
+                  setBtnValidation={setBtnValidation}
+                  name={name}
+                />
+
+
+                <SaveBtn
+                  disabled={btnValidation}
+                  style={
+                    btnValidation === true ? { backgroundColor: "#aaa" } : null
+                  }
+                >
                   변경사항 저장
                 </SaveBtn>
-              )}
-            </form>
+              </form>
+            </RightWrapper>
           )}
-          {tab === 1 && <BookmarkPrdtList currentUser={currentUser} />}
+
+          {tab === 1 ? <BookmarkPrdtList currentUser={currentUser} /> : null}
           {tab === 2 && <div>comming soon ...</div>}
           {tab === 3 && <div>comming soon ...</div>}
-        </RightWrapper>
-      </RightBox>
-    </MyPageWrapper>
+        </RightBox>
+      </MyPageWrapper>
+    </>
   );
 }
 

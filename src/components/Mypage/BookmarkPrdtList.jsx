@@ -1,6 +1,7 @@
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { db } from "../../config/firebase";
+import React, { memo, useEffect, useMemo, useState } from "react";
+import { authService, db } from "../../config/firebase";
 import BookmarkPrdtItem from "./BookmarkPrdtItem";
 
 const BookmarkPrdtList = ({ currentUser, sortMonths }) => {
@@ -8,6 +9,7 @@ const BookmarkPrdtList = ({ currentUser, sortMonths }) => {
   const [allOptionList, setAllOptionList] = useState([]);
 
   const handleButtonClick = async () => {
+    // console.log("또 렌더링");
     const optionListPromises = [
       getDocs(collection(db, "DEPOSIT_OPTION_LIST")),
       getDocs(collection(db, "SAVING_OPTION_LIST")),
@@ -41,12 +43,11 @@ const BookmarkPrdtList = ({ currentUser, sortMonths }) => {
       dataArray.push(doc.data());
     });
     setItems(dataArray);
-    // console.log(items);
   };
 
   useEffect(() => {
-    handleButtonClick();
     getData();
+    handleButtonClick();
   }, []);
 
   return (

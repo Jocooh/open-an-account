@@ -20,12 +20,13 @@ import SavingDetail from "../DetailProduct/SavingDetail";
 import Bookmarks from "../ServicePage/Bookmarks";
 
 function SavingAllBankList({
+  setColor,
   savingbaseList,
   savingOptionalList,
   activeItem,
   setActiveItem,
   handleClickProduct,
-  selectedProductId,
+  selectedProductIds,
 }) {
   const savingDB = savingOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
@@ -42,7 +43,19 @@ function SavingAllBankList({
             saving.fin_prdt_cd === item.fin_prdt_cd ? (
               <div key={item.id}>
                 {saving.save_trm === "12" ? (
-                  <StyledBankLists key={item.id}>
+                  <StyledBankLists
+                    key={item.id}
+                    onClick={() => {
+                      setColor(item.id);
+                    }}
+                    style={
+                      selectedProductIds[0] === item.id ||
+                      selectedProductIds[6] === item.id ||
+                      selectedProductIds[12] === item.id
+                        ? { border: "1px solid #6A24FF" }
+                        : null
+                    }
+                  >
                     {/* 로고 */}
                     <div style={{ display: "flex" }}>
                       <StyledListDiv>
@@ -51,16 +64,11 @@ function SavingAllBankList({
                             handleClickProduct(item.id);
                           }}
                         >
-                          {logoLists.logos.map((t) =>
-                            Object.keys(t)[0] === item.fin_co_no ? (
-                              <StyledImg
-                                src={Object.values(t)[0]}
-                                alt="로고"
-                                key={item.id}
-                              />
-                            ) : null
-                          )}
-
+                          <StyledImg
+                            src={logoLists[item.fin_co_no]}
+                            alt="로고"
+                            key={item.id}
+                          />
                           <div>
                             <StyledContentDiv>
                               <StyledProductTitleDiv>

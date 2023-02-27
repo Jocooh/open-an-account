@@ -9,21 +9,33 @@ import {
   getAuth,
 } from "firebase/auth";
 function ChangePassword({
-  editUserPassword,
-  setEditUserPassword,
-  setUserPassword,
-  inputValidation,
-  setInputValidation,
+  editUserPassword, //현재 비밀번호 확인
+  setEditUserPassword, //현재 비밀번호 확인
+  setBtnValidation, //btn활성화
   userPassword,
+  setUserPassword,
 }) {
+  const [inputValidation, setInputValidation] = useState(true);
+
+  //첫번째 인풋 state
   const [passwordMessage, setPasswordMessage] = useState("");
   const [isPassword, setIsPassword] = useState(false);
-  const [password, setPassword] = useState("");
-  const [currentPassword, setCurrentPassword] = useState(password);
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [corfirmPasswordMessage, setConfirmPasswordMessage] = useState("");
-  const checkPassword = useRef(null);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
 
+  //두번째 인풋 state
+  const [password, setPassword] = useState("");
+  const [corfirmPasswordMessage, setConfirmPasswordMessage] = useState("");
+
+  //세번째 인풋 state
+  const [isDoublePasswordConfirm, setIsDoublePasswordConfirm] = useState(false);
+  const [doubleCheckPasswordMessage, setDoubleCheckPasswordMessage] =
+    useState("");
+  const [inputValidationConfirm, setInputValidationConfirm] = useState(true);
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const thirdInput = useRef(null);
+
+  //현재 비밀번호 확인 함수
   const onChangePassword = (e) => {
     const currentPassword = e.target.value;
     setEditUserPassword(currentPassword);
@@ -34,54 +46,58 @@ function ChangePassword({
         "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!"
       );
       setIsPassword(false);
+      setBtnValidation(true);
     } else {
       setPasswordMessage("비밀번호가 일치해요");
       setIsPassword(true);
       setInputValidation(false);
+      setBtnValidation(true);
     }
   };
 
   //################################################# 새 비밀번호 확인
   const changePassword = (event) => {
     setPassword(event.target.value);
-  };
-
-  // 비밀번호 재입력
-  const changeConfirmPassword = (event) => {
-    setConfirmPassword(event.target.value);
-  };
-
-  const checkValidation = (e) => {
-    setPassword(e.target.value);
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    const checkPasswordValidation = password.match(passwordRegex);
-    if (!checkPasswordValidation || !password) {
-      if (!password) {
-        setConfirmPasswordMessage("비밀번호를 입력해주세요");
-        return false;
-      } else {
-        setConfirmPasswordMessage(
-          "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상이어야 합니다."
-        );
-      }
-
-      // if (!confirmPassword) {
-      //   alert("비밀번호를 다시 한번 더 입력해주세요.");
-      //   // confirmPasswordRef?.current?.focus();
-      //   setPassword("");
-      //   return false;
-      // }
-      // if (password !== confirmPassword) {
-      //   alert("비밀번호가 일치하지 않습니다.");
-      //   // confirmPasswordRef?.current?.focus();
-      //   // setPassword("");
-      //   setConfirmPassword("");
-      //   return false;
-      // }
+    if (!passwordRegex.test(event.target.value)) {
+      setConfirmPasswordMessage(
+        "대소문자, 특수문자를 포함하여 8자리 이상 입력해주세요."
+      );
+      // setInputValidation(true);
+      setBtnValidation(true);
+      setIsPasswordConfirm(false);
+    } else if (event.target.value === userPassword) {
+      setBtnValidation(true);
+      setDoubleCheckPasswordMessage("비밀번호가 일치하지 않습니다.");
+    } else if (event.target.value === editUserPassword) {
+      setBtnValidation(true);
+      setConfirmPasswordMessage("현재 비밀번호와 일치해요!");
+      setIsPasswordConfirm(false);
+      setInputValidationConfirm(true);
+    } else {
+      setConfirmPasswordMessage("사용 가능한 비밀번호 형식입니다.");
+      setBtnValidation(true);
+      setIsPasswordConfirm(true);
+      setInputValidationConfirm(false);
     }
-    setConfirmPasswordMessage("올바른 비밀번호 형식입니다.");
-    return true;
+  };
+  //################################################## 새 비밀번호 두번째 확인
+  const changeConfirmPassword = (event) => {
+    const currentPasswordConfirm = event.target.value;
+    setUserPassword(currentPasswordConfirm);
+    if (password === currentPasswordConfirm) {
+      setDoubleCheckPasswordMessage("비밀번호가 일치해요.");
+      setIsDoublePasswordConfirm(true);
+      setBtnValidation(false);
+    } else if (event.target.value !== password) {
+      setBtnValidation(true);
+      setDoubleCheckPasswordMessage("비밀번호가 일치하지 않습니다.");
+    } else {
+      setDoubleCheckPasswordMessage("비밀번호가 일치하지 않습니다.");
+      setIsDoublePasswordConfirm(false);
+      setBtnValidation(true);
+    }
   };
 
   return (
@@ -97,7 +113,6 @@ function ChangePassword({
           onChange={(e) => {
             onChangePassword(e);
           }}
-          ref={checkPassword}
         />
         {isPassword === true ? (
           <p style={{ color: "red" }}>{passwordMessage}</p>
@@ -114,22 +129,31 @@ function ChangePassword({
         </div>
         <UserInput
           type="password"
-          onChange={(e) => setUserPassword(e.target.value)}
+          onChange={(e) => changePassword(e)}
           disabled={inputValidation}
-          value={userPassword}
+          value={password}
         />
-        {/* <p>{corfirmPasswordMessage}</p> */}
+        {isPasswordConfirm === true ? (
+          <p style={{ color: "green" }}>{corfirmPasswordMessage}</p>
+        ) : (
+          <p>{corfirmPasswordMessage}</p>
+        )}
         {/* 새비밀번호 확인 */}
         <p>새 비밀번호 확인</p>
         <UserInput
           type="password"
-          disabled={inputValidation}
+          disabled={inputValidationConfirm}
           onChange={(e) => {
-            setUserPassword(e.target.value);
+            changeConfirmPassword(e);
           }}
-          // value={userPassword}
+          value={userPassword}
+          ref={thirdInput}
         />
-        {/* <p>{corfirmPasswordMessage}</p> */}
+        {isDoublePasswordConfirm === true ? (
+          <p style={{ color: "green" }}>{doubleCheckPasswordMessage}</p>
+        ) : (
+          <p>{doubleCheckPasswordMessage}</p>
+        )}
       </ChangePasswordDiv>
     </>
   );

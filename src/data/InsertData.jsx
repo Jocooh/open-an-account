@@ -1,6 +1,8 @@
 import axios from "axios";
+
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+
 import { db } from "../config/firebase";
 const InsertData = () => {
   const [savingBaseList, setSavingBaseList] = useState([]);
@@ -123,12 +125,14 @@ const InsertData = () => {
     }
   };
 
+
   useEffect(() => {
     getSavingBaseListHandler();
     getSavingOptionListHandler();
     getDepositBaseListHandler();
     getDepositOptionListHandler();
   }, []);
+
 
   return (
     <div

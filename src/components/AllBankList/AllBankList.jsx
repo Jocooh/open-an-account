@@ -18,6 +18,7 @@ import {
 } from "./style";
 
 import logoLists from "../../assets/logo/logo";
+
 import {
   StyledDiv,
   StyledContentDiv,
@@ -27,7 +28,9 @@ import {
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists } from "../../pages/ServicePage/style";
 import Bookmarks from "../ServicePage/Bookmarks";
+
 function AllBankList({
+  setColor,
   activeItem,
   setActiveItem,
   depositbaseList,
@@ -36,7 +39,6 @@ function AllBankList({
   depositOptionalList,
 }) {
   //최고금리순으로 가져오는 함수
-  const [color, setColor] = useState([]);
 
   const depositDB = depositOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
@@ -75,15 +77,11 @@ function AllBankList({
                             handleClickProduct(item.id);
                           }}
                         >
-                          {logoLists.logos.map((t) =>
-                            Object.keys(t)[0] === item.fin_co_no ? (
-                              <StyledImg
-                                src={Object.values(t)[0]}
-                                alt="로고"
-                                key={item.id}
-                              />
-                            ) : null
-                          )}
+                          <StyledImg
+                            src={logoLists[item.fin_co_no]}
+                            alt="로고"
+                            key={item.id}
+                          />
                           <div>
                             <StyledContentDiv>
                               <StyledProductTitleDiv>
@@ -114,12 +112,9 @@ function AllBankList({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            productId={item.fin_prdt_cd}
-                            productName={item.fin_prdt_nm}
-                            productCoName={item.kor_co_nm}
-                            productDocId={item.id}
-                            sortMonths={sortMonths}
-                            productCoCode={item.fin_co_no}
+                            baseList={item} //baseList
+                            sortMonths={sortMonths} //기간 정렬
+                            optionList={deposit} //optionList
                           />
                           <button
                             style={{

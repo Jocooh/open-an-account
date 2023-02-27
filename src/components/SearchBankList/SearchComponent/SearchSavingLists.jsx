@@ -1,4 +1,5 @@
 import React from "react";
+import Bookmarks from "../../ServicePage/Bookmarks";
 import logoLists from "../../../assets/logo/logo";
 import { StyledBankLists } from "../../../pages/ServicePage/style";
 import {
@@ -17,7 +18,9 @@ import {
 
 import SearchDepositDetail from "../Detail/SearchSavingDetail";
 
+
 import Bookmarks from "../../ServicePage/Bookmarks";
+
 
 function SearchSavingLists({
   activeItem,
@@ -26,6 +29,8 @@ function SearchSavingLists({
   savingbaseList,
   savingOptionalList,
   handleClickProduct,
+  selectedProductIds,
+  setColor,
 }) {
   return (
     <div>
@@ -42,7 +47,19 @@ function SearchSavingLists({
           })
           .map((base) => {
             return (
-              <StyledBankLists key={base.id}>
+              <StyledBankLists
+                key={base.id}
+                onClick={() => {
+                  setColor(base.id);
+                }}
+                style={
+                  selectedProductIds[0] === base.id ||
+                  selectedProductIds[6] === base.id ||
+                  selectedProductIds[12] === base.id
+                    ? { border: "1px solid #6A24FF" }
+                    : null
+                }
+              >
                 <div style={{ display: "flex" }}>
                   <StyledListDiv>
                     <StyledDiv
@@ -50,16 +67,11 @@ function SearchSavingLists({
                         handleClickProduct(base.id);
                       }}
                     >
-                      <div key={base.fin_prdt_nm}>
-                        {logoLists.logos.map((logo) =>
-                          Object.keys(logo)[0] === base.fin_co_no ? (
-                            <StyledImg
-                              src={Object.values(logo)[0]}
-                              alt="로고"
-                            />
-                          ) : null
-                        )}
-                      </div>
+                      <StyledImg
+                        src={logoLists[base.fin_co_no]}
+                        alt="로고"
+                        key={base.id}
+                      />
                       <div>
                         <StyledContentDiv>
                           <StyledProductTitleDiv>

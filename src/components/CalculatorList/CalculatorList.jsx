@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Bookmarks from "../ServicePage/Bookmarks";
+import logoLists from "../../assets/logo/logo";
 import {
   StyledBankNameP,
   StyledProductTitleDiv,
@@ -7,39 +9,37 @@ import {
   StyledRateP,
 } from "../AllBankList/style";
 import {
-  StyledContentDiv,
   StyledDiv,
+  StyledContentDiv,
+  StyledListDiv,
   StyledMoreListDiv,
 } from "../SearchBankList/style";
+
+
 import Bookmarks from "../ServicePage/Bookmarks";
 // import PracticeDetail from "./PracticeDetail";
+
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists } from "../../pages/ServicePage/style";
-import logoLists from "../../assets/logo/logo";
-import { StyledListDiv } from "../SearchBankList/style";
 
 const CalculatorList = ({
+  months,
   activeItem,
   setActiveItem,
   depositbaseList,
   selectedProductIds,
   handleClickProduct,
   depositOptionalList,
-  months,
 }) => {
   const [color, setColor] = useState([]);
 
-  //activeItem : 자세히 버튼 토글 state입니다.
-  //depositbaseList : 전체 예금baseList state입니다.  //들어오는거 확인
-  //handleClickProduct: 상우님 만드신 리스트 클릭시 실행되는 함수입니다.
-  //depositOptionalList: 전체 예금 optionList state입니다.
   const depositDB = depositOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
-  }); //값들어오는거 확인
+  });
   const sortMonths = depositOptionalList?.sort(function (a, b) {
     return a.save_trm - b.save_trm;
   });
-  //데이터의 개월 수가 문자로 되어 있어서 사용했씁니다.
+
   const changeStringHandler = months.toString();
   return (
     <div>
@@ -69,15 +69,11 @@ const CalculatorList = ({
                             handleClickProduct(item.id);
                           }}
                         >
-                          {logoLists.logos.map((t) =>
-                            Object.keys(t)[0] === item.fin_co_no ? (
-                              <StyledImg
-                                src={Object.values(t)[0]}
-                                alt="로고"
-                                key={item.id}
-                              />
-                            ) : null
-                          )}
+                          <StyledImg
+                            src={logoLists[item.fin_co_no]}
+                            alt="로고"
+                            key={item.id}
+                          />
                           <div>
                             <StyledContentDiv>
                               <StyledProductTitleDiv>
