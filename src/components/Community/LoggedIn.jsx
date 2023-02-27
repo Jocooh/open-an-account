@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import PostingModal from "../PostingModal/PostingModal";
-import { Wrapper, Content, Title, UserWrapper, Message, User } from "./style";
+import {
+  Wrapper,
+  Content,
+  Title,
+  UserWrapper,
+  User,
+  Category,
+  Categories,
+  ProfileImg,
+} from "./style";
 
 function LoggedIn({ username }) {
   const [postingModalOpen, setPostingModalOpen] = useState(false);
@@ -9,21 +18,27 @@ function LoggedIn({ username }) {
   };
   return (
     <Wrapper>
+      <Categories>
+        <Category>금융상품 후기</Category>
+        <Category>팁과 노하우</Category>
+        <Category>공지사항</Category>
+      </Categories>
+
       <Content>
         <Title>관심있는 팁을 찾아보세요</Title>
-      </Content>
-
-      <UserWrapper>
-        <Message>
-          다른 유저들의 팁을 공유받고
-          <br />
-          여러분만의 노하우로 만들어보세요
-        </Message>
-        <User>{username}</User>
-        <button onClick={OpenPostingModal}>글쓰기</button>
+        {/* 작성창 제일 위  */}
+        {/* 그 다음 글 카테고리 순서대로 쌓기 */}
         {postingModalOpen && (
           <PostingModal setPostingModalOpen={setPostingModalOpen} />
         )}
+      </Content>
+      <UserWrapper>
+        <User>
+          <ProfileImg src={require("../../assets/profileimg.png")} />
+
+          {username}
+        </User>
+        <button onClick={OpenPostingModal}>글 작성하기</button>
       </UserWrapper>
     </Wrapper>
   );

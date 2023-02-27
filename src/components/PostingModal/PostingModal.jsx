@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Body,
+  CategoryButton,
+  CategoryInput,
   CloseButton,
   ContentInput,
   ErrorMessage,
@@ -10,35 +12,37 @@ import {
   ModalContainer,
   SaveButton,
   TitleInput,
+  Category,
+  Content,
 } from "./style";
-
-// 카테고리 드롭박스 선택시
-// https://velog.io/@niboo/React-%EB%93%9C%EB%A1%AD%EB%8B%A4%EC%9A%B4-%EB%A9%94%EB%89%B4-%EB%A7%8C%EB%93%A4%EA%B8%B0
-// const CATEGORIES = [
-//     {id: null, value: '카테고리를 선택하세요'},
-//     {id: 1, value: '10대 금융 노하우'},
-//     {id: 2, value: '초년생 금융 노하우'},
-// ]
-// const CategorySelectHandler = (e) => {
-// const [selectedDropValue, setSelectedDropValue] = useState('카테고리를 선택하세요')
-// // onChange 이벤트가 발생한 target을 받아와 value값이 할당해준다.
-// const handleDropProduct = e => e.target.value
-// // 상품코드에 넣을 데이터
-// setSelectedDropValue(PRODUCT_DATA.filter(el => el.value === value)[0].id);
-// }
 
 function PostingModal({ setPostingModalOpen }) {
   const navigate = useNavigate();
-
-  const [currentInput, setCurrentInput] = useState("");
 
   const ClosePostingModal = () => {
     setPostingModalOpen(false);
   };
 
+  const [currentInput, setCurrentInput] = useState("");
   const checkInput = (e) => {
     const input = e.target.value;
     setCurrentInput(input);
+  };
+
+  //* 드롭다운 메뉴
+  const options = [
+    { value: "", text: "카테고리 선택" },
+    { value: "금융상품 후기", text: "금융상품 후기" },
+    { value: "팁과 노하우", text: "팁과 노하우" },
+    { value: "공지사항", text: "공지사항" },
+  ];
+  const [selected, setSelected] = useState(options[0].value);
+  const selectCategory = (e) => {
+    if (e.target.value === options[0].value) {
+      alert("카테고리를 선택해주세요.");
+    } else {
+      setSelected(e.target.value);
+    }
   };
 
   return (
@@ -46,12 +50,12 @@ function PostingModal({ setPostingModalOpen }) {
       <ModalContainer>
         <Header>
           <CloseButton onClick={ClosePostingModal}>닫기</CloseButton>
-          <div>글쓰기</div>
+          <div>글 작성하기</div>
           <SaveButton
             alert="등록되었습니다."
             onClick={() => navigate("/detail")}
           >
-            등록하기
+            등록
           </SaveButton>
         </Header>
 
@@ -61,12 +65,21 @@ function PostingModal({ setPostingModalOpen }) {
             value={currentInput}
             placeholder="제목을 입력해주세요"
           />
-          <ContentInput
-            onChange={checkInput}
-            value={currentInput}
-            placeholder="(본문 관련 주의사항)"
-          />
-          <ErrorMessage>카테고리를 선택해주세요</ErrorMessage>
+          <Category value={selected} onChange={selectCategory}>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.text}
+              </option>
+            ))}
+          </Category>
+
+          <Content>
+            <ContentInput
+              onChange={checkInput}
+              value={currentInput}
+              placeholder="사진은 최대 5장 올릴 수 있습니다."
+            />
+          </Content>
         </Body>
       </ModalContainer>
     </ModalBackground>
