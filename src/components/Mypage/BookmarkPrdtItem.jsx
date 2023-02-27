@@ -23,7 +23,7 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
   return (
     <div style={{ margin: "auto" }}>
       {items?.map((item) => (
-        <div key={item.productDocId}>
+        <div key={item.docId}>
           <div className="스크롤 구역" style={{ overflow: "auto" }}>
             <StyledBankLists>
               <div
@@ -37,7 +37,7 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
               >
                 <StyledDiv>
                   <StyledImg
-                    src={logoLists[item.productCoCode]}
+                    src={logoLists[item.fin_co_no]}
                     alt="로고"
                     style={{ marginLeft: "20px" }}
                   />
@@ -49,9 +49,9 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
                             fontSize: "20px",
                           }}
                         >
-                          {item.productName}
+                          {item.fin_prdt_nm}
                         </h2>
-                        <StyledBankNameP>{item.productCoName}</StyledBankNameP>
+                        <StyledBankNameP>{item.kor_co_nm}</StyledBankNameP>
                       </StyledProductTitleDiv>
 
                       <StyledSearchSaveTrmDiv>
@@ -59,9 +59,9 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
                         <h4 style={{ fontWeight: "bold", color: "#aaa" }}>
                           최고금리
                         </h4>
-                        {/* 여기가 경고뜨는 부분 지금 p태그가 h4를 감싸고 있음 ,,고칠예정 ㅎ */}
+
                         {allOptionList?.map((v) =>
-                          v.fin_prdt_cd === item.productId ? (
+                          v.fin_prdt_cd === item.fin_prdt_cd ? (
                             <StyledSavingRateP key={item.id}>
                               <p style={{ color: "#aaa" }}>{v.save_trm}개월</p>
                               <h4
@@ -98,15 +98,15 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
                     }}
                     s
                     onClick={() => {
-                      setOpen(item.productDocId);
+                      setOpen(item.docId);
                     }}
                   >
-                    {open === item.productDocId ? <></> : "자세히∨"}
+                    {open === item.docId ? <></> : "자세히∨"}
                   </button>
                 </StyledMoreListDiv>
               </div>
 
-              {open === item.productDocId ? (
+              {open === item.docId ? (
                 <DetailBookMark
                   base={item}
                   setOpen={setOpen}

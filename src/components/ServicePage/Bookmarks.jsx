@@ -1,4 +1,3 @@
-
 import {
   collection,
   deleteDoc,
@@ -14,9 +13,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService, db } from "../../config/firebase";
 
-
-const Bookmarks = ({ baseList, optionList }) => {
-
+const Bookmarks = ({ baseList }) => {
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -53,9 +50,6 @@ const Bookmarks = ({ baseList, optionList }) => {
         join_member: baseList.join_member, // 가입 대상
         etc_note: baseList.etc_note, // 기타 유의사항
         fin_co_no: baseList.fin_co_no, // 상품 회사 코드
-        // option list
-        save_trm: optionList.save_trm, // 가입 기간
-
       });
 
       // true가 되면서 북마크 더이상 못하게 막기
@@ -71,9 +65,7 @@ const Bookmarks = ({ baseList, optionList }) => {
 
   // 내가 북마크한 내역 화면에 출력
   const getBookmark = async () => {
-
     const newId = currentUserUid + baseList.id;
-
     const docRef = doc(db, "bookmarks", newId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {

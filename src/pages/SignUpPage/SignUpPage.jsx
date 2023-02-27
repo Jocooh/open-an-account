@@ -10,7 +10,7 @@ import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
 import { collection } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 
 const SignUpPage = () => {
   // 회원가입 페이지 새로고침 제어

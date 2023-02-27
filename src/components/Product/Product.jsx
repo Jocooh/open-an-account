@@ -104,11 +104,7 @@ function Product({
         </Message>
         <Scrap>
           <Bookmarks
-            productId={selectedProduct.fin_prdt_cd}
-            productName={selectedProduct.fin_prdt_nm}
-            productCoName={selectedProduct.kor_co_nm}
-            productDocId={selectedProductId}
-            productCoCode={selectedProduct.fin_co_no}
+            baseList={selectedProduct} //baseList
           />
         </Scrap>
       </ProductBox>
