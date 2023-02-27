@@ -18,6 +18,7 @@ import { StyledImg } from "../../components/AllBankList/style";
 import Bookmarks from "../ServicePage/Bookmarks";
 
 function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
+  console.log(items);
   const [open, setOpen] = useState("");
 
   return (
@@ -83,11 +84,12 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
                   style={{ marginRight: "2%" }}
                 >
                   <Bookmarks
-                    productId={item.fin_prdt_cd}
-                    productName={item.fin_prdt_nm}
-                    productCoName={item.kor_co_nm}
-                    productDocId={item.id}
-                    productCoCode={item.fin_co_no}
+                    // productId={item.fin_prdt_cd}
+                    // productName={item.fin_prdt_nm}
+                    // productCoName={item.kor_co_nm}
+                    // productDocId={item.id}
+                    // productCoCode={item.fin_co_no}
+                    baseList={item}
                   />
                   <button
                     title="자세히 버튼"

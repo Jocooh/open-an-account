@@ -5,6 +5,7 @@ import {
   getDoc,
   getDocs,
   setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 
@@ -22,7 +23,7 @@ const Bookmarks = ({ baseList }) => {
   const handleBookmarkChange = async () => {
     // 로그인 체크
     // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
-    const newId = currentUserUid + baseList.id;
+    // const newId = currentUserUid + baseList.id;
 
     if (!authService.currentUser) {
       if (
@@ -37,7 +38,7 @@ const Bookmarks = ({ baseList }) => {
     // 북마크가 체크되어있지 않다면?
     if (!bookmark) {
       // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 userId ~~~ 등등 애들이 들어갈 예정.
-      await setDoc(doc(db, "bookmarks", newId), {
+      await setDoc(doc(db, "bookmarks", baseList.id), {
         userId: currentUserUid,
         // 필드 id
         docId: baseList.id,
@@ -56,7 +57,7 @@ const Bookmarks = ({ baseList }) => {
       setBookmark(true);
     } else {
       // bookmark 면? 해당 newId 가 있으니 delete 이 실행
-      const haveBookMark = doc(db, "bookmarks", newId);
+      const haveBookMark = doc(db, "bookmarks", baseList.id);
       deleteDoc(haveBookMark);
       //다시 북마크가 저장가능한 상태
       setBookmark(false);
@@ -65,8 +66,8 @@ const Bookmarks = ({ baseList }) => {
 
   // 내가 북마크한 내역 화면에 출력
   const getBookmark = async () => {
-    const newId = currentUserUid + baseList.id;
-    const docRef = doc(db, "bookmarks", newId);
+    // const newId = currentUserUid + baseList.id;
+    const docRef = doc(db, "bookmarks", baseList.id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setBookmark(true);
