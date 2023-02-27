@@ -22,9 +22,6 @@ const Bookmarks = ({ baseList }) => {
   // 북마크 추가 및 삭제
   const handleBookmarkChange = async () => {
     // 로그인 체크
-    // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
-    // const newId = currentUserUid + baseList.id;
-
     if (!authService.currentUser) {
       if (
         window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
@@ -34,7 +31,8 @@ const Bookmarks = ({ baseList }) => {
         return;
       }
     }
-
+    // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
+    // const newId = currentUserUid + baseList.id;
     // 북마크가 체크되어있지 않다면?
     if (!bookmark) {
       // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 userId ~~~ 등등 애들이 들어갈 예정.

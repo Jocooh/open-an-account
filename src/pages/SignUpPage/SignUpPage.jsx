@@ -5,11 +5,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
-import { collection } from "firebase/firestore";
-import { db } from "../../config/firebase";
 import { createBrowserHistory } from "history";
 
 const SignUpPage = () => {
@@ -124,66 +122,66 @@ const SignUpPage = () => {
   };
 
   // 이메일, 비밀번호, 닉네임 유효성 검사
-  const checkValidation = () => {
-    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-    const checkEmailValidation = email.match(emailRegex);
-    const checkPasswordValidation = password.match(passwordRegex);
+  // const checkValidation = () => {
+  //   const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  //   const passwordRegex =
+  //     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+  //   const checkEmailValidation = email.match(emailRegex);
+  //   const checkPasswordValidation = password.match(passwordRegex);
 
-    if (!email || !checkEmailValidation) {
-      if (!email) {
-        alert("이메일을 입력해주세요.");
-        emailRef?.current?.focus();
-        return false;
-      } else {
-        alert("이메일 형식을 올바르게 입력해주세요.");
-        emailRef?.current?.focus();
-        return false;
-      }
-    }
+  //   if (!email || !checkEmailValidation) {
+  //     if (!email) {
+  //       alert("이메일을 입력해주세요.");
+  //       emailRef?.current?.focus();
+  //       return false;
+  //     } else {
+  //       alert("이메일 형식을 올바르게 입력해주세요.");
+  //       emailRef?.current?.focus();
+  //       return false;
+  //     }
+  //   }
 
-    if (!password || !checkPasswordValidation) {
-      if (!password) {
-        alert("비밀번호를 입력해주세요.");
-        passwordRef?.current?.focus();
-        return false;
-      } else {
-        alert(
-          "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상 입력해주세요."
-        );
-        passwordRef?.current?.focus();
-        setPassword("");
-        return false;
-      }
-    }
-    if (!confirmPassword) {
-      alert("비밀번호를 한번 더 입력해주세요.");
-      confirmPasswordRef?.current?.focus();
-      return false;
-    }
-    if (password !== confirmPassword) {
-      alert("비밀번호가 일치하지 않습니다.");
-      confirmPasswordRef?.current?.focus();
-      // setPassword("");
-      setConfirmPassword("");
-      return false;
-    }
+  //   if (!password || !checkPasswordValidation) {
+  //     if (!password) {
+  //       alert("비밀번호를 입력해주세요.");
+  //       passwordRef?.current?.focus();
+  //       return false;
+  //     } else {
+  //       alert(
+  //         "비밀번호는 대소문자, 특수문자를 포함하여 8자리 이상 입력해주세요."
+  //       );
+  //       passwordRef?.current?.focus();
+  //       setPassword("");
+  //       return false;
+  //     }
+  //   }
+  //   if (!confirmPassword) {
+  //     alert("비밀번호를 한번 더 입력해주세요.");
+  //     confirmPasswordRef?.current?.focus();
+  //     return false;
+  //   }
+  //   if (password !== confirmPassword) {
+  //     alert("비밀번호가 일치하지 않습니다.");
+  //     confirmPasswordRef?.current?.focus();
+  //     // setPassword("");
+  //     setConfirmPassword("");
+  //     return false;
+  //   }
 
-    if (!nickname || nickname.length < 2 || nickname.length > 6) {
-      if (!nickname) {
-        alert("닉네임을 입력해주세요.");
-        nicknameRef?.current?.focus();
-        return false;
-      } else {
-        alert("닉네임은 2글자 이상, 6글자 미만으로 입력해주세요.");
-        nicknameRef?.current?.focus();
-        return false;
-      }
-    }
+  //   if (!nickname || nickname.length < 2 || nickname.length > 6) {
+  //     if (!nickname) {
+  //       alert("닉네임을 입력해주세요.");
+  //       nicknameRef?.current?.focus();
+  //       return false;
+  //     } else {
+  //       alert("닉네임은 2글자 이상, 6글자 미만으로 입력해주세요.");
+  //       nicknameRef?.current?.focus();
+  //       return false;
+  //     }
+  //   }
 
-    return true;
-  };
+  //   return true;
+  // };
 
   // // 비밀번호 일치 여부 -> 닉네임 추가로 변수 없애고 상단으로 이동
   // const checkValidationForSignUp = () => {
@@ -204,7 +202,7 @@ const SignUpPage = () => {
   // 회원가입
   const submitSignUp = () => {
     // 이메일, 비밀번호, 닉네임 유효성 검사 확인
-    if (!checkValidation()) return;
+    // if (!checkValidation()) return;
 
     // // 비밀번호 일치여부 확인 -> 닉네임 추가로 변수 없애고 상단으로 이동
     // if (!checkValidationForSignUp()) return;
