@@ -282,7 +282,7 @@ export const StyledBankListContainer = styled.div`
 `;
 export const StyledBankList = styled.div`
   margin: auto;
-  width: 950px;
+  /* width: 950px; */
   //height:1007px;
   height: 850px;
   overflow: auto;

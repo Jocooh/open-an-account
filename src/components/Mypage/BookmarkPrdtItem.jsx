@@ -19,11 +19,11 @@ import Bookmarks from "../ServicePage/Bookmarks";
 
 function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
   const [open, setOpen] = useState("");
-  console.log(items);
+
   return (
     <div style={{ margin: "auto" }}>
       {items?.map((item) => (
-        <div key={item.docId}>
+        <div key={item.docId} style={{ width: "780px", margin: "auto" }}>
           <div className="스크롤 구역" style={{ overflow: "auto" }}>
             <StyledBankLists>
               <div
@@ -55,7 +55,6 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
                       </StyledProductTitleDiv>
 
                       <StyledSearchSaveTrmDiv>
-                        {/* 여기가 지금 금리에따라서 여러개 나오는 부분인데 괜찮으시다면 searchDepositLists부분 참고하셔서 만드셔도 될껏같습니다. */}
                         <h4 style={{ fontWeight: "bold", color: "#aaa" }}>
                           최고금리
                         </h4>
