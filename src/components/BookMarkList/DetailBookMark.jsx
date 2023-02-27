@@ -8,6 +8,7 @@ import {
 import { StyledDetailContainer, StyledDetailContent } from "./style"; //width길이가 달라서 따로 스타일컴포넌트 만듬
 
 function DetailBookMark({ base, setOpen, depositOptionalList }) {
+  const maxLimit = base.max_limit;
   return (
     <>
       <div>
@@ -29,11 +30,11 @@ function DetailBookMark({ base, setOpen, depositOptionalList }) {
                   <p>최고한도 : </p>
                   <div>
                     <p style={{ fontWeight: "bold" }}>
-                      {/* {base.max_limit !== null
-                      ? `${maxLimit
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원`
-                      : "없음"} */}
+                      {base.max_limit !== null
+                        ? `${maxLimit
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원`
+                        : "없음"}
                     </p>
                   </div>
                 </div>

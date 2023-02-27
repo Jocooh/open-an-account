@@ -970,19 +970,26 @@ const ServicePage = () => {
                   </StyledBankListContainer>
                 </div>
               )}
+              {/* ########################################### */}
               {activeTab === 3 && (
                 <>
                   <TapContainer>
                     <TapContainerBox>
-                      <TapTitleName>찜 목록</TapTitleName>
+                      {/* 여기서 부터 찜 내용 들어감 */}
+                      <StyledBankListContainer>
+                        <StyledBankList>
+                          <div
+                            ref={topLocation}
+                            className="top으로 가는 위치 지정"
+                          />
+                          <StyledBankListWrapper>
+                            {/* 원준님이랑 얘기해야될 듯 */}
+                            {/* <BookmarkPrdtList currentUser={currentUser} /> */}
+                          </StyledBankListWrapper>
+                        </StyledBankList>
+                      </StyledBankListContainer>
                     </TapContainerBox>
                   </TapContainer>
-                  {/* 찜목록 들어갈 컴포넌트 */}
-                  {/* <BankBookMark
-                    currentUser={currentUser}
-                    setActiveItem={setActiveItem}
-                  /> */}
-                  <BookmarkPrdtList />
                 </>
               )}
             </div>

@@ -18,10 +18,6 @@ import {
 
 import SearchDepositDetail from "../Detail/SearchDepositDetail";
 
-
-import Bookmarks from "../../ServicePage/Bookmarks";
-
-
 function SearchDepositLists({
   //이거를 검색버튼 클릭 후에 들어갈 state로 돌리자.
   setColor,
@@ -37,6 +33,7 @@ function SearchDepositLists({
     <div>
       {depositbaseList
         ?.filter((val) => {
+          // console.log(val);
           if (searchBank === "") {
             return val;
           } else if (val.kor_co_nm.includes(searchBank)) {
@@ -108,13 +105,7 @@ function SearchDepositLists({
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <Bookmarks
-                      productId={base.fin_prdt_cd}
-                      productName={base.fin_prdt_nm}
-                      productCoName={base.kor_co_nm}
-                      productDocId={base.id}
-                      productCoCode={base.fin_co_no}
-                    />
+                    <Bookmarks baseList={base} />
                     <button
                       style={{
                         width: "60px",
