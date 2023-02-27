@@ -4,13 +4,14 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `;
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
+
 export const Title = styled.div`
   color: white;
   display: flex;

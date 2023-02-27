@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -16,16 +17,4 @@ export const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const authService = getAuth(app);
 export const db = getFirestore(app);
-
-export function useAuth() {
-  const [currentUser2, setCurrentUser2] = useState();
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(authService, (user) =>
-      setCurrentUser2(user)
-    );
-    return unsub;
-  }, []);
-
-  return currentUser2;
-}
+export const storage = getStorage(app);

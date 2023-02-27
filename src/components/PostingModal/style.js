@@ -96,6 +96,7 @@ export const Category = styled.select`
 `;
 export const Content = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 20px;
   padding: 20px;
@@ -110,6 +111,10 @@ export const ContentInput = styled.input`
   padding-left: 10px;
   outline: none;
   background: transparent;
+`;
+export const ImgUpload = styled.input`
+  border: none;
+  border-bottom: 0.6px solid #c6c6c6;
 `;
 
 export const ErrorMessage = styled.div`
