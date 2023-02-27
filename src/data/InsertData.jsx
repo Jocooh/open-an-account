@@ -1,7 +1,6 @@
 import axios from "axios";
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import Bookmarks from "../components/Bookmarks";
+import { addDoc, collection } from "firebase/firestore";
+import React, { useState } from "react";
 import { db } from "../config/firebase";
 const InsertData = () => {
   const [savingBaseList, setSavingBaseList] = useState([]);
@@ -124,70 +123,49 @@ const InsertData = () => {
     }
   };
 
-  useEffect(() => {
-    getSavingBaseListHandler();
-    getSavingOptionListHandler();
-    getDepositBaseListHandler();
-    getDepositOptionListHandler();
-  }, []);
-
-  // 찜기능 테스트
-  // const [products, setProducts] = useState([]);
-  // const getProduct = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "DEPOSIT_BASE_LIST"));
-  //   const product = [];
-
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-
-  //     product.push(newProduct);
-  //   });
-
-  //   setProducts(product);
-  // };
-
-  // useEffect(() => {
-  //   getProduct();
-  // }, []);
-
   return (
-    <div>
-      <h1>버튼 누르면 안돼요</h1>
-      <br />
-      <br />
-      <br />
-      <h3>적금 기본 정보</h3>
-      <button onClick={getSavingBaseListHandler}>누르지 마세요.</button>
-      <br />
-      <br />
-      <br />
-      <h3>적금 옵션 목록</h3>
-      <button onClick={getSavingOptionListHandler}>누르지마세요</button>
-      <br />
-      <br />
-      <br />
-      <h3>예금 기본 정보</h3>
-      <button onClick={getDepositBaseListHandler}>누르지마세요</button>
-      <br />
-      <br />
-      <br />
-      <h3>예금 옵션 목록</h3>
-      <button onClick={getDepositOptionListHandler}>누르지마세요</button>
-
-      {/* 찜기능 테스트용 */}
-      {/* <div
-        style={{ border: "1px solid black", width: "100px", height: "100px" }}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <div
+        style={{
+          border: "1px solid black",
+        }}
       >
-        <h1>상품</h1>
-        {products
-          .filter((item) => item.fin_prdt_nm.length < 5)
-          .map((item) => (
-            <Bookmarks item={item} />
-          ))}
-      </div> */}
+        <p>적금 기본 정보</p>
+        <button onClick={getSavingBaseListHandler}>불러오기</button>
+      </div>
+
+      <div
+        style={{
+          border: "1px solid black",
+        }}
+      >
+        <p>적금 옵션 목록</p>
+        <button onClick={getSavingOptionListHandler}>불러오기</button>
+      </div>
+
+      <div
+        style={{
+          border: "1px solid black",
+        }}
+      >
+        <p>예금 기본 정보</p>
+        <button onClick={getDepositBaseListHandler}>불러오기</button>
+      </div>
+
+      <div
+        style={{
+          border: "1px solid black",
+        }}
+      >
+        <p>예금 옵션 목록</p>
+        <button onClick={getDepositOptionListHandler}>불러오기</button>
+      </div>
     </div>
   );
 };

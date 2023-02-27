@@ -38,7 +38,7 @@ export const StyledSearchSaveTrmDiv = styled.div`
   gap: 10px;
   margin-bottom: 20px;
 `;
-export const StyledSavingRateP = styled.p`
+export const StyledSavingRateP = styled.div`
   padding: 10px;
   box-sizing: border-box;
   color: #6a24ff;

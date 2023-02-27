@@ -53,6 +53,9 @@ import {
 import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 import CalculatorList from "../../components/CalculatorList/CalculatorList";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
+
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
   const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
@@ -64,7 +67,6 @@ const ServicePage = () => {
   //상품검색state
   const [searchBank, setSearchBank] = useState("");
   //예금상품 baseList , optionList
-  const [depositbaseList, setdepositbaseList] = useState([]);
   const [depositOptionalList, setdepositOptionalList] = useState([]);
   //적금상품 baseList ,optionList
   const [savingbaseList, setSavingbaseList] = useState([]);
@@ -433,11 +435,16 @@ const ServicePage = () => {
       setMyBookmarkProducs(myBookmarkProduct);
     });
   };
-  // useEffect(() => {
-  // getMyBookmarkProduct();
-  // }, []);
-  // console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
-
+  //tab 3(찜 목록 함수)
+  // const auth = getAuth();
+  // const [currentUser, setCurrentUser] = useState();
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     setCurrentUser(user);
+  //   } else {
+  //     console.log("로그인 하지 않은 유저");
+  //   }
+  // });
   return (
     <Wraper>
       <Cantinar>
@@ -928,29 +935,30 @@ const ServicePage = () => {
                         <StyledBankListWrapper>
                           {searchBank.length > 0 ? (
                             <SearchBankList
-                              activeItem={activeItem}
-                              setActiveItem={setActiveItem}
                               searchBank={searchBank}
-                              productTypes={productTypes}
+                              activeItem={activeItem}
                               depositbaseList={products}
-                              depositOptionalList={depositOptionalList}
+                              productTypes={productTypes}
+                              setActiveItem={setActiveItem}
                               savingbaseList={savingbaseList}
+                              selectedProductIds={selectedProductIds}
                               savingOptionalList={savingoptionalList}
                               myBookmarkProducts={myBookmarkProducts} // my bookmark products
                               handleClickProduct={handleClickProduct}
+                              depositOptionalList={depositOptionalList}
                             />
                           ) : (
                             <AllBank
                               activeItem={activeItem}
-                              setActiveItem={setActiveItem}
-                              productTypes={productTypes}
                               depositbaseList={products}
-                              depositOptionalList={depositOptionalList}
+                              productTypes={productTypes}
+                              setActiveItem={setActiveItem}
                               savingbaseList={savingbaseList}
                               savingoptionalList={savingoptionalList}
                               selectedProductIds={selectedProductIds}
                               handleClickProduct={handleClickProduct}
                               myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                              depositOptionalList={depositOptionalList}
                             />
                           )}
                         </StyledBankListWrapper>
@@ -963,11 +971,19 @@ const ServicePage = () => {
                 </div>
               )}
               {activeTab === 3 && (
-                <TapContainer>
-                  <TapContainerBox>
-                    <TapTitleName>찜 목록</TapTitleName>
-                  </TapContainerBox>
-                </TapContainer>
+                <>
+                  <TapContainer>
+                    <TapContainerBox>
+                      <TapTitleName>찜 목록</TapTitleName>
+                    </TapContainerBox>
+                  </TapContainer>
+                  {/* 찜목록 들어갈 컴포넌트 */}
+                  {/* <BankBookMark
+                    currentUser={currentUser}
+                    setActiveItem={setActiveItem}
+                  /> */}
+                  <BookmarkPrdtList />
+                </>
               )}
             </div>
           </BottomSection>

@@ -1,37 +1,10 @@
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { authService, db } from "../config/firebase";
+import { authService, db } from "../../config/firebase";
 
-const Bookmarks = ({
-  //상품명
-  productName,
-  //상품코드
-  productCoName,
-  //상품 아이디
-  productId,
-  //상품필드아이디
-  productDocId,
-  productCoCode,
-  deposit,
-}) => {
-  // const bookMarkDetailInfo = deposit.map((i) => [
-  //   i.join_member,
-  //   i.join_way,
-  //   i.mtrt_int,
-  // ]);
-  // console.log(bookMarkDetailInfo);
-
+const Bookmarks = ({ baseList, optionList }) => {
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -40,22 +13,35 @@ const Bookmarks = ({
   const handleBookmarkChange = async () => {
     // 로그인 체크
     // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
-    const newId = currentUserUid + productId;
+    const newId = currentUserUid + baseList.id;
     if (!authService.currentUser) {
-      alert("로그인이 필요합니다.");
-      navigate("/login");
+      if (
+        window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
+      ) {
+        return navigate("/login");
+      } else {
+        return;
+      }
     }
 
     // 북마크가 체크되어있지 않다면?
     if (!bookmark) {
-      // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 54~59줄이 들어갈 예정
+      // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 userId ~~~ 등등 애들이 들어갈 예정.
       await setDoc(doc(db, "bookmarks", newId), {
         userId: currentUserUid,
-        productName,
-        productCoName,
-        productId,
-        productDocId,
-        productCoCode,
+        // 필드 id
+        docId: baseList.id,
+        // base list
+        fin_prdt_nm: baseList.fin_prdt_nm, // 상품 명
+        fin_prdt_cd: baseList.fin_prdt_cd, // 상품 코드
+        kor_co_nm: baseList.kor_co_nm, // 상품 회사 명
+        join_way: baseList.join_way, // 가입 방법
+        max_limit: baseList.max_limit, // 최고 한도
+        join_member: baseList.join_member, // 가입 대상
+        etc_note: baseList.etc_note, // 기타 유의사항
+        fin_co_no: baseList.fin_co_no, // 상품 회사 코드
+        // option list
+        save_trm: optionList.save_trm, // 가입 기간
       });
 
       // true가 되면서 북마크 더이상 못하게 막기
@@ -71,7 +57,7 @@ const Bookmarks = ({
 
   // 내가 북마크한 내역 화면에 출력
   const getBookmark = async () => {
-    const newId = currentUserUid + productId;
+    const newId = currentUserUid + baseList.id;
     const docRef = doc(db, "bookmarks", newId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
@@ -84,17 +70,13 @@ const Bookmarks = ({
   }, []);
 
   return (
-    <div onClick={handleBookmarkChange}>
-      {/* 찜 유무 */}
-
-      <Bookmarked>
-        {bookmark ? (
-          <BookmarkedImg src={require(".././assets/bookmarked.png")} />
-        ) : (
-          <BookmarkedImg src={require(".././assets/bookmarked-empty.png")} />
-        )}
-      </Bookmarked>
-    </div>
+    <Bookmarked onClick={handleBookmarkChange}>
+      {bookmark ? (
+        <BookmarkedImg src={require("../../assets/bookmarked.png")} />
+      ) : (
+        <BookmarkedImg src={require("../../assets/bookmarked-empty.png")} />
+      )}
+    </Bookmarked>
   );
 };
 export default Bookmarks;

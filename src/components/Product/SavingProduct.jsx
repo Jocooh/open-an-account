@@ -11,7 +11,7 @@ import {
   Scrap,
   Logo,
 } from "./style";
-import Bookmarks from "../Bookmarks";
+import Bookmarks from "../ServicePage/Bookmarks";
 import logoLists from "../../assets/logo/logo";
 
 function SavingProduct({

@@ -137,6 +137,7 @@ export const TapContainer = styled.div`
   /* padding-left: 100px; */
   border: 1px solid #dedede;
   border-radius: 10px;
+  /* background-color: yellow; */
 `;
 
 //* 하단 탭 공통 부분 중간 컨테이너
@@ -307,11 +308,7 @@ export const StyledBankLists = styled.div`
   background-color: white;
 `;
 
-export const StyledListDiv = styled.div`
-  width: 1200px;
-  height: 141px;
-  background-color: yellow;
-`;
+export const StyledListDiv = styled.div``;
 
 export const StyledBookMark = {
   fontSize: "20px",
