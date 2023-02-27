@@ -55,6 +55,7 @@ import AllBank from "../../components/ServicePage/AllBank";
 import CalculatorList from "../../components/CalculatorList/CalculatorList";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
@@ -84,6 +85,9 @@ const ServicePage = () => {
   const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품의 intr_rate(최대금리) 저장
   const [intrRateType, setIntrRateType] = useState(""); //* 선택된 상품의 intr_rate_type(이자율타입 :단리, 복리) 저장
   const [productList, setProductList] = useState([]);
+
+  const isLoggedIn = sessionStorage.key(0); //로그인했는지 확인
+  const [user, setUser] = useState({});
 
   //* 금융상품 리스트 가져오기
   const handleButtonClick = async () => {
@@ -142,6 +146,7 @@ const ServicePage = () => {
 
   useEffect(() => {
     handleButtonClick();
+    onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
 
   //* 금융상품 타입에 따른 선택된 상품의 고유 값 저장함수.
@@ -445,6 +450,17 @@ const ServicePage = () => {
   //     console.log("로그인 하지 않은 유저");
   //   }
   // });
+  const navigate = useNavigate();
+  const checkUser = () => {
+    if (!isLoggedIn)
+      if (
+        window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
+      ) {
+        return navigate("/login");
+      } else {
+        return;
+      }
+  };
   return (
     <Wraper>
       <Cantinar>
@@ -660,7 +676,10 @@ const ServicePage = () => {
                 상품명 검색
               </TapButton>
               <TapButton
-                onClick={() => handleTabChange(3)}
+                onClick={() => {
+                  handleTabChange(3);
+                  checkUser();
+                }}
                 style={
                   activeTab === 3
                     ? {
@@ -971,27 +990,40 @@ const ServicePage = () => {
                 </div>
               )}
               {/* ########################################### */}
-              {activeTab === 3 && (
-                <>
-                  <TapContainer>
-                    <TapContainerBox>
-                      {/* 여기서 부터 찜 내용 들어감 */}
-                      <StyledBankListContainer>
-                        <StyledBankList>
-                          <div
-                            ref={topLocation}
-                            className="top으로 가는 위치 지정"
-                          />
-                          <StyledBankListWrapper>
-                            {/* 원준님이랑 얘기해야될 듯 */}
-                            {/* <BookmarkPrdtList currentUser={currentUser} /> */}
-                          </StyledBankListWrapper>
-                        </StyledBankList>
-                      </StyledBankListContainer>
-                    </TapContainerBox>
-                  </TapContainer>
-                </>
-              )}
+              {/* {if(!user){
+                if(window.cofirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")){
+                  return navigate("/login");
+                }else{
+                  return;
+                }
+              }} */}
+
+              {activeTab === 3 &&
+                (!isLoggedIn ? (
+                  <div style={{ width: "200px", margin: "auto" }}>
+                    {" "}
+                    로그인 후 사용 가능합니다.🔥
+                  </div>
+                ) : (
+                  <>
+                    <TapContainer>
+                      <TapContainerBox>
+                        {/* 여기서 부터 찜 내용 들어감 */}
+                        <StyledBankListContainer>
+                          <StyledBankList>
+                            <div
+                              ref={topLocation}
+                              className="top으로 가는 위치 지정"
+                            />
+                            {/* <StyledBankListWrapper> */}
+                            <BookmarkPrdtList currentUser={user} />
+                            {/* </StyledBankListWrapper> */}
+                          </StyledBankList>
+                        </StyledBankListContainer>
+                      </TapContainerBox>
+                    </TapContainer>
+                  </>
+                ))}
             </div>
           </BottomSection>
         </BottomSectionWraper>

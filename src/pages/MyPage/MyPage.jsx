@@ -295,7 +295,33 @@ function MyPage() {
             </RightWrapper>
           )}
 
-          {tab === 1 ? <BookmarkPrdtList currentUser={currentUser} /> : null}
+          {tab === 1 && (
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <div style={{ display: "flex", gap: "10px" }}>
+                <button
+                  style={{
+                    width: "70px",
+                    height: "30px",
+                    backgroundColor: "white",
+                  }}
+                >
+                  예금
+                </button>
+                <button
+                  style={{
+                    width: "70px",
+                    height: "30px",
+                    backgroundColor: "white",
+                  }}
+                >
+                  적금
+                </button>
+              </div>
+              <BookmarkPrdtList currentUser={currentUser} />
+            </div>
+          )}
           {tab === 2 && <div>comming soon ...</div>}
           {tab === 3 && <div>comming soon ...</div>}
         </RightBox>
