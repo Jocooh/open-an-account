@@ -6,7 +6,6 @@ export const bady = styled.div`
 
 //*
 export const Wraper = styled.div`
-  width: 100%;
   height: 2000px;
   margin-top: 100px;
   margin-left: 100px;

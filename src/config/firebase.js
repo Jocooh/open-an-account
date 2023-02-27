@@ -5,6 +5,13 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   //
+  // * 배포용 key
+  // apiKey: "AIzaSyCVALUBA5nY8XIJ1blgr4cLn5IDXBTeJeA",
+  // authDomain: "open-an-account-for-deployment.firebaseapp.com",
+  // projectId: "open-an-account-for-deployment",
+  // storageBucket: "open-an-account-for-deployment.appspot.com",
+  // messagingSenderId: "502229611994",
+  // appId: "1:502229611994:web:b1ef5f03c6a7cb8f7cbce3",
   // * 메인 프로젝트
   // apiKey: "AIzaSyAFLJBTRtZGaUrpmL39oxxnlOwJvZs8tE0",
   // authDomain: "open-an-account-31857.firebaseapp.com",
@@ -37,12 +44,12 @@ const firebaseConfig = {
   // appId: "1:185433561488:web:6c96ed39e2589180017b15",
   // measurementId: "G-FVGRSGV6BX",
   // * 남마리나 전용 키 1
-  apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
-  authDomain: "jojoa-c3a5b.firebaseapp.com",
-  projectId: "jojoa-c3a5b",
-  storageBucket: "jojoa-c3a5b.appspot.com",
-  messagingSenderId: "848779014558",
-  appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
+  // apiKey: "AIzaSyBb6cDXvw42bGqPj5ORUgjTSmGzpGaeAkA",
+  // authDomain: "jojoa-c3a5b.firebaseapp.com",
+  // projectId: "jojoa-c3a5b",
+  // storageBucket: "jojoa-c3a5b.appspot.com",
+  // messagingSenderId: "848779014558",
+  // appId: "1:848779014558:web:e7b9a18a852095e4abe68f",
   //
   // * 남마리나 전용 키 2
   // apiKey: "AIzaSyBslbzRlInpFhHV2NnOwbjH2K6KOs8hHqU",
@@ -53,12 +60,12 @@ const firebaseConfig = {
   // appId: "1:648301726670:web:20818e17661a9c050fb99f",
   //
   // * 조성아 전용 키
-  apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
-  authDomain: "open-an-account-db.firebaseapp.com",
-  projectId: "open-an-account-db",
-  storageBucket: "open-an-account-db.appspot.com",
-  messagingSenderId: "334972707203",
-  appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
+  // apiKey: "AIzaSyAga8qxy0nopRNMv3-edKamyhgq9PJ-Qvs",
+  // authDomain: "open-an-account-db.firebaseapp.com",
+  // projectId: "open-an-account-db",
+  // storageBucket: "open-an-account-db.appspot.com",
+  // messagingSenderId: "334972707203",
+  // appId: "1:334972707203:web:ce25eb694026c6f56a96b6",
   //
   // * 김원준 전용 키 1
   // apiKey: "AIzaSyBFdGzEbZaCS8ERHkepA1adVEvF-71V9Zw",
@@ -69,12 +76,12 @@ const firebaseConfig = {
   // appId: "1:1068156105304:web:8df7adc3d7240c5f5d902d",
   //
   // * 김원준 전용 키 2
-  // apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
-  // authDomain: "test2-open-an-account.firebaseapp.com",
-  // projectId: "test2-open-an-account",
-  // storageBucket: "test2-open-an-account.appspot.com",
-  // messagingSenderId: "884430717357",
-  // appId: "1:884430717357:web:4b2788809e7d9a37faa124",
+  apiKey: "AIzaSyBOiHGaaUYgqVMsGF3oJp17wmqpNotfFg8",
+  authDomain: "test2-open-an-account.firebaseapp.com",
+  projectId: "test2-open-an-account",
+  storageBucket: "test2-open-an-account.appspot.com",
+  messagingSenderId: "884430717357",
+  appId: "1:884430717357:web:4b2788809e7d9a37faa124",
 };
 
 // Initialize Firebase

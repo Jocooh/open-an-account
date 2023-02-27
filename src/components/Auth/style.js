@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 // auth background
 export const AuthBackground = styled.div`
-  width: 100vw;
   height: calc(100vh - 11.6rem);
 
   display: flex;

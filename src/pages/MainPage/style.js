@@ -1,21 +1,23 @@
 import styled from "styled-components";
-
-//* 페이지 전체 랩
-export const MainPageWraper = styled.div`
-  width: 100%;
-  height: 100%;
-  /* padding-left: 220px; */
+// 메인 페이지 랩
+export const MainPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: #f5f5f5;
 `;
-
 // 상단 전체 랩
 export const UpWraper = styled.div`
-  width: 80%;
+  width: 990px;
   height: 740px;
   background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 78px;
 `;
-
 //? 인삿말 박스
 export const GreetingBox = styled.div`
   border-radius: 20px;
@@ -23,8 +25,7 @@ export const GreetingBox = styled.div`
   width: 100%;
   height: 395px;
   background-color: white;
-  padding: 60px 0px 0px 71px;
-
+  padding: 50px 0px 0px 71px;
   img {
     display: flex;
     float: right;
@@ -32,50 +33,45 @@ export const GreetingBox = styled.div`
     margin: 40px 60px 0 0;
   }
 `;
-
 //* 제목 랩
 export const GreetingTitle = styled.div`
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 `;
-
 //* 멘트
 export const GreetingMent = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 `;
-
 //* 사용자 이름
 export const Username = styled.span`
   color: #6a24ff;
 `;
-
 // 멘트2
 export const Greetingment = styled.span``;
-
 //* 인삿말 내용
 export const Greetingcontent = styled.div`
   /* width: 50%; */
   font-size: 18px;
-  margin-top: 50px;
+  margin-top: 40px;
   p {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 `;
-
 // 상품 찾기 버튼
 export const ProductFdButton = styled.button`
   font-size: 20px;
+  font-weight: bold;
   border: 1px purple solid;
   border-radius: 10px;
   width: 310px;
-  margin-top: 40px;
-  padding: 25px;
+  height: 60px;
+  margin-top: 35px;
+  padding: 15px;
   background-color: #6a24ff;
   color: white;
   cursor: pointer;
 `;
-
 // 은행 리스트 배너
 export const BankListBanner = styled.div`
   width: 100%;
@@ -86,14 +82,12 @@ export const BankListBanner = styled.div`
   border-radius: 20px;
   background-color: white;
 `;
-
 // 은행 리스트 제목
 export const BankListBannerTitle = styled.span`
   font-size: 35px;
   font-weight: bold;
   padding-left: 71px;
 `;
-
 // 은행 랩
 export const BankWrap = styled.div`
   border: 1px black solid;
@@ -101,46 +95,47 @@ export const BankWrap = styled.div`
   width: 161px;
   height: 124px;
   display: inline-block;
-  margin: 0 10px 0 10px;
+  margin: 0 5px 0 5px;
   padding: 20px 20px 10px 20px;
+  img {
+    width: 48px;
+    height: 48px;
+  }
   a {
     display: flex;
     font-size: 20px;
+    color: black;
     justify-content: center;
-    margin-top: 15px;
+    margin-top: 5px;
+    text-decoration: none;
   }
 `;
-
 // 하단 전체 랩
 export const DownWraper = styled.div`
-  width: 80%;
+  width: 990px;
   height: 1250px;
   border-radius: 20px;
-  margin-top: 20px;
+  margin: 20px 0 78px 0;
   padding: 58px 46px 33px 71px;
   /* background-color: whitesmoke; */
   border: solid 1px #dedede;
   border-radius: 20px;
   background-color: white;
 `;
-
 // 오늘의 금융 팁 제목
 export const TodayTipTitle = styled.span`
   font-size: 30px;
   font-weight: bold;
 `;
-
 // 오늘의 금융 팁 설명
 export const TodayTipComment = styled.div`
   font-size: 18px;
   margin: 25px 0 30px 0;
 `;
-
 // 금융 팁들
 export const Tips = styled.div`
   display: flex;
 `;
-
 // 금융 팁
 export const Tip = styled.div`
   width: 508px;
@@ -151,7 +146,7 @@ export const Tip = styled.div`
   border-radius: 20px;
   img {
     float: right;
-    margin-top: 130px;
+    margin-top: 120px;
   }
   :hover {
     filter: brightness(70%);
@@ -161,22 +156,19 @@ export const Tip = styled.div`
     }
   }
 `;
-
 // 금융 팁 제목
 export const TipTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
 `;
-
 // 금융 팁 설명
 export const TipComments = styled.div`
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   opacity: 0;
   position: absolute;
 `;
-
 export const TipComment = styled.div`
   margin-top: 15px;
 `;

@@ -29,7 +29,7 @@ import {
   QuestionWrap,
   QuestionTitle,
   FinanceHoneyTip,
-  MainPageWraper,
+  MainPageWrapper,
   Bannerimage,
   DownWraper,
   TodayTipTitle,
@@ -48,7 +48,7 @@ const MainPage = () => {
   const user = authService.currentUser;
   const navigate = useNavigate();
   return (
-    <MainPageWraper>
+    <MainPageWrapper>
       <UpWraper>
         <GreetingBox>
           <img src={require("../../assets/mainpage/상단 이미지.png")} />
@@ -234,7 +234,7 @@ const MainPage = () => {
 
             <img
               src={require("../../assets/mainpage/정기예금.png")}
-              style={{ marginTop: "200px" }}
+              style={{ marginTop: "180px" }}
             />
           </Tip>
           <Tip>
@@ -252,14 +252,14 @@ const MainPage = () => {
           <Tip>
             <TipTitle
               style={{
-                marginBottom: "25px",
+                marginBottom: "10px",
               }}
             >
               이자를 계산하는 법1
             </TipTitle>
             <img
               src={require("../../assets/mainpage/단리.png")}
-              style={{ margin: "250px 30px 0 0" }}
+              style={{ margin: "250px 20px 0 0" }}
             />
             <TipTitle>단리</TipTitle>
             <TipComments>
@@ -272,7 +272,7 @@ const MainPage = () => {
           <Tip>
             <TipTitle
               style={{
-                marginBottom: "25px",
+                marginBottom: "10px",
               }}
             >
               이자를 계산하는 법2
@@ -289,26 +289,26 @@ const MainPage = () => {
             <div
               style={{
                 position: "relative",
-                margin: "75px 0 0 220px",
+                margin: "75px 0 0 200px",
               }}
             >
               <img
                 src={require("../../assets/mainpage/복리화살표.png")}
                 style={{
                   position: "absolute",
-                  margin: "60px 0 0 40px",
+                  margin: "40px 0 0 0px",
                   width: "130px",
                 }}
               />
               <img
                 src={require("../../assets/mainpage/복리.png")}
-                style={{ margin: "130px 0 0 40px", position: "absolute" }}
+                style={{ margin: "110px 0 0 0", position: "absolute" }}
               />
             </div>
           </Tip>
         </Tips>
       </DownWraper>
-    </MainPageWraper>
+    </MainPageWrapper>
   );
 };
 
@@ -339,8 +339,4 @@ const BankBanner = styled(SwiperSlide)`
   font-size: 30px;
   padding-top: 50px;
   text-align: center;
-  a {
-    /* color: brown; */
-    /* margin: 0 0px 0 0px; */
-  }
 `;
