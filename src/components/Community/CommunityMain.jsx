@@ -33,7 +33,13 @@ function CommunityMain() {
         </Message>
         <User>
           <img src={require("../../assets/profileimg.png")} />
-          <div>로그인하러가기</div>
+          <div
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인하러가기
+          </div>
         </User>
       </UserWrapper>
     </Wrapper>

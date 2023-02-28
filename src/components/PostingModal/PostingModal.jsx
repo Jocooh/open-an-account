@@ -56,9 +56,15 @@ function PostingModal({ setPostingModalOpen }) {
     setSelected(e.target.value);
   };
 
+  //* 등록버튼 - 제목, 카테고리, 내용 모두 선택해야 able
+  // const [disabled, setDisabled] = useState(true);
+
   //* 게시글 작성
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
+  const titleRef = useRef(null);
+  const categoryRef = useRef(null);
+  const contentRef = useRef(null);
   const user = authService?.currentUser;
   const addPost = async () => {
     if (!inputTitle) {
@@ -67,6 +73,7 @@ function PostingModal({ setPostingModalOpen }) {
     }
     if (!selected) {
       alert("카테고리를 선택해주세요.");
+      return;
     }
     if (!inputContent) {
       alert("본문을 입력해주세요.");
@@ -74,6 +81,7 @@ function PostingModal({ setPostingModalOpen }) {
     }
     await addDoc(collection(db, "posts"), {
       id: user?.uid,
+      title: inputTitle,
       category: selected,
       content: inputContent,
       imgUrl: image,
@@ -83,6 +91,7 @@ function PostingModal({ setPostingModalOpen }) {
     setSelected(options[0].value);
     setInputTitle("");
     setInputContent("");
+    // setDisabled(false);
     setPostingModalOpen(false);
   };
 
@@ -113,7 +122,11 @@ function PostingModal({ setPostingModalOpen }) {
         <Header>
           <CloseButton onClick={ClosePostingModal}>닫기</CloseButton>
           <div>글 작성하기</div>
-          <SaveButton alert="등록되었습니다." onClick={addPost}>
+          <SaveButton
+            alert="등록되었습니다."
+            onClick={addPost}
+            // disabled={disabled}
+          >
             등록
           </SaveButton>
         </Header>
@@ -122,9 +135,14 @@ function PostingModal({ setPostingModalOpen }) {
           <TitleInput
             onChange={(e) => setInputTitle(e.target.value)}
             value={inputTitle}
+            ref={titleRef}
             placeholder="제목을 입력해주세요"
           />
-          <Category value={selected} onChange={selectCategory}>
+          <Category
+            value={selected}
+            onChange={selectCategory}
+            ref={categoryRef}
+          >
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.text}
@@ -136,7 +154,8 @@ function PostingModal({ setPostingModalOpen }) {
             <ContentInput
               onChange={(e) => setInputContent(e.target.value)}
               value={inputContent}
-              placeholder="사진은 최대 5장 올릴 수 있습니다."
+              ref={contentRef}
+              placeholder="내용을 입력해주세요."
             />
           </Content>
         </Body>
