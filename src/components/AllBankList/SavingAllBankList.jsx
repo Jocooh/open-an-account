@@ -20,6 +20,7 @@ import SavingDetail from "../DetailProduct/SavingDetail";
 import Bookmarks from "../ServicePage/Bookmarks";
 
 function SavingAllBankList({
+  productTypes,
   setColor,
   savingbaseList,
   savingOptionalList,
@@ -102,6 +103,7 @@ function SavingAllBankList({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
+                            productTypes={productTypes}
                           />
                           <button
                             style={{

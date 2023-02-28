@@ -46,6 +46,7 @@ import {
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
+import { ProductType } from "../ServicePage/style";
 
 function MyPage() {
   const navigate = useNavigate();
@@ -75,10 +76,12 @@ function MyPage() {
   const [userEmail, setUserEmail] = useState(currentUser.email);
   const [btn, setBtn] = useState(false);
   const [btnValidation, setBtnValidation] = useState(true);
+  const [productTypes, setProductTypes] = useState(1);
   //ChangePassword.jsx
   const [userPassword, setUserPassword] = useState(""); //현재 유저 패스워드
   const [editUserPassword, setEditUserPassword] = useState(""); //고치고 싶은 비밀번호
-
+  const [inputValidationConfirm, setInputValidationConfirm] = useState(true);
+  const [password, setPassword] = useState("");
   //-> ChangeNickName.jsx
   //newNickname: 유저의 바꿀 닉네임 ,  name: 왼쪽박스 유저 네임
   const [newNickName, setNewNickName] = useState(currentUser?.displayName);
@@ -93,10 +96,15 @@ function MyPage() {
   //닉네임 업데이트 함수
   const clickUserUpdate = async (e) => {
     e.preventDefault();
+    if (password !== userPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
     if (window.confirm("개인정보를 수정 하시겠습니까?")) {
       await updateProfile(user, {
         displayName: newNickName,
-      })
+      });
+      await PasswordUpdateHanlder()
         .then(
           alert("개인정보 수정 완료"),
           setName(newNickName),
@@ -105,7 +113,6 @@ function MyPage() {
         .catch((error) => {
           console.log(error);
         });
-      await PasswordUpdateHanlder().then(console.log("비밀번호 변경확인"));
     } else {
       alert("개인정보 수정 취소");
     }
@@ -271,6 +278,10 @@ function MyPage() {
                   userPassword={userPassword}
                   setUserPassword={setUserPassword}
                   setBtnValidation={setBtnValidation}
+                  setInputValidationConfirm={setInputValidationConfirm}
+                  inputValidationConfirm={inputValidationConfirm}
+                  password={password}
+                  setPassword={setPassword}
                 />
                 <EnrollNumber
                   setPhoneNum={setPhoneNum}
@@ -310,6 +321,9 @@ function MyPage() {
                     height: "30px",
                     backgroundColor: "white",
                   }}
+                  onClick={() => {
+                    setProductTypes(1);
+                  }}
                 >
                   예금
                 </button>
@@ -319,11 +333,17 @@ function MyPage() {
                     height: "30px",
                     backgroundColor: "white",
                   }}
+                  onClick={() => {
+                    setProductTypes(2);
+                  }}
                 >
                   적금
                 </button>
               </div>
-              <BookmarkPrdtList currentUser={currentUser} />
+              <BookmarkPrdtList
+                currentUser={currentUser}
+                productTypes={productTypes}
+              />
             </div>
           )}
           {tab === 2 && <div>comming soon ...</div>}

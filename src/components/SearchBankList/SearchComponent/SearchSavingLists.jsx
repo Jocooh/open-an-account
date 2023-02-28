@@ -27,6 +27,7 @@ function SearchSavingLists({
   handleClickProduct,
   selectedProductIds,
   setColor,
+  productTypes,
 }) {
   return (
     <div>
@@ -113,7 +114,7 @@ function SearchSavingLists({
                       </div>
                     </StyledDiv>
                     <StyledMoreListDiv>
-                      <Bookmarks baseList={base} />
+                      <Bookmarks baseList={base} productTypes={productTypes} />
                       <button
                         style={{
                           width: "60px",

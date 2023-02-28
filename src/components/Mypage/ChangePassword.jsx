@@ -14,6 +14,10 @@ function ChangePassword({
   setBtnValidation, //btn활성화
   userPassword,
   setUserPassword,
+  inputValidationConfirm,
+  setInputValidationConfirm,
+  password,
+  setPassword,
 }) {
   const [inputValidation, setInputValidation] = useState(true);
 
@@ -23,14 +27,13 @@ function ChangePassword({
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
 
   //두번째 인풋 state
-  const [password, setPassword] = useState("");
   const [corfirmPasswordMessage, setConfirmPasswordMessage] = useState("");
 
   //세번째 인풋 state
   const [isDoublePasswordConfirm, setIsDoublePasswordConfirm] = useState(false);
   const [doubleCheckPasswordMessage, setDoubleCheckPasswordMessage] =
     useState("");
-  const [inputValidationConfirm, setInputValidationConfirm] = useState(true);
+
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const thirdInput = useRef(null);
@@ -134,7 +137,7 @@ function ChangePassword({
           value={password}
         />
         {isPasswordConfirm === true ? (
-          <p style={{ color: "green" }}>{corfirmPasswordMessage}</p>
+          <p style={{ color: "red" }}>{corfirmPasswordMessage}</p>
         ) : (
           <p>{corfirmPasswordMessage}</p>
         )}
@@ -150,7 +153,7 @@ function ChangePassword({
           ref={thirdInput}
         />
         {isDoublePasswordConfirm === true ? (
-          <p style={{ color: "green" }}>{doubleCheckPasswordMessage}</p>
+          <p style={{ color: "red" }}>{doubleCheckPasswordMessage}</p>
         ) : (
           <p>{doubleCheckPasswordMessage}</p>
         )}
