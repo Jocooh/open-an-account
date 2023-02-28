@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BackgroundWraper = styled.body`
+export const BackgroundWraper = styled.div`
   background-color: lavender;
   margin: 0;
   padding: 0;

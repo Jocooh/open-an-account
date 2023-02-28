@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 //* 바디
-export const Wraper = styled.body`
+export const Wraper = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
@@ -40,15 +40,12 @@ export const TopSectionSubTitle = styled.div`
   font-size: 22px;
   text-align: center;
   margin-bottom: 50px;
+  margin-top: 20px;
+  color: #a3a3a3;
 `;
 
-//* 새로고침 버튼
-// export const RefreshBtn = styled.button`
-//   width: 100px;
-//   height: 30px;
-//   float: right;
-//   margin: 10px 20px;
-// `;
+//* 스테이징 된 금융상품
+export const StagingWrap = styled.div``;
 
 //* 선택된 상품 Wraper
 export const ProductsWraper = styled.div`
@@ -58,20 +55,58 @@ export const ProductsWraper = styled.div`
   justify-content: center;
 `;
 
+//* 스테이징 캔슬 버튼
+export const StagingCancel = styled.button`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  /* font-weight: bold; */
+  cursor: pointer;
+  position: relative;
+  /* right: 0; */
+  margin: -12px 0 0px 35px;
+`;
+//* 스테이징 된 금융상품 명
+export const StagingProductsName = styled.div`
+  width: 200px;
+  margin-bottom: 5px;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
+
+//* 스테이징 된 은행 명
+export const StagingBankName = styled.div`
+  margin-bottom: 20px;
+  font-size: 19px;
+`;
+
 //* 선택된 상품 Container
 export const SelectedProductsContainer = styled.div`
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #dedede;
-  text-align: center;
   width: 320px;
   height: 167px;
-  background-color: #fff;
   color: #a3a3a3;
   padding-top: 20px;
 `;
 
 //* 선택된 상품 (상품이 선택되면 보여지는 부분)
 export const SelectedProducts = styled.span``;
+
+//* 선택 전 상품 박스
+export const BeforeSelectedContainer = styled.div`
+  text-align: center;
+  img {
+    margin-top: -20px;
+  }
+  p {
+    margin-bottom: 50px;
+  }
+`;
 
 //* 비교하기 버튼
 export const ToCompare = styled.button`
@@ -126,18 +161,22 @@ export const TapButton = styled.button`
 `;
 
 //? ----여기서 부터 계산기 부분----
+//* 하단 탭 내용 최상위 컨테이너
+export const TapContainerWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 //* 하단 탭 공통 부분 최상위 컨테이너
 export const TapContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 990px;
   padding-top: 50px;
-  /* 성아-수정 */
   padding-bottom: 30px;
-  /* padding-left: 100px; */
   border: 1px solid #dedede;
   border-radius: 10px;
-  /* background-color: yellow; */
+  background-color: #fff;
 `;
 
 //* 하단 탭 공통 부분 중간 컨테이너
@@ -270,34 +309,31 @@ export const FinanciialProductsWrap = styled.div``;
 
 //성아-banklist style
 export const StyledBankListContainer = styled.div`
+  //* 상우-수정
   width: 100%;
-  /* width: 990px; */
-  /* height: 1128px; */
-  width: 100%;
-  background-color: #f0f0f0;
-  margin-top: 30px;
-  padding: 15px 0;
-  box-sizing: border-box;
+  padding-top: 20px;
+  /* margin-top: 30px; */
   border-radius: 15px;
+
+  display: flex;
+  justify-content: center;
 `;
 export const StyledBankList = styled.div`
+  width: 992px;
+  display: flex;
+  justify-content: center;
   margin: auto;
-  /* width: 950px; */
-  //height:1007px;
   height: 850px;
   overflow: auto;
+  padding-top: 10px;
 `;
-export const SearchInput = styled.div``;
-export const Tapwraper = styled.div``;
 
-export const StyledBankListWrapper = styled.div`
-  width: 920px;
+export const SearchInput = styled.div``;
+export const Tapwraper = styled.div`
   display: flex;
-  flex-direction: column;
-  margin: auto;
   justify-content: center;
-  padding: 10px;
 `;
+
 export const StyledBankLists = styled.div`
   /* height: 351px; */
   border-radius: 15px;
@@ -306,6 +342,7 @@ export const StyledBankLists = styled.div`
   margin-bottom: 15px;
   flex-direction: column;
   background-color: white;
+  border: 1px solid #dedede;
 `;
 
 export const StyledListDiv = styled.div``;
