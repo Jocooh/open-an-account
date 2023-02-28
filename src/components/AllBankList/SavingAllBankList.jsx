@@ -102,7 +102,6 @@ function SavingAllBankList({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
-                            sortMonths={sortMonths} //기간 정렬
                           />
                           <button
                             style={{

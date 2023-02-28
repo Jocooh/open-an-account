@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "../pages/MainPage/MainPage";
 import MyPage from "../pages/MyPage/MyPage";
-import BoardPage from "../pages/BoardPage/BoardPage";
+import CommunityPage from "../pages/Community/CommunityPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import LandingPage from "../pages/LandingPage/LandingPage";
@@ -22,8 +22,7 @@ const Router = () => {
         <Route path="/main" element={<MainPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/mypage" element={<MyPage />} />
-
-        <Route path="/board" element={<BoardPage />} />
+        <Route path="/community" element={<CommunityPage />} />
         <Route path="/detail" element={<DetailPage />} />
         {/* admin */}
         <Route path="/4jojoa" element={<InsertData />} />

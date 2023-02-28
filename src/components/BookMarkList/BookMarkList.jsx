@@ -16,7 +16,7 @@ import {
   StyledBankListWrapper,
   StyledListDiv,
 } from "../ServicePage/style";
-import Bookmarks from "../../components/Bookmarks";
+import Bookmarks from "../../components/ServicePage/Bookmarks";
 // import PracticeDetail from "./PracticeDetail";
 
 function BookMarkList({
