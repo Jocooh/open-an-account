@@ -23,6 +23,7 @@ function Product({
   selectedProductRate2,
   selectedProductRateType,
 }) {
+  console.log("selectedProduct", selectedProduct);
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
@@ -105,6 +106,8 @@ function Product({
         <Scrap>
           <Bookmarks
             baseList={selectedProduct} //baseList
+            isModal={true}
+            selectedProductId={selectedProductId}
           />
         </Scrap>
       </ProductBox>
