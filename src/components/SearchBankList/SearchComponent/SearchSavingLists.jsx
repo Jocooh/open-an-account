@@ -18,10 +18,6 @@ import {
 
 import SearchDepositDetail from "../Detail/SearchSavingDetail";
 
-
-import Bookmarks from "../../ServicePage/Bookmarks";
-
-
 function SearchSavingLists({
   activeItem,
   searchBank,

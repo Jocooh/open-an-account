@@ -70,7 +70,7 @@ function AllBankList({
                         : null
                     }
                   >
-                    <div style={{ display: "flex" }}>
+                    <div>
                       <StyledListDiv>
                         <StyledDiv
                           onClick={() => {

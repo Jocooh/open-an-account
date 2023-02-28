@@ -8,7 +8,6 @@ import DetailPage from "../pages/DetailPage/DetailPage";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ServicePage from "../pages/ServicePage/ServicePage";
-import BankLists from "../pages/BankList";
 import InsertData from "../data/InsertData";
 import Footer from "../../src/components/GlobalComponents/Footer/Footer.jsx";
 import Header from "../../src/components/GlobalComponents/Header/Header.jsx";
@@ -24,10 +23,9 @@ const Router = () => {
         <Route path="/main" element={<MainPage />} />
         <Route path="/service" element={<ServicePage />} />
         <Route path="/mypage" element={<MyPage />} />
-
         <Route path="/board" element={<BoardPage />} />
         <Route path="/detail" element={<DetailPage />} />
-        <Route path="/bankList" element={<BankLists />} />
+        {/* <Route path="/bankList" element={<BankLists />} /> */}
         {/* admin */}
         <Route path="/4jojoa" element={<InsertData />} />
       </Routes>
