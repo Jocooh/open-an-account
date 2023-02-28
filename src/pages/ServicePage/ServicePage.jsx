@@ -6,6 +6,7 @@ import {
   BottomSection,
   TopSectionWraper,
   TapTitleName,
+  TapContainerWrap,
   TapContainer,
   TapContainerBox,
   ProducksCalculatorBoxContent,
@@ -34,6 +35,11 @@ import {
   StyledBtn,
   StyledBankListWrapper,
   FormattedAmount,
+  StagingWrap,
+  StagingProductsName,
+  StagingBankName,
+  BeforeSelectedContainer,
+  StagingCancel,
 } from "./style";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
@@ -53,6 +59,12 @@ import {
 import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 import CalculatorList from "../../components/CalculatorList/CalculatorList";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
+import { Navigate, useNavigate } from "react-router-dom";
+import logoLists from "../../assets/logo/logo";
+import { StyledImg } from "../../components/AllBankList/style";
+
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
   const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
@@ -64,7 +76,6 @@ const ServicePage = () => {
   //상품검색state
   const [searchBank, setSearchBank] = useState("");
   //예금상품 baseList , optionList
-  const [depositbaseList, setdepositbaseList] = useState([]);
   const [depositOptionalList, setdepositOptionalList] = useState([]);
   //적금상품 baseList ,optionList
   const [savingbaseList, setSavingbaseList] = useState([]);
@@ -73,6 +84,7 @@ const ServicePage = () => {
   // const inputRef = useRef(null);
   const [products, setProducts] = useState([]); //* 금융상품 list 상태 값 저장
   const [value, setValue] = useState(0); //* input Range(기간) 상태 값 저장
+  const [months, setMonths] = useState(0);
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
   const [selectedProductIds, setSelectedProductIds] = useState(
@@ -82,6 +94,9 @@ const ServicePage = () => {
   const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품의 intr_rate(최대금리) 저장
   const [intrRateType, setIntrRateType] = useState(""); //* 선택된 상품의 intr_rate_type(이자율타입 :단리, 복리) 저장
   const [productList, setProductList] = useState([]);
+
+  const isLoggedIn = sessionStorage.key(0); //로그인했는지 확인
+  const [user, setUser] = useState({});
 
   //* 금융상품 리스트 가져오기
   const handleButtonClick = async () => {
@@ -140,6 +155,7 @@ const ServicePage = () => {
 
   useEffect(() => {
     handleButtonClick();
+    onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
 
   //* 금융상품 타입에 따른 선택된 상품의 고유 값 저장함수.
@@ -243,7 +259,7 @@ const ServicePage = () => {
           }
         } else {
           console.log(
-            "DEPOSIT_BASE_LIST 컬렉션에서 해당 상품을 찾을 수 없습니다."
+            "DEPOSIT_BASE_LIST 컬렉션에서 해당 상품을 찾을 수 없습니다1."
           );
         }
       } catch (error) {
@@ -251,43 +267,61 @@ const ServicePage = () => {
       }
     }
   };
-  //* 한번 더 누르면 선택 해제 (중복 선택 방지 겸 모바일 사용하려고 만듬)
-  // const handleClickProduct = (productId) => {
-  //   const index = selectedProductIds.indexOf(productId);
-  //   if (index !== -1) {
-  //     // 이미 선택된 상품인 경우
-  //     const newSelectedProductIds = [...selectedProductIds];
-  //     newSelectedProductIds[index] = "";
-  //     newSelectedProductIds[index + 1] = "";
-  //     newSelectedProductIds[index + 2] = "";
-  //     setSelectedProductIds(newSelectedProductIds);
-  //     // alert("이미 선택된 상품입니다.");
-  //   } else {
-  //     // 선택되지 않은 상품인 경우
-  //     handleSelectProducts(productId);
-  //   }
+  //* 첫번째 선택된 상품선택해제 함수
+  const handleProductsCancel = (productId) => {
+    const index = selectedProductIds.indexOf(productId);
+    const newSelectedProductIds = [...selectedProductIds];
+    newSelectedProductIds[index + 1] = "";
+    newSelectedProductIds[index + 2] = "";
+    newSelectedProductIds[index + 3] = "";
+    newSelectedProductIds[index + 4] = "";
+    newSelectedProductIds[index + 5] = "";
+    newSelectedProductIds[index + 6] = "";
 
-  // };
-  //* 상품 유형 배열을 반환하는 함수
-  // const getProductTypes = (products) => {
-  //   // 상품 유형 배열
-  //   const types = [];
+    setSelectedProductIds(newSelectedProductIds);
+    console.log(selectedProductIds);
+  };
 
-  //   // products 배열을 순회하면서 상품 유형 배열에 유니크한 상품 유형을 추가
-  //   for (let i = 0; i < products.length; i++) {
-  //     if (!types.includes(products[i].prdt_type_nm)) {
-  //       types.push(products[i].prdt_type_nm);
-  //     }
-  //   }
+  //* 두번째 선택된 상품선택해제 함수
+  const handleProductsCancel2 = (productId) => {
+    const index = selectedProductIds.indexOf(productId);
+    const newSelectedProductIds = [...selectedProductIds];
+    newSelectedProductIds[index + 7] = "";
+    newSelectedProductIds[index + 8] = "";
+    newSelectedProductIds[index + 9] = "";
+    newSelectedProductIds[index + 10] = "";
+    newSelectedProductIds[index + 11] = "";
+    newSelectedProductIds[index + 12] = "";
 
-  //   return types;
-  // };
+    setSelectedProductIds(newSelectedProductIds);
+    console.log(selectedProductIds);
+  };
+
+  //* 세번째 선택된 상품선택해제 함수
+  const handleProductsCancel3 = (productId) => {
+    const index = selectedProductIds.indexOf(productId);
+    const newSelectedProductIds = [...selectedProductIds];
+    newSelectedProductIds[index + 13] = "";
+    newSelectedProductIds[index + 14] = "";
+    newSelectedProductIds[index + 15] = "";
+    newSelectedProductIds[index + 16] = "";
+    newSelectedProductIds[index + 17] = "";
+    newSelectedProductIds[index + 18] = "";
+
+    setSelectedProductIds(newSelectedProductIds);
+    console.log(selectedProductIds);
+  };
 
   //* 동일된 상품 선택시 함수 종료.
   const handleClickProduct = async (productId) => {
     const index = selectedProductIds.indexOf(productId);
     if (index !== -1) {
       alert("이미 선택된 상품입니다. 다른 상품을 선택해주세요.");
+      return;
+    }
+    //* 선택된 상품이 3개 이상일 경우 함수 종료.
+    if (selectedProductIds.every((value) => value !== "")) {
+      alert("금융상품은 최대 3개까지만 비교할 수 있습니다.");
       return;
     }
     handleSelectProducts(productId);
@@ -304,7 +338,7 @@ const ServicePage = () => {
 
   //* 찾기 버튼 활성화
   useEffect(() => {
-    if (amount && value) {
+    if (amountWithoutCommas >= 100000 && value) {
       setNotAllow(false);
     } else {
       setNotAllow(true);
@@ -320,11 +354,11 @@ const ServicePage = () => {
   };
 
   const handleInputChange = (event) => {
-    // 정규식으로 입력값에서 숫자만 추출
+    //* 정규식으로 입력값에서 숫자만 추출
     const value = event.target.value.replace(/[^0-9]/g, "");
 
     if (value.length <= 10) {
-      // 10자리 이하인 경우만 amount 업데이트
+      //* 10자리 이하인 경우만 amount 업데이트
       setAmount(value.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     } else {
       setAmount("1,000,000,000");
@@ -335,42 +369,67 @@ const ServicePage = () => {
   };
 
   //* ","로 포맷팅된 금액을 ","를 제거한 숫자로 변환하고, 억, 만, 원으로 포맷팅.
-  const formattedAmount = useMemo(() => {
-    const amountWithoutCommas = amount.replace(/,/g, "");
+  const amountWithoutCommas = useMemo(() => amount.replace(/,/g, ""), [amount]);
 
-    if (amountWithoutCommas >= 100000000) {
-      //* 1억 이상
-      let number = Math.floor(amountWithoutCommas / 100000000);
-      if (amountWithoutCommas % 100000000 === 0) {
-        number = `${Math.floor(amountWithoutCommas / 100000000)}억원`;
-      } else if (amountWithoutCommas % 10000 === 0) {
-        number = `${Math.floor(amountWithoutCommas / 100000000)}억 ${Math.floor(
-          (amountWithoutCommas % 100000000) / 10000
-        )}만원`; //* 1억원 이상이고 1만원 이상인 친구들 처리
-      } else if (amountWithoutCommas % 100000000 < 10000) {
-        number = `${Math.floor(amountWithoutCommas / 100000000)}억 ${Math.floor(
-          amountWithoutCommas % 10000
-        )}원`; //* 1억 이상이고 1만원 미만인 친구들 처리
+  const formattedAmount = useMemo(() => {
+    const amountNumber = parseInt(amountWithoutCommas);
+
+    if (Number.isNaN(amountNumber)) {
+      return `0원`;
+    } else if (amountNumber < 100000) {
+      return "100,000원 이상부터 비교 가능합니다.";
+    } else if (amountNumber >= 100000000) {
+      // 1억 이상
+      const won = amountNumber % 10000;
+      const million = Math.floor(amountNumber / 10000) % 10000;
+      const billion = Math.floor(amountNumber / 100000000);
+
+      if (billion === 0) {
+        if (million === 0) {
+          return `${new Intl.NumberFormat("ko-KR").format(won)}원`;
+        } else if (won === 0) {
+          return `${new Intl.NumberFormat("ko-KR").format(million)}만원`;
+        } else {
+          return `${new Intl.NumberFormat("ko-KR").format(
+            million
+          )}만 ${new Intl.NumberFormat("ko-KR").format(won)}원`;
+        }
       } else {
-        number = `${Math.floor(amountWithoutCommas / 100000000)}억 ${Math.floor(
-          (amountWithoutCommas % 100000000) / 10000
-        )}만 ${new Intl.NumberFormat("ko-KR").format(
-          amountWithoutCommas % 10000
-        )}원`;
+        if (million === 0 && won === 0) {
+          return `${new Intl.NumberFormat("ko-KR").format(billion)}억원`;
+        } else if (million === 0) {
+          return `${new Intl.NumberFormat("ko-KR").format(
+            billion
+          )}억 ${new Intl.NumberFormat("ko-KR").format(won)}원`;
+        } else if (won === 0) {
+          return `${new Intl.NumberFormat("ko-KR").format(
+            billion
+          )}억 ${new Intl.NumberFormat("ko-KR").format(million)}만원`;
+        } else {
+          return `${new Intl.NumberFormat("ko-KR").format(
+            billion
+          )}억 ${new Intl.NumberFormat("ko-KR").format(
+            million
+          )}만 ${new Intl.NumberFormat("ko-KR").format(won)}원`;
+        }
       }
-      return number;
-    } else if (amountWithoutCommas >= 10000) {
-      //* 1만 이상
-      return amountWithoutCommas % 10000 === 0
-        ? `${Math.floor(amountWithoutCommas / 10000)}만원`
-        : `${Math.floor(amountWithoutCommas / 10000)}만 ${new Intl.NumberFormat(
-            "ko-KR"
-          ).format(amountWithoutCommas % 10000)}원`;
+    } else if (amountNumber >= 10000) {
+      // 1만 이상
+      const won = amountNumber % 10000;
+      const million = Math.floor(amountNumber / 10000);
+
+      if (won === 0) {
+        return `${new Intl.NumberFormat("ko-KR").format(million)}만원`;
+      } else {
+        return `${new Intl.NumberFormat("ko-KR").format(
+          million
+        )}만 ${new Intl.NumberFormat("ko-KR").format(won)}원`;
+      }
     } else {
-      return `${new Intl.NumberFormat("ko-KR").format(amountWithoutCommas)}원`;
+      return `${new Intl.NumberFormat("ko-KR").format(amountNumber)}원`;
     }
-  }, [amount]);
-  const [months, setMonths] = useState(0);
+  }, [amountWithoutCommas]);
+
   //* input 상태 값 저장슬리이더 함수
   const handleChange = (event) => {
     const newValue = parseInt(event.target.value, 10);
@@ -379,6 +438,10 @@ const ServicePage = () => {
   };
 
   const handleProductTypeClick = (buttonType) => {
+    if (selectedProductIds.some((value) => value !== "")) {
+      alert("상품유형은 선택 후 변경이 불가능합니다.");
+      return;
+    }
     setProductTypes(buttonType);
   };
 
@@ -433,11 +496,18 @@ const ServicePage = () => {
       setMyBookmarkProducs(myBookmarkProduct);
     });
   };
-  // useEffect(() => {
-  // getMyBookmarkProduct();
-  // }, []);
-  // console.log("myBookmarkProducts : 내가 북마크 한 상품들", myBookmarkProducts);
-
+  //3번 탭 비로그인 시 로그인유도 함수
+  const navigate = useNavigate();
+  const checkUser = () => {
+    if (!isLoggedIn)
+      if (
+        window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
+      ) {
+        return navigate("/login");
+      } else {
+        return;
+      }
+  };
   return (
     <Wraper>
       <Cantinar>
@@ -445,89 +515,150 @@ const ServicePage = () => {
           <TopSection>
             <TopSectionTitle>금융상품 비교하기</TopSectionTitle>
             <TopSectionSubTitle>
-              예금/적금은 동일한 종류만 비교할 수 있습니다.
+              예금과 적금은 동일한 종류만 비교할 수 있어요.
             </TopSectionSubTitle>
             <ProductsWraper>
               <SelectedProductsContainer>
-                {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                {selectedProductIds[0] === "" ? (
-                  <div>
-                    <p>비교할 상품을 선택해주세요.</p>
-                    <img
-                      style={{ alignItems: "center", marginTop: "50px" }}
-                      src="url"
-                      alt="이미지"
-                    />
-                  </div>
-                ) : (
-                  <>
-                    {/* 성아-옵셔널체이닝[?]제가 넣었어요 지우지 말아주세요!ㅎ */}
-                    <div>
-                      <p>
-                        {products.find(
-                          (product) => product.id === selectedProductIds[0]
-                        )?.fin_prdt_nm ||
-                          savingbaseList.find(
-                            (product) => product.id === selectedProductIds[0]
-                          )?.fin_prdt_nm}
-                      </p>
-                      <p>
-                        {products.find(
-                          (product) => product.id === selectedProductIds[0]
-                        )?.kor_co_nm ||
-                          savingbaseList.find(
-                            (product) => product.id === selectedProductIds[0]
-                          )?.kor_co_nm}
-                      </p>
+                <SelectedProducts>
+                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+                  {selectedProductIds[0] === "" ? (
+                    <BeforeSelectedContainer>
+                      <p>비교 박스에 자리가 남았어요.</p>
+                      <img
+                        src={require("../../assets/UnStagingImg.png")}
+                        alt="이미지"
+                      />
+                    </BeforeSelectedContainer>
+                  ) : (
+                    <div style={{ display: "flex" }}>
+                      <div>
+                        <StyledImg
+                          src={logoLists[selectedProductIds[4].fin_co_no]}
+                          alt="로고"
+                        />
+                      </div>
+
+                      <StagingWrap>
+                        <div>
+                          <StagingProductsName>
+                            <p
+                              style={{
+                                fontSize: "22px",
+                                color: "#000",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {products.find(
+                                (product) =>
+                                  product.id === selectedProductIds[0]
+                              )?.fin_prdt_nm ||
+                                savingbaseList.find(
+                                  (product) =>
+                                    product.id === selectedProductIds[0]
+                                )?.fin_prdt_nm}
+                            </p>
+                          </StagingProductsName>
+                          <div>
+                            <StagingBankName>
+                              {products.find(
+                                (product) =>
+                                  product.id === selectedProductIds[0]
+                              )?.kor_co_nm ||
+                                savingbaseList.find(
+                                  (product) =>
+                                    product.id === selectedProductIds[0]
+                                )?.kor_co_nm}
+                            </StagingBankName>
+                          </div>
+                        </div>
+                        {/* //* intr_rate, intr_rate2 값 출력 */}
+                        <div
+                          style={{
+                            fontSize: "19px",
+                            color: "#6A24FF",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          <div>이자율: {selectedProductIds[1]}</div>
+                          <div>최고금리: {selectedProductIds[2]}</div>
+                        </div>
+                      </StagingWrap>
+                      <StagingCancel onClick={() => handleProductsCancel()}>
+                        X
+                      </StagingCancel>
                     </div>
-                    {/* //* intr_rate, intr_rate2 값 출력 */}
-                    <div>
-                      <div>최고금리: {selectedProductIds[2]}</div>
-                      <div>이자율: {selectedProductIds[1]}</div>
-                    </div>
-                  </>
-                )}
+                  )}
+                </SelectedProducts>
               </SelectedProductsContainer>
 
               <SelectedProductsContainer>
                 <SelectedProducts>
                   {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
                   {selectedProductIds[6] === "" ? (
-                    <div>
-                      <p>비교할 상품을 선택해주세요.</p>
+                    <BeforeSelectedContainer>
+                      <p>비교 박스에 자리가 남았어요.</p>
                       <img
-                        style={{ alignItems: "center", marginTop: "50px" }}
-                        src="url"
+                        src={require("../../assets/UnStagingImg.png")}
                         alt="이미지"
                       />
-                    </div>
+                    </BeforeSelectedContainer>
                   ) : (
-                    <>
-                      {/* 성아-옵셔널체이닝[?]제가 넣었어요 지우지 말아주세요!ㅎ */}
+                    <div style={{ display: "flex" }}>
                       <div>
-                        <p>
-                          {products.find(
-                            (product) => product.id === selectedProductIds[6]
-                          )?.fin_prdt_nm ||
-                            savingbaseList.find(
-                              (product) => product.id === selectedProductIds[6]
-                            )?.fin_prdt_nm}
-                        </p>
-                        <p>
-                          {products.find(
-                            (product) => product.id === selectedProductIds[6]
-                          )?.kor_co_nm ||
-                            savingbaseList.find(
-                              (product) => product.id === selectedProductIds[6]
-                            )?.kor_co_nm}
-                        </p>
+                        <StyledImg
+                          src={logoLists[selectedProductIds[10].fin_co_no]}
+                          alt="로고"
+                        />
                       </div>
-                      {/* //* intr_rate, intr_rate2 값 출력 */}
-                      <div>
-                        <div>최고금리: {selectedProductIds[2]}</div>
-                        <div>이자율: {selectedProductIds[1]}</div>
-                      </div>
-                    </>
+                      <StagingWrap>
+                        <div>
+                          <StagingProductsName>
+                            <p
+                              style={{
+                                fontSize: "22px",
+                                color: "#000",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {products.find(
+                                (product) =>
+                                  product.id === selectedProductIds[6]
+                              )?.fin_prdt_nm ||
+                                savingbaseList.find(
+                                  (product) =>
+                                    product.id === selectedProductIds[6]
+                                )?.fin_prdt_nm}
+                            </p>
+                          </StagingProductsName>
+                          <div>
+                            <StagingBankName>
+                              {products.find(
+                                (product) =>
+                                  product.id === selectedProductIds[6]
+                              )?.kor_co_nm ||
+                                savingbaseList.find(
+                                  (product) =>
+                                    product.id === selectedProductIds[6]
+                                )?.kor_co_nm}
+                            </StagingBankName>
+                          </div>
+                        </div>
+                        {/* //* intr_rate, intr_rate2 값 출력 */}
+                        <div
+                          style={{
+                            fontSize: "19px",
+                            color: "#6A24FF",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          <div>이자율: {selectedProductIds[7]}</div>
+                          <div>최고금리: {selectedProductIds[8]}</div>
+                        </div>
+                      </StagingWrap>
+                      <StagingCancel onClick={() => handleProductsCancel2()}>
+                        X
+                      </StagingCancel>
+                    </div>
                   )}
                 </SelectedProducts>
               </SelectedProductsContainer>
@@ -536,41 +667,70 @@ const ServicePage = () => {
                 <SelectedProducts>
                   {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
                   {selectedProductIds[12] === "" ? (
-                    <div>
-                      <p>비교할 상품을 선택해주세요.</p>
+                    <BeforeSelectedContainer>
+                      <p>비교 박스에 자리가 남았어요.</p>
                       <img
-                        style={{ alignItems: "center", marginTop: "50px" }}
-                        src="url"
+                        src={require("../../assets/UnStagingImg.png")}
                         alt="이미지"
                       />
-                    </div>
+                    </BeforeSelectedContainer>
                   ) : (
-                    <>
-                      {/* 성아-옵셔널체이닝[?]제가 넣었어요 지우지 말아주세요!ㅎ */}
+                    <div style={{ display: "flex" }}>
                       <div>
-                        <p>
-                          {products.find(
-                            (product) => product.id === selectedProductIds[12]
-                          )?.fin_prdt_nm ||
-                            savingbaseList.find(
-                              (product) => product.id === selectedProductIds[12]
-                            )?.fin_prdt_nm}
-                        </p>
-                        <p>
-                          {products.find(
-                            (product) => product.id === selectedProductIds[12]
-                          )?.kor_co_nm ||
-                            savingbaseList.find(
-                              (product) => product.id === selectedProductIds[12]
-                            )?.kor_co_nm}
-                        </p>
+                        <StyledImg
+                          src={logoLists[selectedProductIds[16].fin_co_no]}
+                          alt="로고"
+                        />
                       </div>
-                      {/* //* intr_rate, intr_rate2 값 출력 */}
-                      <div>
-                        <div>최고금리: {selectedProductIds[2]}</div>
-                        <div>이자율: {selectedProductIds[1]}</div>
-                      </div>
-                    </>
+                      <StagingWrap>
+                        <div>
+                          <StagingProductsName>
+                            <p
+                              style={{
+                                fontSize: "22px",
+                                color: "#000",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {products.find(
+                                (product) =>
+                                  product.id === selectedProductIds[12]
+                              )?.fin_prdt_nm ||
+                                savingbaseList.find(
+                                  (product) =>
+                                    product.id === selectedProductIds[12]
+                                )?.fin_prdt_nm}
+                            </p>
+                          </StagingProductsName>
+                          <div>
+                            <StagingBankName>
+                              {products.find(
+                                (product) =>
+                                  product.id === selectedProductIds[12]
+                              )?.kor_co_nm ||
+                                savingbaseList.find(
+                                  (product) =>
+                                    product.id === selectedProductIds[12]
+                                )?.kor_co_nm}
+                            </StagingBankName>
+                          </div>
+                        </div>
+                        {/* //* intr_rate, intr_rate2 값 출력 */}
+                        <div
+                          style={{
+                            fontSize: "19px",
+                            color: "#6A24FF",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          <div>이자율: {selectedProductIds[13]}</div>
+                          <div>최고금리: {selectedProductIds[14]}</div>
+                        </div>
+                      </StagingWrap>
+                      <StagingCancel onClick={() => handleProductsCancel3()}>
+                        X
+                      </StagingCancel>
+                    </div>
                   )}
                 </SelectedProducts>
               </SelectedProductsContainer>
@@ -653,7 +813,10 @@ const ServicePage = () => {
                 상품명 검색
               </TapButton>
               <TapButton
-                onClick={() => handleTabChange(3)}
+                onClick={() => {
+                  handleTabChange(3);
+                  checkUser();
+                }}
                 style={
                   activeTab === 3
                     ? {
@@ -670,184 +833,195 @@ const ServicePage = () => {
             <div className="tab-content">
               {activeTab === 1 && (
                 <Tapwraper>
-                  <TapContainer>
-                    <TapContainerBox>
-                      <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
-                      <ProductWraper>
-                        <ProductType //* 상품 종류 선택 버튼
-                          onClick={() => {
-                            handleProductTypeClick(1);
-                          }}
-                          style={
-                            productTypes === 1
-                              ? {
-                                  color: "#fff",
-                                  border: "1px solid #E1E1E4",
-                                  backgroundColor: "#6A24FF",
-                                  fontWeight: "bold",
-                                }
-                              : {}
-                          }
-                        >
-                          정기예금
-                        </ProductType>
-                        <ProductType
-                          onClick={() => {
-                            handleProductTypeClick(2);
-                          }}
-                          style={
-                            productTypes === 2
-                              ? {
-                                  color: "#fff",
-                                  border: "1px solid #E1E1E4",
-                                  backgroundColor: "#6A24FF",
-                                  fontWeight: "bold",
-                                }
-                              : {}
-                          }
-                        >
-                          정기적금
-                        </ProductType>
-                      </ProductWraper>
-                      <ProducksCalculatorBoxContent>
-                        <ProducksCalculatorBoxContentTilte>
+                  <div>
+                    <TapContainer>
+                      <TapContainerBox>
+                        <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
+                        <ProductWraper>
+                          <ProductType //* 상품 종류 선택 버튼
+                            onClick={() => {
+                              handleProductTypeClick(1);
+                            }}
+                            style={
+                              productTypes === 1
+                                ? {
+                                    color: "#fff",
+                                    border: "1px solid #E1E1E4",
+                                    backgroundColor: "#6A24FF",
+                                    fontWeight: "bold",
+                                  }
+                                : {}
+                            }
+                          >
+                            정기예금
+                          </ProductType>
+                          <ProductType
+                            onClick={() => {
+                              handleProductTypeClick(2);
+                            }}
+                            style={
+                              productTypes === 2
+                                ? {
+                                    color: "#fff",
+                                    border: "1px solid #E1E1E4",
+                                    backgroundColor: "#6A24FF",
+                                    fontWeight: "bold",
+                                  }
+                                : {}
+                            }
+                          >
+                            정기적금
+                          </ProductType>
+                        </ProductWraper>
+                        <ProducksCalculatorBoxContent>
+                          <ProducksCalculatorBoxContentTilte>
+                            <div>
+                              {productTypes === 1 ? (
+                                <>
+                                  <span style={{ fontWeight: "bold" }}>
+                                    최초 예치 할 금액
+                                  </span>
+                                  <span>을 입력해주세요.</span>
+                                  <div>
+                                    <input
+                                      type="text"
+                                      value={amount}
+                                      onBlur={handleBlur}
+                                      onChange={handleInputChange}
+                                      placeholder="금액을 입력해주세요"
+                                      style={
+                                        amountWithoutCommas >= 100000
+                                          ? {}
+                                          : {
+                                              border: "1px solid red",
+                                            }
+                                      }
+                                    />
+                                    <div
+                                      style={{
+                                        fontSize: "15px",
+                                        fontWeight: "bold",
+                                        margin: "0px 0px 30px 30px",
+                                      }}
+                                    >
+                                      {formattedAmount}
+                                    </div>
+                                  </div>
+                                  <MonthRangeSliderTitle>
+                                    <span>몇개월</span>
+                                    <span style={{ fontWeight: "bold" }}>
+                                      {" "}
+                                      예치
+                                    </span>
+                                    <span> 하실건가요?</span>
+                                  </MonthRangeSliderTitle>
+                                </>
+                              ) : productTypes === 2 ? (
+                                <>
+                                  <span style={{ fontWeight: "bold" }}>
+                                    한 달 적립금
+                                  </span>
+                                  <span>을 입력해주세요.</span>
+                                  <FormattedAmount>
+                                    <input
+                                      type="text"
+                                      value={amount}
+                                      onBlur={handleBlur}
+                                      onChange={handleInputChange}
+                                      placeholder="금액을 입력해주세요"
+                                    />
+                                    <div
+                                      style={{
+                                        fontSize: "15px",
+                                        fontWeight: "bold",
+                                        margin: "0px 0px 30px 30px",
+                                      }}
+                                    >
+                                      {formattedAmount}
+                                    </div>
+                                  </FormattedAmount>
+                                  <MonthRangeSliderTitle>
+                                    <span>몇개월</span>
+                                    <span style={{ fontWeight: "bold" }}>
+                                      {" "}
+                                      모으실건가요?
+                                    </span>
+                                  </MonthRangeSliderTitle>
+                                </>
+                              ) : (
+                                <div>잘못된 입력입니다.</div>
+                              )}
+                            </div>
+                          </ProducksCalculatorBoxContentTilte>
+                        </ProducksCalculatorBoxContent>
+                        <MonthRangeSliderWraper>
                           <div>
-                            {productTypes === 1 ? (
-                              <>
-                                <span style={{ fontWeight: "bold" }}>
-                                  최초 예치 할 금액
-                                </span>
-                                <span>을 입력해주세요.</span>
-                                <div>
-                                  <input
-                                    type="text"
-                                    value={amount}
-                                    onBlur={handleBlur}
-                                    onChange={handleInputChange}
-                                    placeholder="금액을 입력해주세요"
-                                  />
-                                  <div
-                                    style={{
-                                      fontSize: "15px",
-                                      fontWeight: "bold",
-                                      margin: "0px 0px 30px 30px",
-                                    }}
-                                  >
-                                    {formattedAmount}
-                                  </div>
-                                </div>
-                                <MonthRangeSliderTitle>
-                                  <span>몇개월</span>
-                                  <span style={{ fontWeight: "bold" }}>
-                                    {" "}
-                                    예치
-                                  </span>
-                                  <span> 하실건가요?</span>
-                                </MonthRangeSliderTitle>
-                              </>
-                            ) : productTypes === 2 ? (
-                              <>
-                                <span style={{ fontWeight: "bold" }}>
-                                  한 달 적립금
-                                </span>
-                                <span>을 입력해주세요.</span>
-                                <FormattedAmount>
-                                  <input
-                                    type="text"
-                                    value={amount}
-                                    onBlur={handleBlur}
-                                    onChange={handleInputChange}
-                                    placeholder="금액을 입력해주세요"
-                                  />
-                                  <div
-                                    style={{
-                                      fontSize: "15px",
-                                      fontWeight: "bold",
-                                      margin: "0px 0px 30px 30px",
-                                    }}
-                                  >
-                                    {formattedAmount}
-                                  </div>
-                                </FormattedAmount>
-                                <MonthRangeSliderTitle>
-                                  <span>몇개월</span>
-                                  <span style={{ fontWeight: "bold" }}>
-                                    {" "}
-                                    모으실건가요?
-                                  </span>
-                                </MonthRangeSliderTitle>
-                              </>
-                            ) : (
-                              <div>잘못된 입력입니다.</div>
-                            )}
+                            <input
+                              type="range"
+                              min="0"
+                              max="4"
+                              value={value}
+                              onChange={handleChange}
+                              style={{ accentColor: "#6A24FF" }}
+                            />
                           </div>
-                        </ProducksCalculatorBoxContentTilte>
-                      </ProducksCalculatorBoxContent>
-                      <MonthRangeSliderWraper>
-                        <div>
-                          <input
-                            type="range"
-                            min="0"
-                            max="4"
-                            value={value}
-                            onChange={handleChange}
-                            style={{ accentColor: "#6A24FF" }}
-                          />
-                        </div>
-                        <MonthRangeSlider>
-                          <span>기간 선택</span>
-                          <span style={{ marginLeft: "-23px" }}>6개월</span>
-                          <span style={{ marginLeft: "10px" }}>12개월</span>
-                          <span style={{ marginLeft: "5px" }}>24개월</span>
-                          <span style={{ marginLeft: "-20px" }}>36개월</span>
-                        </MonthRangeSlider>
-                      </MonthRangeSliderWraper>
-                      <FilterSubmitWarper>
-                        {setNotAllow !== true ? (
-                          <FilterSubmit
-                            disabled={notAllow}
-                            onClick={() => {
-                              handleClickResults();
-                              // handleClickSearch();
-                              handleButtonClick();
-                              // findSorting();
-                              // CalculatorList();
-                            }}
-                          >
-                            찾기
-                          </FilterSubmit>
-                        ) : (
-                          <FilterSubmit
-                            onClick={() => {
-                              handleClickResults();
-                              handleClickSearch();
-                              // CalculatorList();
-                            }}
-                          >
-                            닫기
-                          </FilterSubmit>
-                        )}
-                      </FilterSubmitWarper>
-                    </TapContainerBox>
-                  </TapContainer>
-                  {showResults === true ? (
-                    <StyledBankListContainer>
-                      <StyledBankList>
-                        <StyledBankListWrapper>
+                          <MonthRangeSlider>
+                            <span>기간 선택</span>
+                            <span style={{ marginLeft: "-23px" }}>6개월</span>
+                            <span style={{ marginLeft: "10px" }}>12개월</span>
+                            <span style={{ marginLeft: "5px" }}>24개월</span>
+                            <span style={{ marginLeft: "-20px" }}>36개월</span>
+                          </MonthRangeSlider>
+                        </MonthRangeSliderWraper>
+                        <FilterSubmitWarper>
+                          {setNotAllow !== true ? (
+                            <FilterSubmit
+                              disabled={notAllow}
+                              onClick={() => {
+                                handleClickResults();
+                                handleClickSearch();
+                                handleButtonClick();
+                                // findSorting();
+                                // CalculatorList();
+                              }}
+                            >
+                              찾기
+                            </FilterSubmit>
+                          ) : (
+                            <FilterSubmit
+                              onClick={() => {
+                                handleClickResults();
+                                handleClickSearch();
+                                // CalculatorList();
+                              }}
+                            >
+                              닫기
+                            </FilterSubmit>
+                          )}
+                        </FilterSubmitWarper>
+                      </TapContainerBox>
+                    </TapContainer>
+                    {showResults === true ? (
+                      <StyledBankListContainer>
+                        <StyledBankList>
+                          {/* <StyledBankListWrapper> */}
                           <CalculatorList
                             activeItem={activeItem}
                             setActiveItem={setActiveItem}
                             selectedProductIds={selectedProductIds}
                             handleClickProduct={handleClickProduct}
                             depositOptionalList={depositOptionalList}
+                            savingbaseList={savingbaseList}
+                            savingoptionalList={savingoptionalList}
                             depositbaseList={products}
-                            // value={value}
+                            productTypes={productTypes}
                             months={months}
                           />
-                        </StyledBankListWrapper>
-                      </StyledBankList>
-                    </StyledBankListContainer>
-                  ) : null}
+                          {/* </StyledBankListWrapper> */}
+                        </StyledBankList>
+                      </StyledBankListContainer>
+                    ) : null}
+                  </div>
                 </Tapwraper>
               )}
 
@@ -868,56 +1042,58 @@ const ServicePage = () => {
 
               {activeTab === 2 && (
                 <div>
-                  <TapContainer>
-                    <TapContainerBox>
-                      <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
-                      <ProductWraper>
-                        <ProductType
-                          onClick={() => {
-                            handleProductTypeClick(1);
-                          }}
-                          style={
-                            productTypes === 1
-                              ? {
-                                  color: "#fff",
-                                  border: "1px solid #E1E1E4",
-                                  backgroundColor: "#6A24FF",
-                                  fontWeight: "bold",
-                                }
-                              : {}
-                          }
-                        >
-                          정기예금
-                        </ProductType>
-                        <ProductType
-                          onClick={() => {
-                            handleProductTypeClick(2);
-                          }}
-                          style={
-                            productTypes === 2
-                              ? {
-                                  color: "#fff",
-                                  border: "1px solid #E1E1E4",
-                                  backgroundColor: "#6A24FF",
-                                  fontWeight: "bold",
-                                }
-                              : {}
-                          }
-                        >
-                          정기적금
-                        </ProductType>
-                      </ProductWraper>
-                      <FinanciialProductsWrap>
-                        <FinanciialProductsFullList>
-                          {/* 검색창_component */}
-                          <SearchInput setSearchBank={setSearchBank} />
-                          <p style={{ color: "#aaa", marginTop: "5px" }}>
-                            **기본정렬은 12개월 기준입니다.
-                          </p>
-                        </FinanciialProductsFullList>
-                      </FinanciialProductsWrap>
-                    </TapContainerBox>
-                  </TapContainer>
+                  <TapContainerWrap>
+                    <TapContainer>
+                      <TapContainerBox>
+                        <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
+                        <ProductWraper>
+                          <ProductType
+                            onClick={() => {
+                              handleProductTypeClick(1);
+                            }}
+                            style={
+                              productTypes === 1
+                                ? {
+                                    color: "#fff",
+                                    border: "1px solid #E1E1E4",
+                                    backgroundColor: "#6A24FF",
+                                    fontWeight: "bold",
+                                  }
+                                : {}
+                            }
+                          >
+                            정기예금
+                          </ProductType>
+                          <ProductType
+                            onClick={() => {
+                              handleProductTypeClick(2);
+                            }}
+                            style={
+                              productTypes === 2
+                                ? {
+                                    color: "#fff",
+                                    border: "1px solid #E1E1E4",
+                                    backgroundColor: "#6A24FF",
+                                    fontWeight: "bold",
+                                  }
+                                : {}
+                            }
+                          >
+                            정기적금
+                          </ProductType>
+                        </ProductWraper>
+                        <FinanciialProductsWrap>
+                          <FinanciialProductsFullList>
+                            {/* 검색창_component */}
+                            <SearchInput setSearchBank={setSearchBank} />
+                            <p style={{ color: "#aaa", marginTop: "5px" }}>
+                              **기본정렬은 12개월 기준입니다.
+                            </p>
+                          </FinanciialProductsFullList>
+                        </FinanciialProductsWrap>
+                      </TapContainerBox>
+                    </TapContainer>
+                  </TapContainerWrap>
                   <StyledBankListContainer>
                     <div>
                       <StyledBankList>
@@ -925,35 +1101,36 @@ const ServicePage = () => {
                           ref={topLocation}
                           className="top으로 가는 위치 지정"
                         />
-                        <StyledBankListWrapper>
-                          {searchBank.length > 0 ? (
-                            <SearchBankList
-                              activeItem={activeItem}
-                              setActiveItem={setActiveItem}
-                              searchBank={searchBank}
-                              productTypes={productTypes}
-                              depositbaseList={products}
-                              depositOptionalList={depositOptionalList}
-                              savingbaseList={savingbaseList}
-                              savingOptionalList={savingoptionalList}
-                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                              handleClickProduct={handleClickProduct}
-                            />
-                          ) : (
-                            <AllBank
-                              activeItem={activeItem}
-                              setActiveItem={setActiveItem}
-                              productTypes={productTypes}
-                              depositbaseList={products}
-                              depositOptionalList={depositOptionalList}
-                              savingbaseList={savingbaseList}
-                              savingoptionalList={savingoptionalList}
-                              selectedProductIds={selectedProductIds}
-                              handleClickProduct={handleClickProduct}
-                              myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                            />
-                          )}
-                        </StyledBankListWrapper>
+                        {/* <StyledBankListWrapper> */}
+                        {searchBank.length > 0 ? (
+                          <SearchBankList
+                            searchBank={searchBank}
+                            activeItem={activeItem}
+                            depositbaseList={products}
+                            productTypes={productTypes}
+                            setActiveItem={setActiveItem}
+                            savingbaseList={savingbaseList}
+                            selectedProductIds={selectedProductIds}
+                            savingOptionalList={savingoptionalList}
+                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            handleClickProduct={handleClickProduct}
+                            depositOptionalList={depositOptionalList}
+                          />
+                        ) : (
+                          <AllBank
+                            activeItem={activeItem}
+                            depositbaseList={products}
+                            productTypes={productTypes}
+                            setActiveItem={setActiveItem}
+                            savingbaseList={savingbaseList}
+                            savingoptionalList={savingoptionalList}
+                            selectedProductIds={selectedProductIds}
+                            handleClickProduct={handleClickProduct}
+                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            depositOptionalList={depositOptionalList}
+                          />
+                        )}
+                        {/* </StyledBankListWrapper> */}
                       </StyledBankList>
                       <StyledBtnDiv className="스크롤탑버튼">
                         <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
@@ -962,13 +1139,41 @@ const ServicePage = () => {
                   </StyledBankListContainer>
                 </div>
               )}
-              {activeTab === 3 && (
-                <TapContainer>
-                  <TapContainerBox>
-                    <TapTitleName>찜 목록</TapTitleName>
-                  </TapContainerBox>
-                </TapContainer>
-              )}
+              {/* ########################################### */}
+              {/* {if(!user){
+                if(window.cofirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")){
+                  return navigate("/login");
+                }else{
+                  return;
+                }
+              }} */}
+
+              {activeTab === 3 &&
+                (!isLoggedIn ? (
+                  <div style={{ width: "200px", margin: "auto" }}>
+                    {" "}
+                    로그인 후 사용 가능합니다.🔥
+                  </div>
+                ) : (
+                  <>
+                    <TapContainer>
+                      <TapContainerBox>
+                        {/* 여기서 부터 찜 내용 들어감 */}
+                        <StyledBankListContainer>
+                          <StyledBankList>
+                            <div
+                              ref={topLocation}
+                              className="top으로 가는 위치 지정"
+                            />
+                            {/* <StyledBankListWrapper> */}
+                            <BookmarkPrdtList currentUser={user} />
+                            {/* </StyledBankListWrapper> */}
+                          </StyledBankList>
+                        </StyledBankListContainer>
+                      </TapContainerBox>
+                    </TapContainer>
+                  </>
+                ))}
             </div>
           </BottomSection>
         </BottomSectionWraper>

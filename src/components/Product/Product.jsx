@@ -13,6 +13,7 @@ import {
 } from "./style";
 import Bookmarks from "../ServicePage/Bookmarks";
 import logoLists from "../../assets/logo/logo";
+import { StyledImg } from "../AllBankList/style";
 
 function Product({
   inputValue,
@@ -76,15 +77,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          {logoLists.logos.map((t) =>
-            Object.keys(t)[0] === selectedProduct.fin_co_no ? (
-              <Logo
-                src={Object.values(t)[0]}
-                alt="로고"
-                key={selectedProduct.id}
-              />
-            ) : null
-          )}
+          <StyledImg src={logoLists[selectedProduct.fin_co_no]} alt="로고" />
           <Prdt_nm>{selectedProduct.fin_prdt_nm}</Prdt_nm>
         </Name>
 
@@ -111,11 +104,7 @@ function Product({
         </Message>
         <Scrap>
           <Bookmarks
-            productId={selectedProduct.fin_prdt_cd}
-            productName={selectedProduct.fin_prdt_nm}
-            productCoName={selectedProduct.kor_co_nm}
-            productDocId={selectedProductId}
-            productCoCode={selectedProduct.fin_co_no}
+            baseList={selectedProduct} //baseList
           />
         </Scrap>
       </ProductBox>

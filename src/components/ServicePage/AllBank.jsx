@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AllBankList from "../AllBankList/AllBankList";
 import SavingAllBankList from "../AllBankList/SavingAllBankList";
 
@@ -6,7 +6,6 @@ function AllBank({
   activeItem,
   productTypes,
   setActiveItem,
-  selectedColor,
   savingbaseList,
   depositbaseList,
   setSelectedColor,
@@ -15,12 +14,13 @@ function AllBank({
   depositOptionalList,
   selectedProductIds,
 }) {
+  const [color, setColor] = useState([]);
   return (
     <>
       {productTypes === 1 ? (
         <AllBankList
+          setColor={setColor}
           activeItem={activeItem}
-          selectedColor={selectedColor}
           setActiveItem={setActiveItem}
           depositbaseList={depositbaseList}
           setSelectedColor={setSelectedColor}
@@ -30,10 +30,10 @@ function AllBank({
         />
       ) : (
         <SavingAllBankList
+          setColor={setColor}
           activeItem={activeItem}
           setActiveItem={setActiveItem}
           savingbaseList={savingbaseList}
-          setSelectedColor={setSelectedColor}
           handleClickProduct={handleClickProduct}
           savingOptionalList={savingoptionalList}
           selectedProductIds={selectedProductIds}

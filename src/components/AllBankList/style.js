@@ -6,8 +6,8 @@ export const StyledListContainer = styled.div`
   width: 990px;
 `;
 export const StyledImg = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   margin: 10px 5px 20px 0;
 `;

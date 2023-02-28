@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 //여기 추가
 export const StyledListDiv = styled.div`
-  width: 844px;
+  width: 990px;
   height: 141px;
   display: flex;
   justify-content: space-between;
   margin: auto;
+  cursor: pointer;
+  /* box-shadow: 0 4px 4px -3px #a1a1a1; */
 `;
 
 export const StyledDiv = styled.div`
@@ -27,7 +29,7 @@ export const StyledMoreListDiv = styled.div`
   display: flex;
   gap: 75px;
   flex-direction: column;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   align-items: center;
 `;
 
@@ -38,7 +40,7 @@ export const StyledSearchSaveTrmDiv = styled.div`
   gap: 10px;
   margin-bottom: 20px;
 `;
-export const StyledSavingRateP = styled.p`
+export const StyledSavingRateP = styled.div`
   padding: 10px;
   box-sizing: border-box;
   color: #6a24ff;

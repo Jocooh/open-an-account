@@ -28,6 +28,12 @@ function SavingDetail({ savingDB, savingbaseList, setActiveItem, sortMonths }) {
                       최소{sortArr[0].save_trm}개월
                     </p>
                   </div>
+                  <div className="가입방법" style={{ display: "flex" }}>
+                    <p>가입방법 :</p>
+                    <p style={{ fontWeight: "bold" }}>
+                      {savingbaseList.join_way}
+                    </p>
+                  </div>
                   <div
                     className="최고한도"
                     style={{ display: "flex", marginBottom: "10px" }}
