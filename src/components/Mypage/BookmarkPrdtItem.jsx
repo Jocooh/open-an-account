@@ -18,6 +18,7 @@ import { StyledImg } from "../../components/AllBankList/style";
 import Bookmarks from "../ServicePage/Bookmarks";
 
 function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
+
   const [open, setOpen] = useState("");
 
   return (

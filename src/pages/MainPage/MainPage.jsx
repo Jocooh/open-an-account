@@ -44,6 +44,7 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 const MainPage = () => {
   const navigate = useNavigate();
+  // const user = authService.currentUser;
 
   // 유저 정보 가져오기
   const isLoggedIn = sessionStorage.key(0);
@@ -56,6 +57,7 @@ const MainPage = () => {
   useEffect(() => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
+  console.log(user);
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 해결 방법 2
   // 기존 const user = authService.currentUser 가 새로고침시 displayName 을 불러오지 못하니
