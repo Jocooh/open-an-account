@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getDownloadURL,
@@ -44,12 +44,6 @@ function PostingModal({ setPostingModalOpen }) {
     setPostingModalOpen(false);
   };
 
-  // const [currentInput, setCurrentInput] = useState("");
-  // const checkInput = (e) => {
-  //   const input = e.target.value;
-  //   setCurrentInput(input);
-  // };
-
   //* 드롭다운 메뉴
   const options = [
     { value: "", text: "카테고리 선택" },
@@ -63,12 +57,6 @@ function PostingModal({ setPostingModalOpen }) {
   };
 
   //* 게시글 작성
-  // const db = getDatabase();
-  // const postListRef = ref(db, 'posts');
-  // const newPostRef = push(postListRef);
-  // set(newPostRef, {
-  //     // ...
-  // });
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
   const user = authService?.currentUser;
@@ -88,7 +76,7 @@ function PostingModal({ setPostingModalOpen }) {
       id: user?.uid,
       category: selected,
       content: inputContent,
-      imgUrl: imageList,
+      imgUrl: image,
       name: user?.displayName ?? "익명",
       createdAt: Date.now(),
     });
@@ -99,22 +87,25 @@ function PostingModal({ setPostingModalOpen }) {
   };
 
   //* 사진 업로드 하기
-  const [imageUpload, setImageUpload] = useState(null);
-  const [imageList, setImageList] = useState([]);
-  const imageListRef = ref(storage, "images/");
-  const upload = () => {
-    if (imageUpload === null) return;
+  const [imageUpload, setImageUpload] = useState("");
+  const [image, setImage] = useState("");
+  const fileRef = useRef(null);
 
-    const imageRef = ref(storage, `images/${imageUpload.name}`);
-    // `images === 참조값이름(폴더이름), / 뒤에는 파일이름 어떻게 지을지
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      // 업로드 되자마자 뜨게 만들기
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [...prev, url]);
-      });
-      //
-    });
+  const onClickUpload = () => {
+    fileRef.current?.click();
   };
+  const onChangeUpload = (e) => {
+    setImageUpload(e.target.files?.[0]);
+  };
+  useEffect(() => {
+    const imageRef = ref(storage, `${user?.uid}`);
+    if (!imageUpload) return;
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImage(url);
+      });
+    });
+  }, [imageUpload]);
 
   return (
     <ModalBackground>
@@ -141,7 +132,7 @@ function PostingModal({ setPostingModalOpen }) {
             ))}
           </Category>
           <Content>
-            <ImgUpload type="file" onChange={upload} />
+            <ImgUpload type="file" onChange={onChangeUpload} />
             <ContentInput
               onChange={(e) => setInputContent(e.target.value)}
               value={inputContent}

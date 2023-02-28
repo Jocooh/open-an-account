@@ -43,9 +43,12 @@ export const Category = styled.button`
 export const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
   background-color: #ffffff;
 
-  margin: 100px 20px;
+  margin: 100px 0;
+  padding: 20px;
 
   width: 200px;
   height: 150px;
@@ -53,15 +56,22 @@ export const UserWrapper = styled.div`
 `;
 export const Message = styled.div``;
 export const ProfileImg = styled.img`
-  width: 70px;
+  width: 25%;
+  object-fit: contain;
 `;
 export const User = styled.div`
   display: flex;
+  gap: 15px;
   align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 60px;
+
+  border-bottom: 0.6px solid #c6c6c6;
+`;
+export const PostButton = styled.button`
+  margin-top: 20px;
 `;

@@ -9,6 +9,7 @@ import {
   Category,
   Categories,
   ProfileImg,
+  PostButton,
 } from "./style";
 
 function LoggedIn({ username }) {
@@ -32,13 +33,14 @@ function LoggedIn({ username }) {
           <PostingModal setPostingModalOpen={setPostingModalOpen} />
         )}
       </Content>
+
       <UserWrapper>
         <User>
           <ProfileImg src={require("../../assets/profileimg.png")} />
 
           {username}
         </User>
-        <button onClick={OpenPostingModal}>글 작성하기</button>
+        <PostButton onClick={OpenPostingModal}>글 작성하기</PostButton>
       </UserWrapper>
     </Wrapper>
   );
