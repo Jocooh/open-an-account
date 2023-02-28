@@ -1,20 +1,13 @@
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService, db } from "../../config/firebase";
 
-const Bookmarks = ({ baseList }) => {
+const Bookmarks = ({ baseList, isMyPage }) => {
+  // console.log("baseList.docId", baseList.docId);
+  console.log("isMyPage", isMyPage);
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -32,11 +25,17 @@ const Bookmarks = ({ baseList }) => {
       }
     }
     // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
-    // const newId = currentUserUid + baseList.id;
+    // const newId = `${currentUserUid}${baseList.docId}`;
+
+    const newId = isMyPage
+      ? `${currentUserUid}${baseList.docId}`
+      : `${currentUserUid}${baseList.id}`;
+
     // 북마크가 체크되어있지 않다면?
     if (!bookmark) {
       // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 userId ~~~ 등등 애들이 들어갈 예정.
-      await setDoc(doc(db, "bookmarks", baseList.id), {
+      await setDoc(doc(db, "bookmarks", newId), {
+        // user id
         userId: currentUserUid,
         // 필드 id
         docId: baseList.id,
@@ -55,7 +54,7 @@ const Bookmarks = ({ baseList }) => {
       setBookmark(true);
     } else {
       // bookmark 면? 해당 newId 가 있으니 delete 이 실행
-      const haveBookMark = doc(db, "bookmarks", baseList.id);
+      const haveBookMark = doc(db, "bookmarks", newId);
       deleteDoc(haveBookMark);
       //다시 북마크가 저장가능한 상태
       setBookmark(false);
@@ -64,8 +63,10 @@ const Bookmarks = ({ baseList }) => {
 
   // 내가 북마크한 내역 화면에 출력
   const getBookmark = async () => {
-    // const newId = currentUserUid + baseList.id;
-    const docRef = doc(db, "bookmarks", baseList.id);
+    const newId = isMyPage
+      ? `${currentUserUid}${baseList.docId}`
+      : `${currentUserUid}${baseList.id}`;
+    const docRef = doc(db, "bookmarks", newId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       setBookmark(true);
@@ -99,10 +100,10 @@ export default Bookmarks;
 //   color: #6a24ff;
 // `;
 
-const Bookmarked = styled.div`
+export const Bookmarked = styled.div`
   width: 20px;
   height: 25px;
 `;
-const BookmarkedImg = styled.img`
+export const BookmarkedImg = styled.img`
   width: 100%;
 `;
