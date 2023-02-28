@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 
 export const ModalBackground = styled.div`
   /* position: fixed;
