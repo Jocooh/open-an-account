@@ -1,7 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+  uploadString,
+} from "firebase/storage";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  query,
+  orderBy,
+  onSnapshot,
+  where,
+} from "firebase/firestore";
+import { authService, db, storage } from "../../config/firebase";
+
+import {
   Body,
+  CategoryButton,
+  CategoryInput,
   CloseButton,
   ContentInput,
   ErrorMessage,
@@ -10,63 +31,114 @@ import {
   ModalContainer,
   SaveButton,
   TitleInput,
+  Category,
+  Content,
+  ImgUpload,
 } from "./style";
-
-// 카테고리 드롭박스 선택시
-// https://velog.io/@niboo/React-%EB%93%9C%EB%A1%AD%EB%8B%A4%EC%9A%B4-%EB%A9%94%EB%89%B4-%EB%A7%8C%EB%93%A4%EA%B8%B0
-// const CATEGORIES = [
-//     {id: null, value: '카테고리를 선택하세요'},
-//     {id: 1, value: '10대 금융 노하우'},
-//     {id: 2, value: '초년생 금융 노하우'},
-// ]
-// const CategorySelectHandler = (e) => {
-// const [selectedDropValue, setSelectedDropValue] = useState('카테고리를 선택하세요')
-// // onChange 이벤트가 발생한 target을 받아와 value값이 할당해준다.
-// const handleDropProduct = e => e.target.value
-// // 상품코드에 넣을 데이터
-// setSelectedDropValue(PRODUCT_DATA.filter(el => el.value === value)[0].id);
-// }
+import { updateProfile } from "firebase/auth";
 
 function PostingModal({ setPostingModalOpen }) {
   const navigate = useNavigate();
-
-  const [currentInput, setCurrentInput] = useState("");
 
   const ClosePostingModal = () => {
     setPostingModalOpen(false);
   };
 
-  const checkInput = (e) => {
-    const input = e.target.value;
-    setCurrentInput(input);
+  //* 드롭다운 메뉴
+  const options = [
+    { value: "", text: "카테고리 선택" },
+    { value: "금융상품 후기", text: "금융상품 후기" },
+    { value: "팁과 노하우", text: "팁과 노하우" },
+    { value: "공지사항", text: "공지사항" },
+  ];
+  const [selected, setSelected] = useState(options[0].value);
+  const selectCategory = (e) => {
+    setSelected(e.target.value);
   };
+
+  //* 게시글 작성
+  const [inputTitle, setInputTitle] = useState("");
+  const [inputContent, setInputContent] = useState("");
+  const user = authService?.currentUser;
+  const addPost = async () => {
+    if (!inputTitle) {
+      alert("제목을 입력해주세요.");
+      return;
+    }
+    if (!selected) {
+      alert("카테고리를 선택해주세요.");
+    }
+    if (!inputContent) {
+      alert("본문을 입력해주세요.");
+      return;
+    }
+    await addDoc(collection(db, "posts"), {
+      id: user?.uid,
+      category: selected,
+      content: inputContent,
+      imgUrl: image,
+      name: user?.displayName ?? "익명",
+      createdAt: Date.now(),
+    });
+    setSelected(options[0].value);
+    setInputTitle("");
+    setInputContent("");
+    setPostingModalOpen(false);
+  };
+
+  //* 사진 업로드 하기
+  const [imageUpload, setImageUpload] = useState("");
+  const [image, setImage] = useState("");
+  const fileRef = useRef(null);
+
+  const onClickUpload = () => {
+    fileRef.current?.click();
+  };
+  const onChangeUpload = (e) => {
+    setImageUpload(e.target.files?.[0]);
+  };
+  useEffect(() => {
+    const imageRef = ref(storage, `${user?.uid}`);
+    if (!imageUpload) return;
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImage(url);
+      });
+    });
+  }, [imageUpload]);
 
   return (
     <ModalBackground>
       <ModalContainer>
         <Header>
           <CloseButton onClick={ClosePostingModal}>닫기</CloseButton>
-          <div>글쓰기</div>
-          <SaveButton
-            alert="등록되었습니다."
-            onClick={() => navigate("/detail")}
-          >
-            등록하기
+          <div>글 작성하기</div>
+          <SaveButton alert="등록되었습니다." onClick={addPost}>
+            등록
           </SaveButton>
         </Header>
 
         <Body>
           <TitleInput
-            onChange={checkInput}
-            value={currentInput}
+            onChange={(e) => setInputTitle(e.target.value)}
+            value={inputTitle}
             placeholder="제목을 입력해주세요"
           />
-          <ContentInput
-            onChange={checkInput}
-            value={currentInput}
-            placeholder="(본문 관련 주의사항)"
-          />
-          <ErrorMessage>카테고리를 선택해주세요</ErrorMessage>
+          <Category value={selected} onChange={selectCategory}>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.text}
+              </option>
+            ))}
+          </Category>
+          <Content>
+            <ImgUpload type="file" onChange={onChangeUpload} />
+            <ContentInput
+              onChange={(e) => setInputContent(e.target.value)}
+              value={inputContent}
+              placeholder="사진은 최대 5장 올릴 수 있습니다."
+            />
+          </Content>
         </Body>
       </ModalContainer>
     </ModalBackground>
