@@ -83,14 +83,7 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
                   className="여기가 자세히 눌렀을때 상세정보 나오는 공간이예여"
                   style={{ marginRight: "2%" }}
                 >
-                  <Bookmarks
-                    // productId={item.fin_prdt_cd}
-                    // productName={item.fin_prdt_nm}
-                    // productCoName={item.kor_co_nm}
-                    // productDocId={item.id}
-                    // productCoCode={item.fin_co_no}
-                    baseList={item}
-                  />
+                  <Bookmarks baseList={item} isMyPage={true} />
                   <button
                     title="자세히 버튼"
                     style={{
