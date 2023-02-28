@@ -125,15 +125,6 @@ const InsertData = () => {
     }
   };
 
-
-  useEffect(() => {
-    getSavingBaseListHandler();
-    getSavingOptionListHandler();
-    getDepositBaseListHandler();
-    getDepositOptionListHandler();
-  }, []);
-
-
   return (
     <div
       style={{
