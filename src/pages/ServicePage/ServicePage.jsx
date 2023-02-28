@@ -1156,22 +1156,64 @@ const ServicePage = () => {
                   </div>
                 ) : (
                   <>
-                    <TapContainer>
-                      <TapContainerBox>
-                        {/* 여기서 부터 찜 내용 들어감 */}
-                        <StyledBankListContainer>
-                          <StyledBankList>
-                            <div
-                              ref={topLocation}
-                              className="top으로 가는 위치 지정"
-                            />
-                            {/* <StyledBankListWrapper> */}
-                            <BookmarkPrdtList currentUser={user} />
-                            {/* </StyledBankListWrapper> */}
-                          </StyledBankList>
-                        </StyledBankListContainer>
-                      </TapContainerBox>
-                    </TapContainer>
+                    <TapContainerWrap>
+                      <TapContainer>
+                        <TapContainerBox>
+                          <TapTitleName>나의 찜 목록</TapTitleName>
+                          <ProductWraper>
+                            <ProductType
+                              onClick={() => {
+                                handleProductTypeClick(1);
+                              }}
+                              style={
+                                productTypes === 1
+                                  ? {
+                                      color: "#fff",
+                                      border: "1px solid #E1E1E4",
+                                      backgroundColor: "#6A24FF",
+                                      fontWeight: "bold",
+                                    }
+                                  : {}
+                              }
+                            >
+                              정기예금
+                            </ProductType>
+                            <ProductType
+                              onClick={() => {
+                                handleProductTypeClick(2);
+                              }}
+                              style={
+                                productTypes === 2
+                                  ? {
+                                      color: "#fff",
+                                      border: "1px solid #E1E1E4",
+                                      backgroundColor: "#6A24FF",
+                                      fontWeight: "bold",
+                                    }
+                                  : {}
+                              }
+                            >
+                              정기적금
+                            </ProductType>
+                          </ProductWraper>
+                          {/* 여기서 부터 찜 내용 들어감 */}
+                          <StyledBankListContainer>
+                            <StyledBankList>
+                              <div
+                                ref={topLocation}
+                                className="top으로 가는 위치 지정"
+                              />
+                              {/* <StyledBankListWrapper> */}
+                              <BookmarkPrdtList
+                                productTypes={productTypes}
+                                currentUser={user}
+                              />
+                              {/* </StyledBankListWrapper> */}
+                            </StyledBankList>
+                          </StyledBankListContainer>
+                        </TapContainerBox>
+                      </TapContainer>
+                    </TapContainerWrap>
                   </>
                 ))}
             </div>

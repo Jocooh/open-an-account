@@ -20,6 +20,7 @@ function SearchBankList({
       {productTypes === 1 ? (
         <SearchDepositLists
           color={color}
+          productTypes={productTypes}
           setColor={setColor}
           activeItem={activeItem}
           searchBank={searchBank}
@@ -31,6 +32,7 @@ function SearchBankList({
         />
       ) : (
         <SearchSavingLists
+          productTypes={productTypes}
           setColor={setColor}
           activeItem={activeItem}
           searchBank={searchBank}

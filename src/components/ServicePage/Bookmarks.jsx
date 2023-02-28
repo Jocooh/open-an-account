@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService, db } from "../../config/firebase";
 
-const Bookmarks = ({ baseList, isMyPage }) => {
+const Bookmarks = ({ baseList, isMyPage, productTypes }) => {
   // console.log("baseList.docId", baseList.docId);
-  console.log("isMyPage", isMyPage);
+
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -48,6 +48,7 @@ const Bookmarks = ({ baseList, isMyPage }) => {
         join_member: baseList.join_member, // 가입 대상
         etc_note: baseList.etc_note, // 기타 유의사항
         fin_co_no: baseList.fin_co_no, // 상품 회사 코드
+        productTypes: productTypes, //예금인지 적금인지 구별
       });
 
       // true가 되면서 북마크 더이상 못하게 막기

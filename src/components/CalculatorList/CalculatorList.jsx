@@ -114,6 +114,7 @@ const CalculatorList = ({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
+                            productTypes={productTypes}
                           />
                           <button
                             style={{
@@ -210,6 +211,7 @@ const CalculatorList = ({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
+                            productTypes={productTypes}
                           />
                           <button
                             style={{
