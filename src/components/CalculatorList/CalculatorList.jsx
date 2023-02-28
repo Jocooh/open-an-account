@@ -106,11 +106,8 @@ const CalculatorList = ({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            productId={item.fin_prdt_cd}
-                            productName={item.fin_prdt_nm}
-                            productCoName={item.kor_co_nm}
-                            productDocId={item.id}
-                            productCoCode={item.fin_co_no}
+                            baseList={item} //baseList
+                            sortMonths={sortMonths} //기간 정렬
                           />
                           <button
                             style={{

@@ -45,7 +45,6 @@ import {
 } from "./style";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
-
 import { useNavigate } from "react-router-dom";
 
 function MyPage() {
@@ -56,7 +55,6 @@ function MyPage() {
   );
   const currentUser = JSON.parse(userSession ?? "");
 
-
   const onLogoutClick = () => {
     authService.signOut().then(() => {
       sessionStorage.clear();
@@ -66,8 +64,6 @@ function MyPage() {
   };
 
   const [tab, setTab] = useState(0);
-
-
 
   //마이페이지 기능구현 필요 state
   const user = authService.currentUser;
@@ -258,7 +254,6 @@ function MyPage() {
 
         <RightBox className="오른쪽 박스">
           {tab === 0 && (
-
             <RightWrapper className="첫번째 탭 박스">
               <form
                 onSubmit={(e) => {
@@ -288,7 +283,6 @@ function MyPage() {
                   name={name}
                 />
 
-
                 <SaveBtn
                   disabled={btnValidation}
                   style={
@@ -301,7 +295,33 @@ function MyPage() {
             </RightWrapper>
           )}
 
-          {tab === 1 ? <BookmarkPrdtList currentUser={currentUser} /> : null}
+          {tab === 1 && (
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <div style={{ display: "flex", gap: "10px" }}>
+                <button
+                  style={{
+                    width: "70px",
+                    height: "30px",
+                    backgroundColor: "white",
+                  }}
+                >
+                  예금
+                </button>
+                <button
+                  style={{
+                    width: "70px",
+                    height: "30px",
+                    backgroundColor: "white",
+                  }}
+                >
+                  적금
+                </button>
+              </div>
+              <BookmarkPrdtList currentUser={currentUser} />
+            </div>
+          )}
           {tab === 2 && <div>comming soon ...</div>}
           {tab === 3 && <div>comming soon ...</div>}
         </RightBox>

@@ -114,7 +114,6 @@ function AllBankList({
                           <Bookmarks
                             baseList={item} //baseList
                             sortMonths={sortMonths} //기간 정렬
-                            optionList={deposit} //optionList
                           />
                           <button
                             style={{

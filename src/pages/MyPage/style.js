@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const MyPageWrapper = styled.div`
-  /* background-color: #f4f5f6; */
+  background-color: #f4f5f6;
   width: 100%;
   display: flex;
-  gap: 100px;
+  gap: 200px;
+  height: 100vh;
   /* align-items: center; */
   /* justify-content: center; */
 `;
@@ -87,9 +88,9 @@ export const HistoryCategory = styled.div`
 `;
 //여기서부터는 오른쪽 박스 스타일 구역
 export const RightBox = styled.div`
-  width: 900px;
-  height: 850px;
-  background-color: #f4f5f6;
+  /* width: 900px; */
+  height: 800px;
+  /* background-color: #f4f5f6; */
   padding: 20px;
   display: flex;
   overflow-y: scroll;

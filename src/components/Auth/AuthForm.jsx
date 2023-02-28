@@ -57,7 +57,7 @@ const AuthForm = ({
   password,
   changePassword,
   passwordRef,
-  passwordValid, // login 실시간 유효성 검사 - 기존 유효성 검사로 사용 중
+  passwordValid, // login 실시간 유효성 검사
   passwordMessage, // sign up 실시간 유효성 검사
   isPassword, // sign up 실시간 유효성 검사
   confirmPassword,
