@@ -62,6 +62,8 @@ import CalculatorList from "../../components/CalculatorList/CalculatorList";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { Navigate, useNavigate } from "react-router-dom";
+import logoLists from "../../assets/logo/logo";
+import { StyledImg } from "../../components/AllBankList/style";
 
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
@@ -494,16 +496,7 @@ const ServicePage = () => {
       setMyBookmarkProducs(myBookmarkProduct);
     });
   };
-  //tab 3(찜 목록 함수)
-  // const auth = getAuth();
-  // const [currentUser, setCurrentUser] = useState();
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     setCurrentUser(user);
-  //   } else {
-  //     console.log("로그인 하지 않은 유저");
-  //   }
-  // });
+  //3번 탭 비로그인 시 로그인유도 함수
   const navigate = useNavigate();
   const checkUser = () => {
     if (!isLoggedIn)
@@ -539,7 +532,10 @@ const ServicePage = () => {
                   ) : (
                     <div style={{ display: "flex" }}>
                       <div>
-                        <img src="" alt="logo" />
+                        <StyledImg
+                          src={logoLists[selectedProductIds[4].fin_co_no]}
+                          alt="로고"
+                        />
                       </div>
 
                       <StagingWrap>
@@ -609,7 +605,10 @@ const ServicePage = () => {
                   ) : (
                     <div style={{ display: "flex" }}>
                       <div>
-                        <img src="" alt="logo" />
+                        <StyledImg
+                          src={logoLists[selectedProductIds[10].fin_co_no]}
+                          alt="로고"
+                        />
                       </div>
                       <StagingWrap>
                         <div>
@@ -678,7 +677,10 @@ const ServicePage = () => {
                   ) : (
                     <div style={{ display: "flex" }}>
                       <div>
-                        <img src="" alt="logo" />
+                        <StyledImg
+                          src={logoLists[selectedProductIds[16].fin_co_no]}
+                          alt="로고"
+                        />
                       </div>
                       <StagingWrap>
                         <div>
@@ -1009,8 +1011,10 @@ const ServicePage = () => {
                             selectedProductIds={selectedProductIds}
                             handleClickProduct={handleClickProduct}
                             depositOptionalList={depositOptionalList}
+                            savingbaseList={savingbaseList}
+                            savingoptionalList={savingoptionalList}
                             depositbaseList={products}
-                            // value={value}
+                            productTypes={productTypes}
                             months={months}
                           />
                           {/* </StyledBankListWrapper> */}
