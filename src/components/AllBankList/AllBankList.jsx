@@ -80,7 +80,6 @@ function AllBankList({
                           <StyledImg
                             src={logoLists[item.fin_co_no]}
                             alt="로고"
-                            key={item.id}
                           />
                           <div>
                             <StyledContentDiv>
@@ -113,7 +112,6 @@ function AllBankList({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
-                            sortMonths={sortMonths} //기간 정렬
                           />
                           <button
                             style={{

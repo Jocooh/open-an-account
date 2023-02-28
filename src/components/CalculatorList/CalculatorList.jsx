@@ -19,6 +19,7 @@ import {
 
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists } from "../../pages/ServicePage/style";
+import SavingDetail from "../DetailProduct/SavingDetail";
 
 const CalculatorList = ({
   months,
@@ -28,6 +29,8 @@ const CalculatorList = ({
   selectedProductIds,
   handleClickProduct,
   depositOptionalList,
+  savingbaseList,
+  savingoptionalList,
   productTypes,
 }) => {
   const [color, setColor] = useState([]);
@@ -35,14 +38,18 @@ const CalculatorList = ({
   const depositDB = depositOptionalList?.sort(function (a, b) {
     return b.intr_rate2 - a.intr_rate2;
   });
-  const saveingDB = depositOptionalList?.sort(function (a, b) {
+  const savingDB = savingoptionalList?.sort(function (a, b) {
     return b.intr_rate - a.intr_rate;
   });
-  const sortMonths = depositOptionalList?.sort(function (a, b) {
+  const sortDepositMonths = depositOptionalList?.sort(function (a, b) {
+    return a.save_trm - b.save_trm;
+  });
+  const sortSavingMoths = savingoptionalList?.sort(function (a, b) {
     return a.save_trm - b.save_trm;
   });
 
   const changeStringHandler = months.toString();
+
   return productTypes === 1 ? (
     <div>
       {depositDB &&
@@ -107,7 +114,6 @@ const CalculatorList = ({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
-                            sortMonths={sortMonths} //기간 정렬
                           />
                           <button
                             style={{
@@ -128,7 +134,7 @@ const CalculatorList = ({
                         <DepositDetail
                           depositDB={deposit}
                           depositbaseList={item}
-                          sortMonths={sortMonths}
+                          sortMonths={sortDepositMonths}
                           setActiveItem={setActiveItem}
                         />
                       ) : null}
@@ -142,12 +148,12 @@ const CalculatorList = ({
     </div>
   ) : (
     <div>
-      {saveingDB &&
-        saveingDB?.map((deposit) =>
-          depositbaseList?.map((item) =>
-            deposit.fin_prdt_cd === item.fin_prdt_cd ? (
+      {savingDB &&
+        savingDB?.map((saving) =>
+          savingbaseList?.map((item) =>
+            saving.fin_prdt_cd === item.fin_prdt_cd ? (
               <div key={item.id}>
-                {deposit.save_trm === `${changeStringHandler}` ? (
+                {saving.save_trm === `${changeStringHandler}` ? (
                   <StyledBankLists
                     key={item.id}
                     onClick={() => {
@@ -191,11 +197,11 @@ const CalculatorList = ({
                               <StyledSaveTrmDiv>
                                 <StyledRateP>
                                   최대금리
-                                  {deposit.intr_rate2}
+                                  {saving.intr_rate2}
                                 </StyledRateP>
 
                                 <StyledRateP>
-                                  일반금리 {deposit.intr_rate}
+                                  일반금리 {saving.intr_rate}
                                 </StyledRateP>
                               </StyledSaveTrmDiv>
                             </StyledContentDiv>
@@ -203,11 +209,7 @@ const CalculatorList = ({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            productId={item.fin_prdt_cd}
-                            productName={item.fin_prdt_nm}
-                            productCoName={item.kor_co_nm}
-                            productDocId={item.id}
-                            productCoCode={item.fin_co_no}
+                            baseList={item} //baseList
                           />
                           <button
                             style={{
@@ -225,10 +227,10 @@ const CalculatorList = ({
                     </div>
                     <div>
                       {activeItem === item.id ? (
-                        <DepositDetail
-                          depositDB={deposit}
-                          depositbaseList={item}
-                          sortMonths={sortMonths}
+                        <SavingDetail
+                          savingDB={saving}
+                          savingbaseList={item}
+                          sortMonths={sortSavingMoths}
                           setActiveItem={setActiveItem}
                         />
                       ) : null}
