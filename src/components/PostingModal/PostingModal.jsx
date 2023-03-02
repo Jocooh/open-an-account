@@ -37,7 +37,7 @@ import {
 } from "./style";
 import { updateProfile } from "firebase/auth";
 
-function PostingModal({ setPostingModalOpen, setBoards }) {
+function PostingModal({ setPostingModalOpen, setBoards, categorytab }) {
   const navigate = useNavigate();
 
   const confirm = () => {
@@ -98,7 +98,7 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
       id: user?.uid,
       title: inputTitle,
       category: selected,
-      title: inputTitle,
+      categorytab,
       content: inputContent,
       imgUrl: image,
       name: user?.displayName ?? "익명",
@@ -109,7 +109,6 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
         setSelected(options[0].value);
         setInputTitle("");
         setInputContent("");
-        console.log(inputTitle, inputContent, selected);
         setPostingModalOpen(false);
       })
       .catch((err) => {
@@ -117,32 +116,6 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
           alert("작성하신 글을 업로드 하지 못했습니다.");
         }
       });
-    getPostlist();
-  };
-  // 게시글 불러오기
-  const getPostlist = () => {
-    const q = query(
-      collection(db, "posts"),
-      orderBy("createdAt")
-      // where("category", "==", category)
-    );
-
-    const array = [];
-    onSnapshot(q, (snapshot) => {
-      snapshot.docs.map((doc) =>
-        array.push({
-          id: doc.id,
-          ...doc.data(),
-        })
-      );
-      setBoards(array);
-    });
-    setSelected(options[0].value);
-    setInputTitle("");
-    setInputContent("");
-    alert("저장되었습니다.");
-    setPostingModalOpen(false);
-
   };
 
   //* 사진 업로드 하기

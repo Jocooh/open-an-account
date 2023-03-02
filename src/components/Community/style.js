@@ -24,7 +24,7 @@ export const Title = styled.div`
 
 export const Boards = styled.div`
   display: flex;
-  flex-flow: wrap-reverse;
+  flex-flow: wrap;
 `;
 
 export const Categories = styled.div`
