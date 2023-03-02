@@ -11,6 +11,7 @@ import {
   Categories,
   ProfileImg,
   PostButton,
+  Message,
 } from "./style";
 import Tipper from "../../components/MainPage/Tipper";
 import { db } from "../../config/firebase";
@@ -73,6 +74,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   // console.log(posts);
   return (
     <Wrapper>
+
       <Categories>
         <Category
           style={
@@ -115,7 +117,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
       <div>
         {categorytab === "금융상품 후기" && (
           <Content>
-            <Title>관심있는 팁을 찾아보세요</Title>
+            <Title>마음에 드는 팁이 있다면 <br /> 하트!</Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -134,7 +136,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
 
         {categorytab === "팁과 노하우" && (
           <Content>
-            <Title>관심있는 팁을 찾아보세요</Title>
+            <Title>마음에 드는 팁이 있다면 <br /> 하트!</Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -153,7 +155,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
 
         {categorytab === "공지사항" && (
           <Content>
-            <Title>관심있는 팁을 찾아보세요</Title>
+            <Title>마음에 드는 팁이 있다면 <br /> 하트!</Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -165,19 +167,23 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
               <Tipper boards={boards} result={result} />
             </Boards>
 
-            {/* 작성창 제일 위  */}
-            {/* 그 다음 글 카테고리 순서대로 쌓기 */}
           </Content>
         )}
       </div>
 
+
       <UserWrapper>
         <User>
-          <ProfileImg src={require("../../assets/profileimg.png")} />
-
           {username}
+          <ProfileImg src={require("../../assets/profileimg.png")} />
+          <PostButton onClick={OpenPostingModal}>팁 작성하기</PostButton>
         </User>
-        <PostButton onClick={OpenPostingModal}>글 작성하기</PostButton>
+        <Categories>
+          <Message>카테고리</Message>
+          <Category>금융상품 후기</Category>
+          <Category>팁과 노하우</Category>
+          <Category>공지사항</Category>
+        </Categories>
       </UserWrapper>
     </Wrapper>
   );

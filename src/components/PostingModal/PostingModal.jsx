@@ -116,6 +116,7 @@ function PostingModal({ setPostingModalOpen, setBoards, categorytab }) {
           alert("작성하신 글을 업로드 하지 못했습니다.");
         }
       });
+
   };
 
   //* 사진 업로드 하기
