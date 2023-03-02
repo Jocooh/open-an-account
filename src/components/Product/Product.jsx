@@ -16,6 +16,7 @@ import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../AllBankList/style";
 
 function Product({
+  productTypes,
   inputValue,
   selectedProduct,
   selectedProductId,
@@ -108,6 +109,7 @@ function Product({
             baseList={selectedProduct} //baseList
             isModal={true}
             selectedProductId={selectedProductId}
+            productTypes={productTypes}
           />
         </Scrap>
       </ProductBox>

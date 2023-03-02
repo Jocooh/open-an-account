@@ -16,6 +16,7 @@ import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../AllBankList/style";
 
 function SavingProduct({
+  productTypes,
   inputValue,
   selectedProduct,
   selectedProductId,
@@ -115,6 +116,7 @@ function SavingProduct({
             baseList={selectedProduct} //baseList
             isModal={true}
             selectedProductId={selectedProductId}
+            productTypes={productTypes}
           />
         </Scrap>
       </ProductBox>

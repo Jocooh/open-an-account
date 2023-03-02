@@ -21,6 +21,7 @@ import Product from "../Product/Product";
 import SavingProduct from "../Product/SavingProduct";
 
 const ComparingModal = ({
+  productTypes,
   setComparingModalOpen,
   selectedProduct,
   selectedProductId,
@@ -77,6 +78,7 @@ const ComparingModal = ({
                 </Message>
                 <Products>
                   <Product
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProductId[0]}
@@ -85,6 +87,7 @@ const ComparingModal = ({
                     selectedProductRateType={selectedProductRateType[0]}
                   />
                   <Product
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProductId[1]}
@@ -94,6 +97,7 @@ const ComparingModal = ({
                   />
                   {selectedProduct[2] ? (
                     <Product
+                      productTypes={productTypes}
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProductId[2]}
@@ -131,6 +135,7 @@ const ComparingModal = ({
                 </Message>
                 <Products>
                   <SavingProduct
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProductId[0]}
@@ -139,6 +144,7 @@ const ComparingModal = ({
                     selectedProductRateType={selectedProductRateType[0]}
                   />
                   <SavingProduct
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProductId[1]}
@@ -148,6 +154,7 @@ const ComparingModal = ({
                   />
                   {selectedProduct[2] ? (
                     <SavingProduct
+                      productTypes={productTypes}
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProductId[2]}

@@ -8,8 +8,6 @@ const BookmarkPrdtList = ({ currentUser, sortMonths, productTypes }) => {
   const [items, setItems] = useState([]);
   const [depositOptionalList, setdepositOptionalList] = useState([]);
   const [savingoptionalList, setSavingoptionalList] = useState([]);
-  // const [products, setProducts] = useState([]);
-  // const [savingbaseList, setSavingbaseList] = useState([]);
   const handleButtonClick = async () => {
     const optionListPromises = [
       getDocs(collection(db, "DEPOSIT_OPTION_LIST")),
@@ -66,14 +64,12 @@ const BookmarkPrdtList = ({ currentUser, sortMonths, productTypes }) => {
       items={filterDeposit}
       allOptionList={depositOptionalList}
       sortMonths={sortMonths}
-      productTypes={productTypes}
     />
   ) : (
     <BookmarkPrdtItem
       items={filterSaving}
       allOptionList={savingoptionalList}
       sortMonths={sortMonths}
-      productTypes={productTypes}
     />
   );
 };
