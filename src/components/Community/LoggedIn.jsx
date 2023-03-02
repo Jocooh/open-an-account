@@ -11,6 +11,7 @@ import {
   Categories,
   ProfileImg,
   PostButton,
+  Message,
 } from "./style";
 import Tipper from "../../components/MainPage/Tipper";
 
@@ -23,35 +24,35 @@ function LoggedIn({ username }) {
   };
   return (
     <Wrapper>
-      <Categories>
-        <Category>금융상품 후기</Category>
-        <Category>팁과 노하우</Category>
-        <Category>공지사항</Category>
-      </Categories>
-
       <Content>
-        <Title>관심있는 팁을 찾아보세요</Title>
-        <Boards>
-          <Tipper boards={boards} />
-        </Boards>
+        <Title>
+          마음에 드는 팁이 있다면 <br /> 하트!
+        </Title>
 
-        {/* 작성창 제일 위  */}
-        {/* 그 다음 글 카테고리 순서대로 쌓기 */}
         {postingModalOpen && (
           <PostingModal
             setPostingModalOpen={setPostingModalOpen}
             setBoards={setBoards}
           />
         )}
+
+        <Boards>
+          <Tipper boards={boards} />
+        </Boards>
       </Content>
 
       <UserWrapper>
         <User>
-          <ProfileImg src={require("../../assets/profileimg.png")} />
-
           {username}
+          <ProfileImg src={require("../../assets/profileimg.png")} />
+          <PostButton onClick={OpenPostingModal}>팁 작성하기</PostButton>
         </User>
-        <PostButton onClick={OpenPostingModal}>글 작성하기</PostButton>
+        <Categories>
+          <Message>카테고리</Message>
+          <Category>금융상품 후기</Category>
+          <Category>팁과 노하우</Category>
+          <Category>공지사항</Category>
+        </Categories>
       </UserWrapper>
     </Wrapper>
   );

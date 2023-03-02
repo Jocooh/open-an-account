@@ -140,9 +140,7 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
     setSelected(options[0].value);
     setInputTitle("");
     setInputContent("");
-    alert("저장되었습니다.");
     setPostingModalOpen(false);
-
   };
 
   //* 사진 업로드 하기
