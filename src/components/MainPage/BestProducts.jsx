@@ -2,7 +2,10 @@ import React from "react";
 import {
   BestProductWrap,
   CurrentState,
+  BtProductTitleWrap,
+  BestProductTitle,
   KrBank,
+  KrDate,
   KrBankRateWrap,
   KrBankRate,
   KrBankRateVar,
@@ -16,14 +19,17 @@ import {
   RateWrapper,
   MaxRate,
 } from "../../pages/MainPage/style";
-
 const BestProducts = () => {
   return (
     <BestProductWrap>
       <CurrentState>
-        <KrBank>한국은행 기준 금리</KrBank>
-        <div>2023.02.22</div>
+        <BtProductTitleWrap>
+          <img src={require("../../assets/mainpage/bestproduct.png")} />
+          <BestProductTitle>인기 금융 상품</BestProductTitle>
+          <KrDate>2023.02.22 기준</KrDate>
+        </BtProductTitleWrap>
         <KrBankRateWrap>
+          <KrBank>한국은행 기준 금리</KrBank>
           <KrBankRate>3.50%</KrBankRate>
           <KrBankRateVar>
             {/* <img src={require("../../assets/mainpage/variation.png")} /> */}
