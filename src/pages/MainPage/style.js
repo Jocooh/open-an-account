@@ -160,10 +160,10 @@ export const Tippers = styled.div`
   margin-top: 40px;
 `;
 
-// 팁퍼
-export const Tipper = styled.div`
+// 팁퍼 틀
+export const TipperWrap = styled.div`
   height: 650px;
-  width: 100%;
+  width: 288px;
   border: 1px #dedede solid;
   border-radius: 10px;
   margin-right: 10px;
@@ -185,6 +185,12 @@ export const TipperImgWrap = styled.div`
   border: 1px solid #dedede;
   height: 200px;
   background-color: whitesmoke;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 288px;
+    height: 200px;
+  }
 `;
 
 // 팁퍼제목
