@@ -24,33 +24,56 @@ export const BestProductWrap = styled.div`
   padding: 30px;
 `;
 
-// 현황
+// 인기 상품 현황
 export const CurrentState = styled.div`
   margin: 0 0 20px 30px;
+  display: flex;
+  justify-content: space-between;
 `;
-
-// 한국은행
-export const KrBank = styled.div`
-  font-size: 18px;
+// 인기 상품 제목 랩
+export const BtProductTitleWrap = styled.div`
+  display: flex;
+  img {
+    width: 33px;
+    height: 33px;
+    margin: 8px 20px 0 0;
+  }
+`;
+// 인기 금융 상품 제목
+export const BestProductTitle = styled.div`
+  font-size: 36px;
   font-weight: bold;
 `;
-
+// 현재 시각
+export const KrDate = styled.div`
+  opacity: 0.6;
+  display: flex;
+  align-items: end;
+  margin: 0 0 6px 10px;
+`;
 // 한국은행 기준 금리 수치 랩
 export const KrBankRateWrap = styled.div`
   display: flex;
 `;
-
+// 한국은행
+export const KrBank = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 0.4;
+  display: flex;
+  align-items: end;
+  padding-bottom: 5px;
+`;
 // 한국은행 기준 금리 수치
 export const KrBankRate = styled.div`
   font-size: 40px;
   font-weight: bold;
+  margin: 0 20px 0 20px;
 `;
-
 // 한국은행 기준 금리 변화
 export const KrBankRateVar = styled.div`
   display: flex;
   align-items: end;
-  margin-left: 20px;
   padding-bottom: 5px;
   color: red;
   img {
