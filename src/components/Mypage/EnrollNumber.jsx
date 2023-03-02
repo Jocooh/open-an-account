@@ -14,6 +14,7 @@ function EnrollNumber({ phoneNum, setPhoneNum, currentUser, phoneList }) {
         placeholder="010-1234-5678"
         // value={phoneNum}
         onChange={(e) => changePhoneNumHanlder(e)}
+        disabled
       ></UserInput>
     </EnrollNumberDiv>
   );

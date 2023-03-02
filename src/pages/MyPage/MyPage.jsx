@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ChangePassword from "../../components/Mypage/ChangePassword";
 import EnrollNumber from "../../components/Mypage/EnrollNumber";
 import ChangeNickname from "../../components/Mypage/ChangeNickname";
@@ -11,20 +11,6 @@ import {
   query,
   getDocs,
 } from "firebase/firestore";
-import {
-  getAuth,
-  onAuthStateChanged,
-  updatePassword,
-  updateProfile,
-  setPersistence,
-  signInWithEmailAndPassword,
-  browserSessionPersistence,
-  signOut,
-} from "firebase/auth";
-import { db, firebaseConfig } from "../../config/firebase";
-// import { useNavigate } from "react-router-dom";
-
-import { RiLogoutBoxLine } from "react-icons/ri";
 import {
   MyPageWrapper,
   LeftBox,
@@ -42,11 +28,17 @@ import {
   HistoryCategory,
   CategoryImg,
   SaveBtn,
+  ProductTypesBtn,
 } from "./style";
+import { updatePassword, updateProfile } from "firebase/auth";
+import { firebaseConfig } from "../../config/firebase";
+
+import { RiLogoutBoxLine } from "react-icons/ri";
+
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
-import { ProductType } from "../ServicePage/style";
+import UserWriteList from "../../components/Mypage/UserWriteList";
 
 function MyPage() {
   const navigate = useNavigate();
@@ -72,17 +64,18 @@ function MyPage() {
 
   //마이페이지 기능구현 필요 state
   const user = authService.currentUser;
-  // console.log("currentUser", currentUser, "user", user);
-  const [userEmail, setUserEmail] = useState(currentUser.email);
-  const [btn, setBtn] = useState(false);
+
   const [btnValidation, setBtnValidation] = useState(true);
-  const [productTypes, setProductTypes] = useState(1);
+
+  const [productTypes, setProductTypes] = useState(1); //예금 적금
+
   //ChangePassword.jsx
   const [userPassword, setUserPassword] = useState(""); //현재 유저 패스워드
   const [editUserPassword, setEditUserPassword] = useState(""); //고치고 싶은 비밀번호
   const [inputValidationConfirm, setInputValidationConfirm] = useState(true);
   const [password, setPassword] = useState("");
-  //-> ChangeNickName.jsx
+
+  //ChangeNickName.jsx
   //newNickname: 유저의 바꿀 닉네임 ,  name: 왼쪽박스 유저 네임
   const [newNickName, setNewNickName] = useState(currentUser?.displayName);
   const [name, setName] = useState(newNickName);
@@ -108,10 +101,11 @@ function MyPage() {
         .then(
           alert("개인정보 수정 완료"),
           setName(newNickName),
-          setEditUserPassword("")
+          setInputValidationConfirm(true),
+          setBtnValidation(true)
         )
         .catch((error) => {
-          console.log(error);
+          alert(console.log(error));
         });
     } else {
       alert("개인정보 수정 취소");
@@ -126,7 +120,10 @@ function MyPage() {
       .catch((error) => {
         console.log(error);
       });
+
+    setPassword("");
     setUserPassword("");
+    setEditUserPassword("");
   };
   //핸드폰은 user라는 이름으로 컬렉션에 들어갑니다.  => 계속 진행 중이니까 주석처리중
   // const addPhoneNumber = async () => {
@@ -272,30 +269,30 @@ function MyPage() {
                 }}
               >
                 <ChangePassword
-                  editUserPassword={editUserPassword}
-                  setEditUserPassword={setEditUserPassword}
-                  currentUser={currentUser}
-                  userPassword={userPassword}
-                  setUserPassword={setUserPassword}
-                  setBtnValidation={setBtnValidation}
-                  setInputValidationConfirm={setInputValidationConfirm}
-                  inputValidationConfirm={inputValidationConfirm}
-                  password={password}
-                  setPassword={setPassword}
+                  currentUser={currentUser} //현재의 유저 값
+                  setBtnValidation={setBtnValidation} // 버튼 활성화
+                  password={password} //새 비밀번호
+                  setPassword={setPassword} //새 비밀번호
+                  editUserPassword={editUserPassword} //현재 비밀번호
+                  setEditUserPassword={setEditUserPassword} //현재 비밀번호
+                  userPassword={userPassword} //새 비밀번호 확인
+                  setUserPassword={setUserPassword} //새 비밀번호 확인
+                  inputValidationConfirm={inputValidationConfirm} // 3번째 input 활성화
+                  setInputValidationConfirm={setInputValidationConfirm} // 3번째 input 활성화
                 />
                 <EnrollNumber
-                  setPhoneNum={setPhoneNum}
                   phoneNum={phoneNum}
-                  currentUser={currentUser}
                   phoneList={phoneList}
+                  setPhoneNum={setPhoneNum}
+                  currentUser={currentUser}
                 />
                 <ChangeNickname
-                  newNickName={newNickName}
-                  setNewNickName={setNewNickName}
-                  setIsNickName={setIsNickName}
-                  isNickName={isNickName}
-                  setBtnValidation={setBtnValidation}
                   name={name}
+                  isNickName={isNickName}
+                  newNickName={newNickName}
+                  setIsNickName={setIsNickName}
+                  setNewNickName={setNewNickName}
+                  setBtnValidation={setBtnValidation}
                 />
 
                 <SaveBtn
@@ -315,30 +312,30 @@ function MyPage() {
               style={{ display: "flex", flexDirection: "column", gap: "10px" }}
             >
               <div style={{ display: "flex", gap: "10px" }}>
-                <button
-                  style={{
-                    width: "70px",
-                    height: "30px",
-                    backgroundColor: "white",
-                  }}
+                <ProductTypesBtn
+                  style={
+                    productTypes === 1
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
                   onClick={() => {
                     setProductTypes(1);
                   }}
                 >
-                  예금
-                </button>
-                <button
-                  style={{
-                    width: "70px",
-                    height: "30px",
-                    backgroundColor: "white",
-                  }}
+                  정기예금
+                </ProductTypesBtn>
+                <ProductTypesBtn
+                  style={
+                    productTypes === 2
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
                   onClick={() => {
                     setProductTypes(2);
                   }}
                 >
-                  적금
-                </button>
+                  정기적금
+                </ProductTypesBtn>
               </div>
               <BookmarkPrdtList
                 currentUser={currentUser}
@@ -346,7 +343,39 @@ function MyPage() {
               />
             </div>
           )}
-          {tab === 2 && <div>comming soon ...</div>}
+          {tab === 2 && (
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <div style={{ display: "flex", gap: "10px" }}>
+                <ProductTypesBtn
+                  style={
+                    productTypes === 1
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
+                  onClick={() => {
+                    setProductTypes(1);
+                  }}
+                >
+                  작성한 팁
+                </ProductTypesBtn>
+                <ProductTypesBtn
+                  style={
+                    productTypes === 2
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
+                  onClick={() => {
+                    setProductTypes(2);
+                  }}
+                >
+                  작성한 댓글
+                </ProductTypesBtn>
+              </div>
+              <UserWriteList />
+            </div>
+          )}
           {tab === 3 && <div>comming soon ...</div>}
         </RightBox>
       </MyPageWrapper>

@@ -19,15 +19,15 @@ import {
 import SearchDepositDetail from "../Detail/SearchSavingDetail";
 
 function SearchSavingLists({
-  activeItem,
+  setColor,
   searchBank,
+  activeItem,
+  productTypes,
   setActiveItem,
   savingbaseList,
   savingOptionalList,
   handleClickProduct,
   selectedProductIds,
-  setColor,
-  productTypes,
 }) {
   return (
     <div>

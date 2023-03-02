@@ -749,6 +749,7 @@ const ServicePage = () => {
               </ToCompare>
               {comparingModalOpen && (
                 <ComparingModal
+                  productTypes={productTypes}
                   setComparingModalOpen={setComparingModalOpen}
                   selectedProductId={[
                     selectedProductIds[0],

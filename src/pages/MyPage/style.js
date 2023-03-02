@@ -158,3 +158,56 @@ export const SaveBtn = styled.button`
   border-radius: 10px;
   color: white;
 `;
+
+//예금적금 버튼
+export const ProductTypesBtn = styled.button`
+  width: 122px;
+  height: 46px;
+  border-radius: 15px;
+  background-color: white;
+`;
+
+//내가 쓴 글 컴포넌트 스타일
+export const UserWriteWrapper = styled.div`
+  width: 887px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  /* border: 1px solid #ccc; */
+`;
+export const ListCard = styled.div`
+  width: 275px;
+  height: 567px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  background-color: #fff;
+`;
+
+export const CardCategory = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+`;
+
+export const CardTitle = styled.p`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+export const SecondTitle = styled.p`
+  display: flex;
+  gap: 30px;
+  color: #999;
+`;
+export const Block = styled.div`
+  width: 20px;
+  height: 25px;
+`;
+export const CardTitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+`;
