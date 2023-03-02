@@ -40,7 +40,22 @@ import { updateProfile } from "firebase/auth";
 function PostingModal({ setPostingModalOpen }) {
   const navigate = useNavigate();
 
+  const confirm = () => {
+    if (
+      window.confirm(
+        "입력하신 내용은 저장되지 않습니다. 이대로 나가시겠습니까?"
+      )
+    ) {
+      setPostingModalOpen(false);
+    } else {
+      inputContent.current.focus();
+      return;
+    }
+  };
   const ClosePostingModal = () => {
+    if (inputTitle || inputContent) {
+      confirm();
+    }
     setPostingModalOpen(false);
   };
 
@@ -56,9 +71,6 @@ function PostingModal({ setPostingModalOpen }) {
     setSelected(e.target.value);
   };
 
-  //* 등록버튼 - 제목, 카테고리, 내용 모두 선택해야 able
-  // const [disabled, setDisabled] = useState(true);
-
   //* 게시글 작성
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
@@ -69,14 +81,17 @@ function PostingModal({ setPostingModalOpen }) {
   const addPost = async () => {
     if (!inputTitle) {
       alert("제목을 입력해주세요.");
+      titleRef.current.focus();
       return;
     }
     if (!selected) {
       alert("카테고리를 선택해주세요.");
+      categoryRef.current.focus();
       return;
     }
     if (!inputContent) {
       alert("본문을 입력해주세요.");
+      contentRef.current.focus();
       return;
     }
     await addDoc(collection(db, "posts"), {
@@ -91,7 +106,7 @@ function PostingModal({ setPostingModalOpen }) {
     setSelected(options[0].value);
     setInputTitle("");
     setInputContent("");
-    // setDisabled(false);
+    alert("저장되었습니다.");
     setPostingModalOpen(false);
   };
 
@@ -122,11 +137,7 @@ function PostingModal({ setPostingModalOpen }) {
         <Header>
           <CloseButton onClick={ClosePostingModal}>닫기</CloseButton>
           <div>글 작성하기</div>
-          <SaveButton
-            alert="등록되었습니다."
-            onClick={addPost}
-            // disabled={disabled}
-          >
+          <SaveButton alert="등록되었습니다." onClick={addPost}>
             등록
           </SaveButton>
         </Header>
