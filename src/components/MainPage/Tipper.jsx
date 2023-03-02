@@ -9,10 +9,10 @@ import {
   BoardContent,
 } from "../../pages/MainPage/style";
 
-const Tipper = ({ boards }) => {
+const Tipper = ({ boards, result }) => {
   return (
     <>
-      {boards?.map((i) => {
+      {result?.map((i) => {
         return (
           <TipperWrap key={i?.id}>
             <TipTitleWrap>
