@@ -40,7 +40,22 @@ import { updateProfile } from "firebase/auth";
 function PostingModal({ setPostingModalOpen, setBoards }) {
   const navigate = useNavigate();
 
+  const confirm = () => {
+    if (
+      window.confirm(
+        "입력하신 내용은 저장되지 않습니다. 이대로 나가시겠습니까?"
+      )
+    ) {
+      setPostingModalOpen(false);
+    } else {
+      inputContent.current.focus();
+      return;
+    }
+  };
   const ClosePostingModal = () => {
+    if (inputTitle || inputContent) {
+      confirm();
+    }
     setPostingModalOpen(false);
   };
 
@@ -59,22 +74,29 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
   //* 게시글 작성
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
+  const titleRef = useRef(null);
+  const categoryRef = useRef(null);
+  const contentRef = useRef(null);
   const user = authService?.currentUser;
   const addPost = async () => {
     if (!inputTitle) {
       alert("제목을 입력해주세요.");
+      titleRef.current.focus();
       return;
     }
     if (!selected) {
       alert("카테고리를 선택해주세요.");
+      categoryRef.current.focus();
       return;
     }
     if (!inputContent) {
       alert("본문을 입력해주세요.");
+      contentRef.current.focus();
       return;
     }
     await addDoc(collection(db, "posts"), {
       id: user?.uid,
+      title: inputTitle,
       category: selected,
       title: inputTitle,
       content: inputContent,
@@ -115,6 +137,12 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
       );
       setBoards(array);
     });
+    setSelected(options[0].value);
+    setInputTitle("");
+    setInputContent("");
+    alert("저장되었습니다.");
+    setPostingModalOpen(false);
+
   };
 
   //* 사진 업로드 하기
@@ -168,9 +196,14 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
           <TitleInput
             onChange={(e) => setInputTitle(e.target.value)}
             value={inputTitle}
+            ref={titleRef}
             placeholder="제목을 입력해주세요"
           />
-          <Category value={selected} onChange={selectCategory}>
+          <Category
+            value={selected}
+            onChange={selectCategory}
+            ref={categoryRef}
+          >
             {options.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.text}
@@ -182,7 +215,8 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
             <ContentInput
               onChange={(e) => setInputContent(e.target.value)}
               value={inputContent}
-              placeholder="사진은 최대 5장 올릴 수 있습니다."
+              ref={contentRef}
+              placeholder="내용을 입력해주세요."
             />
           </Content>
         </Body>
