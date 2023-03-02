@@ -18,8 +18,15 @@ export const Content = styled.div`
 export const Title = styled.div`
   /* color: white; */
   display: flex;
-  justify-content: center;
-  padding: 30px;
+  padding: 20px 0;
+
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 64px;
+
+  color: #ffffff;
 `;
 
 export const Boards = styled.div`
@@ -27,60 +34,67 @@ export const Boards = styled.div`
   flex-flow: wrap-reverse;
 `;
 
+export const UserWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const Message = styled.div`
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 33px;
+
+  margin-top: 20px;
+
+  color: #ffffff;
+`;
+export const ProfileImg = styled.img`
+  width: 50%;
+  object-fit: contain;
+  margin-bottom: 15px;
+`;
+export const User = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 126px;
+  height: 221px;
+  gap: 5px;
+
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+
+  background-color: #ffffff;
+  border-radius: 5px;
+`;
+export const PostButton = styled.button`
+  margin-top: 20px;
+  text-decoration: underline;
+`;
+
 export const Categories = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin: 100px 20px;
+  gap: 8px;
 `;
 export const Category = styled.button`
-  width: 120px;
-  height: 40px;
+  width: 125px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: #ffff;
-  border-radius: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
 
   cursor: pointer;
 
   :hover {
     background-color: rgba(188, 188, 188, 0.4);
   }
-`;
-export const UserWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
-  background-color: #ffffff;
-
-  margin: 100px 0;
-  padding: 20px;
-
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
-`;
-export const Message = styled.div``;
-export const ProfileImg = styled.img`
-  width: 25%;
-  object-fit: contain;
-`;
-export const User = styled.div`
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  /* gap: 10px; */
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 60px;
-
-  border-bottom: 0.6px solid #c6c6c6;
-`;
-export const PostButton = styled.button`
-  margin-top: 20px;
 `;
