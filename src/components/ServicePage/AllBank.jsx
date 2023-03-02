@@ -19,6 +19,7 @@ function AllBank({
     <>
       {productTypes === 1 ? (
         <AllBankList
+          productTypes={productTypes}
           setColor={setColor}
           activeItem={activeItem}
           setActiveItem={setActiveItem}
@@ -30,6 +31,7 @@ function AllBank({
         />
       ) : (
         <SavingAllBankList
+          productTypes={productTypes}
           setColor={setColor}
           activeItem={activeItem}
           setActiveItem={setActiveItem}

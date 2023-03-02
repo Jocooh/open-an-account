@@ -208,7 +208,7 @@ const SignUpPage = () => {
     // if (!checkValidationForSignUp()) return;
 
     // setPersistence => 세션스토리지에 유저 정보 저장
-    setPersistence(authService, browserSessionPersistence)
+    setPersistence(authService, browserSessionPersistence) // 로컬 (세션, 토큰)
       .then(() => createUserWithEmailAndPassword(authService, email, password))
       .then(() => {
         if (authService.currentUser) {

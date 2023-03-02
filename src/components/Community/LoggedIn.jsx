@@ -4,6 +4,7 @@ import {
   Wrapper,
   Content,
   Title,
+  Boards,
   UserWrapper,
   User,
   Category,
@@ -11,9 +12,12 @@ import {
   ProfileImg,
   PostButton,
 } from "./style";
+import Tipper from "../../components/MainPage/Tipper";
 
 function LoggedIn({ username }) {
   const [postingModalOpen, setPostingModalOpen] = useState(false);
+  const [boards, setBoards] = useState([]);
+
   const OpenPostingModal = () => {
     setPostingModalOpen(true);
   };
@@ -27,10 +31,17 @@ function LoggedIn({ username }) {
 
       <Content>
         <Title>관심있는 팁을 찾아보세요</Title>
+        <Boards>
+          <Tipper boards={boards} />
+        </Boards>
+
         {/* 작성창 제일 위  */}
         {/* 그 다음 글 카테고리 순서대로 쌓기 */}
         {postingModalOpen && (
-          <PostingModal setPostingModalOpen={setPostingModalOpen} />
+          <PostingModal
+            setPostingModalOpen={setPostingModalOpen}
+            setBoards={setBoards}
+          />
         )}
       </Content>
 

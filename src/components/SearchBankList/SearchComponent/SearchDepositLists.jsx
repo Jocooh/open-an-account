@@ -23,6 +23,7 @@ function SearchDepositLists({
   setColor,
   searchBank,
   activeItem,
+  productTypes,
   setActiveItem,
   depositbaseList,
   handleClickProduct,
@@ -105,7 +106,7 @@ function SearchDepositLists({
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <Bookmarks baseList={base} />
+                    <Bookmarks baseList={base} productTypes={productTypes} />
                     <button
                       style={{
                         width: "60px",

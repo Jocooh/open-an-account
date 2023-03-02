@@ -5,9 +5,15 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authService, db } from "../../config/firebase";
 
-const Bookmarks = ({ baseList, isMyPage }) => {
+const Bookmarks = ({
+  baseList,
+  isMyPage,
+  isModal,
+  selectedProductId,
+  productTypes,
+}) => {
   // console.log("baseList.docId", baseList.docId);
-  console.log("isMyPage", isMyPage);
+  // console.log("baseList.id", baseList.id);
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -24,11 +30,12 @@ const Bookmarks = ({ baseList, isMyPage }) => {
         return;
       }
     }
-    // newId: 해당하는 필드값을 내가 새로 만들어줌 (setDoc)
-    // const newId = `${currentUserUid}${baseList.docId}`;
 
+    // 마이페이지(서비스페이지 찜목록) 내 북마크가 가진
     const newId = isMyPage
       ? `${currentUserUid}${baseList.docId}`
+      : isModal
+      ? `${currentUserUid}${selectedProductId}`
       : `${currentUserUid}${baseList.id}`;
 
     // 북마크가 체크되어있지 않다면?
@@ -38,7 +45,7 @@ const Bookmarks = ({ baseList, isMyPage }) => {
         // user id
         userId: currentUserUid,
         // 필드 id
-        docId: baseList.id,
+        docId: baseList.id || selectedProductId || baseList.docId,
         // base list
         fin_prdt_nm: baseList.fin_prdt_nm, // 상품 명
         fin_prdt_cd: baseList.fin_prdt_cd, // 상품 코드
@@ -48,6 +55,7 @@ const Bookmarks = ({ baseList, isMyPage }) => {
         join_member: baseList.join_member, // 가입 대상
         etc_note: baseList.etc_note, // 기타 유의사항
         fin_co_no: baseList.fin_co_no, // 상품 회사 코드
+        productTypes: productTypes,
       });
 
       // true가 되면서 북마크 더이상 못하게 막기
@@ -65,6 +73,8 @@ const Bookmarks = ({ baseList, isMyPage }) => {
   const getBookmark = async () => {
     const newId = isMyPage
       ? `${currentUserUid}${baseList.docId}`
+      : isModal
+      ? `${currentUserUid}${selectedProductId}`
       : `${currentUserUid}${baseList.id}`;
     const docRef = doc(db, "bookmarks", newId);
     const docSnap = await getDoc(docRef);

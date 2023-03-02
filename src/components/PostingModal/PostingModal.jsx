@@ -6,6 +6,7 @@ import {
   ref,
   uploadBytes,
   uploadString,
+  listAll,
 } from "firebase/storage";
 import {
   addDoc,
@@ -18,7 +19,6 @@ import {
   where,
 } from "firebase/firestore";
 import { authService, db, storage } from "../../config/firebase";
-
 import {
   Body,
   CategoryButton,
@@ -37,7 +37,7 @@ import {
 } from "./style";
 import { updateProfile } from "firebase/auth";
 
-function PostingModal({ setPostingModalOpen }) {
+function PostingModal({ setPostingModalOpen, setBoards }) {
   const navigate = useNavigate();
 
   const confirm = () => {
@@ -98,16 +98,51 @@ function PostingModal({ setPostingModalOpen }) {
       id: user?.uid,
       title: inputTitle,
       category: selected,
+      title: inputTitle,
       content: inputContent,
       imgUrl: image,
       name: user?.displayName ?? "익명",
       createdAt: Date.now(),
+    })
+      .then(() => {
+        alert("작성하신 글이 정상적으로 업로드 되었습니다.");
+        setSelected(options[0].value);
+        setInputTitle("");
+        setInputContent("");
+        console.log(inputTitle, inputContent, selected);
+        setPostingModalOpen(false);
+      })
+      .catch((err) => {
+        if (err.message.includes("already-in-use")) {
+          alert("작성하신 글을 업로드 하지 못했습니다.");
+        }
+      });
+    getPostlist();
+  };
+  // 게시글 불러오기
+  const getPostlist = () => {
+    const q = query(
+      collection(db, "posts"),
+      orderBy("createdAt")
+      // where("category", "==", category)
+    );
+
+    const array = [];
+    onSnapshot(q, (snapshot) => {
+      snapshot.docs.map((doc) =>
+        array.push({
+          id: doc.id,
+          ...doc.data(),
+        })
+      );
+      setBoards(array);
     });
     setSelected(options[0].value);
     setInputTitle("");
     setInputContent("");
     alert("저장되었습니다.");
     setPostingModalOpen(false);
+
   };
 
   //* 사진 업로드 하기
@@ -130,6 +165,21 @@ function PostingModal({ setPostingModalOpen }) {
       });
     });
   }, [imageUpload]);
+
+  // 사진 불러오기
+  const imageRef = ref(storage, `${user?.uid}/`);
+
+  useEffect(() => {
+    listAll(imageRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          if (url === image) {
+            setImage(url);
+          }
+        });
+      });
+    });
+  }, []);
 
   return (
     <ModalBackground>

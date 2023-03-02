@@ -7,17 +7,26 @@ export const Wrapper = styled.div`
   justify-content: space-evenly;
 `;
 export const Content = styled.div`
+  width: 900px;
+  height: 1500px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
+  background-color: beige;
 `;
 
 export const Title = styled.div`
-  color: white;
+  /* color: white; */
   display: flex;
   justify-content: center;
   padding: 30px;
 `;
+
+export const Boards = styled.div`
+  display: flex;
+  flex-flow: wrap-reverse;
+`;
+
 export const Categories = styled.div`
   display: flex;
   flex-direction: column;

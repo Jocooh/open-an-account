@@ -19,13 +19,25 @@ function Header() {
   //   alert("로그아웃 되었습니다.");
   // };
 
-  // 로그아웃;
+  // 로그아웃
+  // const onLogoutClick = () => {
+  //   authService.signOut().then(() => {
+  //     sessionStorage.clear(); // ?
+  //     alert("로그아웃 되었습니다.");
+  //     navigate("/", { replace: true });
+  //   });
+  // };
+
   const onLogoutClick = () => {
-    authService.signOut().then(() => {
-      sessionStorage.clear(); // ?
-      alert("로그아웃 되었습니다.");
-      navigate("/", { replace: true });
-    });
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      return authService.signOut().then(() => {
+        sessionStorage.clear(); // ?
+        alert("로그아웃 되었습니다.");
+        navigate("/", { replace: true });
+      });
+    } else {
+      return;
+    }
   };
 
   return (
