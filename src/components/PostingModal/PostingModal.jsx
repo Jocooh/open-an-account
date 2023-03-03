@@ -35,7 +35,7 @@ import {
   Content,
   ImgUpload,
 } from "./style";
-import { updateProfile } from "firebase/auth";
+import { v4 as uuidv4 } from "uuid";
 
 function PostingModal({ setPostingModalOpen, setBoards }) {
   const navigate = useNavigate();
@@ -98,7 +98,6 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
       id: user?.uid,
       title: inputTitle,
       category: selected,
-      title: inputTitle,
       content: inputContent,
       imgUrl: image,
       name: user?.displayName ?? "익명",
@@ -142,7 +141,6 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
     setInputContent("");
     alert("저장되었습니다.");
     setPostingModalOpen(false);
-
   };
 
   //* 사진 업로드 하기
@@ -157,7 +155,7 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
     setImageUpload(e.target.files?.[0]);
   };
   useEffect(() => {
-    const imageRef = ref(storage, `${user?.uid}`);
+    const imageRef = ref(storage, uuidv4());
     if (!imageUpload) return;
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
@@ -167,7 +165,7 @@ function PostingModal({ setPostingModalOpen, setBoards }) {
   }, [imageUpload]);
 
   // 사진 불러오기
-  const imageRef = ref(storage, `${user?.uid}/`);
+  const imageRef = ref(storage, uuidv4());
 
   useEffect(() => {
     listAll(imageRef).then((response) => {

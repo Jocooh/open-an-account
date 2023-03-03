@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import ChangePassword from "../../components/Mypage/ChangePassword";
-import EnrollNumber from "../../components/Mypage/EnrollNumber";
-import ChangeNickname from "../../components/Mypage/ChangeNickname";
-import {
-  setDoc,
-  doc,
-  collection,
-  getDoc,
-  onSnapshot,
-  query,
-  getDocs,
-} from "firebase/firestore";
+import ChangePassword from "../../components/Mypage/UserAccount/ChangePassword";
+// import EnrollNumber from "../../components/Mypage/UserAccount/EnrollNumber";
+import ChangeNickname from "../../components/Mypage/UserAccount/ChangeNickname";
+
 import {
   MyPageWrapper,
   LeftBox,
@@ -38,7 +30,8 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
-import UserWriteList from "../../components/Mypage/UserWriteList";
+import UserWriteList from "../../components/Mypage/UserHistory/UserWriteList";
+import UserLike from "../../components/Mypage/UserHistory/UserLike";
 
 function MyPage() {
   const navigate = useNavigate();
@@ -125,27 +118,6 @@ function MyPage() {
     setUserPassword("");
     setEditUserPassword("");
   };
-  //핸드폰은 user라는 이름으로 컬렉션에 들어갑니다.  => 계속 진행 중이니까 주석처리중
-  // const addPhoneNumber = async () => {
-  //   const newNumber = currentUser.uid;
-  //   await setDoc(doc(db, "users", newNumber), {
-  //     userId: currentUser.uid,
-  //     phoneNumber: phoneNum,
-  //   });
-  // };
-
-  // const getPhoneNumber = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "users"));
-  //   const phoneLists = [];
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     phoneLists.push(newProduct);
-  //     setPhoneNum(phoneList[0]?.phoneNumber);
-  //   });
-  // };
 
   return (
     <>
@@ -175,12 +147,12 @@ function MyPage() {
                 로그아웃
               </LogOutBtn>
             </ContentDiv>
-            <div>
+            {/* <div>
               <p>연락처</p>
               <p style={{ color: "#aaa" }}>
                 {phoneNum !== "" ? <>{phoneNum}</> : "등록된 번호가 없어요"}
               </p>
-            </div>
+            </div> */}
           </UserContentDiv>
           {/* 유저 계정 변경 부분 (디폴트부분) */}
           <UserAccountDiv
@@ -241,7 +213,7 @@ function MyPage() {
               </CategoryImg>
               <p>〉</p>
             </HistoryCategory>
-            <HistoryCategory
+            {/* <HistoryCategory
               style={tab === 3 ? { backgroundColor: "#e6e8ea" } : null}
             >
               <CategoryImg>
@@ -256,7 +228,7 @@ function MyPage() {
                 </button>
               </CategoryImg>
               <p>〉</p>
-            </HistoryCategory>
+            </HistoryCategory> */}
           </UserHistoryDiv>
         </LeftBox>
 
@@ -280,12 +252,7 @@ function MyPage() {
                   inputValidationConfirm={inputValidationConfirm} // 3번째 input 활성화
                   setInputValidationConfirm={setInputValidationConfirm} // 3번째 input 활성화
                 />
-                <EnrollNumber
-                  phoneNum={phoneNum}
-                  phoneList={phoneList}
-                  setPhoneNum={setPhoneNum}
-                  currentUser={currentUser}
-                />
+
                 <ChangeNickname
                   name={name}
                   isNickName={isNickName}
@@ -358,7 +325,7 @@ function MyPage() {
                     setProductTypes(1);
                   }}
                 >
-                  작성한 팁
+                  좋아한 팁
                 </ProductTypesBtn>
                 <ProductTypesBtn
                   style={
@@ -370,13 +337,16 @@ function MyPage() {
                     setProductTypes(2);
                   }}
                 >
-                  작성한 댓글
+                  작성한 팁
                 </ProductTypesBtn>
               </div>
-              <UserWriteList />
+              {productTypes === 1 ? (
+                <UserLike />
+              ) : (
+                <UserWriteList currentUser={currentUser} />
+              )}
             </div>
           )}
-          {tab === 3 && <div>comming soon ...</div>}
         </RightBox>
       </MyPageWrapper>
     </>
@@ -384,15 +354,3 @@ function MyPage() {
 }
 
 export default MyPage;
-
-// 잊지마라 조성아 여기 넣어야댄다. 네..
-/*  // console.log(nickName);
-  // 원준 작업.
-  // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가. -- 현재 위 코드로 먼저 걸러주기 때문에 실행되지 않음. 더 알아볼 것.
-  // useEffect(() => {
-  //   if (!authService.currentUser) {
-  //     alert("마이페이지는 로그인 후 접근이 가능합니다.");
-  //     navigate("/login");
-  //     return;
-  //   }
-  // }, []); */

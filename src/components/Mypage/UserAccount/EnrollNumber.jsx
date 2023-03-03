@@ -1,5 +1,5 @@
 import React from "react";
-import { EnrollNumberDiv, UserInput } from "../../pages/MyPage/style";
+import { EnrollNumberDiv, UserInput } from "../../../pages/MyPage/style";
 
 function EnrollNumber({ phoneNum, setPhoneNum, currentUser, phoneList }) {
   // console.log(currentUser.providerData[0].phoneNumber); //  null
