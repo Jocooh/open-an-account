@@ -38,6 +38,10 @@ import {
   FourthSectionButtonWrap,
   FourthSectionButton,
   FourthSectionDecription,
+  MainTilte,
+  FirstSectionImgA,
+  FirstSectionImgB,
+  FirstSectionImgC,
 } from "./LandingCss";
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -49,50 +53,40 @@ const LandingPage = () => {
             <div>
               <FirstSectionMainTitleWrap>
                 <FirstSectionMainTitle>
-                  <img
-                    style={{ width: "20%", paddingTop: "20px" }}
-                    src={require("../../assets/FirstImg(1).png")}
-                    alt=""
-                  />
-                  <span style={{ paddingTop: "70px", marginRight: "20px" }}>
-                    상품은
-                  </span>
-                  <img
-                    style={{ width: "20%" }}
-                    src={require("../../assets/FirstImg(2).png")}
-                    alt=""
-                  />
-                  <span style={{ paddingTop: "70px" }}>모아서</span>
+                  <MainTilte>
+                    비교는 빠르게 <br />
+                    선택은 안전하게
+                  </MainTilte>
                 </FirstSectionMainTitle>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    marginLeft: "0px",
-                  }}
-                >
-                  <br /> 비교는 빠르게
-                  <img
-                    style={{ width: "20%" }}
-                    src={require("../../assets/Landinglist.png")}
-                    alt="Landinglist"
-                  />
+                <div>
+                  <FirestSectionSubTitle>
+                    사회 초년생을 위한 예적금 비교, 팁퍼
+                  </FirestSectionSubTitle>
+                  <FirestSectionButtonWrap>
+                    <StartButton onClick={() => navigate("/service")}>
+                      상품 비교하기
+                    </StartButton>
+                  </FirestSectionButtonWrap>
                 </div>
               </FirstSectionMainTitleWrap>
             </div>
+            <FirstSectionImgA>
+              {/* <img
+                src={require("../../assets/Landinglist.png")}
+                alt="Landinglist"
+              /> */}
+            </FirstSectionImgA>
+            <FirstSectionImgB>
+              <img
+                src={require("../../assets/FirstImg(2).png")}
+                alt="Landinglist"
+              />
+            </FirstSectionImgB>
+            <FirstSectionImgC>
+              {/* <img src={require("../../assets/밑줄.png")} alt="Landinglist" /> */}
+            </FirstSectionImgC>
           </Firstsection>
-          <FirstSectionSubTitle>
-            <div>
-              <FirestSectionSubTitle>
-                사회 초년생을 위한 예적금 비교, 팁퍼
-              </FirestSectionSubTitle>
-              <FirestSectionButtonWrap>
-                <StartButton onClick={() => navigate("/service")}>
-                  상품 비교하기 >>
-                </StartButton>
-              </FirestSectionButtonWrap>
-            </div>
-          </FirstSectionSubTitle>
+          <FirstSectionSubTitle></FirstSectionSubTitle>
           {/* //* 2번째 섹션 */}
           <SecondSection>
             <SecondSectioncontainer>

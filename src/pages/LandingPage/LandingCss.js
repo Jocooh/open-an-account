@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BackgroundWraper = styled.div`
-  background-color: lavender;
+  /* background-color: #e7ecfa; */
   margin: 0;
   padding: 0;
   width: 100%;
@@ -20,28 +20,50 @@ export const Wraper = styled.div`
 export const Firstsection = styled.div`
   align-items: center;
   width: 100%;
-  height: 780px;
-  /* padding-left: 300px; */
+  height: 1080px;
   display: flex;
   justify-content: center;
-  /* background-color: lavender; */
+  background: url(${require("../../assets/landing/SectionBackground.png")})
+    fixed;
+  //Todo 다른 배경이미지 고안하기.
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  img {
+    top: 500px;
+  }
 `;
 //* 첫번째 섹션 메인 타이틀
-export const FirstSectionMainTitleWrap = styled.h1`
-  font-weight: bold;
+export const FirstSectionMainTitleWrap = styled.div`
   font-size: 100px;
-  text-align: center;
+  margin-right: 500px;
 `;
 
 export const FirstSectionMainTitle = styled.div`
-  display: flex;
-  justify-content: center;
+  font-weight: bold;
+`;
+
+export const MainTilte = styled.div`
+  width: 700px;
+  position: absolute;
+  top: 300px;
+  text-shadow: 12px 12px 10px rgba(0, 0, 0, 0.2);
+
+  animation: slidein 1s ease;
+  @keyframes slidein {
+    from {
+      margin-left: -800px;
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+      margin-left: 0px;
+    }
+  }
 `;
 
 //* 첫번째 섹션 서브 타이틀 Wraper
 export const FirstSectionSubTitle = styled.div`
-  display: flex;
-  justify-content: center;
   width: 100%;
   background-color: #6a24ff;
 `;
@@ -52,35 +74,105 @@ export const FirestSectionSubTitle = styled.div`
   margin-top: 30px;
   font-size: 30px;
   display: flex;
-  text-align: center;
   align-items: center;
-  color: #fff;
+
+  animation: BounceText 1s alternate;
+  @keyframes BounceText {
+    0% {
+      transform: translateX(-700px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
 `;
 
 //* 첫번째 섹션 서브 타이틀 버튼 Wraper
-export const FirestSectionButtonWrap = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+export const FirestSectionButtonWrap = styled.div``;
 
 //* 첫번째 섹션 서브 타이틀 버튼
 export const StartButton = styled.button`
   width: 244px;
   height: 73px;
-  color: #6a24ff;
-  border-radius: 40px;
+  color: white;
+  border-radius: 12px;
   border: none;
   font-size: 26px;
-  font-weight: bold;
-  margin-top: 20px;
-  background-color: #fff;
+  margin-top: 50px;
+  background-color: #6a24ff;
   cursor: pointer;
+
+  animation: ApperButton 1.5s ease-out;
+  @keyframes ApperButton {
+    0% {
+      transform: translateY(70px);
+      opacity: 0;
+    }
+    92% {
+      transform: translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 `;
-//* 첫번째 섹션 이미지
-export const FirstImgWrap = styled.div`
-  margin-top: 100px;
-  right: 50px;
-  top: 300px;
+
+//* 첫번째 섹션 1번 리스트이미지
+export const FirstSectionImgA = styled.div`
+  img {
+    position: absolute;
+    width: 400px;
+    margin-top: -450px;
+    margin-left: -250px;
+  }
+`;
+
+//* 첫번째 섹션 2번 폴더이미지
+export const FirstSectionImgB = styled.div`
+  img {
+    width: 300px;
+    margin-bottom: 100px;
+    margin-left: -80px;
+    position: absolute;
+    animation: MoveImg 2s ease-in-out;
+    @keyframes MoveImg {
+      0% {
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+    }
+  }
+`;
+
+//* 첫번째 섹션 3번째 이미지
+export const FirstSectionImgC = styled.div`
+  img {
+    width: 600px;
+    position: absolute;
+    margin-left: -960px;
+    margin-top: -60px;
+    animation: TextUnderline 1s alternate;
+    @keyframes TextUnderline {
+      0% {
+        transform: translateX(-700px);
+        opacity: 0;
+      }
+      /* 50% {
+        transform: translateX(-400px);
+      } */
+      100% {
+        opacity: 1;
+        transform: translateX(0px);
+      }
+    }
+  }
 `;
 
 //* 두번째 섹션
@@ -144,7 +236,6 @@ export const ThirdSection = styled.div`
 `;
 export const ThirdTopSection = styled.div`
   width: 100%;
-  background-color: lavender;
 `;
 export const ThirdTopSectionContainer = styled.div`
   align-items: center;
