@@ -185,7 +185,7 @@ export const Tippers = styled.div`
 
 // 팁퍼 틀
 export const TipperWrap = styled.div`
-  height: 650px;
+  height: 670px;
   width: 288px;
   border: 1px #dedede solid;
   border-radius: 10px;
@@ -195,8 +195,8 @@ export const TipperWrap = styled.div`
 
 // 팁퍼제목 랩
 export const TipTitleWrap = styled.div`
-  height: 120px;
-  padding-top: 50px;
+  height: 80px;
+  padding: 40px 0 0 20px;
   img {
     float: right;
     padding-right: 15px;
@@ -207,6 +207,7 @@ export const TipTitleWrap = styled.div`
 export const TipperImgWrap = styled.div`
   border: 1px solid #dedede;
   height: 200px;
+  border-radius: 10px;
   background-color: whitesmoke;
   img {
     max-width: 100%;
@@ -217,28 +218,37 @@ export const TipperImgWrap = styled.div`
 `;
 
 // 팁퍼제목
-export const TipperTitle = styled.div`
-  font-size: 20px;
+export const TipperTitle = styled.span`
   font-weight: bold;
-  text-align: center;
-  padding-left: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+  color: #6a24ff;
+  padding: 10px;
 `;
 
 // 후기부분 랩
 export const BoardWrap = styled.div`
+  height: 350px;
   padding: 0 20px 30px 20px;
 `;
 
 // 후기 제목
 export const BoardTitle = styled.div`
-  height: 65px;
-  font-size: 20px;
+  height: 60px;
+  font-size: 25px;
   font-weight: bold;
   padding-top: 20px;
 `;
 
 // 후기 내용
-export const BoardContent = styled.div``;
+export const BoardContent = styled.div`
+  font-size: 14px;
+`;
+
+// 수정 삭제 버튼 랩
+export const ButtonWrap = styled.div`
+  float: right;
+`;
 
 // 하단 전체 랩
 export const DownWraper = styled.div`
