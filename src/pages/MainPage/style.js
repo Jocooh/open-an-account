@@ -24,33 +24,56 @@ export const BestProductWrap = styled.div`
   padding: 30px;
 `;
 
-// 현황
+// 인기 상품 현황
 export const CurrentState = styled.div`
   margin: 0 0 20px 30px;
+  display: flex;
+  justify-content: space-between;
 `;
-
-// 한국은행
-export const KrBank = styled.div`
-  font-size: 18px;
+// 인기 상품 제목 랩
+export const BtProductTitleWrap = styled.div`
+  display: flex;
+  img {
+    width: 33px;
+    height: 33px;
+    margin: 8px 20px 0 0;
+  }
+`;
+// 인기 금융 상품 제목
+export const BestProductTitle = styled.div`
+  font-size: 36px;
   font-weight: bold;
 `;
-
+// 현재 시각
+export const KrDate = styled.div`
+  opacity: 0.6;
+  display: flex;
+  align-items: end;
+  margin: 0 0 6px 10px;
+`;
 // 한국은행 기준 금리 수치 랩
 export const KrBankRateWrap = styled.div`
   display: flex;
 `;
-
+// 한국은행
+export const KrBank = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  opacity: 0.4;
+  display: flex;
+  align-items: end;
+  padding-bottom: 5px;
+`;
 // 한국은행 기준 금리 수치
 export const KrBankRate = styled.div`
   font-size: 40px;
   font-weight: bold;
+  margin: 0 20px 0 20px;
 `;
-
 // 한국은행 기준 금리 변화
 export const KrBankRateVar = styled.div`
   display: flex;
   align-items: end;
-  margin-left: 20px;
   padding-bottom: 5px;
   color: red;
   img {
@@ -162,7 +185,7 @@ export const Tippers = styled.div`
 
 // 팁퍼 틀
 export const TipperWrap = styled.div`
-  height: 650px;
+  height: 670px;
   width: 288px;
   border: 1px #dedede solid;
   border-radius: 10px;
@@ -172,8 +195,8 @@ export const TipperWrap = styled.div`
 
 // 팁퍼제목 랩
 export const TipTitleWrap = styled.div`
-  height: 120px;
-  padding-top: 50px;
+  height: 80px;
+  padding: 40px 0 0 20px;
   img {
     float: right;
     padding-right: 15px;
@@ -184,6 +207,7 @@ export const TipTitleWrap = styled.div`
 export const TipperImgWrap = styled.div`
   border: 1px solid #dedede;
   height: 200px;
+  border-radius: 10px;
   background-color: whitesmoke;
   img {
     max-width: 100%;
@@ -194,28 +218,37 @@ export const TipperImgWrap = styled.div`
 `;
 
 // 팁퍼제목
-export const TipperTitle = styled.div`
-  font-size: 20px;
+export const TipperTitle = styled.span`
   font-weight: bold;
-  text-align: center;
-  padding-left: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+  color: #6a24ff;
+  padding: 10px;
 `;
 
 // 후기부분 랩
 export const BoardWrap = styled.div`
+  height: 350px;
   padding: 0 20px 30px 20px;
 `;
 
 // 후기 제목
 export const BoardTitle = styled.div`
-  height: 65px;
-  font-size: 20px;
+  height: 60px;
+  font-size: 25px;
   font-weight: bold;
   padding-top: 20px;
 `;
 
 // 후기 내용
-export const BoardContent = styled.div``;
+export const BoardContent = styled.div`
+  font-size: 14px;
+`;
+
+// 수정 삭제 버튼 랩
+export const ButtonWrap = styled.div`
+  float: right;
+`;
 
 // 하단 전체 랩
 export const DownWraper = styled.div`

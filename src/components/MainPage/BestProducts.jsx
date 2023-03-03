@@ -1,8 +1,20 @@
-import React from "react";
+import {
+  collection,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { db } from "../../config/firebase";
 import {
   BestProductWrap,
   CurrentState,
+  BtProductTitleWrap,
+  BestProductTitle,
   KrBank,
+  KrDate,
   KrBankRateWrap,
   KrBankRate,
   KrBankRateVar,
@@ -16,14 +28,42 @@ import {
   RateWrapper,
   MaxRate,
 } from "../../pages/MainPage/style";
-
 const BestProducts = () => {
+  const [bookmarksOrderBy, setBookmarksOrderBy] = useState([]);
+
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let date = today.getDate();
+  const dateNow = year + ".0" + month + ".0" + date;
+
+  // useEffect(() => {
+  //   const q = query(
+  //     collection(db, "bookmarks"),
+  //     orderBy("fin_prdt_cd"),
+  //     limit(3)
+  //   );
+
+  //   const getBookmarksOrderBy = onSnapshot(q, (snapshot) => {
+  //     const newBookmarkOrderBy = snapshot.docs.map((doc) => ({
+  //       ...doc.data(),
+  //     }));
+  //     setBookmarksOrderBy(newBookmarkOrderBy);
+  //   });
+  //   return getBookmarksOrderBy;
+  // }, []);
+  // console.log(bookmarksOrderBy);
+
   return (
     <BestProductWrap>
       <CurrentState>
-        <KrBank>한국은행 기준 금리</KrBank>
-        <div>2023.02.22</div>
+        <BtProductTitleWrap>
+          <img src={require("../../assets/mainpage/bestproduct.png")} />
+          <BestProductTitle>인기 금융 상품</BestProductTitle>
+          <KrDate>{dateNow} 기준</KrDate>
+        </BtProductTitleWrap>
         <KrBankRateWrap>
+          <KrBank>한국은행 기준 금리</KrBank>
           <KrBankRate>3.50%</KrBankRate>
           <KrBankRateVar>
             {/* <img src={require("../../assets/mainpage/variation.png")} /> */}

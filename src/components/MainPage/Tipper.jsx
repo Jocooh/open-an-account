@@ -7,43 +7,39 @@ import {
   BoardWrap,
   BoardTitle,
   BoardContent,
+  ButtonWrap,
 } from "../../pages/MainPage/style";
 
-const Tipper = ({ boards }) => {
+const Tipper = ({ boards, result }) => {
   return (
     <>
-      {boards?.map((i) => {
+      {result?.map((i) => {
         return (
           <TipperWrap key={i?.id}>
-            <TipTitleWrap>
-              <img src={require("../../assets/mainpage/script.png")} />
-              <TipperTitle>{i?.category}</TipperTitle>
-            </TipTitleWrap>
             <TipperImgWrap>
               <img src={i?.imgUrl} alt="희망사진" />
             </TipperImgWrap>
+            <TipTitleWrap>
+              <img src={require("../../assets/mainpage/like.png")} />
+              <TipperTitle>{i?.category}</TipperTitle>
+            </TipTitleWrap>
             <BoardWrap>
-              <div
-                style={{
-                  fontSize: "12px",
-                  opacity: "0.4",
-                  marginTop: "20px",
-                }}
-              >
-                {i?.createdAt}
-              </div>
               <BoardTitle>{i?.title}</BoardTitle>
               <div
                 style={{
-                  fontSize: "12px",
+                  fontSize: "14px",
                   opacity: "0.4",
-                  height: "50px",
+                  height: "40px",
                 }}
               >
                 {i?.name}
               </div>
               <BoardContent>{i?.content}</BoardContent>
             </BoardWrap>
+            <ButtonWrap>
+              <button>수정</button>
+              <button>삭제</button>
+            </ButtonWrap>
           </TipperWrap>
         );
       })}

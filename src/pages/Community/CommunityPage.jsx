@@ -10,15 +10,23 @@ function CommunityPage() {
   //*현재 로그인되어있는지 확인
   const isLoggedIn = sessionStorage.key(0);
   const [user, setUser] = useState({});
+  const [categorytab, setCategoryTab] = useState("금융상품 후기");
   useEffect(() => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
   return (
     <Wrapper>
       {isLoggedIn ? (
-        <LoggedIn username={user?.displayName} />
+        <LoggedIn
+          username={user?.displayName}
+          categorytab={categorytab}
+          setCategoryTab={setCategoryTab}
+        />
       ) : (
-        <CommunityMain />
+        <CommunityMain
+          categorytab={categorytab}
+          setCategoryTab={setCategoryTab}
+        />
       )}
     </Wrapper>
   );
