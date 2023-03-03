@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import { authService } from "../../config/firebase";
+import { authService } from "../../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { ChangePasswordDiv, UserInput } from "../../pages/MyPage/style";
+import { ChangePasswordDiv, UserInput } from "../../../pages/MyPage/style";
 
 import { debounce } from "lodash";
 
