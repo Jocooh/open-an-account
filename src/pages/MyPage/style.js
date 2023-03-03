@@ -36,10 +36,10 @@ export const UserContentDiv = styled.div`
   width: 380px;
   border-bottom: 1px solid #ddd;
   margin: 0 auto;
-  height: 172px;
+  /* height: 172px; */
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  /* gap: 25px; */
 `;
 
 export const ContentDiv = styled.div`
@@ -104,7 +104,7 @@ export const RightWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 20px;
+  padding: 50px;
 `;
 
 export const ChangePasswordDiv = styled.div`
@@ -157,6 +157,7 @@ export const SaveBtn = styled.button`
   height: 50px;
   border-radius: 10px;
   color: white;
+  margin-top: 20px;
 `;
 
 //예금적금 버튼
@@ -169,27 +170,39 @@ export const ProductTypesBtn = styled.button`
 
 //내가 쓴 글 컴포넌트 스타일
 export const UserWriteWrapper = styled.div`
-  width: 887px;
+  width: 900px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  padding: 20px;
+  /* padding: 20px; */
+
   /* border: 1px solid #ccc; */
 `;
 export const ListCard = styled.div`
-  width: 275px;
-  height: 567px;
-  padding: 10px;
+  width: 288px;
+  height: 550px;
+  /* padding: 10px; */
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
   background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid #ccc;
 `;
 
-export const CardCategory = styled.div`
+export const CategoryLike = styled.div`
   display: flex;
+
+  gap: 130px; //카테고리와 북마크 사이 거리
+`;
+export const CardCategory = styled.div`
+  border: 1px solid #aaa;
+  width: 100px;
+  height: 26px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 50px;
 `;
 
 export const CardTitle = styled.p`
@@ -197,7 +210,7 @@ export const CardTitle = styled.p`
   font-weight: bold;
 `;
 
-export const SecondTitle = styled.p`
+export const SecondTitle = styled.div`
   display: flex;
   gap: 30px;
   color: #999;
@@ -210,4 +223,10 @@ export const CardTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
+`;
+export const CardImage = styled.img`
+  width: 288px;
+  height: 211px;
+  object-fit: cover;
+  border-radius: 15px;
 `;

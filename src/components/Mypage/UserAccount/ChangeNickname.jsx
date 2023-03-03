@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { ChangeNickNameDiv, UserInput } from "../../pages/MyPage/style";
+import { ChangeNickNameDiv, UserInput } from "../../../pages/MyPage/style";
 
 function ChangeNickname({
   name,
