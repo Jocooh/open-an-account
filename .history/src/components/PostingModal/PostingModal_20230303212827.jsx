@@ -131,7 +131,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
     setImageUpload(e.target.files?.[0]);
   };
   useEffect(() => {
-    const imageRef = ref(storage, `${user?.uuidv4()}`);
+    const imageRef = ref(storage, uuidv4());
     if (!imageUpload) return;
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
@@ -141,7 +141,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
   }, [imageUpload]);
 
   // 사진 불러오기
-  const imageRef = ref(storage, `${user?.uuidv4()}/`);
+  const imageRef = ref(storage, uuidv4());
 
   useEffect(() => {
     listAll(imageRef).then((response) => {
