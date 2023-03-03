@@ -35,9 +35,9 @@ import {
   Content,
   ImgUpload,
 } from "./style";
-import { updateProfile } from "firebase/auth";
+import { v4 as uuidv4 } from "uuid";
 
-function PostingModal({ setPostingModalOpen, setBoards, categorytab }) {
+function PostingModal({ setPostingModalOpen, categorytab, posts }) {
   const navigate = useNavigate();
 
   const confirm = () => {
@@ -95,7 +95,8 @@ function PostingModal({ setPostingModalOpen, setBoards, categorytab }) {
       return;
     }
     await addDoc(collection(db, "posts"), {
-      id: user?.uid,
+      id: uuidv4(),
+      userId: user?.uid,
       title: inputTitle,
       category: selected,
       categorytab,
@@ -116,7 +117,6 @@ function PostingModal({ setPostingModalOpen, setBoards, categorytab }) {
           alert("작성하신 글을 업로드 하지 못했습니다.");
         }
       });
-
   };
 
   //* 사진 업로드 하기
@@ -131,7 +131,7 @@ function PostingModal({ setPostingModalOpen, setBoards, categorytab }) {
     setImageUpload(e.target.files?.[0]);
   };
   useEffect(() => {
-    const imageRef = ref(storage, `${user?.uid}`);
+    const imageRef = ref(storage, `${user?.uuidv4()}`);
     if (!imageUpload) return;
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
@@ -141,7 +141,7 @@ function PostingModal({ setPostingModalOpen, setBoards, categorytab }) {
   }, [imageUpload]);
 
   // 사진 불러오기
-  const imageRef = ref(storage, `${user?.uid}/`);
+  const imageRef = ref(storage, `${user?.uuidv4()}/`);
 
   useEffect(() => {
     listAll(imageRef).then((response) => {

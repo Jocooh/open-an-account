@@ -22,6 +22,8 @@ import {
   orderBy,
   query,
   where,
+  doc,
+  updateDoc,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 
@@ -29,30 +31,10 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   const [postingModalOpen, setPostingModalOpen] = useState(false);
   const [boards, setBoards] = useState([]);
 
-  console.log(categorytab);
-
   const OpenPostingModal = () => {
     setPostingModalOpen(true);
   };
-  // 게시글 불러오기
-  // const getPostlist = () => {
-  //   const q = query(
-  //     collection(db, "posts"),
-  //     where("category", "==", "금융상품 후기")
 
-  //     // orderBy("createdAt", "desc")
-  //   );
-  //   const array = [];
-  //   onSnapshot(q, (snapshot) => {
-  //     snapshot.docs.map((doc) =>
-  //       array.push({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       })
-  //     );
-  //     setBoards(array);
-  //   });
-  // };
   const [posts, setPosts] = useState([]);
   const getPostList = async () => {
     const querySnapshot = await getDocs(collection(db, "posts"));
@@ -67,11 +49,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
     setPosts(post);
   };
   const result = posts?.filter((item) => item.category === categorytab);
-  console.log(result);
   useEffect(() => {
     getPostList();
   }, []);
-  // console.log(posts);
+
+  console.log("posts 로그드인 :>> ", posts);
+  console.log("result 로그드인 :>> ", result);
   return (
     <Wrapper>
       <div>
@@ -83,12 +66,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
-                setBoards={setBoards}
+                posts={posts}
                 categorytab={categorytab}
               />
             )}
             <Boards>
-              <Tipper boards={boards} result={result} />
+              <Tipper posts={posts} result={result} />
             </Boards>
 
             {/* 작성창 제일 위  */}
@@ -104,12 +87,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
-                setBoards={setBoards}
+                posts={posts}
                 categorytab={categorytab}
               />
             )}
             <Boards>
-              <Tipper boards={boards} result={result} />
+              <Tipper posts={posts} result={result} />
             </Boards>
 
             {/* 작성창 제일 위  */}
@@ -125,12 +108,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
-                setBoards={setBoards}
+                posts={posts}
                 categorytab={categorytab}
               />
             )}
             <Boards>
-              <Tipper boards={boards} result={result} />
+              <Tipper posts={posts} result={result} />
             </Boards>
           </Content>
         )}
