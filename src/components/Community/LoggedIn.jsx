@@ -74,50 +74,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   // console.log(posts);
   return (
     <Wrapper>
-
-      <Categories>
-        <Category
-          style={
-            categorytab === "금융상품 후기"
-              ? { backgroundColor: "brown", color: "white" }
-              : null
-          }
-          onClick={() => {
-            setCategoryTab("금융상품 후기");
-          }}
-        >
-          금융상품 후기
-        </Category>
-        <Category
-          style={
-            categorytab === "팁과 노하우"
-              ? { backgroundColor: "brown", color: "white" }
-              : null
-          }
-          onClick={() => {
-            setCategoryTab("팁과 노하우");
-          }}
-        >
-          팁과 노하우
-        </Category>
-        <Category
-          style={
-            categorytab === "공지사항"
-              ? { backgroundColor: "brown", color: "white" }
-              : null
-          }
-          onClick={() => {
-            setCategoryTab("공지사항");
-          }}
-        >
-          공지사항
-        </Category>
-      </Categories>
-
       <div>
         {categorytab === "금융상품 후기" && (
           <Content>
-            <Title>마음에 드는 팁이 있다면 <br /> 하트!</Title>
+            <Title>
+              마음에 드는 팁이 있다면 <br /> 하트!
+            </Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -136,7 +98,9 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
 
         {categorytab === "팁과 노하우" && (
           <Content>
-            <Title>마음에 드는 팁이 있다면 <br /> 하트!</Title>
+            <Title>
+              마음에 드는 팁이 있다면 <br /> 하트!
+            </Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -155,7 +119,9 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
 
         {categorytab === "공지사항" && (
           <Content>
-            <Title>마음에 드는 팁이 있다면 <br /> 하트!</Title>
+            <Title>
+              마음에 드는 팁이 있다면 <br /> 하트!
+            </Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -166,11 +132,9 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             <Boards>
               <Tipper boards={boards} result={result} />
             </Boards>
-
           </Content>
         )}
       </div>
-
 
       <UserWrapper>
         <User>
@@ -180,9 +144,42 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
         </User>
         <Categories>
           <Message>카테고리</Message>
-          <Category>금융상품 후기</Category>
-          <Category>팁과 노하우</Category>
-          <Category>공지사항</Category>
+          <Category
+            style={
+              categorytab === "금융상품 후기"
+                ? { backgroundColor: "brown", color: "white" }
+                : null
+            }
+            onClick={() => {
+              setCategoryTab("금융상품 후기");
+            }}
+          >
+            금융상품 후기
+          </Category>
+          <Category
+            style={
+              categorytab === "팁과 노하우"
+                ? { backgroundColor: "brown", color: "white" }
+                : null
+            }
+            onClick={() => {
+              setCategoryTab("팁과 노하우");
+            }}
+          >
+            팁과 노하우
+          </Category>
+          <Category
+            style={
+              categorytab === "공지사항"
+                ? { backgroundColor: "brown", color: "white" }
+                : null
+            }
+            onClick={() => {
+              setCategoryTab("공지사항");
+            }}
+          >
+            공지사항
+          </Category>
         </Categories>
       </UserWrapper>
     </Wrapper>
