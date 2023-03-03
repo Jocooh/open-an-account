@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ModalBackground = styled.div`
-
   /* position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +12,7 @@ export const ModalBackground = styled.div`
 export const ModalContainer = styled.div`
   /* 모달창 크기 */
   width: 900px;
-  height: 700px;
+  /* height: 700px; */
   padding: 20px;
   /* 모달 배치 */
   /* translate는 본인의 크기 기준으로 작동한다. */
@@ -103,7 +102,7 @@ export const Content = styled.div`
   background-color: rgba(233, 236, 242, 0.8);
   border-radius: 7px;
 `;
-export const ContentInput = styled.input`
+export const ContentInput = styled.textarea`
   border: none;
   min-width: 200px;
   width: 100%;
