@@ -31,8 +31,7 @@ function UserLike({ likes, currentUser }) {
               <CardCategory>
                 <p style={{ color: "#6a24ff" }}>{like.category}</p>
               </CardCategory>
-              {/* 이 like 부분은 style수정이 필요하다. */}
-              <Like currentUser={currentUser} id={like.id} post={like} />
+              <Like currentUser={currentUser} id={like.postId} post={like} />
             </CategoryLike>
             <CardTitleContainer>
               <CardTitle>

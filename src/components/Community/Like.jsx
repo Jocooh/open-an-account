@@ -1,12 +1,15 @@
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
+  FieldValue,
   getDoc,
   getDocs,
   onSnapshot,
   query,
   setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -15,14 +18,15 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
 
 function Like({ currentUser, post, id }) {
-  console.log(id);
+  //커뮤니티 페이지에서 id는 필드명
+  // console.log(id);
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
   const [likenum, setLikenum] = useState(0);
 
   //로그인 없이 좋아요 클릭하면 로그인 유도
   // console.log(newLike);
-  const LikeHandler = async (id) => {
+  const LikeHandler = async (id, num) => {
     if (!currentUser) {
       if (window.confirm("You are not logged in")) {
         return navigate("/login");
@@ -30,7 +34,8 @@ function Like({ currentUser, post, id }) {
         return;
       }
     }
-    const newLike = id;
+
+    const newLike = `${id}${currentUser.uid}`;
     if (!like) {
       await setDoc(doc(db, "likes", newLike), {
         userId: currentUser.uid,
@@ -43,7 +48,13 @@ function Like({ currentUser, post, id }) {
         category: post.category,
         docId: `${id}${currentUser.uid}`,
       });
-      setLike(true);
+      const userDoc = doc(db, "posts", post.id);
+      try {
+        await updateDoc(userDoc, { like: like + 1 });
+        setLike(true);
+      } catch (e) {
+        console.log(e);
+      }
     } else {
       const haveLike = doc(db, "likes", newLike);
       deleteDoc(haveLike);
@@ -51,7 +62,7 @@ function Like({ currentUser, post, id }) {
     }
   };
   const getLikes = async () => {
-    const newLike = id;
+    const newLike = `${id}${currentUser.uid}`;
     const docRef = doc(db, "likes", newLike);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {

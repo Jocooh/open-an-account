@@ -32,6 +32,7 @@ const Tipper = ({ posts, result }) => {
 
   //* 본인이 쓴 글인지 검사
   const post = posts?.map((post) => post.userId);
+
   const toggleButton = () => {
     if (post === currentUid) {
       setToggleBtn(true);

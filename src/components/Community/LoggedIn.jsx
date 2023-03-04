@@ -49,6 +49,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
     setPosts(post);
   };
   const result = posts?.filter((item) => item.category === categorytab);
+
   useEffect(() => {
     getPostList();
   }, []);
