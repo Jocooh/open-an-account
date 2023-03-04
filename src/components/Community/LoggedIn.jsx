@@ -53,8 +53,8 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
     getPostList();
   }, []);
 
-  console.log("posts 로그드인 :>> ", posts);
-  console.log("result 로그드인 :>> ", result);
+  // console.log("posts 로그드인 :>> ", posts);
+  // console.log("result 로그드인 :>> ", result);
   return (
     <Wrapper>
       <div>
