@@ -48,8 +48,6 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
     });
     setPosts(post);
   };
-  console.log("posts :>> ", posts);
-  console.log("posts.id :>> ", posts.id);
   const result = posts?.filter((item) => item.category === categorytab);
 
   useEffect(() => {

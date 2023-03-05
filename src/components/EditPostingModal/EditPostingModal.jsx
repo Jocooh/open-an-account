@@ -164,7 +164,7 @@ function EditPostingModal({ setEditPostingModalOpen, result, post, postId }) {
 
   return (
     <ModalBackground>
-      <ModalContainer>
+      <ModalContainer onClick={(e) => e.stopPropagation()}>
         <Header>
           <CloseButton onClick={CloseEditPostingModal}>취소</CloseButton>
           <div>팁 수정하기</div>

@@ -22,8 +22,8 @@ const Tipper = ({ posts, result }) => {
   useEffect(() => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
-  const currentUid = user.uid;
-  
+  const currentUid = user?.uid;
+
   //* userId === currentUid 일때 게시글의 id값 넣어줌
   const [editPostingModalOpen, setEditPostingModalOpen] = useState("");
   const currentUser = authService.currentUser; //이거 좋아요에서 사용하는 변수입니다.
@@ -93,7 +93,7 @@ const Tipper = ({ posts, result }) => {
                   <img src={i?.imgUrl} alt="희망사진" />
                 </TipperImgWrap>
                 <TipTitleWrap>
-              <Like currentUser={currentUser} id={i.id} post={i} />
+                  <Like currentUser={currentUser} id={i.id} post={i} />
                   <TipperTitle>{i?.category}</TipperTitle>
                 </TipTitleWrap>
                 <BoardWrap>

@@ -4,13 +4,14 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 export const Content = styled.div`
   width: 900px;
   height: 1500px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   /* justify-content: center; */
   /* background-color: beige; */
 `;
@@ -27,6 +28,10 @@ export const Title = styled.div`
   line-height: 64px;
 
   color: #ffffff;
+`;
+
+export const Body = styled.div`
+  display: flex;
 `;
 
 export const Boards = styled.div`
@@ -68,9 +73,16 @@ export const User = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
+  text-align: center;
 
   background-color: #ffffff;
   border-radius: 5px;
+`;
+
+export const LoginButton = styled.button`
+  margin-top: 20px;
+  text-decoration: underline;
+  color: #6a24ff;
 `;
 export const PostButton = styled.button`
   margin-top: 20px;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalBackground = styled.div`
   position: fixed;
-
+  z-index: 999;
   /* background: rgba(67, 79, 101, 0.7); */
 `;
 
