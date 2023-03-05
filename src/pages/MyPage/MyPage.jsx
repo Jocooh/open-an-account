@@ -24,14 +24,12 @@ import {
 } from "./style";
 import { updatePassword, updateProfile } from "firebase/auth";
 import { firebaseConfig } from "../../config/firebase";
-
 import { RiLogoutBoxLine } from "react-icons/ri";
-
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
 import UserWriteList from "../../components/Mypage/UserHistory/UserWriteList";
-import UserLike from "../../components/Mypage/UserHistory/UserLike";
+import UserLikeList from "../../components/Mypage/UserHistory/UserLikeList";
 
 function MyPage() {
   const navigate = useNavigate();
@@ -341,7 +339,7 @@ function MyPage() {
                 </ProductTypesBtn>
               </div>
               {productTypes === 1 ? (
-                <UserLike />
+                <UserLikeList currentUser={user} />
               ) : (
                 <UserWriteList currentUser={currentUser} />
               )}

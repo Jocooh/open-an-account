@@ -13,6 +13,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { authService } from "../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import Like from "../Community/Like";
 
 const Tipper = ({ posts, result }) => {
   // const user = authService.currentUser;
@@ -25,11 +26,13 @@ const Tipper = ({ posts, result }) => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
   const currentUid = user.uid;
-
+  const currentUser = authService.currentUser; //이거 좋아요에서 사용하는 변수입니다.
+  // console.log("In tipper currentUser", currentUser?.auth.currentUser);
   const [toggleBtn, setToggleBtn] = useState(false);
 
   //* 본인이 쓴 글인지 검사
   const post = posts?.map((post) => post.userId);
+
   const toggleButton = () => {
     if (post === currentUid) {
       setToggleBtn(true);
@@ -83,7 +86,7 @@ const Tipper = ({ posts, result }) => {
               <img src={i?.imgUrl} alt="희망사진" ref={imageRef} />
             </TipperImgWrap>
             <TipTitleWrap>
-              <img src={require("../../assets/mainpage/like.png")} />
+              <Like currentUser={currentUser} id={i.id} post={i} />
               <TipperTitle ref={categoryRef}>{i?.category}</TipperTitle>
             </TipTitleWrap>
             <BoardWrap>

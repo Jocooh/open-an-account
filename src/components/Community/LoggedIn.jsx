@@ -49,12 +49,13 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
     setPosts(post);
   };
   const result = posts?.filter((item) => item.category === categorytab);
+
   useEffect(() => {
     getPostList();
   }, []);
 
-  console.log("posts 로그드인 :>> ", posts);
-  console.log("result 로그드인 :>> ", result);
+  // console.log("posts 로그드인 :>> ", posts);
+  // console.log("result 로그드인 :>> ", result);
   return (
     <Wrapper>
       <div>
