@@ -16,6 +16,7 @@ import React, { useEffect, useState } from "react";
 import { BsFillHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
+// import { likeState } from "../../store/modules/Atom";
 
 function Like({ currentUser, post, id }) {
   //커뮤니티 페이지에서 id는 필드명
@@ -23,10 +24,10 @@ function Like({ currentUser, post, id }) {
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
   const [likenum, setLikenum] = useState(0);
-
+  const [recoilLike, setRecoilLike] = useState(likenum);
   //로그인 없이 좋아요 클릭하면 로그인 유도
   // console.log(newLike);
-  const LikeHandler = async (id, num) => {
+  const LikeHandler = async (id) => {
     if (!currentUser) {
       if (window.confirm("You are not logged in")) {
         return navigate("/login");
@@ -34,7 +35,7 @@ function Like({ currentUser, post, id }) {
         return;
       }
     }
-
+    const likeNumRef = doc(db, "posts", id);
     const newLike = `${id}${currentUser.uid}`;
     if (!like) {
       await setDoc(doc(db, "likes", newLike), {
@@ -46,21 +47,27 @@ function Like({ currentUser, post, id }) {
         title: post.title,
         content: post.content,
         category: post.category,
-        docId: `${id}${currentUser.uid}`,
-      });
-      const userDoc = doc(db, "posts", post.id);
-      try {
-        await updateDoc(userDoc, { like: like + 1 });
-        setLike(true);
-      } catch (e) {
-        console.log(e);
-      }
+        docId: id,
+      }).then(updateDoc(likeNumRef, { like: recoilLike + 1 }));
+      setLike(true);
     } else {
       const haveLike = doc(db, "likes", newLike);
       deleteDoc(haveLike);
       setLike(false);
+      updateDoc(likeNumRef, { like: recoilLike - 1 });
     }
   };
+  //포스트에 좋아요 숫자 올라갈 함수
+
+  // const plusLikeNum = async () => {
+  //   await updateDoc(likeNumRef, { like: recoilLike + 1 });
+  //   console.log("update성공");
+  // };
+  // const minusLikeNum = async () => {
+  //   updateDoc(likeNumRef, { like: recoilLike - 1 });
+  //   console.log("update-1성공");
+  // };
+
   const getLikes = async () => {
     const newLike = `${id}${currentUser.uid}`;
     const docRef = doc(db, "likes", newLike);
@@ -71,13 +78,14 @@ function Like({ currentUser, post, id }) {
   };
   //갯수가져오기
   const LikeLength = async () => {
-    const q = query(collection(db, "likes"), where("postId", "==", id));
+    const q = query(collection(db, "likes"), where("docId", "==", id));
     const array = [];
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         array.push(doc.data());
       });
       setLikenum(array.length);
+      setRecoilLike(array.length);
     });
   };
 

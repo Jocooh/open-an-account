@@ -11,7 +11,6 @@ import {
 import Like from "../../Community/Like";
 
 function UserLike({ likes, currentUser }) {
-  //likes: 내가 좋아요한 글
   return (
     <>
       {likes?.map((like) => (
@@ -31,7 +30,12 @@ function UserLike({ likes, currentUser }) {
               <CardCategory>
                 <p style={{ color: "#6a24ff" }}>{like.category}</p>
               </CardCategory>
-              <Like currentUser={currentUser} id={like.postId} post={like} />
+              <Like
+                currentUser={currentUser}
+                id={like.docId}
+                post={like}
+                userLike={true}
+              />
             </CategoryLike>
             <CardTitleContainer>
               <CardTitle>
