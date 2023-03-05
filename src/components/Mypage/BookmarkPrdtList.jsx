@@ -64,12 +64,14 @@ const BookmarkPrdtList = ({ currentUser, sortMonths, productTypes }) => {
       items={filterDeposit}
       allOptionList={depositOptionalList}
       sortMonths={sortMonths}
+      productTypes={productTypes}
     />
   ) : (
     <BookmarkPrdtItem
       items={filterSaving}
       allOptionList={savingoptionalList}
       sortMonths={sortMonths}
+      productTypes={productTypes}
     />
   );
 };

@@ -51,6 +51,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   console.log("posts :>> ", posts);
   console.log("posts.id :>> ", posts.id);
   const result = posts?.filter((item) => item.category === categorytab);
+
   useEffect(() => {
     getPostList();
   }, []);

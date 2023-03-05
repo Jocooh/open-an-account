@@ -17,7 +17,7 @@ import DetailBookMark from "../BookMarkList/DetailBookMark";
 import { StyledImg } from "../../components/AllBankList/style";
 import Bookmarks from "../ServicePage/Bookmarks";
 
-function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
+function BookmarkPrdtItem({ items, allOptionList, sortMonths, productTypes }) {
   const [open, setOpen] = useState("");
 
   return (
@@ -86,7 +86,11 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths }) {
                       className="여기가 자세히 눌렀을때 상세정보 나오는 공간이예여"
                       style={{ marginRight: "2%" }}
                     >
-                      <Bookmarks baseList={item} isMyPage={true} />
+                      <Bookmarks
+                        baseList={item}
+                        isMyPage={true}
+                        productTypes={productTypes}
+                      />
                       <button
                         title="자세히 버튼"
                         style={{

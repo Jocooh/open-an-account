@@ -106,6 +106,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
       imgUrl: image,
       name: user?.displayName ?? "익명",
       createdAt: Date.now(),
+      like: 0,
     })
       .then(() => {
         alert("작성하신 글이 정상적으로 업로드 되었습니다.");

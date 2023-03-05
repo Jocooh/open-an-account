@@ -169,7 +169,7 @@ export const ProductTypesBtn = styled.button`
 `;
 
 //내가 쓴 글 컴포넌트 스타일
-export const UserWriteWrapper = styled.div`
+export const UseListeWrapper = styled.div`
   width: 900px;
   display: flex;
   flex-wrap: wrap;
