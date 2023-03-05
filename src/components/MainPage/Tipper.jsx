@@ -13,21 +13,20 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { authService } from "../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import EditPostingModal from "../EditPostingModal/EditPostingModal";
 import Like from "../Community/Like";
 
 const Tipper = ({ posts, result }) => {
-  // const user = authService.currentUser;
-  // console.log("user :>> ", user);
-  // console.log("currentUid :>> ", user.uid);
-  // console.log("posts :>> ", posts);
-  // console.log("result :>> ", result);
+  //* 로그인 한 사람 확인
   const [user, setUser] = useState({});
   useEffect(() => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
   const currentUid = user.uid;
+  
+  //* userId === currentUid 일때 게시글의 id값 넣어줌
+  const [editPostingModalOpen, setEditPostingModalOpen] = useState("");
   const currentUser = authService.currentUser; //이거 좋아요에서 사용하는 변수입니다.
-  // console.log("In tipper currentUser", currentUser?.auth.currentUser);
   const [toggleBtn, setToggleBtn] = useState(false);
 
   //* 본인이 쓴 글인지 검사
@@ -81,34 +80,52 @@ const Tipper = ({ posts, result }) => {
     <>
       {result?.map((i) => {
         return (
-          <TipperWrap key={i?.id}>
-            <TipperImgWrap>
-              <img src={i?.imgUrl} alt="희망사진" ref={imageRef} />
-            </TipperImgWrap>
-            <TipTitleWrap>
+          <>
+            {editPostingModalOpen === i.id ? (
+              <EditPostingModal
+                setEditPostingModalOpen={setEditPostingModalOpen}
+                postId={i.id}
+                post={i}
+              />
+            ) : (
+              <TipperWrap key={i?.id}>
+                <TipperImgWrap>
+                  <img src={i?.imgUrl} alt="희망사진" />
+                </TipperImgWrap>
+                <TipTitleWrap>
               <Like currentUser={currentUser} id={i.id} post={i} />
-              <TipperTitle ref={categoryRef}>{i?.category}</TipperTitle>
-            </TipTitleWrap>
-            <BoardWrap>
-              <BoardTitle ref={titleRef}>{i?.title}</BoardTitle>
-              <div
-                style={{
-                  fontSize: "14px",
-                  opacity: "0.4",
-                  height: "40px",
-                }}
-              >
-                {i?.name}
-              </div>
-              <BoardContent ref={contentRef}>{i?.content}</BoardContent>
-            </BoardWrap>
-            {toggleButton && (
-              <ButtonWrap>
-                <button>수정</button>
-                <button>삭제</button>
-              </ButtonWrap>
+                  <TipperTitle>{i?.category}</TipperTitle>
+                </TipTitleWrap>
+                <BoardWrap>
+                  <BoardTitle>{i?.title}</BoardTitle>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      opacity: "0.4",
+                      height: "40px",
+                    }}
+                  >
+                    {i?.name}
+                  </div>
+                  <BoardContent>
+                    {i?.content.substr(0, 400) + "..."}{" "}
+                  </BoardContent>
+                </BoardWrap>
+                {i.userId === currentUid && (
+                  <ButtonWrap>
+                    <button
+                      onClick={() => {
+                        setEditPostingModalOpen(i?.id);
+                      }}
+                    >
+                      수정
+                    </button>
+                    <button>삭제</button>
+                  </ButtonWrap>
+                )}
+              </TipperWrap>
             )}
-          </TipperWrap>
+          </>
         );
       })}
     </>
