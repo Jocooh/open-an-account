@@ -22,68 +22,61 @@ const Tipper = ({ posts, result }) => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
   const currentUid = user.uid;
-  const [toggleBtn, setToggleBtn] = useState(false);
-
-  //* 본인이 쓴 글인지 검사
-  const post = posts?.map((post) => post.userId);
-  const toggleButton = () => {
-    if (post === currentUid) {
-      setToggleBtn(true);
-    } else {
-      setToggleBtn(false);
-    }
-  };
-
-  const [editPostingModalOpen, setEditPostingModalOpen] = useState(false);
-  const openEditPostingModal = () => {
-    setEditPostingModalOpen(true);
-  };
-
-  useEffect(() => {
-    toggleButton();
-  }, []);
+  //* userId === currentUid 일때 게시글의 id값 넣어줌
+  const [editPostingModalOpen, setEditPostingModalOpen] = useState("");
 
   return (
     <>
-      {editPostingModalOpen ? (
-        <EditPostingModal
-          setEditPostingModalOpen={setEditPostingModalOpen}
-          result={result}
-        />
-      ) : (
-        result?.map((i) => {
-          return (
-            <TipperWrap key={i?.id}>
-              <TipperImgWrap>
-                <img src={i?.imgUrl} alt="희망사진" />
-              </TipperImgWrap>
-              <TipTitleWrap>
-                <img src={require("../../assets/mainpage/like.png")} />
-                <TipperTitle>{i?.category}</TipperTitle>
-              </TipTitleWrap>
-              <BoardWrap>
-                <BoardTitle>{i?.title}</BoardTitle>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    opacity: "0.4",
-                    height: "40px",
-                  }}
-                >
-                  {i?.name}
-                </div>
-                <BoardContent>{i?.content}</BoardContent>
-              </BoardWrap>
-              {toggleButton && (
-                <ButtonWrap>
-                  <button onClick={openEditPostingModal}>수정</button>
-                  <button>삭제</button>
-                </ButtonWrap>
-              )}
-            </TipperWrap>
-          );
-        })
-      )}
+      {result?.map((i) => {
+        return (
+          <>
+            {editPostingModalOpen === i.id ? (
+              <EditPostingModal
+                setEditPostingModalOpen={setEditPostingModalOpen}
+                postId={i.id}
+                post={i}
+              />
+            ) : (
+              <TipperWrap key={i?.id}>
+                <TipperImgWrap>
+                  <img src={i?.imgUrl} alt="희망사진" />
+                </TipperImgWrap>
+                <TipTitleWrap>
+                  <img src={require("../../assets/mainpage/like.png")} />
+                  <TipperTitle>{i?.category}</TipperTitle>
+                </TipTitleWrap>
+                <BoardWrap>
+                  <BoardTitle>{i?.title}</BoardTitle>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      opacity: "0.4",
+                      height: "40px",
+                    }}
+                  >
+                    {i?.name}
+                  </div>
+                  <BoardContent>
+                    {i?.content.substr(0, 400) + "..."}{" "}
+                  </BoardContent>
+                </BoardWrap>
+                {i.userId === currentUid && (
+                  <ButtonWrap>
+                    <button
+                      onClick={() => {
+                        setEditPostingModalOpen(i?.id);
+                      }}
+                    >
+                      수정
+                    </button>
+                    <button>삭제</button>
+                  </ButtonWrap>
+                )}
+              </TipperWrap>
+            )}
+          </>
+        );
+      })}
     </>
   );
 };

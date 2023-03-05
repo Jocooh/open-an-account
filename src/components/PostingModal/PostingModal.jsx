@@ -17,6 +17,7 @@ import {
   orderBy,
   onSnapshot,
   where,
+  setDoc,
 } from "firebase/firestore";
 import { authService, db, storage } from "../../config/firebase";
 import {
@@ -94,8 +95,9 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
       contentRef.current.focus();
       return;
     }
-    await addDoc(collection(db, "posts"), {
-      id: uuidv4(),
+    const newId = uuidv4();
+    await setDoc(doc(db, "posts", newId), {
+      id: newId,
       userId: user?.uid,
       title: inputTitle,
       category: selected,
@@ -159,8 +161,8 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
     <ModalBackground>
       <ModalContainer>
         <Header>
-          <CloseButton onClick={ClosePostingModal}>닫기</CloseButton>
-          <div>글 작성하기</div>
+          <CloseButton onClick={ClosePostingModal}>취소</CloseButton>
+          <div>팁 작성하기</div>
           <SaveButton alert="등록되었습니다." onClick={addPost}>
             등록
           </SaveButton>
@@ -184,13 +186,22 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
               </option>
             ))}
           </Category>
+          <ImgUpload>
+            <button onChange={onChangeUpload}>파일 선택</button>
+            <input
+              type="file"
+              ref={fileRef}
+              style={{ display: "none" }}
+              accept="image/jpg, image/png, image/jpeg"
+              onChange={onClickUpload}
+            />
+          </ImgUpload>
           <Content>
-            <ImgUpload type="file" onChange={onChangeUpload} />
             <ContentInput
               onChange={(e) => setInputContent(e.target.value)}
               value={inputContent}
               ref={contentRef}
-              placeholder="내용을 입력해주세요."
+              placeholder="판매, 광고 행위의 게시글은 숨김처리될 수 있습니다. "
             />
           </Content>
         </Body>

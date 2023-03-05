@@ -38,7 +38,7 @@ import {
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
 
-function EditPostingModal({ setEditPostingModalOpen, result }) {
+function EditPostingModal({ setEditPostingModalOpen, result, post, postId }) {
   const navigate = useNavigate();
 
   const confirm = () => {
@@ -61,16 +61,24 @@ function EditPostingModal({ setEditPostingModalOpen, result }) {
     setEditPostingModalOpen(false);
   };
 
-  //* 게시글 수정
-  console.log("result :>> ", result);
-  const [title, setTitle] = useState(result[0].title);
-  const [selected, setSelected] = useState(result[0].category);
-  const [imgUrl, setImgUrl] = useState(result[0].imgUrl);
-  const [content, setContent] = useState(result[0].content);
-
+  //* 게시글 불러오기
   const titleRef = useRef(null);
   const categoryRef = useRef(null);
   const contentRef = useRef(null);
+
+  console.log("postId :>> ", postId);
+  const [title, setTitle] = useState("");
+  const [selected, setSelected] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+  const [content, setContent] = useState("");
+  let [keep, setKeep] = useState(false); // 수정버튼을 눌렀지만 수정을 안할 때를 대비
+
+  useEffect(() => {
+    setTitle(post.title);
+    setContent(post.content);
+    setSelected(post.category);
+    setImgUrl(post.imgUrl);
+  }, []);
 
   const user = authService?.currentUser;
   const editPost = async () => {
@@ -89,7 +97,7 @@ function EditPostingModal({ setEditPostingModalOpen, result }) {
       contentRef.current.focus();
       return;
     }
-    const docRef = doc(db, "posts", result[0].id);
+    const docRef = doc(db, "posts", postId);
     await updateDoc(docRef, {
       title: title,
       category: selected,
@@ -158,10 +166,10 @@ function EditPostingModal({ setEditPostingModalOpen, result }) {
     <ModalBackground>
       <ModalContainer>
         <Header>
-          <CloseButton onClick={CloseEditPostingModal}>닫기</CloseButton>
-          <div>글 작성하기</div>
+          <CloseButton onClick={CloseEditPostingModal}>취소</CloseButton>
+          <div>팁 수정하기</div>
           <SaveButton alert="저장되었습니다." onClick={editPost}>
-            완료
+            저장
           </SaveButton>
         </Header>
 
@@ -182,8 +190,8 @@ function EditPostingModal({ setEditPostingModalOpen, result }) {
               </option>
             ))}
           </Category>
+          <ImgUpload type="file" onChange={onChangeUpload} />
           <Content>
-            <ImgUpload type="file" onChange={onChangeUpload} />
             <ContentInput
               onChange={(e) => setContent(e.target.value)}
               value={content}
