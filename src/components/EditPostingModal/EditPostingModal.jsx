@@ -17,7 +17,7 @@ import {
   orderBy,
   onSnapshot,
   where,
-  setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { authService, db, storage } from "../../config/firebase";
 import {
@@ -38,7 +38,7 @@ import {
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
 
-function PostingModal({ setPostingModalOpen, categorytab, posts }) {
+function EditPostingModal({ setEditPostingModalOpen, result, post, postId }) {
   const navigate = useNavigate();
 
   const confirm = () => {
@@ -47,40 +47,42 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
         "입력하신 내용은 저장되지 않습니다. 이대로 나가시겠습니까?"
       )
     ) {
-      setPostingModalOpen(false);
+      setEditPostingModalOpen(false);
     } else {
-      inputContent.current.focus();
+      content.current.focus();
       return;
     }
   };
-  const ClosePostingModal = () => {
-    if (inputTitle || inputContent) {
+
+  const CloseEditPostingModal = () => {
+    if (title || content) {
       confirm();
     }
-    setPostingModalOpen(false);
+    setEditPostingModalOpen(false);
   };
 
-  //* 드롭다운 메뉴
-  const options = [
-    { value: "", text: "카테고리 선택" },
-    { value: "금융상품 후기", text: "금융상품 후기" },
-    { value: "팁과 노하우", text: "팁과 노하우" },
-    { value: "공지사항", text: "공지사항" },
-  ];
-  const [selected, setSelected] = useState(options[0].value);
-  const selectCategory = (e) => {
-    setSelected(e.target.value);
-  };
-
-  //* 게시글 작성
-  const [inputTitle, setInputTitle] = useState("");
-  const [inputContent, setInputContent] = useState("");
+  //* 게시글 불러오기
   const titleRef = useRef(null);
   const categoryRef = useRef(null);
   const contentRef = useRef(null);
+
+  console.log("postId :>> ", postId);
+  const [title, setTitle] = useState("");
+  const [selected, setSelected] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+  const [content, setContent] = useState("");
+  let [keep, setKeep] = useState(false); // 수정버튼을 눌렀지만 수정을 안할 때를 대비
+
+  useEffect(() => {
+    setTitle(post.title);
+    setContent(post.content);
+    setSelected(post.category);
+    setImgUrl(post.imgUrl);
+  }, []);
+
   const user = authService?.currentUser;
-  const addPost = async () => {
-    if (!inputTitle) {
+  const editPost = async () => {
+    if (!title) {
       alert("제목을 입력해주세요.");
       titleRef.current.focus();
       return;
@@ -90,30 +92,22 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
       categoryRef.current.focus();
       return;
     }
-    if (!inputContent) {
+    if (!content) {
       alert("본문을 입력해주세요.");
       contentRef.current.focus();
       return;
     }
-    const newId = uuidv4();
-    await setDoc(doc(db, "posts", newId), {
-      id: newId,
-      userId: user?.uid,
-      title: inputTitle,
+    const docRef = doc(db, "posts", postId);
+    await updateDoc(docRef, {
+      title: title,
       category: selected,
-      categorytab,
-      content: inputContent,
-      imgUrl: image,
-      name: user?.displayName ?? "익명",
+      imgUrl: imgUrl,
+      content: content,
       createdAt: Date.now(),
-      like: 0,
     })
       .then(() => {
         alert("작성하신 글이 정상적으로 업로드 되었습니다.");
-        setSelected(options[0].value);
-        setInputTitle("");
-        setInputContent("");
-        setPostingModalOpen(false);
+        setEditPostingModalOpen(false);
       })
       .catch((err) => {
         if (err.message.includes("already-in-use")) {
@@ -122,9 +116,19 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
       });
   };
 
+  //* 드롭다운 메뉴
+  const options = [
+    { value: "", text: "카테고리 선택" },
+    { value: "금융상품 후기", text: "금융상품 후기" },
+    { value: "팁과 노하우", text: "팁과 노하우" },
+    { value: "공지사항", text: "공지사항" },
+  ];
+  // const [selected, setSelected] = useState(options[0].value);
+  const selectCategory = (e) => {
+    setSelected(e.target.value);
+  };
   //* 사진 업로드 하기
   const [imageUpload, setImageUpload] = useState("");
-  const [image, setImage] = useState("");
   const fileRef = useRef(null);
 
   const onClickUpload = () => {
@@ -138,7 +142,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
     if (!imageUpload) return;
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setImage(url);
+        setImgUrl(url);
       });
     });
   }, [imageUpload]);
@@ -150,8 +154,8 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
     listAll(imageRef).then((response) => {
       response.items.forEach((item) => {
         getDownloadURL(item).then((url) => {
-          if (url === image) {
-            setImage(url);
+          if (url === imgUrl) {
+            setImgUrl(url);
           }
         });
       });
@@ -162,19 +166,18 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
     <ModalBackground>
       <ModalContainer>
         <Header>
-          <CloseButton onClick={ClosePostingModal}>취소</CloseButton>
-          <div>팁 작성하기</div>
-          <SaveButton alert="등록되었습니다." onClick={addPost}>
-            등록
+          <CloseButton onClick={CloseEditPostingModal}>취소</CloseButton>
+          <div>팁 수정하기</div>
+          <SaveButton alert="저장되었습니다." onClick={editPost}>
+            저장
           </SaveButton>
         </Header>
 
         <Body>
           <TitleInput
-            onChange={(e) => setInputTitle(e.target.value)}
-            value={inputTitle}
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
             ref={titleRef}
-            placeholder="제목을 입력해주세요"
           />
           <Category
             value={selected}
@@ -187,22 +190,12 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
               </option>
             ))}
           </Category>
-          <ImgUpload>
-            <button onChange={onChangeUpload}>파일 선택</button>
-            <input
-              type="file"
-              ref={fileRef}
-              style={{ display: "none" }}
-              accept="image/jpg, image/png, image/jpeg"
-              onChange={onClickUpload}
-            />
-          </ImgUpload>
+          <ImgUpload type="file" onChange={onChangeUpload} />
           <Content>
             <ContentInput
-              onChange={(e) => setInputContent(e.target.value)}
-              value={inputContent}
+              onChange={(e) => setContent(e.target.value)}
+              value={content}
               ref={contentRef}
-              placeholder="판매, 광고 행위의 게시글은 숨김처리될 수 있습니다. "
             />
           </Content>
         </Body>
@@ -211,4 +204,4 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
   );
 }
 
-export default PostingModal;
+export default EditPostingModal;

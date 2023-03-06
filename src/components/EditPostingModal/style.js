@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const ModalBackground = styled.div`
-  /* position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0; */
+  position: fixed;
+
   /* background: rgba(67, 79, 101, 0.7); */
 `;
 
@@ -123,35 +120,21 @@ export const ContentInput = styled.textarea`
   outline: none;
   background: transparent;
 `;
-export const ImgUpload = styled.div`
+
+export const ImgUpload = styled.input`
   margin: 30px 0 10px 0;
-  /* border: none; */
-  /* border-bottom: 0.6px solid #c6c6c6; */
-  .button {
-    background: #e1e1e4;
+  border: none;
+  border-bottom: 0.6px solid #c6c6c6;
 
-    border: 1px solid #e1e1e4;
-    border-radius: 5px;
+  /* background: #e1e1e4; */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #505050;
 
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    color: #505050;
-
-    cursor: pointer;
-  }
-  /* input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  } */
+  cursor: pointer;
 `;
 
 export const ErrorMessage = styled.div`

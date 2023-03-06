@@ -9,15 +9,14 @@ import {
 import React, { useEffect, useState } from "react";
 import { db } from "../../../config/firebase";
 import { UseListeWrapper } from "../../../pages/MyPage/style";
+import UserLike from "./UserLike";
 
-import UserWrite from "./UserWrite";
-
-function UserWriteList({ currentUser }) {
-  const [boards, setBoards] = useState([]);
-  // console.log(currentUser);
-  const getPostlist = () => {
+function UserLikeList({ currentUser }) {
+  const [likes, setLikes] = useState([]);
+  //내가 좋아요한 글
+  const getLikelist = () => {
     const q = query(
-      collection(db, "posts"),
+      collection(db, "likes"),
       where("userId", "==", currentUser.uid)
       // orderBy("createdAt", "desc")
     );
@@ -29,21 +28,18 @@ function UserWriteList({ currentUser }) {
           ...doc.data(),
         })
       );
-      setBoards(array);
+      setLikes(array);
     });
   };
 
   useEffect(() => {
-    getPostlist();
+    getLikelist();
   }, []);
-
   return (
     <UseListeWrapper>
-      {boards.map((board) => (
-        <UserWrite board={board} key={board.id} currentUser={currentUser} />
-      ))}
+      <UserLike likes={likes} currentUser={currentUser} />
     </UseListeWrapper>
   );
 }
 
-export default UserWriteList;
+export default UserLikeList;

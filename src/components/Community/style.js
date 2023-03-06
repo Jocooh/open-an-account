@@ -12,7 +12,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  background-color: beige;
+  /* background-color: beige; */
 `;
 
 export const Title = styled.div`

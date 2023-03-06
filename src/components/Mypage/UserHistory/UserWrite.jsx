@@ -9,9 +9,11 @@ import {
   CardTitleContainer,
   CardImage,
 } from "../../../pages/MyPage/style";
+
+import Like from "../../Community/Like";
 // import Bookmarks from "../../ServicePage/Bookmarks";
 
-function UserWrite({ board }) {
+function UserWrite({ board, currentUser }) {
   return (
     <>
       <ListCard className="카드 하나하나 해당합니다.">
@@ -20,7 +22,7 @@ function UserWrite({ board }) {
         ) : null}
         <div
           style={{
-            margin: "0 auto",
+            margin: "10px auto",
             display: "flex",
             flexDirection: "column",
             gap: "10px",
@@ -30,8 +32,7 @@ function UserWrite({ board }) {
             <CardCategory>
               <p style={{ color: "#6a24ff" }}>{board.category}</p>
             </CardCategory>
-            <div>34❤️</div>
-            {/* /* <Bookmarks baseList={item} productTypes={productTypes} /> */}
+            <Like currentUser={currentUser} post={board} id={board.id} />
           </CategoryLike>
           <CardTitleContainer>
             <CardTitle>
