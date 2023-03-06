@@ -48,8 +48,8 @@ function Header() {
         alt="메인"
       />
       <NavBar>
-        <Nav onClick={() => navigate("/main")}>대시보드</Nav>
-        <Nav onClick={() => navigate("/service")}>계산기</Nav>
+        <Nav onClick={() => navigate("/main")}>홈</Nav>
+        <Nav onClick={() => navigate("/service")}>상품비교</Nav>
         <Nav onClick={() => navigate("/community")}>커뮤니티</Nav>
 
         {/* 24일이후 추가할 예정 */}

@@ -23,9 +23,7 @@ const Tipper = ({ posts, result, getPostList }) => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
 
-
   const currentUid = user?.uid;
-
 
   //* userId === currentUid 일때 게시글의 id값 넣어줌
   const [editPostingModalOpen, setEditPostingModalOpen] = useState("");
@@ -75,16 +73,15 @@ const Tipper = ({ posts, result, getPostList }) => {
                 currentUid={currentUid}
                 currentUser={currentUser}
               />
-
             ) : null}
 
             <TipperWrap key={i?.id}>
-            {i.imgUrl ? (
-                  <TipperImgWrap>
-                    <img src={i?.imgUrl} alt="희망사진" />
-                  </TipperImgWrap>
-                ) : null}
-              
+              {i.imgUrl ? (
+                <TipperImgWrap>
+                  <img src={i?.imgUrl} alt="희망사진" />
+                </TipperImgWrap>
+              ) : null}
+
               <TipTitleWrap>
                 <Like currentUser={currentUser} id={i.id} post={i} />
                 <TipperTitle>{i?.category}</TipperTitle>
@@ -114,9 +111,7 @@ const Tipper = ({ posts, result, getPostList }) => {
                 자세히보기
               </button>
             </TipperWrap>
-
-          </>
-
+          </div>
         );
       })}
     </>
