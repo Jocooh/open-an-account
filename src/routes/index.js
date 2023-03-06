@@ -27,7 +27,7 @@ const Router = () => {
         {/* admin */}
         <Route path="/4jojoa" element={<InsertData />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 };

@@ -40,6 +40,7 @@ import {
   StagingBankName,
   BeforeSelectedContainer,
   StagingCancel,
+  CalculatorBoxContents,
 } from "./style";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
@@ -876,7 +877,7 @@ const ServicePage = () => {
                         </ProductWraper>
                         <ProducksCalculatorBoxContent>
                           <ProducksCalculatorBoxContentTilte>
-                            <div>
+                            <CalculatorBoxContents>
                               {productTypes === 1 ? (
                                 <>
                                   <span style={{ fontWeight: "bold" }}>
@@ -930,6 +931,13 @@ const ServicePage = () => {
                                       onBlur={handleBlur}
                                       onChange={handleInputChange}
                                       placeholder="금액을 입력해주세요"
+                                      style={
+                                        amountWithoutCommas >= 100000
+                                          ? {}
+                                          : {
+                                              border: "1px solid red",
+                                            }
+                                      }
                                     />
                                     <div
                                       style={{
@@ -952,7 +960,7 @@ const ServicePage = () => {
                               ) : (
                                 <div>잘못된 입력입니다.</div>
                               )}
-                            </div>
+                            </CalculatorBoxContents>
                           </ProducksCalculatorBoxContentTilte>
                         </ProducksCalculatorBoxContent>
                         <MonthRangeSliderWraper>
@@ -968,10 +976,10 @@ const ServicePage = () => {
                           </div>
                           <MonthRangeSlider>
                             <span>기간 선택</span>
-                            <span style={{ marginLeft: "-23px" }}>6개월</span>
-                            <span style={{ marginLeft: "10px" }}>12개월</span>
-                            <span style={{ marginLeft: "5px" }}>24개월</span>
-                            <span style={{ marginLeft: "-20px" }}>36개월</span>
+                            <span style={{}}>6개월</span>
+                            <span style={{}}>12개월</span>
+                            <span style={{}}>24개월</span>
+                            <span style={{}}>36개월</span>
                           </MonthRangeSlider>
                         </MonthRangeSliderWraper>
                         <FilterSubmitWarper>
