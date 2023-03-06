@@ -55,7 +55,7 @@ const Bookmarks = ({
         join_member: baseList.join_member, // 가입 대상
         etc_note: baseList.etc_note, // 기타 유의사항
         fin_co_no: baseList.fin_co_no, // 상품 회사 코드
-        productTypes: productTypes,
+        productTypes: productTypes, // 예적금 구분 타입
       });
 
       // true가 되면서 북마크 더이상 못하게 막기
@@ -70,7 +70,7 @@ const Bookmarks = ({
   };
 
   // 내가 북마크한 내역 화면에 출력
-  const getBookmark = async () => {
+  const getBookmarks = async () => {
     const newId = isMyPage
       ? `${currentUserUid}${baseList.docId}`
       : isModal
@@ -84,7 +84,7 @@ const Bookmarks = ({
   };
 
   useEffect(() => {
-    getBookmark();
+    getBookmarks();
   }, []);
 
   return (

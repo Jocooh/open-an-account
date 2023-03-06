@@ -20,8 +20,10 @@ export const MainPageWrapper = styled.div`
 export const BestProductWrap = styled.div`
   width: 1200px;
   height: 500px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 30px;
+
+  margin: 60px 0;
 `;
 
 // 인기 상품 현황
@@ -146,7 +148,7 @@ export const RateWrapper = styled.div`
 export const MaxRate = styled.div`
   font-size: 18px;
   font-weight: bold;
-  color: #6a24ff;
+  /* color: #6a24ff; */
   margin-bottom: 5px;
 `;
 
