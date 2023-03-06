@@ -17,6 +17,7 @@ import {
   orderBy,
   onSnapshot,
   where,
+  setDoc,
 } from "firebase/firestore";
 import { authService, db, storage } from "../../config/firebase";
 import {
@@ -94,8 +95,9 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
       contentRef.current.focus();
       return;
     }
-    await addDoc(collection(db, "posts"), {
-      id: uuidv4(),
+    const newId = uuidv4();
+    await setDoc(doc(db, "posts", newId), {
+      id: newId,
       userId: user?.uid,
       title: inputTitle,
       category: selected,

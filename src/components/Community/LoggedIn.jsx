@@ -35,9 +35,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
     setPostingModalOpen(true);
   };
 
+  //게시글 불러오기
   const [posts, setPosts] = useState([]);
   const getPostList = async () => {
-    const querySnapshot = await getDocs(collection(db, "posts"));
+    const querySnapshot = await getDocs(
+      query(collection(db, "posts"), orderBy("createdAt", "desc"))
+    );
     const post = [];
     querySnapshot.forEach((doc) => {
       const newPost = {
@@ -54,7 +57,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   }, []);
 
   console.log("posts 로그드인 :>> ", posts);
-  console.log("result 로그드인 :>> ", result);
+  // console.log("result 로그드인 :>> ", result);
   return (
     <Wrapper>
       <div>
@@ -66,6 +69,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
+                // getPostList={getPostList}
                 posts={posts}
                 categorytab={categorytab}
               />

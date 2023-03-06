@@ -9,10 +9,11 @@ import {
   BoardContent,
   ButtonWrap,
 } from "../../pages/MainPage/style";
-import { doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { authService } from "../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { v4 as uuidv4 } from "uuid";
 
 const Tipper = ({ posts, result }) => {
   // const user = authService.currentUser;
@@ -25,11 +26,10 @@ const Tipper = ({ posts, result }) => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
   const currentUid = user.uid;
-
   const [toggleBtn, setToggleBtn] = useState(false);
 
   //* 본인이 쓴 글인지 검사
-  const post = posts?.map((post) => post.userId);
+  const post = posts?.map((post) => post.id);
   const toggleButton = () => {
     if (post === currentUid) {
       setToggleBtn(true);
@@ -74,6 +74,20 @@ const Tipper = ({ posts, result }) => {
     toggleButton();
   }, []);
 
+  // 게시글 삭제
+  const board = posts?.map((i) => i);
+  const onClickDelete = async (id) => {
+    console.log(id);
+    const ok = window.confirm(" 정말 삭제하시겠습니까?");
+    if (ok) {
+      try {
+        await deleteDoc(doc(db, "posts", id));
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   return (
     <>
       {result?.map((i) => {
@@ -102,7 +116,13 @@ const Tipper = ({ posts, result }) => {
             {toggleButton && (
               <ButtonWrap>
                 <button>수정</button>
-                <button>삭제</button>
+                <button
+                  onClick={() => {
+                    onClickDelete(i.id);
+                  }}
+                >
+                  삭제
+                </button>
               </ButtonWrap>
             )}
           </TipperWrap>
