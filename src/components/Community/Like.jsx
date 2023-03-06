@@ -96,7 +96,7 @@ function Like({ currentUser, post, id }) {
   }, [like]);
 
   return (
-    <div style={{ display: "flex", gap: "3px" }}>
+    <div style={{ display: "flex", gap: "5px" }}>
       <p>{likenum}</p>
       {like === true ? (
         <BsFillHeartFill
