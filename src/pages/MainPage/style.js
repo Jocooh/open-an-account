@@ -189,18 +189,19 @@ export const TipperWrap = styled.div`
   width: 288px;
   border: 1px #dedede solid;
   border-radius: 10px;
+
   margin: 10px 5px;
+
   background-color: white;
 `;
 
 // 팁퍼제목 랩
 export const TipTitleWrap = styled.div`
   height: 80px;
-  padding: 40px 0 0 20px;
-  img {
-    float: right;
-    padding-right: 15px;
-  }
+  padding: 30px 20px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 // 팁퍼 이미지 랩
@@ -210,17 +211,17 @@ export const TipperImgWrap = styled.div`
   border-radius: 10px;
   background-color: whitesmoke;
   img {
-    max-width: 100%;
-    max-height: 100%;
     width: 288px;
-    height: 200px;
+    height: 211px;
+    object-fit: cover;
+    border-radius: 10px;
   }
 `;
 
 // 팁퍼제목
 export const TipperTitle = styled.span`
   font-weight: bold;
-  border: 1px solid black;
+  border: 2px solid #e3dcff;
   border-radius: 20px;
   color: #6a24ff;
   padding: 10px;

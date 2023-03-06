@@ -39,7 +39,12 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { useCallback } from "react";
 
-function PostingModal({ setPostingModalOpen, categorytab, posts }) {
+function PostingModal({
+  setPostingModalOpen,
+  categorytab,
+  posts,
+  getPostList,
+}) {
   const navigate = useNavigate();
 
   const openScroll = useCallback(() => {
@@ -127,6 +132,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
           alert("작성하신 글을 업로드 하지 못했습니다.");
         }
       });
+    getPostList();
   };
 
   //* 사진 업로드 하기

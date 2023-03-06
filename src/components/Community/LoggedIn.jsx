@@ -64,7 +64,6 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
     getPostList();
   }, []);
 
-
   return (
     <Wrapper>
       <Body>
@@ -76,17 +75,14 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
-                // getPostList={getPostList}
+                getPostList={getPostList}
                 posts={posts}
                 categorytab={categorytab}
               />
             )}
             <Boards>
-              <Tipper posts={posts} result={result} />
+              <Tipper posts={posts} result={result} getPostList={getPostList} />
             </Boards>
-
-            {/* 작성창 제일 위  */}
-            {/* 그 다음 글 카테고리 순서대로 쌓기 */}
           </Content>
         )}
 
@@ -95,16 +91,14 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
+                getPostList={getPostList}
                 posts={posts}
                 categorytab={categorytab}
               />
             )}
             <Boards>
-              <Tipper posts={posts} result={result} />
+              <Tipper posts={posts} result={result} getPostList={getPostList} />
             </Boards>
-
-            {/* 작성창 제일 위  */}
-            {/* 그 다음 글 카테고리 순서대로 쌓기 */}
           </Content>
         )}
 
@@ -113,12 +107,13 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
+                getPostList={getPostList}
                 posts={posts}
                 categorytab={categorytab}
               />
             )}
             <Boards>
-              <Tipper posts={posts} result={result} />
+              <Tipper posts={posts} result={result} getPostList={getPostList} />
             </Boards>
           </Content>
         )}
