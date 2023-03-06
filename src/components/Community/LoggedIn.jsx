@@ -12,6 +12,7 @@ import {
   ProfileImg,
   PostButton,
   Message,
+  Body,
 } from "./style";
 import Tipper from "../../components/MainPage/Tipper";
 import { db } from "../../config/firebase";
@@ -26,12 +27,18 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
+import { useCallback } from "react";
 
 function LoggedIn({ username, categorytab, setCategoryTab }) {
   const [postingModalOpen, setPostingModalOpen] = useState(false);
   const [boards, setBoards] = useState([]);
 
+  const lockScroll = useCallback(() => {
+    document.body.style.overflow = "hidden";
+  }, []);
+
   const OpenPostingModal = () => {
+    lockScroll();
     setPostingModalOpen(true);
   };
 
@@ -56,12 +63,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
 
   return (
     <Wrapper>
-      <div>
+      <Body>
+        <Title>
+          마음에 드는 팁이 있다면 <br /> 하트!
+        </Title>
         {categorytab === "금융상품 후기" && (
           <Content>
-            <Title>
-              마음에 드는 팁이 있다면 <br /> 하트!
-            </Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -80,9 +87,6 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
 
         {categorytab === "팁과 노하우" && (
           <Content>
-            <Title>
-              마음에 드는 팁이 있다면 <br /> 하트!
-            </Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -101,9 +105,6 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
 
         {categorytab === "공지사항" && (
           <Content>
-            <Title>
-              마음에 드는 팁이 있다면 <br /> 하트!
-            </Title>
             {postingModalOpen && (
               <PostingModal
                 setPostingModalOpen={setPostingModalOpen}
@@ -116,7 +117,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             </Boards>
           </Content>
         )}
-      </div>
+      </Body>
 
       <UserWrapper>
         <User>

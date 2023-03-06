@@ -140,3 +140,59 @@ export const ImgUpload = styled.input`
 export const ErrorMessage = styled.div`
   color: red;
 `;
+
+// 팁퍼 이미지 랩
+export const TipperImgWrap = styled.div`
+  border: 1px solid #dedede;
+  height: 200px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 288px;
+    height: 200px;
+  }
+`;
+
+// 팁퍼제목 랩
+export const TipTitleWrap = styled.div`
+  height: 80px;
+  padding: 40px 0 0 20px;
+  img {
+    float: right;
+    padding-right: 15px;
+  }
+`;
+// 팁퍼제목
+export const TipperTitle = styled.span`
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 20px;
+  color: #6a24ff;
+  padding: 10px;
+`;
+
+// 후기부분 랩
+export const BoardWrap = styled.div`
+  height: 350px;
+  padding: 0 20px 30px 20px;
+`;
+
+// 후기 제목
+export const BoardTitle = styled.div`
+  height: 60px;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 20px;
+`;
+
+// 후기 내용
+export const BoardContent = styled.div`
+  font-size: 14px;
+`;
+
+// 수정 삭제 버튼 랩
+export const ButtonWrap = styled.div`
+  float: right;
+`;

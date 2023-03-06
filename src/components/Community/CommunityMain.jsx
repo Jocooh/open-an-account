@@ -43,12 +43,12 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
 
   return (
     <Wrapper>
-      <Title>
-        사회초년생의
-        <br />
-        금융 꿀팁🍯 공간
-      </Title>
       <Body>
+        <Title>
+          사회초년생의
+          <br />
+          금융 꿀팁🍯 공간
+        </Title>
         {categorytab === "금융상품 후기" && (
           <Content>
             <Boards>
@@ -70,60 +70,59 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
             </Boards>
           </Content>
         )}
-
-        <UserWrapper>
-          <User>
-            <ProfileImg src={require("../../assets/profileimg.png")} />
-            로그인하고 <br /> 팁 모으기
-            <LoginButton
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              로그인
-            </LoginButton>
-          </User>
-          <Categories>
-            <Message>카테고리</Message>
-            <Category
-              style={
-                categorytab === "금융상품 후기"
-                  ? { backgroundColor: "brown", color: "white" }
-                  : null
-              }
-              onClick={() => {
-                setCategoryTab("금융상품 후기");
-              }}
-            >
-              금융상품 후기
-            </Category>
-            <Category
-              style={
-                categorytab === "팁과 노하우"
-                  ? { backgroundColor: "brown", color: "white" }
-                  : null
-              }
-              onClick={() => {
-                setCategoryTab("팁과 노하우");
-              }}
-            >
-              팁과 노하우
-            </Category>
-            <Category
-              style={
-                categorytab === "공지사항"
-                  ? { backgroundColor: "brown", color: "white" }
-                  : null
-              }
-              onClick={() => {
-                setCategoryTab("공지사항");
-              }}
-            >
-              공지사항
-            </Category>
-          </Categories>
-        </UserWrapper>
       </Body>
+      <UserWrapper>
+        <User>
+          <ProfileImg src={require("../../assets/profileimg.png")} />
+          로그인하고 <br /> 팁 모으기
+          <LoginButton
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </LoginButton>
+        </User>
+        <Categories>
+          <Message>카테고리</Message>
+          <Category
+            style={
+              categorytab === "금융상품 후기"
+                ? { backgroundColor: "brown", color: "white" }
+                : null
+            }
+            onClick={() => {
+              setCategoryTab("금융상품 후기");
+            }}
+          >
+            금융상품 후기
+          </Category>
+          <Category
+            style={
+              categorytab === "팁과 노하우"
+                ? { backgroundColor: "brown", color: "white" }
+                : null
+            }
+            onClick={() => {
+              setCategoryTab("팁과 노하우");
+            }}
+          >
+            팁과 노하우
+          </Category>
+          <Category
+            style={
+              categorytab === "공지사항"
+                ? { backgroundColor: "brown", color: "white" }
+                : null
+            }
+            onClick={() => {
+              setCategoryTab("공지사항");
+            }}
+          >
+            공지사항
+          </Category>
+        </Categories>
+      </UserWrapper>
     </Wrapper>
   );
 }

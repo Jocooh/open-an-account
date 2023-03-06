@@ -35,10 +35,24 @@ import {
   Category,
   Content,
   ImgUpload,
+  TipperImgWrap,
+  TipTitleWrap,
+  TipperTitle,
+  BoardWrap,
+  BoardTitle,
+  BoardContent,
+  ButtonWrap,
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
+import Like from "../Community/Like";
 
-function EditPostingModal({ setEditPostingModalOpen, result, post, postId }) {
+function EditPostingModal({
+  setEditPostingModalOpen,
+  currentUid,
+  currentUser,
+  post,
+  postId,
+}) {
   const navigate = useNavigate();
 
   const confirm = () => {
@@ -163,44 +177,87 @@ function EditPostingModal({ setEditPostingModalOpen, result, post, postId }) {
   }, []);
 
   return (
-    <ModalBackground>
-      <ModalContainer onClick={(e) => e.stopPropagation()}>
-        <Header>
-          <CloseButton onClick={CloseEditPostingModal}>취소</CloseButton>
-          <div>팁 수정하기</div>
-          <SaveButton alert="저장되었습니다." onClick={editPost}>
-            저장
-          </SaveButton>
-        </Header>
+    <>
+      {post.userId === currentUid ? (
+        <>
+          <ModalBackground>
+            <ModalContainer onClick={(e) => e.stopPropagation()}>
+              <TipperImgWrap>
+                <img src={post?.imgUrl} alt="희망사진" />
+              </TipperImgWrap>
+              <TipTitleWrap>
+                <Like currentUser={currentUser} id={post.id} post={post} />
+                <TipperTitle>{post?.category}</TipperTitle>
+              </TipTitleWrap>
+              <BoardWrap>
+                <BoardTitle>{post?.title}</BoardTitle>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    opacity: "0.4",
+                    height: "40px",
+                  }}
+                >
+                  {post?.name}
+                </div>
+                <BoardContent>{post?.content} </BoardContent>
+              </BoardWrap>
+              <ButtonWrap>
+                <button
+                  onClick={() => {
+                    setEditPostingModalOpen(post?.id);
+                  }}
+                >
+                  수정
+                </button>
+                <button>삭제</button>
+              </ButtonWrap>
+            </ModalContainer>
+          </ModalBackground>
+        </>
+      ) : (
+        <>
+          <ModalBackground>
+            <ModalContainer onClick={(e) => e.stopPropagation()}>
+              <Header>
+                <CloseButton onClick={CloseEditPostingModal}>취소</CloseButton>
+                <div>팁 수정하기</div>
+                <SaveButton alert="저장되었습니다." onClick={editPost}>
+                  저장
+                </SaveButton>
+              </Header>
 
-        <Body>
-          <TitleInput
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-            ref={titleRef}
-          />
-          <Category
-            value={selected}
-            onChange={selectCategory}
-            ref={categoryRef}
-          >
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            ))}
-          </Category>
-          <ImgUpload type="file" onChange={onChangeUpload} />
-          <Content>
-            <ContentInput
-              onChange={(e) => setContent(e.target.value)}
-              value={content}
-              ref={contentRef}
-            />
-          </Content>
-        </Body>
-      </ModalContainer>
-    </ModalBackground>
+              <Body>
+                <TitleInput
+                  onChange={(e) => setTitle(e.target.value)}
+                  value={title}
+                  ref={titleRef}
+                />
+                <Category
+                  value={selected}
+                  onChange={selectCategory}
+                  ref={categoryRef}
+                >
+                  {options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  ))}
+                </Category>
+                <ImgUpload type="file" onChange={onChangeUpload} />
+                <Content>
+                  <ContentInput
+                    onChange={(e) => setContent(e.target.value)}
+                    value={content}
+                    ref={contentRef}
+                  />
+                </Content>
+              </Body>
+            </ModalContainer>
+          </ModalBackground>
+        </>
+      )}
+    </>
   );
 }
 

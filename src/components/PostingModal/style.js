@@ -1,13 +1,6 @@
 import styled from "styled-components";
 
-export const ModalBackground = styled.div`
-  /* position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0; */
-  /* background: rgba(67, 79, 101, 0.7); */
-`;
+export const ModalBackground = styled.div``;
 
 export const ModalContainer = styled.div`
   /* 모달창 크기 */
@@ -16,10 +9,11 @@ export const ModalContainer = styled.div`
   padding: 20px;
   /* 모달 배치 */
   /* translate는 본인의 크기 기준으로 작동한다. */
-  /* position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
+  position: absolute;
+  z-index: 999;
+  /* top: 40%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
 
   /* 모달창 디자인 */
   background-color: #fff;
@@ -123,10 +117,10 @@ export const ContentInput = styled.textarea`
   outline: none;
   background: transparent;
 `;
-export const ImgUpload = styled.div`
+export const ImgUpload = styled.input`
   margin: 30px 0 10px 0;
-  /* border: none; */
-  /* border-bottom: 0.6px solid #c6c6c6; */
+  border: none;
+  border-bottom: 0.6px solid #c6c6c6;
   .button {
     background: #e1e1e4;
 

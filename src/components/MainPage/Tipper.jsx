@@ -40,38 +40,6 @@ const Tipper = ({ posts, result }) => {
     }
   };
 
-  //* 수정 함수
-  const titleRef = useRef(null);
-  const categoryRef = useRef(null);
-  const imageRef = useRef(null);
-  const contentRef = useRef(null);
-  const [editBox, setEditBox] = useState(false);
-  // const [editValue, setEditValue] = useState([
-  //   posts.title,
-  //   posts.category,
-  //   posts.imgUrl,
-  //   posts.content,
-  // ]);
-
-  // const updatePost = async ({ title, category, imgUrl, content }) => {
-  // if (
-  //   editValue[0] == "" &&
-  //   editValue[1] == "" &&
-  //   editValue[2] == "" &&
-  //   editValue[3] == ""
-  // )
-  //   return;
-  //* 이 함수가 실행되면 textArea가 될 수 있나요!!
-  //   const docRef = doc(db, "posts", posts.id);
-  //   await updateDoc(docRef, {
-  //     title: editValue[0],
-  //     category: editValue[1],
-  //     imgUrl: editValue[2],
-  //     content: editValue[3],
-  //   });
-  //   setToggleBtn(false);
-  // };
-
   useEffect(() => {
     toggleButton();
   }, []);
@@ -86,45 +54,44 @@ const Tipper = ({ posts, result }) => {
                 setEditPostingModalOpen={setEditPostingModalOpen}
                 postId={i.id}
                 post={i}
+                currentUid={currentUid}
+                currentUser={currentUser}
               />
-            ) : (
-              <TipperWrap key={i?.id}>
-                <TipperImgWrap>
-                  <img src={i?.imgUrl} alt="희망사진" />
-                </TipperImgWrap>
-                <TipTitleWrap>
-                  <Like currentUser={currentUser} id={i.id} post={i} />
-                  <TipperTitle>{i?.category}</TipperTitle>
-                </TipTitleWrap>
-                <BoardWrap>
-                  <BoardTitle>{i?.title}</BoardTitle>
-                  <div
-                    style={{
-                      fontSize: "14px",
-                      opacity: "0.4",
-                      height: "40px",
-                    }}
-                  >
-                    {i?.name}
-                  </div>
-                  <BoardContent>
-                    {i?.content.substr(0, 400) + "..."}{" "}
-                  </BoardContent>
-                </BoardWrap>
-                {i.userId === currentUid && (
-                  <ButtonWrap>
-                    <button
-                      onClick={() => {
-                        setEditPostingModalOpen(i?.id);
-                      }}
-                    >
-                      수정
-                    </button>
-                    <button>삭제</button>
-                  </ButtonWrap>
-                )}
-              </TipperWrap>
-            )}
+            ) : null}
+
+            <TipperWrap key={i?.id}>
+              <TipperImgWrap>
+                <img src={i?.imgUrl} alt="희망사진" />
+              </TipperImgWrap>
+              <TipTitleWrap>
+                <Like currentUser={currentUser} id={i.id} post={i} />
+                <TipperTitle>{i?.category}</TipperTitle>
+              </TipTitleWrap>
+              <BoardWrap>
+                <BoardTitle>
+                  {i?.title.length > 13
+                    ? i?.title.substr(0, 12) + "..."
+                    : i?.title}
+                </BoardTitle>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    opacity: "0.4",
+                    height: "40px",
+                  }}
+                >
+                  {i?.name}
+                </div>
+                <BoardContent>
+                  {i?.content.length > 400
+                    ? i?.content.substr(0, 400) + "..."
+                    : i?.content}{" "}
+                </BoardContent>
+              </BoardWrap>
+              <button onClick={() => setEditPostingModalOpen(i.id)}>
+                자세히보기
+              </button>
+            </TipperWrap>
           </>
         );
       })}
