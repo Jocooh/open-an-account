@@ -4,21 +4,17 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
-`;
-export const Content = styled.div`
-  width: 900px;
-  height: 1500px;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  /* background-color: beige; */
+  justify-content: center;
 `;
 
-export const Title = styled.div`
-  /* color: white; */
+export const Body = styled.div`
   display: flex;
-  padding: 20px 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 3rem 0 5rem;
+`;
+export const Title = styled.div`
+  display: flex;
 
   font-family: "Noto Sans";
   font-style: normal;
@@ -29,14 +25,28 @@ export const Title = styled.div`
   color: #ffffff;
 `;
 
+export const Content = styled.div`
+  width: 900px;
+  height: 1500px;
+  display: flex;
+  /* justify-content: flex-end; */
+  flex-direction: column;
+  /* justify-content: center; */
+  /* background-color: beige; */
+`;
 export const Boards = styled.div`
   display: flex;
   flex-flow: wrap;
+  padding-top: 3rem;
+
+  @media screen {
+  }
 `;
 
 export const UserWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 17rem;
 `;
 export const Message = styled.div`
   font-family: "Noto Sans";
@@ -68,9 +78,16 @@ export const User = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 18px;
+  text-align: center;
 
   background-color: #ffffff;
   border-radius: 5px;
+`;
+
+export const LoginButton = styled.button`
+  margin-top: 20px;
+  text-decoration: underline;
+  color: #6a24ff;
 `;
 export const PostButton = styled.button`
   margin-top: 20px;

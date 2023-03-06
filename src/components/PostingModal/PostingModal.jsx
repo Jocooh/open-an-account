@@ -37,9 +37,14 @@ import {
   ImgUpload,
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
+import { useCallback } from "react";
 
 function PostingModal({ setPostingModalOpen, categorytab, posts }) {
   const navigate = useNavigate();
+
+  const openScroll = useCallback(() => {
+    document.body.style.removeProperty("overflow");
+  }, []);
 
   const confirm = () => {
     if (
@@ -47,6 +52,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
         "입력하신 내용은 저장되지 않습니다. 이대로 나가시겠습니까?"
       )
     ) {
+      openScroll();
       setPostingModalOpen(false);
     } else {
       inputContent.current.focus();
@@ -57,6 +63,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
     if (inputTitle || inputContent) {
       confirm();
     }
+    openScroll();
     setPostingModalOpen(false);
   };
 
@@ -187,16 +194,7 @@ function PostingModal({ setPostingModalOpen, categorytab, posts }) {
               </option>
             ))}
           </Category>
-          <ImgUpload>
-            <button onChange={onChangeUpload}>파일 선택</button>
-            <input
-              type="file"
-              ref={fileRef}
-              style={{ display: "none" }}
-              accept="image/jpg, image/png, image/jpeg"
-              onChange={onClickUpload}
-            />
-          </ImgUpload>
+          <ImgUpload type="file" onChange={onChangeUpload} />
           <Content>
             <ContentInput
               onChange={(e) => setInputContent(e.target.value)}
