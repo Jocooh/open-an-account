@@ -113,6 +113,7 @@ export default Bookmarks;
 export const Bookmarked = styled.div`
   width: 20px;
   height: 25px;
+  cursor: pointer;
 `;
 export const BookmarkedImg = styled.img`
   width: 100%;
