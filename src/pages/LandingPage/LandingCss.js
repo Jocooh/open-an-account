@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 
 export const BackgroundWraper = styled.div`
   /* background-color: #e7ecfa; */
@@ -23,7 +24,7 @@ export const Firstsection = styled.div`
   height: 1080px;
   display: flex;
   justify-content: center;
-  background: url(${require("../../assets/landing/SectionBackground.png")})
+  background: url(${require("../../assets/landing/FirstSectionBackground.png")})
     fixed;
   //Todo 다른 배경이미지 고안하기.
   background-size: cover;
@@ -47,7 +48,8 @@ export const MainTilte = styled.div`
   width: 700px;
   position: absolute;
   top: 300px;
-  text-shadow: 12px 12px 10px rgba(0, 0, 0, 0.2);
+  text-shadow: 12px 12px 10px rgba(0, 0, 0, 0.5);
+  color: #fff;
 
   animation: slidein 1s ease;
   @keyframes slidein {
@@ -72,9 +74,10 @@ export const FirestSectionSubTitle = styled.div`
   width: 100%;
   height: 100px;
   margin-top: 30px;
-  font-size: 30px;
+  font-size: 20px;
   display: flex;
   align-items: center;
+  color: #fff;
 
   animation: BounceText 1s alternate;
   @keyframes BounceText {
@@ -94,15 +97,15 @@ export const FirestSectionButtonWrap = styled.div``;
 
 //* 첫번째 섹션 서브 타이틀 버튼
 export const StartButton = styled.button`
-  width: 244px;
-  height: 73px;
-  color: white;
-  border-radius: 12px;
-  border: none;
-  font-size: 26px;
-  margin-top: 50px;
-  background-color: #6a24ff;
-  cursor: pointer;
+  width: 200px;
+  height: 54px;
+  color: #505050;
+  border-radius: 60px;
+  font-size: 16px;
+  background-color: #fff;
+  text-align: center;
+  margin-right: 20px;
+  border: 1px solid #fff;
 
   animation: ApperButton 1.5s ease-out;
   @keyframes ApperButton {
@@ -130,58 +133,13 @@ export const FirstSectionImgA = styled.div`
   }
 `;
 
-//* 첫번째 섹션 2번 폴더이미지
-export const FirstSectionImgB = styled.div`
-  img {
-    width: 300px;
-    margin-bottom: 100px;
-    margin-left: -80px;
-    position: absolute;
-    animation: MoveImg 2s ease-in-out;
-    @keyframes MoveImg {
-      0% {
-        transform: translateY(-10px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-  }
-`;
-
-//* 첫번째 섹션 3번째 이미지
-export const FirstSectionImgC = styled.div`
-  img {
-    width: 600px;
-    position: absolute;
-    margin-left: -960px;
-    margin-top: -60px;
-    animation: TextUnderline 1s alternate;
-    @keyframes TextUnderline {
-      0% {
-        transform: translateX(-700px);
-        opacity: 0;
-      }
-      /* 50% {
-        transform: translateX(-400px);
-      } */
-      100% {
-        opacity: 1;
-        transform: translateX(0px);
-      }
-    }
-  }
-`;
-
 //* 두번째 섹션
 export const SecondSection = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
   height: 1080px;
-  background-color: #6a24ff;
+  background-color: #fff;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -192,13 +150,13 @@ export const SecondSectioncontainer = styled.div``;
 export const SecondSectionTitle = styled.h1`
   font-size: 80px;
   font-weight: bold;
-  margin-bottom: 50px;
-  color: #fff;
+  margin-bottom: 15px;
+  color: #000;
 `;
 export const SecondSectionSubTitle = styled.div`
-  font-size: 30px;
-  margin-bottom: 30px;
-  color: #fff;
+  font-size: 18px;
+  margin-bottom: 60px;
+  color: #505050;
 `;
 export const SecondImgWrap = styled.div`
   display: flex;
@@ -208,7 +166,6 @@ export const SecondImgWrap = styled.div`
 export const Contents = styled.div`
   width: 420px;
   height: 488px;
-  background-color: lavender;
   margin: 0 20px;
   border-radius: 8px;
 `;
@@ -224,6 +181,10 @@ export const ContentsSubTitle = styled.div`
 
 export const SecondImgContainer = styled.div`
   height: 350px;
+  /* background-color: #f7f7fb; */ //* 색이 안보여요
+  background-color: lavender;
+  border-radius: 10px;
+  margin-bottom: 50px;
 `;
 
 //* 세번째 섹션
@@ -233,6 +194,7 @@ export const ThirdSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #e7ecfa;
 `;
 export const ThirdTopSection = styled.div`
   width: 100%;
@@ -287,10 +249,13 @@ export const ThirdSectionBottomContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  img {
+    /* padding-top: 100px; */
+  }
 `;
 
 export const ThirdSectionBottomTitleWrap = styled.div`
-  margin-top: 200px;
+  margin-top: 50px;
 `;
 
 export const ThirdSectionBottomTitle = styled.h1`
@@ -299,7 +264,7 @@ export const ThirdSectionBottomTitle = styled.h1`
 `;
 
 export const ThirdSectionBottomSubTitle = styled.div`
-  font-size: 30px;
+  font-size: 25px;
   margin-top: 30px;
 `;
 
@@ -307,8 +272,8 @@ export const FourthSection = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 1080px;
-  background-color: #6a24ff;
+  /* height: 1080px; */
+  background-color: #fff;
   text-align: center;
   padding-top: 300px;
 `;
@@ -316,25 +281,33 @@ export const FourthSection = styled.div`
 export const FourthSectonTitle = styled.div`
   font-size: 80px;
   font-weight: bold;
-  color: #fff;
+`;
+
+export const FourthSectionSubTitle = styled.div`
+  font-size: 32px;
+  margin-top: 30px;
 `;
 
 export const FourthSectionButtonWrap = styled.div`
-  margin-top: 100px;
   margin-bottom: 150px;
 `;
 
 export const FourthSectionButton = styled.button`
-  background-color: #fff;
+  background-color: #6a24ff;
   width: 310px;
   height: 77px;
-  color: #6a24ff;
+  color: #fff;
   font-size: 22px;
   border-radius: 10px;
   font-weight: bold;
+  margin-top: 80px;
 `;
 
 export const FourthSectionDecription = styled.div`
   color: #fff;
   font-size: 14px;
+  background-color: #6a24ff;
+  width: 100%;
+  padding-top: 200px;
+  padding-bottom: 25px;
 `;
