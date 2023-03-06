@@ -48,7 +48,7 @@ const Tipper = ({ posts, result, getPostList }) => {
   // 게시글 삭제
   const board = posts?.map((i) => i);
   const onClickDelete = async (id) => {
-    console.log(id);
+    // console.log(id);
     const ok = window.confirm(" 정말 삭제하시겠습니까?");
     if (ok) {
       try {

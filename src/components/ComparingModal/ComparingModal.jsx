@@ -31,10 +31,10 @@ const ComparingModal = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
 
-  console.log("selectedProduct :>> ", selectedProduct);
-  console.log("selectedProductRate :>> ", selectedProductRate);
-  console.log("selectedProductRate2 :>> ", selectedProductRate2);
-  console.log("selectedProductRateType :>> ", selectedProductRateType);
+  // console.log("selectedProduct :>> ", selectedProduct);
+  // console.log("selectedProductRate :>> ", selectedProductRate);
+  // console.log("selectedProductRate2 :>> ", selectedProductRate2);
+  // console.log("selectedProductRateType :>> ", selectedProductRateType);
 
   return (
     <ModalBackground>

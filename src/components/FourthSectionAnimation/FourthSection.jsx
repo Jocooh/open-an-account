@@ -13,7 +13,7 @@ const FourthSectionImgAnimation = () => {
       setIsAnimated(true);
     }
   };
-  console.log(isAnimated);
+  // console.log(isAnimated);
 
   return (
     <FourthSectionWrap ref={fourthSectionRef}>

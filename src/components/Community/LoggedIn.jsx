@@ -33,12 +33,12 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   const [postingModalOpen, setPostingModalOpen] = useState(false);
   const [boards, setBoards] = useState([]);
 
-  const lockScroll = useCallback(() => {
-    document.body.style.overflow = "hidden";
-  }, []);
+  // const lockScroll = useCallback(() => {
+  //   document.body.style.overflow = "hidden";
+  // }, []);
 
   const OpenPostingModal = () => {
-    lockScroll();
+    // lockScroll();
     setPostingModalOpen(true);
   };
 
