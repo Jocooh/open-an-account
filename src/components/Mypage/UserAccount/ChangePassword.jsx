@@ -17,21 +17,25 @@ function ChangePassword({
   setBtnValidation, //btn활성화
   inputValidationConfirm,
   setInputValidationConfirm,
+  passwordMessage,
+  setPasswordMessage,
+  corfirmPasswordMessage,
+  setConfirmPasswordMessage,
+  doubleCheckPasswordMessage,
+  setDoubleCheckPasswordMessage,
 }) {
   const [inputValidation, setInputValidation] = useState(true);
 
   //첫번째 인풋 state
-  const [passwordMessage, setPasswordMessage] = useState("");
+
   const [isPassword, setIsPassword] = useState(false);
 
   //두번째 인풋 state
-  const [corfirmPasswordMessage, setConfirmPasswordMessage] = useState("");
+
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
 
   //세번째 인풋 state
   const [isDoublePasswordConfirm, setIsDoublePasswordConfirm] = useState(false);
-  const [doubleCheckPasswordMessage, setDoubleCheckPasswordMessage] =
-    useState("");
 
   const email = currentUser.email; //현재 로그인한 유저의 이메일
 

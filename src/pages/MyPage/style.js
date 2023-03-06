@@ -8,6 +8,13 @@ export const MyPageWrapper = styled.div`
   height: 100vh;
   /* align-items: center; */
   /* justify-content: center; */
+  @media screen and (max-width: 1200px) {
+    gap: 100px;
+    font-size: 15px;
+  }
+  @media screen and (max-width: 900px) {
+    gap: 0px;
+  }
 `;
 //여기는 왼쪽 박스 스타일구역
 export const LeftBox = styled.div`
@@ -18,6 +25,13 @@ export const LeftBox = styled.div`
   padding: 20px;
   box-sizing: content-box;
   background-color: #fff;
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+    gap: 40px;
+  }
 `;
 export const UserNicknameDiv = styled.div`
   width: 380px;
@@ -27,10 +41,19 @@ export const UserNicknameDiv = styled.div`
   border-bottom: 1px solid #ddd;
   margin: 0 auto;
   gap: 20px;
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+  }
 `;
 
 export const UserText = styled.h3`
   font-size: 23px;
+  /* @media screen and (max-width: 1200px) {
+    font-size: 23px;
+  } */
 `;
 export const UserContentDiv = styled.div`
   width: 380px;
@@ -40,11 +63,23 @@ export const UserContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   /* gap: 25px; */
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+  }
 `;
 
 export const ContentDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+  }
 `;
 export const LogOutBtn = styled.button`
   width: 84px;
@@ -56,6 +91,10 @@ export const LogOutBtn = styled.button`
   justify-content: center;
   gap: 2px;
   color: #888;
+  @media screen and (max-width: 1200px) {
+    width: 70px;
+    font-size: 11px;
+  }
 `;
 
 export const UserAccountDiv = styled.div`
@@ -67,6 +106,14 @@ export const UserAccountDiv = styled.div`
   align-items: center;
   border-bottom: 1px solid #ddd;
   padding: 10px;
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+    height: 65px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+    gap: 20px;
+  }
 `;
 
 export const UserHistoryDiv = styled.div`
@@ -75,6 +122,13 @@ export const UserHistoryDiv = styled.div`
   margin: 0 auto;
   flex-direction: column;
   gap: 20px;
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+    height: 65px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+  }
 `;
 
 export const HistoryCategory = styled.div`
@@ -85,6 +139,13 @@ export const HistoryCategory = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+    height: 65px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+  }
 `;
 //여기서부터는 오른쪽 박스 스타일 구역
 export const RightBox = styled.div`
@@ -105,6 +166,9 @@ export const RightWrapper = styled.div`
   flex-direction: column;
   background-color: #fff;
   padding: 50px;
+  @media screen and (max-width: 900px) {
+    width: 98%;
+  }
 `;
 
 export const ChangePasswordDiv = styled.div`
@@ -158,6 +222,9 @@ export const SaveBtn = styled.button`
   border-radius: 10px;
   color: white;
   margin-top: 20px;
+  @media screen and (max-width: 900px) {
+    width: 210px;
+  }
 `;
 
 //예금적금 버튼
@@ -174,9 +241,13 @@ export const UseListeWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  /* padding: 20px; */
 
-  /* border: 1px solid #ccc; */
+  @media screen and (max-width: 1200px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 800px) {
+    width: 400px;
+  }
 `;
 export const ListCard = styled.div`
   width: 288px;
@@ -192,7 +263,6 @@ export const ListCard = styled.div`
 
 export const CategoryLike = styled.div`
   display: flex;
-
   gap: 130px; //카테고리와 북마크 사이 거리
 `;
 export const CardCategory = styled.div`

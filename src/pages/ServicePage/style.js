@@ -3,22 +3,36 @@ import styled from "styled-components";
 //* 바디
 export const Wraper = styled.div`
   width: 100%;
-  height: 100vh;
-  position: relative;
+  height: 100%;
+  /* position: relative; */
   //성아-수정 1500px => 1600px
   /* height: 1600px; */
   display: flex;
   justify-content: center;
+  padding-bottom: 20px;
 `;
 
 //* 바디의 하위 컨테이너
-export const Cantinar = styled.div``;
+export const Cantinar = styled.div`
+  @media screen and (max-width: 425px) {
+    /* overflow-x: hidden; */
+    width: 425px;
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 //? ----여기서 부터 상단부분입니다.----
 //* 상단 SectionContainer
 export const TopSectionWraper = styled.div`
   display: flex;
   margin-bottom: 30px;
+  @media screen and (max-width: 425px) {
+    /* overflow-x: scroll;
+    white-space: normal; */
+    /* background-color: lavender; */
+    /* display: none; */
+  }
 `;
 
 //* 상단 Section
@@ -125,6 +139,9 @@ export const ToCompare = styled.button`
     color: #fff;
     cursor: not-allowed;
   }
+  @media screen and (max-width: 425px) {
+    display: none;
+  }
 `;
 
 //? ----여기서 부터 하단부분입니다.----
@@ -132,12 +149,19 @@ export const ToCompare = styled.button`
 export const BottomSectionWraper = styled.div`
   width: 100%;
   display: flex;
+
+  @media screen and (max-width: 425px) {
+    div {
+      input {
+        width: 420px;
+      }
+    }
+  }
 `;
 
 //* 하단 Section
 export const BottomSection = styled.div`
   width: 100%;
-  height: 600px;
 `;
 
 //* 탭 버튼 Wraper
@@ -147,6 +171,10 @@ export const TapButtonWraper = styled.div`
   flex-wrap: wrap;
   gap: 100px;
   text-align: center;
+  @media screen and (max-width: 425px) {
+    gap: 10px;
+    justify-content: center;
+  }
 `;
 
 //* 탭 버튼
@@ -174,24 +202,38 @@ export const TapContainer = styled.div`
   width: 990px;
   padding-top: 50px;
   padding-bottom: 30px;
+  margin-bottom: 30px;
   border: 1px solid #dedede;
   border-radius: 10px;
-  background-color: #fff;
+  @media screen and (max-width: 425px) {
+    width: 425px;
+  }
 `;
 
 //* 하단 탭 공통 부분 중간 컨테이너
 export const TapContainerBox = styled.div`
   width: 812px;
-  /* background-color: aqua; */
-  //성아-수정
-  /* height: 680px; */
+  @media screen and (max-width: 425px) {
+    width: 425px;
+  }
+`;
+
+export const CalculatorBoxContents = styled.div`
+  @media screen and (max-width: 425px) {
+    width: 425px;
+    div {
+      text-align: center;
+      input {
+        width: 400px;
+      }
+    }
+  }
 `;
 
 //* 하단 탭 공통 부분.
 export const TapTitleName = styled.div`
   font-size: 24px;
   margin-bottom: 20px;
-  /* position: relative; */
 `;
 
 //* 예금,적금(Btn) ProductWraper
@@ -199,6 +241,9 @@ export const ProductWraper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  @media screen and (max-width: 425px) {
+    justify-content: center;
+  }
 `;
 
 //* 금융상품계산기 박스 내부 버튼
@@ -230,6 +275,10 @@ export const ProducksCalculatorBoxContentTilte = styled.div`
   width: 100%;
   font-size: 24px;
   display: flex;
+  @media screen and (max-width: 425px) {
+    width: 425px;
+    justify-content: center;
+  }
 `;
 
 //* 최종목표금액 inputTitle
@@ -263,8 +312,11 @@ export const MonthRangeSliderTitle = styled.div`
 export const MonthRangeSlider = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 144px;
+  gap: 145px;
   margin-bottom: 100px;
+  @media screen and (max-width: 425px) {
+    gap: 48px;
+  }
 `;
 
 //* 찾기 Btn Warper
