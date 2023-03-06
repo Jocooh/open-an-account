@@ -56,19 +56,19 @@ const BestTipper = ({ currentUser }) => {
             style={{ borderRadius: "20px" }}
           >
             <TipperBanner>
-              <BestTipperList best={bestBoards[0]} />
-              <BestTipperList best={bestBoards[1]} />
-              <BestTipperList best={bestBoards[2]} />
+              <BestTipperList best={bestBoards[0]} currentUser={currentUser} />
+              <BestTipperList best={bestBoards[1]} currentUser={currentUser} />
+              <BestTipperList best={bestBoards[2]} currentUser={currentUser} />
             </TipperBanner>
             <TipperBanner>
-              <BestTipperList best={bestBoards[4]} />
-              <BestTipperList best={bestBoards[5]} />
-              <BestTipperList best={bestBoards[6]} />
+              <BestTipperList best={bestBoards[4]} currentUser={currentUser} />
+              <BestTipperList best={bestBoards[5]} currentUser={currentUser} />
+              <BestTipperList best={bestBoards[6]} currentUser={currentUser} />
             </TipperBanner>
             <TipperBanner>
-              <BestTipperList best={bestBoards[7]} />
-              <BestTipperList best={bestBoards[8]} />
-              <BestTipperList best={bestBoards[9]} />
+              <BestTipperList best={bestBoards[7]} currentUser={currentUser} />
+              <BestTipperList best={bestBoards[8]} currentUser={currentUser} />
+              <BestTipperList best={bestBoards[9]} currentUser={currentUser} />
             </TipperBanner>
           </Swiper>
         </Tippers>
