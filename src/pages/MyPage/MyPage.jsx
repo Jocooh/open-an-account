@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ChangePassword from "../../components/Mypage/UserAccount/ChangePassword";
 // import EnrollNumber from "../../components/Mypage/UserAccount/EnrollNumber";
 import ChangeNickname from "../../components/Mypage/UserAccount/ChangeNickname";
-
+import { MdTableRows } from "react-icons/md";
 import {
   MyPageWrapper,
   LeftBox,
@@ -65,17 +65,15 @@ function MyPage() {
   const [editUserPassword, setEditUserPassword] = useState(""); //고치고 싶은 비밀번호
   const [inputValidationConfirm, setInputValidationConfirm] = useState(true);
   const [password, setPassword] = useState("");
-
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [corfirmPasswordMessage, setConfirmPasswordMessage] = useState("");
+  const [doubleCheckPasswordMessage, setDoubleCheckPasswordMessage] =
+    useState("");
   //ChangeNickName.jsx
   //newNickname: 유저의 바꿀 닉네임 ,  name: 왼쪽박스 유저 네임
   const [newNickName, setNewNickName] = useState(currentUser?.displayName);
   const [name, setName] = useState(newNickName);
   const [isNickName, setIsNickName] = useState(false);
-
-  //EnrollNum.jsx
-  //PhoneNum: 유저가 인풋에 본인의 휴대폰번호를 적을 경우 add될 state
-  const [phoneNum, setPhoneNum] = useState("");
-  const [phoneList, setPhoneList] = useState(""); //firebase에 저장되어있는 키값
 
   //닉네임 업데이트 함수
   const clickUserUpdate = async (e) => {
@@ -115,6 +113,9 @@ function MyPage() {
     setPassword("");
     setUserPassword("");
     setEditUserPassword("");
+    setPasswordMessage("");
+    setConfirmPasswordMessage("");
+    setDoubleCheckPasswordMessage("");
   };
 
   return (
@@ -145,12 +146,6 @@ function MyPage() {
                 로그아웃
               </LogOutBtn>
             </ContentDiv>
-            {/* <div>
-              <p>연락처</p>
-              <p style={{ color: "#aaa" }}>
-                {phoneNum !== "" ? <>{phoneNum}</> : "등록된 번호가 없어요"}
-              </p>
-            </div> */}
           </UserContentDiv>
           {/* 유저 계정 변경 부분 (디폴트부분) */}
           <UserAccountDiv
@@ -211,28 +206,15 @@ function MyPage() {
               </CategoryImg>
               <p>〉</p>
             </HistoryCategory>
-            {/* <HistoryCategory
-              style={tab === 3 ? { backgroundColor: "#e6e8ea" } : null}
-            >
-              <CategoryImg>
-                <StyledIcons src={require("../../assets/lists.png")} />
-                <button
-                  onClick={() => {
-                    setTab(3);
-                  }}
-                  style={{ fontSize: "18px" }}
-                >
-                  스크랩한 글
-                </button>
-              </CategoryImg>
-              <p>〉</p>
-            </HistoryCategory> */}
           </UserHistoryDiv>
         </LeftBox>
 
         <RightBox className="오른쪽 박스">
           {tab === 0 && (
             <RightWrapper className="첫번째 탭 박스">
+              {/* <button style={{ display: "flex", position: "relative" }}>
+                <MdTableRows fontSize="30px" />
+              </button> */}
               <form
                 onSubmit={(e) => {
                   clickUserUpdate(e);
@@ -249,6 +231,12 @@ function MyPage() {
                   setUserPassword={setUserPassword} //새 비밀번호 확인
                   inputValidationConfirm={inputValidationConfirm} // 3번째 input 활성화
                   setInputValidationConfirm={setInputValidationConfirm} // 3번째 input 활성화
+                  passwordMessage={passwordMessage}
+                  setPasswordMessage={setPasswordMessage}
+                  corfirmPasswordMessage={corfirmPasswordMessage}
+                  setConfirmPasswordMessage={setConfirmPasswordMessage}
+                  doubleCheckPasswordMessage={doubleCheckPasswordMessage}
+                  setDoubleCheckPasswordMessage={setDoubleCheckPasswordMessage}
                 />
 
                 <ChangeNickname

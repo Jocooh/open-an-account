@@ -12,7 +12,7 @@ import {
 } from "../../pages/MyPage/style";
 import Like from "../Community/Like";
 
-function BestTipperList({ best }) {
+function BestTipperList({ best, currentUser }) {
   return (
     <>
       {best ? (
@@ -33,7 +33,7 @@ function BestTipperList({ best }) {
                 <CardCategory>
                   <p>{best?.category}</p>
                 </CardCategory>
-                {/* <Like /> */}
+                <Like currentUser={currentUser} id={best.id} post={best} />
               </CategoryLike>
               <CardTitleContainer>
                 <CardTitle>
@@ -47,7 +47,9 @@ function BestTipperList({ best }) {
           </ListCard>
         </>
       ) : (
-        <ListCard>해당 게시물이 없어요!</ListCard>
+        <ListCard>
+          <div style={{ padding: "10px" }}>해당 게시물이 없어요!</div>
+        </ListCard>
       )}
     </>
   );

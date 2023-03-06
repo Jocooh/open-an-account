@@ -189,7 +189,9 @@ export const TipperWrap = styled.div`
   width: 288px;
   border: 1px #dedede solid;
   border-radius: 10px;
-  margin: 10px 10px 10px 0;
+
+  margin: 10px 5px;
+
   background-color: white;
 `;
 

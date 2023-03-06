@@ -24,7 +24,7 @@ function Like({ currentUser, post, id }) {
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
   const [likenum, setLikenum] = useState(0);
-  const [recoilLike, setRecoilLike] = useState(likenum);
+  const [recoilLike, setRecoilLike] = useState(0);
   //로그인 없이 좋아요 클릭하면 로그인 유도
   // console.log(newLike);
   const LikeHandler = async (id) => {
@@ -57,16 +57,6 @@ function Like({ currentUser, post, id }) {
       updateDoc(likeNumRef, { like: recoilLike - 1 });
     }
   };
-  //포스트에 좋아요 숫자 올라갈 함수
-
-  // const plusLikeNum = async () => {
-  //   await updateDoc(likeNumRef, { like: recoilLike + 1 });
-  //   console.log("update성공");
-  // };
-  // const minusLikeNum = async () => {
-  //   updateDoc(likeNumRef, { like: recoilLike - 1 });
-  //   console.log("update-1성공");
-  // };
 
   const getLikes = async () => {
     const newLike = `${id}${currentUser.uid}`;
