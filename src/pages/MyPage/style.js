@@ -150,7 +150,7 @@ export const HistoryCategory = styled.div`
 //여기서부터는 오른쪽 박스 스타일 구역
 export const RightBox = styled.div`
   /* width: 900px; */
-  height: 800px;
+  height: 810px;
   /* background-color: #f4f5f6; */
   padding: 20px;
   display: flex;
@@ -173,7 +173,7 @@ export const RightWrapper = styled.div`
 
 export const ChangePasswordDiv = styled.div`
   display: flex;
-  height: 380px;
+  height: 420px;
   flex-direction: column;
   gap: 15px;
   box-sizing: border-box;
@@ -194,9 +194,10 @@ export const EnrollNumberDiv = styled.div`
 export const ChangeNickNameDiv = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100px;
-  gap: 10px;
+  height: 115px;
+  gap: 5px;
   margin-top: 10px;
+  /* background-color: yellow; */
 `;
 
 export const StyledImage = styled.img`
@@ -221,7 +222,8 @@ export const SaveBtn = styled.button`
   height: 50px;
   border-radius: 10px;
   color: white;
-  margin-top: 20px;
+  margin-top: 10px;
+
   @media screen and (max-width: 900px) {
     width: 210px;
   }

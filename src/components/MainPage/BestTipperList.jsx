@@ -1,6 +1,5 @@
-import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect, useMemo, useState } from "react";
-import { authService } from "../../config/firebase";
+import React from "react";
+
 import {
   ListCard,
   CardImage,
@@ -48,7 +47,12 @@ function BestTipperList({ best, currentUser }) {
         </>
       ) : (
         <ListCard>
-          <div style={{ padding: "10px" }}>해당 게시물이 없어요!</div>
+          <div style={{ padding: "10px" }}>가져올 게시물이 없어요!</div>
+          <img
+            src={require("../../assets/no.png")}
+            alt="빈 게시물"
+            style={{ width: "100px", margin: "auto" }}
+          />
         </ListCard>
       )}
     </>

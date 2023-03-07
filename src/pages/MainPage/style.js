@@ -436,3 +436,9 @@ export const BankWrap = styled.div`
     text-decoration: none;
   }
 `;
+
+export const BankLogo = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+`;

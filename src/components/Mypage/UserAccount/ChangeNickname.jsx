@@ -35,9 +35,11 @@ function ChangeNickname({
         value={newNickName}
         onChange={(e) => changeNickHandler(e)}
       ></UserInput>
-      {isNickName === true ? (
-        <p style={{ color: "red" }}>{nicknameMessage}</p>
-      ) : null}
+      <div>
+        {isNickName === true ? (
+          <p style={{ color: "green" }}>{nicknameMessage}</p>
+        ) : null}
+      </div>
     </ChangeNickNameDiv>
   );
 }

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 //여기 추가
 export const StyledListDiv = styled.div`
-  width: 990px;
+  width: 970px;
   height: 141px;
   display: flex;
   justify-content: space-between;
