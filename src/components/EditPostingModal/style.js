@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ModalBackground = styled.div`
-  position: fixed;
+  /* position: fixed; */
   z-index: 999;
   /* background: rgba(67, 79, 101, 0.7); */
 `;
@@ -39,6 +39,8 @@ export const CloseButton = styled.button`
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
+
+  margin: 0 auto 10px 0;
 
   :hover {
     background-color: rgba(188, 188, 188, 0.4);

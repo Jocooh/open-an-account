@@ -46,19 +46,22 @@ const Tipper = ({ posts, result, getPostList }) => {
   }, []);
 
   // 게시글 삭제
-  const board = posts?.map((i) => i);
-  const onClickDelete = async (id) => {
-    // console.log(id);
-    const ok = window.confirm(" 정말 삭제하시겠습니까?");
-    if (ok) {
-      try {
-        await deleteDoc(doc(db, "posts", id));
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    getPostList();
-  };
+  // const board = posts?.map((i) => i);
+  // const onClickDelete = async (id) => {
+  //   // console.log(id);
+  //   const ok = window.confirm(" 정말 삭제하시겠습니까?");
+  //   if (ok) {
+  //     try {
+  //       await deleteDoc(doc(db, "posts", id));
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  //   getPostList();
+  // };
+
+  //* 게시글 본문에 줄바꿈이 표시 안 됨
+  // const contentValue = value.replace(/<br\s*\/?>/gm, "\n").length;
 
   return (
     <>
@@ -72,6 +75,7 @@ const Tipper = ({ posts, result, getPostList }) => {
                 post={i}
                 currentUid={currentUid}
                 currentUser={currentUser}
+                getPostList={getPostList}
               />
             ) : null}
 

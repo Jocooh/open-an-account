@@ -52,6 +52,7 @@ function EditPostingModal({
   currentUser,
   post,
   postId,
+  getPostList,
 }) {
   const navigate = useNavigate();
 
@@ -85,7 +86,7 @@ function EditPostingModal({
   const [selected, setSelected] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [content, setContent] = useState("");
-  let [keep, setKeep] = useState(false); // 수정버튼을 눌렀지만 수정을 안할 때를 대비
+  let [isEdit, setIsEdit] = useState(false); // 수정버튼을 눌러야만 수정폼 생김
 
   useEffect(() => {
     setTitle(post.title);
@@ -121,7 +122,8 @@ function EditPostingModal({
     })
       .then(() => {
         alert("작성하신 글이 정상적으로 업로드 되었습니다.");
-        setEditPostingModalOpen(false);
+        setIsEdit(false);
+        getPostList();
       })
       .catch((err) => {
         if (err.message.includes("already-in-use")) {
@@ -176,12 +178,72 @@ function EditPostingModal({
     });
   }, []);
 
+  const onClickDelete = async (id) => {
+    console.log(id);
+    const ok = window.confirm(" 정말 삭제하시겠습니까?");
+    if (ok) {
+      try {
+        await deleteDoc(doc(db, "posts", id));
+        alert("삭제되었습니다.");
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getPostList();
+  };
+
   return (
     <>
-      {post.userId === currentUid ? (
+      {isEdit ? (
         <>
           <ModalBackground>
             <ModalContainer onClick={(e) => e.stopPropagation()}>
+              <Header>
+                <CloseButton onClick={CloseEditPostingModal}>취소</CloseButton>
+                <div>팁 수정하기</div>
+                <SaveButton alert="저장되었습니다." onClick={editPost}>
+                  저장
+                </SaveButton>
+              </Header>
+
+              <Body>
+                <TitleInput
+                  onChange={(e) => setTitle(e.target.value)}
+                  value={title}
+                  ref={titleRef}
+                  maxLength={30}
+                />
+                <Category
+                  value={selected}
+                  onChange={selectCategory}
+                  ref={categoryRef}
+                >
+                  {options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  ))}
+                </Category>
+                <ImgUpload type="file" onChange={onChangeUpload} />
+                <Content>
+                  <ContentInput
+                    onChange={(e) => setContent(e.target.value)}
+                    value={content}
+                    ref={contentRef}
+                    maxLength={1000}
+                  />
+                </Content>
+              </Body>
+            </ModalContainer>
+          </ModalBackground>
+        </>
+      ) : (
+        <>
+          <ModalBackground>
+            <ModalContainer onClick={(e) => e.stopPropagation()}>
+              <CloseButton onClick={() => setEditPostingModalOpen(false)}>
+                닫기
+              </CloseButton>
               <TipperImgWrap>
                 <img src={post?.imgUrl} alt="희망사진" />
               </TipperImgWrap>
@@ -202,57 +264,18 @@ function EditPostingModal({
                 </div>
                 <BoardContent>{post?.content} </BoardContent>
               </BoardWrap>
-              <ButtonWrap>
-                <button
-                  onClick={() => {
-                    setEditPostingModalOpen(post?.id);
-                  }}
-                >
-                  수정
-                </button>
-                <button>삭제</button>
-              </ButtonWrap>
-            </ModalContainer>
-          </ModalBackground>
-        </>
-      ) : (
-        <>
-          <ModalBackground>
-            <ModalContainer onClick={(e) => e.stopPropagation()}>
-              <Header>
-                <CloseButton onClick={CloseEditPostingModal}>취소</CloseButton>
-                <div>팁 수정하기</div>
-                <SaveButton alert="저장되었습니다." onClick={editPost}>
-                  저장
-                </SaveButton>
-              </Header>
-
-              <Body>
-                <TitleInput
-                  onChange={(e) => setTitle(e.target.value)}
-                  value={title}
-                  ref={titleRef}
-                />
-                <Category
-                  value={selected}
-                  onChange={selectCategory}
-                  ref={categoryRef}
-                >
-                  {options.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.text}
-                    </option>
-                  ))}
-                </Category>
-                <ImgUpload type="file" onChange={onChangeUpload} />
-                <Content>
-                  <ContentInput
-                    onChange={(e) => setContent(e.target.value)}
-                    value={content}
-                    ref={contentRef}
-                  />
-                </Content>
-              </Body>
+              {post.userId === currentUid && (
+                <ButtonWrap>
+                  <button
+                    onClick={() => {
+                      setIsEdit(post?.id);
+                    }}
+                  >
+                    수정
+                  </button>
+                  <button onClick={() => onClickDelete(post?.id)}>삭제</button>
+                </ButtonWrap>
+              )}
             </ModalContainer>
           </ModalBackground>
         </>
