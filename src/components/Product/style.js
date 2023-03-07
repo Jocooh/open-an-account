@@ -69,6 +69,27 @@ export const Logo = styled.img`
 `;
 
 //* 상품설명
+export const FullInfo = styled.div`
+  height: 270px;
+  overflow: auto;
+  white-space: pre-wrap;
+
+  /* 스크롤바 설정*/
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  ::-webkit-scrollbar-thumb {
+    background: #505050;
+    border-radius: 25px;
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  ::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
+`;
 export const Info = styled.div`
   margin-top: 20px;
   font-family: "Montserrat";
@@ -96,5 +117,4 @@ export const Scrap = styled.div`
   /* position: fixed; */
   /* justify-content: end; */
   margin: auto 0 0 auto;
-
 `;

@@ -196,6 +196,13 @@ export const TipperWrap = styled.div`
   margin: 10px 5px;
 
   background-color: white;
+
+  cursor: pointer;
+
+  transition: all 0.2s linear;
+  :hover {
+    transform: scale(1.025);
+  }
 `;
 
 // 팁퍼제목 랩
@@ -242,6 +249,10 @@ export const BoardTitle = styled.div`
   font-size: 25px;
   font-weight: bold;
   padding-top: 20px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 // 후기 내용

@@ -36,7 +36,7 @@ export const Content = styled.div`
 `;
 export const Boards = styled.div`
   display: flex;
-  flex-flow: wrap;
+  flex-wrap: wrap;
   padding-top: 3rem;
 
   @media screen {
