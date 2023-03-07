@@ -248,8 +248,8 @@ function EditPostingModal({
                 <img src={post?.imgUrl} alt="희망사진" />
               </TipperImgWrap>
               <TipTitleWrap>
-                <Like currentUser={currentUser} id={post.id} post={post} />
                 <TipperTitle>{post?.category}</TipperTitle>
+                <Like currentUser={currentUser} id={post.id} post={post} />
               </TipTitleWrap>
               <BoardWrap>
                 <BoardTitle>{post?.title}</BoardTitle>

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const ModalBackground = styled.div`
-  /* position: fixed; */
+  position: absolute;
+  display: flex;
+  justify-content: center;
   z-index: 999;
   /* background: rgba(67, 79, 101, 0.7); */
 `;
@@ -152,7 +154,7 @@ export const TipperImgWrap = styled.div`
   img {
     max-width: 100%;
     max-height: 100%;
-    width: 288px;
+    width: 100%;
     height: 200px;
   }
 `;
@@ -160,11 +162,10 @@ export const TipperImgWrap = styled.div`
 // 팁퍼제목 랩
 export const TipTitleWrap = styled.div`
   height: 80px;
-  padding: 40px 0 0 20px;
-  img {
-    float: right;
-    padding-right: 15px;
-  }
+  padding: 30px 20px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 // 팁퍼제목
 export const TipperTitle = styled.span`
@@ -192,6 +193,9 @@ export const BoardTitle = styled.div`
 // 후기 내용
 export const BoardContent = styled.div`
   font-size: 14px;
+  height: 17em;
+  overflow: auto;
+  white-space: pre-wrap;
 `;
 
 // 수정 삭제 버튼 랩

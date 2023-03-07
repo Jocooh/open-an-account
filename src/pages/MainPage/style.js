@@ -189,6 +189,7 @@ export const Tippers = styled.div`
 export const TipperWrap = styled.div`
   height: 670px;
   width: 288px;
+
   border: 1px #dedede solid;
   border-radius: 10px;
 
