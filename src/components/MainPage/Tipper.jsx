@@ -70,8 +70,8 @@ const Tipper = ({ posts, result, getPostList }) => {
                   ) : null}
 
                   <TipTitleWrap>
-                    <Like currentUser={currentUser} id={i.id} post={i} />
                     <TipperTitle>{i?.category}</TipperTitle>
+                    <Like currentUser={currentUser} id={i.id} post={i} />
                   </TipTitleWrap>
                   <BoardWrap onClick={() => setEditPostingModalOpen(i.id)}>
                     <BoardTitle>{i?.title}</BoardTitle>

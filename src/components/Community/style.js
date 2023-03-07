@@ -112,6 +112,6 @@ export const Category = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: rgba(188, 188, 188, 0.4);
+    background-color: #f5f5f5;
   }
 `;

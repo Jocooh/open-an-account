@@ -130,7 +130,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
           <Category
             style={
               categorytab === "금융상품 후기"
-                ? { backgroundColor: "brown", color: "white" }
+                ? { backgroundColor: "white", color: "#6A24FF" }
                 : null
             }
             onClick={() => {
@@ -142,7 +142,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
           <Category
             style={
               categorytab === "팁과 노하우"
-                ? { backgroundColor: "brown", color: "white" }
+                ? { backgroundColor: "white", color: "#6A24FF" }
                 : null
             }
             onClick={() => {
@@ -154,7 +154,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
           <Category
             style={
               categorytab === "공지사항"
-                ? { backgroundColor: "brown", color: "white" }
+                ? { backgroundColor: "white", color: "#6A24FF" }
                 : null
             }
             onClick={() => {
