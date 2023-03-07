@@ -8,6 +8,7 @@ import {
   CardTitleContainer,
   CardTitle,
   SecondTitle,
+  CategoryLikeContainer,
 } from "../../pages/MyPage/style";
 import Like from "../Community/Like";
 
@@ -20,17 +21,10 @@ function BestTipperList({ best, currentUser }) {
             {best?.imgUrl ? (
               <CardImage src={`${best.imgUrl}`} alt="포스팅사진" />
             ) : null}
-            <div
-              style={{
-                margin: "10px 10px", //마이페이지에 디자인과 쪼금 다름
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-              }}
-            >
+            <CategoryLikeContainer>
               <CategoryLike>
                 <CardCategory>
-                  <p>{best?.category}</p>
+                  <p style={{ color: "#6a24ff" }}>{best?.category}</p>
                 </CardCategory>
                 <Like currentUser={currentUser} id={best.id} post={best} />
               </CategoryLike>
@@ -40,9 +34,12 @@ function BestTipperList({ best, currentUser }) {
                   {best?.title.length > 10 && "..."}
                 </CardTitle>
                 <SecondTitle>{best?.name}</SecondTitle>
-                <div>{best?.content}</div>
+                <div style={{ height: "200px" }}>
+                  {best?.content.slice(0, 230)}
+                  {best?.content.length > 230 && "..."}
+                </div>
               </CardTitleContainer>
-            </div>
+            </CategoryLikeContainer>
           </ListCard>
         </>
       ) : (

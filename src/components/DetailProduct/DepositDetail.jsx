@@ -67,6 +67,7 @@ function DepositDetail({
                     onClick={() => {
                       setActiveItem(1);
                     }}
+                    style={{ width: "40px" }}
                   >
                     닫기
                   </button>

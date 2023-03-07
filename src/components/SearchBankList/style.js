@@ -9,6 +9,9 @@ export const StyledListDiv = styled.div`
   margin: auto;
   cursor: pointer;
   /* box-shadow: 0 4px 4px -3px #a1a1a1; */
+  /* :hover {
+    background-color: #dedede;
+  } */
 `;
 
 export const StyledDiv = styled.div`

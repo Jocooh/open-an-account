@@ -252,7 +252,7 @@ export const UseListeWrapper = styled.div`
   }
 `;
 export const ListCard = styled.div`
-  width: 288px;
+  width: 280px;
   height: 550px;
   /* padding: 10px; */
   display: flex;
@@ -261,6 +261,13 @@ export const ListCard = styled.div`
   background-color: #fff;
   border-radius: 15px;
   border: 1px solid #ccc;
+`;
+
+export const CategoryLikeContainer = styled.div`
+  margin: 10px 10px; //마이페이지에 디자인과 쪼금 다름
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 export const CategoryLike = styled.div`
@@ -297,7 +304,7 @@ export const CardTitleContainer = styled.div`
   gap: 7px;
 `;
 export const CardImage = styled.img`
-  width: 288px;
+  width: 278px;
   height: 211px;
   object-fit: cover;
   border-radius: 15px;
