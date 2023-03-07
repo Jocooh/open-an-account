@@ -84,6 +84,17 @@ function PostingModal({
     setSelected(e.target.value);
   };
 
+  //* 시간 변수 지정
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth() + 1;
+  let date = today.getDate();
+  let hours = today.getHours();
+  let minutes = today.getMinutes();
+  let seconds = today.getSeconds();
+  const dateNow = year + "." + month + "." + date;
+  // console.log(year + "." + month + "." + date);
+
   //* 게시글 작성
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
@@ -117,7 +128,7 @@ function PostingModal({
       content: inputContent,
       imgUrl: image,
       name: user?.displayName ?? "익명",
-      createdAt: Date.now(),
+      createdAt: dateNow,
       like: 0,
     })
       .then(() => {
