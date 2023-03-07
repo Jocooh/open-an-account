@@ -39,21 +39,22 @@ const ComparingModal = ({
   return (
     <ModalBackground>
       <ModalContainer>
-        <CloseButton
+        {/* <CloseButton
           onClick={() => {
             setComparingModalOpen(false);
           }}
           size="39px"
           color="#f0f0f0"
-        />
-        {/* <CloseButton
-          src={require("../../assets/close.png")}
-          alt="닫기"
-          onClick={() => {
-            setComparingModalOpen(false);
-          }}
         /> */}
+
         <ModalContents>
+          <CloseButton
+            src={require("../../assets/close.png")}
+            alt="닫기"
+            onClick={() => {
+              setComparingModalOpen(false);
+            }}
+          />
           <Title>상품 비교</Title>
           <MessageWrapper>
             {selectedProduct[0].category === "예금 기본 정보" ? (

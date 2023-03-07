@@ -27,16 +27,16 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   width: 900px;
-  height: 1500px;
+  /* height: 1500px; */
   display: flex;
-  /* justify-content: flex-end; */
+  justify-content: center;
   flex-direction: column;
   /* justify-content: center; */
   /* background-color: beige; */
 `;
 export const Boards = styled.div`
   display: flex;
-  flex-flow: wrap;
+  flex-wrap: wrap;
   padding-top: 3rem;
 
   @media screen {
