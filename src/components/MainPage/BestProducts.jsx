@@ -136,16 +136,20 @@ const BestProducts = () => {
           <BtProductList>
             <BtProductRank>1</BtProductRank>
             <BankLogo
-              src={logoList[sortChangeSaving?.[0]?.[0]?.split(",")?.[2]]}
+              src={
+                logoList[sortChangeSaving?.[0]?.[0]?.split(",")?.[2]] ??
+                require("../../assets/no.png")
+              }
               alt="로고"
             />
             <BtProductContent>
               <div>
                 <BtProductName>
                   {/* {sortChangeSaving[0][0]?.split(",")[0]} */}
-                  {sortChangeSaving?.[0]?.[0]?.split(",")?.[0]}
+                  {sortChangeSaving?.[0]?.[0]?.split(",")?.[0] ??
+                    "가져올 상품이 없어요!"}
                 </BtProductName>
-                <div>{sortChangeSaving?.[0]?.[0]?.split(",")?.[1]}</div>
+                <div>{sortChangeSaving?.[0]?.[0]?.split(",")?.[1] ?? null}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
@@ -162,15 +166,19 @@ const BestProducts = () => {
           <BtProductList>
             <BtProductRank>2</BtProductRank>
             <BankLogo
-              src={logoList[sortChangeSaving?.[1]?.[0]?.split(",")?.[2]]}
+              src={
+                logoList[sortChangeSaving?.[1]?.[0]?.split(",")?.[2]] ??
+                require("../../assets/no.png")
+              }
               alt="로고"
             />
             <BtProductContent>
               <div>
                 <BtProductName>
-                  {sortChangeSaving?.[1]?.[0]?.split(",")?.[0]}
+                  {sortChangeSaving?.[1]?.[0]?.split(",")?.[0] ??
+                    "가져올 상품이 없어요!"}
                 </BtProductName>
-                <div>{sortChangeSaving?.[1]?.[0]?.split(",")?.[1]}</div>
+                <div>{sortChangeSaving?.[1]?.[0]?.split(",")?.[1] ?? null}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
@@ -187,15 +195,19 @@ const BestProducts = () => {
           <BtProductList>
             <BtProductRank>3</BtProductRank>
             <BankLogo
-              src={logoList[sortChangeSaving?.[2]?.[0]?.split(",")?.[2]]}
+              src={
+                logoList[sortChangeSaving?.[2]?.[0]?.split(",")?.[2]] ??
+                require("../../assets/no.png")
+              }
               alt="로고"
             />
             <BtProductContent>
               <div>
                 <BtProductName>
-                  {sortChangeSaving?.[2]?.[0]?.split(",")?.[0]}
+                  {sortChangeSaving?.[2]?.[0]?.split(",")?.[0] ??
+                    "가져올 상품이 없어요!"}
                 </BtProductName>
-                <div>{sortChangeSaving?.[2]?.[0]?.split(",")?.[1]}</div>
+                <div>{sortChangeSaving?.[2]?.[0]?.split(",")?.[1] ?? null}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
