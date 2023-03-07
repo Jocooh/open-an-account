@@ -46,7 +46,7 @@ function ChangePassword({
     signInWithEmailAndPassword(authService, email, currentPassword)
       .then((userCredential) => {
         const user = userCredential.user;
-        // console.log(user);
+        console.log(user);
         const passwordRegex =
           /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
         if (!passwordRegex.test(currentPassword)) {
@@ -126,7 +126,7 @@ function ChangePassword({
           placeholder="현재 비밀번호를 입력해주세요"
         />
         {isPassword === true ? (
-          <p style={{ color: "red" }}>{passwordMessage}</p>
+          <p style={{ color: "green" }}>{passwordMessage}</p>
         ) : (
           <p>{passwordMessage}</p>
         )}
@@ -145,7 +145,7 @@ function ChangePassword({
           disabled={inputValidation}
         />
         {isPasswordConfirm === true ? (
-          <p style={{ color: "red" }}>{corfirmPasswordMessage}</p>
+          <p style={{ color: "green" }}>{corfirmPasswordMessage}</p>
         ) : (
           <p>{corfirmPasswordMessage}</p>
         )}
@@ -160,7 +160,7 @@ function ChangePassword({
           value={userPassword}
         />
         {isDoublePasswordConfirm === true ? (
-          <p style={{ color: "red" }}>{doubleCheckPasswordMessage}</p>
+          <p style={{ color: "green" }}>{doubleCheckPasswordMessage}</p>
         ) : (
           <p>{doubleCheckPasswordMessage}</p>
         )}

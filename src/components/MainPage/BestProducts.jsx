@@ -29,6 +29,7 @@ import {
   BtProductName,
   RateWrapper,
   MaxRate,
+  BankLogo,
 } from "../../pages/MainPage/style";
 import logoList from "../../assets/logo/logo";
 const BestProducts = () => {
@@ -127,7 +128,10 @@ const BestProducts = () => {
           <BtProductTitle>인기 적금</BtProductTitle>
           <BtProductList>
             <BtProductRank>1</BtProductRank>
-            <img src={logoList[sortChangeSaving?.[0]?.[0]?.split(",")?.[2]]} />
+            <BankLogo
+              src={logoList[sortChangeSaving?.[0]?.[0]?.split(",")?.[2]]}
+              alt="로고"
+            />
             <BtProductContent>
               <div>
                 <BtProductName>
@@ -141,6 +145,7 @@ const BestProducts = () => {
                   <img
                     src={require("../../assets/bookmarked.png")}
                     style={{ width: "15px", height: "20px" }}
+                    alt="북마크"
                   />
                   {sortChangeSaving?.[0]?.[1]}
                 </MaxRate>
@@ -149,7 +154,10 @@ const BestProducts = () => {
           </BtProductList>
           <BtProductList>
             <BtProductRank>2</BtProductRank>
-            <img src={logoList[sortChangeSaving?.[1]?.[0]?.split(",")?.[2]]} />
+            <BankLogo
+              src={logoList[sortChangeSaving?.[1]?.[0]?.split(",")?.[2]]}
+              alt="로고"
+            />
             <BtProductContent>
               <div>
                 <BtProductName>
@@ -162,6 +170,7 @@ const BestProducts = () => {
                   <img
                     src={require("../../assets/bookmarked.png")}
                     style={{ width: "15px", height: "20px" }}
+                    alt="북마크"
                   />
                   {sortChangeSaving?.[1]?.[1]}
                 </MaxRate>
@@ -170,7 +179,10 @@ const BestProducts = () => {
           </BtProductList>
           <BtProductList>
             <BtProductRank>3</BtProductRank>
-            <img src={logoList[sortChangeSaving?.[2]?.[0]?.split(",")?.[2]]} />
+            <BankLogo
+              src={logoList[sortChangeSaving?.[2]?.[0]?.split(",")?.[2]]}
+              alt="로고"
+            />
             <BtProductContent>
               <div>
                 <BtProductName>
@@ -183,6 +195,7 @@ const BestProducts = () => {
                   <img
                     src={require("../../assets/bookmarked.png")}
                     style={{ width: "15px", height: "20px" }}
+                    alt="북마크"
                   />
                   {sortChangeSaving?.[2]?.[1]}
                 </MaxRate>
@@ -195,7 +208,10 @@ const BestProducts = () => {
           <BtProductTitle>인기 예금</BtProductTitle>
           <BtProductList>
             <BtProductRank>1</BtProductRank>
-            <img src={logoList[sortChangeDeposit?.[0]?.[0]?.split(",")?.[2]]} />
+            <BankLogo
+              src={logoList[sortChangeDeposit?.[0]?.[0]?.split(",")?.[2]]}
+              alt="로고"
+            />
             <BtProductContent>
               <div>
                 <BtProductName>
@@ -208,6 +224,7 @@ const BestProducts = () => {
                   <img
                     src={require("../../assets/bookmarked.png")}
                     style={{ width: "15px", height: "20px" }}
+                    alt="북마크"
                   />
                   {sortChangeDeposit?.[0]?.[1]}
                 </MaxRate>
@@ -216,7 +233,10 @@ const BestProducts = () => {
           </BtProductList>
           <BtProductList>
             <BtProductRank>2</BtProductRank>
-            <img src={logoList[sortChangeDeposit?.[1]?.[0]?.split(",")?.[2]]} />
+            <BankLogo
+              src={logoList[sortChangeDeposit?.[1]?.[0]?.split(",")?.[2]]}
+              alt="로고"
+            />
             <BtProductContent>
               <div>
                 <BtProductName>
@@ -229,6 +249,7 @@ const BestProducts = () => {
                   <img
                     src={require("../../assets/bookmarked.png")}
                     style={{ width: "15px", height: "20px" }}
+                    alt="북마크"
                   />
                   {sortChangeDeposit?.[1]?.[1]}
                 </MaxRate>
@@ -237,7 +258,10 @@ const BestProducts = () => {
           </BtProductList>
           <BtProductList>
             <BtProductRank>3</BtProductRank>
-            <img src={logoList[sortChangeDeposit?.[2]?.[0]?.split(",")?.[2]]} />
+            <BankLogo
+              src={logoList[sortChangeDeposit?.[2]?.[0]?.split(",")?.[2]]}
+              alt="로고"
+            />
             <BtProductContent>
               <div>
                 <BtProductName>
@@ -250,6 +274,7 @@ const BestProducts = () => {
                   <img
                     src={require("../../assets/bookmarked.png")}
                     style={{ width: "15px", height: "20px" }}
+                    alt="북마크"
                   />
                   {sortChangeDeposit?.[2]?.[1]}
                 </MaxRate>

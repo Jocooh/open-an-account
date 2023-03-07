@@ -67,8 +67,10 @@ function Like({ currentUser, post, id }) {
     }
   };
   //갯수가져오기
+
   const LikeLength = async () => {
     const q = query(collection(db, "likes"), where("docId", "==", id));
+
     const array = [];
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {

@@ -2,39 +2,51 @@ import styled from "styled-components";
 
 export const ModalBackground = styled.div`
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(67, 79, 101, 0.7);
   z-index: 999;
-  /* background: rgba(67, 79, 101, 0.7); */
+
+  /* display: block;
+  justify-content: center; */
 `;
 
 export const ModalContainer = styled.div`
   /* 모달창 크기 */
-  width: 900px;
-  /* height: 700px; */
-  padding: 20px;
-  /* 모달 배치 */
-  /* translate는 본인의 크기 기준으로 작동한다. */
-  /* position: absolute;
-  top: 40%;
+  z-index: 999999;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
+  /* 모달 배치 */
 
   /* 모달창 디자인 */
   background-color: #fff;
   border-radius: 10px;
-  /* padding: 15px 35px 10px 35px; */
   box-sizing: border-box;
 `;
-
+export const ModalContents = styled.div`
+  width: 900px;
+  height: 670px;
+  padding: 20px;
+`;
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-
+export const EditTitle = styled.div`
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+`;
 export const CloseButton = styled.button`
   background-color: rgba(233, 236, 242, 0.8);
   border: none;
-  box-sizing: border-box;
   padding: 4px 16px;
   border-radius: 5px;
   font-weight: 600;
@@ -83,8 +95,8 @@ export const Category = styled.select`
   display: flex;
   justify-content: flex-start;
   width: 200px;
+  /* TODO: select 버튼 스타일 변경 필요 */
 
-  /* background-color: rgba(233, 236, 242, 0.8); */
   border: 1px solid #e1e1e4;
   box-sizing: border-box;
   padding: 8px 15px;
@@ -107,26 +119,39 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-  /* background-color: rgba(233, 236, 242, 0.8); */
   border: 1px solid #e1e1e4;
   border-radius: 5px;
 `;
 export const ContentInput = styled.textarea`
   display: block;
   border: none;
-  min-height: 486px;
+  min-height: 25em;
   margin: 10px 0;
   padding-left: 10px;
   outline: none;
   background: transparent;
+
+  /* 스크롤바 설정*/
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  ::-webkit-scrollbar-thumb {
+    background: #505050;
+    border-radius: 25px;
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  ::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
 `;
 
 export const ImgUpload = styled.input`
   margin: 30px 0 10px 0;
   border: none;
-  border-bottom: 0.6px solid #c6c6c6;
 
-  /* background: #e1e1e4; */
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -135,6 +160,14 @@ export const ImgUpload = styled.input`
   color: #505050;
 
   cursor: pointer;
+
+  ::file-selector-button {
+    width: 88px;
+    height: 28px;
+    background: #e1e1e4;
+    border: 1px solid #e1e1e4;
+    border-radius: 5px;
+  }
 `;
 
 export const ErrorMessage = styled.div`
@@ -144,52 +177,67 @@ export const ErrorMessage = styled.div`
 // 팁퍼 이미지 랩
 export const TipperImgWrap = styled.div`
   border: 1px solid #dedede;
-  height: 200px;
+  height: 250px;
   border-radius: 10px;
   background-color: whitesmoke;
+
   img {
+    object-fit: cover;
     max-width: 100%;
     max-height: 100%;
-    width: 288px;
-    height: 200px;
+    width: 100%;
+    height: 250px;
   }
 `;
 
 // 팁퍼제목 랩
 export const TipTitleWrap = styled.div`
   height: 80px;
-  padding: 40px 0 0 20px;
-  img {
-    float: right;
-    padding-right: 15px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 // 팁퍼제목
 export const TipperTitle = styled.span`
   font-weight: bold;
-  border: 1px solid black;
+  border: 2px solid #e3dcff;
   border-radius: 20px;
   color: #6a24ff;
   padding: 10px;
 `;
 
 // 후기부분 랩
-export const BoardWrap = styled.div`
-  height: 350px;
-  padding: 0 20px 30px 20px;
-`;
+export const BoardWrap = styled.div``;
 
 // 후기 제목
 export const BoardTitle = styled.div`
-  height: 60px;
   font-size: 25px;
   font-weight: bold;
-  padding-top: 20px;
 `;
 
 // 후기 내용
 export const BoardContent = styled.div`
+  margin-top: 15px;
   font-size: 14px;
+  height: 13em;
+  overflow: auto;
+  white-space: pre-wrap;
+
+  /* 스크롤바 설정*/
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  ::-webkit-scrollbar-thumb {
+    background: #505050;
+    border-radius: 25px;
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  ::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
 `;
 
 // 수정 삭제 버튼 랩

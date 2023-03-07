@@ -8,6 +8,7 @@ import {
   BoardTitle,
   BoardContent,
   ButtonWrap,
+  MoreButton,
 } from "../../pages/MainPage/style";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
@@ -45,24 +46,9 @@ const Tipper = ({ posts, result, getPostList }) => {
     toggleButton();
   }, []);
 
-  // 게시글 삭제
-  const board = posts?.map((i) => i);
-  const onClickDelete = async (id) => {
-    // console.log(id);
-    const ok = window.confirm(" 정말 삭제하시겠습니까?");
-    if (ok) {
-      try {
-        await deleteDoc(doc(db, "posts", id));
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    getPostList();
-  };
-
   return (
     <>
-      {result?.map((i) => {
+      {result?.map((i, idx) => {
         return (
           <div key={i?.id}>
             {editPostingModalOpen === i.id ? (
@@ -72,45 +58,41 @@ const Tipper = ({ posts, result, getPostList }) => {
                 post={i}
                 currentUid={currentUid}
                 currentUser={currentUser}
+                getPostList={getPostList}
               />
-            ) : null}
+            ) : (
+              <div>
+                <TipperWrap key={i?.id}>
+                  {i.imgUrl ? (
+                    <TipperImgWrap>
+                      <img src={i?.imgUrl} alt="희망사진" />
+                    </TipperImgWrap>
+                  ) : null}
 
-            <TipperWrap key={i?.id}>
-              {i.imgUrl ? (
-                <TipperImgWrap>
-                  <img src={i?.imgUrl} alt="희망사진" />
-                </TipperImgWrap>
-              ) : null}
-
-              <TipTitleWrap>
-                <Like currentUser={currentUser} id={i.id} post={i} />
-                <TipperTitle>{i?.category}</TipperTitle>
-              </TipTitleWrap>
-              <BoardWrap>
-                <BoardTitle>
-                  {i?.title.length > 13
-                    ? i?.title.substr(0, 12) + "..."
-                    : i?.title}
-                </BoardTitle>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    opacity: "0.4",
-                    height: "40px",
-                  }}
-                >
-                  {i?.name}
-                </div>
-                <BoardContent>
-                  {i?.content.length > 400
-                    ? i?.content.substr(0, 400) + "..."
-                    : i?.content}{" "}
-                </BoardContent>
-              </BoardWrap>
-              <button onClick={() => setEditPostingModalOpen(i.id)}>
-                자세히보기
-              </button>
-            </TipperWrap>
+                  <TipTitleWrap>
+                    <Like currentUser={currentUser} id={i.id} post={i} />
+                    <TipperTitle>{i?.category}</TipperTitle>
+                  </TipTitleWrap>
+                  <BoardWrap onClick={() => setEditPostingModalOpen(i.id)}>
+                    <BoardTitle>{i?.title}</BoardTitle>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        opacity: "0.4",
+                        height: "40px",
+                      }}
+                    >
+                      {i?.name}
+                    </div>
+                    <BoardContent>
+                      {i?.content.length > 400
+                        ? i?.content.substr(0, 400) + " ..."
+                        : i?.content}{" "}
+                    </BoardContent>
+                  </BoardWrap>
+                </TipperWrap>
+              </div>
+            )}
           </div>
         );
       })}

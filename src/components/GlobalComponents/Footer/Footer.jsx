@@ -4,9 +4,7 @@ import { FooterText, FooterWrapper } from "./style";
 const Footer = () => {
   return (
     <FooterWrapper>
-      <FooterText>
-        Copyright 2023. open-an-account. All rights reserved.
-      </FooterText>
+      <FooterText>Copyright 2023. Tipper. All rights reserved.</FooterText>
     </FooterWrapper>
   );
 };
