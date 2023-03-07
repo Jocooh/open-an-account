@@ -440,7 +440,7 @@ const ServicePage = () => {
 
   const handleProductTypeClick = (buttonType) => {
     if (selectedProductIds.some((value) => value !== "")) {
-      alert("상품유형은 선택 후 변경이 불가능합니다.");
+      alert("상품유형을 변경하시려면 선택된 금융상품을 제거해주세요.");
       return;
     }
     setProductTypes(buttonType);

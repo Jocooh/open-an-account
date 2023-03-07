@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import FourthSectionImgAnimation from "../../components/FourthSectionAnimation/FourthSection";
+import SecondSectionImgAnimation from "../../components/SecondSectionAnimation/AnimationFirst";
 import {
   Wraper,
   FirstSectionMainTitleWrap,
@@ -9,14 +10,13 @@ import {
   FirestSectionSubTitle,
   StartButton,
   BackgroundWraper,
-  FirstSectionSubTitle,
-  FirestSectionButtonWrap,
   Firstsection,
   SecondSection,
   ThirdTopSection,
   FourthSection,
   SecondSectionTitle,
   SecondSectionSubTitle,
+  FirestSectionButtonWrap,
   SecondImgWrap,
   Contents,
   ContentsTitle,
@@ -40,8 +40,11 @@ import {
   FourthSectionButton,
   FourthSectionDecription,
   MainTilte,
-  FourthSectionImgWrap,
-  FourthSectionContainer,
+  TocompareButton,
+  FourthSectionImgAnimationWrap,
+  SecondImgOne,
+  SecondImgTwo,
+  SecondImgThree,
 } from "./LandingCss";
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -51,7 +54,11 @@ const LandingPage = () => {
       <Wraper>
         <article style={{ width: "100%" }}>
           <Firstsection>
-            <div>
+            <div
+              style={{
+                position: "fixed",
+              }}
+            >
               <FirstSectionMainTitleWrap>
                 <FirstSectionMainTitle>
                   <MainTilte>
@@ -59,25 +66,18 @@ const LandingPage = () => {
                     선택은 안전하게
                   </MainTilte>
                 </FirstSectionMainTitle>
-                <div>
-                  <FirestSectionSubTitle>
-                    사회 초년생을 위한 예적금 비교, 팁퍼
-                  </FirestSectionSubTitle>
-                  <FirestSectionButtonWrap>
-                    <StartButton onClick={() => navigate("/service")}>
-                      상품 비교하기
-                    </StartButton>
-                    <StartButton
-                      style={{
-                        backgroundColor: "transparent",
-                        color: "#fff",
-                      }}
-                      onClick={() => navigate("/signup")}
-                    >
-                      시작하기
-                    </StartButton>
-                  </FirestSectionButtonWrap>
-                </div>
+
+                <FirestSectionSubTitle>
+                  사회 초년생을 위한 예적금 비교, 팁퍼
+                </FirestSectionSubTitle>
+                <FirestSectionButtonWrap>
+                  <TocompareButton onClick={() => navigate("/service")}>
+                    상품 비교하기
+                  </TocompareButton>
+                  <StartButton onClick={() => navigate("/signup")}>
+                    시작하기
+                  </StartButton>
+                </FirestSectionButtonWrap>
               </FirstSectionMainTitleWrap>
             </div>
           </Firstsection>
@@ -94,11 +94,13 @@ const LandingPage = () => {
               <SecondImgWrap>
                 <Contents>
                   <SecondImgContainer>
-                    <img
-                      style={{ marginTop: "100px" }}
-                      src={require("../../assets/SecondImg(1).png")}
-                      alt="secondImg1"
-                    />
+                    <SecondImgOne>
+                      <img
+                        style={{ marginTop: "100px", width: "150px" }}
+                        src={require("../../assets/landing/SecondImg(1).png")}
+                        alt="secondImg1"
+                      />
+                    </SecondImgOne>
                   </SecondImgContainer>
                   <ContentsTitle>여유 자금이 있다면</ContentsTitle>
                   <ContentsSubTitle>
@@ -113,10 +115,7 @@ const LandingPage = () => {
                 </Contents>
                 <Contents>
                   <SecondImgContainer>
-                    <img
-                      src={require("../../assets/SecondImg(2).png")}
-                      alt="secondImg2"
-                    />
+                    <SecondSectionImgAnimation />
                   </SecondImgContainer>
                   <ContentsTitle>자금을 모은다면</ContentsTitle>
                   <ContentsSubTitle>
@@ -130,11 +129,13 @@ const LandingPage = () => {
                 </Contents>
                 <Contents>
                   <SecondImgContainer>
-                    <img
-                      style={{ marginTop: "150px" }}
-                      src={require("../../assets/SecondImg(3).png")}
-                      alt="secondImg3"
-                    />
+                    <SecondImgThree>
+                      <img
+                        style={{ marginTop: "150px" }}
+                        src={require("../../assets/landing/SecondImg(3).png")}
+                        alt="secondImg3"
+                      />
+                    </SecondImgThree>
                   </SecondImgContainer>
                   <ContentsTitle>한 은행만 보기 아쉽다면</ContentsTitle>
                   <ContentsSubTitle>
@@ -239,7 +240,9 @@ const LandingPage = () => {
                 팁을 저장해요.
               </div>
             </FourthSectionSubTitle>
-            <FourthSectionImgAnimation />
+            <FourthSectionImgAnimationWrap>
+              <FourthSectionImgAnimation />
+            </FourthSectionImgAnimationWrap>
             <FourthSectionButtonWrap>
               <FourthSectonTitle>
                 <div style={{ marginTop: "400px" }}>원하는 금융 상품</div>
