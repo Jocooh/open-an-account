@@ -33,22 +33,23 @@ import {
   BankLogo,
 } from "../../pages/MainPage/style";
 import logoList from "../../assets/logo/logo";
+import { timeToLocaleString } from "../../utils/Date";
 const BestProducts = () => {
   const [bookmarkListAll, setBookmarkListAll] = useState([]);
   // const [depositList, setDepositList] = useState([]);
   // const [savingList, setSavingList] = useState([]);
   const navigate = useNavigate();
 
-  // 오늘 날짜 (이게 맞나 싶다)
-  let today = new Date();
-  let year = today.getFullYear();
-  let month = today.getMonth() + 1;
-  let date = today.getDate();
-  // const dateNow = year + ".0" + month + ".0" + date;
-  const dateNow =
-    year +
-    (month > 10 ? month : ".0" + month) +
-    (date > 10 ? date : ".0" + date);
+  // 오늘 날짜
+  // let today = new Date();
+  // let year = today.getFullYear();
+  // let month = today.getMonth() + 1;
+  // let date = today.getDate();
+  // // const dateNow = year + ".0" + month + ".0" + date;
+  // const dateNow =
+  //   year +
+  //   (month > 10 ? month : ".0" + month) +
+  //   (date > 10 ? date : ".0" + date);
 
   // 전체 북마크 내역 불러오기
   const getBookmarkList = async () => {
@@ -118,7 +119,7 @@ const BestProducts = () => {
         <BtProductTitleWrap>
           <img src={require("../../assets/mainpage/bestproduct.png")} />
           <BestProductTitle>인기 금융상품</BestProductTitle>
-          <KrDate>{dateNow} 기준</KrDate>
+          <KrDate>{timeToLocaleString(Date.now())} 기준</KrDate>
         </BtProductTitleWrap>
         <KrBankRateWrap>
           <KrBank>한국은행 기준금리</KrBank>
