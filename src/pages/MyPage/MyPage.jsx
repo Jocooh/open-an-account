@@ -201,7 +201,7 @@ function MyPage() {
                   }}
                   style={{ fontSize: "18px" }}
                 >
-                  내가 쓴 글
+                  나의 팁
                 </button>
               </CategoryImg>
               <p>〉</p>

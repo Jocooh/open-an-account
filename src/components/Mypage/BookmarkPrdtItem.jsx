@@ -17,7 +17,15 @@ import DetailBookMark from "../BookMarkList/DetailBookMark";
 import { StyledImg } from "../../components/AllBankList/style";
 import Bookmarks from "../ServicePage/Bookmarks";
 
-function BookmarkPrdtItem({ items, allOptionList, sortMonths, productTypes }) {
+function BookmarkPrdtItem({
+  items,
+  setColor,
+  allOptionList,
+  sortMonths,
+  productTypes,
+  handleClickProduct,
+  selectedProductIds,
+}) {
   const [open, setOpen] = useState("");
 
   return (
@@ -27,7 +35,18 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths, productTypes }) {
           {items?.map((item) => (
             <div key={item.docId} style={{ width: "780px", margin: "auto" }}>
               <div className="스크롤 구역" style={{ overflow: "auto" }}>
-                <StyledBankLists>
+                <StyledBankLists
+                  onClick={() => {
+                    setColor(item.docId);
+                  }}
+                  style={
+                    selectedProductIds?.[0] === item?.docId ||
+                    selectedProductIds?.[6] === item?.docId ||
+                    selectedProductIds?.[12] === item?.docId
+                      ? { border: "1px solid #6A24FF" }
+                      : null
+                  }
+                >
                   <div
                     style={{
                       width: "780px",
@@ -37,7 +56,11 @@ function BookmarkPrdtItem({ items, allOptionList, sortMonths, productTypes }) {
                     }}
                     className="StyledListDiv"
                   >
-                    <StyledDiv>
+                    <StyledDiv
+                      onClick={() => {
+                        handleClickProduct(item.docId);
+                      }}
+                    >
                       <StyledImg
                         src={logoLists[item.fin_co_no]}
                         alt="로고"

@@ -65,9 +65,10 @@ function Like({ currentUser, post, id }) {
     if (docSnap.exists()) {
       setLike(true);
     }
+    LikeLength();
   };
-  //갯수가져오기
 
+  //갯수가져오기
   const LikeLength = async () => {
     const q = query(collection(db, "likes"), where("docId", "==", id));
 
@@ -84,7 +85,7 @@ function Like({ currentUser, post, id }) {
   //좋아요를 누를때만 함수 실행
   useEffect(() => {
     getLikes();
-    LikeLength();
+    // LikeLength();
   }, [like]);
 
   return (

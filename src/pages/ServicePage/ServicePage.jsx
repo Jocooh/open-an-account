@@ -1216,6 +1216,8 @@ const ServicePage = () => {
                               <BookmarkPrdtList
                                 productTypes={productTypes}
                                 currentUser={user}
+                                handleClickProduct={handleClickProduct}
+                                selectedProductIds={selectedProductIds}
                               />
                               {/* </StyledBankListWrapper> */}
                             </StyledBankList>

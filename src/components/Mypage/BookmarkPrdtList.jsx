@@ -4,8 +4,15 @@ import React, { memo, useEffect, useMemo, useState } from "react";
 import { authService, db } from "../../config/firebase";
 import BookmarkPrdtItem from "./BookmarkPrdtItem";
 
-const BookmarkPrdtList = ({ currentUser, sortMonths, productTypes }) => {
+const BookmarkPrdtList = ({
+  currentUser,
+  sortMonths,
+  productTypes,
+  handleClickProduct,
+  selectedProductIds,
+}) => {
   const [items, setItems] = useState([]);
+  const [color, setColor] = useState([]);
   const [depositOptionalList, setdepositOptionalList] = useState([]);
   const [savingoptionalList, setSavingoptionalList] = useState([]);
   const handleButtonClick = async () => {
@@ -62,16 +69,22 @@ const BookmarkPrdtList = ({ currentUser, sortMonths, productTypes }) => {
   return productTypes === 1 ? (
     <BookmarkPrdtItem
       items={filterDeposit}
+      setColor={setColor}
       allOptionList={depositOptionalList}
       sortMonths={sortMonths}
       productTypes={productTypes}
+      handleClickProduct={handleClickProduct}
+      selectedProductIds={selectedProductIds}
     />
   ) : (
     <BookmarkPrdtItem
       items={filterSaving}
+      setColor={setColor}
       allOptionList={savingoptionalList}
       sortMonths={sortMonths}
       productTypes={productTypes}
+      handleClickProduct={handleClickProduct}
+      selectedProductIds={selectedProductIds}
     />
   );
 };
