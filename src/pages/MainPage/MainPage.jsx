@@ -68,8 +68,13 @@ const MainPage = () => {
 
   return (
     <MainPageWrapper>
+      <img
+        src={require("../../assets/homebanner.png")}
+        style={{ width: "1920px" }}
+        alt="배너"
+      />
       <BestProducts />
-      {/* 성아 - 이거 기능 구현 확인 */}
+
       <BestTipper currentUser={user} />
       <DownWraper>
         <TodayTipTitle>오늘의 금융 팁</TodayTipTitle>

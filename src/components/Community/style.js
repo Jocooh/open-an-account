@@ -39,6 +39,7 @@ export const Boards = styled.div`
   flex-wrap: wrap;
   padding-top: 3rem;
 
+  margin: 20px 0;
   @media screen {
   }
 `;

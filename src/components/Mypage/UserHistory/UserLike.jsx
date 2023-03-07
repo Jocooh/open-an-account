@@ -5,6 +5,7 @@ import {
   CardTitle,
   CardTitleContainer,
   CategoryLike,
+  CategoryLikeContainer,
   ListCard,
   SecondTitle,
 } from "../../../pages/MyPage/style";
@@ -18,14 +19,7 @@ function UserLike({ likes, currentUser }) {
           {like.imgUrl ? (
             <CardImage src={`${like.imgUrl}`} alt="포스팅사진" />
           ) : null}
-          <div
-            style={{
-              margin: "10px auto",
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-            }}
-          >
+          <CategoryLikeContainer>
             <CategoryLike>
               <CardCategory>
                 <p style={{ color: "#6a24ff" }}>{like.category}</p>
@@ -45,7 +39,7 @@ function UserLike({ likes, currentUser }) {
               <SecondTitle>{like.name}</SecondTitle>
               <div>{like.content}</div>
             </CardTitleContainer>
-          </div>
+          </CategoryLikeContainer>
         </ListCard>
       ))}
     </>
