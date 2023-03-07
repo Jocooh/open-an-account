@@ -80,7 +80,7 @@ function EditPostingModal({
   const categoryRef = useRef(null);
   const contentRef = useRef(null);
 
-  console.log("postId :>> ", postId);
+  // console.log("postId :>> ", postId);
   const [title, setTitle] = useState("");
   const [selected, setSelected] = useState("");
   const [imgUrl, setImgUrl] = useState("");

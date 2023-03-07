@@ -47,9 +47,9 @@ function PostingModal({
 }) {
   const navigate = useNavigate();
 
-  const openScroll = useCallback(() => {
-    document.body.style.removeProperty("overflow");
-  }, []);
+  // const openScroll = useCallback(() => {
+  //   document.body.style.removeProperty("overflow");
+  // }, []);
 
   const confirm = () => {
     if (
@@ -57,7 +57,7 @@ function PostingModal({
         "입력하신 내용은 저장되지 않습니다. 이대로 나가시겠습니까?"
       )
     ) {
-      openScroll();
+      // openScroll();
       setPostingModalOpen(false);
     } else {
       inputContent.current.focus();
@@ -68,7 +68,7 @@ function PostingModal({
     if (inputTitle || inputContent) {
       confirm();
     }
-    openScroll();
+    // openScroll();
     setPostingModalOpen(false);
   };
 

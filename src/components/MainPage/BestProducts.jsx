@@ -96,7 +96,7 @@ const BestProducts = () => {
   const changeDeposit = Object.entries(bestDeposit);
   // console.log(changeDeposit);
   const sortChangeDeposit = changeDeposit?.sort((a, b) => b[1] - a[1]);
-  console.log(sortChangeDeposit);
+  // console.log(sortChangeDeposit);
 
   useEffect(() => {
     getBookmarkList();

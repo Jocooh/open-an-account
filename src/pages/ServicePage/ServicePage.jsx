@@ -201,7 +201,7 @@ const ServicePage = () => {
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
                 setIntrRateType(targetDoc.intr_rate_type);
-                console.log(selectedProductIdsCopy);
+                // console.log(selectedProductIdsCopy);
                 break;
               } else {
                 console.log(
@@ -249,7 +249,7 @@ const ServicePage = () => {
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
                 setIntrRateType(targetDoc.intr_rate_type);
-                console.log(selectedProductIdsCopy);
+                // console.log(selectedProductIdsCopy);
                 break;
               } else {
                 console.log(
@@ -280,7 +280,7 @@ const ServicePage = () => {
     newSelectedProductIds[index + 6] = "";
 
     setSelectedProductIds(newSelectedProductIds);
-    console.log(selectedProductIds);
+    // console.log(selectedProductIds);
   };
 
   //* 두번째 선택된 상품선택해제 함수
@@ -295,7 +295,7 @@ const ServicePage = () => {
     newSelectedProductIds[index + 12] = "";
 
     setSelectedProductIds(newSelectedProductIds);
-    console.log(selectedProductIds);
+    // console.log(selectedProductIds);
   };
 
   //* 세번째 선택된 상품선택해제 함수
@@ -310,7 +310,7 @@ const ServicePage = () => {
     newSelectedProductIds[index + 18] = "";
 
     setSelectedProductIds(newSelectedProductIds);
-    console.log(selectedProductIds);
+    // console.log(selectedProductIds);
   };
 
   //* 동일된 상품 선택시 함수 종료.
