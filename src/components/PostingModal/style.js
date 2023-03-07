@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-export const ModalBackground = styled.div``;
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(67, 79, 101, 0.7);
+  z-index: 999;
+`;
 
 export const ModalContainer = styled.div`
   /* 모달창 크기 */
@@ -9,8 +17,11 @@ export const ModalContainer = styled.div`
   padding: 20px;
   /* 모달 배치 */
   /* translate는 본인의 크기 기준으로 작동한다. */
-  position: absolute;
-  z-index: 999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
   /* top: 40%;
   left: 50%; */
   /* transform: translate(-50%, -50%); */
@@ -120,32 +131,23 @@ export const ContentInput = styled.textarea`
 export const ImgUpload = styled.input`
   margin: 30px 0 10px 0;
   border: none;
-  border-bottom: 0.6px solid #c6c6c6;
-  .button {
-    background: #e1e1e4;
 
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #505050;
+
+  cursor: pointer;
+
+  ::file-selector-button {
+    width: 88px;
+    height: 28px;
+    background: #e1e1e4;
     border: 1px solid #e1e1e4;
     border-radius: 5px;
-
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    color: #505050;
-
-    cursor: pointer;
   }
-  /* input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  } */
 `;
 
 export const ErrorMessage = styled.div`
