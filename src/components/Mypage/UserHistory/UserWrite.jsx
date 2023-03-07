@@ -8,6 +8,7 @@ import {
   ListCard,
   CardTitleContainer,
   CardImage,
+  CategoryLikeContainer,
 } from "../../../pages/MyPage/style";
 
 import Like from "../../Community/Like";
@@ -16,13 +17,13 @@ import Like from "../../Community/Like";
 function UserWrite({ board, currentUser }) {
   return (
     <>
-      <ListCard className="카드 하나하나 해당합니다.">
+      <ListCard>
         {board.imgUrl ? (
           <CardImage src={`${board.imgUrl}`} alt="포스팅사진" />
         ) : null}
-        <div
+        <CategoryLikeContainer
           style={{
-            margin: "10px auto",
+            margin: "10px 10px",
             display: "flex",
             flexDirection: "column",
             gap: "10px",
@@ -40,9 +41,12 @@ function UserWrite({ board, currentUser }) {
               {board.title.length > 10 && "..."}
             </CardTitle>
             <SecondTitle>{board.name}</SecondTitle>
-            <div>{board.content}</div>
+            <div style={{ height: "200px" }}>
+              {board?.content.slice(0, 230)}
+              {board?.content.length > 230 && "..."}
+            </div>
           </CardTitleContainer>
-        </div>
+        </CategoryLikeContainer>
       </ListCard>
     </>
   );

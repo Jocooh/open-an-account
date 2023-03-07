@@ -9,7 +9,7 @@ export const MainPageWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
 `;
 // export const MainPageContainer = styled.div`
 //   background-color: lavender;
@@ -40,10 +40,11 @@ export const BtProductTitleWrap = styled.div`
     height: 33px;
     margin: 8px 20px 0 0;
   }
+  align-items: center;
 `;
 // 인기 금융 상품 제목
 export const BestProductTitle = styled.div`
-  font-size: 36px;
+  font-size: 28px;
   font-weight: bold;
 `;
 // 현재 시각
@@ -89,6 +90,7 @@ export const KrBankRateVar = styled.div`
 export const BtProducts = styled.div`
   display: flex;
   justify-content: center;
+  gap: 20px;
 `;
 
 // 인기 상품 랩
@@ -97,7 +99,8 @@ export const BtProduct = styled.div`
   height: 327px;
   border-radius: 20px;
   background-color: white;
-  margin: 0 15px 0 15px;
+  border: 1px solid #aaa;
+  /* margin: 0 15px 0 15px; */
   padding: 40px;
 `;
 
@@ -159,7 +162,7 @@ export const WeekBestTipper = styled.div`
   border-radius: 20px;
   margin: 20px 0 10px 0;
   padding: 58px 46px 33px 71px;
-  border: solid 1px #dedede;
+  /* border: solid 1px #dedede; */
   border-radius: 20px;
   background-color: white;
 `;
@@ -171,6 +174,8 @@ export const BestTipperWraper = styled.div``;
 export const BestTipperTitle = styled.span`
   font-size: 30px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
 `;
 
 // 옆으로 넘기는 버튼
@@ -221,10 +226,11 @@ export const TipperImgWrap = styled.div`
   border-radius: 10px;
   background-color: whitesmoke;
   img {
-    width: 288px;
+    width: 286px;
     height: 211px;
     object-fit: cover;
     border-radius: 10px;
+    padding-right: 1px;
   }
 `;
 
@@ -258,6 +264,9 @@ export const BoardTitle = styled.div`
 // 후기 내용
 export const BoardContent = styled.div`
   font-size: 14px;
+  white-space: pre-wrap;
+  height: 17em;
+  overflow: hidden;
 `;
 
 // 수정 삭제 버튼 랩

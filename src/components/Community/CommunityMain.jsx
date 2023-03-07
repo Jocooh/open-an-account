@@ -1,4 +1,5 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
+import { orderBy } from "lodash";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
@@ -24,7 +25,9 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
 
   const [posts, setPosts] = useState([]);
   const getPostList = async () => {
-    const querySnapshot = await getDocs(collection(db, "posts"));
+    const querySnapshot = await getDocs(
+      query(collection(db, "posts"), orderBy("createdAt", "desc"))
+    );
     const post = [];
     querySnapshot.forEach((doc) => {
       const newPost = {
@@ -88,7 +91,7 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
           <Category
             style={
               categorytab === "금융상품 후기"
-                ? { backgroundColor: "brown", color: "white" }
+                ? { backgroundColor: "white", color: "#6A24FF" }
                 : null
             }
             onClick={() => {
@@ -100,7 +103,7 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
           <Category
             style={
               categorytab === "팁과 노하우"
-                ? { backgroundColor: "brown", color: "white" }
+                ? { backgroundColor: "white", color: "#6A24FF" }
                 : null
             }
             onClick={() => {
@@ -112,7 +115,7 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
           <Category
             style={
               categorytab === "공지사항"
-                ? { backgroundColor: "brown", color: "white" }
+                ? { backgroundColor: "white", color: "#6A24FF" }
                 : null
             }
             onClick={() => {

@@ -6,7 +6,7 @@ export const StyledDetailContainer = styled.div`
 
 export const StyledDetailContent = styled.div`
   display: flex;
-  width: 840px;
+  width: 870px;
   margin: auto;
   padding: 30px;
   box-sizing: border-box;

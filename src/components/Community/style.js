@@ -39,6 +39,7 @@ export const Boards = styled.div`
   flex-wrap: wrap;
   padding-top: 3rem;
 
+  margin: 20px 0;
   @media screen {
   }
 `;
@@ -112,6 +113,6 @@ export const Category = styled.button`
   cursor: pointer;
 
   :hover {
-    background-color: rgba(188, 188, 188, 0.4);
+    background-color: #f5f5f5;
   }
 `;

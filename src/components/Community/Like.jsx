@@ -29,7 +29,7 @@ function Like({ currentUser, post, id }) {
   // console.log(newLike);
   const LikeHandler = async (id) => {
     if (!currentUser) {
-      if (window.confirm("You are not logged in")) {
+      if (window.confirm("로그인이 필요합니다. 로그인하시겠습니까?")) {
         return navigate("/login");
       } else {
         return;

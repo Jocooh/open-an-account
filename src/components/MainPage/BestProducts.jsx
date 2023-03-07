@@ -1,4 +1,5 @@
 import { async } from "@firebase/util";
+import { useNavigate } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -36,6 +37,7 @@ const BestProducts = () => {
   const [bookmarkListAll, setBookmarkListAll] = useState([]);
   // const [depositList, setDepositList] = useState([]);
   // const [savingList, setSavingList] = useState([]);
+  const navigate = useNavigate();
 
   // 오늘 날짜 (이게 맞나 싶다)
   let today = new Date();
@@ -283,6 +285,42 @@ const BestProducts = () => {
           </BtProductList>
         </BtProduct>
       </BtProducts>
+      {/* ################################# */}
+      <div
+        style={{
+          padding: "20px",
+          display: "flex",
+          gap: "10px",
+          alignContent: "center",
+          marginTop: "20px",
+        }}
+      >
+        <img
+          src={require("../../assets/Union.png")}
+          style={{ width: "16px", height: "29px", marginTop: "5px" }}
+          alt="번개"
+        />
+        <BestProductTitle style={{ marginTop: "5px" }}>
+          {" "}
+          빠른 상품 비교{" "}
+        </BestProductTitle>
+
+        <button
+          style={{
+            width: "209px",
+            height: "50px",
+            backgroundColor: "#6a24ff",
+            color: "white",
+            borderRadius: "10px",
+            fontSize: "17px",
+          }}
+          onClick={() => {
+            navigate("/service");
+          }}
+        >
+          상품 찾기
+        </button>
+      </div>
     </BestProductWrap>
   );
 };
