@@ -1,30 +1,6 @@
-import React, { useEffect, useState } from "react";
-import ChangePassword from "../../components/Mypage/ChangePassword";
-import EnrollNumber from "../../components/Mypage/EnrollNumber";
-import ChangeNickname from "../../components/Mypage/ChangeNickname";
-import {
-  setDoc,
-  doc,
-  collection,
-  getDoc,
-  onSnapshot,
-  query,
-  getDocs,
-} from "firebase/firestore";
-import {
-  getAuth,
-  onAuthStateChanged,
-  updatePassword,
-  updateProfile,
-  setPersistence,
-  signInWithEmailAndPassword,
-  browserSessionPersistence,
-  signOut,
-} from "firebase/auth";
-import { db, firebaseConfig } from "../../config/firebase";
-// import { useNavigate } from "react-router-dom";
-
-import { RiLogoutBoxLine } from "react-icons/ri";
+import React, { useState } from "react";
+import ChangePassword from "../../components/Mypage/UserAccount/ChangePassword";
+import ChangeNickname from "../../components/Mypage/UserAccount/ChangeNickname";
 import {
   MyPageWrapper,
   LeftBox,
@@ -42,10 +18,17 @@ import {
   HistoryCategory,
   CategoryImg,
   SaveBtn,
+  ProductTypesBtn,
+  RightSecondWrapper,
 } from "./style";
+import { updatePassword, updateProfile, deleteUser } from "firebase/auth";
+import { firebaseConfig } from "../../config/firebase";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { authService } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
+import UserWriteList from "../../components/Mypage/UserHistory/UserWriteList";
+import UserLikeList from "../../components/Mypage/UserHistory/UserLikeList";
 
 function MyPage() {
   const navigate = useNavigate();
@@ -56,52 +39,62 @@ function MyPage() {
   const currentUser = JSON.parse(userSession ?? "");
 
   const onLogoutClick = () => {
-    authService.signOut().then(() => {
-      sessionStorage.clear();
-      alert("로그아웃 되었습니다.");
-      navigate("/", { replace: true });
-    });
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      return authService.signOut().then(() => {
+        sessionStorage.clear(); // ?
+        alert("로그아웃 되었습니다.");
+        navigate("/", { replace: true });
+      });
+    } else {
+      return;
+    }
   };
 
   const [tab, setTab] = useState(0);
 
   //마이페이지 기능구현 필요 state
   const user = authService.currentUser;
-  // console.log("currentUser", currentUser, "user", user);
-  const [userEmail, setUserEmail] = useState(currentUser.email);
-  const [btn, setBtn] = useState(false);
+
   const [btnValidation, setBtnValidation] = useState(true);
+
+  const [productTypes, setProductTypes] = useState(1); //예금 적금
+
   //ChangePassword.jsx
   const [userPassword, setUserPassword] = useState(""); //현재 유저 패스워드
   const [editUserPassword, setEditUserPassword] = useState(""); //고치고 싶은 비밀번호
-
-  //-> ChangeNickName.jsx
+  const [inputValidationConfirm, setInputValidationConfirm] = useState(true);
+  const [password, setPassword] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [corfirmPasswordMessage, setConfirmPasswordMessage] = useState("");
+  const [doubleCheckPasswordMessage, setDoubleCheckPasswordMessage] =
+    useState("");
+  //ChangeNickName.jsx
   //newNickname: 유저의 바꿀 닉네임 ,  name: 왼쪽박스 유저 네임
   const [newNickName, setNewNickName] = useState(currentUser?.displayName);
   const [name, setName] = useState(newNickName);
   const [isNickName, setIsNickName] = useState(false);
 
-  //EnrollNum.jsx
-  //PhoneNum: 유저가 인풋에 본인의 휴대폰번호를 적을 경우 add될 state
-  const [phoneNum, setPhoneNum] = useState("");
-  const [phoneList, setPhoneList] = useState(""); //firebase에 저장되어있는 키값
-
   //닉네임 업데이트 함수
   const clickUserUpdate = async (e) => {
     e.preventDefault();
+    if (password !== userPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
     if (window.confirm("개인정보를 수정 하시겠습니까?")) {
       await updateProfile(user, {
         displayName: newNickName,
-      })
+      });
+      await PasswordUpdateHanlder()
         .then(
           alert("개인정보 수정 완료"),
           setName(newNickName),
-          setEditUserPassword("")
+          setInputValidationConfirm(true),
+          setBtnValidation(true)
         )
         .catch((error) => {
-          console.log(error);
+          alert(console.log(error));
         });
-      await PasswordUpdateHanlder().then(console.log("비밀번호 변경확인"));
     } else {
       alert("개인정보 수정 취소");
     }
@@ -115,29 +108,25 @@ function MyPage() {
       .catch((error) => {
         console.log(error);
       });
-    setUserPassword("");
-  };
-  //핸드폰은 user라는 이름으로 컬렉션에 들어갑니다.  => 계속 진행 중이니까 주석처리중
-  // const addPhoneNumber = async () => {
-  //   const newNumber = currentUser.uid;
-  //   await setDoc(doc(db, "users", newNumber), {
-  //     userId: currentUser.uid,
-  //     phoneNumber: phoneNum,
-  //   });
-  // };
 
-  // const getPhoneNumber = async () => {
-  //   const querySnapshot = await getDocs(collection(db, "users"));
-  //   const phoneLists = [];
-  //   querySnapshot.forEach((doc) => {
-  //     const newProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-  //     phoneLists.push(newProduct);
-  //     setPhoneNum(phoneList[0]?.phoneNumber);
-  //   });
-  // };
+    setPassword("");
+    setUserPassword("");
+    setEditUserPassword("");
+    setPasswordMessage("");
+    setConfirmPasswordMessage("");
+    setDoubleCheckPasswordMessage("");
+  };
+  //유저 탈퇴 함수
+  const deleteUserHandler = () => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      deleteUser(user).then(() => {
+        alert("삭제되었습니다");
+        return navigate("/");
+      });
+    } else {
+      return;
+    }
+  };
 
   return (
     <>
@@ -167,12 +156,6 @@ function MyPage() {
                 로그아웃
               </LogOutBtn>
             </ContentDiv>
-            <div>
-              <p>연락처</p>
-              <p style={{ color: "#aaa" }}>
-                {phoneNum !== "" ? <>{phoneNum}</> : "등록된 번호가 없어요"}
-              </p>
-            </div>
           </UserContentDiv>
           {/* 유저 계정 변경 부분 (디폴트부분) */}
           <UserAccountDiv
@@ -228,23 +211,7 @@ function MyPage() {
                   }}
                   style={{ fontSize: "18px" }}
                 >
-                  내가 쓴 글
-                </button>
-              </CategoryImg>
-              <p>〉</p>
-            </HistoryCategory>
-            <HistoryCategory
-              style={tab === 3 ? { backgroundColor: "#e6e8ea" } : null}
-            >
-              <CategoryImg>
-                <StyledIcons src={require("../../assets/lists.png")} />
-                <button
-                  onClick={() => {
-                    setTab(3);
-                  }}
-                  style={{ fontSize: "18px" }}
-                >
-                  스크랩한 글
+                  나의 팁
                 </button>
               </CategoryImg>
               <p>〉</p>
@@ -254,44 +221,68 @@ function MyPage() {
 
         <RightBox className="오른쪽 박스">
           {tab === 0 && (
-            <RightWrapper className="첫번째 탭 박스">
-              <form
-                onSubmit={(e) => {
-                  clickUserUpdate(e);
+            <RightWrapper>
+              <RightSecondWrapper>
+                {/* <button style={{ display: "flex", position: "relative" }}>
+                <MdTableRows fontSize="30px" />
+              </button> */}
+                <form
+                  onSubmit={(e) => {
+                    clickUserUpdate(e);
+                  }}
+                >
+                  <ChangePassword
+                    currentUser={currentUser} //현재의 유저 값
+                    setBtnValidation={setBtnValidation} // 버튼 활성화
+                    password={password} //새 비밀번호
+                    setPassword={setPassword} //새 비밀번호
+                    editUserPassword={editUserPassword} //현재 비밀번호
+                    setEditUserPassword={setEditUserPassword} //현재 비밀번호
+                    userPassword={userPassword} //새 비밀번호 확인
+                    setUserPassword={setUserPassword} //새 비밀번호 확인
+                    inputValidationConfirm={inputValidationConfirm} // 3번째 input 활성화
+                    setInputValidationConfirm={setInputValidationConfirm} // 3번째 input 활성화
+                    passwordMessage={passwordMessage}
+                    setPasswordMessage={setPasswordMessage}
+                    corfirmPasswordMessage={corfirmPasswordMessage}
+                    setConfirmPasswordMessage={setConfirmPasswordMessage}
+                    doubleCheckPasswordMessage={doubleCheckPasswordMessage}
+                    setDoubleCheckPasswordMessage={
+                      setDoubleCheckPasswordMessage
+                    }
+                  />
+
+                  <ChangeNickname
+                    name={name}
+                    isNickName={isNickName}
+                    newNickName={newNickName}
+                    setIsNickName={setIsNickName}
+                    setNewNickName={setNewNickName}
+                    setBtnValidation={setBtnValidation}
+                  />
+
+                  <SaveBtn
+                    disabled={btnValidation}
+                    style={
+                      btnValidation === true
+                        ? { backgroundColor: "#aaa" }
+                        : null
+                    }
+                  >
+                    변경사항 저장
+                  </SaveBtn>
+                </form>
+              </RightSecondWrapper>
+              <div
+                style={{ display: "flex", flexDirection: "row-reverse" }}
+                onClick={() => {
+                  deleteUserHandler();
                 }}
               >
-                <ChangePassword
-                  editUserPassword={editUserPassword}
-                  setEditUserPassword={setEditUserPassword}
-                  currentUser={currentUser}
-                  userPassword={userPassword}
-                  setUserPassword={setUserPassword}
-                  setBtnValidation={setBtnValidation}
-                />
-                <EnrollNumber
-                  setPhoneNum={setPhoneNum}
-                  phoneNum={phoneNum}
-                  currentUser={currentUser}
-                  phoneList={phoneList}
-                />
-                <ChangeNickname
-                  newNickName={newNickName}
-                  setNewNickName={setNewNickName}
-                  setIsNickName={setIsNickName}
-                  isNickName={isNickName}
-                  setBtnValidation={setBtnValidation}
-                  name={name}
-                />
-
-                <SaveBtn
-                  disabled={btnValidation}
-                  style={
-                    btnValidation === true ? { backgroundColor: "#aaa" } : null
-                  }
-                >
-                  변경사항 저장
-                </SaveBtn>
-              </form>
+                <p style={{ color: "#888", cursor: "pointer" }}>
+                  회원 탈퇴하기
+                </p>
+              </div>
             </RightWrapper>
           )}
 
@@ -300,30 +291,74 @@ function MyPage() {
               style={{ display: "flex", flexDirection: "column", gap: "10px" }}
             >
               <div style={{ display: "flex", gap: "10px" }}>
-                <button
-                  style={{
-                    width: "70px",
-                    height: "30px",
-                    backgroundColor: "white",
+                <ProductTypesBtn
+                  style={
+                    productTypes === 1
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
+                  onClick={() => {
+                    setProductTypes(1);
                   }}
                 >
-                  예금
-                </button>
-                <button
-                  style={{
-                    width: "70px",
-                    height: "30px",
-                    backgroundColor: "white",
+                  정기예금
+                </ProductTypesBtn>
+                <ProductTypesBtn
+                  style={
+                    productTypes === 2
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
+                  onClick={() => {
+                    setProductTypes(2);
                   }}
                 >
-                  적금
-                </button>
+                  정기적금
+                </ProductTypesBtn>
               </div>
-              <BookmarkPrdtList currentUser={currentUser} />
+              <BookmarkPrdtList
+                currentUser={currentUser}
+                productTypes={productTypes}
+              />
             </div>
           )}
-          {tab === 2 && <div>comming soon ...</div>}
-          {tab === 3 && <div>comming soon ...</div>}
+          {tab === 2 && (
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <div style={{ display: "flex", gap: "10px" }}>
+                <ProductTypesBtn
+                  style={
+                    productTypes === 1
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
+                  onClick={() => {
+                    setProductTypes(1);
+                  }}
+                >
+                  좋아한 팁
+                </ProductTypesBtn>
+                <ProductTypesBtn
+                  style={
+                    productTypes === 2
+                      ? { backgroundColor: "#6A24FF", color: "white" }
+                      : { backgroundColor: "white", color: "black" }
+                  }
+                  onClick={() => {
+                    setProductTypes(2);
+                  }}
+                >
+                  작성한 팁
+                </ProductTypesBtn>
+              </div>
+              {productTypes === 1 ? (
+                <UserLikeList currentUser={user} />
+              ) : (
+                <UserWriteList currentUser={currentUser} />
+              )}
+            </div>
+          )}
         </RightBox>
       </MyPageWrapper>
     </>
@@ -331,15 +366,3 @@ function MyPage() {
 }
 
 export default MyPage;
-
-// 잊지마라 조성아 여기 넣어야댄다. 네..
-/*  // console.log(nickName);
-  // 원준 작업.
-  // 상단 currentUser 가져오면서 예외처리 되지만 alert, navigate 를 위해 추가. -- 현재 위 코드로 먼저 걸러주기 때문에 실행되지 않음. 더 알아볼 것.
-  // useEffect(() => {
-  //   if (!authService.currentUser) {
-  //     alert("마이페이지는 로그인 후 접근이 가능합니다.");
-  //     navigate("/login");
-  //     return;
-  //   }
-  // }, []); */

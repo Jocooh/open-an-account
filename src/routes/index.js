@@ -4,17 +4,19 @@ import MyPage from "../pages/MyPage/MyPage";
 import CommunityPage from "../pages/Community/CommunityPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
-// import Layout from "../components/GlobalComponents/Layout/Layout";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import ServicePage from "../pages/ServicePage/ServicePage";
 import InsertData from "../data/InsertData";
 import Footer from "../../src/components/GlobalComponents/Footer/Footer.jsx";
 import Header from "../../src/components/GlobalComponents/Header/Header.jsx";
+import ScrollToTop from "../components/GlobalComponents/ScrollToTop";
+import NoutFountPage from "../pages/NotFountPage";
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -25,9 +27,9 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/detail" element={<DetailPage />} />
-        {/* <Route path="/bankList" element={<BankLists />} /> */}
         {/* admin */}
         <Route path="/4jojoa" element={<InsertData />} />
+        <Route path="*" element={<NoutFountPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

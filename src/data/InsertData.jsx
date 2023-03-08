@@ -125,15 +125,6 @@ const InsertData = () => {
     }
   };
 
-
-  useEffect(() => {
-    getSavingBaseListHandler();
-    getSavingOptionListHandler();
-    getDepositBaseListHandler();
-    getDepositOptionListHandler();
-  }, []);
-
-
   return (
     <div
       style={{
@@ -177,6 +168,7 @@ const InsertData = () => {
         <p>예금 옵션 목록</p>
         <button onClick={getDepositOptionListHandler}>불러오기</button>
       </div>
+      <div>https://cors-anywhere.herokuapp.com/corsdemo</div>
     </div>
   );
 };

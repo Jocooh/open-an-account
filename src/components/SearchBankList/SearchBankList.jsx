@@ -23,6 +23,7 @@ function SearchBankList({
           setColor={setColor}
           activeItem={activeItem}
           searchBank={searchBank}
+          productTypes={productTypes}
           setActiveItem={setActiveItem}
           depositbaseList={depositbaseList}
           handleClickProduct={handleClickProduct}
@@ -34,6 +35,7 @@ function SearchBankList({
           setColor={setColor}
           activeItem={activeItem}
           searchBank={searchBank}
+          productTypes={productTypes}
           setActiveItem={setActiveItem}
           savingbaseList={savingbaseList}
           handleClickProduct={handleClickProduct}

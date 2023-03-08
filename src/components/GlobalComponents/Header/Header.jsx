@@ -19,13 +19,25 @@ function Header() {
   //   alert("로그아웃 되었습니다.");
   // };
 
-  // 로그아웃;
+  // 로그아웃
+  // const onLogoutClick = () => {
+  //   authService.signOut().then(() => {
+  //     sessionStorage.clear(); // ?
+  //     alert("로그아웃 되었습니다.");
+  //     navigate("/", { replace: true });
+  //   });
+  // };
+
   const onLogoutClick = () => {
-    authService.signOut().then(() => {
-      sessionStorage.clear(); // ?
-      alert("로그아웃 되었습니다.");
-      navigate("/", { replace: true });
-    });
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      return authService.signOut().then(() => {
+        sessionStorage.clear(); // ?
+        alert("로그아웃 되었습니다.");
+        navigate("/", { replace: true });
+      });
+    } else {
+      return;
+    }
   };
 
   return (
@@ -36,8 +48,8 @@ function Header() {
         alt="메인"
       />
       <NavBar>
-        <Nav onClick={() => navigate("/main")}>대시보드</Nav>
-        <Nav onClick={() => navigate("/service")}>계산기</Nav>
+        <Nav onClick={() => navigate("/main")}>홈</Nav>
+        <Nav onClick={() => navigate("/service")}>상품비교</Nav>
         <Nav onClick={() => navigate("/community")}>커뮤니티</Nav>
 
         {/* 24일이후 추가할 예정 */}

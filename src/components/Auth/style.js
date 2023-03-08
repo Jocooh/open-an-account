@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 // auth background
 export const AuthBackground = styled.div`
-  /* width: 100vw; */
-  /* height: calc(100vh - 145px); */ // 푸터까지
-  height: calc(100vh - 94px);
-  // 기존 헤더 heigth 78px 이나 스크롤을 없애는 데 16px 이 더 필요함. 원인 찾아야 함.
+  /* width: 100vh; */
+  height: calc(100vh - 118px); // 푸터까지
+  /* height: calc(100vh - 94px); */
+  // 기존 헤더 heigth 78px 이나 스크롤을 없애는 데 16px 이 더 필요함 원인은 무엇인지
 
   display: flex;
   justify-content: center;

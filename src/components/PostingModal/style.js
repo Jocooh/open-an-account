@@ -1,25 +1,30 @@
 import styled from "styled-components";
 
 export const ModalBackground = styled.div`
-  /* position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0; */
-  /* background: rgba(67, 79, 101, 0.7); */
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(67, 79, 101, 0.7);
+  z-index: 999;
 `;
 
 export const ModalContainer = styled.div`
   /* 모달창 크기 */
   width: 900px;
-  height: 700px;
+  /* height: 700px; */
   padding: 20px;
   /* 모달 배치 */
   /* translate는 본인의 크기 기준으로 작동한다. */
-  /* position: absolute;
-  top: 40%;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  /* top: 40%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
 
   /* 모달창 디자인 */
   background-color: #fff;
@@ -38,8 +43,8 @@ export const CloseButton = styled.button`
   background-color: rgba(233, 236, 242, 0.8);
   border: none;
   box-sizing: border-box;
-  padding: 8px 15px;
-  border-radius: 7px;
+  padding: 4px 16px;
+  border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
 
@@ -48,16 +53,16 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const SaveButton = styled(CloseButton)`
-  background-color: rgba(36, 55, 99, 0.8);
-  color: #fff;
+export const SaveButton = styled.button`
+  border: 1px solid #6a24ff;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  border-radius: 5px;
+  color: #6a24ff;
 
   :hover {
-    background-color: rgba(36, 55, 99);
-  }
-  :disabled {
-    background-color: #dadada;
-    color: #fff;
+    background-color: #6a24ff;
+    color: #ffffff;
   }
 `;
 
@@ -69,24 +74,36 @@ export const Body = styled.div`
 export const TitleInput = styled.input`
   border: none;
   border-bottom: 0.6px solid #c6c6c6;
-  min-width: 200px;
-  width: 350px;
+  /* min-width: 200px; */
+  /* width: 350px; */
   margin: 20px 10px 20px 0;
   padding-left: 10px;
   outline: none;
   flex: 80%;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
 `;
 export const Category = styled.select`
   display: flex;
   justify-content: flex-start;
   width: 200px;
 
-  background-color: rgba(233, 236, 242, 0.8);
-  border: none;
+  /* background-color: rgba(233, 236, 242, 0.8); */
+  border: 1px solid #e1e1e4;
   box-sizing: border-box;
   padding: 8px 15px;
-  border-radius: 7px;
-  font-weight: 600;
+  border-radius: 5px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #505050;
 
   cursor: pointer;
   :hover {
@@ -97,23 +114,40 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 20px;
   padding: 20px;
-  background-color: rgba(233, 236, 242, 0.8);
-  border-radius: 7px;
+  /* background-color: rgba(233, 236, 242, 0.8); */
+  border: 1px solid #e1e1e4;
+  border-radius: 5px;
 `;
-export const ContentInput = styled.input`
+export const ContentInput = styled.textarea`
+  display: block;
   border: none;
-  min-width: 200px;
-  width: 100%;
-  margin: 20px 10px 20px 0;
+  min-height: 486px;
+  margin: 10px 0;
   padding-left: 10px;
   outline: none;
   background: transparent;
 `;
 export const ImgUpload = styled.input`
+  margin: 30px 0 10px 0;
   border: none;
-  border-bottom: 0.6px solid #c6c6c6;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #505050;
+
+  cursor: pointer;
+
+  ::file-selector-button {
+    width: 88px;
+    height: 28px;
+    background: #e1e1e4;
+    border: 1px solid #e1e1e4;
+    border-radius: 5px;
+  }
 `;
 
 export const ErrorMessage = styled.div`

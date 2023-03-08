@@ -201,7 +201,7 @@ const ServicePage = () => {
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
                 setIntrRateType(targetDoc.intr_rate_type);
-                console.log(selectedProductIdsCopy);
+                // console.log(selectedProductIdsCopy);
                 break;
               } else {
                 console.log(
@@ -249,7 +249,7 @@ const ServicePage = () => {
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
                 setIntrRateType(targetDoc.intr_rate_type);
-                console.log(selectedProductIdsCopy);
+                // console.log(selectedProductIdsCopy);
                 break;
               } else {
                 console.log(
@@ -280,7 +280,7 @@ const ServicePage = () => {
     newSelectedProductIds[index + 6] = "";
 
     setSelectedProductIds(newSelectedProductIds);
-    console.log(selectedProductIds);
+    // console.log(selectedProductIds);
   };
 
   //* 두번째 선택된 상품선택해제 함수
@@ -295,7 +295,7 @@ const ServicePage = () => {
     newSelectedProductIds[index + 12] = "";
 
     setSelectedProductIds(newSelectedProductIds);
-    console.log(selectedProductIds);
+    // console.log(selectedProductIds);
   };
 
   //* 세번째 선택된 상품선택해제 함수
@@ -310,7 +310,7 @@ const ServicePage = () => {
     newSelectedProductIds[index + 18] = "";
 
     setSelectedProductIds(newSelectedProductIds);
-    console.log(selectedProductIds);
+    // console.log(selectedProductIds);
   };
 
   //* 동일된 상품 선택시 함수 종료.
@@ -750,6 +750,7 @@ const ServicePage = () => {
               </ToCompare>
               {comparingModalOpen && (
                 <ComparingModal
+                  productTypes={productTypes}
                   setComparingModalOpen={setComparingModalOpen}
                   selectedProductId={[
                     selectedProductIds[0],
@@ -1158,28 +1159,77 @@ const ServicePage = () => {
 
               {activeTab === 3 &&
                 (!isLoggedIn ? (
-                  <div style={{ width: "200px", margin: "auto" }}>
-                    {" "}
-                    로그인 후 사용 가능합니다.🔥
+                  <div
+                    style={{
+                      width: "200px",
+                      margin: "auto",
+                      height: "200px",
+                    }}
+                  >
+                    <p>로그인 후 사용 가능합니다.🔥</p>
                   </div>
                 ) : (
                   <>
-                    <TapContainer>
-                      <TapContainerBox>
-                        {/* 여기서 부터 찜 내용 들어감 */}
-                        <StyledBankListContainer>
-                          <StyledBankList>
-                            <div
-                              ref={topLocation}
-                              className="top으로 가는 위치 지정"
-                            />
-                            {/* <StyledBankListWrapper> */}
-                            <BookmarkPrdtList currentUser={user} />
-                            {/* </StyledBankListWrapper> */}
-                          </StyledBankList>
-                        </StyledBankListContainer>
-                      </TapContainerBox>
-                    </TapContainer>
+                    <TapContainerWrap>
+                      <TapContainer>
+                        <TapContainerBox>
+                          <TapTitleName>나의 찜 목록</TapTitleName>
+                          <ProductWraper>
+                            <ProductType
+                              onClick={() => {
+                                handleProductTypeClick(1);
+                              }}
+                              style={
+                                productTypes === 1
+                                  ? {
+                                      color: "#fff",
+                                      border: "1px solid #E1E1E4",
+                                      backgroundColor: "#6A24FF",
+                                      fontWeight: "bold",
+                                    }
+                                  : {}
+                              }
+                            >
+                              정기예금
+                            </ProductType>
+                            <ProductType
+                              onClick={() => {
+                                handleProductTypeClick(2);
+                              }}
+                              style={
+                                productTypes === 2
+                                  ? {
+                                      color: "#fff",
+                                      border: "1px solid #E1E1E4",
+                                      backgroundColor: "#6A24FF",
+                                      fontWeight: "bold",
+                                    }
+                                  : {}
+                              }
+                            >
+                              정기적금
+                            </ProductType>
+                          </ProductWraper>
+                          {/* 여기서 부터 찜 내용 들어감 */}
+                          <StyledBankListContainer>
+                            <StyledBankList>
+                              <div
+                                ref={topLocation}
+                                className="top으로 가는 위치 지정"
+                              />
+                              {/* <StyledBankListWrapper> */}
+                              <BookmarkPrdtList
+                                productTypes={productTypes}
+                                currentUser={user}
+                                handleClickProduct={handleClickProduct}
+                                selectedProductIds={selectedProductIds}
+                              />
+                              {/* </StyledBankListWrapper> */}
+                            </StyledBankList>
+                          </StyledBankListContainer>
+                        </TapContainerBox>
+                      </TapContainer>
+                    </TapContainerWrap>
                   </>
                 ))}
             </div>

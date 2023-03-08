@@ -6,31 +6,26 @@ export const ModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(67, 79, 101, 0.7);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(67, 79, 101, 0.7);
+  z-index: 999;
 `;
 
 export const ModalContainer = styled.div`
-  /* 최상단 위치 */
-  z-index: 999;
-
-  /* 모달 배치 */
-  /* translate는 본인의 크기 기준으로 작동한다. */
-  position: absolute;
-  width: 100%;
-  /* max-width: 1194px; */
-  min-height: 866px;
+  z-index: 999999;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* background-color: rgba(67, 79, 101, 0.7); */
+
   gap: 10px;
-  /* left: calc(50% - 1331px/2 + 0.5px);
-top: 146px; */
 `;
 
 export const CloseButton = styled(CgClose)`
   display: flex;
+  position: relative;
   margin: auto 0 10px auto;
   cursor: pointer;
 `;
@@ -40,7 +35,7 @@ export const ModalContents = styled.div`
   /* 모달창 크기 */
   width: 1194px;
   min-height: 866px;
-
+  position: relative;
   /* 모달창 디자인 */
   background: #ffffff;
   border: 1px solid #dedede;

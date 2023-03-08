@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 78px;
+  /* width: 1440px; */
+  height: 52px;
   /* box-sizing: border-box; */
 
   /* padding: 2rem 3rem; */
@@ -11,21 +12,24 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+// components -> GlobalComponents -> Header -> style.js
+
 export const Logo = styled.img`
-  width: 116px;
-  height: 36px;
+  width: 70px;
+  height: 19px;
   display: flex;
   justify-content: flex-start;
-  margin-left: 30px;
+  margin-left: 70px;
   cursor: pointer;
 `;
 export const NavBar = styled.div`
   display: flex;
   justify-content: end;
-  margin-right: 30px;
+  margin-right: 70px;
   gap: 40px;
 `;
 export const Nav = styled.div`
+  font-size: 14px;
   font-weight: bold;
   box-sizing: border-box;
   cursor: pointer;

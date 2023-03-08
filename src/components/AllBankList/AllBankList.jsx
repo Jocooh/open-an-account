@@ -30,6 +30,7 @@ import { StyledBankLists } from "../../pages/ServicePage/style";
 import Bookmarks from "../ServicePage/Bookmarks";
 
 function AllBankList({
+  productTypes,
   setColor,
   activeItem,
   setActiveItem,
@@ -112,6 +113,7 @@ function AllBankList({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
+                            productTypes={productTypes}
                           />
                           <button
                             style={{

@@ -19,14 +19,15 @@ import {
 import SearchDepositDetail from "../Detail/SearchSavingDetail";
 
 function SearchSavingLists({
-  activeItem,
+  setColor,
   searchBank,
+  activeItem,
+  productTypes,
   setActiveItem,
   savingbaseList,
   savingOptionalList,
   handleClickProduct,
   selectedProductIds,
-  setColor,
 }) {
   return (
     <div>
@@ -113,7 +114,7 @@ function SearchSavingLists({
                       </div>
                     </StyledDiv>
                     <StyledMoreListDiv>
-                      <Bookmarks baseList={base} />
+                      <Bookmarks baseList={base} productTypes={productTypes} />
                       <button
                         style={{
                           width: "60px",

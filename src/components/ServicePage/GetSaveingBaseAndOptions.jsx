@@ -45,7 +45,7 @@ const GetDepositOption = () => {
         const newProductIds = [...selectedProductOptions];
         newProductIds[newProductIds.indexOf("")] = docSnap.id;
         setSelectedProductOptions(newProductIds);
-        console.log(newProductIds);
+        // console.log(newProductIds);
       } else {
         console.log("문서의 아이디를 찾을 수 없어요!");
       }

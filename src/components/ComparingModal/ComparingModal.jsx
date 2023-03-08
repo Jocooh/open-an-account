@@ -21,6 +21,7 @@ import Product from "../Product/Product";
 import SavingProduct from "../Product/SavingProduct";
 
 const ComparingModal = ({
+  productTypes,
   setComparingModalOpen,
   selectedProduct,
   selectedProductId,
@@ -30,29 +31,30 @@ const ComparingModal = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
 
-  console.log("selectedProduct :>> ", selectedProduct);
-  console.log("selectedProductRate :>> ", selectedProductRate);
-  console.log("selectedProductRate2 :>> ", selectedProductRate2);
-  console.log("selectedProductRateType :>> ", selectedProductRateType);
+  // console.log("selectedProduct :>> ", selectedProduct);
+  // console.log("selectedProductRate :>> ", selectedProductRate);
+  // console.log("selectedProductRate2 :>> ", selectedProductRate2);
+  // console.log("selectedProductRateType :>> ", selectedProductRateType);
 
   return (
     <ModalBackground>
       <ModalContainer>
-        <CloseButton
+        {/* <CloseButton
           onClick={() => {
             setComparingModalOpen(false);
           }}
           size="39px"
           color="#f0f0f0"
-        />
-        {/* <CloseButton
-          src={require("../../assets/close.png")}
-          alt="닫기"
-          onClick={() => {
-            setComparingModalOpen(false);
-          }}
         /> */}
+
         <ModalContents>
+          <CloseButton
+            src={require("../../assets/close.png")}
+            alt="닫기"
+            onClick={() => {
+              setComparingModalOpen(false);
+            }}
+          />
           <Title>상품 비교</Title>
           <MessageWrapper>
             {selectedProduct[0].category === "예금 기본 정보" ? (
@@ -77,6 +79,7 @@ const ComparingModal = ({
                 </Message>
                 <Products>
                   <Product
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProductId[0]}
@@ -85,6 +88,7 @@ const ComparingModal = ({
                     selectedProductRateType={selectedProductRateType[0]}
                   />
                   <Product
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProductId[1]}
@@ -94,6 +98,7 @@ const ComparingModal = ({
                   />
                   {selectedProduct[2] ? (
                     <Product
+                      productTypes={productTypes}
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProductId[2]}
@@ -131,6 +136,7 @@ const ComparingModal = ({
                 </Message>
                 <Products>
                   <SavingProduct
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProductId[0]}
@@ -139,6 +145,7 @@ const ComparingModal = ({
                     selectedProductRateType={selectedProductRateType[0]}
                   />
                   <SavingProduct
+                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProductId[1]}
@@ -148,6 +155,7 @@ const ComparingModal = ({
                   />
                   {selectedProduct[2] ? (
                     <SavingProduct
+                      productTypes={productTypes}
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProductId[2]}

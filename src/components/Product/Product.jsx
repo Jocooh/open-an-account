@@ -10,12 +10,14 @@ import {
   Wrapper,
   Scrap,
   Logo,
+  FullInfo,
 } from "./style";
 import Bookmarks from "../ServicePage/Bookmarks";
 import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../AllBankList/style";
 
 function Product({
+  productTypes,
   inputValue,
   selectedProduct,
   selectedProductId,
@@ -23,6 +25,7 @@ function Product({
   selectedProductRate2,
   selectedProductRateType,
 }) {
+  // console.log("selectedProduct", selectedProduct);
   //* props로 받아온 문자열 input값 숫자형으로 바꾸기
   //TODO: 입력할때마다 리렌더링
   const inputNum = parseInt(inputValue.replaceAll(",", ""));
@@ -81,30 +84,35 @@ function Product({
           <Prdt_nm>{selectedProduct.fin_prdt_nm}</Prdt_nm>
         </Name>
 
-        <Info>
-          <div>{selectedProduct.kor_co_nm}</div>
-          <div>
-            일반 금리 {selectedProductRate}% | 최고금리
-            {selectedProductRate2}
-          </div>
-          <div>
-            {selectedProduct.etc_note.split("-").map((line) => {
-              return (
-                <>
-                  {line}
-                  <br />
-                </>
-              );
-            })}
-          </div>
-        </Info>
-        <Message>
-          <li>가입 방법: {selectedProduct.join_way}</li>
-          <li>가입 대상: {selectedProduct.join_member}</li>
-        </Message>
+        <FullInfo>
+          <Info>
+            <div>{selectedProduct.kor_co_nm}</div>
+            <div>
+              일반 금리 {selectedProductRate}% | 최고금리
+              {selectedProductRate2}
+            </div>
+            <div>
+              {selectedProduct.etc_note.split("-").map((line) => {
+                return (
+                  <>
+                    {line}
+                    <br />
+                  </>
+                );
+              })}
+            </div>
+          </Info>
+          <Message>
+            <li>가입 방법: {selectedProduct.join_way}</li>
+            <li>가입 대상: {selectedProduct.join_member}</li>
+          </Message>
+        </FullInfo>
         <Scrap>
           <Bookmarks
             baseList={selectedProduct} //baseList
+            isModal={true}
+            selectedProductId={selectedProductId}
+            productTypes={productTypes}
           />
         </Scrap>
       </ProductBox>
