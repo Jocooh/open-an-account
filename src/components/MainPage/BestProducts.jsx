@@ -153,12 +153,14 @@ const BestProducts = () => {
               </div>
               <RateWrapper>
                 <MaxRate>
-                  <img
-                    src={require("../../assets/bookmarked.png")}
-                    style={{ width: "15px", height: "20px" }}
-                    alt="북마크"
-                  />
-                  {sortChangeSaving?.[0]?.[1]}
+                  {sortChangeSaving ?? (
+                    <img
+                      src={require("../../assets/bookmarked.png")}
+                      style={{ width: "15px", height: "20px" }}
+                      alt="북마크"
+                    />
+                  )}
+                  {sortChangeSaving?.[2]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
@@ -182,12 +184,14 @@ const BestProducts = () => {
               </div>
               <RateWrapper>
                 <MaxRate>
-                  <img
-                    src={require("../../assets/bookmarked.png")}
-                    style={{ width: "15px", height: "20px" }}
-                    alt="북마크"
-                  />
-                  {sortChangeSaving?.[1]?.[1]}
+                  {sortChangeSaving ?? (
+                    <img
+                      src={require("../../assets/bookmarked.png")}
+                      style={{ width: "15px", height: "20px" }}
+                      alt="북마크"
+                    />
+                  )}
+                  {sortChangeSaving?.[2]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
@@ -207,15 +211,17 @@ const BestProducts = () => {
                   {sortChangeSaving?.[2]?.[0]?.split(",")?.[0] ??
                     "가져올 상품이 없어요!"}
                 </BtProductName>
-                <div>{sortChangeSaving?.[2]?.[0]?.split(",")?.[1] ?? null}</div>
+                <div>{sortChangeSaving?.[2]?.[0]?.split(",")?.[1]}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
-                  <img
-                    src={require("../../assets/bookmarked.png")}
-                    style={{ width: "15px", height: "20px" }}
-                    alt="북마크"
-                  />
+                  {sortChangeSaving ?? (
+                    <img
+                      src={require("../../assets/bookmarked.png")}
+                      style={{ width: "15px", height: "20px" }}
+                      alt="북마크"
+                    />
+                  )}
                   {sortChangeSaving?.[2]?.[1]}
                 </MaxRate>
               </RateWrapper>
@@ -228,23 +234,29 @@ const BestProducts = () => {
           <BtProductList>
             <BtProductRank>1</BtProductRank>
             <BankLogo
-              src={logoList[sortChangeDeposit?.[0]?.[0]?.split(",")?.[2]]}
+              src={
+                logoList[sortChangeDeposit?.[0]?.[0]?.split(",")?.[2]] ??
+                require("../../assets/no.png")
+              }
               alt="로고"
             />
             <BtProductContent>
               <div>
                 <BtProductName>
-                  {sortChangeDeposit?.[0]?.[0]?.split(",")?.[0]}
+                  {sortChangeDeposit?.[0]?.[0]?.split(",")?.[0] ??
+                    "가져올 상품이 없어요!"}
                 </BtProductName>
                 <div>{sortChangeDeposit?.[0]?.[0]?.split(",")?.[1]}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
-                  <img
-                    src={require("../../assets/bookmarked.png")}
-                    style={{ width: "15px", height: "20px" }}
-                    alt="북마크"
-                  />
+                  {sortChangeDeposit ?? (
+                    <img
+                      src={require("../../assets/bookmarked.png")}
+                      style={{ width: "15px", height: "20px" }}
+                      alt="북마크"
+                    />
+                  )}
                   {sortChangeDeposit?.[0]?.[1]}
                 </MaxRate>
               </RateWrapper>
@@ -253,24 +265,30 @@ const BestProducts = () => {
           <BtProductList>
             <BtProductRank>2</BtProductRank>
             <BankLogo
-              src={logoList[sortChangeDeposit?.[1]?.[0]?.split(",")?.[2]]}
+              src={
+                logoList[sortChangeDeposit?.[1]?.[0]?.split(",")?.[2]] ??
+                require("../../assets/no.png")
+              }
               alt="로고"
             />
             <BtProductContent>
               <div>
                 <BtProductName>
-                  {sortChangeDeposit?.[1]?.[0]?.split(",")?.[0]}
+                  {sortChangeDeposit?.[1]?.[0]?.split(",")?.[0] ??
+                    "가져올 상품이 없어요!"}
                 </BtProductName>
                 <div>{sortChangeDeposit?.[1]?.[0]?.split(",")?.[1]}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
-                  <img
-                    src={require("../../assets/bookmarked.png")}
-                    style={{ width: "15px", height: "20px" }}
-                    alt="북마크"
-                  />
-                  {sortChangeDeposit?.[1]?.[1]}
+                  {sortChangeDeposit ?? (
+                    <img
+                      src={require("../../assets/bookmarked.png")}
+                      style={{ width: "15px", height: "20px" }}
+                      alt="북마크"
+                    />
+                  )}
+                  {sortChangeDeposit?.[0]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
@@ -278,24 +296,30 @@ const BestProducts = () => {
           <BtProductList>
             <BtProductRank>3</BtProductRank>
             <BankLogo
-              src={logoList[sortChangeDeposit?.[2]?.[0]?.split(",")?.[2]]}
+              src={
+                logoList[sortChangeDeposit?.[2]?.[0]?.split(",")?.[2]] ??
+                require("../../assets/no.png")
+              }
               alt="로고"
             />
             <BtProductContent>
               <div>
                 <BtProductName>
-                  {sortChangeDeposit?.[2]?.[0]?.split(",")?.[0]}
+                  {sortChangeDeposit?.[2]?.[0]?.split(",")?.[0] ??
+                    "가져올 상품이 없어요!"}
                 </BtProductName>
                 <div>{sortChangeDeposit?.[2]?.[0]?.split(",")?.[1]}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
-                  <img
-                    src={require("../../assets/bookmarked.png")}
-                    style={{ width: "15px", height: "20px" }}
-                    alt="북마크"
-                  />
-                  {sortChangeDeposit?.[2]?.[1]}
+                  {sortChangeDeposit ?? (
+                    <img
+                      src={require("../../assets/bookmarked.png")}
+                      style={{ width: "15px", height: "20px" }}
+                      alt="북마크"
+                    />
+                  )}
+                  {sortChangeDeposit?.[0]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
