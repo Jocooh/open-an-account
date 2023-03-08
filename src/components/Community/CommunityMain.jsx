@@ -66,13 +66,13 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
             </Boards>
           </Content>
         )}
-        {categorytab === "공지사항" && (
+        {/* {categorytab === "공지사항" && (
           <Content>
             <Boards>
               <Tipper posts={posts} result={result} />
             </Boards>
           </Content>
-        )}
+        )} */}
       </Body>
       <UserWrapper>
         <User>
@@ -112,7 +112,7 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
           >
             팁과 노하우
           </Category>
-          <Category
+          {/* <Category
             style={
               categorytab === "공지사항"
                 ? { backgroundColor: "white", color: "#6A24FF" }
@@ -123,7 +123,7 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
             }}
           >
             공지사항
-          </Category>
+          </Category> */}
         </Categories>
       </UserWrapper>
     </Wrapper>

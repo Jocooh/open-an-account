@@ -139,7 +139,7 @@ function EditPostingModal({
     { value: "", text: "카테고리 선택" },
     { value: "금융상품 후기", text: "금융상품 후기" },
     { value: "팁과 노하우", text: "팁과 노하우" },
-    { value: "공지사항", text: "공지사항" },
+    // { value: "공지사항", text: "공지사항" },
   ];
   // const [selected, setSelected] = useState(options[0].value);
   const selectCategory = (e) => {
