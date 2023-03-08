@@ -119,7 +119,7 @@ const SecondImgTwo = styled.div`
   }
 
   img.animated {
-    animation: fadeInUp 1s ease-in forwards;
+    animation: Fallingcoins 1s ease-in forwards;
   }
 
   img:nth-child(1) {
@@ -150,7 +150,7 @@ const SecondImgTwo = styled.div`
     animation-delay: 1.1s;
   }
 
-  @keyframes fadeInUp {
+  @keyframes Fallingcoins {
     from {
       opacity: 0;
       transform: translateY(-250%);

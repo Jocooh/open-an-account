@@ -72,7 +72,7 @@ const FourthSectionImgWrap = styled.div`
 
   img {
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateY(-50%);
     opacity: 0;
   }
 
