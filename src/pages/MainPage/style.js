@@ -9,6 +9,7 @@ export const MainPageWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 10px;
   /* background-color: #f5f5f5; */
 `;
 // export const MainPageContainer = styled.div`

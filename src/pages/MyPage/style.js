@@ -160,6 +160,11 @@ export const RightBox = styled.div`
   }
 `;
 export const RightWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+`;
+export const RightSecondWrapper = styled.div`
   width: 530px;
   margin: auto;
   display: flex;

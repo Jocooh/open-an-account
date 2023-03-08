@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { debounce } from "lodash";
 
 function SearchInput({ setSearchBank }) {
   const SearchBankhandle = (e) => {
-    e.preventDefault();
+    setSearchBank(e.target.value);
   };
+  const debounceFunc = debounce(SearchBankhandle, 200);
   return (
     <StyledInputContainer>
       <form
         onSubmit={(e) => {
-          SearchBankhandle(e);
+          debounceFunc(e);
         }}
       >
         <StyledLabelText>
@@ -23,7 +25,7 @@ function SearchInput({ setSearchBank }) {
           type="text"
           placeholder="최소 2글자 이상 작성해주세요"
           onChange={(e) => {
-            setSearchBank(e.target.value);
+            debounceFunc(e);
           }}
         />
         {/* <SearchBtn>검색</SearchBtn> */}
