@@ -1159,9 +1159,14 @@ const ServicePage = () => {
 
               {activeTab === 3 &&
                 (!isLoggedIn ? (
-                  <div style={{ width: "200px", margin: "auto" }}>
-                    {" "}
-                    로그인 후 사용 가능합니다.🔥
+                  <div
+                    style={{
+                      width: "200px",
+                      margin: "auto",
+                      height: "200px",
+                    }}
+                  >
+                    <p>로그인 후 사용 가능합니다.🔥</p>
                   </div>
                 ) : (
                   <>
@@ -1216,6 +1221,8 @@ const ServicePage = () => {
                               <BookmarkPrdtList
                                 productTypes={productTypes}
                                 currentUser={user}
+                                handleClickProduct={handleClickProduct}
+                                selectedProductIds={selectedProductIds}
                               />
                               {/* </StyledBankListWrapper> */}
                             </StyledBankList>

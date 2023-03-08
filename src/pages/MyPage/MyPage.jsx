@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import ChangePassword from "../../components/Mypage/UserAccount/ChangePassword";
-// import EnrollNumber from "../../components/Mypage/UserAccount/EnrollNumber";
 import ChangeNickname from "../../components/Mypage/UserAccount/ChangeNickname";
-import { MdTableRows } from "react-icons/md";
 import {
   MyPageWrapper,
   LeftBox,
@@ -21,8 +19,9 @@ import {
   CategoryImg,
   SaveBtn,
   ProductTypesBtn,
+  RightSecondWrapper,
 } from "./style";
-import { updatePassword, updateProfile } from "firebase/auth";
+import { updatePassword, updateProfile, deleteUser } from "firebase/auth";
 import { firebaseConfig } from "../../config/firebase";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
@@ -117,6 +116,17 @@ function MyPage() {
     setConfirmPasswordMessage("");
     setDoubleCheckPasswordMessage("");
   };
+  //유저 탈퇴 함수
+  const deleteUserHandler = () => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      deleteUser(user).then(() => {
+        alert("삭제되었습니다");
+        return navigate("/");
+      });
+    } else {
+      return;
+    }
+  };
 
   return (
     <>
@@ -201,7 +211,7 @@ function MyPage() {
                   }}
                   style={{ fontSize: "18px" }}
                 >
-                  내가 쓴 글
+                  나의 팁
                 </button>
               </CategoryImg>
               <p>〉</p>
@@ -211,52 +221,68 @@ function MyPage() {
 
         <RightBox className="오른쪽 박스">
           {tab === 0 && (
-            <RightWrapper className="첫번째 탭 박스">
-              {/* <button style={{ display: "flex", position: "relative" }}>
+            <RightWrapper>
+              <RightSecondWrapper>
+                {/* <button style={{ display: "flex", position: "relative" }}>
                 <MdTableRows fontSize="30px" />
               </button> */}
-              <form
-                onSubmit={(e) => {
-                  clickUserUpdate(e);
+                <form
+                  onSubmit={(e) => {
+                    clickUserUpdate(e);
+                  }}
+                >
+                  <ChangePassword
+                    currentUser={currentUser} //현재의 유저 값
+                    setBtnValidation={setBtnValidation} // 버튼 활성화
+                    password={password} //새 비밀번호
+                    setPassword={setPassword} //새 비밀번호
+                    editUserPassword={editUserPassword} //현재 비밀번호
+                    setEditUserPassword={setEditUserPassword} //현재 비밀번호
+                    userPassword={userPassword} //새 비밀번호 확인
+                    setUserPassword={setUserPassword} //새 비밀번호 확인
+                    inputValidationConfirm={inputValidationConfirm} // 3번째 input 활성화
+                    setInputValidationConfirm={setInputValidationConfirm} // 3번째 input 활성화
+                    passwordMessage={passwordMessage}
+                    setPasswordMessage={setPasswordMessage}
+                    corfirmPasswordMessage={corfirmPasswordMessage}
+                    setConfirmPasswordMessage={setConfirmPasswordMessage}
+                    doubleCheckPasswordMessage={doubleCheckPasswordMessage}
+                    setDoubleCheckPasswordMessage={
+                      setDoubleCheckPasswordMessage
+                    }
+                  />
+
+                  <ChangeNickname
+                    name={name}
+                    isNickName={isNickName}
+                    newNickName={newNickName}
+                    setIsNickName={setIsNickName}
+                    setNewNickName={setNewNickName}
+                    setBtnValidation={setBtnValidation}
+                  />
+
+                  <SaveBtn
+                    disabled={btnValidation}
+                    style={
+                      btnValidation === true
+                        ? { backgroundColor: "#aaa" }
+                        : null
+                    }
+                  >
+                    변경사항 저장
+                  </SaveBtn>
+                </form>
+              </RightSecondWrapper>
+              <div
+                style={{ display: "flex", flexDirection: "row-reverse" }}
+                onClick={() => {
+                  deleteUserHandler();
                 }}
               >
-                <ChangePassword
-                  currentUser={currentUser} //현재의 유저 값
-                  setBtnValidation={setBtnValidation} // 버튼 활성화
-                  password={password} //새 비밀번호
-                  setPassword={setPassword} //새 비밀번호
-                  editUserPassword={editUserPassword} //현재 비밀번호
-                  setEditUserPassword={setEditUserPassword} //현재 비밀번호
-                  userPassword={userPassword} //새 비밀번호 확인
-                  setUserPassword={setUserPassword} //새 비밀번호 확인
-                  inputValidationConfirm={inputValidationConfirm} // 3번째 input 활성화
-                  setInputValidationConfirm={setInputValidationConfirm} // 3번째 input 활성화
-                  passwordMessage={passwordMessage}
-                  setPasswordMessage={setPasswordMessage}
-                  corfirmPasswordMessage={corfirmPasswordMessage}
-                  setConfirmPasswordMessage={setConfirmPasswordMessage}
-                  doubleCheckPasswordMessage={doubleCheckPasswordMessage}
-                  setDoubleCheckPasswordMessage={setDoubleCheckPasswordMessage}
-                />
-
-                <ChangeNickname
-                  name={name}
-                  isNickName={isNickName}
-                  newNickName={newNickName}
-                  setIsNickName={setIsNickName}
-                  setNewNickName={setNewNickName}
-                  setBtnValidation={setBtnValidation}
-                />
-
-                <SaveBtn
-                  disabled={btnValidation}
-                  style={
-                    btnValidation === true ? { backgroundColor: "#aaa" } : null
-                  }
-                >
-                  변경사항 저장
-                </SaveBtn>
-              </form>
+                <p style={{ color: "#888", cursor: "pointer" }}>
+                  회원 탈퇴하기
+                </p>
+              </div>
             </RightWrapper>
           )}
 
