@@ -20,14 +20,14 @@ import { db } from "../../config/firebase";
 
 function Like({ currentUser, post, id }) {
   //커뮤니티 페이지에서 id는 필드명
-  // console.log(id);
+
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
   const [likenum, setLikenum] = useState(0);
   const [recoilLike, setRecoilLike] = useState(0);
   //로그인 없이 좋아요 클릭하면 로그인 유도
   // console.log(newLike);
-  const LikeHandler = async (id) => {
+  const LikeHandler = async () => {
     if (!currentUser) {
       if (window.confirm("로그인이 필요합니다. 로그인하시겠습니까?")) {
         return navigate("/login");
@@ -57,7 +57,7 @@ function Like({ currentUser, post, id }) {
       updateDoc(likeNumRef, { like: recoilLike - 1 });
     }
   };
-
+  //눌렀던 하트는 미리 색깔 칠해짐
   const getLikes = async () => {
     const newLike = `${id}${currentUser.uid}`;
     const docRef = doc(db, "likes", newLike);
@@ -65,10 +65,9 @@ function Like({ currentUser, post, id }) {
     if (docSnap.exists()) {
       setLike(true);
     }
-    LikeLength();
   };
 
-  //갯수가져오기
+  //갯수가져오기 like라는 컬렉션에서 가져온다.
   const LikeLength = async () => {
     const q = query(collection(db, "likes"), where("docId", "==", id));
 
@@ -85,8 +84,8 @@ function Like({ currentUser, post, id }) {
   //좋아요를 누를때만 함수 실행
   useEffect(() => {
     getLikes();
-    // LikeLength();
-  }, [like]);
+    LikeLength();
+  });
 
   return (
     <div style={{ display: "flex", gap: "5px" }}>
@@ -96,7 +95,7 @@ function Like({ currentUser, post, id }) {
           fontSize="20px"
           color="#6A24FF"
           onClick={() => {
-            LikeHandler(id);
+            LikeHandler();
           }}
           cursor="pointer"
         />
@@ -105,7 +104,7 @@ function Like({ currentUser, post, id }) {
           fontSize="20px"
           color="#dedede"
           onClick={() => {
-            LikeHandler(id);
+            LikeHandler();
           }}
           cursor="pointer"
         />
