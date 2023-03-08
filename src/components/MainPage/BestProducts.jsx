@@ -153,14 +153,15 @@ const BestProducts = () => {
               </div>
               <RateWrapper>
                 <MaxRate>
-                  {sortChangeSaving ?? (
+                  {sortChangeSaving?.[0]?.[0]?.split(",")?.[0] ? (
                     <img
                       src={require("../../assets/bookmarked.png")}
                       style={{ width: "15px", height: "20px" }}
                       alt="북마크"
                     />
-                  )}
-                  {sortChangeSaving?.[2]?.[1]}
+                  ) : null}
+
+                  {sortChangeSaving?.[0]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
@@ -184,14 +185,15 @@ const BestProducts = () => {
               </div>
               <RateWrapper>
                 <MaxRate>
-                  {sortChangeSaving ?? (
+                  {sortChangeSaving?.[1]?.[0]?.split(",")?.[0] ? (
                     <img
                       src={require("../../assets/bookmarked.png")}
                       style={{ width: "15px", height: "20px" }}
                       alt="북마크"
                     />
-                  )}
-                  {sortChangeSaving?.[2]?.[1]}
+                  ) : null}
+
+                  {sortChangeSaving?.[1]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
@@ -211,17 +213,18 @@ const BestProducts = () => {
                   {sortChangeSaving?.[2]?.[0]?.split(",")?.[0] ??
                     "가져올 상품이 없어요!"}
                 </BtProductName>
-                <div>{sortChangeSaving?.[2]?.[0]?.split(",")?.[1]}</div>
+                <div>{sortChangeSaving?.[2]?.[0]?.split(",")?.[1] ?? null}</div>
               </div>
               <RateWrapper>
                 <MaxRate>
-                  {sortChangeSaving ?? (
+                  {sortChangeSaving?.[2]?.[0]?.split(",")?.[0] ? (
                     <img
                       src={require("../../assets/bookmarked.png")}
                       style={{ width: "15px", height: "20px" }}
                       alt="북마크"
                     />
-                  )}
+                  ) : null}
+
                   {sortChangeSaving?.[2]?.[1]}
                 </MaxRate>
               </RateWrapper>
@@ -250,13 +253,14 @@ const BestProducts = () => {
               </div>
               <RateWrapper>
                 <MaxRate>
-                  {sortChangeDeposit ?? (
+                  {sortChangeDeposit?.[0]?.[0]?.split(",")?.[0] ? (
                     <img
                       src={require("../../assets/bookmarked.png")}
                       style={{ width: "15px", height: "20px" }}
                       alt="북마크"
                     />
-                  )}
+                  ) : null}
+
                   {sortChangeDeposit?.[0]?.[1]}
                 </MaxRate>
               </RateWrapper>
@@ -281,14 +285,15 @@ const BestProducts = () => {
               </div>
               <RateWrapper>
                 <MaxRate>
-                  {sortChangeDeposit ?? (
+                  {sortChangeDeposit?.[1]?.[0]?.split(",")?.[0] ? (
                     <img
                       src={require("../../assets/bookmarked.png")}
                       style={{ width: "15px", height: "20px" }}
                       alt="북마크"
                     />
-                  )}
-                  {sortChangeDeposit?.[0]?.[1]}
+                  ) : null}
+
+                  {sortChangeDeposit?.[1]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
@@ -312,14 +317,15 @@ const BestProducts = () => {
               </div>
               <RateWrapper>
                 <MaxRate>
-                  {sortChangeDeposit ?? (
+                  {sortChangeDeposit?.[2]?.[0]?.split(",")?.[0] ? (
                     <img
                       src={require("../../assets/bookmarked.png")}
                       style={{ width: "15px", height: "20px" }}
                       alt="북마크"
                     />
-                  )}
-                  {sortChangeDeposit?.[0]?.[1]}
+                  ) : null}
+
+                  {sortChangeDeposit?.[2]?.[1]}
                 </MaxRate>
               </RateWrapper>
             </BtProductContent>
