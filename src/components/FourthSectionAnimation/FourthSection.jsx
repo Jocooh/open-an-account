@@ -1,36 +1,42 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
-const FourthSectionImgAnimation = () => {
+const FourthSectionImgAnimation = (direction, duration, delay) => {
   const fourthSectionRef = useRef();
   const [isAnimated, setIsAnimated] = useState(false);
-  //* 4번째 섹션의 위치를 알아내는 함수
-  const handleScroll = () => {
-    const fourthSectionPosition =
-      fourthSectionRef.current.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-    if (fourthSectionPosition < windowHeight) {
-      setIsAnimated(true);
-    }
-  };
-  // console.log(isAnimated);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsAnimated(true);
+        }
+      },
+      { threshold: 0.8 }
+    );
+
+    observer.observe(fourthSectionRef.current);
+
+    return () => observer.disconnect();
+  }, [isAnimated]);
 
   return (
     <FourthSectionWrap ref={fourthSectionRef}>
-      <FourthSectionImgWrap onScroll={handleScroll}>
+      <FourthSectionImgWrap>
         <img
           className={isAnimated ? "animated" : ""}
           src={require("../../assets/landing/FourthSection(1).png")}
           alt="ThirdImg"
           style={{
-            width: "450px",
+            width: "350px",
           }}
         />
 
         <img
           className={isAnimated ? "animated" : ""}
           style={{
-            width: "450px",
+            width: "350px",
             marginTop: "100px",
           }}
           src={require("../../assets/landing/FourthSection(3).png")}
@@ -40,7 +46,7 @@ const FourthSectionImgAnimation = () => {
         <img
           className={isAnimated ? "animated" : ""}
           style={{
-            width: "450px",
+            width: "350px",
           }}
           src={require("../../assets/landing/FourthSection(2).png")}
           alt="ThirdImg"
@@ -53,8 +59,8 @@ const FourthSectionImgAnimation = () => {
 const FourthSectionWrap = styled.section`
   //* 반응형 레이아웃
   width: 100%;
+  height: 100%;
   max-width: 1400px;
-  margin: 0 auto;
 `;
 
 const FourthSectionImgWrap = styled.div`
@@ -63,32 +69,27 @@ const FourthSectionImgWrap = styled.div`
   gap: 20px;
   justify-content: center;
   margin-top: 100px;
-  position: relative;
 
   img {
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateY(-50%);
     opacity: 0;
   }
 
-  img:nth-child(1) {
+  img.animated {
     animation: fadeInUp 1s ease forwards;
+  }
+
+  img:nth-child(1) {
     animation-delay: 0.5s;
   }
 
   img:nth-child(3) {
-    animation: fadeInUp 1s ease forwards;
     animation-delay: 1s;
   }
 
   img:nth-child(2) {
-    animation: fadeInUp 1s ease forwards;
     animation-delay: 1.5s;
-  }
-
-  img.animated {
-    opacity: 1;
-    animation: fadeInUp 1s ease forwards;
   }
 
   @keyframes fadeInUp {

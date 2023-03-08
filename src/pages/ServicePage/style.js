@@ -312,7 +312,7 @@ export const MonthRangeSliderTitle = styled.div`
 export const MonthRangeSlider = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 145px;
+  /* gap: 145px; */
   margin-bottom: 100px;
   @media screen and (max-width: 425px) {
     gap: 48px;
@@ -371,7 +371,7 @@ export const StyledBankListContainer = styled.div`
   justify-content: center;
 `;
 export const StyledBankList = styled.div`
-  width: 992px;
+  width: 993px;
   display: flex;
   justify-content: center;
   margin: auto;
