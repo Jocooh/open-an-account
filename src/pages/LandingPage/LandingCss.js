@@ -236,33 +236,6 @@ export const ThirdBottomSection = styled.div`
   margin-top: 300px;
 `;
 
-//* 세번째 섹션 하단 이미지 Wraper
-export const ThirdBottomSectionContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  img {
-    /* padding-top: 100px; */
-  }
-`;
-
-//* 세번째 섹션 하단 타이틀 Wraper
-export const ThirdSectionBottomTitleWrap = styled.div`
-  margin-top: 50px;
-`;
-
-//* 세번째 섹션 하단 타이틀
-export const ThirdSectionBottomTitle = styled.h1`
-  font-size: 80px;
-  font-weight: bold;
-`;
-
-//* 세번째 섹션 하단 서브 타이틀
-export const ThirdSectionBottomSubTitle = styled.div`
-  font-size: 25px;
-  margin-top: 30px;
-`;
-
 //? 여기부터 네번째 섹션
 //* 네번째 섹션
 export const FourthSection = styled.div`
