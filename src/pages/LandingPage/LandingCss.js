@@ -11,7 +11,6 @@ export const BackgroundWraper = styled.div`
 
 //* 전체 랩퍼
 export const Wraper = styled.div`
-  /* padding-top: 300px; */
   width: 100%;
   height: 100%;
   display: flex;
@@ -26,7 +25,6 @@ export const Firstsection = styled.div`
   justify-content: center;
   background: url(${require("../../assets/landing/FirstSectionBackground.png")})
     fixed;
-  //Todo 다른 배경이미지 고안하기.
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -47,7 +45,7 @@ export const FirstSectionMainTitle = styled.div`
 export const MainTilte = styled.div`
   width: 700px;
   position: absolute;
-  top: 300px;
+  top: -250px;
   text-shadow: 12px 12px 10px rgba(0, 0, 0, 0.5);
   color: #fff;
 
@@ -71,9 +69,9 @@ export const FirstSectionSubTitle = styled.div`
 `;
 //* 첫번째 섹션 서브 타이틀
 export const FirestSectionSubTitle = styled.div`
+  position: absolute;
   width: 100%;
-  height: 100px;
-  margin-top: 30px;
+  padding: 20px 0px 20px 0px;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -96,18 +94,28 @@ export const FirestSectionSubTitle = styled.div`
 export const FirestSectionButtonWrap = styled.div``;
 
 //* 첫번째 섹션 서브 타이틀 버튼
+export const TocompareButton = styled.button`
+  width: 200px;
+  height: 54px;
+  border-radius: 60px;
+  font-size: 16px;
+  color: #505050;
+  fill: none;
+  background-color: #fff;
+  margin-right: 20px;
+  animation: ApperButton 1s ease-out;
+`;
+
 export const StartButton = styled.button`
   width: 200px;
   height: 54px;
-  color: #505050;
   border-radius: 60px;
   font-size: 16px;
-  background-color: #fff;
-  text-align: center;
-  margin-right: 20px;
+  margin: 100px 20px 0 0;
+  color: #fff;
   border: 1px solid #fff;
 
-  animation: ApperButton 1.5s ease-out;
+  animation: ApperButton 1s ease-out;
   @keyframes ApperButton {
     0% {
       transform: translateY(70px);
@@ -123,16 +131,7 @@ export const StartButton = styled.button`
   }
 `;
 
-//* 첫번째 섹션 1번 리스트이미지
-export const FirstSectionImgA = styled.div`
-  img {
-    position: absolute;
-    width: 400px;
-    margin-top: -450px;
-    margin-left: -250px;
-  }
-`;
-
+//? 여기부터 두번째 섹션
 //* 두번째 섹션
 export const SecondSection = styled.div`
   margin: 0;
@@ -144,49 +143,64 @@ export const SecondSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 export const SecondSectioncontainer = styled.div``;
 
+//* 두번째 섹션 타이틀
 export const SecondSectionTitle = styled.h1`
   font-size: 80px;
   font-weight: bold;
   margin-bottom: 15px;
   color: #000;
 `;
+
+//* 두번째 섹션 서브 타이틀
 export const SecondSectionSubTitle = styled.div`
   font-size: 18px;
   margin-bottom: 60px;
   color: #505050;
 `;
+
+//* 두번째 섹션 이미지 Wraper
 export const SecondImgWrap = styled.div`
   display: flex;
   justify-content: center;
   height: 500px;
 `;
+
+//* 두번째 섹션 컨텐츠
 export const Contents = styled.div`
   width: 420px;
   height: 488px;
   margin: 0 20px;
   border-radius: 8px;
 `;
+
+//* 두번째 섹션 컨텐츠 타이틀
 export const ContentsTitle = styled.h1`
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 30px;
 `;
+
+//* 두번째 섹션 컨텐츠 서브 타이틀
 export const ContentsSubTitle = styled.div`
   font-size: 20px;
   margin-bottom: 10px;
 `;
 
+//* 두번째 섹션 이미지 컨테이너
 export const SecondImgContainer = styled.div`
   height: 350px;
-  /* background-color: #f7f7fb; */ //* 색이 안보여요
-  background-color: lavender;
+  background-color: #f0f0f0; //* 색이 안보여요
   border-radius: 10px;
   margin-bottom: 50px;
 `;
 
+export const SecondImgThree = styled.div``;
+
+//? 여기부터 세번째 섹션
 //* 세번째 섹션
 export const ThirdSection = styled.div`
   width: 100%;
@@ -195,14 +209,12 @@ export const ThirdSection = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #e7ecfa;
+  position: relative;
+  z-index: 1;
 `;
+
 export const ThirdTopSection = styled.div`
   width: 100%;
-`;
-export const ThirdTopSectionContainer = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
 `;
 
 //* 세번째 섹션 상단
@@ -210,17 +222,6 @@ export const ThirdSectionContents = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-
-  /* img {
-    background: linear-gradient(
-      to right,
-      rgba(20, 20, 20, 0) 10%,
-      rgba(20, 20, 20, 0.25) 25%,
-      rgba(20, 20, 20, 0.5) 50%,
-      rgba(20, 20, 20, 0.75) 75%,
-      rgba(20, 20, 20, 1) 100%
-      );
-    } */
 `;
 
 export const ThirdTopTitleWrap = styled.div`
@@ -228,56 +229,29 @@ export const ThirdTopTitleWrap = styled.div`
   margin-top: 50px;
 `;
 
-export const ThirdSectionTitle = styled.h1`
-  font-size: 80px;
-  font-weight: bold;
-  margin-bottom: 30px;
-`;
-
-export const ThirdSectionSubTitle = styled.div`
-  font-size: 30px;
-`;
-
 //* 세번째 섹션 하단
-export const ThirdSectionBottom = styled.div`
+export const ThirdBottomSection = styled.div`
   width: 100%;
   display: flex;
   margin-top: 300px;
 `;
 
-export const ThirdSectionBottomContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  img {
-    /* padding-top: 100px; */
-  }
-`;
-
-export const ThirdSectionBottomTitleWrap = styled.div`
-  margin-top: 50px;
-`;
-
-export const ThirdSectionBottomTitle = styled.h1`
-  font-size: 80px;
-  font-weight: bold;
-`;
-
-export const ThirdSectionBottomSubTitle = styled.div`
-  font-size: 25px;
-  margin-top: 30px;
-`;
-
+//? 여기부터 네번째 섹션
+//* 네번째 섹션
 export const FourthSection = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
-  /* height: 1080px; */
   background-color: #fff;
   text-align: center;
   padding-top: 300px;
+  position: relative;
 `;
 
+export const FourthSectionImgAnimationWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export const FourthSectonTitle = styled.div`
   font-size: 80px;
   font-weight: bold;
