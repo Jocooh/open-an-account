@@ -47,7 +47,8 @@ const Bookmarks = ({
         // 필드 id
         docId: baseList.id || selectedProductId || baseList.docId,
         // base list
-        fin_prdt_nm: baseList.fin_prdt_nm, // 상품 명
+        // fin_prdt_nm: baseList.fin_prdt_nm, // 상품 명
+        fin_prdt_nm: baseList.fin_prdt_nm.replace(",", " "),
         fin_prdt_cd: baseList.fin_prdt_cd, // 상품 코드
         kor_co_nm: baseList.kor_co_nm, // 상품 회사 명
         join_way: baseList.join_way, // 가입 방법
