@@ -20,7 +20,6 @@ const FourthSectionImgAnimation = (direction, duration, delay) => {
 
     return () => observer.disconnect();
   }, [isAnimated]);
-  console.log(isAnimated);
 
   return (
     <FourthSectionWrap ref={fourthSectionRef}>

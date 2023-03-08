@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
-const SecondSectionImgAnimationTwo = (direction, duration, delay) => {
+const SecondSectionImgAnimation2 = () => {
   const SecondSectionRef = useRef();
   const [isAnimated, setIsAnimated] = useState(false);
 
@@ -9,12 +9,12 @@ const SecondSectionImgAnimationTwo = (direction, duration, delay) => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsAnimated(true);
-          console.log(isAnimated);
+        if (entry.intersectionRatio >= 1) {
+          // 1초 뒤에 setIsAnimated(true) 호출
+          setTimeout(() => setIsAnimated(true), 1000);
         }
       },
-      { threshold: 0.7 }
+      { threshold: 1 }
     );
 
     observer.observe(SecondSectionRef.current);
@@ -109,49 +109,57 @@ const SecondSectionImgAnimationTwo = (direction, duration, delay) => {
 const SecondImgContainer = styled.section`
   //* 반응형 레이아웃
   width: 100%;
+  height: 100%;
   max-width: 1400px;
 `;
 
 const SecondImgTwo = styled.div`
   img {
     opacity: 0;
-    transform: translateY(-200%);
-    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   img.animated {
-    opacity: 1;
-    transform: translateY(0);
-    /* transition-delay: 5s; */
+    animation: fadeInUp 1s ease-in forwards;
   }
 
   img:nth-child(1) {
-    transition-delay: 0.5s;
+    animation-delay: 0.3s;
   }
 
   img:nth-child(2) {
-    transition-delay: 0.6s;
+    animation-delay: 0.4s;
   }
 
   img:nth-child(3) {
-    transition-delay: 0.7s;
+    animation-delay: 0.5s;
   }
 
   img:nth-child(4) {
-    transition-delay: 0.8s;
+    animation-delay: 0.6s;
   }
 
   img:nth-child(5) {
-    transition-delay: 0.9s;
+    animation-delay: 0.9s;
   }
 
   img:nth-child(6) {
-    transition-delay: 1s;
+    animation-delay: 1s;
   }
 
   img:nth-child(7) {
-    transition-delay: 1.1s;
+    animation-delay: 1.1s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(-250%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 `;
 
-export default SecondSectionImgAnimationTwo;
+export default SecondSectionImgAnimation2;

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
-const SecondSectionImgAnimation = (threshold, direction, duration, delay) => {
+const SecondSectionImgAnimation1 = () => {
   const SecondSectionRef = useRef();
   const [isAnimated, setIsAnimated] = useState(false);
 
@@ -9,7 +9,7 @@ const SecondSectionImgAnimation = (threshold, direction, duration, delay) => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.intersectionRatio === 1) {
+        if (entry.intersectionRatio >= 1) {
           setIsAnimated(true);
         }
       },
@@ -20,146 +20,74 @@ const SecondSectionImgAnimation = (threshold, direction, duration, delay) => {
 
     return () => observer.disconnect();
   }, [isAnimated]);
-  console.log(isAnimated);
 
   return (
     <SecondImgContainer ref={SecondSectionRef}>
-      <SecondImgTwo>
+      <SecondImgOne>
         <img
           className={isAnimated ? "animated" : ""}
-          style={{
-            position: "absolute",
-            marginTop: "230px",
-            marginLeft: "-50px",
-          }}
-          src={require("../../assets/landing/SecondImg2-1.png")}
+          style={{ marginTop: "180px", width: "150px" }}
+          src={require("../../assets/landing/SecondImg(1).png")}
           alt="secondImg1"
         />
-
-        <img
-          className={isAnimated ? "animated" : ""}
-          style={{
-            position: "absolute",
-            marginTop: "230px",
-            marginLeft: "-110px",
-          }}
-          src={require("../../assets/landing/SecondImg2-2.png")}
-          alt="secondImg2"
-        />
-
-        <img
-          className={isAnimated ? "animated" : ""}
-          style={{
-            position: "absolute",
-            marginTop: "230px",
-            marginLeft: "10px",
-          }}
-          src={require("../../assets/landing/SecondImg2-3.png")}
-          alt="secondImg3"
-        />
-
-        <img
-          className={isAnimated ? "animated" : ""}
-          style={{
-            position: "absolute",
-            marginTop: "190px",
-            marginLeft: "-100px",
-          }}
-          src={require("../../assets/landing/SecondImg2-4.png")}
-          alt="secondImg4"
-        />
-
-        <img
-          className={isAnimated ? "animated" : ""}
-          style={{
-            position: "absolute",
-            marginTop: "200px",
-            marginLeft: "-9px",
-          }}
-          src={require("../../assets/landing/SecondImg2-5.png")}
-          alt="secondImg5"
-        />
-
-        <img
-          className={isAnimated ? "animated" : ""}
-          style={{
-            position: "absolute",
-            marginTop: "230px",
-            marginLeft: "40px",
-          }}
-          src={require("../../assets/landing/SecondImg2-6.png")}
-          alt="secondImg6"
-        />
-
-        <img
-          className={isAnimated ? "animated" : ""}
-          style={{
-            position: "absolute",
-            marginTop: "160px",
-            marginLeft: "-40px",
-          }}
-          src={require("../../assets/landing/SecondImg2-7.png")}
-          alt="secondImg7"
-        />
-      </SecondImgTwo>
+      </SecondImgOne>
     </SecondImgContainer>
   );
 };
 
 const SecondImgContainer = styled.section`
-  //* 반응형 레이아웃
   width: 100%;
   height: 100%;
   max-width: 1400px;
 `;
-const SecondImgTwo = styled.div`
+
+const SecondImgOne = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
+    opacity: 1;
+    /* transition: opacity 0.3s ease-in; */
   }
-
   img.animated {
-    animation: fadeIndown 1s ease forwards;
+    animation: shake 1s ease forwards;
+    animation-iteration-count: 2;
   }
 
-  img:nth-child(1) {
-    animation-delay: 0.5s;
-  }
-
-  img:nth-child(2) {
-    animation-delay: 0.6s;
-  }
-
-  img:nth-child(3) {
-    animation-delay: 0.7s;
-  }
-
-  img:nth-child(4) {
-    animation-delay: 0.8s;
-  }
-
-  img:nth-child(5) {
-    animation-delay: 0.9s;
-  }
-
-  img:nth-child(6) {
-    animation-delay: 1s;
-  }
-
-  img:nth-child(7) {
-    animation-delay: 1.1s;
-  }
-
-  @keyframes fadeIndown {
-    from {
-      opacity: 0;
-      transform: translateY(-200%);
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0) rotate(0);
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    10% {
+      transform: translateX(-5px) rotate(-5deg);
+    }
+    20% {
+      transform: translateX(5px) rotate(5deg);
+    }
+    30% {
+      transform: translateX(-3px) rotate(-3deg);
+    }
+    40% {
+      transform: translateX(3px) rotate(3deg);
+    }
+    50% {
+      transform: translateX(-2px) rotate(-2deg);
+    }
+    60% {
+      transform: translateX(2px) rotate(2deg);
+    }
+    70% {
+      transform: translateX(-1px) rotate(-1deg);
+    }
+    80% {
+      transform: translateX(1px) rotate(1deg);
+    }
+    90% {
+      transform: translateX(-0.5px) rotate(-0.5deg);
     }
   }
 `;
 
-export default SecondSectionImgAnimation;
+export default SecondSectionImgAnimation1;

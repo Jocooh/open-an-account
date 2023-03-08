@@ -198,48 +198,6 @@ export const SecondImgContainer = styled.div`
   margin-bottom: 50px;
 `;
 
-//* 두번째 섹션 첫번째 이미지
-export const SecondImgOne = styled.div`
-  /* 애니메이션 실행 시간 1초 */
-  animation: shake 1s;
-  /* 애니메이션 함수: ease-in-out */
-  animation-timing-function: ease-out;
-  animation-iteration-count: 2; //* 반복횟수
-  /* shake 애니메이션 선언 */
-  @keyframes shake {
-    0%,
-    100% {
-      transform: translateX(0) rotate(0);
-    }
-    10% {
-      transform: translateX(-5px) rotate(-5deg);
-    }
-    20% {
-      transform: translateX(5px) rotate(5deg);
-    }
-    30% {
-      transform: translateX(-3px) rotate(-3deg);
-    }
-    40% {
-      transform: translateX(3px) rotate(3deg);
-    }
-    50% {
-      transform: translateX(-2px) rotate(-2deg);
-    }
-    60% {
-      transform: translateX(2px) rotate(2deg);
-    }
-    70% {
-      transform: translateX(-1px) rotate(-1deg);
-    }
-    80% {
-      transform: translateX(1px) rotate(1deg);
-    }
-    90% {
-      transform: translateX(-0.5px) rotate(-0.5deg);
-    }
-  }
-`;
 export const SecondImgThree = styled.div``;
 
 //? 여기부터 세번째 섹션
@@ -259,12 +217,6 @@ export const ThirdTopSection = styled.div`
   width: 100%;
 `;
 
-export const ThirdTopSectionContainer = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
-`;
-
 //* 세번째 섹션 상단
 export const ThirdSectionContents = styled.div`
   width: 100%;
@@ -277,25 +229,15 @@ export const ThirdTopTitleWrap = styled.div`
   margin-top: 50px;
 `;
 
-export const ThirdSectionTitle = styled.h1`
-  font-size: 80px;
-  font-weight: bold;
-  margin-bottom: 30px;
-`;
-
-export const ThirdSectionSubTitle = styled.div`
-  font-size: 30px;
-`;
-
 //* 세번째 섹션 하단
-export const ThirdSectionBottom = styled.div`
+export const ThirdBottomSection = styled.div`
   width: 100%;
   display: flex;
   margin-top: 300px;
 `;
 
 //* 세번째 섹션 하단 이미지 Wraper
-export const ThirdSectionBottomContainer = styled.div`
+export const ThirdBottomSectionContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
