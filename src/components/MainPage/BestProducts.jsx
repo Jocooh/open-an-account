@@ -106,10 +106,6 @@ const BestProducts = () => {
   const sortChangeDeposit = changeDeposit?.sort((a, b) => b[1] - a[1]);
   // console.log(sortChangeDeposit);
 
-  useEffect(() => {
-    getBookmarkList();
-  }, []);
-
   // optional chaining 을 간소화하려면... 변수를 state 화...
   // useEffect(()=>{},[bookmarkListAll])
 
@@ -233,7 +229,7 @@ const BestProducts = () => {
         </BtProduct>
         <BtProduct>
           {/* ########################################################################################## */}
-          <BtProductTitle>인기 예금</BtProductTitle>
+          <BtProductTitle>인기예금</BtProductTitle>
           <BtProductList>
             <BtProductRank>1</BtProductRank>
             <BankLogo
