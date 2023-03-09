@@ -151,7 +151,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
           >
             팁과 노하우
           </Category>
-          <Category
+          {/* <Category
             style={
               categorytab === "공지사항"
                 ? { backgroundColor: "white", color: "#6A24FF" }
@@ -162,7 +162,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
             }}
           >
             공지사항
-          </Category>
+          </Category> */}
         </Categories>
       </UserWrapper>
     </Wrapper>
