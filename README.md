@@ -3,6 +3,8 @@
 금융관리 초보자를 위한 팁을 드려요!
 자금 마련의 기본인 **예금, 적금 상품들을 비교**해주고 **꿀팁들을 공유**하는 사이트입니다.
 
+<img width="100%" src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa7670b3b-682d-4b11-9ea5-70b02d1aed15%2FFrame_2297.jpg?table=block&id=0b072602-0e49-492f-b88e-dd2c422b005c&spaceId=b73bebae-3944-4b8e-9fa1-fb11d489908c&width=1960&userId=aa378f29-9098-4d20-9635-0cafd4804bea&cache=v2"/>
+
 [Tipper](https://tipper-seven.vercel.app/)
 
 [https://github.com/Jocooh/open-an-account.git](https://github.com/Jocooh/open-an-account.git)
@@ -36,6 +38,7 @@
 
 ## 🏗 아키텍쳐
 
+<img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b11605f-9eec-4672-8f5d-5d2a8d3a020e/Untitled.png"/>
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b11605f-9eec-4672-8f5d-5d2a8d3a020e/Untitled.png)
 
 ---
@@ -53,7 +56,7 @@
 
 - **CORS 에러**
     - Cross-Origin Resource Sharing(교차 출처 리소스 공유 정책)
-    
+<img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ec34af08-6bb2-4c85-9e6d-ae72e88851bd/corsError.png"/>
     ![corsError.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ec34af08-6bb2-4c85-9e6d-ae72e88851bd/corsError.png)
     
        cors에러로 openAPI의 data를 가져오지 못함
@@ -75,15 +78,15 @@
     1. 리액트쿼리와 같이 실시간으로 데이터를 받아오는 경우 한번씩 연결 끊기거나 데이터를 받아오지 못하는 에러 발생
     2. 서버 연결 해주기
     heroku에서 남용으로 인해서 버튼을 눌렀을때만 서버를 연결할 수 있도록 변경해두어서 서버가 끊기게 되면 데이터를 가져오지 못하는 상황 발생 
-        
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bb1547b8-9db6-43df-bcc3-3a27f5939fab/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-02-23_22.33.22.png"/> 
         ![스크린샷 2023-02-23 22.33.22.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bb1547b8-9db6-43df-bcc3-3a27f5939fab/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-02-23_22.33.22.png)
         
         →위와 같은 사이트에 들어가서 서버 연결을 해줘야함 
         
 - **API 데이터 구조로 인한 문제**
-    
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c767e208-8d04-416e-aa11-6db8b2ca6990/baselist05705.jpg"/>
     ![baselist05705.JPG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c767e208-8d04-416e-aa11-6db8b2ca6990/baselist05705.jpg)
-    
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/67839a1a-3849-4e26-8944-e02bdb5d6aee/05705.jpg"/>
     ![05705.JPG](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/67839a1a-3849-4e26-8944-e02bdb5d6aee/05705.jpg)
     
     - 한 상품에 대한 기본정보(BASE_LIST)와 금리에 대한 정보가 담긴 옵션 정보(OPTION_LIST)가 같이 저장되어 있지 않고 분리되어있음
@@ -91,9 +94,9 @@
     **✅ 해결**
     
     기본 정보를 기준으로 중복되는 속성값인 fin_prdt_cd가 같은 데이터를 옵션정보에서 찾아서 읽어옴
-    
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3966a335-bb14-4958-88c6-9da7cc852efb/code4.png"/>
     ![code4.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3966a335-bb14-4958-88c6-9da7cc852efb/code4.png)
-    
+    <img width="{해상도 비율}" src="{이미지 경로}"/>
     ![code5.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f54effa7-b7a6-4ad1-84d9-ac1b7137ccaa/code5.png)
     
 - **코드 최적화 ( 상품 3개 선택후 비교 )**
@@ -183,19 +186,19 @@
     lodash에 debounce처리를 통해서 비밀번호 입력이 끝난 후 0.3초 후에 그때까지 입력된 값을 한번에 들고 한번만 함수가 실행
     
     3번씩 호출하던 것에서 한번씩만 호출하는 것으로 효율성 높임
-    
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/57dbfc5d-07ef-449d-bf2b-8e3e944b8c67/carbon.png"/>
     ![carbon.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/57dbfc5d-07ef-449d-bf2b-8e3e944b8c67/carbon.png)
-    
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6580fc8c-02e2-4de0-8795-1a29a8ae6b78/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-03-08_11.45.21.png"/>
     ![왼쪽(debounce처리), 오른쪽 일반 onchange함수 실행](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6580fc8c-02e2-4de0-8795-1a29a8ae6b78/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-03-08_11.45.21.png)
     
     왼쪽(debounce처리), 오른쪽 일반 onchange함수 실행
     
     **렌더링 되는 모습
-    
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a862c39e-1a70-47c5-986c-48fbd7866a1e/%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%92%E1%85%AA_%E1%84%8C%E1%85%A5%E1%86%AB_AdobeExpress.gif"/>
     ![최적화_전_AdobeExpress.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a862c39e-1a70-47c5-986c-48fbd7866a1e/%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%92%E1%85%AA_%E1%84%8C%E1%85%A5%E1%86%AB_AdobeExpress.gif)
     
     debounce처리 전 ⇒ 입력할 때 마다 렌더링
-    
+    <img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2dc91989-aa3a-444e-b16b-7a3bdc4ad972/%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%92%E1%85%AA_AdobeExpress.gif"/>
     ![최적화_AdobeExpress.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2dc91989-aa3a-444e-b16b-7a3bdc4ad972/%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%92%E1%85%AA_AdobeExpress.gif)
     
     debounce 처리 후 ⇒ 한번만 렌더링 
