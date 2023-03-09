@@ -39,28 +39,20 @@ const ComparingModal = ({
   return (
     <ModalBackground>
       <ModalContainer>
-        {/* <CloseButton
+        <CloseButton
+          src={require("../../assets/cpmodalclose.png")}
+          alt="닫기"
           onClick={() => {
             setComparingModalOpen(false);
           }}
-          size="39px"
-          color="#f0f0f0"
-        /> */}
-
+        />
         <ModalContents>
-          <CloseButton
-            src={require("../../assets/close.png")}
-            alt="닫기"
-            onClick={() => {
-              setComparingModalOpen(false);
-            }}
-          />
           <Title>상품 비교</Title>
           <MessageWrapper>
             {selectedProduct[0].category === "예금 기본 정보" ? (
               <>
                 <Message>
-                  <Highlight>12개월</Highlight>동안
+                  <div style={{ color: "#6A24FF" }}>12개월 </div> 동안
                   <InputWrapper>
                     <Input
                       maxLength={11}
@@ -70,13 +62,12 @@ const ComparingModal = ({
                       placeholder="금액을 입력해주세요"
                       inputLength={inputValue.length}
                     />
-
-                    <FirstGuide>
-                      금액은 최대 10억 미만으로 입력할 수 있습니다.
-                    </FirstGuide>
                   </InputWrapper>
                   원을 예치하면
                 </Message>
+                <FirstGuide>
+                  금액은 최대 10억 미만으로 입력할 수 있습니다.
+                </FirstGuide>
                 <Products>
                   <Product
                     productTypes={productTypes}
@@ -110,6 +101,7 @@ const ComparingModal = ({
                     <img
                       src={require("../../assets/thirdProduct.png")}
                       alt="세번째 상품 미선택"
+                      style={{ maxHeight: "45vh" }}
                     />
                   )}
                 </Products>
@@ -175,12 +167,14 @@ const ComparingModal = ({
           </MessageWrapper>
 
           <SecondGuide>
-            만기수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의
-            15.4%)금액 입니다. 계산 결과는 최고금리가 적용되었습니다.
-          </SecondGuide>
-          <SecondGuide>
-            만기 수령액은 비교 상품들 모두 가입이 가능한 12개월로
-            산정되었습니다.
+            <li>
+              만기수령액은 이자소득세를 제외한 (일반과세 기준 이자금액의
+              15.4%)금액 입니다. 계산 결과는 최고금리가 적용되었습니다.
+            </li>
+            <li>
+              만기 수령액은 비교 상품들 모두 가입이 가능한 12개월로
+              산정되었습니다.
+            </li>
           </SecondGuide>
         </ModalContents>
       </ModalContainer>
