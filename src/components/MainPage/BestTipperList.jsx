@@ -42,8 +42,8 @@ function BestTipperList({ best, currentUser }) {
                     lineHeight: "25px",
                   }}
                 >
-                  {best?.content.slice(0, 230)}
-                  {best?.content.length > 230 && "..."}
+                  {best?.content.slice(0, 140)}
+                  {best?.content.length > 140 && "..."}
                 </div>
               </CardTitleContainer>
             </CategoryLikeContainer>
