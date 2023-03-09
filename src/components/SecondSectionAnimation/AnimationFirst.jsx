@@ -9,11 +9,11 @@ const SecondSectionImgAnimation1 = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.intersectionRatio >= 1) {
+        if (entry.isIntersecting) {
           setIsAnimated(true);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.9 }
     );
 
     observer.observe(SecondSectionRef.current);
