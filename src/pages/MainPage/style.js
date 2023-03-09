@@ -20,11 +20,10 @@ export const MainPageWrapper = styled.div`
 // 인기 상품 랩
 export const BestProductWrap = styled.div`
   width: 1200px;
-  height: 500px;
+  height: 600px;
   /* border: 1px solid black; */
   padding: 30px;
-
-  margin: 60px 0;
+  margin: 60px 0 0 0;
 `;
 
 // 인기 상품 현황
@@ -47,6 +46,7 @@ export const BtProductTitleWrap = styled.div`
 export const BestProductTitle = styled.div`
   font-size: 28px;
   font-weight: bold;
+  padding-top: 13px;
 `;
 // 현재 시각
 export const KrDate = styled.div`
@@ -100,7 +100,7 @@ export const BtProduct = styled.div`
   height: 327px;
   border-radius: 20px;
   background-color: white;
-  border: 1px solid #aaa;
+  border: 1px solid #e1e1e4;
   /* margin: 0 15px 0 15px; */
   padding: 40px;
 `;
@@ -173,7 +173,7 @@ export const BestTipperWraper = styled.div``;
 
 // 하단 제목
 export const BestTipperTitle = styled.span`
-  font-size: 30px;
+  font-size: 38px;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -188,7 +188,7 @@ export const NextButton = styled.button`
 export const Tippers = styled.div`
   /* display: flex;
   width: 850px; */
-  margin-top: 40px;
+  margin-top: 20px;
 `;
 
 // 팁퍼 틀
@@ -278,14 +278,9 @@ export const ButtonWrap = styled.div`
 // 하단 전체 랩
 export const DownWraper = styled.div`
   width: 990px;
-  height: 1250px;
+  height: 500px;
   border-radius: 20px;
-  margin: 20px 0 10px 0;
-  padding: 58px 46px 33px 71px;
-  /* background-color: whitesmoke; */
-  border: solid 1px #dedede;
-  border-radius: 20px;
-  background-color: white;
+  /* margin: 20px 0 10px 0; */
 `;
 // 오늘의 금융 팁 제목
 export const TodayTipTitle = styled.span`
@@ -300,22 +295,25 @@ export const TodayTipComment = styled.div`
 // 금융 팁들
 export const Tips = styled.div`
   display: flex;
+  justify-content: center;
+  gap: 30px;
 `;
 // 금융 팁
 export const Tip = styled.div`
-  width: 508px;
-  height: 508px;
-  background-color: #b3c6fb;
-  margin: 0 25px 25px 0;
-  padding: 60px 40px 25px 35px;
+  width: 276px;
+  height: 286px;
+  background-color: #d6e1ff;
+  position: relative;
   border-radius: 20px;
   img {
-    float: right;
-    margin-top: 120px;
+    position: absolute;
+    z-index: 1;
   }
   :hover {
-    filter: brightness(70%);
-    color: white;
+    img {
+      filter: blur(15px);
+    }
+    color: black;
     div {
       opacity: 1;
     }
@@ -324,26 +322,30 @@ export const Tip = styled.div`
 // 금융 팁 제목
 export const TipTitle = styled.div`
   font-size: 30px;
-  font-weight: bold;
+  // font-weight: bold;
   margin-bottom: 30px;
+  padding: 40px 0 0 40px;
 `;
 // 금융 팁 설명
 export const TipComments = styled.div`
   font-weight: bold;
   font-size: 15px;
   opacity: 0;
+  z-index: 2;
   position: absolute;
+  padding: 15px;
 `;
 export const TipComment = styled.div`
-  margin-top: 15px;
+  color: black;
+  line-height: 20px;
+  font-weight: lighter; ;
 `;
 
 // 상단 전체 랩
 export const UpWraper = styled.div`
-  width: 990px;
-  height: 740px;
-  background-color: #f5f5f5;
-  margin-top: 10px;
+  width: 1000px;
+  height: 400px;
+  margin-top: 50px;
 `;
 
 //? 인삿말 박스
@@ -408,41 +410,32 @@ export const ProductFdButton = styled.button`
   cursor: pointer;
 `;
 
-// 은행 리스트 배너
-export const BankListBanner = styled.div`
-  width: 100%;
-  height: 325px;
-  margin-top: 20px;
-  padding-top: 60px;
-  border: solid 1px #dedede;
-  border-radius: 20px;
-  background-color: white;
-`;
 // 은행 리스트 제목
 export const BankListBannerTitle = styled.span`
-  font-size: 35px;
+  font-size: 28px;
   font-weight: bold;
-  padding-left: 71px;
+  margin-left: 10px;
 `;
 // 은행 랩
 export const BankWrap = styled.div`
-  border: 1px black solid;
+  border: 1px #dedede solid;
   border-radius: 10px;
-  width: 161px;
-  height: 124px;
+  width: 154px;
+  height: 104px;
   display: inline-block;
   margin: 0 5px 0 5px;
-  padding: 20px 20px 10px 20px;
+  padding: 15px 20px 10px 20px;
   img {
-    width: 48px;
-    height: 48px;
+    width: 47px;
+    height: 47px;
   }
   a {
     display: flex;
-    font-size: 20px;
-    color: black;
+    font-size: 14px;
+    font-weight: Noto Sans;
+    color: #707070;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 8px;
     text-decoration: none;
   }
 `;

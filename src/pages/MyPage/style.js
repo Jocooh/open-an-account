@@ -278,6 +278,7 @@ export const CategoryLikeContainer = styled.div`
 export const CategoryLike = styled.div`
   display: flex;
   gap: 130px; //카테고리와 북마크 사이 거리
+  align-items: center;
 `;
 export const CardCategory = styled.div`
   border: 1px solid #aaa;
@@ -298,6 +299,7 @@ export const SecondTitle = styled.div`
   display: flex;
   gap: 30px;
   color: #999;
+  font-size: 14px;
 `;
 export const Block = styled.div`
   width: 20px;
@@ -307,6 +309,7 @@ export const CardTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
+  padding: 10px;
 `;
 export const CardImage = styled.img`
   width: 278px;

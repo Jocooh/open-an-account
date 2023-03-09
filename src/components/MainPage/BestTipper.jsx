@@ -46,7 +46,7 @@ const BestTipper = ({ currentUser }) => {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "10px",
+            gap: "15px",
           }}
         >
           <BestTipperTitle>금주의 팁퍼</BestTipperTitle>
@@ -61,10 +61,10 @@ const BestTipper = ({ currentUser }) => {
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             pagination={{ clickable: true }}
-            navigation
+            // navigation
             spaceBetween={50}
             slidesPerView={1}
-            autoplay={{ delay: 3000 }}
+            // autoplay={{ delay: 3000 }}
             loop={true}
             observer={true}
             observeParents={true}
@@ -144,9 +144,9 @@ const TipperBanner = styled(SwiperSlide)`
   width: 100%;
   height: 610px;
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
-  padding: 10px;
+  /* padding: 20px; */
   gap: 5px;
 `;

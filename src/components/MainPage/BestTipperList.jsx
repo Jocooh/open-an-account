@@ -34,9 +34,16 @@ function BestTipperList({ best, currentUser }) {
                   {best?.title.length > 10 && "..."}
                 </CardTitle>
                 <SecondTitle>{best?.name}</SecondTitle>
-                <div style={{ height: "200px" }}>
-                  {best?.content.slice(0, 230)}
-                  {best?.content.length > 230 && "..."}
+                <div
+                  style={{
+                    height: "200px",
+                    color: "#818181",
+                    fontSize: "16px",
+                    lineHeight: "25px",
+                  }}
+                >
+                  {best?.content.slice(0, 140)}
+                  {best?.content.length > 140 && "..."}
                 </div>
               </CardTitleContainer>
             </CategoryLikeContainer>
