@@ -106,6 +106,20 @@ const BestProducts = () => {
   const sortChangeDeposit = changeDeposit?.sort((a, b) => b[1] - a[1]);
   // console.log(sortChangeDeposit);
 
+  // 로딩, 에러 상태 추가
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
+  useEffect(() => {
+    setLoading(true);
+    setError(undefined);
+
+    getBookmarkList()
+      .catch((e) => setError("에러 발생"))
+      .finally(() => setLoading(false));
+  }, []);
+  if (loading) return <p>loading...</p>;
+  if (error) return <p>{error}</p>;
+
   // optional chaining 을 간소화하려면... 변수를 state 화...
   // useEffect(()=>{},[bookmarkListAll])
 
