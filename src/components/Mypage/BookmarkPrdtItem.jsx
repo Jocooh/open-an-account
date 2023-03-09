@@ -27,7 +27,7 @@ function BookmarkPrdtItem({
   selectedProductIds,
 }) {
   const [open, setOpen] = useState("");
-  console.log(items);
+  // console.log(items);
   // const a = allOptionList.map((list) =>
   //   list.fin_co_no === items.fin_co_no ? console.log(list.fin_co_no) : null
   // );
