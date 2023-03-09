@@ -110,7 +110,7 @@ const BestProducts = () => {
     getBookmarkList();
   }, []);
 
-  // 변수를 state 화 나중에...
+  // optional chaining 을 간소화하려면... 변수를 state 화...
   // useEffect(()=>{},[bookmarkListAll])
 
   return (
@@ -119,7 +119,7 @@ const BestProducts = () => {
         <BtProductTitleWrap>
           <img src={require("../../assets/mainpage/bestproduct.png")} />
           <BestProductTitle>인기 금융상품</BestProductTitle>
-          <KrDate>{timeToLocaleString(Date.now())} 기준</KrDate>
+          <KrDate>{timeToLocaleString(Date.now()).slice(0, -12)} 기준</KrDate>
         </BtProductTitleWrap>
         <KrBankRateWrap>
           <KrBank>한국은행 기준금리</KrBank>
@@ -151,7 +151,7 @@ const BestProducts = () => {
                 </BtProductName>
                 <div>{sortChangeSaving?.[0]?.[0]?.split(",")?.[1] ?? null}</div>
               </div>
-              <RateWrapper>
+              {/* <RateWrapper>
                 <MaxRate>
                   {sortChangeSaving?.[0]?.[0]?.split(",")?.[0] ? (
                     <img
@@ -163,7 +163,7 @@ const BestProducts = () => {
 
                   {sortChangeSaving?.[0]?.[1]}
                 </MaxRate>
-              </RateWrapper>
+              </RateWrapper> */}
             </BtProductContent>
           </BtProductList>
           <BtProductList>
@@ -183,7 +183,7 @@ const BestProducts = () => {
                 </BtProductName>
                 <div>{sortChangeSaving?.[1]?.[0]?.split(",")?.[1] ?? null}</div>
               </div>
-              <RateWrapper>
+              {/* <RateWrapper>
                 <MaxRate>
                   {sortChangeSaving?.[1]?.[0]?.split(",")?.[0] ? (
                     <img
@@ -195,7 +195,7 @@ const BestProducts = () => {
 
                   {sortChangeSaving?.[1]?.[1]}
                 </MaxRate>
-              </RateWrapper>
+              </RateWrapper> */}
             </BtProductContent>
           </BtProductList>
           <BtProductList>
@@ -215,7 +215,7 @@ const BestProducts = () => {
                 </BtProductName>
                 <div>{sortChangeSaving?.[2]?.[0]?.split(",")?.[1] ?? null}</div>
               </div>
-              <RateWrapper>
+              {/* <RateWrapper>
                 <MaxRate>
                   {sortChangeSaving?.[2]?.[0]?.split(",")?.[0] ? (
                     <img
@@ -227,7 +227,7 @@ const BestProducts = () => {
 
                   {sortChangeSaving?.[2]?.[1]}
                 </MaxRate>
-              </RateWrapper>
+              </RateWrapper> */}
             </BtProductContent>
           </BtProductList>
         </BtProduct>
@@ -251,7 +251,7 @@ const BestProducts = () => {
                 </BtProductName>
                 <div>{sortChangeDeposit?.[0]?.[0]?.split(",")?.[1]}</div>
               </div>
-              <RateWrapper>
+              {/* <RateWrapper>
                 <MaxRate>
                   {sortChangeDeposit?.[0]?.[0]?.split(",")?.[0] ? (
                     <img
@@ -263,7 +263,7 @@ const BestProducts = () => {
 
                   {sortChangeDeposit?.[0]?.[1]}
                 </MaxRate>
-              </RateWrapper>
+              </RateWrapper> */}
             </BtProductContent>
           </BtProductList>
           <BtProductList>
@@ -283,7 +283,7 @@ const BestProducts = () => {
                 </BtProductName>
                 <div>{sortChangeDeposit?.[1]?.[0]?.split(",")?.[1]}</div>
               </div>
-              <RateWrapper>
+              {/* <RateWrapper>
                 <MaxRate>
                   {sortChangeDeposit?.[1]?.[0]?.split(",")?.[0] ? (
                     <img
@@ -295,7 +295,7 @@ const BestProducts = () => {
 
                   {sortChangeDeposit?.[1]?.[1]}
                 </MaxRate>
-              </RateWrapper>
+              </RateWrapper> */}
             </BtProductContent>
           </BtProductList>
           <BtProductList>
@@ -315,7 +315,7 @@ const BestProducts = () => {
                 </BtProductName>
                 <div>{sortChangeDeposit?.[2]?.[0]?.split(",")?.[1]}</div>
               </div>
-              <RateWrapper>
+              {/* <RateWrapper>
                 <MaxRate>
                   {sortChangeDeposit?.[2]?.[0]?.split(",")?.[0] ? (
                     <img
@@ -327,7 +327,7 @@ const BestProducts = () => {
 
                   {sortChangeDeposit?.[2]?.[1]}
                 </MaxRate>
-              </RateWrapper>
+              </RateWrapper> */}
             </BtProductContent>
           </BtProductList>
         </BtProduct>

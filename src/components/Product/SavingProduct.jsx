@@ -117,6 +117,8 @@ function SavingProduct({
         <Scrap>
           <Bookmarks
             baseList={selectedProduct} //baseList
+            selectedProductRate={selectedProductRate} // option 일반 금리
+            selectedProductRate2={selectedProductRate2} // option  최고 금리
             isModal={true}
             selectedProductId={selectedProductId}
             productTypes={productTypes}

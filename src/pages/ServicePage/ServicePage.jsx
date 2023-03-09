@@ -477,26 +477,26 @@ const ServicePage = () => {
     });
   };
 
-  // 찜하기 - 원준 작업 중 -
-  const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
+  // // 찜하기 - 원준 작업 중 -
+  // const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
 
-  const getMyBookmarkProduct = async () => {
-    const querySnapshot = await getDocs(
-      collection(db, "bookmarks"),
-      where("userId", "==", authService.currentUser?.uid)
-    );
-    const myBookmarkProduct = [];
+  // const getMyBookmarkProduct = async () => {
+  //   const querySnapshot = await getDocs(
+  //     collection(db, "bookmarks"),
+  //     where("userId", "==", authService.currentUser?.uid)
+  //   );
+  //   const myBookmarkProduct = [];
 
-    querySnapshot.forEach((doc) => {
-      const newBookmarkProduct = {
-        id: doc.id,
-        ...doc.data(),
-      };
+  //   querySnapshot.forEach((doc) => {
+  //     const newBookmarkProduct = {
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     };
 
-      myBookmarkProduct.push(newBookmarkProduct);
-      setMyBookmarkProducs(myBookmarkProduct);
-    });
-  };
+  //     myBookmarkProduct.push(newBookmarkProduct);
+  //     setMyBookmarkProducs(myBookmarkProduct);
+  //   });
+  // };
   //3번 탭 비로그인 시 로그인유도 함수
   const navigate = useNavigate();
   const checkUser = () => {
@@ -1121,7 +1121,7 @@ const ServicePage = () => {
                             savingbaseList={savingbaseList}
                             selectedProductIds={selectedProductIds}
                             savingOptionalList={savingoptionalList}
-                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            // myBookmarkProducts={myBookmarkProducts} // my bookmark products
                             handleClickProduct={handleClickProduct}
                             depositOptionalList={depositOptionalList}
                           />
@@ -1135,7 +1135,7 @@ const ServicePage = () => {
                             savingoptionalList={savingoptionalList}
                             selectedProductIds={selectedProductIds}
                             handleClickProduct={handleClickProduct}
-                            myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                            // myBookmarkProducts={myBookmarkProducts} // my bookmark products
                             depositOptionalList={depositOptionalList}
                           />
                         )}
