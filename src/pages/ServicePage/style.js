@@ -28,10 +28,6 @@ export const TopSectionWraper = styled.div`
   display: flex;
   margin-bottom: 30px;
   @media screen and (max-width: 425px) {
-    /* overflow-x: scroll;
-    white-space: normal; */
-    /* background-color: lavender; */
-    /* display: none; */
   }
 `;
 
@@ -297,7 +293,7 @@ export const FormattingAmount = styled.input`
 //* 상품기간 슬라이더 Wraper
 export const MonthRangeSliderWraper = styled.div`
   input {
-    width: 810px;
+    width: 786px;
     height: 50px;
   }
 `;
@@ -312,7 +308,7 @@ export const MonthRangeSliderTitle = styled.div`
 export const MonthRangeSlider = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* gap: 145px; */
+  gap: 143px;
   margin-bottom: 100px;
   @media screen and (max-width: 425px) {
     gap: 48px;

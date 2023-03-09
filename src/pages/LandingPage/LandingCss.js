@@ -43,7 +43,7 @@ export const FirstSectionMainTitle = styled.div`
 `;
 
 export const MainTilte = styled.div`
-  width: 700px;
+  width: 100%;
   position: absolute;
   top: -250px;
   text-shadow: 12px 12px 10px rgba(0, 0, 0, 0.5);

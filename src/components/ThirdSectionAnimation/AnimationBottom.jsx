@@ -9,12 +9,12 @@ const BottomAnimation = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.intersectionRatio >= 1) {
+        if (entry.intersectionRatio >= 0.5) {
           // 1초 뒤에 setIsAnimated(true) 호출
           setTimeout(() => setIsAnimated(true), 0);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.5 }
     );
 
     observer.observe(SecondSectionRef.current);
@@ -74,8 +74,8 @@ const BottomImgWrap = styled.div`
   }
   img.animated {
     transform: translateY(70px);
-    animation: fadeIndown 1s ease forwards;
-    animation-delay: 1s;
+    animation: fadeIndown 0.5s ease forwards;
+    animation-delay: 0.5s;
   }
 
   @keyframes fadeIndown {
@@ -106,8 +106,8 @@ const ThirdBottomTitleWrap = styled.div`
   }
   div.animated {
     transform: translateX(50px);
-    animation: slideInRight 0.8s ease-out forwards;
-    animation-delay: 2s;
+    animation: slideInRight 0.5s ease-out forwards;
+    animation-delay: 1s;
     @keyframes slideInRight {
       0% {
         opacity: 0;

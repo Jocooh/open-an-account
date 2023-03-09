@@ -976,10 +976,10 @@ const ServicePage = () => {
                           </div>
                           <MonthRangeSlider>
                             <span>기간 선택</span>
-                            <span style={{}}>6개월</span>
-                            <span style={{}}>12개월</span>
-                            <span style={{}}>24개월</span>
-                            <span style={{}}>36개월</span>
+                            <span style={{ marginLeft: "-15px" }}>6개월</span>
+                            <span style={{ marginLeft: "6px" }}>12개월</span>
+                            <span style={{ marginLeft: "6px" }}>24개월</span>
+                            <span style={{ marginLeft: "6px" }}>36개월</span>
                           </MonthRangeSlider>
                         </MonthRangeSliderWraper>
                         <FilterSubmitWarper>
@@ -990,8 +990,6 @@ const ServicePage = () => {
                                 handleClickResults();
                                 handleClickSearch();
                                 handleButtonClick();
-                                // findSorting();
-                                // CalculatorList();
                               }}
                             >
                               찾기
@@ -1013,7 +1011,6 @@ const ServicePage = () => {
                     {showResults === true ? (
                       <StyledBankListContainer>
                         <StyledBankList>
-                          {/* <StyledBankListWrapper> */}
                           <CalculatorList
                             activeItem={activeItem}
                             setActiveItem={setActiveItem}
@@ -1026,28 +1023,12 @@ const ServicePage = () => {
                             productTypes={productTypes}
                             months={months}
                           />
-                          {/* </StyledBankListWrapper> */}
                         </StyledBankList>
                       </StyledBankListContainer>
                     ) : null}
                   </div>
                 </Tapwraper>
               )}
-
-              {/* <div>
-                <ul>
-                  {products.map((item) => (
-                    <li
-                      onClick={() => handleClickProduct(item.id)}
-                      key={item.id}
-                    >
-                      {item.fin_prdt_nm}
-                    </li>
-                  ))}
-                </ul>
-              </div> */}
-
-              {/* ##################################################################### */}
 
               {activeTab === 2 && (
                 <div>
