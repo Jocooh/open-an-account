@@ -30,8 +30,7 @@
 ---
 
 ## 🏗 아키텍쳐
-
-<img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b11605f-9eec-4672-8f5d-5d2a8d3a020e/Untitled.png"/>
+![아키텍처](https://user-images.githubusercontent.com/111356420/223927727-3745ff34-b60b-42b4-8280-f981555ac15a.png)
 
 ---
 
