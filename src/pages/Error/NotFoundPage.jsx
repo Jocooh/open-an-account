@@ -13,8 +13,7 @@ const NotFoundPage = () => {
 export default NotFoundPage;
 
 const Container = styled.div`
-  /* height: calc(100vh - 78px); */ // 안먹음
-  height: 817px; // 하드코딩으로 맞춤
+  height: calc(100vh - 102px);
 
   display: flex;
   justify-content: center;
