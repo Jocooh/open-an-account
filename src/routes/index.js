@@ -26,9 +26,9 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/detail" element={<DetailPage />} />
+        <Route path="*" element={<NotFoundPage />} />
         {/* admin */}
         <Route path="/4jojoa" element={<InsertData />} />
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
