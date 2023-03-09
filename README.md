@@ -3,9 +3,10 @@
 금융관리 초보자를 위한 팁을 드려요!
 자금 마련의 기본인 **예금, 적금 상품들을 비교**해주고 **꿀팁들을 공유**하는 사이트입니다.
 
-[Tipper](https://tipper-seven.vercel.app/)
+[Tipper_사이트바로가기](https://tipper-seven.vercel.app/)
 
-[https://github.com/Jocooh/open-an-account.git](https://github.com/Jocooh/open-an-account.git)
+![Frame 2297](https://user-images.githubusercontent.com/111356420/223928448-04717d9f-8d55-4009-bdbd-e7dc01c9d557.jpg)
+
 
 - 기능 소개
   1. 예적금 상품 비교 기능 설명
@@ -30,7 +31,7 @@
 ---
 
 ## 🏗 아키텍쳐
-![아키텍처](https://user-images.githubusercontent.com/111356420/223927727-3745ff34-b60b-42b4-8280-f981555ac15a.png)
+<img src="https://user-images.githubusercontent.com/111356420/223927727-3745ff34-b60b-42b4-8280-f981555ac15a.png" width="500"/>
 
 ---
 
