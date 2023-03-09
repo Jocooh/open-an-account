@@ -9,7 +9,7 @@ export const StyledImg = styled.img`
   width: 50px;
   height: 50px;
   object-fit: contain;
-  margin: 10px 5px 20px 0;
+  margin: 10px 20px 20px 20px;
 `;
 
 export const StyledProductTitleDiv = styled.div`

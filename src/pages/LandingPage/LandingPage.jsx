@@ -7,6 +7,7 @@ import SecondSectionImgAnimation2 from "../../components/SecondSectionAnimation/
 import SecondSectionImgAnimation3 from "../../components/SecondSectionAnimation/AnimationThird";
 import TopAnimation from "../../components/ThirdSectionAnimation/AnimationTop";
 import BottomAnimation from "../../components/ThirdSectionAnimation/AnimationBottom";
+import TopButton from "../../components/TopScrollBtn/TopScrollBtn";
 import {
   Wraper,
   FirstSectionMainTitleWrap,
@@ -27,16 +28,7 @@ import {
   SecondImgContainer,
   ContentsSubTitle,
   SecondSectioncontainer,
-  ThirdSectionContents,
   ThirdBottomSection,
-  ThirdTopSectionContainer,
-  ThirdSectionTitle,
-  ThirdSectionSubTitle,
-  ThirdTopTitleWrap,
-  ThirdSectionBottomTitle,
-  ThirdSectionBottomSubTitle,
-  ThirdBottomSectionContainer,
-  ThirdSectionBottomTitleWrap,
   ThirdSection,
   FourthSectonTitle,
   FourthSectionSubTitle,
@@ -46,7 +38,6 @@ import {
   MainTilte,
   TocompareButton,
   FourthSectionImgAnimationWrap,
-  SecondImgThree,
 } from "./LandingCss";
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -54,6 +45,7 @@ const LandingPage = () => {
   return (
     <BackgroundWraper>
       <Wraper>
+        <TopButton />
         <article style={{ width: "100%" }}>
           <Firstsection>
             <div

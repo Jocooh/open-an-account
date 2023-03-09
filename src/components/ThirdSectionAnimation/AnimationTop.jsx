@@ -9,20 +9,18 @@ const TopAnimation = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.intersectionRatio >= 1) {
+        if (entry.intersectionRatio >= 0.5) {
           // 1초 뒤에 setIsAnimated(true) 호출
           setTimeout(() => setIsAnimated(true), 0);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.5 }
     );
 
     observer.observe(SecondSectionRef.current);
 
     return () => observer.disconnect();
   }, [isAnimated]);
-
-  console.log(isAnimated);
 
   return (
     <ThirdTopSectionContainer ref={SecondSectionRef}>
@@ -51,7 +49,7 @@ const TopAnimation = () => {
             <div className={isAnimated ? "animated" : ""}>
               목표금액, 목표기간만
             </div>
-            <div className={isAnimated ? "animated" : ""}>정해오세요.</div>
+            <div className={isAnimated ? "animated" : ""}>정해주세요.</div>
           </ThirdSectionTitle>
 
           <div
@@ -88,8 +86,8 @@ const ThirdTopTitleWrap = styled.div`
 
   div.animated {
     transform: translateX(50px);
-    animation: slideInLeft 0.8s ease forwards;
-    animation-delay: 2s;
+    animation: slideInLeft 0.5s ease forwards;
+    animation-delay: 1s;
 
     @keyframes slideInLeft {
       0% {
@@ -110,8 +108,8 @@ const TopImgWrap = styled.div`
   }
   img.animated {
     transform: translateY(70px);
-    animation: fadeIndown 1s ease forwards;
-    animation-delay: 1s;
+    animation: fadeIndown 0.5s ease forwards;
+    animation-delay: 0.5s;
   }
 
   @keyframes fadeIndown {

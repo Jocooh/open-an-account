@@ -13,7 +13,7 @@ const FourthSectionImgAnimation = (direction, duration, delay) => {
           setIsAnimated(true);
         }
       },
-      { threshold: 0.8 }
+      { threshold: 0.7 }
     );
 
     observer.observe(fourthSectionRef.current);
@@ -29,15 +29,17 @@ const FourthSectionImgAnimation = (direction, duration, delay) => {
           src={require("../../assets/landing/FourthSection(1).png")}
           alt="ThirdImg"
           style={{
-            width: "350px",
+            width: "342px",
+            height: "648px",
           }}
         />
 
         <img
           className={isAnimated ? "animated" : ""}
           style={{
-            width: "350px",
-            marginTop: "100px",
+            width: "342px",
+            height: "648px",
+            marginTop: "80px",
           }}
           src={require("../../assets/landing/FourthSection(3).png")}
           alt="ThirdImg"
@@ -46,7 +48,8 @@ const FourthSectionImgAnimation = (direction, duration, delay) => {
         <img
           className={isAnimated ? "animated" : ""}
           style={{
-            width: "350px",
+            width: "342px",
+            height: "648px",
           }}
           src={require("../../assets/landing/FourthSection(2).png")}
           alt="ThirdImg"
@@ -81,15 +84,15 @@ const FourthSectionImgWrap = styled.div`
   }
 
   img:nth-child(1) {
-    animation-delay: 0.5s;
+    animation-delay: 0.3s;
   }
 
   img:nth-child(3) {
-    animation-delay: 1s;
+    animation-delay: 0.6s;
   }
 
   img:nth-child(2) {
-    animation-delay: 1.5s;
+    animation-delay: 0.9s;
   }
 
   @keyframes fadeInUp {
