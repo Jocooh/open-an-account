@@ -4,7 +4,7 @@ import styled from "styled-components";
 const NotFoundPage = () => {
   return (
     <Container>
-      <Img src={require("../assets/no.png")} />
+      <Img src={require("../../assets/no.png")} />
       <Text>페이지를 찾을 수 없습니다.</Text>
     </Container>
   );

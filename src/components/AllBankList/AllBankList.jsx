@@ -112,7 +112,8 @@ function AllBankList({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            baseList={item} //baseList
+                            baseList={item} //base list
+                            optionList={deposit} // option list
                             productTypes={productTypes}
                           />
                           <button

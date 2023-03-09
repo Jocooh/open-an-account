@@ -109,7 +109,9 @@ function Product({
         </FullInfo>
         <Scrap>
           <Bookmarks
-            baseList={selectedProduct} //baseList
+            baseList={selectedProduct} // base list
+            selectedProductRate={selectedProductRate} // option 일반 금리
+            selectedProductRate2={selectedProductRate2} // option  최고 금리
             isModal={true}
             selectedProductId={selectedProductId}
             productTypes={productTypes}

@@ -114,7 +114,11 @@ function SearchSavingLists({
                       </div>
                     </StyledDiv>
                     <StyledMoreListDiv>
-                      <Bookmarks baseList={base} productTypes={productTypes} />
+                      <Bookmarks
+                        baseList={base} // base list
+                        optionList={savingOptionalList} // option list
+                        productTypes={productTypes}
+                      />
                       <button
                         style={{
                           width: "60px",
