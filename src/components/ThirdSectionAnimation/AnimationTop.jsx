@@ -22,8 +22,6 @@ const TopAnimation = () => {
     return () => observer.disconnect();
   }, [isAnimated]);
 
-  console.log(isAnimated);
-
   return (
     <ThirdTopSectionContainer ref={SecondSectionRef}>
       <ThirdSectionContents>
@@ -51,7 +49,7 @@ const TopAnimation = () => {
             <div className={isAnimated ? "animated" : ""}>
               목표금액, 목표기간만
             </div>
-            <div className={isAnimated ? "animated" : ""}>정해오세요.</div>
+            <div className={isAnimated ? "animated" : ""}>정해주세요.</div>
           </ThirdSectionTitle>
 
           <div

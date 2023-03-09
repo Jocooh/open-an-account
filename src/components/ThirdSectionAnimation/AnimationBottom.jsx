@@ -22,8 +22,6 @@ const BottomAnimation = () => {
     return () => observer.disconnect();
   }, [isAnimated]);
 
-  console.log(isAnimated);
-
   return (
     <ThirdBottomSectionContainer ref={SecondSectionRef}>
       <ThirdBottomTitleWrap>

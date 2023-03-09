@@ -33,8 +33,10 @@ import {
   SelectedProductsContainer,
   StyledBtnDiv,
   StyledBtn,
-  StyledBankListWrapper,
-  FormattedAmount,
+  InputTitle,
+  IntrRateWrap,
+  MaxIntrRate,
+  BasicIntrRate,
   StagingWrap,
   StagingProductsName,
   StagingBankName,
@@ -65,7 +67,7 @@ import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
 import { Navigate, useNavigate } from "react-router-dom";
 import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../../components/AllBankList/style";
-
+import TopButton from "../../components/TopScrollBtn/TopScrollBtn";
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
   const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
@@ -201,7 +203,7 @@ const ServicePage = () => {
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
                 setIntrRateType(targetDoc.intr_rate_type);
-                // console.log(selectedProductIdsCopy);
+                console.log(selectedProductIdsCopy);
                 break;
               } else {
                 console.log(
@@ -249,7 +251,6 @@ const ServicePage = () => {
                 setIntrRate(targetDoc.intr_rate);
                 setIntrRate2(targetDoc.intr_rate2);
                 setIntrRateType(targetDoc.intr_rate_type);
-                // console.log(selectedProductIdsCopy);
                 break;
               } else {
                 console.log(
@@ -350,7 +351,6 @@ const ServicePage = () => {
   const handleBlur = () => {
     if (amount) {
       // amount가 존재하면 저장
-      console.log("saved amount:", amount);
     }
   };
 
@@ -511,18 +511,25 @@ const ServicePage = () => {
   };
   return (
     <Wraper>
+      <TopButton />
       <Cantinar>
         <TopSectionWraper>
           <TopSection>
-            <TopSectionTitle>금융상품 비교하기</TopSectionTitle>
+            <TopSectionTitle>
+              금융상품 비교하기{" "}
+              <img
+                src={require("../../assets/service/TitleIcon.png")}
+                alt="ThirdImg"
+              />
+            </TopSectionTitle>
             <TopSectionSubTitle>
               예금과 적금은 동일한 종류만 비교할 수 있어요.
             </TopSectionSubTitle>
             <ProductsWraper>
-              <SelectedProductsContainer>
-                <SelectedProducts>
-                  {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[0] === "" ? (
+              {/* //* 배열의 첫번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+              {selectedProductIds[0] === "" ? (
+                <SelectedProductsContainer>
+                  <SelectedProducts>
                     <BeforeSelectedContainer>
                       <p>비교 박스에 자리가 남았어요.</p>
                       <img
@@ -530,7 +537,16 @@ const ServicePage = () => {
                         alt="이미지"
                       />
                     </BeforeSelectedContainer>
-                  ) : (
+                  </SelectedProducts>
+                </SelectedProductsContainer>
+              ) : (
+                <SelectedProductsContainer
+                  style={{
+                    backgroundColor: "#F7F7FB",
+                    border: "2px solid #E3DCFF",
+                  }}
+                >
+                  <SelectedProducts>
                     <div style={{ display: "flex" }}>
                       <div>
                         <StyledImg
@@ -542,13 +558,8 @@ const ServicePage = () => {
                       <StagingWrap>
                         <div>
                           <StagingProductsName>
-                            <p
-                              style={{
-                                fontSize: "22px",
-                                color: "#000",
-                                fontWeight: "bold",
-                              }}
-                            >
+                            {/* //*금융상품 명 */}
+                            <p>
                               {products.find(
                                 (product) =>
                                   product.id === selectedProductIds[0]
@@ -559,7 +570,8 @@ const ServicePage = () => {
                                 )?.fin_prdt_nm}
                             </p>
                           </StagingProductsName>
-                          <div>
+                          <div style={{ marginTop: "10px" }}>
+                            {/* //*금융사 명 */}
                             <StagingBankName>
                               {products.find(
                                 (product) =>
@@ -573,29 +585,30 @@ const ServicePage = () => {
                           </div>
                         </div>
                         {/* //* intr_rate, intr_rate2 값 출력 */}
-                        <div
-                          style={{
-                            fontSize: "19px",
-                            color: "#6A24FF",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          <div>이자율: {selectedProductIds[1]}</div>
-                          <div>최고금리: {selectedProductIds[2]}</div>
-                        </div>
+                        <IntrRateWrap>
+                          <MaxIntrRate style={{ marginBottom: "10px" }}>
+                            최고금리 {selectedProductIds[2]}%
+                          </MaxIntrRate>
+                          <BasicIntrRate>
+                            기본 {selectedProductIds[1]}%
+                          </BasicIntrRate>
+                        </IntrRateWrap>
                       </StagingWrap>
                       <StagingCancel onClick={() => handleProductsCancel()}>
-                        X
+                        <img
+                          src={require("../../assets/service/Cancel.png")}
+                          alt="스테이징 취소"
+                        />
                       </StagingCancel>
                     </div>
-                  )}
-                </SelectedProducts>
-              </SelectedProductsContainer>
+                  </SelectedProducts>
+                </SelectedProductsContainer>
+              )}
 
-              <SelectedProductsContainer>
-                <SelectedProducts>
-                  {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[6] === "" ? (
+              {/* //* 배열의 두번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+              {selectedProductIds[6] === "" ? (
+                <SelectedProductsContainer>
+                  <SelectedProducts>
                     <BeforeSelectedContainer>
                       <p>비교 박스에 자리가 남았어요.</p>
                       <img
@@ -603,7 +616,16 @@ const ServicePage = () => {
                         alt="이미지"
                       />
                     </BeforeSelectedContainer>
-                  ) : (
+                  </SelectedProducts>
+                </SelectedProductsContainer>
+              ) : (
+                <SelectedProductsContainer
+                  style={{
+                    backgroundColor: "#F7F7FB",
+                    border: "2px solid #E3DCFF",
+                  }}
+                >
+                  <SelectedProducts>
                     <div style={{ display: "flex" }}>
                       <div>
                         <StyledImg
@@ -611,16 +633,12 @@ const ServicePage = () => {
                           alt="로고"
                         />
                       </div>
+
                       <StagingWrap>
                         <div>
                           <StagingProductsName>
-                            <p
-                              style={{
-                                fontSize: "22px",
-                                color: "#000",
-                                fontWeight: "bold",
-                              }}
-                            >
+                            {/* //*금융상품 명 */}
+                            <p>
                               {products.find(
                                 (product) =>
                                   product.id === selectedProductIds[6]
@@ -631,7 +649,7 @@ const ServicePage = () => {
                                 )?.fin_prdt_nm}
                             </p>
                           </StagingProductsName>
-                          <div>
+                          <div style={{ marginTop: "10px" }}>
                             <StagingBankName>
                               {products.find(
                                 (product) =>
@@ -645,29 +663,30 @@ const ServicePage = () => {
                           </div>
                         </div>
                         {/* //* intr_rate, intr_rate2 값 출력 */}
-                        <div
-                          style={{
-                            fontSize: "19px",
-                            color: "#6A24FF",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          <div>이자율: {selectedProductIds[7]}</div>
-                          <div>최고금리: {selectedProductIds[8]}</div>
-                        </div>
+                        <IntrRateWrap>
+                          <MaxIntrRate style={{ marginBottom: "10px" }}>
+                            최고금리 {selectedProductIds[8]}%
+                          </MaxIntrRate>
+                          <BasicIntrRate>
+                            기본 {selectedProductIds[7]}%
+                          </BasicIntrRate>
+                        </IntrRateWrap>
                       </StagingWrap>
                       <StagingCancel onClick={() => handleProductsCancel2()}>
-                        X
+                        <img
+                          src={require("../../assets/service/Cancel.png")}
+                          alt="스테이징 취소"
+                        />
                       </StagingCancel>
                     </div>
-                  )}
-                </SelectedProducts>
-              </SelectedProductsContainer>
+                  </SelectedProducts>
+                </SelectedProductsContainer>
+              )}
 
-              <SelectedProductsContainer>
-                <SelectedProducts>
-                  {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
-                  {selectedProductIds[12] === "" ? (
+              {/* //* 배열의 세번째 요소에 selectedProductId 값이 있을 때만 실행 */}
+              {selectedProductIds[12] === "" ? (
+                <SelectedProductsContainer>
+                  <SelectedProducts>
                     <BeforeSelectedContainer>
                       <p>비교 박스에 자리가 남았어요.</p>
                       <img
@@ -675,7 +694,16 @@ const ServicePage = () => {
                         alt="이미지"
                       />
                     </BeforeSelectedContainer>
-                  ) : (
+                  </SelectedProducts>
+                </SelectedProductsContainer>
+              ) : (
+                <SelectedProductsContainer
+                  style={{
+                    backgroundColor: "#F7F7FB",
+                    border: "2px solid #E3DCFF",
+                  }}
+                >
+                  <SelectedProducts>
                     <div style={{ display: "flex" }}>
                       <div>
                         <StyledImg
@@ -683,16 +711,12 @@ const ServicePage = () => {
                           alt="로고"
                         />
                       </div>
+
                       <StagingWrap>
                         <div>
                           <StagingProductsName>
-                            <p
-                              style={{
-                                fontSize: "22px",
-                                color: "#000",
-                                fontWeight: "bold",
-                              }}
-                            >
+                            {/* //*금융상품 명 */}
+                            <p>
                               {products.find(
                                 (product) =>
                                   product.id === selectedProductIds[12]
@@ -703,7 +727,7 @@ const ServicePage = () => {
                                 )?.fin_prdt_nm}
                             </p>
                           </StagingProductsName>
-                          <div>
+                          <div style={{ marginTop: "10px" }}>
                             <StagingBankName>
                               {products.find(
                                 (product) =>
@@ -717,24 +741,25 @@ const ServicePage = () => {
                           </div>
                         </div>
                         {/* //* intr_rate, intr_rate2 값 출력 */}
-                        <div
-                          style={{
-                            fontSize: "19px",
-                            color: "#6A24FF",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          <div>이자율: {selectedProductIds[13]}</div>
-                          <div>최고금리: {selectedProductIds[14]}</div>
-                        </div>
+                        <IntrRateWrap>
+                          <MaxIntrRate style={{ marginBottom: "10px" }}>
+                            최고금리 {selectedProductIds[14]}%
+                          </MaxIntrRate>
+                          <BasicIntrRate>
+                            기본 {selectedProductIds[13]}%
+                          </BasicIntrRate>
+                        </IntrRateWrap>
                       </StagingWrap>
                       <StagingCancel onClick={() => handleProductsCancel3()}>
-                        X
+                        <img
+                          src={require("../../assets/service/Cancel.png")}
+                          alt="스테이징 취소"
+                        />
                       </StagingCancel>
                     </div>
-                  )}
-                </SelectedProducts>
-              </SelectedProductsContainer>
+                  </SelectedProducts>
+                </SelectedProductsContainer>
+              )}
             </ProductsWraper>
             <div
               style={{
@@ -880,11 +905,11 @@ const ServicePage = () => {
                             <CalculatorBoxContents>
                               {productTypes === 1 ? (
                                 <>
-                                  <span style={{ fontWeight: "bold" }}>
-                                    최초 예치 할 금액
-                                  </span>
-                                  <span>을 입력해주세요.</span>
-                                  <div>
+                                  <InputTitle>
+                                    <span>
+                                      최초 예치 할 금액을 입력해주세요.
+                                    </span>
+
                                     <input
                                       type="text"
                                       value={amount}
@@ -901,30 +926,22 @@ const ServicePage = () => {
                                     />
                                     <div
                                       style={{
-                                        fontSize: "15px",
+                                        fontSize: "16px",
                                         fontWeight: "bold",
-                                        margin: "0px 0px 30px 30px",
+                                        margin: "0px 0px 40px 28px",
                                       }}
                                     >
                                       {formattedAmount}
                                     </div>
-                                  </div>
+                                  </InputTitle>
                                   <MonthRangeSliderTitle>
-                                    <span>몇개월</span>
-                                    <span style={{ fontWeight: "bold" }}>
-                                      {" "}
-                                      예치
-                                    </span>
-                                    <span> 하실건가요?</span>
+                                    <span>몇 개월 예치 하실건가요?</span>
                                   </MonthRangeSliderTitle>
                                 </>
                               ) : productTypes === 2 ? (
                                 <>
-                                  <span style={{ fontWeight: "bold" }}>
-                                    한 달 적립금
-                                  </span>
-                                  <span>을 입력해주세요.</span>
-                                  <FormattedAmount>
+                                  <InputTitle>
+                                    <span>한 달 적립금을 입력해주세요.</span>
                                     <input
                                       type="text"
                                       value={amount}
@@ -941,20 +958,16 @@ const ServicePage = () => {
                                     />
                                     <div
                                       style={{
-                                        fontSize: "15px",
+                                        fontSize: "16px",
                                         fontWeight: "bold",
-                                        margin: "0px 0px 30px 30px",
+                                        margin: "0px 0px 40px 28px",
                                       }}
                                     >
                                       {formattedAmount}
                                     </div>
-                                  </FormattedAmount>
+                                  </InputTitle>
                                   <MonthRangeSliderTitle>
-                                    <span>몇개월</span>
-                                    <span style={{ fontWeight: "bold" }}>
-                                      {" "}
-                                      모으실건가요?
-                                    </span>
+                                    <span>몇 개월 모으실 건가요?</span>
                                   </MonthRangeSliderTitle>
                                 </>
                               ) : (
@@ -976,10 +989,10 @@ const ServicePage = () => {
                           </div>
                           <MonthRangeSlider>
                             <span>기간 선택</span>
-                            <span style={{ marginLeft: "-15px" }}>6개월</span>
-                            <span style={{ marginLeft: "6px" }}>12개월</span>
-                            <span style={{ marginLeft: "6px" }}>24개월</span>
-                            <span style={{ marginLeft: "6px" }}>36개월</span>
+                            <span style={{ marginLeft: "-4px" }}>6개월</span>
+                            <span style={{ marginLeft: "22px" }}>12개월</span>
+                            <span style={{ marginLeft: "18px" }}>24개월</span>
+                            <span style={{ marginLeft: "" }}>36개월</span>
                           </MonthRangeSlider>
                         </MonthRangeSliderWraper>
                         <FilterSubmitWarper>
@@ -999,7 +1012,6 @@ const ServicePage = () => {
                               onClick={() => {
                                 handleClickResults();
                                 handleClickSearch();
-                                // CalculatorList();
                               }}
                             >
                               닫기
@@ -1091,7 +1103,6 @@ const ServicePage = () => {
                           ref={topLocation}
                           className="top으로 가는 위치 지정"
                         />
-                        {/* <StyledBankListWrapper> */}
                         {searchBank.length > 0 ? (
                           <SearchBankList
                             searchBank={searchBank}
@@ -1120,7 +1131,6 @@ const ServicePage = () => {
                             depositOptionalList={depositOptionalList}
                           />
                         )}
-                        {/* </StyledBankListWrapper> */}
                       </StyledBankList>
                       <StyledBtnDiv className="스크롤탑버튼">
                         <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
@@ -1129,15 +1139,6 @@ const ServicePage = () => {
                   </StyledBankListContainer>
                 </div>
               )}
-              {/* ########################################### */}
-              {/* {if(!user){
-                if(window.cofirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")){
-                  return navigate("/login");
-                }else{
-                  return;
-                }
-              }} */}
-
               {activeTab === 3 &&
                 (!isLoggedIn ? (
                   <div
@@ -1198,14 +1199,12 @@ const ServicePage = () => {
                                 ref={topLocation}
                                 className="top으로 가는 위치 지정"
                               />
-                              {/* <StyledBankListWrapper> */}
                               <BookmarkPrdtList
                                 productTypes={productTypes}
                                 currentUser={user}
                                 handleClickProduct={handleClickProduct}
                                 selectedProductIds={selectedProductIds}
                               />
-                              {/* </StyledBankListWrapper> */}
                             </StyledBankList>
                           </StyledBankListContainer>
                         </TapContainerBox>

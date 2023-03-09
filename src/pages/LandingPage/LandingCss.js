@@ -99,6 +99,7 @@ export const TocompareButton = styled.button`
   height: 54px;
   border-radius: 60px;
   font-size: 16px;
+  font-weight: bold;
   color: #505050;
   fill: none;
   background-color: #fff;
@@ -111,6 +112,7 @@ export const StartButton = styled.button`
   height: 54px;
   border-radius: 60px;
   font-size: 16px;
+  font-weight: bold;
   margin: 100px 20px 0 0;
   color: #fff;
   border: 1px solid #fff;
