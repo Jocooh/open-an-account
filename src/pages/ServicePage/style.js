@@ -328,6 +328,7 @@ export const MonthRangeSliderTitle = styled.div`
 
 //* 금융상품 기간 슬라이더
 export const MonthRangeSlider = styled.div`
+  width: 786px;
   display: flex;
   flex-wrap: wrap;
   gap: 130px;

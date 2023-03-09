@@ -992,7 +992,7 @@ const ServicePage = () => {
                             <span style={{ marginLeft: "-4px" }}>6개월</span>
                             <span style={{ marginLeft: "22px" }}>12개월</span>
                             <span style={{ marginLeft: "18px" }}>24개월</span>
-                            <span style={{ marginLeft: "" }}>36개월</span>
+                            <span style={{ marginLeft: "1px" }}>36개월</span>
                           </MonthRangeSlider>
                         </MonthRangeSliderWraper>
                         <FilterSubmitWarper>
