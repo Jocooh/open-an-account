@@ -31,7 +31,7 @@
 
 ## 🏗 아키텍쳐
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b11605f-9eec-4672-8f5d-5d2a8d3a020e/Untitled.png)
+<img width="100%" src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1b11605f-9eec-4672-8f5d-5d2a8d3a020e/Untitled.png"/>
 
 ---
 
