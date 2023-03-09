@@ -6,12 +6,17 @@ import styled from "styled-components";
 import { authService, db } from "../../config/firebase";
 
 const Bookmarks = ({
-  baseList,
-  isMyPage,
-  isModal,
-  selectedProductId,
-  productTypes,
+  baseList, // base list
+  optionList, // option list
+  selectedProductRate, // option list 일반 금리 (modal)
+  selectedProductRate2, // option list 최고 금리 (modal)
+  isMyPage, // true 를 받기 위함
+  isModal, // true 를 받기 위함
+  selectedProductId, // doc id 가 달라 다르게 받아야 함
+  productTypes, // 예 적금 필터링
 }) => {
+  // console.log("optionList", optionList);
+  // console.log("baseList", baseList);
   // console.log("baseList.docId", baseList.docId);
   // console.log("baseList.id", baseList.id);
   const [bookmark, setBookmark] = useState(false);
@@ -47,7 +52,7 @@ const Bookmarks = ({
         // 필드 id
         docId: baseList.id || selectedProductId || baseList.docId,
         // base list
-        fin_prdt_nm: baseList.fin_prdt_nm, // 상품 명
+        fin_prdt_nm: baseList.fin_prdt_nm.replace(",", " "), // 상품 명
         fin_prdt_cd: baseList.fin_prdt_cd, // 상품 코드
         kor_co_nm: baseList.kor_co_nm, // 상품 회사 명
         join_way: baseList.join_way, // 가입 방법
@@ -56,6 +61,8 @@ const Bookmarks = ({
         etc_note: baseList.etc_note, // 기타 유의사항
         fin_co_no: baseList.fin_co_no, // 상품 회사 코드
         productTypes: productTypes, // 예적금 구분 타입
+        // intr_rate: selectedProductRate ?? optionList.intr_rate, // option - 일반 금리
+        // intr_rate2: selectedProductRate2 ?? optionList.intr_rate2, // option - 최고 금리
       });
 
       // true가 되면서 북마크 더이상 못하게 막기
