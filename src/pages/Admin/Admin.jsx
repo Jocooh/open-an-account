@@ -1,10 +1,32 @@
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 관계자 외 접근 금지
+// 접근 권한 차후 걸어둘 것 === 원준
+
 import axios from "axios";
-
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { db } from "../../config/firebase";
 
-import { db } from "../config/firebase";
-const InsertData = () => {
+const Admin = () => {
   const [savingBaseList, setSavingBaseList] = useState([]);
   const [savingOptionList, setSavingOptionList] = useState([]);
   const [depositBaseList, setDepositBaseList] = useState([]);
@@ -126,51 +148,74 @@ const InsertData = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      <div
-        style={{
-          border: "1px solid black",
-        }}
-      >
-        <p>적금 기본 정보</p>
-        <button onClick={getSavingBaseListHandler}>불러오기</button>
-      </div>
+    <AdminBackground>
+      <AdminWrapper>
+        <AdminItems
+          style={{ border: "none", fontSize: "larger", fontWeight: "bold" }}
+        >
+          <p>관계자 외 클릭 금지 ! 🔥</p>
+        </AdminItems>
+        <AdminItems>
+          <a href="https://cors-anywhere.herokuapp.com/corsdemo">데이터 넣기</a>
+        </AdminItems>
+        <AdminItems>
+          <button onClick={getSavingBaseListHandler}>
+            적금 기본 정보 불러오기
+          </button>
+        </AdminItems>
 
-      <div
-        style={{
-          border: "1px solid black",
-        }}
-      >
-        <p>적금 옵션 목록</p>
-        <button onClick={getSavingOptionListHandler}>불러오기</button>
-      </div>
+        <AdminItems>
+          <button onClick={getSavingOptionListHandler}>
+            적금 옵션 목록 불러오기
+          </button>
+        </AdminItems>
 
-      <div
-        style={{
-          border: "1px solid black",
-        }}
-      >
-        <p>예금 기본 정보</p>
-        <button onClick={getDepositBaseListHandler}>불러오기</button>
-      </div>
+        <AdminItems>
+          <button onClick={getDepositBaseListHandler}>
+            예금 기본 정보 불러오기
+          </button>
+        </AdminItems>
 
-      <div
-        style={{
-          border: "1px solid black",
-        }}
-      >
-        <p>예금 옵션 목록</p>
-        <button onClick={getDepositOptionListHandler}>불러오기</button>
-      </div>
-      <div>https://cors-anywhere.herokuapp.com/corsdemo</div>
-    </div>
+        <AdminItems>
+          <button onClick={getDepositOptionListHandler}>
+            예금 옵션 목록 불러오기
+          </button>
+        </AdminItems>
+      </AdminWrapper>
+    </AdminBackground>
   );
 };
 
-export default InsertData;
+export default Admin;
+
+const AdminBackground = styled.div`
+  height: calc(100vh - 102px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const AdminWrapper = styled.div`
+  width: 700px;
+  height: 700px;
+  border: 4px solid #6a24ff;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AdminItems = styled.div`
+  width: 250px;
+  height: 100px;
+  border: 2px solid #6a24ff;
+  border-radius: 15px;
+
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;

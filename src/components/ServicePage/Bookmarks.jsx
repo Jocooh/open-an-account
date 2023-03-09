@@ -92,9 +92,18 @@ const Bookmarks = ({
     }
   };
 
+  // 로딩, 에러 상태 추가
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
   useEffect(() => {
-    getBookmarks();
+    setLoading(true);
+    setError(undefined);
+    getBookmarks()
+      .catch((e) => setError("에러 발생"))
+      .finally(() => setLoading(false));
   }, []);
+  if (loading) return <p>loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <Bookmarked onClick={handleBookmarkChange}>

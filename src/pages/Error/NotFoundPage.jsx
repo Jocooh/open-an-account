@@ -3,16 +3,16 @@ import styled from "styled-components";
 
 const NotFoundPage = () => {
   return (
-    <Container>
-      <Img src={require("../../assets/no.png")} />
-      <Text>페이지를 찾을 수 없습니다.</Text>
-    </Container>
+    <ErrBackground>
+      <ErrImg src={require("../../assets/no.png")} />
+      <ErrText>페이지를 찾을 수 없습니다.</ErrText>
+    </ErrBackground>
   );
 };
 
 export default NotFoundPage;
 
-const Container = styled.div`
+const ErrBackground = styled.div`
   height: calc(100vh - 102px);
 
   display: flex;
@@ -20,11 +20,11 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-const Img = styled.img`
+const ErrImg = styled.img`
   width: 400px;
   height: 300px;
   margin: 80px 0;
 `;
-const Text = styled.div`
+const ErrText = styled.div`
   font-size: 50px;
 `;
