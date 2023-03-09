@@ -44,6 +44,7 @@ import {
   ButtonWrap,
   EditTitle,
   ModalContents,
+  EditCloseBtn,
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
 import Like from "../Community/Like";
@@ -247,17 +248,34 @@ function EditPostingModal({
           <ModalBackground>
             <ModalContainer onClick={(e) => e.stopPropagation()}>
               <ModalContents>
-                <CloseButton
-                  // TODO: 닫기버튼 오른쪽으로 이동 style={{ margin: "auto 0 0 auto" }}
-                  onClick={() => setEditPostingModalOpen(false)}
-                >
-                  닫기
-                </CloseButton>
                 {post.imgUrl ? (
-                  <TipperImgWrap>
-                    <img src={post?.imgUrl} alt="희망사진" />
-                  </TipperImgWrap>
-                ) : null}
+                  <>
+                    <EditCloseBtn
+                      // TODO: 닫기버튼 오른쪽으로 이동 style={{ margin: "auto 0 0 auto" }}
+                      onClick={() => setEditPostingModalOpen(false)}
+                    >
+                      닫기
+                    </EditCloseBtn>
+                    <TipperImgWrap>
+                      <img src={post?.imgUrl} alt="희망사진" />
+                    </TipperImgWrap>
+                  </>
+                ) : (
+                  <>
+                    <EditCloseBtn
+                      // TODO: 닫기버튼 오른쪽으로 이동 style={{ margin: "auto 0 0 auto" }}
+                      onClick={() => setEditPostingModalOpen(false)}
+                    >
+                      닫기
+                    </EditCloseBtn>
+                    <TipperImgWrap>
+                      <img
+                        src={require("../../assets/editblankImg.png")}
+                        alt="희망사진"
+                      />
+                    </TipperImgWrap>
+                  </>
+                )}
                 <TipTitleWrap>
                   <TipperTitle>{post?.category}</TipperTitle>
                   <Like currentUser={currentUser} id={post.id} post={post} />
@@ -268,7 +286,7 @@ function EditPostingModal({
                     style={{
                       fontSize: "14px",
                       opacity: "0.4",
-                      // height: "40px",
+                      paddingBottom: "5px",
                     }}
                   >
                     {post?.name}
