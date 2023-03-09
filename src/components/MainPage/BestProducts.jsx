@@ -132,7 +132,7 @@ const BestProducts = () => {
       </CurrentState>
       <BtProducts>
         <BtProduct>
-          <BtProductTitle>인기 적금</BtProductTitle>
+          <BtProductTitle>정기적금</BtProductTitle>
           <BtProductList>
             <BtProductRank>1</BtProductRank>
             <BankLogo
@@ -338,19 +338,16 @@ const BestProducts = () => {
           padding: "20px",
           display: "flex",
           gap: "10px",
-          alignContent: "center",
-          marginTop: "20px",
+          textAlign: "center",
+          alignContents: "center",
         }}
       >
         <img
           src={require("../../assets/Union.png")}
-          style={{ width: "16px", height: "29px", marginTop: "5px" }}
+          style={{ width: "16px", height: "29px", marginTop: "10px" }}
           alt="번개"
         />
-        <BestProductTitle style={{ marginTop: "5px" }}>
-          {" "}
-          빠른 상품 비교{" "}
-        </BestProductTitle>
+        <BestProductTitle> 빠른 상품 비교 </BestProductTitle>
 
         <button
           style={{

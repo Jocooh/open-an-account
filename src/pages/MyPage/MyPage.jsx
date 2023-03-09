@@ -118,7 +118,7 @@ function MyPage() {
   };
   //유저 탈퇴 함수
   const deleteUserHandler = () => {
-    if (window.confirm("삭제하시겠습니까?")) {
+    if (window.confirm("확인버튼을 누르면 탈퇴됩니다. 회원탈퇴하시겠습니까?")) {
       deleteUser(user).then(() => {
         alert("삭제되었습니다");
         return navigate("/");
