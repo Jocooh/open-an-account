@@ -468,6 +468,21 @@ const ServicePage = () => {
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
   };
+  useEffect(() => {
+    const html = document.documentElement;
+    if (comparingModalOpen) {
+      html.style.overflowY = "hidden";
+      html.style.overflowX = "hidden";
+    } else {
+      html.style.overflowY = "auto";
+      html.style.overflowX = "auto";
+    }
+    return () => {
+      html.style.overflowY = "auto";
+      html.style.overflowX = "auto";
+    };
+  }, [comparingModalOpen]);
+
   //스크롤 탑 함수
   const topLocation = useRef(null);
   const onTop = () => {
@@ -509,6 +524,11 @@ const ServicePage = () => {
         return;
       }
   };
+
+  //* useEffect에서 document에 스타일 줘서 fix시키고
+  //* scrolltop 높이 만큼 리턴할때 그위치고 가게 만들면 스크롤이 고정
+  const [isModalActive, setIsModalActive] = useState(false);
+
   return (
     <Wraper>
       <Cantinar>
