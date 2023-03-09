@@ -102,7 +102,8 @@ function SavingAllBankList({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            baseList={item} //baseList
+                            baseList={item} //base list
+                            optionList={saving} // option list
                             productTypes={productTypes}
                           />
                           <button

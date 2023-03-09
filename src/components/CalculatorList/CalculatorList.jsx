@@ -114,6 +114,7 @@ const CalculatorList = ({
                         <StyledMoreListDiv>
                           <Bookmarks
                             baseList={item} //baseList
+                            optionList={deposit} // option list
                             productTypes={productTypes}
                           />
                           <button
@@ -210,7 +211,8 @@ const CalculatorList = ({
                         </StyledDiv>
                         <StyledMoreListDiv>
                           <Bookmarks
-                            baseList={item} //baseList
+                            baseList={item} // base list
+                            optionList={saving} // option list
                             productTypes={productTypes}
                           />
                           <button

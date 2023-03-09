@@ -106,7 +106,11 @@ function SearchDepositLists({
                     </div>
                   </StyledDiv>
                   <StyledMoreListDiv>
-                    <Bookmarks baseList={base} productTypes={productTypes} />
+                    <Bookmarks
+                      baseList={base} // base list
+                      optionList={depositOptionalList} // option list
+                      productTypes={productTypes}
+                    />
                     <button
                       style={{
                         width: "60px",

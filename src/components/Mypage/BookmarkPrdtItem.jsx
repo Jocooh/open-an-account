@@ -27,6 +27,11 @@ function BookmarkPrdtItem({
   selectedProductIds,
 }) {
   const [open, setOpen] = useState("");
+  console.log(items);
+  // const a = allOptionList.map((list) =>
+  //   list.fin_co_no === items.fin_co_no ? console.log(list.fin_co_no) : null
+  // );
+  // console.log("a", a);
 
   return (
     <>
@@ -109,11 +114,20 @@ function BookmarkPrdtItem({
                       className="여기가 자세히 눌렀을때 상세정보 나오는 공간이예여"
                       style={{ marginRight: "2%" }}
                     >
-                      <Bookmarks
-                        baseList={item}
-                        isMyPage={true}
-                        productTypes={productTypes}
-                      />
+                      {allOptionList.map((v) =>
+                        v.fin_prdt_cd === item.fin_prdt_cd
+                          ? v.save_trm === "12" && (
+                              <Bookmarks
+                                baseList={item} // base list
+                                selectedProductRate={v.intr_rate}
+                                selectedProductRate2={v.intr_rate2}
+                                isMyPage={true}
+                                productTypes={productTypes}
+                              />
+                            )
+                          : null
+                      )}
+
                       <button
                         title="자세히 버튼"
                         style={{
@@ -134,7 +148,7 @@ function BookmarkPrdtItem({
                     <DetailBookMark
                       base={item}
                       setOpen={setOpen}
-                      depositOptionalList={allOptionList}
+                      optionList={allOptionList}
                       sortMonths={sortMonths}
                     />
                   ) : null}
