@@ -192,7 +192,7 @@ function MyPage() {
               히스토리
             </UserText>
             <HistoryCategory
-              style={tab === 1 ? { backgroundColor: "#e6e8ea" } : null}
+              style={tab === 1 ? { backgroundColor: "#E6E8EA" } : null}
             >
               <CategoryImg>
                 <StyledIcons src={require("../../assets/diamond.png")} />
@@ -208,17 +208,17 @@ function MyPage() {
               <p>〉</p>
             </HistoryCategory>
             <HistoryCategory
-              style={tab === 2 ? { backgroundColor: "#e6e8ea" } : null}
+              style={tab === 2 ? { backgroundColor: "#E6E8EA" } : null}
             >
               <CategoryImg>
-                <StyledIcons src={require("../../assets/paper.png")} />
+                <StyledIcons src={require("../../assets/myTip.png")} />
                 <button
                   onClick={() => {
                     setTab(2);
                   }}
                   style={{ fontSize: "18px" }}
                 >
-                  나의 팁
+                  팁 관리
                 </button>
               </CategoryImg>
               <p>〉</p>
@@ -299,7 +299,11 @@ function MyPage() {
 
           {tab === 1 && (
             <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
             >
               <div style={{ display: "flex", gap: "10px" }}>
                 <ProductTypesBtn
@@ -327,6 +331,7 @@ function MyPage() {
                   정기적금
                 </ProductTypesBtn>
               </div>
+
               <BookmarkPrdtList
                 currentUser={currentUser}
                 productTypes={productTypes}

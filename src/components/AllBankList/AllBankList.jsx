@@ -65,7 +65,7 @@ function AllBankList({
                     }
                   >
                     <div style={{ display: "flex" }}>
-                      <StyledListDiv className="lightYellow">
+                      <StyledListDiv>
                         <StyledDiv
                           onClick={() => {
                             handleClickProduct(item.id);
