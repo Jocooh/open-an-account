@@ -45,9 +45,12 @@ export const Boards = styled.div`
 `;
 
 export const UserWrapper = styled.div`
+  z-index: 998;
+  position: fixed;
+  top: 37%;
+  right: 10%;
   display: flex;
   flex-direction: column;
-  padding-top: 17rem;
 `;
 export const Message = styled.div`
   font-family: "Noto Sans";

@@ -33,14 +33,23 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   const [postingModalOpen, setPostingModalOpen] = useState(false);
   const [boards, setBoards] = useState([]);
 
-  // const lockScroll = useCallback(() => {
-  //   document.body.style.overflow = "hidden";
-  // }, []);
-
   const OpenPostingModal = () => {
-    // lockScroll();
     setPostingModalOpen(true);
   };
+  useEffect(() => {
+    const html = document.documentElement;
+    if (postingModalOpen) {
+      html.style.overflowY = "hidden";
+      html.style.overflowX = "hidden";
+    } else {
+      html.style.overflowY = "auto";
+      html.style.overflowX = "auto";
+    }
+    return () => {
+      html.style.overflowY = "auto";
+      html.style.overflowX = "auto";
+    };
+  }, [postingModalOpen]);
 
   //게시글 불러오기
   const [posts, setPosts] = useState([]);

@@ -9,12 +9,12 @@ const SecondSectionImgAnimation2 = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.intersectionRatio >= 1) {
+        if (entry.isIntersecting) {
           // 1초 뒤에 setIsAnimated(true) 호출
-          setTimeout(() => setIsAnimated(true), 1000);
+          setTimeout(() => setIsAnimated(true), 700);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.9 }
     );
 
     observer.observe(SecondSectionRef.current);
@@ -119,35 +119,35 @@ const SecondImgTwo = styled.div`
   }
 
   img.animated {
-    animation: Fallingcoins 1s ease-in forwards;
+    animation: Fallingcoins 0.5s ease-in forwards;
   }
 
   img:nth-child(1) {
-    animation-delay: 0.3s;
+    animation-delay: 0.1s;
   }
 
   img:nth-child(2) {
-    animation-delay: 0.4s;
+    animation-delay: 0.2s;
   }
 
   img:nth-child(3) {
-    animation-delay: 0.5s;
+    animation-delay: 0.3s;
   }
 
   img:nth-child(4) {
-    animation-delay: 0.6s;
+    animation-delay: 0.4s;
   }
 
   img:nth-child(5) {
-    animation-delay: 0.9s;
+    animation-delay: 0.5s;
   }
 
   img:nth-child(6) {
-    animation-delay: 1s;
+    animation-delay: 0.7s;
   }
 
   img:nth-child(7) {
-    animation-delay: 1.1s;
+    animation-delay: 0.9s;
   }
 
   @keyframes Fallingcoins {

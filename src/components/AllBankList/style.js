@@ -9,7 +9,9 @@ export const StyledImg = styled.img`
   width: 50px;
   height: 50px;
   object-fit: contain;
+
   margin-top: 25px;
+
 `;
 
 export const StyledProductTitleDiv = styled.div`

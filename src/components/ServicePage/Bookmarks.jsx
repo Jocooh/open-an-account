@@ -67,12 +67,14 @@ const Bookmarks = ({
 
       // true가 되면서 북마크 더이상 못하게 막기
       setBookmark(true);
+      console.log("북마크 추가");
     } else {
       // bookmark 면? 해당 newId 가 있으니 delete 이 실행
       const haveBookMark = doc(db, "bookmarks", newId);
       deleteDoc(haveBookMark);
       //다시 북마크가 저장가능한 상태
       setBookmark(false);
+      console.log("북마크 취소");
     }
   };
 
@@ -90,9 +92,18 @@ const Bookmarks = ({
     }
   };
 
+  // 로딩, 에러 상태 추가
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
   useEffect(() => {
-    getBookmarks();
+    setLoading(true);
+    setError(undefined);
+    getBookmarks()
+      .catch((e) => setError("에러 발생"))
+      .finally(() => setLoading(false));
   }, []);
+  if (loading) return <p>loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <Bookmarked onClick={handleBookmarkChange}>

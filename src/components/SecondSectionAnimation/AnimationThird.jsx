@@ -9,11 +9,11 @@ const SecondSectionImgAnimation3 = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.intersectionRatio >= 1) {
-          setTimeout(() => setIsAnimated(true), 3000);
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsAnimated(true), 1700);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.9 }
     );
 
     observer.observe(SecondSectionRef.current);
@@ -63,17 +63,17 @@ const SecondImgThree = styled.div`
   }
 
   img.animated {
-    animation: slideUpDown 3 ease forwards;
-    animation-iteration-count: 2;
+    animation: slideUpDown 0.5s ease forwards;
+    /* animation-iteration-count: 2; */
   }
   img.animated:nth-child(1) {
-    animation: slideUpDown 0.8s ease-in-out 0.1s;
+    animation: slideUpDown 0.5s ease-in-out;
   }
   img.animated:nth-child(2) {
-    animation: slideUpDown 0.9s ease-in-out 0.3s;
+    animation: slideUpDown 0.7s ease-in-out;
   }
   img.animated:nth-child(3) {
-    animation: slideUpDown 1s ease-in-out 0.5s;
+    animation: slideUpDown 0.9s ease-in-out;
   }
 
   @keyframes slideUpDown {

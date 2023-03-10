@@ -227,7 +227,7 @@ const MainPage = () => {
               </a>
             </BankWrap>
             <BankWrap>
-              <img src={require("../../assets/logo/oori_logo.png")} />
+              <img src={require("../../assets/logo/dg_logo.png")} />
               <a href="https://www.dgb.co.kr/dgb_ebz_main.jsp">대구은행</a>
             </BankWrap>
             <BankWrap>

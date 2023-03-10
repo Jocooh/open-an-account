@@ -88,8 +88,7 @@ function Product({
           <Info>
             <div>{selectedProduct.kor_co_nm}</div>
             <div>
-              일반 금리 {selectedProductRate}% | 최고금리
-              {selectedProductRate2}
+              일반금리 {selectedProductRate}% | 최고금리 {selectedProductRate2}%
             </div>
             <div>
               {selectedProduct.etc_note.split("-").map((line) => {

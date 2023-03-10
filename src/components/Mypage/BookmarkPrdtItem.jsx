@@ -31,6 +31,7 @@ function BookmarkPrdtItem({
   selectedProductIds,
 }) {
   const [open, setOpen] = useState("");
+
   return (
     <>
       {items.length > 0 ? (
