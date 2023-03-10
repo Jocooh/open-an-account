@@ -243,7 +243,7 @@ export const TapContainerBox = styled.div`
 //위의 스타일에서 찜목록에만 필요한 부분
 export const TapContainerBookMarkBox = styled.div`
   width: 786px;
-  height: 90px;
+  height: 100px;
   @media screen and (max-width: 425px) {
     width: 425px;
   }
@@ -406,7 +406,7 @@ export const StyledBankListContainer = styled.div`
   justify-content: center; */
   width: 992px;
   margin: auto;
-  border-top: 1px solid #dedede;
+  /* border-top: 1px solid #dedede; */
 
   /* border-radius: 15px; */
 `;
@@ -417,11 +417,15 @@ export const StyledBankList = styled.div`
   justify-content: center;
   margin: auto;
   height: 850px;
-  /* padding-top: 10px; */
+  background-color: #fff;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
+  /* 선택 시 border색상 묻힘, 피그마에서도 동일하게 확인 */
+  /* border-top-left-radius: 5px;
+  border-top-right-radius: 5px; */
+  border: 1px solid #dedede;
 `;
 
 export const SearchInput = styled.div``;
@@ -439,20 +443,19 @@ export const TapwraperBookmark = styled.div`
 `;
 
 export const StyledBankLists = styled.div`
-  /* height: 150px; */
-  width: 990px;
+  width: 988px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   background-color: white;
   border: 1px solid #dedede;
+  border-left: none;
+  border-right: none;
+
   border-top: none;
-  //호버했을때 왼/오 선이 사라져서 하나씩 주었습니다...
   :hover {
     background-color: #f7f7f8;
-    /* border-left: 1px solid #dedede;
-    border-right: 1px solid #dedede; */
   }
 `;
 
@@ -465,14 +468,18 @@ export const StyledBtnDiv = styled.div`
   justify-content: center;
   border: 1px solid #dedede;
   align-items: center;
+  background-color: #fff;
   height: 72px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 `;
 export const StyledBtn = styled.button`
   width: 122px;
   height: 39px;
-  background-color: #f7f7f8;
+  background-color: #f7f7fb;
   color: #505050;
   border-radius: 25px;
   margin: 5px 0;
   font-size: 14px;
+  border: 1px solid #e1e1e4;
 `;

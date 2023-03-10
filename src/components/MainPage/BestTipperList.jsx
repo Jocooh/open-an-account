@@ -21,7 +21,9 @@ function BestTipperList({ best, currentUser }) {
           <ListCard>
             {best?.imgUrl ? (
               <CardImage src={`${best.imgUrl}`} alt="포스팅사진" />
-            ) : null}
+            ) : (
+              <CardImage src={require("../../assets/blankimg.png")} />
+            )}
             <CategoryLikeContainer>
               <CategoryLike>
                 <CardCategory>
@@ -36,8 +38,8 @@ function BestTipperList({ best, currentUser }) {
                 </CardTitle>
                 <SecondTitle>{best?.name}</SecondTitle>
                 <CardContentWrapper>
-                  {best?.content.slice(0, 140)}
-                  {best?.content.length > 140 && "..."}
+                  {best?.content.slice(0, 120)}
+                  {best?.content.length > 120 && "..."}
                 </CardContentWrapper>
               </CardTitleContainer>
             </CategoryLikeContainer>

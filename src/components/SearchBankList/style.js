@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 //여기 추가
 export const StyledListDiv = styled.div`
-  width: 995px;
+  width: 990px;
   height: 150px;
   display: flex;
   justify-content: center;
@@ -27,7 +27,6 @@ export const StyledMoreListDiv = styled.div`
   gap: 50px;
   flex-direction: column;
   align-items: center;
-
   margin-top: 30px;
 `;
 
