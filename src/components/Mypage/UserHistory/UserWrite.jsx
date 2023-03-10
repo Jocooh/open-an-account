@@ -9,10 +9,10 @@ import {
   CardTitleContainer,
   CardImage,
   CategoryLikeContainer,
+  CardContentWrapper,
 } from "../../../pages/MyPage/style";
 
 import Like from "../../Community/Like";
-// import Bookmarks from "../../ServicePage/Bookmarks";
 
 function UserWrite({ board, currentUser }) {
   return (
@@ -41,10 +41,10 @@ function UserWrite({ board, currentUser }) {
               {board.title.length > 10 && "..."}
             </CardTitle>
             <SecondTitle>{board.name}</SecondTitle>
-            <div style={{ height: "200px" }}>
-              {board?.content.slice(0, 230)}
-              {board?.content.length > 230 && "..."}
-            </div>
+            <CardContentWrapper>
+              {board?.content.slice(0, 140)}
+              {board?.content.length > 140 && "..."}
+            </CardContentWrapper>
           </CardTitleContainer>
         </CategoryLikeContainer>
       </ListCard>

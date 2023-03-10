@@ -7,12 +7,16 @@ import {
   StyledImg,
   StyledSaveTrmDiv,
   StyledRateP,
+  StyledFinPrdtNm,
 } from "../AllBankList/style";
 import {
   StyledDiv,
   StyledContentDiv,
   StyledListDiv,
   StyledMoreListDiv,
+  SaveTrmDiv,
+  StyledSavingRateP,
+  IntrRateContainer,
 } from "../SearchBankList/style";
 
 // import PracticeDetail from "./PracticeDetail";
@@ -78,36 +82,42 @@ const CalculatorList = ({
                             handleClickProduct(item.id);
                           }}
                         >
-                          <StyledImg
-                            src={logoLists[item.fin_co_no]}
-                            alt="로고"
-                            key={item.id}
-                          />
-                          <div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <StyledImg
+                              src={logoLists[item.fin_co_no]}
+                              alt="로고"
+                            />
+
                             <StyledContentDiv>
                               <StyledProductTitleDiv>
-                                <h2
-                                  style={{
-                                    fontSize: "20px",
-                                  }}
-                                >
+                                <StyledFinPrdtNm>
                                   {item.fin_prdt_nm}
-                                </h2>
-
+                                </StyledFinPrdtNm>
                                 <StyledBankNameP>
                                   {item.kor_co_nm}
                                 </StyledBankNameP>
                               </StyledProductTitleDiv>
-                              <StyledSaveTrmDiv>
-                                <StyledRateP>
-                                  최대금리
-                                  {deposit.intr_rate2}
-                                </StyledRateP>
+                              <IntrRateContainer>
+                                <div>
+                                  <SaveTrmDiv>최대금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {deposit.intr_rate2}%
+                                  </StyledSavingRateP>
+                                </div>
 
-                                <StyledRateP>
-                                  일반금리 {deposit.intr_rate}
-                                </StyledRateP>
-                              </StyledSaveTrmDiv>
+                                <div>
+                                  <SaveTrmDiv>일반금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {deposit.intr_rate}%
+                                  </StyledSavingRateP>
+                                </div>
+                              </IntrRateContainer>
                             </StyledContentDiv>
                           </div>
                         </StyledDiv>
@@ -176,36 +186,43 @@ const CalculatorList = ({
                             handleClickProduct(item.id);
                           }}
                         >
-                          <StyledImg
-                            src={logoLists[item.fin_co_no]}
-                            alt="로고"
-                            key={item.id}
-                          />
-                          <div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <StyledImg
+                              src={logoLists[item.fin_co_no]}
+                              alt="로고"
+                            />
+
                             <StyledContentDiv>
                               <StyledProductTitleDiv>
-                                <h2
-                                  style={{
-                                    fontSize: "20px",
-                                  }}
-                                >
+                                <StyledFinPrdtNm>
                                   {item.fin_prdt_nm}
-                                </h2>
+                                </StyledFinPrdtNm>
 
                                 <StyledBankNameP>
                                   {item.kor_co_nm}
                                 </StyledBankNameP>
                               </StyledProductTitleDiv>
-                              <StyledSaveTrmDiv>
-                                <StyledRateP>
-                                  최대금리
-                                  {saving.intr_rate2}
-                                </StyledRateP>
+                              <IntrRateContainer>
+                                <div>
+                                  <SaveTrmDiv>최대금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {saving.intr_rate2}%
+                                  </StyledSavingRateP>
+                                </div>
 
-                                <StyledRateP>
-                                  일반금리 {saving.intr_rate}
-                                </StyledRateP>
-                              </StyledSaveTrmDiv>
+                                <div>
+                                  <SaveTrmDiv>일반금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {saving.intr_rate}%
+                                  </StyledSavingRateP>
+                                </div>
+                              </IntrRateContainer>
                             </StyledContentDiv>
                           </div>
                         </StyledDiv>

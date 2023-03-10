@@ -43,6 +43,8 @@ import {
   BeforeSelectedContainer,
   StagingCancel,
   CalculatorBoxContents,
+  TapContainerBookMarkBox,
+  TapwraperBookmark,
 } from "./style";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
@@ -1012,7 +1014,7 @@ const ServicePage = () => {
                             <span style={{ marginLeft: "-4px" }}>6개월</span>
                             <span style={{ marginLeft: "22px" }}>12개월</span>
                             <span style={{ marginLeft: "18px" }}>24개월</span>
-                            <span style={{ marginLeft: "" }}>36개월</span>
+                            <span style={{ marginLeft: "1px" }}>36개월</span>
                           </MonthRangeSlider>
                         </MonthRangeSliderWraper>
                         <FilterSubmitWarper>
@@ -1063,118 +1065,135 @@ const ServicePage = () => {
               )}
 
               {activeTab === 2 && (
-                <div>
-                  <TapContainerWrap>
-                    <TapContainer>
-                      <TapContainerBox>
-                        <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
-                        <ProductWraper>
-                          <ProductType
-                            onClick={() => {
-                              handleProductTypeClick(1);
-                            }}
-                            style={
-                              productTypes === 1
-                                ? {
-                                    color: "#fff",
-                                    border: "1px solid #E1E1E4",
-                                    backgroundColor: "#6A24FF",
-                                    fontWeight: "bold",
-                                  }
-                                : {}
-                            }
-                          >
-                            정기예금
-                          </ProductType>
-                          <ProductType
-                            onClick={() => {
-                              handleProductTypeClick(2);
-                            }}
-                            style={
-                              productTypes === 2
-                                ? {
-                                    color: "#fff",
-                                    border: "1px solid #E1E1E4",
-                                    backgroundColor: "#6A24FF",
-                                    fontWeight: "bold",
-                                  }
-                                : {}
-                            }
-                          >
-                            정기적금
-                          </ProductType>
-                        </ProductWraper>
-                        <FinanciialProductsWrap>
-                          <FinanciialProductsFullList>
-                            {/* 검색창_component */}
-                            <SearchInput setSearchBank={setSearchBank} />
-                            <p style={{ color: "#aaa", marginTop: "5px" }}>
-                              **기본정렬은 12개월 기준입니다.
-                            </p>
-                          </FinanciialProductsFullList>
-                        </FinanciialProductsWrap>
-                      </TapContainerBox>
-                    </TapContainer>
-                  </TapContainerWrap>
-                  <StyledBankListContainer>
-                    <div>
-                      <StyledBankList>
-                        <div
-                          ref={topLocation}
-                          className="top으로 가는 위치 지정"
-                        />
-                        {searchBank.length > 0 ? (
-                          <SearchBankList
-                            searchBank={searchBank}
-                            activeItem={activeItem}
-                            depositbaseList={products}
-                            productTypes={productTypes}
-                            setActiveItem={setActiveItem}
-                            savingbaseList={savingbaseList}
-                            selectedProductIds={selectedProductIds}
-                            savingOptionalList={savingoptionalList}
-                            // myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                            handleClickProduct={handleClickProduct}
-                            depositOptionalList={depositOptionalList}
+                <Tapwraper>
+                  <div>
+                    <TapContainerWrap>
+                      <TapContainer style={{ height: "269px" }}>
+                        <TapContainerBox>
+                          <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
+                          <ProductWraper>
+                            <ProductType
+                              onClick={() => {
+                                handleProductTypeClick(1);
+                              }}
+                              style={
+                                productTypes === 1
+                                  ? {
+                                      color: "#fff",
+                                      border: "1px solid #E1E1E4",
+                                      backgroundColor: "#6A24FF",
+                                      fontWeight: "bold",
+                                    }
+                                  : {}
+                              }
+                            >
+                              정기예금
+                            </ProductType>
+                            <ProductType
+                              onClick={() => {
+                                handleProductTypeClick(2);
+                              }}
+                              style={
+                                productTypes === 2
+                                  ? {
+                                      color: "#fff",
+                                      border: "1px solid #E1E1E4",
+                                      backgroundColor: "#6A24FF",
+                                      fontWeight: "bold",
+                                    }
+                                  : {}
+                              }
+                            >
+                              정기적금
+                            </ProductType>
+                          </ProductWraper>
+                          <FinanciialProductsWrap>
+                            <FinanciialProductsFullList>
+                              {/* 검색창_component */}
+                              <SearchInput setSearchBank={setSearchBank} />
+                              <p style={{ color: "#aaa", fontSize: "12px" }}>
+                                ** 기본정렬은 12개월 기준입니다.
+                              </p>
+                            </FinanciialProductsFullList>
+                          </FinanciialProductsWrap>
+                        </TapContainerBox>
+                      </TapContainer>
+                    </TapContainerWrap>
+                    <StyledBankListContainer>
+                      <div>
+                        <StyledBankList>
+                          <div
+                            ref={topLocation}
+                            className="top으로 가는 위치 지정"
                           />
-                        ) : (
-                          <AllBank
-                            activeItem={activeItem}
-                            depositbaseList={products}
-                            productTypes={productTypes}
-                            setActiveItem={setActiveItem}
-                            savingbaseList={savingbaseList}
-                            savingoptionalList={savingoptionalList}
-                            selectedProductIds={selectedProductIds}
-                            handleClickProduct={handleClickProduct}
-                            // myBookmarkProducts={myBookmarkProducts} // my bookmark products
-                            depositOptionalList={depositOptionalList}
-                          />
-                        )}
-                      </StyledBankList>
-                      <StyledBtnDiv className="스크롤탑버튼">
-                        <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
-                      </StyledBtnDiv>
-                    </div>
-                  </StyledBankListContainer>
-                </div>
+
+                          {searchBank.length > 0 ? (
+                            <SearchBankList
+                              searchBank={searchBank}
+                              activeItem={activeItem}
+                              depositbaseList={products}
+                              productTypes={productTypes}
+                              setActiveItem={setActiveItem}
+                              savingbaseList={savingbaseList}
+                              selectedProductIds={selectedProductIds}
+                              savingOptionalList={savingoptionalList}
+                              // myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                              handleClickProduct={handleClickProduct}
+                              depositOptionalList={depositOptionalList}
+                            />
+                          ) : (
+                            <AllBank
+                              activeItem={activeItem}
+                              depositbaseList={products}
+                              productTypes={productTypes}
+                              setActiveItem={setActiveItem}
+                              savingbaseList={savingbaseList}
+                              savingoptionalList={savingoptionalList}
+                              selectedProductIds={selectedProductIds}
+                              handleClickProduct={handleClickProduct}
+                              // myBookmarkProducts={myBookmarkProducts} // my bookmark products
+                              depositOptionalList={depositOptionalList}
+                            />
+                          )}
+                        </StyledBankList>
+                        <StyledBtnDiv className="스크롤탑버튼">
+                          <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
+                        </StyledBtnDiv>
+                      </div>
+                    </StyledBankListContainer>
+                  </div>
+                </Tapwraper>
               )}
+
               {activeTab === 3 &&
                 (!isLoggedIn ? (
-                  <div
-                    style={{
-                      width: "200px",
-                      margin: "auto",
-                      height: "200px",
-                    }}
-                  >
-                    <p>로그인 후 사용 가능합니다.🔥</p>
-                  </div>
-                ) : (
-                  <>
+                  <Tapwraper>
                     <TapContainerWrap>
                       <TapContainer>
-                        <TapContainerBox>
+                        <div
+                          style={{
+                            height: "500px",
+                            justifyContent: "center",
+                            alignContent: "center",
+                          }}
+                        >
+                          <p>로그인 이후에 사용하실 수 있어요.</p>
+                        </div>
+                      </TapContainer>
+                    </TapContainerWrap>
+                  </Tapwraper>
+                ) : (
+                  <TapwraperBookmark
+                    className="회색배경"
+                    style={{
+                      width: "1440px",
+                      backgroundColor: "#f4f5f6",
+                      paddingBottom: "100px",
+                    }}
+                  >
+                    <TapContainerWrap>
+                      <TapContainer>
+                        <TapContainerBookMarkBox>
                           <TapTitleName>나의 찜 목록</TapTitleName>
                           <ProductWraper>
                             <ProductType
@@ -1213,24 +1232,27 @@ const ServicePage = () => {
                             </ProductType>
                           </ProductWraper>
                           {/* 여기서 부터 찜 내용 들어감 */}
-                          <StyledBankListContainer>
-                            <StyledBankList>
-                              <div
-                                ref={topLocation}
-                                className="top으로 가는 위치 지정"
-                              />
-                              <BookmarkPrdtList
-                                productTypes={productTypes}
-                                currentUser={user}
-                                handleClickProduct={handleClickProduct}
-                                selectedProductIds={selectedProductIds}
-                              />
-                            </StyledBankList>
-                          </StyledBankListContainer>
-                        </TapContainerBox>
+                        </TapContainerBookMarkBox>
                       </TapContainer>
                     </TapContainerWrap>
-                  </>
+                    <div>
+                      <div>
+                        <StyledBankList>
+                          <div
+                            ref={topLocation}
+                            className="top으로 가는 위치 지정"
+                          />
+
+                          <BookmarkPrdtList
+                            productTypes={productTypes}
+                            currentUser={user}
+                            handleClickProduct={handleClickProduct}
+                            selectedProductIds={selectedProductIds}
+                          />
+                        </StyledBankList>
+                      </div>
+                    </div>
+                  </TapwraperBookmark>
                 ))}
             </div>
           </BottomSection>

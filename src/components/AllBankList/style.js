@@ -9,15 +9,25 @@ export const StyledImg = styled.img`
   width: 50px;
   height: 50px;
   object-fit: contain;
-  margin: 10px 20px 20px 20px;
+
+  margin-top: 25px;
+
 `;
 
 export const StyledProductTitleDiv = styled.div`
-  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+`;
+export const StyledFinPrdtNm = styled.p`
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 export const StyledBankNameP = styled.p`
   margin-top: 5px;
+  font-size: 13px;
+  color: #a3a3a3;
 `;
 
 export const StyledSaveTrmDiv = styled.div`

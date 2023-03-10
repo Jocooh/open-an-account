@@ -9,12 +9,12 @@ const SecondSectionImgAnimation2 = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.intersectionRatio >= 1) {
+        if (entry.isIntersecting) {
           // 1초 뒤에 setIsAnimated(true) 호출
           setTimeout(() => setIsAnimated(true), 700);
         }
       },
-      { threshold: 1 }
+      { threshold: 0.9 }
     );
 
     observer.observe(SecondSectionRef.current);

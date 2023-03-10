@@ -134,7 +134,7 @@ function ChangePassword({
         {/* 새비밀번호 */}
         <div>
           <p>새 비밀번호</p>
-          <p style={{ color: "#aaa" }}>
+          <p style={{ color: "#aaa", marginTop: "5px" }}>
             8~16자 이내의 영문, 숫자, 기호를 포함한 문자열
           </p>
         </div>

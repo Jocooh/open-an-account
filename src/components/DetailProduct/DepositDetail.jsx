@@ -61,20 +61,19 @@ function DepositDetail({
                     </StyledDetaiListText>
                   </StyledDetailList>
                 </DetailContentWrapper>
-
-                <div>
-                  <button
-                    onClick={() => {
-                      setActiveItem(1);
-                    }}
-                    style={{ width: "40px" }}
-                  >
-                    닫기
-                  </button>
-                </div>
               </>
             ) : null}
           </StyledDetailContent>
+          <div>
+            <button
+              onClick={() => {
+                setActiveItem(1);
+              }}
+              style={{ width: "40px" }}
+            >
+              닫기
+            </button>
+          </div>
         </StyledDetailContainer>
       </div>
     </>

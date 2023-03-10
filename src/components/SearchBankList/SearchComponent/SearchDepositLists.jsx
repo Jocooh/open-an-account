@@ -6,6 +6,7 @@ import {
   StyledImg,
   StyledProductTitleDiv,
   StyledBankNameP,
+  StyledFinPrdtNm,
 } from "../../AllBankList/style";
 import {
   StyledListDiv,
@@ -14,6 +15,8 @@ import {
   StyledSearchSaveTrmDiv,
   StyledSavingRateP,
   StyledMoreListDiv,
+  IntrRateContainer,
+  SaveTrmDiv,
 } from "../style";
 
 import SearchDepositDetail from "../Detail/SearchDepositDetail";
@@ -65,40 +68,42 @@ function SearchDepositLists({
                       handleClickProduct(base.id);
                     }}
                   >
-                    <StyledImg src={logoLists[base.fin_co_no]} alt="로고" />
-                    <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "15px",
+                      }}
+                    >
+                      <StyledImg src={logoLists[base.fin_co_no]} alt="로고" />
+
                       <StyledContentDiv>
                         <StyledProductTitleDiv>
-                          <h2
-                            style={{
-                              fontSize: "20px",
-                            }}
-                          >
-                            {base.fin_prdt_nm}
-                          </h2>
+                          <StyledFinPrdtNm>{base.fin_prdt_nm}</StyledFinPrdtNm>
 
                           <StyledBankNameP>{base.kor_co_nm}</StyledBankNameP>
                         </StyledProductTitleDiv>
 
                         <StyledSearchSaveTrmDiv>
-                          <h4 style={{ fontWeight: "bold", color: "#aaa" }}>
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              color: "#aaa",
+                              fontSize: "12px",
+                            }}
+                          >
                             최고금리
-                          </h4>
+                          </p>
                           {depositOptionalList?.map((option) =>
                             option.fin_prdt_cd === base.fin_prdt_cd ? (
-                              <StyledSavingRateP key={option.id}>
-                                <p style={{ color: "#aaa" }}>
-                                  {option.save_trm}개월
-                                </p>
-                                <h4
-                                  style={{
-                                    fontWeight: "bold",
-                                    fontSize: "18px",
-                                  }}
-                                >
-                                  {option.intr_rate2}%
-                                </h4>
-                              </StyledSavingRateP>
+                              <IntrRateContainer>
+                                <StyledSavingRateP key={option.id}>
+                                  <SaveTrmDiv>{option.save_trm}개월</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {option.intr_rate2}%
+                                  </StyledSavingRateP>
+                                </StyledSavingRateP>
+                              </IntrRateContainer>
                             ) : null
                           )}
                         </StyledSearchSaveTrmDiv>

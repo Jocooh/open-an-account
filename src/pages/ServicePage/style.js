@@ -211,6 +211,10 @@ export const TapContainerWrap = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+// export const TapContainerWrap = styled.div`
+// width
+// `
 //* 하단 탭 공통 부분 최상위 컨테이너
 export const TapContainer = styled.div`
   display: flex;
@@ -221,6 +225,7 @@ export const TapContainer = styled.div`
   padding-bottom: 30px;
   margin: 8px 0 0 0;
   border: 1px solid #dedede;
+  margin-bottom: 20px;
   border-radius: 10px;
   @media screen and (max-width: 425px) {
     width: 425px;
@@ -231,6 +236,14 @@ export const TapContainer = styled.div`
 export const TapContainerBox = styled.div`
   width: 786px;
   height: 434px;
+  @media screen and (max-width: 425px) {
+    width: 425px;
+  }
+`;
+//위의 스타일에서 찜목록에만 필요한 부분
+export const TapContainerBookMarkBox = styled.div`
+  width: 786px;
+  height: 90px;
   @media screen and (max-width: 425px) {
     width: 425px;
   }
@@ -251,6 +264,7 @@ export const CalculatorBoxContents = styled.div`
 //* 하단 탭 공통 부분.
 export const TapTitleName = styled.div`
   font-size: 16px;
+
   margin-bottom: 10px;
 `;
 
@@ -328,6 +342,7 @@ export const MonthRangeSliderTitle = styled.div`
 
 //* 금융상품 기간 슬라이더
 export const MonthRangeSlider = styled.div`
+  width: 786px;
   display: flex;
   flex-wrap: wrap;
   gap: 130px;
@@ -381,22 +396,32 @@ export const FinanciialProductsWrap = styled.div``;
 //성아-banklist style
 export const StyledBankListContainer = styled.div`
   //* 상우-수정
-  width: 100%;
-  padding-top: 20px;
+  /* width: 100%;
+  margin: auto; */
+  /* padding-top: 20px; */
   /* margin-top: 30px; */
-  border-radius: 15px;
-
+  /* border-radius: 10px;
+  border: 1px solid #dedede;
   display: flex;
-  justify-content: center;
+  justify-content: center; */
+  width: 992px;
+  margin: auto;
+  border-top: 1px solid #dedede;
+
+  /* border-radius: 15px; */
 `;
+
 export const StyledBankList = styled.div`
   width: 990px;
   display: flex;
   justify-content: center;
   margin: auto;
   height: 850px;
-  overflow: auto;
-  padding-top: 10px;
+  /* padding-top: 10px; */
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const SearchInput = styled.div``;
@@ -407,19 +432,29 @@ export const Tapwraper = styled.div`
   background-color: #f4f5f6;
   padding-bottom: 100px;
 `;
+export const TapwraperBookmark = styled.div`
+  width: 1440px;
+  background-color: #f4f5f6;
+  padding-bottom: 100px;
+`;
 
 export const StyledBankLists = styled.div`
-  /* height: 351px; */
-  border-radius: 15px;
+  /* height: 150px; */
+  width: 990px;
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  justify-content: center;
   flex-direction: column;
   background-color: white;
   border: 1px solid #dedede;
+  border-top: none;
+  //호버했을때 왼/오 선이 사라져서 하나씩 주었습니다...
+  :hover {
+    background-color: #f7f7f8;
+    /* border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede; */
+  }
 `;
-
-export const StyledListDiv = styled.div``;
 
 export const StyledBookMark = {
   fontSize: "20px",
@@ -428,8 +463,16 @@ export const StyledBookMark = {
 export const StyledBtnDiv = styled.div`
   display: flex;
   justify-content: center;
+  border: 1px solid #dedede;
+  align-items: center;
+  height: 72px;
 `;
 export const StyledBtn = styled.button`
-  width: 200px;
-  height: 50px;
+  width: 122px;
+  height: 39px;
+  background-color: #f7f7f8;
+  color: #505050;
+  border-radius: 25px;
+  margin: 5px 0;
+  font-size: 14px;
 `;

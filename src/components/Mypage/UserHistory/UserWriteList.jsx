@@ -15,11 +15,12 @@ import UserWrite from "./UserWrite";
 function UserWriteList({ currentUser }) {
   const [boards, setBoards] = useState([]);
   // console.log(currentUser);
+  const postsRef = collection(db, "posts");
   const getPostlist = () => {
     const q = query(
-      collection(db, "posts"),
-      where("userId", "==", currentUser.uid)
-      // orderBy("createdAt", "desc")
+      postsRef,
+      where("userId", "==", currentUser?.uid)
+      // orderBy("createdAt", "asc")
     );
     const array = [];
     onSnapshot(q, (snapshot) => {

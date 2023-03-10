@@ -7,7 +7,7 @@ import {
 } from "../../DetailProduct/style";
 import { DetailContentWrapper } from "../../DetailProduct/style";
 
-function SearchDepositDetail({ base, setActiveItem }) {
+function SearchSavingDetail({ base, setActiveItem }) {
   const maxLimit = base.max_limit;
   return (
     <>
@@ -47,21 +47,21 @@ function SearchDepositDetail({ base, setActiveItem }) {
                   </StyledDetaiListText>
                 </StyledDetailList>
               </DetailContentWrapper>
-              <div>
-                <button
-                  onClick={() => {
-                    setActiveItem(1);
-                  }}
-                >
-                  닫기
-                </button>
-              </div>
             </>
           </StyledDetailContent>
+          <div>
+            <button
+              onClick={() => {
+                setActiveItem(1);
+              }}
+            >
+              닫기
+            </button>
+          </div>
         </StyledDetailContainer>
       </div>
     </>
   );
 }
 
-export default SearchDepositDetail;
+export default SearchSavingDetail;

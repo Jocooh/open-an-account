@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { db } from "../../config/firebase";
-import {
-  doc,
-  collection,
-  query,
-  orderBy,
-  limit,
-  getDocs,
-} from "firebase/firestore";
+import React from "react";
 
 import {
   StyledImg,
-  StyledSaveTrmDiv,
   StyledProductTitleDiv,
-  StyledRateP,
   StyledBankNameP,
+  StyledFinPrdtNm,
 } from "./style";
 
 import logoLists from "../../assets/logo/logo";
@@ -24,6 +14,9 @@ import {
   StyledContentDiv,
   StyledMoreListDiv,
   StyledListDiv,
+  StyledSavingRateP,
+  SaveTrmDiv,
+  IntrRateContainer,
 } from "../SearchBankList/style";
 import DepositDetail from "../DetailProduct/DepositDetail";
 import { StyledBankLists } from "../../pages/ServicePage/style";
@@ -71,42 +64,52 @@ function AllBankList({
                         : null
                     }
                   >
-                    <div>
-                      <StyledListDiv>
+                    <div style={{ display: "flex" }}>
+                      <StyledListDiv className="lightYellow">
                         <StyledDiv
                           onClick={() => {
                             handleClickProduct(item.id);
                           }}
                         >
-                          <StyledImg
-                            src={logoLists[item.fin_co_no]}
-                            alt="로고"
-                          />
-                          <div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <StyledImg
+                              src={logoLists[item.fin_co_no]}
+                              alt="로고"
+                            />
+
                             <StyledContentDiv>
+                              {/* 상품명 & 은행명 */}
                               <StyledProductTitleDiv>
-                                <h2
-                                  style={{
-                                    fontSize: "20px",
-                                  }}
-                                >
+                                <StyledFinPrdtNm>
                                   {item.fin_prdt_nm}
-                                </h2>
+                                </StyledFinPrdtNm>
 
                                 <StyledBankNameP>
                                   {item.kor_co_nm}
                                 </StyledBankNameP>
                               </StyledProductTitleDiv>
-                              <StyledSaveTrmDiv>
-                                <StyledRateP>
-                                  최대금리
-                                  {deposit.intr_rate2}
-                                </StyledRateP>
-
-                                <StyledRateP>
-                                  일반금리 {deposit.intr_rate}
-                                </StyledRateP>
-                              </StyledSaveTrmDiv>
+                              {/* 최대금리 ,일반 금리###############################*/}
+                              <IntrRateContainer className="최대금리 일반금리 display:flex">
+                                <div>
+                                  <SaveTrmDiv>최대금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {deposit.intr_rate2}%
+                                  </StyledSavingRateP>
+                                </div>
+                                <div>
+                                  <SaveTrmDiv>일반금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {deposit.intr_rate}%
+                                  </StyledSavingRateP>
+                                </div>
+                              </IntrRateContainer>
+                              {/* ########################### */}
                             </StyledContentDiv>
                           </div>
                         </StyledDiv>

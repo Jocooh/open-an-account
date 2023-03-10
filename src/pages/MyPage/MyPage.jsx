@@ -146,7 +146,14 @@ function MyPage() {
           <UserContentDiv>
             {/* 로그인 ID */}
             <ContentDiv>
-              <div>
+              <div
+                style={{
+                  marginBottom: "10px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                }}
+              >
                 <p>로그인 ID</p>
                 <p style={{ color: "#aaa" }}>{currentUser?.email}</p>
               </div>
@@ -274,7 +281,11 @@ function MyPage() {
                 </form>
               </RightSecondWrapper>
               <div
-                style={{ display: "flex", flexDirection: "row-reverse" }}
+                style={{
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  height: "40px",
+                }}
                 onClick={() => {
                   deleteUserHandler();
                 }}
