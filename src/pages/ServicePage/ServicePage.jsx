@@ -466,6 +466,7 @@ const ServicePage = () => {
     }
   };
 
+  //* 모달 창 열리면 스크롤 정지
   const [comparingModalOpen, setComparingModalOpen] = useState(false);
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
@@ -526,10 +527,6 @@ const ServicePage = () => {
         return;
       }
   };
-
-  //* useEffect에서 document에 스타일 줘서 fix시키고
-  //* scrolltop 높이 만큼 리턴할때 그위치고 가게 만들면 스크롤이 고정
-  const [isModalActive, setIsModalActive] = useState(false);
 
   return (
     <Wraper>

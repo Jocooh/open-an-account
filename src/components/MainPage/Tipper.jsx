@@ -46,6 +46,22 @@ const Tipper = ({ posts, result, getPostList }) => {
     toggleButton();
   }, []);
 
+  //* 모달 창 열리면 스크롤 정지
+  useEffect(() => {
+    const html = document.documentElement;
+    if (editPostingModalOpen) {
+      html.style.overflowY = "hidden";
+      html.style.overflowX = "hidden";
+    } else {
+      html.style.overflowY = "auto";
+      html.style.overflowX = "auto";
+    }
+    return () => {
+      html.style.overflowY = "auto";
+      html.style.overflowX = "auto";
+    };
+  }, [editPostingModalOpen]);
+
   return (
     <>
       {result?.map((i, idx) => {
@@ -64,10 +80,21 @@ const Tipper = ({ posts, result, getPostList }) => {
               <div>
                 <TipperWrap key={i?.id}>
                   {i.imgUrl ? (
-                    <TipperImgWrap>
+                    <TipperImgWrap
+                      onClick={() => setEditPostingModalOpen(i.id)}
+                    >
                       <img src={i?.imgUrl} alt="희망사진" />
                     </TipperImgWrap>
-                  ) : null}
+                  ) : (
+                    <TipperImgWrap
+                      onClick={() => setEditPostingModalOpen(i.id)}
+                    >
+                      <img
+                        src={require("../../assets/blankimg.png")}
+                        alt="희망사진"
+                      />
+                    </TipperImgWrap>
+                  )}
 
                   <TipTitleWrap>
                     <TipperTitle>{i?.category}</TipperTitle>
