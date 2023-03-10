@@ -35,6 +35,7 @@ import {
   Category,
   Content,
   ImgUpload,
+  ModalContents,
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
 import { useCallback } from "react";
@@ -128,7 +129,7 @@ function PostingModal({
       content: inputContent,
       imgUrl: image,
       name: user?.displayName ?? "익명",
-      createdAt: dateNow,
+      createdAt: Date.now(),
       like: 0,
     })
       .then(() => {
@@ -185,42 +186,44 @@ function PostingModal({
   return (
     <ModalBackground>
       <ModalContainer>
-        <Header>
-          <CloseButton onClick={ClosePostingModal}>취소</CloseButton>
-          <div>팁 작성하기</div>
-          <SaveButton alert="등록되었습니다." onClick={addPost}>
-            등록
-          </SaveButton>
-        </Header>
+        <ModalContents>
+          <Header>
+            <CloseButton onClick={ClosePostingModal}>취소</CloseButton>
+            <div>팁 작성하기</div>
+            <SaveButton alert="등록되었습니다." onClick={addPost}>
+              등록
+            </SaveButton>
+          </Header>
 
-        <Body>
-          <TitleInput
-            onChange={(e) => setInputTitle(e.target.value)}
-            value={inputTitle}
-            ref={titleRef}
-            placeholder="제목을 입력해주세요"
-          />
-          <Category
-            value={selected}
-            onChange={selectCategory}
-            ref={categoryRef}
-          >
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            ))}
-          </Category>
-          <ImgUpload type="file" onChange={onChangeUpload} />
-          <Content>
-            <ContentInput
-              onChange={(e) => setInputContent(e.target.value)}
-              value={inputContent}
-              ref={contentRef}
-              placeholder="판매, 광고 행위의 게시글은 숨김처리될 수 있습니다. "
+          <Body>
+            <TitleInput
+              onChange={(e) => setInputTitle(e.target.value)}
+              value={inputTitle}
+              ref={titleRef}
+              placeholder="제목을 입력해주세요"
             />
-          </Content>
-        </Body>
+            <Category
+              value={selected}
+              onChange={selectCategory}
+              ref={categoryRef}
+            >
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.text}
+                </option>
+              ))}
+            </Category>
+            <ImgUpload type="file" onChange={onChangeUpload} />
+            <Content>
+              <ContentInput
+                onChange={(e) => setInputContent(e.target.value)}
+                value={inputContent}
+                ref={contentRef}
+                placeholder="판매, 광고 행위의 게시글은 숨김처리될 수 있습니다. "
+              />
+            </Content>
+          </Body>
+        </ModalContents>
       </ModalContainer>
     </ModalBackground>
   );

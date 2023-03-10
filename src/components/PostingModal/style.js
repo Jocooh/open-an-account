@@ -9,34 +9,41 @@ export const ModalBackground = styled.div`
   background-color: rgba(67, 79, 101, 0.7);
   z-index: 999;
 `;
-
 export const ModalContainer = styled.div`
-  /* 모달창 크기 */
-  width: 900px;
-  /* height: 700px; */
-  padding: 20px;
-  /* 모달 배치 */
-  /* translate는 본인의 크기 기준으로 작동한다. */
+  /* 모달창 위치 */
+  z-index: 999999;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99999;
-  /* top: 40%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
 
   /* 모달창 디자인 */
   background-color: #fff;
   border-radius: 10px;
-  /* padding: 15px 35px 10px 35px; */
   box-sizing: border-box;
+`;
+// export const ModalContents = styled.div`
+//   max-width: 884px;
+//   max-height: 741px;
+//   min-width: 288px;
+//   min-height: 546px;
+//   padding: 5%;
+// `;
+export const ModalContents = styled.div`
+  max-width: 884px;
+  max-height: 741px;
+  /* padding: 5%; */
+  @media (max-width: 480px) {
+    width: 288px;
+    height: 546px;
+  }
 `;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5%;
 `;
 
 export const CloseButton = styled.button`
@@ -69,13 +76,18 @@ export const SaveButton = styled.button`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 5% 5% 5%;
+  @media (min-width: 480px) {
+    min-width: 50rem;
+  }
 `;
 
 export const TitleInput = styled.input`
   border: none;
   border-bottom: 0.6px solid #c6c6c6;
-  /* min-width: 200px; */
-  /* width: 350px; */
+
+  max-width: 829px;
+  min-width: 254px;
   margin: 20px 10px 20px 0;
   padding-left: 10px;
   outline: none;
@@ -120,13 +132,28 @@ export const Content = styled.div`
   border-radius: 5px;
 `;
 export const ContentInput = styled.textarea`
-  display: block;
   border: none;
-  min-height: 486px;
+  height: 40vh;
   margin: 10px 0;
   padding-left: 10px;
   outline: none;
   background: transparent;
+
+  /* 스크롤바 설정*/
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  ::-webkit-scrollbar-thumb {
+    background: #505050;
+    border-radius: 25px;
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  ::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
 `;
 export const ImgUpload = styled.input`
   margin: 30px 0 10px 0;

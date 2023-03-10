@@ -8,19 +8,14 @@ export const ModalBackground = styled.div`
   height: 100vh;
   background-color: rgba(67, 79, 101, 0.7);
   z-index: 999;
-
-  /* display: block;
-  justify-content: center; */
 `;
-
 export const ModalContainer = styled.div`
-  /* 모달창 크기 */
+  /* 모달창 위치 */
   z-index: 999999;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* 모달 배치 */
 
   /* 모달창 디자인 */
   background-color: #fff;
@@ -28,14 +23,23 @@ export const ModalContainer = styled.div`
   box-sizing: border-box;
 `;
 export const ModalContents = styled.div`
-  width: 900px;
-  height: 670px;
-  padding: 20px;
+  // TipperImgWrap 사진크기 min-width 동일하게!!!
+  max-width: 884px;
+  max-height: 741px;
+  /* padding: 5%; */
+  min-width: 60vw;
+  min-height: 77vh;
+  @media (max-width: 480px) {
+    width: 288px;
+    height: 546px;
+  }
 `;
+
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5%;
 `;
 export const EditTitle = styled.div`
   font-family: "Noto Sans";
@@ -73,14 +77,16 @@ export const SaveButton = styled.button`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 5% 5% 5%;
+  @media (min-width: 480px) {
+    min-width: 50rem;
+  }
 `;
 
 export const TitleInput = styled.input`
   border: none;
   border-bottom: 0.6px solid #c6c6c6;
-  /* min-width: 200px; */
-  /* width: 350px; */
-  margin: 20px 10px 20px 0;
+  margin-bottom: 2%;
   padding-left: 10px;
   outline: none;
   flex: 80%;
@@ -125,8 +131,8 @@ export const Content = styled.div`
 export const ContentInput = styled.textarea`
   display: block;
   border: none;
-  min-height: 25em;
-  margin: 10px 0;
+  width: 100%;
+  height: 20rem;
   padding-left: 10px;
   outline: none;
   background: transparent;
@@ -174,54 +180,111 @@ export const ErrorMessage = styled.div`
   color: red;
 `;
 
-// 팁퍼 이미지 랩
+//*게시글 이미지
 export const TipperImgWrap = styled.div`
-  border: 1px solid #dedede;
-  height: 250px;
   border-radius: 10px;
-  background-color: whitesmoke;
+  max-width: 884px;
+  max-height: 286px;
+  min-width: 60vw;
+  min-height: 30vh;
+  @media (max-width: 480px) {
+    min-width: 288px;
+    /* height: 546px; */
+  }
 
   img {
     object-fit: cover;
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: 250px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    max-width: 884px;
+    max-height: 286px;
+    min-width: 65vw;
+    min-height: 30vh;
   }
 `;
+//* 닫기 버튼이 이미지 위로 와있어야 함
+export const EditCloseBtn = styled.button`
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  background-color: rgba(233, 236, 242, 0.8);
 
-// 팁퍼제목 랩
+  max-width: 58px;
+  max-height: 27px;
+
+  border: none;
+  padding: 4px 16px;
+  border-radius: 5px;
+
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  /* line-height: 19px; */
+  color: #505050;
+
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(188, 188, 188, 0.4);
+  }
+`;
+//* 팁퍼 카테고리, 좋아요
 export const TipTitleWrap = styled.div`
-  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 20px;
 `;
-// 팁퍼제목
-export const TipperTitle = styled.span`
+//* 카테고리
+export const TipperTitle = styled.div`
   font-weight: bold;
-  border: 2px solid #e3dcff;
+  border: 1px solid #e3dcff;
   border-radius: 20px;
   color: #6a24ff;
-  padding: 10px;
+  padding: 7px 12px;
+
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
 `;
 
-// 후기부분 랩
-export const BoardWrap = styled.div``;
+//* 카테고리 이하 본문
+export const BoardWrap = styled.div`
+  padding: 0 20px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 26px;
 
-// 후기 제목
+  color: #a3a3a3;
+`;
+
+//*게시글 제목
 export const BoardTitle = styled.div`
-  font-size: 25px;
-  font-weight: bold;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 38px;
+  color: #000000;
 `;
 
-// 후기 내용
+//*게시글 본문 내용
 export const BoardContent = styled.div`
-  margin-top: 15px;
   font-size: 14px;
-  height: 13em;
+  height: 15em;
   overflow: auto;
   white-space: pre-wrap;
+
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  color: #505050;
 
   /* 스크롤바 설정*/
   ::-webkit-scrollbar {
@@ -243,4 +306,5 @@ export const BoardContent = styled.div`
 // 수정 삭제 버튼 랩
 export const ButtonWrap = styled.div`
   float: right;
+  padding: 2%;
 `;

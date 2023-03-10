@@ -3,19 +3,27 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 342px;
+  max-height: 403px;
+
+  @media (max-width: 480px) {
+  }
 `;
 
 //* 만기 수령액
 export const Guide = styled.div`
   font-family: "Noto Sans";
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 14px;
   line-height: 34px;
   display: flex;
   align-items: center;
   margin-left: 0;
   color: #a3a3a3;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 //* 금액
 export const TotalCost = styled.div`
@@ -28,22 +36,27 @@ export const TotalCost = styled.div`
   align-items: center;
   margin-left: 0;
 
-  color: #6a24ff;
+  color: #a3a3a3;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 export const ProductBox = styled.div`
   box-sizing: border-box;
-  width: 336px;
-  min-height: 450px;
-  aspect-ratio: 3/2;
-  object-fit: contain;
+  min-width: 25vw;
+  min-height: 37vh;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   padding: 20px 20px 15px 20px;
   margin-bottom: 10px;
+  @media (max-width: 480px) {
+    min-width: 315px;
+    min-height: 150px;
+  }
 `;
 
 //* 상품 이름
@@ -57,20 +70,25 @@ export const Prdt_nm = styled.div`
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
-  line-height: 27px;
+  font-size: 16px;
+  line-height: 22px;
   color: #000000;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 export const Logo = styled.img`
   aspect-ratio: 4/3;
-  width: 40px;
+  width: 5vw;
+  max-width: 39px;
   padding-right: 8px;
   object-fit: contain;
 `;
 
 //* 상품설명
 export const FullInfo = styled.div`
-  height: 270px;
+  /* height: 270px; */
   overflow: auto;
   white-space: pre-wrap;
 
@@ -81,7 +99,7 @@ export const FullInfo = styled.div`
 
   /* 스크롤바 막대 설정*/
   ::-webkit-scrollbar-thumb {
-    background: #505050;
+    background: #a3a3a3;
     border-radius: 25px;
   }
 
@@ -92,29 +110,41 @@ export const FullInfo = styled.div`
 `;
 export const Info = styled.div`
   margin-top: 20px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 30px;
   word-break: keep-all;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
   color: #000000;
+  @media (max-width: 480px) {
+    font-size: 13px;
+    line-height: 20px;
+  }
 `;
 //* 추가 정보
 export const Message = styled.div`
   padding: 5px 30px;
-  font-family: "Montserrat";
+  font-family: "Noto Sans";
   font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 30px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
 
   color: #a3a3a3;
+
+  @media (max-width: 480px) {
+    line-height: 20px;
+  }
 `;
 
 export const Scrap = styled.div`
   display: flex;
-  /* position: fixed; */
-  /* justify-content: end; */
+  padding: 2%;
   margin: auto 0 0 auto;
+
+  /* @media (max-width: 480px) {
+    width: 14px;
+    height: 19px;
+  } */
 `;
