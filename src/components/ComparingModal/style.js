@@ -28,13 +28,32 @@ export const ModalContents = styled.div`
   max-width: 1194px;
   max-height: 770px;
   width: 80vw;
-  height: 85vh;
+  height: 87vh;
   /* padding: 5%; */
   @media (max-width: 480px) {
-    min-width: 343px;
+    /* min-width: 343px; */
     /* min-height: 812px; */
     display: flex;
+    flex-direction: column;
     justify-content: center;
+  }
+  overflow: auto;
+  white-space: pre-wrap;
+
+  /* 스크롤바 설정*/
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  ::-webkit-scrollbar-thumb {
+    background: #a3a3a3;
+    border-radius: 25px;
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  ::-webkit-scrollbar-track {
+    background-color: #ffffff;
   }
 `;
 export const CloseButton = styled.img`
@@ -160,6 +179,10 @@ export const SecondGuide = styled.div`
   font-size: 12px;
   line-height: 22px;
   padding: 20px;
+
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
 
   @media (max-width: 480px) {
     font-weight: 400;
