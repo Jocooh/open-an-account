@@ -201,6 +201,7 @@ function PostingModal({
               value={inputTitle}
               ref={titleRef}
               placeholder="제목을 입력해주세요"
+              maxLength={30}
             />
             <Category
               value={selected}
@@ -220,6 +221,7 @@ function PostingModal({
                 value={inputContent}
                 ref={contentRef}
                 placeholder="판매, 광고 행위의 게시글은 숨김처리될 수 있습니다. "
+                maxLength={1000}
               />
             </Content>
           </Body>

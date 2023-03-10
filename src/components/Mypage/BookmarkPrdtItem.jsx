@@ -35,11 +35,7 @@ function BookmarkPrdtItem({
   return (
     <>
       {items.length > 0 ? (
-        <div
-          style={{
-            borderTop: "1px solid #dedede",
-          }}
-        >
+        <div>
           {items?.map((item) => (
             <StyledBankLists
               onClick={() => {
