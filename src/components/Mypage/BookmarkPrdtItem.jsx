@@ -3,14 +3,18 @@ import logoLists from "../../assets/logo/logo";
 
 import { StyledBankLists } from "../../pages/ServicePage/style";
 import {
+  IntrRateContainer,
+  SaveTrmDiv,
   StyledContentDiv,
   StyledDiv,
   StyledMoreListDiv,
   StyledSavingRateP,
   StyledSearchSaveTrmDiv,
+  StyledListDiv,
 } from "../../components/SearchBankList/style";
 import {
   StyledBankNameP,
+  StyledFinPrdtNm,
   StyledProductTitleDiv,
 } from "../../components/AllBankList/style";
 import DetailBookMark from "../BookMarkList/DetailBookMark";
@@ -27,134 +31,107 @@ function BookmarkPrdtItem({
   selectedProductIds,
 }) {
   const [open, setOpen] = useState("");
-  console.log(items);
-  // const a = allOptionList.map((list) =>
-  //   list.fin_co_no === items.fin_co_no ? console.log(list.fin_co_no) : null
-  // );
-  // console.log("a", a);
-
   return (
     <>
       {items.length > 0 ? (
-        <div>
+        <div
+          style={{
+            borderTop: "1px solid #dedede",
+          }}
+        >
           {items?.map((item) => (
-            <div key={item.docId} style={{ width: "780px", margin: "auto" }}>
-              <div className="스크롤 구역" style={{ overflow: "auto" }}>
-                <StyledBankLists
-                  onClick={() => {
-                    setColor(item.docId);
-                  }}
-                  style={
-                    selectedProductIds?.[0] === item?.docId ||
-                    selectedProductIds?.[6] === item?.docId ||
-                    selectedProductIds?.[12] === item?.docId
-                      ? { border: "1px solid #6A24FF" }
-                      : null
-                  }
-                >
-                  <div
-                    style={{
-                      width: "780px",
-                      height: "145px",
-                      display: "flex",
-                      justifyContent: "space-between",
+            <StyledBankLists
+              onClick={() => {
+                setColor(item.docId);
+              }}
+              style={
+                selectedProductIds?.[0] === item?.docId ||
+                selectedProductIds?.[6] === item?.docId ||
+                selectedProductIds?.[12] === item?.docId
+                  ? { border: "1px solid #6A24FF" }
+                  : null
+              }
+            >
+              <div style={{ display: "flex" }}>
+                <StyledListDiv>
+                  <StyledDiv
+                    onClick={() => {
+                      handleClickProduct(item.docId);
                     }}
-                    className="StyledListDiv"
                   >
-                    <StyledDiv
-                      onClick={() => {
-                        handleClickProduct(item.docId);
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "15px",
                       }}
                     >
-                      <StyledImg
-                        src={logoLists[item.fin_co_no]}
-                        alt="로고"
-                        style={{ marginLeft: "20px" }}
-                      />
-                      <div>
-                        <StyledContentDiv>
-                          <StyledProductTitleDiv>
-                            <h2
-                              style={{
-                                fontSize: "20px",
-                              }}
-                            >
-                              {item.fin_prdt_nm}
-                            </h2>
-                            <StyledBankNameP>{item.kor_co_nm}</StyledBankNameP>
-                          </StyledProductTitleDiv>
+                      <StyledImg src={logoLists[item.fin_co_no]} alt="로고" />
 
-                          <StyledSearchSaveTrmDiv>
-                            <h4 style={{ fontWeight: "bold", color: "#aaa" }}>
-                              최고금리
-                            </h4>
+                      <StyledContentDiv>
+                        <StyledProductTitleDiv>
+                          <StyledFinPrdtNm>{item.fin_prdt_nm}</StyledFinPrdtNm>
+                          <StyledBankNameP>{item.kor_co_nm}</StyledBankNameP>
+                        </StyledProductTitleDiv>
 
-                            {allOptionList?.map((v) =>
-                              v.fin_prdt_cd === item.fin_prdt_cd ? (
+                        <StyledSearchSaveTrmDiv>
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              color: "#aaa",
+                              fontSize: "12px",
+                            }}
+                          >
+                            최고금리
+                          </p>
+
+                          {allOptionList?.map((v) =>
+                            v.fin_prdt_cd === item.fin_prdt_cd ? (
+                              <IntrRateContainer>
                                 <StyledSavingRateP key={item.id}>
-                                  <p style={{ color: "#aaa" }}>
-                                    {v.save_trm}개월
-                                  </p>
-                                  <h4
-                                    style={{
-                                      fontWeight: "bold",
-                                      fontSize: "18px",
-                                    }}
-                                  >
+                                  <SaveTrmDiv>{v.save_trm}개월</SaveTrmDiv>
+                                  <StyledSavingRateP>
                                     {v.intr_rate2}%
-                                  </h4>
+                                  </StyledSavingRateP>
                                 </StyledSavingRateP>
-                              ) : null
-                            )}
-                          </StyledSearchSaveTrmDiv>
-                        </StyledContentDiv>
-                      </div>
-                    </StyledDiv>
-                    <StyledMoreListDiv
-                      className="여기가 자세히 눌렀을때 상세정보 나오는 공간이예여"
-                      style={{ marginRight: "2%" }}
-                    >
-                      {allOptionList.map((v) =>
-                        v.fin_prdt_cd === item.fin_prdt_cd
-                          ? v.save_trm === "12" && (
-                              <Bookmarks
-                                baseList={item} // base list
-                                selectedProductRate={v.intr_rate}
-                                selectedProductRate2={v.intr_rate2}
-                                isMyPage={true}
-                                productTypes={productTypes}
-                              />
-                            )
-                          : null
-                      )}
-
-                      <button
-                        title="자세히 버튼"
-                        style={{
-                          width: "60px",
-                          height: "30px",
-                        }}
-                        s
-                        onClick={() => {
-                          setOpen(item.docId);
-                        }}
-                      >
-                        {open === item.docId ? <></> : "자세히∨"}
-                      </button>
-                    </StyledMoreListDiv>
-                  </div>
-
-                  {open === item.docId ? (
-                    <DetailBookMark
-                      base={item}
-                      setOpen={setOpen}
-                      optionList={allOptionList}
-                      sortMonths={sortMonths}
+                              </IntrRateContainer>
+                            ) : null
+                          )}
+                        </StyledSearchSaveTrmDiv>
+                      </StyledContentDiv>
+                    </div>
+                  </StyledDiv>
+                  <StyledMoreListDiv>
+                    <Bookmarks
+                      baseList={item} // base list
+                      isMyPage={true}
+                      productTypes={productTypes}
                     />
-                  ) : null}
-                </StyledBankLists>
+                    <button
+                      title="자세히 버튼"
+                      style={{
+                        width: "60px",
+                        height: "30px",
+                      }}
+                      s
+                      onClick={() => {
+                        setOpen(item.docId);
+                      }}
+                    >
+                      {open === item.docId ? <></> : "자세히∨"}
+                    </button>
+                  </StyledMoreListDiv>
+                </StyledListDiv>
               </div>
-            </div>
+              {open === item.docId ? (
+                <DetailBookMark
+                  base={item}
+                  setOpen={setOpen}
+                  optionList={allOptionList}
+                  sortMonths={sortMonths}
+                />
+              ) : null}
+            </StyledBankLists>
           ))}
         </div>
       ) : (
@@ -163,9 +140,9 @@ function BookmarkPrdtItem({
             display: "flex",
             flexDirection: "column",
             gap: "30px",
-            justifyContent: "center",
             alignItems: "center",
-            margin: "auto",
+            marginTop: "100px",
+            width: "990px",
           }}
         >
           <img

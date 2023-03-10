@@ -75,7 +75,6 @@ const MainPage = () => {
         alt="배너"
       />
       <BestProducts />
-
       <BestTipper currentUser={user} />
       <DownWraper>
         <TodayTipTitle>오늘의 금융 팁</TodayTipTitle>

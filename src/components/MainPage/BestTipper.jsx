@@ -61,7 +61,6 @@ const BestTipper = ({ currentUser }) => {
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             pagination={{ clickable: true }}
-            // navigation
             spaceBetween={50}
             slidesPerView={1}
             // autoplay={{ delay: 3000 }}
@@ -114,22 +113,24 @@ const BestTipper = ({ currentUser }) => {
                 />
               </TipperBanner>
             </div>
-            <div>
-              <p
-                style={{
-                  color: "#888",
-                  cursor: "pointer",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  margin: "10px 25px 20px 0",
-                }}
-                onClick={() => {
-                  navigate("/community");
-                }}
-              >
-                팁 전체 보기 ＞
-              </p>
-            </div>
+            {/* <div> */}
+            <p
+              style={{
+                color: "#888",
+                cursor: "pointer",
+                display: "flex",
+                justifyContent: "flex-end",
+                margin: "10px 25px 20px 0",
+                // width: "100px",
+                right: 0,
+              }}
+              onClick={() => {
+                navigate("/community");
+              }}
+            >
+              팁 전체 보기 ＞
+            </p>
+            {/* </div> */}
           </Swiper>
         </Tippers>
       </BestTipperWraper>
@@ -148,5 +149,5 @@ const TipperBanner = styled(SwiperSlide)`
   align-items: center;
   box-sizing: border-box;
   /* padding: 20px; */
-  gap: 5px;
+  gap: 7px;
 `;

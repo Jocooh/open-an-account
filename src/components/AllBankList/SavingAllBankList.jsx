@@ -2,10 +2,9 @@
 import React from "react";
 import {
   StyledImg,
-  StyledSaveTrmDiv,
   StyledProductTitleDiv,
-  StyledRateP,
   StyledBankNameP,
+  StyledFinPrdtNm,
 } from "./style";
 
 import { StyledBankLists } from "../../pages/ServicePage/style";
@@ -14,6 +13,9 @@ import {
   StyledContentDiv,
   StyledMoreListDiv,
   StyledListDiv,
+  SaveTrmDiv,
+  StyledSavingRateP,
+  IntrRateContainer,
 } from "../SearchBankList/style";
 import logoLists from "../../assets/logo/logo";
 import SavingDetail from "../DetailProduct/SavingDetail";
@@ -65,38 +67,41 @@ function SavingAllBankList({
                             handleClickProduct(item.id);
                           }}
                         >
-                          <StyledImg
-                            src={logoLists[item.fin_co_no]}
-                            alt="로고"
-                            key={item.id}
-                          />
-                          <div>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              gap: "15px",
+                            }}
+                          >
+                            <StyledImg
+                              src={logoLists[item.fin_co_no]}
+                              alt="로고"
+                            />
+
                             <StyledContentDiv>
                               <StyledProductTitleDiv>
-                                {/* product name */}
-                                <h2
-                                  style={{
-                                    fontSize: "20px",
-                                  }}
-                                >
+                                <StyledFinPrdtNm>
                                   {item.fin_prdt_nm}
-                                </h2>
-                                {/* bank Name */}
+                                </StyledFinPrdtNm>
                                 <StyledBankNameP>
                                   {item.kor_co_nm}
                                 </StyledBankNameP>
                               </StyledProductTitleDiv>
-                              <StyledSaveTrmDiv>
-                                {/* 최대금리 */}
-                                <StyledRateP>
-                                  최대금리
-                                  {saving.intr_rate2}
-                                </StyledRateP>
-                                {/* 이자율 -> 일반금리 */}
-                                <StyledRateP>
-                                  일반금리 {saving.intr_rate}
-                                </StyledRateP>
-                              </StyledSaveTrmDiv>
+                              <IntrRateContainer>
+                                <div>
+                                  <SaveTrmDiv>최대금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {saving.intr_rate2}%
+                                  </StyledSavingRateP>
+                                </div>
+                                <div>
+                                  <SaveTrmDiv>일반금리</SaveTrmDiv>
+                                  <StyledSavingRateP>
+                                    {saving.intr_rate}%
+                                  </StyledSavingRateP>
+                                </div>
+                              </IntrRateContainer>
                             </StyledContentDiv>
                           </div>
                         </StyledDiv>
@@ -127,7 +132,7 @@ function SavingAllBankList({
                           savingbaseList={item}
                           sortMonths={sortMonths}
                           setActiveItem={setActiveItem}
-                        ></SavingDetail>
+                        />
                       ) : null}
                     </div>
                   </StyledBankLists>

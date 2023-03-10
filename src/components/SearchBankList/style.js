@@ -2,50 +2,58 @@ import styled from "styled-components";
 
 //여기 추가
 export const StyledListDiv = styled.div`
-  width: 970px;
-  height: 141px;
+  width: 990px;
+  height: 150px;
   display: flex;
-  justify-content: space-between;
-  margin: auto;
+  justify-content: center;
   cursor: pointer;
-  /* box-shadow: 0 4px 4px -3px #a1a1a1; */
-  /* :hover {
-    background-color: #dedede;
-  } */
+  :hover {
+    background-color: #f7f7f8;
+  }
 `;
 
 export const StyledDiv = styled.div`
   display: flex;
-  width: 500px;
-  gap: 30px;
+  width: 737px;
 `;
 
 export const StyledContentDiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 7px;
-
-  margin: 7px 0;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 11px;
 `;
 
 export const StyledMoreListDiv = styled.div`
   display: flex;
-  gap: 75px;
+  gap: 50px;
   flex-direction: column;
-  /* margin-top: 10px; */
   align-items: center;
+
+  margin-top: 30px;
 `;
 
 export const StyledSearchSaveTrmDiv = styled.div`
   height: 30px;
-  align-items: center;
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 15px;
 `;
+export const IntrRateContainer = styled.div`
+  display: flex;
+  gap: 25px;
+  align-content: center;
+`;
+
+export const SaveTrmDiv = styled.div`
+  color: #a3a3a3;
+  font-size: 12px;
+  margin-bottom: 10px;
+`;
+
 export const StyledSavingRateP = styled.div`
-  padding: 10px;
-  box-sizing: border-box;
   color: #6a24ff;
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: bold;
 `;

@@ -1,10 +1,5 @@
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-  orderBy,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { orderBy } from "lodash";
 
 import React, { useEffect, useState } from "react";
 import { db } from "../../../config/firebase";
@@ -17,8 +12,8 @@ function UserLikeList({ currentUser }) {
   const getLikelist = () => {
     const q = query(
       collection(db, "likes"),
+      orderBy("createdAt"),
       where("userId", "==", currentUser.uid)
-      // orderBy("createdAt", "desc")
     );
     const array = [];
     onSnapshot(q, (snapshot) => {

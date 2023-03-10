@@ -1052,7 +1052,7 @@ const ServicePage = () => {
               {activeTab === 2 && (
                 <div>
                   <TapContainerWrap>
-                    <TapContainer>
+                    <TapContainer style={{ height: "269px" }}>
                       <TapContainerBox>
                         <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
                         <ProductWraper>
@@ -1095,8 +1095,8 @@ const ServicePage = () => {
                           <FinanciialProductsFullList>
                             {/* 검색창_component */}
                             <SearchInput setSearchBank={setSearchBank} />
-                            <p style={{ color: "#aaa", marginTop: "5px" }}>
-                              **기본정렬은 12개월 기준입니다.
+                            <p style={{ color: "#aaa", fontSize: "12px" }}>
+                              ** 기본정렬은 12개월 기준입니다.
                             </p>
                           </FinanciialProductsFullList>
                         </FinanciialProductsWrap>
@@ -1110,7 +1110,7 @@ const ServicePage = () => {
                           ref={topLocation}
                           className="top으로 가는 위치 지정"
                         />
-                        {/* <StyledBankListWrapper> */}
+
                         {searchBank.length > 0 ? (
                           <SearchBankList
                             searchBank={searchBank}
@@ -1139,7 +1139,6 @@ const ServicePage = () => {
                             depositOptionalList={depositOptionalList}
                           />
                         )}
-                        {/* </StyledBankListWrapper> */}
                       </StyledBankList>
                       <StyledBtnDiv className="스크롤탑버튼">
                         <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
@@ -1149,25 +1148,21 @@ const ServicePage = () => {
                 </div>
               )}
               {/* ########################################### */}
-              {/* {if(!user){
-                if(window.cofirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")){
-                  return navigate("/login");
-                }else{
-                  return;
-                }
-              }} */}
-
               {activeTab === 3 &&
                 (!isLoggedIn ? (
-                  <div
-                    style={{
-                      width: "200px",
-                      margin: "auto",
-                      height: "200px",
-                    }}
-                  >
-                    <p>로그인 후 사용 가능합니다.🔥</p>
-                  </div>
+                  <TapContainerWrap>
+                    <TapContainer>
+                      <div
+                        style={{
+                          height: "500px",
+                          justifyContent: "center",
+                          alignContent: "center",
+                        }}
+                      >
+                        <p>로그인 이후에 사용하실 수 있어요.</p>
+                      </div>
+                    </TapContainer>
+                  </TapContainerWrap>
                 ) : (
                   <>
                     <TapContainerWrap>
@@ -1211,25 +1206,26 @@ const ServicePage = () => {
                             </ProductType>
                           </ProductWraper>
                           {/* 여기서 부터 찜 내용 들어감 */}
-                          <StyledBankListContainer>
-                            <StyledBankList>
-                              <div
-                                ref={topLocation}
-                                className="top으로 가는 위치 지정"
-                              />
-                              {/* <StyledBankListWrapper> */}
-                              <BookmarkPrdtList
-                                productTypes={productTypes}
-                                currentUser={user}
-                                handleClickProduct={handleClickProduct}
-                                selectedProductIds={selectedProductIds}
-                              />
-                              {/* </StyledBankListWrapper> */}
-                            </StyledBankList>
-                          </StyledBankListContainer>
                         </TapContainerBox>
                       </TapContainer>
                     </TapContainerWrap>
+                    <div>
+                      <div>
+                        <StyledBankList>
+                          <div
+                            ref={topLocation}
+                            className="top으로 가는 위치 지정"
+                          />
+
+                          <BookmarkPrdtList
+                            productTypes={productTypes}
+                            currentUser={user}
+                            handleClickProduct={handleClickProduct}
+                            selectedProductIds={selectedProductIds}
+                          />
+                        </StyledBankList>
+                      </div>
+                    </div>
                   </>
                 ))}
             </div>
