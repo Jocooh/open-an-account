@@ -4,7 +4,7 @@ export const MyPageWrapper = styled.div`
   background-color: #f4f5f6;
   width: 100%;
   display: flex;
-  gap: 200px;
+  gap: 100px;
   height: 100vh;
   /* align-items: center; */
   /* justify-content: center; */
@@ -51,18 +51,13 @@ export const UserNicknameDiv = styled.div`
 
 export const UserText = styled.h3`
   font-size: 23px;
-  /* @media screen and (max-width: 1200px) {
-    font-size: 23px;
-  } */
 `;
 export const UserContentDiv = styled.div`
   width: 380px;
   border-bottom: 1px solid #ddd;
   margin: 0 auto;
-  /* height: 172px; */
   display: flex;
   flex-direction: column;
-  /* gap: 25px; */
   @media screen and (max-width: 1200px) {
     width: 250px;
   }
@@ -74,6 +69,7 @@ export const UserContentDiv = styled.div`
 export const ContentDiv = styled.div`
   display: flex;
   justify-content: space-between;
+
   @media screen and (max-width: 1200px) {
     width: 250px;
   }
@@ -166,11 +162,11 @@ export const RightWrapper = styled.div`
 `;
 export const RightSecondWrapper = styled.div`
   width: 530px;
-  margin: auto;
+  margin: auto auto 10px;
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 50px;
+  padding: 30px;
   @media screen and (max-width: 900px) {
     width: 98%;
   }
@@ -178,10 +174,9 @@ export const RightSecondWrapper = styled.div`
 
 export const ChangePasswordDiv = styled.div`
   display: flex;
-  height: 420px;
+  height: 400px;
   flex-direction: column;
-  gap: 15px;
-  box-sizing: border-box;
+  gap: 20px;
 `;
 export const UserInput = styled.input`
   border: 1px solid #ccc;
@@ -279,11 +274,12 @@ export const CategoryLike = styled.div`
   display: flex;
   gap: 130px; //카테고리와 북마크 사이 거리
   align-items: center;
+  box-sizing: border-box;
 `;
 export const CardCategory = styled.div`
   border: 1px solid #aaa;
   width: 100px;
-  height: 26px;
+  height: 29px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -316,4 +312,11 @@ export const CardImage = styled.img`
   height: 211px;
   object-fit: cover;
   border-radius: 15px;
+`;
+
+export const CardContentWrapper = styled.div`
+  height: 200px;
+  color: #818181;
+  font-size: 16px;
+  line-height: 25px;
 `;

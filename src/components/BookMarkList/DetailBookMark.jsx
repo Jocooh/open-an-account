@@ -3,9 +3,9 @@ import {
   DetailContentWrapper,
   StyledDetailList,
   StyledDetaiListText,
-  BookMarkWrapper,
+  StyledDetailContainer,
+  StyledDetailContent,
 } from "../DetailProduct/style";
-import { StyledDetailContainer, StyledDetailContent } from "./style"; //width길이가 달라서 따로 스타일컴포넌트 만듬
 
 function DetailBookMark({ base, setOpen, depositOptionalList }) {
   const maxLimit = base.max_limit;
@@ -47,17 +47,17 @@ function DetailBookMark({ base, setOpen, depositOptionalList }) {
                   </StyledDetaiListText>
                 </StyledDetailList>
               </DetailContentWrapper>
-              <div>
-                <button
-                  onClick={() => {
-                    setOpen(1);
-                  }}
-                >
-                  닫기
-                </button>
-              </div>
             </>
           </StyledDetailContent>
+          <div>
+            <button
+              onClick={() => {
+                setOpen(1);
+              }}
+            >
+              닫기
+            </button>
+          </div>
         </StyledDetailContainer>
       </div>
     </>

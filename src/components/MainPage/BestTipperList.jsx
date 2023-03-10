@@ -9,6 +9,7 @@ import {
   CardTitle,
   SecondTitle,
   CategoryLikeContainer,
+  CardContentWrapper,
 } from "../../pages/MyPage/style";
 import Like from "../Community/Like";
 
@@ -34,17 +35,10 @@ function BestTipperList({ best, currentUser }) {
                   {best?.title.length > 10 && "..."}
                 </CardTitle>
                 <SecondTitle>{best?.name}</SecondTitle>
-                <div
-                  style={{
-                    height: "200px",
-                    color: "#818181",
-                    fontSize: "16px",
-                    lineHeight: "25px",
-                  }}
-                >
+                <CardContentWrapper>
                   {best?.content.slice(0, 140)}
                   {best?.content.length > 140 && "..."}
-                </div>
+                </CardContentWrapper>
               </CardTitleContainer>
             </CategoryLikeContainer>
           </ListCard>

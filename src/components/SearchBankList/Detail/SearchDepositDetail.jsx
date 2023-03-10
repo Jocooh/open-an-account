@@ -47,17 +47,17 @@ function SearchDepositDetail({ base, setActiveItem }) {
                   </StyledDetaiListText>
                 </StyledDetailList>
               </DetailContentWrapper>
-              <div>
-                <button
-                  onClick={() => {
-                    setActiveItem(1);
-                  }}
-                >
-                  닫기
-                </button>
-              </div>
             </>
           </StyledDetailContent>
+          <div>
+            <button
+              onClick={() => {
+                setActiveItem(1);
+              }}
+            >
+              닫기
+            </button>
+          </div>
         </StyledDetailContainer>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React from "react";
 import {
   CardCategory,
+  CardContentWrapper,
   CardImage,
   CardTitle,
   CardTitleContainer,
@@ -15,7 +16,7 @@ function UserLike({ likes, currentUser }) {
   return (
     <>
       {likes?.map((like) => (
-        <ListCard className="카드 하나하나 해당합니다." key={like.id}>
+        <ListCard key={like.id}>
           {like.imgUrl ? (
             <CardImage src={`${like.imgUrl}`} alt="포스팅사진" />
           ) : null}
@@ -37,7 +38,10 @@ function UserLike({ likes, currentUser }) {
                 {like?.title.length > 10 && "..."}
               </CardTitle>
               <SecondTitle>{like.name}</SecondTitle>
-              <div>{like.content}</div>
+              <CardContentWrapper>
+                {like?.content.slice(0, 140)}
+                {like?.content.length > 140 && "..."}
+              </CardContentWrapper>
             </CardTitleContainer>
           </CategoryLikeContainer>
         </ListCard>
