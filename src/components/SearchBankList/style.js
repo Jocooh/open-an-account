@@ -2,14 +2,11 @@ import styled from "styled-components";
 
 //여기 추가
 export const StyledListDiv = styled.div`
-  width: 990px;
+  width: 995px;
   height: 150px;
   display: flex;
   justify-content: center;
   cursor: pointer;
-  :hover {
-    background-color: #f7f7f8;
-  }
 `;
 
 export const StyledDiv = styled.div`

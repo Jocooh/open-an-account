@@ -211,6 +211,10 @@ export const TapContainerWrap = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+// export const TapContainerWrap = styled.div`
+// width
+// `
 //* 하단 탭 공통 부분 최상위 컨테이너
 export const TapContainer = styled.div`
   display: flex;
@@ -221,7 +225,7 @@ export const TapContainer = styled.div`
   padding-bottom: 30px;
   margin: 8px 0 0 0;
   border: 1px solid #dedede;
-
+  margin-bottom: 20px;
   border-radius: 10px;
   @media screen and (max-width: 425px) {
     width: 425px;
@@ -232,6 +236,14 @@ export const TapContainer = styled.div`
 export const TapContainerBox = styled.div`
   width: 786px;
   height: 434px;
+  @media screen and (max-width: 425px) {
+    width: 425px;
+  }
+`;
+//위의 스타일에서 찜목록에만 필요한 부분
+export const TapContainerBookMarkBox = styled.div`
+  width: 786px;
+  height: 90px;
   @media screen and (max-width: 425px) {
     width: 425px;
   }
@@ -254,7 +266,6 @@ export const TapTitleName = styled.div`
   font-size: 16px;
 
   margin-bottom: 10px;
-
 `;
 
 //* 예금,적금(Btn) ProductWraper
@@ -421,9 +432,15 @@ export const Tapwraper = styled.div`
   background-color: #f4f5f6;
   padding-bottom: 100px;
 `;
+export const TapwraperBookmark = styled.div`
+  width: 1440px;
+  background-color: #f4f5f6;
+  padding-bottom: 100px;
+`;
 
 export const StyledBankLists = styled.div`
   /* height: 150px; */
+  width: 990px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -431,7 +448,12 @@ export const StyledBankLists = styled.div`
   background-color: white;
   border: 1px solid #dedede;
   border-top: none;
-  /* background-color: lightcyan; */
+  //호버했을때 왼/오 선이 사라져서 하나씩 주었습니다...
+  :hover {
+    background-color: #f7f7f8;
+    /* border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede; */
+  }
 `;
 
 export const StyledBookMark = {
