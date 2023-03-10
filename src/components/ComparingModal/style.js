@@ -32,7 +32,7 @@ export const ModalContents = styled.div`
   /* padding: 5%; */
   @media (max-width: 480px) {
     min-width: 343px;
-    min-height: 812px;
+    /* min-height: 812px; */
     display: flex;
     justify-content: center;
   }
@@ -149,7 +149,7 @@ export const Products = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 `;
 
 export const SecondGuide = styled.div`
@@ -160,4 +160,10 @@ export const SecondGuide = styled.div`
   font-size: 12px;
   line-height: 22px;
   padding: 20px;
+
+  @media (max-width: 480px) {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 16px;
+  }
 `;

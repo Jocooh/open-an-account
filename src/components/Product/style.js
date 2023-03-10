@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
   max-width: 342px;
   max-height: 403px;
 
-  /* flex-shrink: 1;
-  flex-grow: 1; */
+  @media (max-width: 480px) {
+  }
 `;
 
 //* 만기 수령액
@@ -21,6 +21,9 @@ export const Guide = styled.div`
   align-items: center;
   margin-left: 0;
   color: #a3a3a3;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 //* 금액
 export const TotalCost = styled.div`
@@ -34,14 +37,16 @@ export const TotalCost = styled.div`
   margin-left: 0;
 
   color: #a3a3a3;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 export const ProductBox = styled.div`
   box-sizing: border-box;
-  max-width: 25vw;
-  max-height: 40vh;
-  /* aspect-ratio: 3/2;
-  object-fit: contain; */
+  min-width: 25vw;
+  min-height: 37vh;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;
@@ -49,8 +54,8 @@ export const ProductBox = styled.div`
   padding: 20px 20px 15px 20px;
   margin-bottom: 10px;
   @media (max-width: 480px) {
-    width: 315px;
-    height: 150px;
+    min-width: 315px;
+    min-height: 150px;
   }
 `;
 
@@ -68,6 +73,10 @@ export const Prdt_nm = styled.div`
   font-size: 16px;
   line-height: 22px;
   color: #000000;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 export const Logo = styled.img`
   aspect-ratio: 4/3;
@@ -79,7 +88,7 @@ export const Logo = styled.img`
 
 //* 상품설명
 export const FullInfo = styled.div`
-  height: 270px;
+  /* height: 270px; */
   overflow: auto;
   white-space: pre-wrap;
 
@@ -90,7 +99,7 @@ export const FullInfo = styled.div`
 
   /* 스크롤바 막대 설정*/
   ::-webkit-scrollbar-thumb {
-    background: #505050;
+    background: #a3a3a3;
     border-radius: 25px;
   }
 
@@ -108,6 +117,10 @@ export const Info = styled.div`
   font-size: 14px;
   line-height: 24px;
   color: #000000;
+  @media (max-width: 480px) {
+    font-size: 13px;
+    line-height: 20px;
+  }
 `;
 //* 추가 정보
 export const Message = styled.div`
@@ -119,10 +132,19 @@ export const Message = styled.div`
   line-height: 22px;
 
   color: #a3a3a3;
+
+  @media (max-width: 480px) {
+    line-height: 20px;
+  }
 `;
 
 export const Scrap = styled.div`
   display: flex;
   padding: 2%;
   margin: auto 0 0 auto;
+
+  /* @media (max-width: 480px) {
+    width: 14px;
+    height: 19px;
+  } */
 `;

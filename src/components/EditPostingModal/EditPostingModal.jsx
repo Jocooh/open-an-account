@@ -48,6 +48,7 @@ import {
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
 import Like from "../Community/Like";
+import { timeToLocaleString } from "../../utils/Date";
 
 function EditPostingModal({
   setEditPostingModalOpen,
@@ -282,14 +283,24 @@ function EditPostingModal({
                 </TipTitleWrap>
                 <BoardWrap>
                   <BoardTitle>{post?.title}</BoardTitle>
-                  <div
-                    style={{
-                      fontSize: "14px",
-                      opacity: "0.4",
-                      paddingBottom: "5px",
-                    }}
-                  >
-                    {post?.name}
+                  <div style={{ display: "flex" }}>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        opacity: "0.4",
+                        marginRight: "20px",
+                      }}
+                    >
+                      {post?.name}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        opacity: "0.4",
+                      }}
+                    >
+                      {timeToLocaleString(post?.createdAt).slice(0, -12)}
+                    </div>
                   </div>
                   <BoardContent>{post?.content} </BoardContent>
                 </BoardWrap>

@@ -23,9 +23,12 @@ export const ModalContainer = styled.div`
   box-sizing: border-box;
 `;
 export const ModalContents = styled.div`
+  // TipperImgWrap 사진크기 min-width 동일하게!!!
   max-width: 884px;
   max-height: 741px;
   /* padding: 5%; */
+  min-width: 60vw;
+  min-height: 77vh;
   @media (max-width: 480px) {
     width: 288px;
     height: 546px;
@@ -180,10 +183,12 @@ export const ErrorMessage = styled.div`
 //*게시글 이미지
 export const TipperImgWrap = styled.div`
   border-radius: 10px;
-  width: 884px;
-  height: 286px;
+  max-width: 884px;
+  max-height: 286px;
+  min-width: 60vw;
+  min-height: 30vh;
   @media (max-width: 480px) {
-    width: 288px;
+    min-width: 288px;
     /* height: 546px; */
   }
 
@@ -191,9 +196,10 @@ export const TipperImgWrap = styled.div`
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
-    width: 100%;
-    height: 100%;
+    max-width: 884px;
+    max-height: 286px;
+    min-width: 65vw;
+    min-height: 30vh;
   }
 `;
 //* 닫기 버튼이 이미지 위로 와있어야 함

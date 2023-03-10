@@ -129,7 +129,7 @@ function PostingModal({
       content: inputContent,
       imgUrl: image,
       name: user?.displayName ?? "익명",
-      createdAt: dateNow,
+      createdAt: Date.now(),
       like: 0,
     })
       .then(() => {

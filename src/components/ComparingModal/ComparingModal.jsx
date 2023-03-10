@@ -159,6 +159,7 @@ const ComparingModal = ({
                     <img
                       src={require("../../assets/thirdProduct.png")}
                       alt="세번째 상품 미선택"
+                      style={{ maxHeight: "45vh" }}
                     />
                   )}
                 </Products>
