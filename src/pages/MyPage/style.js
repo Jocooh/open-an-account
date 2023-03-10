@@ -257,14 +257,14 @@ export const ListCard = styled.div`
   /* padding: 10px; */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 25px;
   background-color: #fff;
   border-radius: 15px;
   border: 1px solid #ccc;
 `;
 
 export const CategoryLikeContainer = styled.div`
-  margin: 10px 10px; // 마이페이지에 디자인과 쪼금 다름
+  margin: 10px 10px; //마이페이지에 디자인과 쪼금 다름
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -272,32 +272,22 @@ export const CategoryLikeContainer = styled.div`
 
 export const CategoryLike = styled.div`
   display: flex;
-  gap: 125px; // 카테고리와 북마크 사이 거리
-  justify-content: space-between;
+  gap: 130px; //카테고리와 북마크 사이 거리
   align-items: center;
   box-sizing: border-box;
-
-  padding: 0 10px;
-  color: #a3a3a3;
-  font-size: 12px;
 `;
 export const CardCategory = styled.div`
-  border: 1px solid #e3dcff;
+  border: 1px solid #aaa;
   width: 100px;
   height: 29px;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-size: 11px;
-  font-weight: bold;
-  /* padding: 0px 4px; */
-  /* margin-left: 5px; */
 `;
 
 export const CardTitle = styled.p`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
@@ -305,7 +295,7 @@ export const SecondTitle = styled.div`
   display: flex;
   gap: 30px;
   color: #999;
-  font-size: 12px;
+  font-size: 14px;
 `;
 export const Block = styled.div`
   width: 20px;
@@ -325,17 +315,8 @@ export const CardImage = styled.img`
 `;
 
 export const CardContentWrapper = styled.div`
-  /* position: absolute; */
-  width: 254px;
-  height: 220px;
-  left: 17px;
-  top: 326px;
-
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 24px;
-
-  margin-top: 7px;
+  height: 200px;
+  color: #818181;
+  font-size: 16px;
+  line-height: 25px;
 `;
