@@ -40,17 +40,6 @@ const BestProducts = () => {
   // const [savingList, setSavingList] = useState([]);
   const navigate = useNavigate();
 
-  // 오늘 날짜
-  // let today = new Date();
-  // let year = today.getFullYear();
-  // let month = today.getMonth() + 1;
-  // let date = today.getDate();
-  // // const dateNow = year + ".0" + month + ".0" + date;
-  // const dateNow =
-  //   year +
-  //   (month > 10 ? month : ".0" + month) +
-  //   (date > 10 ? date : ".0" + date);
-
   // 전체 북마크 내역 불러오기
   const getBookmarkList = async () => {
     const q = query(collection(db, "bookmarks"));
@@ -350,14 +339,18 @@ const BestProducts = () => {
           gap: "10px",
           textAlign: "center",
           alignContents: "center",
+
+          marginTop: "50px",
         }}
       >
-        <img
-          src={require("../../assets/Union.png")}
-          style={{ width: "16px", height: "29px", marginTop: "10px" }}
-          alt="번개"
-        />
-        <BestProductTitle> 빠른 상품 비교 </BestProductTitle>
+        <>
+          <img
+            src={require("../../assets/Union.png")}
+            style={{ width: "16px", height: "29px", marginTop: "10px" }}
+            alt="번개"
+          />
+          <BestProductTitle> 빠른 상품 비교 </BestProductTitle>
+        </>
 
         <button
           style={{
