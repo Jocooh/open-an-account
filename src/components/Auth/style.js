@@ -27,6 +27,16 @@ export const AuthWrapper = styled.div`
   align-items: center;
 
   /* border: 1px solid black; */
+
+  @media (max-width: 560px) {
+    width: 510px;
+  }
+  @media (max-width: 480px) {
+    width: 430px;
+  }
+  @media (max-width: 400px) {
+    width: 380px;
+  }
 `;
 
 // auth logo
@@ -38,11 +48,33 @@ export const AuthLogoWrapper = styled.div`
   justify-content: center;
 
   margin-bottom: -20px;
+
+  @media (max-width: 560px) {
+    width: 510px;
+    margin-bottom: -30px;
+  }
+  @media (max-width: 480px) {
+    width: 430px;
+    margin-bottom: -40px;
+  }
+  @media (max-width: 400px) {
+    width: 380px;
+  }
 `;
 export const AuthLogo = styled.div`
   width: 215px;
   height: 67px;
   color: #6a24ff;
+
+  @media (max-width: 560px) {
+    width: 165px;
+  }
+  @media (max-width: 480px) {
+    width: 125px;
+  }
+  /* @media (max-width: 400px) {
+    width: 110px;
+  } */
 `;
 export const AuthLogoImg = styled.img`
   width: 100%;
@@ -56,26 +88,69 @@ export const LoginTitleTextWrapper = styled.div`
   margin: 30px 0;
   text-align: center;
   justify-content: center;
+
+  @media (max-width: 560px) {
+    width: 510px;
+    margin: 20px 0;
+  }
+  @media (max-width: 480px) {
+    width: 430px;
+    margin: 5px 0;
+  }
+  /* @media (max-width: 400px) {
+    width: 390px;
+    margin: 5px 0;
+  } */
 `;
 export const LoginTitleWrapper = styled.div`
   width: 560px;
   height: 61px;
 
-  margin-bottom: -5px; // css 안먹어서 임시로.
+  margin-bottom: -5px; //
+
+  @media (max-width: 560px) {
+    width: 510px;
+    margin-bottom: -15px;
+  }
+  @media (max-width: 480px) {
+    width: 430px;
+    margin-bottom: -25px;
+  }
 `;
 export const LoginTitle = styled.h1`
   font-size: 32px;
   font-weight: bold;
   color: #000000;
+
+  @media (max-width: 560px) {
+    font-size: 26px;
+  }
+  @media (max-width: 480px) {
+    font-size: 22px;
+  }
 `;
 export const AuthTextWrapper = styled.div`
   width: 560px;
   height: 33px;
+
+  @media (max-width: 560px) {
+    width: 510px;
+  }
+  @media (max-width: 480px) {
+    width: 430px;
+  }
 `;
 export const AuthText = styled.span`
   font-size: 18px;
   font-weight: medium;
   color: #505050;
+
+  @media (max-width: 560px) {
+    font-size: 14px;
+  }
+  @media (max-width: 480px) {
+    font-size: 11px;
+  }
 `;
 export const LinkText = styled.span`
   color: #6a24ff;
@@ -83,6 +158,13 @@ export const LinkText = styled.span`
   font-weight: medium;
 
   /* margin: 1rem 0.5rem 2rem; */
+
+  @media (max-width: 560px) {
+    font-size: 14px;
+  }
+  @media (max-width: 480px) {
+    font-size: 11px;
+  }
 `;
 // auth title - sign up
 export const SignUpTitleTextWrapper = styled.div`
@@ -92,6 +174,15 @@ export const SignUpTitleTextWrapper = styled.div`
   margin: 30px 0;
   text-align: center;
   justify-content: center;
+
+  @media (max-width: 560px) {
+    width: 510px;
+    margin: 0;
+  }
+  @media (max-width: 480px) {
+    width: 430px;
+    margin: -30px 0;
+  }
 `;
 export const SignnUpTitleWrapper = styled.div`
   width: 560px;
@@ -100,22 +191,53 @@ export const SignnUpTitleWrapper = styled.div`
   text-align: center;
   justify-content: center;
 
-  margin-bottom: -10px; // css 안먹어서 임시로.
+  margin-bottom: -10px; //
+
+  @media (max-width: 560px) {
+    width: 510px;
+    /* margin-bottom: -25px; */
+    margin: 20px 0 -25px 0;
+  }
+  @media (max-width: 480px) {
+    width: 430px;
+    margin: 40px 0 -25px 0;
+  }
 `;
 export const SignUpTitle = styled.div`
   font-size: 48px;
   font-weight: bold;
   color: #000000;
+
+  @media (max-width: 560px) {
+    font-size: 40px;
+  }
+  @media (max-width: 480px) {
+    font-size: 34px;
+  }
 `;
 
 // auth form
 export const AuthLoginForm = styled.div`
   width: 420px;
   height: 338px;
+
+  @media (max-width: 560px) {
+    width: 370px;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+  }
 `;
 export const AuthSignUpForm = styled.div`
   width: 420px;
   height: 594px;
+
+  @media (max-width: 560px) {
+    width: 370px;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+  }
 `;
 export const AuthInputWrapper = styled.div`
   width: 420px;
@@ -125,6 +247,15 @@ export const AuthInputWrapper = styled.div`
   flex-direction: column;
   flex-wrap: nowrap; // css 안먹어서 임시로 - 이거 하니까 왜 옆으로 안넘어가지
   /* box-sizing: border-box; */
+
+  @media (max-width: 560px) {
+    width: 370px;
+    height: 109px;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+    height: 89px;
+  }
 `;
 export const AuthLabel = styled.label`
   font-size: 16px;
@@ -132,6 +263,16 @@ export const AuthLabel = styled.label`
   color: #000000;
 
   margin-bottom: 10px; // css 안먹어서 임시로
+
+  @media (max-width: 560px) {
+    font-size: 14px;
+    margin-bottom: 7px;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
 `;
 export const AuthInput = styled.input`
   width: 420px;
@@ -146,6 +287,17 @@ export const AuthInput = styled.input`
 
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: 560px) {
+    width: 370px;
+    font-size: 14px;
+    text-indent: 22px;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+    font-size: 13px;
+    text-indent: 16px;
   }
 `;
 export const AuthButton = styled.button`
@@ -166,6 +318,19 @@ export const AuthButton = styled.button`
     background-color: #dadada;
     color: #fff;
   }
+
+  @media (max-width: 560px) {
+    width: 370px;
+    height: 52px;
+    font-size: 16px;
+    margin: 12px 0 0 0;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+    height: 46px;
+    font-size: 14px;
+    margin: 9px 0 0 0;
+  }
 `;
 export const AuthInputValidationWrapper = styled.div`
   width: 420px;
@@ -174,6 +339,17 @@ export const AuthInputValidationWrapper = styled.div`
   color: #ff0000;
 
   margin-top: 5px; // 인풋창이 줄어들음.....................
+
+  @media (max-width: 560px) {
+    width: 370px;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+    font-size: 12px;
+    margin-top: 3px;
+  }
 `;
 export const AuthInputValidationText = styled.p`
   .message {
@@ -190,6 +366,15 @@ export const BoundaryLineWrapper = styled.div`
   width: 414px;
   height: 20px;
   margin: 10px 0 30px 0; // css 안먹어서 임시로
+
+  @media (max-width: 560px) {
+    width: 364px;
+    margin: -30px 0 24px 0;
+  }
+  @media (max-width: 480px) {
+    width: 324px;
+    margin: -70px 0 18px 0;
+  }
 `;
 export const BoundaryLine = styled.span`
   font-size: 15px;
@@ -219,6 +404,54 @@ export const BoundaryLine = styled.span`
     top: 8px;
     content: "";
   }
+  @media (max-width: 560px) {
+    font-size: 13px;
+    width: 370px;
+
+    &::before {
+      width: 160px;
+      height: 1px;
+      background-color: #ddd;
+      position: absolute;
+      left: 0;
+      top: 6px;
+      content: "";
+    }
+
+    &::after {
+      width: 160px;
+      height: 1px;
+      background-color: #ddd;
+      position: absolute;
+      right: 0;
+      top: 6px;
+      content: "";
+    }
+  }
+  @media (max-width: 480px) {
+    font-size: 11px;
+    width: 330px;
+
+    &::before {
+      width: 140px;
+      height: 1px;
+      background-color: #ddd;
+      position: absolute;
+      left: 0;
+      top: 4px;
+      content: "";
+    }
+
+    &::after {
+      width: 140px;
+      height: 1px;
+      background-color: #ddd;
+      position: absolute;
+      right: 0;
+      top: 4px;
+      content: "";
+    }
+  }
 `;
 
 // social login form
@@ -226,6 +459,13 @@ export const SocialLoginForm = styled.div`
   width: 420px;
 
   /* margin: 20px 0; */
+
+  @media (max-width: 560px) {
+    width: 370px;
+  }
+  @media (max-width: 480px) {
+    width: 330px;
+  }
 `;
 // export const SocialLoginList = styled.div`
 //   width: 419px;
@@ -239,6 +479,13 @@ export const SocialLoginItem = styled.div`
   overflow: hidden;
   cursor: pointer;
   border-radius: 10px;
+
+  @media (max-width: 560px) {
+    width: 369px;
+  }
+  @media (max-width: 480px) {
+    width: 329px;
+  }
 `;
 
 export const GoogleImg = styled.img`

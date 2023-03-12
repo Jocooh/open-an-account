@@ -98,7 +98,7 @@ const AuthForm = ({
                 <AuthText>
                   {text}
                   {/* <Link to={`${signUp ? "/login" : "/signup"}`}> */}
-                  <Link to="/login">
+                  <Link style={{ textDecoration: "none" }} to="/login">
                     <LinkText>{linkText}</LinkText>
                   </Link>
                 </AuthText>
@@ -124,7 +124,7 @@ const AuthForm = ({
                 <AuthText>
                   {text}
                   {/* <Link to={`${signUp ? "/login" : "/signup"}`}> */}
-                  <Link to="/signup">
+                  <Link style={{ textDecoration: "none" }} to="/signup">
                     <LinkText>{linkText}</LinkText>
                   </Link>
                 </AuthText>
