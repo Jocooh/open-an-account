@@ -20,9 +20,21 @@ function BestTipperList({ best, currentUser }) {
         <>
           <ListCard>
             {best?.imgUrl ? (
-              <CardImage src={`${best.imgUrl}`} alt="포스팅사진" />
+              <div
+                style={{
+                  height: "211px",
+                }}
+              >
+                <CardImage src={`${best.imgUrl}`} alt="포스팅사진" />
+              </div>
             ) : (
-              <CardImage src={require("../../assets/blankimg.png")} />
+              <div
+                style={{
+                  height: "211px",
+                }}
+              >
+                <CardImage src={require("../../assets/blankimg.png")} />
+              </div>
             )}
             <CategoryLikeContainer>
               <CategoryLike>

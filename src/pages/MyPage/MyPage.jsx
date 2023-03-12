@@ -20,6 +20,10 @@ import {
   SaveBtn,
   ProductTypesBtn,
   RightSecondWrapper,
+  ResponsiveMypage,
+  ResUserAccount,
+  ResUserHistory,
+  ResUserTips,
 } from "./style";
 import { updatePassword, updateProfile, deleteUser } from "firebase/auth";
 import { firebaseConfig } from "../../config/firebase";
@@ -71,6 +75,7 @@ function MyPage() {
   //ChangeNickName.jsx
   //newNickname: 유저의 바꿀 닉네임 ,  name: 왼쪽박스 유저 네임
   const [newNickName, setNewNickName] = useState(currentUser?.displayName);
+  const [nicknameMessage, setNicknameMessage] = useState("");
   const [name, setName] = useState(newNickName);
   const [isNickName, setIsNickName] = useState(false);
 
@@ -90,7 +95,8 @@ function MyPage() {
           alert("개인정보 수정 완료"),
           setName(newNickName),
           setInputValidationConfirm(true),
-          setBtnValidation(true)
+          setBtnValidation(true),
+          setNicknameMessage("")
         )
         .catch((error) => {
           alert(console.log(error));
@@ -118,7 +124,9 @@ function MyPage() {
   };
   //유저 탈퇴 함수
   const deleteUserHandler = () => {
-    if (window.confirm("확인버튼을 누르면 탈퇴됩니다. 회원탈퇴하시겠습니까?")) {
+    if (
+      window.confirm("확인 버튼을 누르면 탈퇴됩니다. 회원 탈퇴 하시겠습니까?")
+    ) {
       deleteUser(user).then(() => {
         alert("삭제되었습니다");
         return navigate("/");
@@ -130,7 +138,6 @@ function MyPage() {
 
   return (
     <>
-      {/* <div style={{ backgroundColor: "#fff", height: "40px" }}></div> */}
       <MyPageWrapper className="제일 큰 박스">
         {/* ###########  Left    ################# */}
         <LeftBox className="왼쪽 박스">
@@ -225,6 +232,26 @@ function MyPage() {
             </HistoryCategory>
           </UserHistoryDiv>
         </LeftBox>
+        {/* 여기는 반응형일때 나타날 구역 */}
+        <ResponsiveMypage>
+          <div
+            style={{
+              width: "400px",
+              display: "flex",
+              justifyContent: "space-between",
+              backgroundColor: "white",
+              padding: "20px",
+              borderTop: "1px solid #f7f7f8",
+            }}
+          >
+            <UserAccountDiv />
+            <ResUserAccount onClick={() => setTab(0)}>
+              <p>계정관리</p>
+            </ResUserAccount>
+            <ResUserHistory onClick={() => setTab(1)}>찜한 상품</ResUserHistory>
+            <ResUserTips onClick={() => setTab(2)}>팁 관리</ResUserTips>
+          </div>
+        </ResponsiveMypage>
 
         <RightBox className="오른쪽 박스">
           {tab === 0 && (
@@ -265,6 +292,8 @@ function MyPage() {
                     newNickName={newNickName}
                     setIsNickName={setIsNickName}
                     setNewNickName={setNewNickName}
+                    nicknameMessage={nicknameMessage}
+                    setNicknameMessage={setNicknameMessage}
                     setBtnValidation={setBtnValidation}
                   />
 

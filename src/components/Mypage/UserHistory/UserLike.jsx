@@ -18,8 +18,22 @@ function UserLike({ likes, currentUser }) {
       {likes?.map((like) => (
         <ListCard key={like.id}>
           {like.imgUrl ? (
-            <CardImage src={`${like.imgUrl}`} alt="포스팅사진" />
-          ) : null}
+            <div
+              style={{
+                height: "211px",
+              }}
+            >
+              <CardImage src={`${like.imgUrl}`} alt="포스팅사진" />
+            </div>
+          ) : (
+            <div
+              style={{
+                height: "211px",
+              }}
+            >
+              <CardImage src={require("../../../assets/blankimg.png")} />
+            </div>
+          )}
           <CategoryLikeContainer>
             <CategoryLike>
               <CardCategory>
