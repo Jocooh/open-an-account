@@ -9,9 +9,9 @@ function ChangeNickname({
   setIsNickName,
   setNewNickName,
   setBtnValidation,
+  nicknameMessage,
+  setNicknameMessage,
 }) {
-  const [nicknameMessage, setNicknameMessage] = useState("");
-
   const changeNickHandler = (event) => {
     const currentNickname = event.target.value;
     setNewNickName(currentNickname);
@@ -29,7 +29,7 @@ function ChangeNickname({
   };
   return (
     <ChangeNickNameDiv className="닉네임변경">
-      <h3 style={{ fontSize: "25px" }}>닉네임 변경</h3>
+      <h3>닉네임 변경</h3>
       <UserInput
         type="text"
         value={newNickName}

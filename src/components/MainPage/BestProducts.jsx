@@ -232,7 +232,7 @@ const BestProducts = () => {
         </BtProduct>
         <BtProduct>
           {/* ########################################################################################## */}
-          <BtProductTitle>인기예금</BtProductTitle>
+          <BtProductTitle>정기예금</BtProductTitle>
           <BtProductList>
             <BtProductRank>1</BtProductRank>
             <BankLogo

@@ -10,6 +10,10 @@ export const MainPageWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 10px;
+  //성아-수정
+  min-height: 100vh;
+  padding-bottom: 120px;
+  position: relative;
   /* background-color: #f5f5f5; */
 `;
 // export const MainPageContainer = styled.div`

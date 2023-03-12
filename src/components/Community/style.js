@@ -2,9 +2,13 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   justify-content: center;
+  //성아-수정
+  min-height: 100%;
+  padding-bottom: 120px;
+  position: relative; ;
 `;
 
 export const Body = styled.div`
@@ -12,6 +16,10 @@ export const Body = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 5rem 3rem 0 5rem;
+  //성아-수정
+  min-height: 100%;
+  padding-bottom: 120px;
+  position: relative; ;
 `;
 export const Title = styled.div`
   display: flex;

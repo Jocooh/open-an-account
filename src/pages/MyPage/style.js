@@ -13,7 +13,12 @@ export const MyPageWrapper = styled.div`
     font-size: 15px;
   }
   @media screen and (max-width: 900px) {
+    gap: 10px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 100%;
     gap: 0px;
+    flex-direction: column;
   }
 `;
 //여기는 왼쪽 박스 스타일구역
@@ -32,6 +37,9 @@ export const LeftBox = styled.div`
     width: 190px;
     gap: 40px;
   }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+  }
 `;
 export const UserNicknameDiv = styled.div`
   width: 380px;
@@ -41,11 +49,18 @@ export const UserNicknameDiv = styled.div`
   border-bottom: 1px solid #ddd;
   margin: 0 auto;
   gap: 20px;
+
   @media screen and (max-width: 1200px) {
     width: 250px;
   }
   @media screen and (max-width: 900px) {
     width: 190px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+    align-items: center;
+    border-bottom: 1px solid #f7f7f8;
+    padding-bottom: 10px;
   }
 `;
 
@@ -55,7 +70,6 @@ export const UserText = styled.h3`
 export const UserContentDiv = styled.div`
   width: 380px;
   border-bottom: 1px solid #ddd;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 1200px) {
@@ -64,24 +78,38 @@ export const UserContentDiv = styled.div`
   @media screen and (max-width: 900px) {
     width: 190px;
   }
+  @media screen and (max-width: 400px) {
+    width: 380px;
+    border-bottom: none;
+  }
+`;
+export const ResponsiveMypage = styled.div`
+  width: 375px;
+  display: none;
+  @media screen and (max-width: 400px) {
+    display: block;
+  }
 `;
 
 export const ContentDiv = styled.div`
   display: flex;
   justify-content: space-between;
-
   @media screen and (max-width: 1200px) {
     width: 250px;
   }
   @media screen and (max-width: 900px) {
     width: 190px;
   }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+    align-items: center;
+  }
 `;
 export const LogOutBtn = styled.button`
   width: 84px;
   height: 32px;
   border: 1px solid #aaa;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,6 +118,9 @@ export const LogOutBtn = styled.button`
   @media screen and (max-width: 1200px) {
     width: 70px;
     font-size: 11px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 80px;
   }
 `;
 
@@ -110,6 +141,14 @@ export const UserAccountDiv = styled.div`
     width: 190px;
     gap: 20px;
   }
+  @media screen and (max-width: 400px) {
+    width: 190px;
+    display: none;
+  }
+`;
+export const UserInfoTab = styled.div`
+  width: 375px;
+  display: flex;
 `;
 
 export const UserHistoryDiv = styled.div`
@@ -124,6 +163,10 @@ export const UserHistoryDiv = styled.div`
   }
   @media screen and (max-width: 900px) {
     width: 190px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 190px;
+    display: none;
   }
 `;
 
@@ -154,21 +197,36 @@ export const RightBox = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+  @media screen and (max-width: 1200px) {
+    width: 250px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 190px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+  }
 `;
 export const RightWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
+  @media screen and (max-width: 400px) {
+    width: 375px;
+  }
 `;
 export const RightSecondWrapper = styled.div`
   width: 530px;
   margin: auto auto 10px;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
   padding: 30px;
   @media screen and (max-width: 900px) {
     width: 98%;
+  }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+    padding: 10px;
   }
 `;
 
@@ -177,27 +235,69 @@ export const ChangePasswordDiv = styled.div`
   height: 400px;
   flex-direction: column;
   gap: 20px;
+  h3 {
+    font-size: 25px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+    h3 {
+      font-size: 16px;
+      color: #505050;
+    }
+    .password {
+      font-size: 13px;
+    }
+    .passwordMessage {
+      font-size: 12px;
+    }
+    .newPassword {
+      font-size: 13px;
+    }
+    .confirmNewPassword {
+      font-size: 13px;
+    }
+  }
 `;
 export const UserInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 10px;
   height: 50px;
   padding: 3px;
+  @media screen and (max-width: 400px) {
+    width: 343px;
+    border-radius: 5px;
+  }
 `;
-export const EnrollNumberDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100px;
-  gap: 10px;
-  margin-top: 20px;
+// export const NewPassword = styled.div`
+//   .newPassword {
+//     font-size: 13px;
+//   }
+// `;
+
+export const ChangePwtext = styled.p`
+  color: #aaa;
+  margin-top: 5px;
+  @media screen and (max-width: 400px) {
+    font-size: 13px;
+  }
 `;
+
 export const ChangeNickNameDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 115px;
   gap: 5px;
   margin-top: 10px;
-  /* background-color: yellow; */
+  font-size: 25px;
+  @media screen and (max-width: 400px) {
+    h3 {
+      font-size: 16px;
+      color: #505050;
+    }
+    p {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const StyledImage = styled.img`
@@ -227,6 +327,11 @@ export const SaveBtn = styled.button`
   @media screen and (max-width: 900px) {
     width: 210px;
   }
+  @media screen and (max-width: 400px) {
+    width: 99px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
 `;
 
 //예금적금 버튼
@@ -254,7 +359,6 @@ export const UseListeWrapper = styled.div`
 export const ListCard = styled.div`
   width: 280px;
   height: 550px;
-  /* padding: 10px; */
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -308,7 +412,7 @@ export const CardTitleContainer = styled.div`
   padding: 10px;
 `;
 export const CardImage = styled.img`
-  width: 278px;
+  width: 279px;
   height: 211px;
   object-fit: cover;
   border-radius: 15px;
@@ -320,3 +424,8 @@ export const CardContentWrapper = styled.div`
   font-size: 16px;
   line-height: 25px;
 `;
+
+//반응형시 나올 탭
+export const ResUserAccount = styled.div``;
+export const ResUserHistory = styled.div``;
+export const ResUserTips = styled.div``;
