@@ -47,7 +47,7 @@ export const TotalCost = styled.div`
 
 export const ProductBox = styled.div`
   box-sizing: border-box;
-  min-width: 20vw;
+  min-width: 15vw;
   min-height: 37vh;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
