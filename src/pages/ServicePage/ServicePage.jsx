@@ -1041,20 +1041,26 @@ const ServicePage = () => {
                     </TapContainer>
                     {showResults === true ? (
                       <StyledBankListContainer>
-                        <StyledBankList>
-                          <CalculatorList
-                            activeItem={activeItem}
-                            setActiveItem={setActiveItem}
-                            selectedProductIds={selectedProductIds}
-                            handleClickProduct={handleClickProduct}
-                            depositOptionalList={depositOptionalList}
-                            savingbaseList={savingbaseList}
-                            savingoptionalList={savingoptionalList}
-                            depositbaseList={products}
-                            productTypes={productTypes}
-                            months={months}
-                          />
-                        </StyledBankList>
+                        <div>
+                          <StyledBankList>
+                            <div ref={topLocation} />
+                            <CalculatorList
+                              activeItem={activeItem}
+                              setActiveItem={setActiveItem}
+                              selectedProductIds={selectedProductIds}
+                              handleClickProduct={handleClickProduct}
+                              depositOptionalList={depositOptionalList}
+                              savingbaseList={savingbaseList}
+                              savingoptionalList={savingoptionalList}
+                              depositbaseList={products}
+                              productTypes={productTypes}
+                              months={months}
+                            />
+                          </StyledBankList>
+                          <StyledBtnDiv className="스크롤탑버튼">
+                            <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
+                          </StyledBtnDiv>
+                        </div>
                       </StyledBankListContainer>
                     ) : null}
                   </div>
@@ -1065,7 +1071,7 @@ const ServicePage = () => {
                 <Tapwraper>
                   <div>
                     <TapContainerWrap>
-                      <TapContainer style={{ height: "269px" }}>
+                      <TapContainer style={{ height: "300px" }}>
                         <TapContainerBox>
                           <TapTitleName>상품 종류를 선택해주세요.</TapTitleName>
                           <ProductWraper>
@@ -1134,7 +1140,6 @@ const ServicePage = () => {
                               savingbaseList={savingbaseList}
                               selectedProductIds={selectedProductIds}
                               savingOptionalList={savingoptionalList}
-                              // myBookmarkProducts={myBookmarkProducts} // my bookmark products
                               handleClickProduct={handleClickProduct}
                               depositOptionalList={depositOptionalList}
                             />
@@ -1148,7 +1153,6 @@ const ServicePage = () => {
                               savingoptionalList={savingoptionalList}
                               selectedProductIds={selectedProductIds}
                               handleClickProduct={handleClickProduct}
-                              // myBookmarkProducts={myBookmarkProducts} // my bookmark products
                               depositOptionalList={depositOptionalList}
                             />
                           )}
@@ -1232,7 +1236,7 @@ const ServicePage = () => {
                         </TapContainerBookMarkBox>
                       </TapContainer>
                     </TapContainerWrap>
-                    <div>
+                    <StyledBankListContainer>
                       <div>
                         <StyledBankList>
                           <div
@@ -1247,8 +1251,11 @@ const ServicePage = () => {
                             selectedProductIds={selectedProductIds}
                           />
                         </StyledBankList>
+                        <StyledBtnDiv className="스크롤탑버튼">
+                          <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
+                        </StyledBtnDiv>
                       </div>
-                    </div>
+                    </StyledBankListContainer>
                   </TapwraperBookmark>
                 ))}
             </div>

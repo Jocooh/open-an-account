@@ -36,6 +36,7 @@ const StyledInputContainer = styled.div`
   width: 100%;
   height: 80px;
   border-radius: 10px;
+  margin-top: 35px;
 `;
 
 const StyledLabelText = styled.div`
@@ -55,6 +56,7 @@ const StyledSearchInput = styled.input`
   font-weight: bold;
   ::placeholder {
     font-weight: normal;
+    color: #a3a3a3;
   }
 `;
 //* 검색 버튼

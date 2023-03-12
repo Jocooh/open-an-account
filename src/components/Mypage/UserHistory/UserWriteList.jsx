@@ -14,14 +14,9 @@ import UserWrite from "./UserWrite";
 
 function UserWriteList({ currentUser }) {
   const [boards, setBoards] = useState([]);
-  // console.log(currentUser);
   const postsRef = collection(db, "posts");
   const getPostlist = () => {
-    const q = query(
-      postsRef,
-      where("userId", "==", currentUser?.uid)
-      // orderBy("createdAt", "asc")
-    );
+    const q = query(postsRef, where("userId", "==", currentUser?.uid));
     const array = [];
     onSnapshot(q, (snapshot) => {
       snapshot.docs.map((doc) =>
@@ -38,9 +33,13 @@ function UserWriteList({ currentUser }) {
     getPostlist();
   }, []);
 
+  const sortWriteList = boards?.sort(function (a, b) {
+    return b.createdAt - a.createdAt;
+  });
+
   return (
     <UseListeWrapper>
-      {boards.map((board) => (
+      {sortWriteList.map((board) => (
         <UserWrite board={board} key={board.id} currentUser={currentUser} />
       ))}
     </UseListeWrapper>

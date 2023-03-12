@@ -71,7 +71,7 @@ const MainPage = () => {
     <MainPageWrapper>
       <img
         src={require("../../assets/homebanner.png")}
-        style={{ width: "1920px" }}
+        style={{ width: "100%", maxWidth: "1920px" }}
         alt="배너"
       />
       <BestProducts />

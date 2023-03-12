@@ -207,6 +207,7 @@ export const TipperImgWrap = styled.div`
 `;
 //* 닫기 버튼이 이미지 위로 와있어야 함
 export const EditCloseBtn = styled.button`
+  // 원준변경
   position: absolute;
   top: 3%;
   right: 3%;
@@ -222,7 +223,7 @@ export const EditCloseBtn = styled.button`
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 0.8rem;
   /* line-height: 19px; */
   color: #505050;
 
@@ -262,7 +263,7 @@ export const BoardWrap = styled.div`
   font-size: 12px;
   line-height: 26px;
 
-  color: #a3a3a3;
+  /* color: #a3a3a3; */ // 얘 뭐야
 `;
 
 //*게시글 제목
@@ -277,8 +278,10 @@ export const BoardTitle = styled.div`
 
 //*게시글 본문 내용
 export const BoardContent = styled.div`
+  // 원준변경
   font-size: 14px;
-  height: 15em;
+  /* height: 15em; */
+  height: 270px;
   overflow: auto;
   white-space: pre-wrap;
 
