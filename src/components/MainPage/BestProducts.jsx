@@ -345,11 +345,12 @@ const BestProducts = () => {
       {/* ################################# */}
       <div
         style={{
-          padding: "20px",
+          padding: "20px 20px 20px 5px",
           display: "flex",
           gap: "10px",
           textAlign: "center",
           alignContents: "center",
+          marginTop: "40px",
         }}
       >
         <img

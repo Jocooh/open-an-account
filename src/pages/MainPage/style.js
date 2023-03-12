@@ -28,19 +28,19 @@ export const BestProductWrap = styled.div`
 
 // 인기 상품 현황
 export const CurrentState = styled.div`
-  margin: 0 0 20px 30px;
+  margin: 0 0 20px 5px;
   display: flex;
   justify-content: space-between;
 `;
 // 인기 상품 제목 랩
 export const BtProductTitleWrap = styled.div`
   display: flex;
+  align-items: end;
   img {
     width: 33px;
     height: 33px;
     margin: 8px 20px 0 0;
   }
-  align-items: center;
 `;
 // 인기 금융 상품 제목
 export const BestProductTitle = styled.div`
@@ -51,9 +51,8 @@ export const BestProductTitle = styled.div`
 // 현재 시각
 export const KrDate = styled.div`
   opacity: 0.6;
-  display: flex;
-  align-items: end;
-  margin: 0 0 6px 10px;
+
+  margin: 0 0 2px 9px;
 `;
 // 한국은행 기준 금리 수치 랩
 export const KrBankRateWrap = styled.div`
@@ -193,7 +192,7 @@ export const Tippers = styled.div`
 
 // 팁퍼 틀
 export const TipperWrap = styled.div`
-  height: 670px;
+  height: 546px;
   width: 288px;
 
   border: 1px #dedede solid;
@@ -417,7 +416,7 @@ export const BankListBannerTitle = styled.span`
   margin-left: 10px;
 `;
 // 은행 랩
-export const BankWrap = styled.div`
+export const BankWrap = styled.a`
   border: 1px #dedede solid;
   border-radius: 10px;
   width: 154px;
@@ -425,18 +424,18 @@ export const BankWrap = styled.div`
   display: inline-block;
   margin: 0 5px 0 5px;
   padding: 15px 20px 10px 20px;
+  text-decoration: none;
   img {
     width: 47px;
     height: 47px;
   }
-  a {
+  span {
     display: flex;
     font-size: 14px;
     font-weight: Noto Sans;
     color: #707070;
     justify-content: center;
     margin-top: 8px;
-    text-decoration: none;
   }
 `;
 

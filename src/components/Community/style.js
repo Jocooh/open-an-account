@@ -29,10 +29,11 @@ export const Content = styled.div`
   width: 900px;
   /* height: 1500px; */
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  /* justify-content: center; */
-  /* background-color: beige; */
+  justify-content: center;
+  /* @media (max-width: 100%) {
+    width: 610px;
+  } */
 `;
 export const Boards = styled.div`
   display: flex;
