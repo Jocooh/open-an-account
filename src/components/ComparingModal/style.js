@@ -29,14 +29,7 @@ export const ModalContents = styled.div`
   max-height: 770px;
   width: 80vw;
   height: 87vh;
-  /* padding: 5%; */
-  @media (max-width: 480px) {
-    /* min-width: 343px; */
-    /* min-height: 812px; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+
   overflow: auto;
   white-space: pre-wrap;
 
@@ -168,6 +161,8 @@ export const Products = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  min-width: 18vw;
+  min-height: 15vh;
   /* margin-top: 20px; */
 `;
 
