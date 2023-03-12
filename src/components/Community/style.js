@@ -31,6 +31,11 @@ export const Title = styled.div`
   line-height: 64px;
 
   color: #ffffff;
+
+  @media (max-width: 480px) {
+    font-size: 30px;
+    line-height: 50px;
+  }
 `;
 
 export const Content = styled.div`
