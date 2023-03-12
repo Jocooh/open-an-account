@@ -141,6 +141,23 @@ export const BeforeSelectedContainer = styled.div`
   }
 `;
 
+//* 비교하기 버튼 배경화면
+export const ToCompareBG = styled.div`
+  @media (max-width: 480px) {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 136px;
+
+    background: #000000;
+    opacity: 0.8;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
 //* 비교하기 버튼
 export const ToCompare = styled.button`
   width: 990px;
@@ -158,8 +175,9 @@ export const ToCompare = styled.button`
     color: #fff;
     cursor: not-allowed;
   }
-  @media screen and (max-width: 425px) {
-    display: none;
+  @media screen and (max-width: 480px) {
+    width: 319px;
+    height: 54px;
   }
 `;
 
