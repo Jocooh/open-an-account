@@ -137,6 +137,10 @@ export const ContentInput = styled.textarea`
   outline: none;
   background: transparent;
 
+  /* textArea 속성 */
+  resize: none;
+  /* columns: 50; */
+
   /* 스크롤바 설정*/
   ::-webkit-scrollbar {
     width: 6px;
@@ -284,6 +288,8 @@ export const BoardContent = styled.div`
   height: 270px;
   overflow: auto;
   white-space: pre-wrap;
+
+  word-break: break-all;
 
   font-family: "Noto Sans";
   font-style: normal;

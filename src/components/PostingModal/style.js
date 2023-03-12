@@ -130,6 +130,7 @@ export const Content = styled.div`
   /* background-color: rgba(233, 236, 242, 0.8); */
   border: 1px solid #e1e1e4;
   border-radius: 5px;
+  columns: 1;
 `;
 export const ContentInput = styled.textarea`
   border: none;
@@ -138,6 +139,9 @@ export const ContentInput = styled.textarea`
   padding-left: 10px;
   outline: none;
   background: transparent;
+
+  /* textArea 속성 */
+  resize: none;
 
   /* 스크롤바 설정*/
   ::-webkit-scrollbar {
@@ -153,6 +157,10 @@ export const ContentInput = styled.textarea`
   /* 스크롤바 뒷 배경 설정*/
   ::-webkit-scrollbar-track {
     background-color: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    height: 20vh;
   }
 `;
 export const ImgUpload = styled.input`

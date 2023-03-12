@@ -269,7 +269,9 @@ export const BoardTitle = styled.div`
 export const BoardContent = styled.div`
   font-size: 14px;
   white-space: pre-wrap;
-  height: 17em;
+  word-break: break-all;
+
+  height: 10em;
   overflow: hidden;
 `;
 
