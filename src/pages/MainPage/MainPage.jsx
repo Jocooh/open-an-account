@@ -178,89 +178,145 @@ const MainPage = () => {
           observeParents={true}
         >
           <BankBanner>
-            <BankWrap>
+            <BankWrap
+              href="https://www.wooribank.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/oori_logo.png")} />
-              <a href="https://www.wooribank.com/">우리은행</a>
+              <span>우리은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.kebhana.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/hana_logo.png")} />
-              <a href="https://www.kebhana.com/">하나은행</a>
+              <span>하나은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.ibk.co.kr/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/ibk_logo.png")} />
-              <a href="https://www.ibk.co.kr/">기업은행</a>
+              <span>기업은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.suhyup-bank.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/tnguq_logo.png")} />
-              <a href="https://www.suhyup-bank.com/">수협은행</a>
+              <span>수협은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.standardchartered.co.kr/np/kr/Intro.jsp"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/sc_logo.png")} />
-              <a href="https://www.standardchartered.co.kr/np/kr/Intro.jsp">
-                SC제일은행
-              </a>
+              <span>SC제일은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.shinhan.com/index.jsp"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/sh_logo.png")} />
-              <a href="https://www.shinhan.com/index.jsp">신한은행</a>
+              <span>신한은행</span>
             </BankWrap>
           </BankBanner>
           <BankBanner>
-            <BankWrap>
+            <BankWrap
+              href="https://www.kbstar.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/kb_logo.png")} />
-              <a href="https://www.kbstar.com/">국민은행</a>
+              <span>국민은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.kdb.co.kr/index.jsp"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/tksdjq_logo.png")} />
-              <a href="https://www.kdb.co.kr/index.jsp">산업은행</a>
+              <span>산업은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://pib.kjbank.com/ib20/mnu/BPB0000000001"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/rhkdwn_logo.png")} />
-              <a href="https://pib.kjbank.com/ib20/mnu/BPB0000000001">
-                광주은행
-              </a>
+              <span>광주은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.busanbank.co.kr/ib20/mnu/BHP00001"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/busan_logo.png")} />
-              <a href="https://www.busanbank.co.kr/ib20/mnu/BHP00001">
-                부산은행
-              </a>
+              <span>부산은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.dgb.co.kr/dgb_ebz_main.jsp"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/dg_logo.png")} />
-              <a href="https://www.dgb.co.kr/dgb_ebz_main.jsp">대구은행</a>
+              <span>대구은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://banking.nonghyup.com/nhbank.html"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/nh_logo.png")} />
-              <a href="https://banking.nonghyup.com/nhbank.html">농협은행</a>
+              <span>농협은행</span>
             </BankWrap>
           </BankBanner>
           <BankBanner>
-            <BankWrap>
+            <BankWrap
+              href="https://www.e-jejubank.com/JeJuBankInfo.do"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/jeju_logo.png")} />
-              <a href="https://www.e-jejubank.com/JeJuBankInfo.do">제주은행</a>
+              <span>제주은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.knbank.co.kr/ib20/mnu/BHP000000000001"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/rudska_logo.png")} />
-              <a href="https://www.knbank.co.kr/ib20/mnu/BHP000000000001">
-                경남은행
-              </a>
+              <span>경남은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://cdn.ftoday.co.kr/news/photo/2https://www.jbbank.co.kr/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/wjsqnr_logo.png")} />
-              <a href="https://cdn.ftoday.co.kr/news/photo/2https://www.jbbank.co.kr/">
-                전북은행
-              </a>
+              <span>전북은행</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.kbanknow.com/ib20/mnu/PBKMAN000000"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/kbank_logo.png")} />
-              <a href="https://www.kbanknow.com/ib20/mnu/PBKMAN000000">
-                케이뱅크
-              </a>
+              <span>케이뱅크</span>
             </BankWrap>
-            <BankWrap>
+            <BankWrap
+              href="https://www.kakaobank.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={require("../../assets/logo/kakao_logo.png")} />
-              <a href="https://www.kakaobank.com/">카카오뱅크</a>
+              <span>카카오뱅크</span>
             </BankWrap>
           </BankBanner>
         </Swiper>
