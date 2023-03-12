@@ -5,9 +5,10 @@ import {
   StyledDetaiListText,
   StyledDetailContainer,
   StyledDetailContent,
+  CloseDetail,
 } from "../DetailProduct/style";
 
-function DetailBookMark({ base, setOpen, depositOptionalList }) {
+function DetailBookMark({ base, setOpen }) {
   const maxLimit = base.max_limit;
   return (
     <>
@@ -49,7 +50,7 @@ function DetailBookMark({ base, setOpen, depositOptionalList }) {
               </DetailContentWrapper>
             </>
           </StyledDetailContent>
-          <div>
+          <CloseDetail>
             <button
               onClick={() => {
                 setOpen(1);
@@ -57,7 +58,7 @@ function DetailBookMark({ base, setOpen, depositOptionalList }) {
             >
               닫기
             </button>
-          </div>
+          </CloseDetail>
         </StyledDetailContainer>
       </div>
     </>

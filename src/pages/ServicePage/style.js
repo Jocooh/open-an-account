@@ -429,6 +429,15 @@ export const StyledBankList = styled.div`
   /* border-top-left-radius: 5px;
   border-top-right-radius: 5px; */
   border: 1px solid #dedede;
+  @media screen and (max-width: 1200px) {
+    width: 800px;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+  }
 `;
 
 export const SearchInput = styled.div``;
@@ -455,10 +464,21 @@ export const StyledBankLists = styled.div`
   border: 1px solid #dedede;
   border-left: none;
   border-right: none;
-
   border-top: none;
   :hover {
     background-color: #f7f7f8;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 350px;
   }
 `;
 
@@ -475,6 +495,21 @@ export const StyledBtnDiv = styled.div`
   height: 72px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  @media screen and (max-width: 1200px) {
+    width: 800px;
+    margin: auto;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 600px;
+    margin: auto;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+    margin: auto;
+  }
+  @media screen and (max-width: 400px) {
+    width: 300px;
+  }
 `;
 export const StyledBtn = styled.button`
   width: 122px;

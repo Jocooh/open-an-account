@@ -136,3 +136,21 @@ export const Bookmarked = styled.div`
 export const BookmarkedImg = styled.img`
   width: 100%;
 `;
+
+export const NoBookmark = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin-top: 100px;
+  width: 990px;
+  @media screen and (max-width: 1200px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+  }
+`;
