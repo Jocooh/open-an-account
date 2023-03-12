@@ -31,14 +31,22 @@ export const Title = styled.div`
   line-height: 64px;
 
   color: #ffffff;
+
+  @media (max-width: 480px) {
+    font-size: 30px;
+    line-height: 50px;
+  }
 `;
 
 export const Content = styled.div`
-  width: 900px;
+  max-width: 900px;
   /* height: 1500px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  flex-wrap: wrap;
+
   /* @media (max-width: 100%) {
     width: 610px;
   } */

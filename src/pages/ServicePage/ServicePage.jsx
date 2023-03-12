@@ -45,6 +45,7 @@ import {
   CalculatorBoxContents,
   TapContainerBookMarkBox,
   TapwraperBookmark,
+  ToCompareBG,
 } from "./style";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
@@ -786,12 +787,15 @@ const ServicePage = () => {
                 display: "flex",
               }}
             >
-              <ToCompare
-                onClick={() => OpenComparingModal()}
-                disabled={notAllow2}
-              >
-                비교하기
-              </ToCompare>
+              <ToCompareBG>
+                <ToCompare
+                  onClick={() => OpenComparingModal()}
+                  disabled={notAllow2}
+                >
+                  비교하기
+                </ToCompare>
+              </ToCompareBG>
+
               {comparingModalOpen && (
                 <ComparingModal
                   productTypes={productTypes}

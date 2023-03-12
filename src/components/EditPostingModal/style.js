@@ -132,7 +132,7 @@ export const ContentInput = styled.textarea`
   display: block;
   border: none;
   width: 100%;
-  height: 20rem;
+  min-height: 18rem;
   padding-left: 10px;
   outline: none;
   background: transparent;
@@ -312,6 +312,10 @@ export const BoardContent = styled.div`
   /* 스크롤바 뒷 배경 설정*/
   ::-webkit-scrollbar-track {
     background-color: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    height: 200px;
   }
 `;
 

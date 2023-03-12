@@ -29,6 +29,7 @@ export const ModalContents = styled.div`
   max-height: 770px;
   width: 80vw;
   height: 87vh;
+  padding: 20px;
 
   overflow: auto;
   white-space: pre-wrap;
@@ -149,6 +150,10 @@ export const FirstGuide = styled.div`
   line-height: 34px;
   color: #a3a3a3;
   margin: 0 2rem;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 //* 보라색 글씨 강조
 export const Highlight = styled.div`
@@ -173,13 +178,10 @@ export const SecondGuide = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 22px;
-  padding: 20px;
-
-  position: absolute;
-  bottom: 1%;
-  left: 1%;
+  padding: 20px 50px;
 
   @media (max-width: 480px) {
+    padding: 0 20px;
     font-weight: 400;
     font-size: 10px;
     line-height: 16px;
