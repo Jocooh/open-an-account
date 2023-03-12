@@ -11,6 +11,7 @@ import {
   StyledSavingRateP,
   StyledSearchSaveTrmDiv,
   StyledListDiv,
+  StyledSearchSaveTrmP,
 } from "../../components/SearchBankList/style";
 import {
   StyledBankNameP,
@@ -19,7 +20,7 @@ import {
 } from "../../components/AllBankList/style";
 import DetailBookMark from "../BookMarkList/DetailBookMark";
 import { StyledImg } from "../../components/AllBankList/style";
-import Bookmarks from "../ServicePage/Bookmarks";
+import Bookmarks, { NoBookmark } from "../ServicePage/Bookmarks";
 
 function BookmarkPrdtItem({
   items,
@@ -72,15 +73,7 @@ function BookmarkPrdtItem({
                         </StyledProductTitleDiv>
 
                         <StyledSearchSaveTrmDiv>
-                          <p
-                            style={{
-                              fontWeight: "bold",
-                              color: "#aaa",
-                              fontSize: "12px",
-                            }}
-                          >
-                            최고금리
-                          </p>
+                          <StyledSearchSaveTrmP>최고금리</StyledSearchSaveTrmP>
 
                           {allOptionList?.map((v) =>
                             v.fin_prdt_cd === item.fin_prdt_cd ? (
@@ -132,23 +125,14 @@ function BookmarkPrdtItem({
           ))}
         </div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "30px",
-            alignItems: "center",
-            marginTop: "100px",
-            width: "990px",
-          }}
-        >
+        <NoBookmark>
           <img
             src={require("../../assets/no.png")}
             alt="찜목록이 없으면 나올 사진"
             style={{ width: "180px", height: "130px" }}
           />
           <p style={{ fontSize: "20px" }}>가져올 찜 목록이 없어요!</p>
-        </div>
+        </NoBookmark>
       )}
     </>
   );

@@ -4,6 +4,18 @@ export const StyledDetailContainer = styled.div`
   border-top: 1px solid #efefef;
   display: flex;
   padding: 30px;
+  @media screen and (max-width: 1200px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+  }
 `;
 
 export const StyledDetailContent = styled.div`
@@ -11,6 +23,15 @@ export const StyledDetailContent = styled.div`
   width: 740px;
   box-sizing: border-box;
   justify-content: space-between;
+  @media screen and (max-width: 1200px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 500px;
+  }
 `;
 export const StyledDetailList = styled.ul`
   list-style: inside;
@@ -26,6 +47,19 @@ export const DetailContentWrapper = styled.div`
   flex-direction: column;
   gap: 12px;
   margin-left: 70px;
+  @media screen and (max-width: 1200px) {
+    margin-left: 50px;
+  }
+  @media screen and (max-width: 1100px) {
+    margin-left: 30px;
+  }
+  @media screen and (max-width: 1000px) {
+    margin-left: 10px;
+  }
+`;
+
+export const CloseDetail = styled.div`
+  width: 50px;
 `;
 
 export const BookMarkWrapper = styled.div`

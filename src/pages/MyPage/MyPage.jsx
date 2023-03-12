@@ -24,6 +24,8 @@ import {
   ResUserAccount,
   ResUserHistory,
   ResUserTips,
+  DeleteUser,
+  ResCategoryTab,
 } from "./style";
 import { updatePassword, updateProfile, deleteUser } from "firebase/auth";
 import { firebaseConfig } from "../../config/firebase";
@@ -234,23 +236,18 @@ function MyPage() {
         </LeftBox>
         {/* 여기는 반응형일때 나타날 구역 */}
         <ResponsiveMypage>
-          <div
-            style={{
-              width: "400px",
-              display: "flex",
-              justifyContent: "space-between",
-              backgroundColor: "white",
-              padding: "20px",
-              borderTop: "1px solid #f7f7f8",
-            }}
-          >
+          <ResCategoryTab>
             <UserAccountDiv />
             <ResUserAccount onClick={() => setTab(0)}>
               <p>계정관리</p>
             </ResUserAccount>
-            <ResUserHistory onClick={() => setTab(1)}>찜한 상품</ResUserHistory>
-            <ResUserTips onClick={() => setTab(2)}>팁 관리</ResUserTips>
-          </div>
+            <ResUserHistory onClick={() => setTab(1)}>
+              <p>찜한 상품</p>
+            </ResUserHistory>
+            <ResUserTips onClick={() => setTab(2)}>
+              <p>팁 관리</p>
+            </ResUserTips>
+          </ResCategoryTab>
         </ResponsiveMypage>
 
         <RightBox className="오른쪽 박스">
@@ -309,12 +306,7 @@ function MyPage() {
                   </SaveBtn>
                 </form>
               </RightSecondWrapper>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row-reverse",
-                  height: "40px",
-                }}
+              <DeleteUser
                 onClick={() => {
                   deleteUserHandler();
                 }}
@@ -322,7 +314,7 @@ function MyPage() {
                 <p style={{ color: "#888", cursor: "pointer" }}>
                   회원 탈퇴하기
                 </p>
-              </div>
+              </DeleteUser>
             </RightWrapper>
           )}
 

@@ -15,9 +15,13 @@ export const MyPageWrapper = styled.div`
   @media screen and (max-width: 900px) {
     gap: 10px;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     width: 100%;
     gap: 0px;
+    flex-direction: column;
+  }
+  @media screen and (max-width: 400px) {
+    width: 100%;
     flex-direction: column;
   }
 `;
@@ -37,8 +41,11 @@ export const LeftBox = styled.div`
     width: 190px;
     gap: 40px;
   }
+  @media screen and (max-width: 600px) {
+    width: 500px;
+  }
   @media screen and (max-width: 400px) {
-    width: 375px;
+    width: 340px;
   }
 `;
 export const UserNicknameDiv = styled.div`
@@ -49,18 +56,23 @@ export const UserNicknameDiv = styled.div`
   border-bottom: 1px solid #ddd;
   margin: 0 auto;
   gap: 20px;
-
+  /* background-color: yellow; */
   @media screen and (max-width: 1200px) {
     width: 250px;
   }
   @media screen and (max-width: 900px) {
     width: 190px;
   }
-  @media screen and (max-width: 400px) {
-    width: 375px;
+  @media screen and (max-width: 600px) {
+    width: 500px;
     align-items: center;
     border-bottom: 1px solid #f7f7f8;
     padding-bottom: 10px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 340px;
+    margin: 0;
+    height: 60px;
   }
 `;
 
@@ -72,25 +84,40 @@ export const UserContentDiv = styled.div`
   border-bottom: 1px solid #ddd;
   display: flex;
   flex-direction: column;
+
   @media screen and (max-width: 1200px) {
     width: 250px;
   }
   @media screen and (max-width: 900px) {
     width: 190px;
   }
+  @media screen and (max-width: 600px) {
+    width: 500px;
+    border-bottom: none;
+  }
   @media screen and (max-width: 400px) {
-    width: 380px;
+    width: 375px;
     border-bottom: none;
   }
 `;
 export const ResponsiveMypage = styled.div`
   width: 375px;
   display: none;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     display: block;
   }
 `;
-
+export const ResCategoryTab = styled.div`
+  width: 540px;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  border-top: 1px solid #f7f7f8;
+  @media screen and (max-width: 400px) {
+    width: 390px;
+  }
+`;
 export const ContentDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -100,9 +127,12 @@ export const ContentDiv = styled.div`
   @media screen and (max-width: 900px) {
     width: 190px;
   }
-  @media screen and (max-width: 400px) {
-    width: 375px;
+  @media screen and (max-width: 600px) {
+    width: 500px;
     align-items: center;
+  }
+  @media screen and (max-width: 400px) {
+    width: 360px;
   }
 `;
 export const LogOutBtn = styled.button`
@@ -119,8 +149,12 @@ export const LogOutBtn = styled.button`
     width: 70px;
     font-size: 11px;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     width: 80px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 70px;
+    font-size: 10px;
   }
 `;
 
@@ -141,14 +175,10 @@ export const UserAccountDiv = styled.div`
     width: 190px;
     gap: 20px;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     width: 190px;
     display: none;
   }
-`;
-export const UserInfoTab = styled.div`
-  width: 375px;
-  display: flex;
 `;
 
 export const UserHistoryDiv = styled.div`
@@ -164,7 +194,7 @@ export const UserHistoryDiv = styled.div`
   @media screen and (max-width: 900px) {
     width: 190px;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     width: 190px;
     display: none;
   }
@@ -198,21 +228,33 @@ export const RightBox = styled.div`
     display: none;
   }
   @media screen and (max-width: 1200px) {
-    width: 250px;
+    width: 1000px;
   }
-  @media screen and (max-width: 900px) {
-    width: 190px;
+  @media screen and (max-width: 1000px) {
+    width: 900px;
+  }
+  @media screen and (max-width: 800px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 500px;
   }
   @media screen and (max-width: 400px) {
-    width: 375px;
+    width: 100%;
   }
 `;
 export const RightWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
+  @media screen and (max-width: 900px) {
+    width: 700px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 500px;
+  }
   @media screen and (max-width: 400px) {
-    width: 375px;
+    width: 100%;
   }
 `;
 export const RightSecondWrapper = styled.div`
@@ -224,9 +266,15 @@ export const RightSecondWrapper = styled.div`
   @media screen and (max-width: 900px) {
     width: 98%;
   }
-  @media screen and (max-width: 400px) {
-    width: 375px;
+  @media screen and (max-width: 700px) {
+    width: 98%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 500px;
     padding: 10px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 100%;
   }
 `;
 
@@ -238,8 +286,14 @@ export const ChangePasswordDiv = styled.div`
   h3 {
     font-size: 25px;
   }
-  @media screen and (max-width: 400px) {
-    width: 375px;
+  @media screen and (max-width: 900px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 700px) {
+    width: 95%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 500px;
     h3 {
       font-size: 16px;
       color: #505050;
@@ -257,27 +311,34 @@ export const ChangePasswordDiv = styled.div`
       font-size: 13px;
     }
   }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+  }
 `;
 export const UserInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 10px;
   height: 50px;
   padding: 3px;
-  @media screen and (max-width: 400px) {
-    width: 343px;
+  @media screen and (max-width: 900px) {
+    width: 500px;
     border-radius: 5px;
   }
+  @media screen and (max-width: 700px) {
+    width: 350px;
+    border-radius: 5px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 450px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 360px;
+  }
 `;
-// export const NewPassword = styled.div`
-//   .newPassword {
-//     font-size: 13px;
-//   }
-// `;
-
 export const ChangePwtext = styled.p`
   color: #aaa;
   margin-top: 5px;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     font-size: 13px;
   }
 `;
@@ -289,7 +350,7 @@ export const ChangeNickNameDiv = styled.div`
   gap: 5px;
   margin-top: 10px;
   font-size: 25px;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     h3 {
       font-size: 16px;
       color: #505050;
@@ -327,7 +388,7 @@ export const SaveBtn = styled.button`
   @media screen and (max-width: 900px) {
     width: 210px;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 600px) {
     width: 99px;
     font-weight: bold;
     border-radius: 5px;
@@ -350,12 +411,22 @@ export const UseListeWrapper = styled.div`
   gap: 10px;
 
   @media screen and (max-width: 1200px) {
-    width: 600px;
+    width: 700px;
   }
-  @media screen and (max-width: 800px) {
-    width: 400px;
+  @media screen and (max-width: 950px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 500px;
+    justify-content: center;
+  }
+  @media screen and (max-width: 400px) {
+    width: 375px;
+    justify-content: center;
   }
 `;
+
+// 여기서부터 나의 팁
 export const ListCard = styled.div`
   width: 280px;
   height: 550px;
@@ -425,7 +496,25 @@ export const CardContentWrapper = styled.div`
   line-height: 25px;
 `;
 
+//회원탈퇴
+export const DeleteUser = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  height: 40px;
+  p {
+    @media screen and (max-width: 600px) {
+      margin-right: 20px;
+    }
+  }
+`;
+
 //반응형시 나올 탭
-export const ResUserAccount = styled.div``;
-export const ResUserHistory = styled.div``;
-export const ResUserTips = styled.div``;
+export const ResUserAccount = styled.div`
+  cursor: pointer;
+`;
+export const ResUserHistory = styled.div`
+  cursor: pointer;
+`;
+export const ResUserTips = styled.div`
+  cursor: pointer;
+`;
