@@ -29,6 +29,7 @@ export const ModalContents = styled.div`
   max-height: 770px;
   width: 80vw;
   height: 87vh;
+  padding: 20px;
 
   overflow: auto;
   white-space: pre-wrap;
@@ -173,7 +174,7 @@ export const SecondGuide = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 22px;
-  padding: 20px;
+  padding: 20px 50px;
 
   position: absolute;
   bottom: 1%;

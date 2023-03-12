@@ -121,7 +121,7 @@ const ComparingModal = ({
                     />
 
                     <FirstGuide>
-                      금액은 최대 10억 미만으로 입력할 수 있습니다.
+                      금액은 10억 미만으로 입력할 수 있습니다.
                     </FirstGuide>
                   </InputWrapper>
                   원 씩 적립하면

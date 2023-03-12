@@ -47,18 +47,19 @@ export const TotalCost = styled.div`
 
 export const ProductBox = styled.div`
   box-sizing: border-box;
-  min-width: 15vw;
-  min-height: 37vh;
+  max-width: 16vw;
+  min-width: 315px;
+  min-height: 150px;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;
   flex-direction: column;
   padding: 20px 20px 15px 20px;
   margin-bottom: 10px;
-  /* @media (max-width: 480px) {
+  @media (max-width: 480px) {
     min-width: 315px;
     min-height: 150px;
-  } */
+  }
 `;
 
 //* 상품 이름
