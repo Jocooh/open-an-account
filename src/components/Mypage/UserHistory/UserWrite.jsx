@@ -19,8 +19,22 @@ function UserWrite({ board, currentUser }) {
     <>
       <ListCard>
         {board.imgUrl ? (
-          <CardImage src={`${board.imgUrl}`} alt="포스팅사진" />
-        ) : null}
+          <div
+            style={{
+              height: "211px",
+            }}
+          >
+            <CardImage src={`${board.imgUrl}`} alt="포스팅사진" />
+          </div>
+        ) : (
+          <div
+            style={{
+              height: "211px",
+            }}
+          >
+            <CardImage src={require("../../../assets/blankimg.png")} />
+          </div>
+        )}
         <CategoryLikeContainer
           style={{
             margin: "10px 10px",

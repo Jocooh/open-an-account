@@ -3,9 +3,13 @@ import styled from "styled-components";
 //* 바디
 export const Wraper = styled.div`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   justify-content: center;
+  //성아-수정
+  min-height: 100vh;
+  padding-bottom: 120px;
+  position: relative; ;
 `;
 
 //* 바디의 하위 컨테이너
@@ -367,7 +371,6 @@ export const FilterSubmit = styled.button`
   font-weight: bold;
   border-radius: 10px;
   margin-top: 5px;
-  //성아-수정
 
   cursor: pointer;
   color: #fff;

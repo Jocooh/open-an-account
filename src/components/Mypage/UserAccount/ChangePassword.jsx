@@ -2,7 +2,13 @@ import React, { useState } from "react";
 
 import { authService } from "../../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { ChangePasswordDiv, UserInput } from "../../../pages/MyPage/style";
+import {
+  ChangePasswordDiv,
+  UserInput,
+  changePwtext,
+  ChangePwtext,
+  NewPassword,
+} from "../../../pages/MyPage/style";
 
 import { debounce } from "lodash";
 
@@ -118,25 +124,27 @@ function ChangePassword({
     <>
       <ChangePasswordDiv className="비밀번호변경">
         {/* 기존의 비밀번호 */}
-        <h3 style={{ fontSize: "25px" }}>비밀번호 변경</h3>
-        <p>현재 비밀번호 </p>
+        <h3>비밀번호 변경</h3>
+        <p className="password">기존 비밀번호 </p>
         <UserInput
           type="password"
           onChange={debounceFunc}
           placeholder="현재 비밀번호를 입력해주세요"
         />
         {isPassword === true ? (
-          <p style={{ color: "green" }}>{passwordMessage}</p>
+          <p style={{ color: "green" }} className="passwordMessage">
+            {passwordMessage}
+          </p>
         ) : (
-          <p>{passwordMessage}</p>
+          <p className="passwordMessage">{passwordMessage}</p>
         )}
 
         {/* 새비밀번호 */}
         <div>
-          <p>새 비밀번호</p>
-          <p style={{ color: "#aaa", marginTop: "5px" }}>
+          <p className="newPassword">새 비밀번호</p>
+          <ChangePwtext>
             8~16자 이내의 영문, 숫자, 기호를 포함한 문자열
-          </p>
+          </ChangePwtext>
         </div>
         <UserInput
           type="password"
@@ -145,12 +153,14 @@ function ChangePassword({
           disabled={inputValidation}
         />
         {isPasswordConfirm === true ? (
-          <p style={{ color: "green" }}>{corfirmPasswordMessage}</p>
+          <p style={{ color: "green" }} className="passwordMessage">
+            {corfirmPasswordMessage}
+          </p>
         ) : (
-          <p>{corfirmPasswordMessage}</p>
+          <p className="passwordMessage">{corfirmPasswordMessage}</p>
         )}
         {/* 새비밀번호 확인 */}
-        <p>새 비밀번호 확인</p>
+        <p className="confirmNewPassword">새 비밀번호 확인</p>
         <UserInput
           type="password"
           disabled={inputValidationConfirm}
@@ -160,9 +170,11 @@ function ChangePassword({
           value={userPassword}
         />
         {isDoublePasswordConfirm === true ? (
-          <p style={{ color: "green" }}>{doubleCheckPasswordMessage}</p>
+          <p style={{ color: "green" }} className="passwordMessage">
+            {doubleCheckPasswordMessage}
+          </p>
         ) : (
-          <p>{doubleCheckPasswordMessage}</p>
+          <p className="passwordMessage">{doubleCheckPasswordMessage}</p>
         )}
       </ChangePasswordDiv>
     </>
