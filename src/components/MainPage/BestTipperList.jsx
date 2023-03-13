@@ -39,7 +39,9 @@ function BestTipperList({ best, currentUser }) {
             <CategoryLikeContainer>
               <CategoryLike>
                 <CardCategory>
-                  <p style={{ color: "#6a24ff" }}>{best?.category}</p>
+                  <p style={{ color: "#6a24ff", fontSize: "14px" }}>
+                    {best?.category}
+                  </p>
                 </CardCategory>
                 <Like currentUser={currentUser} id={best.id} post={best} />
               </CategoryLike>

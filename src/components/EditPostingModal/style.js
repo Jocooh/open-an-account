@@ -260,7 +260,7 @@ export const TipperTitle = styled.div`
 
 //* 카테고리 이하 본문
 export const BoardWrap = styled.div`
-  padding: 0 20px;
+  padding: 10px 20px;
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;
@@ -288,9 +288,7 @@ export const BoardContent = styled.div`
   height: 270px;
   overflow: auto;
   white-space: pre-wrap;
-
   word-break: break-all;
-
   font-family: "Noto Sans";
   font-style: normal;
   font-weight: 500;

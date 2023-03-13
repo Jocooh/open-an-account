@@ -432,6 +432,7 @@ export const BankWrap = styled.a`
   padding: 15px 20px 10px 20px;
   text-decoration: none;
   img {
+    object-fit: contain;
     width: 47px;
     height: 47px;
   }

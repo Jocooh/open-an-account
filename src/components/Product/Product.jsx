@@ -11,6 +11,7 @@ import {
   Scrap,
   Logo,
   FullInfo,
+  Logoimg,
 } from "./style";
 import Bookmarks from "../ServicePage/Bookmarks";
 import logoLists from "../../assets/logo/logo";
@@ -80,7 +81,7 @@ function Product({
 
       <ProductBox>
         <Name>
-          <StyledImg src={logoLists[selectedProduct.fin_co_no]} alt="로고" />
+          <Logoimg src={logoLists[selectedProduct.fin_co_no]} alt="로고" />
           <Prdt_nm>{selectedProduct.fin_prdt_nm}</Prdt_nm>
         </Name>
 

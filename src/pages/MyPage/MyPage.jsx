@@ -311,7 +311,13 @@ function MyPage() {
                   deleteUserHandler();
                 }}
               >
-                <p style={{ color: "#888", cursor: "pointer" }}>
+                <p
+                  style={{
+                    color: "#888",
+                    cursor: "pointer",
+                    marginRight: "30px",
+                  }}
+                >
                   회원 탈퇴하기
                 </p>
               </DeleteUser>

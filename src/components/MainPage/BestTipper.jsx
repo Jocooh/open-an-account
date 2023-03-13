@@ -63,7 +63,7 @@ const BestTipper = ({ currentUser }) => {
             pagination={{ clickable: true }}
             spaceBetween={50}
             slidesPerView={1}
-            // autoplay={{ delay: 3000 }}
+            autoplay={{ delay: 3000 }}
             loop={true}
             observer={true}
             observeParents={true}
