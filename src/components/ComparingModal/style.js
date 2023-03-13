@@ -30,7 +30,6 @@ export const ModalContents = styled.div`
   width: 80vw;
   height: 87vh;
   padding: 20px;
-
   overflow: auto;
   white-space: pre-wrap;
 
@@ -178,7 +177,7 @@ export const SecondGuide = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 22px;
-  padding: 20px 50px;
+  padding: 0 50px;
 
   @media (max-width: 480px) {
     padding: 0 20px;

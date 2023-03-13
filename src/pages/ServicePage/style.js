@@ -367,7 +367,7 @@ export const MonthRangeSlider = styled.div`
   width: 786px;
   display: flex;
   flex-wrap: wrap;
-  gap: 130px;
+  gap: 120px;
   margin-bottom: 30px;
   @media screen and (max-width: 425px) {
     gap: 48px;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { ChangeNickNameDiv, UserInput } from "../../../pages/MyPage/style";
-
+import { NicknameMessage } from "../../../pages/MyPage/style";
 function ChangeNickname({
   name,
   isNickName,
@@ -11,6 +11,7 @@ function ChangeNickname({
   setBtnValidation,
   nicknameMessage,
   setNicknameMessage,
+  NickNameMessage,
 }) {
   const changeNickHandler = (event) => {
     const currentNickname = event.target.value;
@@ -37,7 +38,7 @@ function ChangeNickname({
       ></UserInput>
       <div>
         {isNickName === true ? (
-          <p style={{ color: "green" }}>{nicknameMessage}</p>
+          <NicknameMessage>{nicknameMessage}</NicknameMessage>
         ) : null}
       </div>
     </ChangeNickNameDiv>
