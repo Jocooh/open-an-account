@@ -45,7 +45,7 @@ export const StyledMoreListDiv = styled.div`
   align-items: center;
   z-index: 999;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   right: 70px;
 `;
 
