@@ -3,12 +3,11 @@ import styled from "styled-components";
 //* 바디
 export const Wraper = styled.div`
   width: 100%;
-  /* height: 100%; */
+  /* height: 90vh; */
   display: flex;
   justify-content: center;
   //성아-수정
-  min-height: 100vh;
-  /* padding-bottom: 120px; */
+  min-height: 95vh;
   position: relative; ;
 `;
 
@@ -422,6 +421,7 @@ export const StyledBankListContainer = styled.div`
   justify-content: center; */
   width: 992px;
   margin: auto;
+
   /* border-top: 1px solid #dedede; */
 
   /* border-radius: 15px; */

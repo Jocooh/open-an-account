@@ -4,6 +4,7 @@ import {
   StyledDetailContent,
   StyledDetailList,
   StyledDetaiListText,
+  CloseDetail,
 } from "../../DetailProduct/style";
 import { DetailContentWrapper } from "../../DetailProduct/style";
 
@@ -49,7 +50,7 @@ function SearchDepositDetail({ base, setActiveItem }) {
               </DetailContentWrapper>
             </>
           </StyledDetailContent>
-          <div>
+          <CloseDetail>
             <button
               onClick={() => {
                 setActiveItem(1);
@@ -57,7 +58,7 @@ function SearchDepositDetail({ base, setActiveItem }) {
             >
               닫기
             </button>
-          </div>
+          </CloseDetail>
         </StyledDetailContainer>
       </div>
     </>

@@ -1230,15 +1230,13 @@ const ServicePage = () => {
                     </div>
                   </Tapwraper>
                 ) : (
-                  <TapwraperBookmark
-                    className="회색배경"
-                    style={{
-                      width: "1440px",
-                      backgroundColor: "#f4f5f6",
-                      paddingBottom: "100px",
-                    }}
-                  >
-                    <div>
+                  <TapwraperBookmark className="회색배경">
+                    <div
+                      style={{
+                        width: "990px",
+                        margin: "auto",
+                      }}
+                    >
                       <TapContainerWrap>
                         <TapContainer>
                           <TapContainerBookMarkBox>
@@ -1285,49 +1283,50 @@ const ServicePage = () => {
 
                         {/* 여기 */}
                       </TapContainerWrap>
-                    </div>
-                    {/* //* 선택된 금융상품 개수 */}
-                    <div
-                      style={{
-                        textAlign: "right",
-                        paddingRight: "10px",
-                      }}
-                    >
-                      {selectedProductIds.filter((id) => id !== "").length >
-                        0 && (
-                        <span>
-                          선택된 금융상품 수:{" "}
-                          {Math.min(
-                            Math.floor(
-                              selectedProductIds.filter((id) => id !== "")
-                                .length / 6
-                            ),
-                            3
-                          )}
-                        </span>
-                      )}
-                    </div>
-
-                    <StyledBankListContainer>
-                      <div>
-                        <StyledBankList>
-                          <div
-                            ref={topLocation}
-                            className="top으로 가는 위치 지정"
-                          />
-
-                          <BookmarkPrdtList
-                            productTypes={productTypes}
-                            currentUser={user}
-                            handleClickProduct={handleClickProduct}
-                            selectedProductIds={selectedProductIds}
-                          />
-                        </StyledBankList>
-                        <StyledBtnDiv className="스크롤탑버튼">
-                          <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
-                        </StyledBtnDiv>
+                      <div
+                        style={{
+                          textAlign: "right",
+                          paddingRight: "10px",
+                        }}
+                      >
+                        {selectedProductIds.filter((id) => id !== "").length >
+                          0 && (
+                          <span>
+                            선택된 금융상품 수:{" "}
+                            {Math.min(
+                              Math.floor(
+                                selectedProductIds.filter((id) => id !== "")
+                                  .length / 6
+                              ),
+                              3
+                            )}
+                          </span>
+                        )}
                       </div>
-                    </StyledBankListContainer>
+
+                      {/* //* 선택된 금융상품 개수 */}
+
+                      <StyledBankListContainer>
+                        <div>
+                          <StyledBankList>
+                            <div
+                              ref={topLocation}
+                              className="top으로 가는 위치 지정"
+                            />
+
+                            <BookmarkPrdtList
+                              productTypes={productTypes}
+                              currentUser={user}
+                              handleClickProduct={handleClickProduct}
+                              selectedProductIds={selectedProductIds}
+                            />
+                          </StyledBankList>
+                          <StyledBtnDiv className="스크롤탑버튼">
+                            <StyledBtn onClick={onTop}>맨 위로 가기</StyledBtn>
+                          </StyledBtnDiv>
+                        </div>
+                      </StyledBankListContainer>
+                    </div>
                   </TapwraperBookmark>
                 ))}
             </div>
