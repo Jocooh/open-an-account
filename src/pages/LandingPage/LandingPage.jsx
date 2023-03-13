@@ -41,7 +41,8 @@ import {
 } from "./LandingCss";
 const LandingPage = () => {
   const navigate = useNavigate();
-
+  // 유저 정보 가져오기
+  const isLoggedIn = sessionStorage.key(0);
   return (
     <BackgroundWraper>
       <Wraper>
@@ -68,7 +69,11 @@ const LandingPage = () => {
                   <TocompareButton onClick={() => navigate("/service")}>
                     상품 비교하기
                   </TocompareButton>
-                  <StartButton onClick={() => navigate("/signup")}>
+                  <StartButton
+                    onClick={() =>
+                      isLoggedIn ? navigate("main") : navigate("/signup")
+                    }
+                  >
                     시작하기
                   </StartButton>
                 </FirestSectionButtonWrap>
