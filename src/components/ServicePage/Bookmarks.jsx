@@ -106,13 +106,15 @@ const Bookmarks = ({
   if (error) return <p>{error}</p>;
 
   return (
-    <Bookmarked onClick={handleBookmarkChange}>
-      {bookmark ? (
-        <BookmarkedImg src={require("../../assets/bookmarked.png")} />
-      ) : (
-        <BookmarkedImg src={require("../../assets/bookmarked-empty.png")} />
-      )}
-    </Bookmarked>
+    <BookmarkedWrap>
+      <Bookmarked onClick={handleBookmarkChange}>
+        {bookmark ? (
+          <BookmarkedImg src={require("../../assets/bookmarked.png")} />
+        ) : (
+          <BookmarkedImg src={require("../../assets/bookmarked-empty.png")} />
+        )}
+      </Bookmarked>
+    </BookmarkedWrap>
   );
 };
 export default Bookmarks;
@@ -127,14 +129,18 @@ export default Bookmarks;
 //   height: 27px;
 //   color: #6a24ff;
 // `;
+export const BookmarkedWrap = styled.div`
+  display: flex;
+`;
+
+export const BookmarkedImg = styled.img`
+  width: 20px;
+`;
 
 export const Bookmarked = styled.div`
   width: 20px;
   height: 25px;
   cursor: pointer;
-`;
-export const BookmarkedImg = styled.img`
-  width: 100%;
 `;
 
 export const NoBookmark = styled.div`

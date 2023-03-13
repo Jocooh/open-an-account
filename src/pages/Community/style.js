@@ -7,6 +7,6 @@ export const Wrapper = styled.div`
   width: 100%;
   //성아-수정
   min-height: 100vh;
-  padding-bottom: 120px;
+  /* padding-bottom: 120px; */
   position: relative;
 `;

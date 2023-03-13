@@ -7,6 +7,7 @@ export const StyledListDiv = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  position: relative;
   @media screen and (max-width: 1200px) {
     width: 650px;
   }
@@ -23,7 +24,10 @@ export const StyledListDiv = styled.div`
 
 export const StyledDiv = styled.div`
   display: flex;
-  width: 737px;
+  width: 990px;
+  padding-left: 102px;
+  position: relative;
+  z-index: 10;
 `;
 
 export const StyledContentDiv = styled.div`
@@ -36,10 +40,13 @@ export const StyledContentDiv = styled.div`
 
 export const StyledMoreListDiv = styled.div`
   display: flex;
-  gap: 50px;
+  gap: 60px;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  z-index: 999;
+  position: absolute;
+  bottom: 0;
+  right: 70px;
 `;
 
 export const StyledSearchSaveTrmDiv = styled.div`

@@ -18,7 +18,7 @@ export const Body = styled.div`
   padding: 5rem 3rem 0 5rem;
   //성아-수정
   min-height: 100%;
-  padding-bottom: 120px;
+  /* padding-bottom: 120px; */
   position: relative; ;
 `;
 export const Title = styled.div`

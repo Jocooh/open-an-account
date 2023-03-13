@@ -3,12 +3,11 @@ import styled from "styled-components";
 //* 바디
 export const Wraper = styled.div`
   width: 100%;
-  /* height: 100%; */
+  /* height: 90vh; */
   display: flex;
   justify-content: center;
   //성아-수정
-  min-height: 100vh;
-  padding-bottom: 120px;
+  min-height: 95vh;
   position: relative; ;
 `;
 
@@ -234,9 +233,6 @@ export const TapContainerWrap = styled.div`
   justify-content: center;
 `;
 
-// export const TapContainerWrap = styled.div`
-// width
-// `
 //* 하단 탭 공통 부분 최상위 컨테이너
 export const TapContainer = styled.div`
   display: flex;
@@ -257,7 +253,6 @@ export const TapContainer = styled.div`
 //* 하단 탭 공통 부분 중간 컨테이너
 export const TapContainerBox = styled.div`
   width: 786px;
-  height: 434px;
   @media screen and (max-width: 425px) {
     width: 425px;
   }
@@ -286,7 +281,6 @@ export const CalculatorBoxContents = styled.div`
 //* 하단 탭 공통 부분.
 export const TapTitleName = styled.div`
   font-size: 16px;
-
   margin-bottom: 10px;
 `;
 
@@ -427,6 +421,7 @@ export const StyledBankListContainer = styled.div`
   justify-content: center; */
   width: 992px;
   margin: auto;
+
   /* border-top: 1px solid #dedede; */
 
   /* border-radius: 15px; */
@@ -461,6 +456,7 @@ export const StyledBankList = styled.div`
 export const SearchInput = styled.div``;
 export const Tapwraper = styled.div`
   width: 1440px;
+  height: 100%;
   display: flex;
   justify-content: center;
   background-color: #f4f5f6;
@@ -474,6 +470,7 @@ export const TapwraperBookmark = styled.div`
 
 export const StyledBankLists = styled.div`
   width: 988px;
+  /* margin-left: 1px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -505,6 +502,8 @@ export const StyledBookMark = {
 };
 
 export const StyledBtnDiv = styled.div`
+  margin-left: 1px;
+  width: 990px;
   display: flex;
   justify-content: center;
   border: 1px solid #dedede;
