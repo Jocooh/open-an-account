@@ -40,6 +40,10 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
   };
   const result = posts?.filter((item) => item.category === categorytab);
 
+  const sortWriteList = posts?.sort(function (a, b) {
+    return b.createdAt - a.createdAt;
+  });
+
   useEffect(() => {
     getPostList();
   }, []);
@@ -55,14 +59,14 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
         {categorytab === "금융상품 후기" && (
           <Content>
             <Boards>
-              <Tipper posts={posts} result={result} />
+              <Tipper posts={posts} result={result} getPostList={getPostList} />
             </Boards>
           </Content>
         )}
         {categorytab === "팁과 노하우" && (
           <Content>
             <Boards>
-              <Tipper posts={posts} result={result} />
+              <Tipper posts={posts} result={result} getPostList={getPostList} />
             </Boards>
           </Content>
         )}

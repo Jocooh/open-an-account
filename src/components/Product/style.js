@@ -49,12 +49,13 @@ export const ProductBox = styled.div`
   box-sizing: border-box;
   max-width: 16vw;
   min-width: 315px;
-  min-height: 150px;
+  /* min-height: 150px; */
+  height: 280px;
   border: 1px solid #e7e7e7;
   border-radius: 17px;
   display: flex;
   flex-direction: column;
-  padding: 20px 20px 15px 20px;
+  padding: 0 20px 15px 20px;
   margin-bottom: 10px;
   @media (max-width: 480px) {
     min-width: 315px;
@@ -67,6 +68,13 @@ export const Name = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-align: center;
+`;
+
+export const Logoimg = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 `;
 //* 상품 이름
 export const Prdt_nm = styled.div`
@@ -82,7 +90,6 @@ export const Prdt_nm = styled.div`
   }
 `;
 export const Logo = styled.img`
-  aspect-ratio: 4/3;
   width: 5vw;
   max-width: 39px;
   padding-right: 8px;

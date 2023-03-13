@@ -5,7 +5,7 @@ export const MyPageWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 100px;
-  height: 100vh;
+  min-height: calc(100vh - 102px);
   /* align-items: center; */
   /* justify-content: center; */
   @media screen and (max-width: 1200px) {
@@ -359,6 +359,11 @@ export const ChangeNickNameDiv = styled.div`
       font-size: 12px;
     }
   }
+`;
+
+export const NicknameMessage = styled.p`
+  font-size: 15px;
+  color: green;
 `;
 
 export const StyledImage = styled.img`
