@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
 import Tipper from "../MainPage/Tipper";
+import TopButton from "../../components/TopScrollBtn/TopScrollBtn";
 import {
   Wrapper,
   Content,
@@ -19,7 +20,6 @@ import {
   LoginButton,
   Body,
 } from "./style";
-
 function CommunityMain({ username, categorytab, setCategoryTab }) {
   const navigate = useNavigate();
 
@@ -51,6 +51,7 @@ function CommunityMain({ username, categorytab, setCategoryTab }) {
   return (
     <Wrapper>
       <Body>
+        <TopButton />
         <Title>
           사회초년생의
           <br />
