@@ -272,49 +272,18 @@ const ServicePage = () => {
       }
     }
   };
-  //* 첫번째 선택된 상품선택해제 함수
-  const handleProductsCancel = (productId) => {
+  // * 초기화 버튼 클릭시 선택된 상품 초기화 함수
+
+  //* 선택된 상품 선택해제 함수
+  const handleProductsCancel = (productId, start, end) => {
     const index = selectedProductIds.indexOf(productId);
     const newSelectedProductIds = [...selectedProductIds];
-    newSelectedProductIds[index + 1] = "";
-    newSelectedProductIds[index + 2] = "";
-    newSelectedProductIds[index + 3] = "";
-    newSelectedProductIds[index + 4] = "";
-    newSelectedProductIds[index + 5] = "";
-    newSelectedProductIds[index + 6] = "";
+
+    for (let i = start; i <= end; i++) {
+      newSelectedProductIds[index + i] = "";
+    }
 
     setSelectedProductIds(newSelectedProductIds);
-    // console.log(selectedProductIds);
-  };
-
-  //* 두번째 선택된 상품선택해제 함수
-  const handleProductsCancel2 = (productId) => {
-    const index = selectedProductIds.indexOf(productId);
-    const newSelectedProductIds = [...selectedProductIds];
-    newSelectedProductIds[index + 7] = "";
-    newSelectedProductIds[index + 8] = "";
-    newSelectedProductIds[index + 9] = "";
-    newSelectedProductIds[index + 10] = "";
-    newSelectedProductIds[index + 11] = "";
-    newSelectedProductIds[index + 12] = "";
-
-    setSelectedProductIds(newSelectedProductIds);
-    // console.log(selectedProductIds);
-  };
-
-  //* 세번째 선택된 상품선택해제 함수
-  const handleProductsCancel3 = (productId) => {
-    const index = selectedProductIds.indexOf(productId);
-    const newSelectedProductIds = [...selectedProductIds];
-    newSelectedProductIds[index + 13] = "";
-    newSelectedProductIds[index + 14] = "";
-    newSelectedProductIds[index + 15] = "";
-    newSelectedProductIds[index + 16] = "";
-    newSelectedProductIds[index + 17] = "";
-    newSelectedProductIds[index + 18] = "";
-
-    setSelectedProductIds(newSelectedProductIds);
-    // console.log(selectedProductIds);
   };
 
   //* 동일된 상품 선택시 함수 종료.
@@ -332,9 +301,15 @@ const ServicePage = () => {
     handleSelectProducts(productId);
   };
 
-  //* setSelectedProductIds배열의 2번째 id값이 있으면 비교하기 버튼 활성화
+  //* setSelectedProductIds배열의 값중 2개 이상의 id값이 있으면 비교하기 버튼 활성화
   useEffect(() => {
-    if (selectedProductIds[6].length > 1) {
+    const ids = [
+      selectedProductIds[0],
+      selectedProductIds[6],
+      selectedProductIds[12],
+    ];
+    const nonEmptyIds = ids.filter((id) => id.length > 0);
+    if (nonEmptyIds.length > 1) {
       setNotAllow2(false);
     } else {
       setNotAllow2(true);
@@ -614,7 +589,11 @@ const ServicePage = () => {
                           </BasicIntrRate>
                         </IntrRateWrap>
                       </StagingWrap>
-                      <StagingCancel onClick={() => handleProductsCancel()}>
+                      <StagingCancel
+                        onClick={(productId) =>
+                          handleProductsCancel(productId, 1, 6)
+                        }
+                      >
                         <img
                           src={require("../../assets/service/Cancel.png")}
                           alt="스테이징 취소"
@@ -692,7 +671,11 @@ const ServicePage = () => {
                           </BasicIntrRate>
                         </IntrRateWrap>
                       </StagingWrap>
-                      <StagingCancel onClick={() => handleProductsCancel2()}>
+                      <StagingCancel
+                        onClick={(productId) =>
+                          handleProductsCancel(productId, 7, 12)
+                        }
+                      >
                         <img
                           src={require("../../assets/service/Cancel.png")}
                           alt="스테이징 취소"
@@ -770,7 +753,11 @@ const ServicePage = () => {
                           </BasicIntrRate>
                         </IntrRateWrap>
                       </StagingWrap>
-                      <StagingCancel onClick={() => handleProductsCancel3()}>
+                      <StagingCancel
+                        onClick={(productId) =>
+                          handleProductsCancel(productId, 13, 18)
+                        }
+                      >
                         <img
                           src={require("../../assets/service/Cancel.png")}
                           alt="스테이징 취소"
@@ -1043,6 +1030,7 @@ const ServicePage = () => {
                         </FilterSubmitWarper>
                       </TapContainerBox>
                     </TapContainer>
+
                     <div
                       style={{
                         textAlign: "right",
