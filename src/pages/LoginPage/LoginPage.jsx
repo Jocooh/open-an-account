@@ -10,11 +10,13 @@ import { authService } from "../../config/firebase";
 
 const LoginPage = () => {
   // 유저 정보 가져오기 로그인 되어있으면 로그인 페이지 막기
+
   const navigate = useNavigate();
   const isLoggedIn = sessionStorage.key(0);
   useEffect(() => {
     isLoggedIn ? navigate("/mypage") : navigate("/login");
   }, []);
+
   const { state } = useLocation();
 
   const [email, setEmail] = useState("");

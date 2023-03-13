@@ -8,7 +8,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/Auth/AuthForm";
 import { authService } from "../../config/firebase";
-import { createBrowserHistory } from "history";
 
 const SignUpPage = () => {
   // 유저 정보 가져오기 로그인 되어있으면 로그인 페이지 막기
@@ -30,27 +29,18 @@ const SignUpPage = () => {
     };
   }, []); // 의존성 배열 내에 어떤 state 를 넣어야 하는지?
 
-  // 회원가입 페이지 뒤로가기 제어
-  // const history = createBrowserHistory();
-  useEffect(() => {
-    const listenBackEvent = () => {
-      // 뒤로가기 할 때 수행할 동작.
-      if (
-        window.confirm("변경사항이 저장되지 않습니다. 뒤로 이동하시겠습니까?")
-      ) {
-        return history.push("/main"); // 알아보기
-      } else {
-        return;
-      }
-    };
-    const unlistenHistoryEvent = history.listen(({ action }) => {
-      if (action === "POP") {
-        listenBackEvent();
-      }
-    });
-    return unlistenHistoryEvent;
-  }, []); // 의존성 배열 내에 어떤 state 를 넣어야 하는지?
+  // useEffect(() => {
+  //   (() => {
+  //     // window.history.pushState(null, "", window.location.href);
+  //     window.addEventListener("popstate", preventGoBack);
+  //     window.addEventListener("beforeunload", preventClose);
+  //   })();
 
+  //   return () => {
+  //     // window.removeEventListener("popstate", preventGoBack);
+  //     window.removeEventListener("beforeunload", preventClose);
+  //   };
+  // }, []);
   // 기존 sign up
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
