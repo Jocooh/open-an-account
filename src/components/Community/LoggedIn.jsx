@@ -28,7 +28,7 @@ import {
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 import { useCallback } from "react";
-
+import TopButton from "../../components/TopScrollBtn/TopScrollBtn";
 function LoggedIn({ username, categorytab, setCategoryTab }) {
   const [postingModalOpen, setPostingModalOpen] = useState(false);
   const [boards, setBoards] = useState([]);
@@ -76,6 +76,7 @@ function LoggedIn({ username, categorytab, setCategoryTab }) {
   return (
     <Wrapper>
       <Body>
+        <TopButton />
         <Title>
           마음에 드는 팁이 있다면 <br /> 하트!
         </Title>
