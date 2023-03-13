@@ -6,30 +6,31 @@ const TopButton = () => {
   const [showTopButton, setShowTopButton] = useState(false);
   const location = useLocation();
   const [isHover, setIsHover] = useState(false);
-  // TopButton
+
   const handleScrollToTop = () => {
-    if (location.pathname === "/") {
-      window.scrollTo({ top: 200, behavior: "smooth" });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   useEffect(() => {
-    const ShowTopButtonClick = () => {
+    const handleScroll = () => {
       if (window.scrollY > 200) {
         setShowTopButton(true);
       } else {
         setShowTopButton(false);
       }
     };
-    window.addEventListener("scroll", ShowTopButtonClick);
+
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", ShowTopButtonClick);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <TopScrollButton onClick={handleScrollToTop}>
+    <TopScrollButton
+      onClick={handleScrollToTop}
+      style={{ display: window.scrollY > 200 ? "block" : "none" }}
+    >
       <img
         src={
           isHover
@@ -64,7 +65,5 @@ const TopScrollButton = styled.div`
     &:hover {
       transform: scale(1.2);
     }
-  }
-  :hover {
   }
 `;

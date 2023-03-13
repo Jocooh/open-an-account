@@ -319,7 +319,7 @@ export const UserInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 10px;
   height: 50px;
-  padding: 3px;
+  padding-left: 10px;
   @media screen and (max-width: 900px) {
     width: 500px;
     border-radius: 5px;
