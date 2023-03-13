@@ -45,7 +45,9 @@ function UserWrite({ board, currentUser }) {
         >
           <CategoryLike>
             <CardCategory>
-              <p style={{ color: "#6a24ff" }}>{board.category}</p>
+              <p style={{ color: "#6a24ff", fontSize: "14px" }}>
+                {board.category}
+              </p>
             </CardCategory>
             <Like currentUser={currentUser} post={board} id={board.id} />
           </CategoryLike>

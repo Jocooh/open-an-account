@@ -37,7 +37,9 @@ function UserLike({ likes, currentUser }) {
           <CategoryLikeContainer>
             <CategoryLike>
               <CardCategory>
-                <p style={{ color: "#6a24ff" }}>{like.category}</p>
+                <p style={{ color: "#6a24ff", fontSize: "14px" }}>
+                  {like.category}
+                </p>
               </CardCategory>
               <Like
                 currentUser={currentUser}
