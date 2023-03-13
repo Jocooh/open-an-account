@@ -12,7 +12,7 @@ export const MainPageWrapper = styled.div`
   gap: 10px;
   //성아-수정
   min-height: 100vh;
-  padding-bottom: 120px;
+  /* padding-bottom: 120px; */
   position: relative;
   /* background-color: #f5f5f5; */
 `;
