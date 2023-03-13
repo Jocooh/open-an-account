@@ -40,13 +40,13 @@ export const StyledContentDiv = styled.div`
 
 export const StyledMoreListDiv = styled.div`
   display: flex;
-  gap: 50px;
+  gap: 60px;
   flex-direction: column;
   align-items: center;
   z-index: 999;
   position: absolute;
   bottom: 0;
-  right: 110px;
+  right: 70px;
 `;
 
 export const StyledSearchSaveTrmDiv = styled.div`

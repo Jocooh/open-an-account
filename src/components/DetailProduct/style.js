@@ -20,7 +20,7 @@ export const StyledDetailContainer = styled.div`
 
 export const StyledDetailContent = styled.div`
   display: flex;
-  width: 740px;
+  width: 780px;
   box-sizing: border-box;
   justify-content: space-between;
   @media screen and (max-width: 1200px) {
@@ -60,6 +60,8 @@ export const DetailContentWrapper = styled.div`
 
 export const CloseDetail = styled.div`
   width: 50px;
+  //찜목록에서 닫기버튼 위치 수정
+  margin-left: 120px;
 `;
 
 export const BookMarkWrapper = styled.div`
