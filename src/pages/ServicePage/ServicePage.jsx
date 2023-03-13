@@ -285,7 +285,6 @@ const ServicePage = () => {
 
     setSelectedProductIds(newSelectedProductIds);
   };
-  console.log(selectedProductIds);
 
   //* 동일된 상품 선택시 함수 종료.
   const handleClickProduct = async (productId) => {
