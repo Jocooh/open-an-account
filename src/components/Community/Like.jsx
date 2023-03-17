@@ -16,7 +16,6 @@ import React, { useEffect, useState } from "react";
 import { BsFillHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
-import { throttle } from "lodash";
 
 function Like({ currentUser, post, id }) {
   //커뮤니티 페이지에서 id는 필드명
@@ -82,8 +81,6 @@ function Like({ currentUser, post, id }) {
     });
   };
 
-  const throttleFunc = throttle(LikeHandler, 10000);
-
   //좋아요를 누를때만 함수 실행
   useEffect(() => {
     getLikes();
@@ -105,7 +102,7 @@ function Like({ currentUser, post, id }) {
           fontSize="20px"
           color="#6A24FF"
           onClick={() => {
-            throttleFunc();
+            LikeHandler();
           }}
           cursor="pointer"
         />
@@ -114,7 +111,7 @@ function Like({ currentUser, post, id }) {
           fontSize="20px"
           color="#dedede"
           onClick={() => {
-            throttleFunc();
+            LikeHandler();
           }}
           cursor="pointer"
         />
