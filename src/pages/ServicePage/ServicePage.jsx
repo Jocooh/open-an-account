@@ -101,7 +101,11 @@ const ServicePage = () => {
   const [intrRateType, setIntrRateType] = useState(""); //* 선택된 상품의 intr_rate_type(이자율타입 :단리, 복리) 저장
   const [productList, setProductList] = useState([]);
 
-  const isLoggedIn = sessionStorage.key(0); //로그인했는지 확인
+  // const isLoggedIn = sessionStorage.key(0); //로그인했는지 확인
+  const isLoggedIn = sessionStorage.getItem(
+    `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
+  );
+
   const [user, setUser] = useState({});
 
   //* 금융상품 리스트 가져오기
