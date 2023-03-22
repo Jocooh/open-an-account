@@ -43,7 +43,6 @@ function MyPage() {
     `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
   );
   const currentUser = JSON.parse(userSession ?? "");
-
   const onLogoutClick = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {
       return authService.signOut().then(() => {

@@ -48,7 +48,7 @@ const MainPage = () => {
   // const user = authService.currentUser;
 
   // 유저 정보 가져오기
-  const isLoggedIn = sessionStorage.key(0);
+  // const isLoggedIn = sessionStorage.key(0);
   // 메인 페이지 새로고침 시 user 의 display name 불러오지 못하는 부분 해결
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 해결 방법 1
@@ -58,7 +58,8 @@ const MainPage = () => {
   useEffect(() => {
     onAuthStateChanged(authService, (user) => setUser(user));
   }, []);
-  // console.log(user);
+  console.log("authService", authService);
+  console.log("user", user);
   //////////////////////////////////////////////////////////////////////////////////////////////////////
   // 해결 방법 2
   // 기존 const user = authService.currentUser 가 새로고침시 displayName 을 불러오지 못하니
