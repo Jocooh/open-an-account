@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { authService } from "../../config/firebase";
+import { authService, firebaseConfig } from "../../config/firebase";
 import PostingModal from "../../components/PostingModal/PostingModal";
 import CommunityMain from "../../components/Community/CommunityMain";
 import LoggedIn from "../../components/Community/LoggedIn";
