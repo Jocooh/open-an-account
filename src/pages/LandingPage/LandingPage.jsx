@@ -39,10 +39,16 @@ import {
   TocompareButton,
   FourthSectionImgAnimationWrap,
 } from "./LandingCss";
+import { firebaseConfig } from "../../config/firebase";
 const LandingPage = () => {
   const navigate = useNavigate();
   // 유저 정보 가져오기
-  const isLoggedIn = sessionStorage.key(0);
+  // const isLoggedIn = sessionStorage.key(0);
+  const isLoggedIn = sessionStorage.getItem(
+    `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
+  );
+  console.log(isLoggedIn);
+
   return (
     <BackgroundWraper>
       <Wraper>
