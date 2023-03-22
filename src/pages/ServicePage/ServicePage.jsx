@@ -62,7 +62,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { authService, db } from "../../config/firebase";
+import { authService, db, firebaseConfig } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 import CalculatorList from "../../components/CalculatorList/CalculatorList";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
