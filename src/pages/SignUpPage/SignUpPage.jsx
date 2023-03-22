@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../../components/Auth/AuthForm";
-import { authService } from "../../config/firebase";
+import { authService, firebaseConfig } from "../../config/firebase";
 
 const SignUpPage = () => {
   // 유저 정보 가져오기 로그인 되어있으면 로그인 페이지 막기
