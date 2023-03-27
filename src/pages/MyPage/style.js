@@ -263,6 +263,7 @@ export const RightSecondWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px;
+  background-color: #fff;
   @media screen and (max-width: 900px) {
     width: 98%;
   }
