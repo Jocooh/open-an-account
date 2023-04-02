@@ -33,7 +33,7 @@ import {
   BankLogo,
 } from "../../pages/MainPage/style";
 import logoList from "../../assets/logo/logo";
-import { timeToLocaleString } from "../../utils/Date";
+import { timeToLocaleString } from "../../utils/utils";
 const BestProducts = () => {
   const [bookmarkListAll, setBookmarkListAll] = useState([]);
   // const [depositList, setDepositList] = useState([]);
@@ -341,7 +341,6 @@ const BestProducts = () => {
           alignContents: "center",
 
           marginTop: "40px",
-
         }}
       >
         <>
