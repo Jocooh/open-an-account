@@ -48,7 +48,7 @@ import {
 } from "./style";
 import { v4 as uuidv4 } from "uuid";
 import Like from "../Community/Like";
-import { timeToLocaleString } from "../../utils/Date";
+import { timeToLocaleString } from "../../utils/utils";
 
 function EditPostingModal({
   setEditPostingModalOpen,

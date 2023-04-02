@@ -71,6 +71,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../../components/AllBankList/style";
 import TopButton from "../../components/TopScrollBtn/TopScrollBtn";
+import { isLoggedIn } from "../../utils/utils";
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
   const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
@@ -100,12 +101,6 @@ const ServicePage = () => {
   const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품의 intr_rate(최대금리) 저장
   const [intrRateType, setIntrRateType] = useState(""); //* 선택된 상품의 intr_rate_type(이자율타입 :단리, 복리) 저장
   const [productList, setProductList] = useState([]);
-
-  // const isLoggedIn = sessionStorage.key(0); //로그인했는지 확인
-  const isLoggedIn = sessionStorage.getItem(
-    `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
-  );
-
   const [user, setUser] = useState({});
 
   //* 금융상품 리스트 가져오기
