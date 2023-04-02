@@ -7,18 +7,11 @@ import { authService, db } from "../../config/firebase";
 
 const Bookmarks = ({
   baseList, // base list
-  optionList, // option list
-  selectedProductRate, // option list 일반 금리 (modal)
-  selectedProductRate2, // option list 최고 금리 (modal)
-  isMyPage, // true 를 받기 위함
-  isModal, // true 를 받기 위함
-  selectedProductId, // doc id 가 달라 다르게 받아야 함
-  productTypes, // 예 적금 필터링
+  isMyPage, // 마이페이지 내 북마크 수정할 경우 true 를 받기 위함
+  isModal, // 서비스페이지 - 모달 내 북마크 수정할 경우 true 를 받기 위함
+  selectedProductId, // 서비스페이지 - 모달일 경우 doc id 가 달라 다르게 받아야 함
+  productTypes, // 예적금 필터링
 }) => {
-  // console.log("optionList", optionList);
-  // console.log("baseList", baseList);
-  // console.log("baseList.docId", baseList.docId);
-  // console.log("baseList.id", baseList.id);
   const [bookmark, setBookmark] = useState(false);
   const currentUserUid = authService.currentUser?.uid;
   const navigate = useNavigate();
@@ -36,7 +29,6 @@ const Bookmarks = ({
       }
     }
 
-    // 마이페이지(서비스페이지 찜목록) 내 북마크가 가진
     const newId = isMyPage
       ? `${currentUserUid}${baseList.docId}`
       : isModal
@@ -45,14 +37,13 @@ const Bookmarks = ({
 
     // 북마크가 체크되어있지 않다면?
     if (!bookmark) {
-      // 여기서 아까 지정해준 newId로 새로운 필드값을 정해준 다음 그 안에 속성들은 userId ~~~ 등등 애들이 들어갈 예정.
       await setDoc(doc(db, "bookmarks", newId), {
         // user id
         userId: currentUserUid,
-        // 필드 id
+        // firebase field id
         docId: baseList.id || selectedProductId || baseList.docId,
         // base list
-        fin_prdt_nm: baseList.fin_prdt_nm.replace(",", " "), // 상품 명
+        fin_prdt_nm: baseList.fin_prdt_nm.replace(",", " "), // 상품 명 - 상품명에 쉼표가 포함된 경우 제거 위해
         fin_prdt_cd: baseList.fin_prdt_cd, // 상품 코드
         kor_co_nm: baseList.kor_co_nm, // 상품 회사 명
         join_way: baseList.join_way, // 가입 방법
@@ -61,20 +52,16 @@ const Bookmarks = ({
         etc_note: baseList.etc_note, // 기타 유의사항
         fin_co_no: baseList.fin_co_no, // 상품 회사 코드
         productTypes: productTypes, // 예적금 구분 타입
-        // intr_rate: selectedProductRate ?? optionList.intr_rate, // option - 일반 금리
-        // intr_rate2: selectedProductRate2 ?? optionList.intr_rate2, // option - 최고 금리
       });
 
       // true가 되면서 북마크 더이상 못하게 막기
       setBookmark(true);
-      console.log("북마크 추가");
     } else {
-      // bookmark 면? 해당 newId 가 있으니 delete 이 실행
+      // bookmark 면? 해당 newId 존재 -> delete 실행
       const haveBookMark = doc(db, "bookmarks", newId);
       deleteDoc(haveBookMark);
-      //다시 북마크가 저장가능한 상태
+      // 북마크가 저장 가능한 상태
       setBookmark(false);
-      console.log("북마크 취소");
     }
   };
 
@@ -119,16 +106,6 @@ const Bookmarks = ({
 };
 export default Bookmarks;
 
-// const StyledBookmarkFill = styled(BsFillBookmarkFill)`
-//   width: 20px;
-//   height: 27px;
-//   color: #6a24ff;
-// `;
-// const StyledBookmark = styled(BsBookmark)`
-//   width: 20px;
-//   height: 27px;
-//   color: #6a24ff;
-// `;
 export const BookmarkedWrap = styled.div`
   display: flex;
 `;
