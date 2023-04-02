@@ -1,6 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FourthSectionImgAnimation from "../../components/FourthSectionAnimation/FourthSection";
 import SecondSectionImgAnimation1 from "../../components/SecondSectionAnimation/AnimationFirst";
 import SecondSectionImgAnimation2 from "../../components/SecondSectionAnimation/AnimationSecond";
@@ -39,15 +37,9 @@ import {
   TocompareButton,
   FourthSectionImgAnimationWrap,
 } from "./LandingCss";
-import { firebaseConfig } from "../../config/firebase";
+import { isLoggedIn } from "../../utils/utils";
 const LandingPage = () => {
   const navigate = useNavigate();
-  // 유저 정보 가져오기
-  // const isLoggedIn = sessionStorage.key(0);
-  const isLoggedIn = sessionStorage.getItem(
-    `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
-  );
-  console.log(isLoggedIn);
 
   return (
     <BackgroundWraper>

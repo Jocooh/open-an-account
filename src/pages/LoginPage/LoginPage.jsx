@@ -6,16 +6,14 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthForm from "../../components/Auth/AuthForm";
-import { authService, firebaseConfig } from "../../config/firebase";
+import { authService } from "../../config/firebase";
+import { isLoggedIn } from "../../utils/utils";
 
 const LoginPage = () => {
   // 유저 정보 가져오기 로그인 되어있으면 로그인 페이지 막기
 
   const navigate = useNavigate();
-  // const isLoggedIn = sessionStorage.key(0);
-  const isLoggedIn = sessionStorage.getItem(
-    `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
-  );
+
   useEffect(() => {
     isLoggedIn ? navigate("/mypage") : navigate("/login");
   }, []);
