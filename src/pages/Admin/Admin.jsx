@@ -1,24 +1,4 @@
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 관계자 외 접근 금지
-// 접근 권한 차후 걸어둘 것 === 원준
+// admin page 접근 권한 차후 걸어둘 것 원준
 
 import axios from "axios";
 import { addDoc, collection, getDocs } from "firebase/firestore";
@@ -35,8 +15,6 @@ const Admin = () => {
   // saving = 적금
   // deposit = 예금
 
-  // saving products data
-  // saving products data
   // saving products data
 
   const getSavingBaseListHandler = async () => {
@@ -91,8 +69,6 @@ const Admin = () => {
     }
   };
 
-  // deposit products data
-  // deposit products data
   // deposit products data
 
   const getDepositBaseListHandler = async () => {
@@ -153,32 +129,34 @@ const Admin = () => {
         <AdminItems
           style={{ border: "none", fontSize: "larger", fontWeight: "bold" }}
         >
-          <p>관계자 외 클릭 금지 ! 🔥</p>
+          <p>관계자 외 클릭 금지! 🔥</p>
         </AdminItems>
         <AdminItems>
-          <a href="https://cors-anywhere.herokuapp.com/corsdemo">데이터 넣기</a>
+          <a href="https://cors-anywhere.herokuapp.com/corsdemo">
+            금융감독원 API 불러오기
+          </a>
         </AdminItems>
         <AdminItems>
           <button onClick={getSavingBaseListHandler}>
-            적금 기본 정보 불러오기
+            Firebase db 에 적금 기본정보 저장
           </button>
         </AdminItems>
 
         <AdminItems>
           <button onClick={getSavingOptionListHandler}>
-            적금 옵션 목록 불러오기
+            Firebase db 에 적금 옵션목록 저장
           </button>
         </AdminItems>
 
         <AdminItems>
           <button onClick={getDepositBaseListHandler}>
-            예금 기본 정보 불러오기
+            Firebase db 에 예금 기본정보 저장
           </button>
         </AdminItems>
 
         <AdminItems>
           <button onClick={getDepositOptionListHandler}>
-            예금 옵션 목록 불러오기
+            Firebase db 에 예금 옵션목록 저장
           </button>
         </AdminItems>
       </AdminWrapper>

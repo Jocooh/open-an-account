@@ -1,19 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Logo, NavBar, Nav, LoginToggle } from "./style";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { authService, firebaseConfig } from "../../../config/firebase";
+import { authService } from "../../../config/firebase";
+import { isLoggedIn } from "../../../utils/utils";
 
 function Header() {
   const navigate = useNavigate();
   // 마리나님 코드 임시 주석
   // const [currentUser, setCurrentUser] = useState(false);
-
-  // 로그인 확인을 위한 세션스토리지 키 확인. 키 존재? => 로그인 되어있음 / 없음 => 로그인 안 되어있음
-  // const isLoggedIn = sessionStorage.key(0);
-  const isLoggedIn = sessionStorage.getItem(
-    `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
-  );
 
   // // 공부용 주석 로그아웃 => 왜 한 번에 안되는지 보자
   // const onLogoutClick = () => {
