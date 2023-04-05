@@ -52,7 +52,7 @@ function Header() {
         {/* 24일이후 추가할 예정 */}
         {/* <Nav onClick={() => navigate("/boardpage")}>커뮤니티</Nav> */}
         <LoginToggle>
-          {!isLoggedIn && (
+          {!isLoggedIn() && (
             <>
               {/* <Nav
                 onClick={() => {
@@ -70,7 +70,7 @@ function Header() {
               </Nav>
             </>
           )}
-          {isLoggedIn && (
+          {isLoggedIn() && (
             <>
               <Nav
                 onClick={() => {
