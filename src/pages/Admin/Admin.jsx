@@ -2,15 +2,28 @@
 
 import axios from "axios";
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { db } from "../../config/firebase";
+import { db, firebaseConfig } from "../../config/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const [savingBaseList, setSavingBaseList] = useState([]);
   const [savingOptionList, setSavingOptionList] = useState([]);
   const [depositBaseList, setDepositBaseList] = useState([]);
   const [depositOptionList, setDepositOptionList] = useState([]);
+
+  const navigate = useNavigate();
+  const userSession = sessionStorage.getItem(
+    `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
+  );
+  const currentUser = JSON.parse(userSession ?? "");
+
+  useEffect(() => {
+    currentUser.email === "k1mwnjn@gmail.com"
+      ? navigate("/admin")
+      : navigate("/");
+  }, []);
 
   // saving = 적금
   // deposit = 예금
