@@ -69,7 +69,7 @@ const LandingPage = () => {
                   </TocompareButton>
                   <StartButton
                     onClick={() =>
-                      isLoggedIn ? navigate("main") : navigate("/signup")
+                      isLoggedIn() ? navigate("main") : navigate("/signup")
                     }
                   >
                     시작하기

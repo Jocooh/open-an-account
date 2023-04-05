@@ -14,7 +14,7 @@ function CommunityPage() {
   }, []);
   return (
     <Wrapper>
-      {isLoggedIn ? (
+      {isLoggedIn() ? (
         <LoggedIn
           username={user?.displayName}
           categorytab={categorytab}

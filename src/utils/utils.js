@@ -5,6 +5,14 @@ export const timeToLocaleString = (createdAt) =>
   new Date(createdAt).toLocaleString();
 
 // isLoggedIn 유틸화
-export const isLoggedIn = sessionStorage.getItem(
-  `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
-);
+export function isLoggedIn() {
+  if (
+    sessionStorage.getItem(
+      `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
+    )
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}

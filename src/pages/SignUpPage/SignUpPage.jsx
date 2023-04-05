@@ -15,7 +15,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    isLoggedIn ? navigate("/main") : navigate("/signup");
+    isLoggedIn() ? navigate("/main") : navigate("/signup");
   }, []);
 
   // 회원가입 페이지 새로고침 제어

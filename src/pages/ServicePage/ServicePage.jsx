@@ -493,7 +493,7 @@ const ServicePage = () => {
   //3번 탭 비로그인 시 로그인유도 함수
   const navigate = useNavigate();
   const checkUser = () => {
-    if (!isLoggedIn)
+    if (!isLoggedIn())
       if (
         window.confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
       ) {
@@ -1198,7 +1198,7 @@ const ServicePage = () => {
               )}
 
               {activeTab === 3 &&
-                (!isLoggedIn ? (
+                (!isLoggedIn() ? (
                   <Tapwraper>
                     <div>
                       <TapContainerWrap>
