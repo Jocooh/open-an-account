@@ -15,7 +15,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    isLoggedIn ? navigate("/mypage") : navigate("/login");
+    isLoggedIn() ? navigate("/mypage") : navigate("/login");
   }, []);
 
   const { state } = useLocation();
