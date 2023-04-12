@@ -82,7 +82,7 @@ export const KrBankRateVar = styled.div`
   display: flex;
   align-items: end;
   padding-bottom: 5px;
-  color: red;
+  /* color: red; */
   img {
     height: 16px;
     width: 16px;
