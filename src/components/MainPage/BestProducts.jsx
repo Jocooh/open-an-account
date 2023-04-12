@@ -124,8 +124,8 @@ const BestProducts = () => {
           <KrBank>한국은행 기준금리</KrBank>
           <KrBankRate>3.50%</KrBankRate>
           <KrBankRateVar>
-            {/* <img src={require("../../assets/mainpage/variation.png")} /> */}
-            <div>🔺0.50</div>
+            {/* <div>🔺0.50</div> */}
+            <div> - </div>
           </KrBankRateVar>
         </KrBankRateWrap>
       </CurrentState>
