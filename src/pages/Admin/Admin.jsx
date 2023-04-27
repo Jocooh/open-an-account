@@ -25,6 +25,11 @@ const Admin = () => {
       : navigate("/");
   }, []);
 
+  const goToHeroku = () => {
+    const link = "https://cors-anywhere.herokuapp.com/corsdemo";
+    window.location.href = link;
+  };
+
   // saving = 적금
   // deposit = 예금
 
@@ -138,41 +143,29 @@ const Admin = () => {
 
   return (
     <AdminBackground>
-      <AdminWrapper>
-        <AdminItems
-          style={{ border: "none", fontSize: "larger", fontWeight: "bold" }}
-        >
-          <p>관계자 외 클릭 금지! 🔥</p>
-        </AdminItems>
-        <AdminItems>
-          <a href="https://cors-anywhere.herokuapp.com/corsdemo">
-            금융감독원 API 불러오기
-          </a>
-        </AdminItems>
-        <AdminItems>
-          <button onClick={getSavingBaseListHandler}>
-            Firebase db 에 적금 기본정보 저장
-          </button>
-        </AdminItems>
-
-        <AdminItems>
-          <button onClick={getSavingOptionListHandler}>
-            Firebase db 에 적금 옵션목록 저장
-          </button>
-        </AdminItems>
-
-        <AdminItems>
-          <button onClick={getDepositBaseListHandler}>
-            Firebase db 에 예금 기본정보 저장
-          </button>
-        </AdminItems>
-
-        <AdminItems>
-          <button onClick={getDepositOptionListHandler}>
-            Firebase db 에 예금 옵션목록 저장
-          </button>
-        </AdminItems>
-      </AdminWrapper>
+      <AdminMsg>
+        <Title>관계자 외 클릭 금지! 🔥</Title>
+        <Text>
+          금융감독원 API를 Heroku server를 통한 우회접속으로 Firebase database에
+          저장하는 과정입니다.
+        </Text>
+        <Text>개발자 도구를 통해 데이터가 잘 들어오는지 확인해주세요.</Text>
+      </AdminMsg>
+      <AdminNav>
+        <Menu onClick={goToHeroku}>1. heroku 이동 → API 받으러 가기</Menu>
+        <Menu onClick={getSavingBaseListHandler}>
+          2. 금감원 적금 기본정보 저장
+        </Menu>
+        <Menu onClick={getSavingOptionListHandler}>
+          3. 금감원 적금 옵션목록 저장
+        </Menu>
+        <Menu onClick={getDepositBaseListHandler}>
+          4. 금감원 예금 기본정보 저장
+        </Menu>
+        <Menu onClick={getDepositOptionListHandler}>
+          5. 금감원 예금 옵션목록 저장
+        </Menu>
+      </AdminNav>
     </AdminBackground>
   );
 };
@@ -185,28 +178,55 @@ const AdminBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
-const AdminWrapper = styled.div`
-  width: 700px;
-  height: 700px;
-  border: 4px solid #6a24ff;
-  border-radius: 15px;
+
+const AdminMsg = styled.div`
+  width: 1000px;
+  height: 200px;
+  gap: 15px;
 
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+`;
+const Title = styled.div`
+  font-size: 50px;
+  font-weight: bold;
+
+  margin-bottom: 15px;
+`;
+const Text = styled.div`
+  font-size: 20px;
+  font-weight: bold;
 `;
 
-const AdminItems = styled.div`
-  width: 250px;
+const AdminNav = styled.div`
+  width: 1000px;
+  height: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+const Menu = styled.div`
+  width: 500px;
   height: 100px;
-  border: 2px solid #6a24ff;
-  border-radius: 15px;
 
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  font-size: large;
+  font-weight: bold;
+  color: #6a24ff;
+  text-align: center;
+  line-height: 100px;
+
+  transition: transform 300ms ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  cursor: pointer;
 `;
