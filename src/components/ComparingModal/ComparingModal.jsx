@@ -13,9 +13,7 @@ import {
   ModalContents,
   Products,
   SecondGuide,
-  SubTitle,
   Title,
-  TitleWrapper,
 } from "./style";
 import Product from "../Product/Product";
 import SavingProduct from "../Product/SavingProduct";
@@ -30,11 +28,6 @@ const ComparingModal = ({
   selectedProductRateType,
 }) => {
   const [inputValue, setInputValue] = useState("");
-
-  // console.log("selectedProduct :>> ", selectedProduct);
-  // console.log("selectedProductRate :>> ", selectedProductRate);
-  // console.log("selectedProductRate2 :>> ", selectedProductRate2);
-  // console.log("selectedProductRateType :>> ", selectedProductRateType);
 
   return (
     <ModalBackground>

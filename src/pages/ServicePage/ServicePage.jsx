@@ -51,23 +51,13 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import ComparingModal from "../../components/ComparingModal/ComparingModal";
 import SearchBankList from "../../components/SearchBankList/SearchBankList";
 import SearchInput from "../../components/SearchBankList/SearchInput";
-import axios from "axios";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  dbService,
-  docRef,
-  query,
-  where,
-} from "firebase/firestore";
-import { authService, db, firebaseConfig } from "../../config/firebase";
+import { collection, doc, getDoc, getDocs, where } from "firebase/firestore";
+import { authService, db } from "../../config/firebase";
 import AllBank from "../../components/ServicePage/AllBank";
 import CalculatorList from "../../components/CalculatorList/CalculatorList";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import BookmarkPrdtList from "../../components/Mypage/BookmarkPrdtList";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../../components/AllBankList/style";
 import TopButton from "../../components/TopScrollBtn/TopScrollBtn";
@@ -470,27 +460,6 @@ const ServicePage = () => {
     });
   };
 
-  // // 찜하기 - 원준 작업 중 -
-  // const [myBookmarkProducts, setMyBookmarkProducs] = useState([]);
-
-  // const getMyBookmarkProduct = async () => {
-  //   const querySnapshot = await getDocs(
-  //     collection(db, "bookmarks"),
-  //     where("userId", "==", authService.currentUser?.uid)
-  //   );
-  //   const myBookmarkProduct = [];
-
-  //   querySnapshot.forEach((doc) => {
-  //     const newBookmarkProduct = {
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     };
-
-  //     myBookmarkProduct.push(newBookmarkProduct);
-  //     setMyBookmarkProducs(myBookmarkProduct);
-  //   });
-  // };
-  //3번 탭 비로그인 시 로그인유도 함수
   const navigate = useNavigate();
   const checkUser = () => {
     if (!isLoggedIn())
