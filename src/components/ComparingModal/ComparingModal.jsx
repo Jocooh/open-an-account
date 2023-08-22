@@ -17,10 +17,10 @@ import {
 } from "./style";
 import Product from "../Product/Product";
 import SavingProduct from "../Product/SavingProduct";
+import { useRecoilState } from "recoil";
+import { productType, comparingModal, productIds } from "../../atom/index";
 
 const ComparingModal = ({
-  productTypes,
-  setComparingModalOpen,
   selectedProduct,
   selectedProductId,
   selectedProductRate,
@@ -28,6 +28,8 @@ const ComparingModal = ({
   selectedProductRateType,
 }) => {
   const [inputValue, setInputValue] = useState("");
+  const [comparingModalOpen, setComparingModalOpen] =
+    useRecoilState(comparingModal);
 
   return (
     <ModalBackground>
@@ -48,7 +50,7 @@ const ComparingModal = ({
                   <div style={{ color: "#6A24FF" }}>12개월 </div> 동안
                   <InputWrapper>
                     <Input
-                      maxLength={11}
+                      maxlength={11}
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       thousandSeparator=","
@@ -63,7 +65,6 @@ const ComparingModal = ({
                 </FirstGuide>
                 <Products>
                   <Product
-                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProductId[0]}
@@ -72,7 +73,6 @@ const ComparingModal = ({
                     selectedProductRateType={selectedProductRateType[0]}
                   />
                   <Product
-                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProductId[1]}
@@ -82,7 +82,6 @@ const ComparingModal = ({
                   />
                   {selectedProduct[2] ? (
                     <Product
-                      productTypes={productTypes}
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProductId[2]}
@@ -105,7 +104,7 @@ const ComparingModal = ({
                   <Highlight>12개월</Highlight> 동안
                   <InputWrapper>
                     <Input
-                      maxLength={11}
+                      maxlength={11}
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       thousandSeparator=","
@@ -121,7 +120,6 @@ const ComparingModal = ({
                 </Message>
                 <Products>
                   <SavingProduct
-                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[0]}
                     selectedProductId={selectedProductId[0]}
@@ -130,7 +128,6 @@ const ComparingModal = ({
                     selectedProductRateType={selectedProductRateType[0]}
                   />
                   <SavingProduct
-                    productTypes={productTypes}
                     inputValue={inputValue}
                     selectedProduct={selectedProduct[1]}
                     selectedProductId={selectedProductId[1]}
@@ -140,7 +137,6 @@ const ComparingModal = ({
                   />
                   {selectedProduct[2] ? (
                     <SavingProduct
-                      productTypes={productTypes}
                       inputValue={inputValue}
                       selectedProduct={selectedProduct[2]}
                       selectedProductId={selectedProductId[2]}

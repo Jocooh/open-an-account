@@ -62,9 +62,12 @@ import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../../components/AllBankList/style";
 import TopButton from "../../components/TopScrollBtn/TopScrollBtn";
 import { isLoggedIn } from "../../utils/utils";
+import { useRecoilState } from "recoil";
+import { productType, comparingModal, productIds } from "../../atom/index";
+
 const ServicePage = () => {
   const [activeTab, setActiveTab] = useState(1); //* 탭 선택 상태 값 저장(조건, 상품 명, 찜)
-  const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
+  // const [productTypes, setProductTypes] = useState(1); //* 상품 타입 선택 상태 값 저장
   const [showResults, setShowResults] = useState(false); //* 결과 보기 버튼 활성화 상태 값 저장
   const [notAllow2, setNotAllow2] = useState(true); //* 비교하기 버튼 활성화 상태 값 저장
   const [showSearch, setShowSearch] = useState(true); //* 검색창 활성화 상태 값 저장
@@ -84,14 +87,21 @@ const ServicePage = () => {
   const [months, setMonths] = useState(0);
   const [amount, setAmount] = useState(""); //* input 상태 값 저장
   const [notAllow, setNotAllow] = useState(true); //* 찾기버튼 활성화 상태 값 저장
-  const [selectedProductIds, setSelectedProductIds] = useState(
-    new Array(18).fill("")
-  );
+  // const [selectedProductIds, setSelectedProductIds] = useState(
+  //   new Array(18).fill("")
+  // );
   const [intrRate, setIntrRate] = useState(""); //* 선택된 상품의 intr_rate(이자율) 저장
   const [intrRate2, setIntrRate2] = useState(""); //* 선택된 상품의 intr_rate(최대금리) 저장
   const [intrRateType, setIntrRateType] = useState(""); //* 선택된 상품의 intr_rate_type(이자율타입 :단리, 복리) 저장
   const [productList, setProductList] = useState([]);
   const [user, setUser] = useState({});
+
+  //* recoil 적용
+  const [productTypes, setProductTypes] = useRecoilState(productType);
+  const [selectedProductIds, setSelectedProductIds] =
+    useRecoilState(productIds);
+  const [comparingModalOpen, setComparingModalOpen] =
+    useRecoilState(comparingModal);
 
   //* 금융상품 리스트 가져오기
   const handleButtonClick = async () => {
@@ -432,7 +442,7 @@ const ServicePage = () => {
   };
 
   //* 모달 창 열리면 스크롤 정지
-  const [comparingModalOpen, setComparingModalOpen] = useState(false);
+  // const [comparingModalOpen, setComparingModalOpen] = useState(false);
   const OpenComparingModal = () => {
     setComparingModalOpen(true);
   };
@@ -753,8 +763,6 @@ const ServicePage = () => {
 
               {comparingModalOpen && (
                 <ComparingModal
-                  productTypes={productTypes}
-                  setComparingModalOpen={setComparingModalOpen}
                   selectedProductId={[
                     selectedProductIds[0],
                     selectedProductIds[6],

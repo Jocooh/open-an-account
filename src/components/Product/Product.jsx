@@ -16,9 +16,9 @@ import {
 import Bookmarks from "../ServicePage/Bookmarks";
 import logoLists from "../../assets/logo/logo";
 import { StyledImg } from "../AllBankList/style";
+import { productType, comparingModal, productIds } from "../../atom/index";
 
 function Product({
-  productTypes,
   inputValue,
   selectedProduct,
   selectedProductId,
@@ -114,7 +114,6 @@ function Product({
             selectedProductRate2={selectedProductRate2} // option  최고 금리
             isModal={true}
             selectedProductId={selectedProductId}
-            productTypes={productTypes}
           />
         </Scrap>
       </ProductBox>
